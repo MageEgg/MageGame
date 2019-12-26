@@ -162,7 +162,7 @@ library DzAPI
 	endfunction
     
     
-    /*
+    
 	function DzAPI_Map_StoreString takes player whichPlayer, string key, string value returns nothing
 		set key="S"+key
 		call DzAPI_Map_SaveServerValue(whichPlayer,key,value)
@@ -172,7 +172,7 @@ library DzAPI
 	function DzAPI_Map_GetStoredString takes player whichPlayer, string key returns string
 		return DzAPI_Map_GetServerValue(whichPlayer,"S"+key)
 	endfunction
-    */
+    
     
     
 	function DzAPI_Map_StoreStringEX takes player whichPlayer, string key, string value returns nothing
