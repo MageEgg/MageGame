@@ -140,10 +140,10 @@ library PassCheckUI uses GameFrame,PassCheckData
     private function CreateFrameButton1()
         int last = 0
         //快速升级
-        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.005,0.056,0.02,"war3mapImported\\UI_Pass_LevelUp0.tga")
+        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.008,0.056,0.02,"war3mapImported\\UI_Pass_LevelUp0.tga")
         
         
-        
+
 
         //等级预览
         CreateButton(651,Button.frameid,TYPE_NULL,0,Button.frameid,0,0.0103,-0.033,0.028,0.014,"war3mapImported\\UI_Pass_LevelBack.tga")
@@ -188,7 +188,7 @@ library PassCheckUI uses GameFrame,PassCheckData
 
 
         //每日任务
-        CreateButton(654,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.04,0.028,0.028,"war3mapImported\\UI_Pass_Text3.tga") 
+        CreateButton(654,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.045,0.028,0.028,"war3mapImported\\UI_Pass_Text3.tga") 
 
         CreateButton(641,Button.frameid,TYPE_NULL,0,BUTTON_Back[654][0],2,0.01,0.0,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
         CreateButton(642,Button.frameid,TYPE_NULL,0,BUTTON_Back[641][0],6,0.0,-0.005,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
@@ -218,8 +218,8 @@ library PassCheckUI uses GameFrame,PassCheckData
 
 
 
-        CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.01,0.01,0.01,"war3mapImported\\UI_Pass_Left.tga")
-        CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.01,0.01,0.01,"war3mapImported\\UI_Pass_Right.tga")
+        CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Left.tga")
+        CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Right.tga")
 
     endfunction
 
@@ -244,7 +244,7 @@ library PassCheckUI uses GameFrame,PassCheckData
         //设置快捷键文本
         Key.frameid = FRAME.Fdf("centertext010",origin,Key)
         Key.SetText("1/10")
-        Key.SetPoint(1,Button.frameid ,1,0.0,-0.01)
+        Key.SetPoint(1,Button.frameid ,1,0.0,-0.015)
 
         CreateFrameButton1()
 
