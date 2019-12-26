@@ -129,6 +129,33 @@ library SystemCodes uses ServerTime,Define1
         return "|cffffffff"
     endfunction
 
+    function KillUnitTimer(unit wu,real time)
+        unit u1 = wu
+        TimerStart(time,false)
+        {
+            if  GetUnitState(u1,UNIT_STATE_LIFE) >= 0.4
+                KillUnit(u1)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    function RemoveUnitTimerFunc()
+        timer t = GetExpiredTimer()
+        unit u1 = LoadUnitHandle(ht,GetHandleId(t),1)
+        RemoveUnit(u1)
+        FlushChildHashtable(ht,GetHandleId(t))
+        DestroyTimer(t)
+        t = null
+        u1 = null
+    endfunction
+    function RemoveUnitTimer(unit wu,real time)
+        timer t = CreateTimer()
+        SaveUnitHandle(ht,GetHandleId(t),1,wu)
+        TimerStart(t,time,false,function RemoveUnitTimerFunc)
+        t = null
+    endfunction
     
     function Udis(unit u,unit u2)->real //单位间距离
         return Pow((GetUnitX(u)-GetUnitX(u2))*(GetUnitX(u)-GetUnitX(u2))+(GetUnitY(u)-GetUnitY(u2))*(GetUnitY(u)-GetUnitY(u2)),0.5)
@@ -144,15 +171,17 @@ library SystemCodes uses ServerTime,Define1
         return(Atan2(GetUnitY(u2)-GetUnitY(u),GetUnitX(u2)-GetUnitX(u)))
     endfunction
     
-    
-    
-    func SetPlayerCameraBoundsToRect(rect r)
+    function SetPlayerCameraBoundsToRect(rect r)
         real minX = GetRectMinX(r)
         real minY = GetRectMinY(r)
         real maxX = GetRectMaxX(r)
         real maxY = GetRectMaxY(r)
         SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
-    end
+    endfunction
+
+    function AddPlayerState(int pid,playerstate whichPlayerState,integer value)
+        SetPlayerState(Player(pid),whichPlayerState,GetPlayerState(Player(pid),whichPlayerState)+value)
+    endfunction
 
     //物品处理
     function AddItemCharges(unit wu,item wi)
@@ -209,6 +238,86 @@ library SystemCodes uses ServerTime,Define1
         return false
     endfunction
 
+    #define UnitHasItemOfType IsUnitHasItemType
+
+    function UnitHasItemOfTypeReNum(unit u,int itid)->int
+        int a = 0
+        int re = -1
+        for num = 0,5
+            if  GetItemTypeId(UnitItemInSlot(u,num)) == itid
+                re = num
+                exitwhen true
+            endif
+        end
+        return re
+    endfunction
+
+    function UnitCanGetItem(unit u)->bool
+        bool J = false
+        for num = 0,5
+            if  GetItemTypeId(UnitItemInSlot(u,num)) == 0
+                J = true
+            endif
+        end
+        return J
+    endfunction
+
+    function RemoveItemEx(unit u,int itid)//删除英雄所有可贩卖的物品
+        int a = 0
+        for num = 0,5
+            if  GetItemTypeId(UnitItemInSlot(u,num)) == itid
+                if  IsItemPawnable(UnitItemInSlot(u,num)) == true
+                    SetItemPawnable(UnitItemInSlot(u,num),false)
+                endif
+                RemoveItem(UnitItemInSlot(u,num))
+                exitwhen true
+            endif
+        end
+    endfunction
+
+    function UseItemEx(unit u,int itid)
+        int a = 0
+        int n = 0
+        for num = 0,5
+            if  GetItemTypeId(UnitItemInSlot(u,num)) == itid
+                n = GetItemCharges(UnitItemInSlot(u,num))
+                if  n > 1 
+                    SetItemCharges(UnitItemInSlot(u,num),n-1)
+                else
+                    RemoveItem(UnitItemInSlot(u,num))
+                endif
+                exitwhen true
+            endif
+        end
+    endfunction
+
+    function ReturnPlayerBuyItemUse(int pid,int id)//返还物品资源消耗
+        int gold = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_ITEM, id, "goldcost")
+        int lumber = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_ITEM, id, "lumbercost")
+        if  gold > 0
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
+        endif
+        if  lumber > 0
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber)
+        endif
+    endfunction
+    
+    function ConsumePlayerBuyItemUse(int pid,int id)//扣除物品资源消耗
+        int gold = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_ITEM, id, "goldcost")
+        int lumber = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_ITEM, id, "lumbercost")
+        if  gold > 0
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-gold)
+        endif
+        if  lumber > 0
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-lumber)
+        endif
+    endfunction
+
+    function SetGameBGM(string music) //设置音乐
+        StopMusic(false)
+        ClearMapMusic()
+        PlayMusic(music)
+    endfunction
     
     //坐标防止溢出
     function SetUnitXEx(unit wu,real x)
@@ -240,7 +349,44 @@ library SystemCodes uses ServerTime,Define1
         endif
         SetUnitPosition(wu,x,y)
     endfunction
+
+    function SetUnitFaceOfUnit(unit wu,unit tu)
+        real ang = Atan2(GetUnitY(tu)-GetUnitY(wu),GetUnitX(tu)-GetUnitX(wu))
+        SetUnitFacing(wu,ang/0.01745)
+    endfunction
     
+    function SetUnitFaceOfAng(unit wu,real ang)
+        SetUnitFacing(wu,ang/0.01745)
+    endfunction
+    
+    ////////////////////////////异步函数分割//////////////////////////////
+
+    function ShowUnitOfOnlyPlayer(int pid,unit wu,int value)
+        int uid = GetUnitTypeId(wu)
+        int r = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"red")
+        int g = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"green")
+        int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
+        int ap = value
+        if  Player(pid) == GetLocalPlayer()
+            ap = 255
+        endif
+        SetUnitVertexColor(wu,r,g,b,ap)
+    endfunction
+
+    function ShowUnitOfAllPlayer(unit wu)
+        int uid = GetUnitTypeId(wu)
+        int r = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"red")
+        int g = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"green")
+        int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
+        SetUnitVertexColor(wu,r,g,b,255) 
+    endfunction
+    
+    function PlayerSelectOneUnit(int pid,unit u)
+        if  Player(pid)==GetLocalPlayer()
+            ClearSelection()
+            SelectUnit(u,true)
+        endif
+    endfunction
 
     
 endlibrary
