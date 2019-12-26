@@ -1,4 +1,4 @@
-library HeroFrameUI uses GameFrame
+library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
     /*
     150-160     道果
@@ -9,7 +9,20 @@ library HeroFrameUI uses GameFrame
 
 
     private FRAME Button = 0
+    private FRAME Exp0 = 0
+    private FRAME Exp1 = 0
+
+    private FRAME Button2 = 0
     private FRAME Back2 = 0
+
+    //通用函数
+    function HeroExpFrame(int pid,bool show)
+
+        if  GetLocalPlayer() == Player(pid)
+            Button.show = show
+        endif
+    
+    endfunction
 
 
 
@@ -46,7 +59,12 @@ library HeroFrameUI uses GameFrame
         Back = FRAME.create()   //注册主背景
 
 
-        Button = FRAME.create() //背景注册2
+        Button = FRAME.create() //经验条
+        Exp0 = FRAME.create()   //经验条
+        Exp1 = FRAME.create()   //经验条
+
+
+        Button2 = FRAME.create() //背景注册2
         Back2 = FRAME.create()   //注册主背景
 
         
@@ -91,22 +109,35 @@ library HeroFrameUI uses GameFrame
         
 
         //控件设置
-        Button.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back)
-        Button.SetPoint(1,GetFrameUnitDetail(),1,-0.0025,0.002)
+        
+        Button.frameid = FRAME.Tag("BUTTON","Hero",GameUI,Button)
         Button.SetSize(0.22,0.008)
-        Button.SetTexture("war3mapImported\\UI_Hero_Exp0.tga", 0)
+        Button.SetPoint(1,GetFrameUnitDetail(),1,-0.0025,0.002)
         origin = Button.frameid
+
+        Exp0.frameid = FRAME.Tag("BACKDROP","Hero",origin,Exp0)
+        Exp0.SetTexture("war3mapImported\\UI_Hero_Exp0.tga", 0)
+        Exp0.SetSize(0.22,0.008)
+        Exp0.SetPoint(0,origin,0,0.0,0.0)
+
+        Exp1.frameid = FRAME.Tag("BACKDROP","Hero",origin,Exp1)
+        Exp1.SetTexture("war3mapImported\\UI_Hero_Exp1.tga", 0)
+        Exp1.SetSize(0.11,0.008)
+        Exp1.SetPoint(0,origin,0,0.0,0.0)
+        
 
 
         
 
         DzFrameClearAllPoints(GetFrameUnitNameFrame())
-        DzFrameSetPoint(GetFrameUnitNameFrame(),4,origin,3,-0.038,-0.005)
+        DzFrameSetPoint(GetFrameUnitNameFrame(),4,origin,3,-0.024,-0.003)
         DzFrameSetSize(GetFrameUnitNameFrame(),0.1,0.0)
+        DzFrameSetScale(GetFrameUnitNameFrame(),1.6)
 
         DzFrameClearAllPoints(GetFrameItemNameFrame())
         DzFrameSetPoint(GetFrameItemNameFrame(),4,origin,3,-0.038,-0.005)
         DzFrameSetSize(GetFrameItemNameFrame(),0.1,0.0)
+        
 
         DzFrameClearAllPoints(GetFrameItemTipsFrame())
         DzFrameSetPoint(GetFrameItemTipsFrame(),1,origin,7,0.0,-0.018)
@@ -125,9 +156,9 @@ library HeroFrameUI uses GameFrame
         
         CreateModel(151,Button.frameid,TYPE_BUTTON,6,6,-0.009,0.0,"war3mapImported\\ch_DG1x.mdx")
         
-        Button.frameid = FRAME.Tag("BUTTON","Hero",origin,Button)
-        Button.SetPoint(0,origin,0,-0.165,0.0)
-        Button.SetSize(0.1,0.008)
+        Button2.frameid = FRAME.Tag("BUTTON","Hero",origin,Button2)
+        Button2.SetPoint(0,origin,0,-0.165,0.0)
+        Button2.SetSize(0.1,0.008)
 
 
         
@@ -142,7 +173,7 @@ library HeroFrameUI uses GameFrame
         
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
-        Back2.SetPoint(6,Button.frameid,0,0.0,-0.01)
+        Back2.SetPoint(6,Button2.frameid,0,0.0,-0.01)
         Back2.SetSize(0.09,0.1)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
         for i = 1,5
@@ -157,7 +188,7 @@ library HeroFrameUI uses GameFrame
         CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r150%")
 
 
-        FrameSetScriptByExecute( Button.frameid, 1,160,TYPE_FUNC)
+        FrameSetScriptByExecute( Button2.frameid, 1,160,TYPE_FUNC)
 
 
         
@@ -168,13 +199,19 @@ library HeroFrameUI uses GameFrame
 
 
 
-
+        
         Back2.show = false
 
+        Button.show = false
+    endfunction
+
+
+    function InitHeroFrameUITimer()
         
     endfunction
 
 
+    //添加道果
     function AddPlayerImmortalFruit(int pid,int id)
         int num = GetUnitIntState(Pu[1],150)
         if  num < 10
