@@ -321,7 +321,7 @@ library DzSave initializer InitDzData uses SystemCodes
             elseif  time == 3
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        DzSavePublic(pid,1) //全局存档 
+                        //DzSavePublic(pid,1) //全局存档 
                     endif
                 end
             elseif  time == 4
