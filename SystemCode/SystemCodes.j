@@ -218,6 +218,8 @@ library SystemCodes uses ServerTime,Define1
         end
         return false
     endfunction
+
+
     
     function RemoveUnitHasItem(unit wu,int id)->bool
         for n = 0,5
@@ -350,8 +352,57 @@ library SystemCodes uses ServerTime,Define1
         endif
         SetUnitPosition(wu,x,y)
     endfunction
-    
 
+    function SetUnitFaceOfUnit(unit wu,unit tu)
+        real ang = Atan2(GetUnitY(tu)-GetUnitY(wu),GetUnitX(tu)-GetUnitX(wu))
+        SetUnitFacing(wu,ang/0.01745)
+    endfunction
+    
+    function SetUnitFaceOfAng(unit wu,real ang)
+        SetUnitFacing(wu,ang/0.01745)
+    endfunction
+    
+    ///////////////////////////异步函数////////////////////////////
+    function ShowUnitOfOnlyPlayerEx(unit wu)
+        int uid = GetUnitTypeId(wu)
+        int r = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"red")
+        int g = 100
+        int b = 100
+        int ap = 100
+        if  GetOwningPlayer(wu) == GetLocalPlayer()
+            g = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"green")
+            b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
+            ap = 255
+        endif
+        SetUnitVertexColor(wu,r,g,b,ap)
+    endfunction
+
+    function ShowUnitOfOnlyPlayer(int pid,unit wu,int value)
+        int uid = GetUnitTypeId(wu)
+        int r = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"red")
+        int g = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"green")
+        int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
+        int ap = value
+        if  Player(pid) == GetLocalPlayer()
+            ap = 255
+        endif
+        SetUnitVertexColor(wu,r,g,b,ap)
+    endfunction
+    
+    function ShowUnitOfAllPlayer(unit wu)
+        int uid = GetUnitTypeId(wu)
+        int r = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"red")
+        int g = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"green")
+        int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
+        SetUnitVertexColor(wu,r,g,b,255) 
+    endfunction
+
+    function PlayerSelectOneUnit(int pid,unit u)
+        if  Player(pid)==GetLocalPlayer()
+            ClearSelection()
+            SelectUnit(u,true)
+        endif
+    endfunction
     
 endlibrary
 library UnitRanDropItem uses SystemCodes

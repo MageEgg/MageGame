@@ -1,2 +1,2 @@
-library GameChallenge_4 uses DamageCode,GameChallengBase
+library GameChallenge4 uses GameChallengeBase
 endlibrary
