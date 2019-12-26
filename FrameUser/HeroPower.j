@@ -153,7 +153,7 @@ library HeroPowerFrame uses GameFrame
 
 
         Button.frameid = FRAME.Tag("BACKDROP","Power",GameUI,Button)
-        Button.SetPoint(7,GetFrameHeroLevelBar(),1,0,0.005)
+        Button.SetPoint(7,GetFrameUnitDetail(),1,0,0.01)
         Button.SetSize(0.25,0.025)
         Button.SetTexture("war3mapImported\\UI_zhandouli.tga",0)
         

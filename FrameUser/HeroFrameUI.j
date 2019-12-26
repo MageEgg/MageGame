@@ -54,25 +54,13 @@ library HeroFrameUI uses GameFrame
         DzFrameSetPoint(GetFrameProgressBar(),1,GetFrameUnitDetail(),1,-0.0025,0.004)
         DzFrameSetSize(GetFrameProgressBar(),0.22,0.012)
 
-        //初始化原生UI位置
         DzFrameClearAllPoints(GetFrameHeroLevelBar())
-        DzFrameSetPoint(GetFrameHeroLevelBar(),1,GetFrameUnitDetail(),1,-0.0025,0.004)
-        DzFrameSetSize(GetFrameHeroLevelBar(),0.22,0.012)
+        DzFrameSetPoint(GetFrameHeroLevelBar(),1,GameUI,1,0,-1)
         DzFrameClearAllPoints(GetFrameUnitClassFrame())
-        DzFrameSetPoint(GetFrameUnitClassFrame(),4,GetFrameHeroLevelBar(),4,0.0,0.0)
-        DzFrameSetSize(GetFrameUnitClassFrame(),0.2,0.0)
+        DzFrameSetPoint(GetFrameUnitClassFrame(),1,GameUI,1,0,-1)
 
-        DzFrameClearAllPoints(GetFrameUnitNameFrame())
-        DzFrameSetPoint(GetFrameUnitNameFrame(),4,GetFrameHeroLevelBar(),3,-0.038,-0.005)
-        DzFrameSetSize(GetFrameUnitNameFrame(),0.1,0.0)
 
-        DzFrameClearAllPoints(GetFrameItemNameFrame())
-        DzFrameSetPoint(GetFrameItemNameFrame(),4,GetFrameHeroLevelBar(),3,-0.038,-0.005)
-        DzFrameSetSize(GetFrameItemNameFrame(),0.1,0.0)
-
-        DzFrameClearAllPoints(GetFrameItemTipsFrame())
-        DzFrameSetPoint(GetFrameItemTipsFrame(),1,GetFrameHeroLevelBar(),7,0.0,-0.018)
-        DzFrameSetSize(GetFrameItemTipsFrame(),0.2,0.0)
+        //初始化原生UI位置
         
 
         DzFrameClearAllPoints(GetFrameUnitAttackIcon(0))
@@ -104,16 +92,30 @@ library HeroFrameUI uses GameFrame
 
         //控件设置
         Button.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back)
-        Button.SetPoint(0,GetFrameHeroLevelBar(),0,-0.001,0.001)
-        Button.SetPoint(8,GetFrameHeroLevelBar(),8,0.001,-0.001)
-        Button.SetTexture("war3mapImported\\human-xpbar-border.blp", 0)
+        Button.SetPoint(1,GetFrameUnitDetail(),1,-0.0025,0.002)
+        Button.SetSize(0.22,0.008)
+        Button.SetTexture("war3mapImported\\UI_Hero_Exp0.tga", 0)
         origin = Button.frameid
 
+
+        
+
+        DzFrameClearAllPoints(GetFrameUnitNameFrame())
+        DzFrameSetPoint(GetFrameUnitNameFrame(),4,origin,3,-0.038,-0.005)
+        DzFrameSetSize(GetFrameUnitNameFrame(),0.1,0.0)
+
+        DzFrameClearAllPoints(GetFrameItemNameFrame())
+        DzFrameSetPoint(GetFrameItemNameFrame(),4,origin,3,-0.038,-0.005)
+        DzFrameSetSize(GetFrameItemNameFrame(),0.1,0.0)
+
+        DzFrameClearAllPoints(GetFrameItemTipsFrame())
+        DzFrameSetPoint(GetFrameItemTipsFrame(),1,origin,7,0.0,-0.018)
+        DzFrameSetSize(GetFrameItemTipsFrame(),0.2,0.0)
         
         
         
         for i = 1,10
-            CreateButton(150+i,Button.frameid,TYPE_BUTTON,0,Button.frameid,6,0.005+0.0215*(i-1),0.0,0.018,0.018,"war3mapImported\\UI_Level_Button.tga")
+            CreateButton(150+i,Button.frameid,TYPE_BUTTON,0,Button.frameid,6,0.005+0.0215*(i-1),-0.003,0.018,0.018,"war3mapImported\\UI_Level_Button.tga")
         end
         
         for i = 1,7
