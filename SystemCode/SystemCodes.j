@@ -252,7 +252,7 @@ library SystemCodes uses ServerTime,Define1
         return re
     endfunction
 
-    function UnitCanGetItem(unit u)->bool
+    function UnitCanGetItem(unit u)->bool //能否添加物品
         bool J = false
         for num = 0,5
             if  GetItemTypeId(UnitItemInSlot(u,num)) == 0
