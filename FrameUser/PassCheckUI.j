@@ -48,9 +48,7 @@ library PassCheckUI uses GameFrame,PassCheckData
     662         →
     */
     private FRAME Button = 0
-
     private FRAME Back = 0
-    private FRAME Title = 0
     private FRAME Key = 0
     private int origin = 0
 
@@ -142,57 +140,61 @@ library PassCheckUI uses GameFrame,PassCheckData
     private function CreateFrameButton1()
         int last = 0
         //快速升级
-        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.005,-0.005,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-
-        //当前等级
-        CreateButton(650,Button.frameid,TYPE_NULL,0,Button.frameid,0,0.005,-0.033,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-        CreateText(650,Button.frameid,"centertext014",7,7,0.0,0.001,"|cffffcc008|r")
-        last = 650
-        for i = 1,6
-            CreateButton(600+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[last][0],5,0.001,0.0,0.04605,0.008,"ui\\feedback\\manabarconsole\\human-manabar-fill.blp") 
-            last = 600+i
-        end
+        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.005,0.056,0.02,"war3mapImported\\UI_Pass_LevelUp0.tga")
+        
+        
 
         //等级预览
-        CreateButton(651,Button.frameid,TYPE_NULL,0,Button.frameid,0,0.005,-0.066,0.028,0.014,"ui\\glues\\mainmenu\\mainmenu3d\\white32.blp")
+        CreateButton(651,Button.frameid,TYPE_NULL,0,Button.frameid,0,0.0103,-0.033,0.028,0.014,"war3mapImported\\UI_Pass_LevelBack.tga")
         CreateText(651,Button.frameid,"centertext008",4,4,0.0,0.0,"|cff000000等级|r")
 
         last = 651
         for i = 1,10
-            CreateButton(610+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[last][0],5,0.0,0.0,0.028,0.014,"ui\\glues\\mainmenu\\mainmenu3d\\white32.blp") 
+            CreateButton(610+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[last][0],5,0.002,0.0,0.028,0.014,"war3mapImported\\UI_Pass_LevelBack.tga") 
             CreateText(610+i,Button.frameid,"centertext008",4,4,0.0,0.0,"|cff000000"+I2S(i)+"|r")
             last = 610+i
         end
 
         //普通通行证
-        CreateButton(652,Button.frameid,TYPE_NULL,0,BUTTON_Back[651][0],6,0.0,-0.001,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-        CreateText(652,Button.frameid,"centertext008",4,4,0.0,0.0,"普通\n通行证")
+        CreateButton(652,Button.frameid,TYPE_NULL,0,BUTTON_Back[651][0],6,0.0,-0.001,0.028,0.028,"")
+        
         last = 652
         for i = 1,10
-            CreateButton(620+i,Button.frameid,TYPE_BUTTON,3,BUTTON_Back[last][0],5,0.0,0.0,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp") 
+            CreateButton(620+i,Button.frameid,TYPE_BUTTON,3,BUTTON_Back[last][0],5,0.002,0.0,0.028,0.028,"") 
             last = 620+i
         end
 
         //超级通行证
-        CreateButton(653,Button.frameid,TYPE_NULL,0,BUTTON_Back[652][0],6,0.0,-0.005,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-        CreateText(653,Button.frameid,"centertext008",4,4,0.0,0.0,"超级\n通行证")
+        CreateButton(653,Button.frameid,TYPE_NULL,0,BUTTON_Back[652][0],6,0.0,-0.009,0.028,0.028,"")
+        
         last = 653
         for i = 1,10
-            CreateButton(630+i,Button.frameid,TYPE_BUTTON,3,BUTTON_Back[last][0],5,0.0,0.0,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp") 
+            CreateButton(630+i,Button.frameid,TYPE_BUTTON,3,BUTTON_Back[last][0],5,0.002,0.0,0.028,0.028,"") 
             last = 630+i
         end
 
 
-        //每日任务
-        CreateButton(654,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.005,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-        CreateText(654,Button.frameid,"centertext008",4,4,0.0,0.0,"每日\n任务")
+        
+        //当前等级
+        CreateButton(650,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.01,0.028,0.028,"war3mapImported\\UI_Pass_LevelText.tga") 
+        CreateText(650,Button.frameid,"centertext013",7,7,0.0,0.0,"|cffffcc008|r")
+        last = 650
+        for i = 1,10
+            CreateButton(600+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[last][0],5,0.002,0.0,0.028,0.0093,"war3mapImported\\UI_Pass_Exp0.tga") 
+            last = 600+i
+        end
+        
 
-        CreateButton(641,Button.frameid,TYPE_NULL,0,BUTTON_Back[654][0],2,0.005,0.0,0.135,0.028,"ui\\widgets\\battlenet\\bnet-inputbox-back.blp")
-        CreateButton(642,Button.frameid,TYPE_NULL,0,BUTTON_Back[641][0],6,0.0,-0.005,0.135,0.028,"ui\\widgets\\battlenet\\bnet-inputbox-back.blp")
-        CreateButton(643,Button.frameid,TYPE_NULL,0,BUTTON_Back[642][0],6,0.0,-0.005,0.135,0.028,"ui\\widgets\\battlenet\\bnet-inputbox-back.blp")
-        CreateButton(644,Button.frameid,TYPE_NULL,0,BUTTON_Back[641][0],2,0.005,0.0,0.135,0.028,"ui\\widgets\\battlenet\\bnet-inputbox-back.blp")
-        CreateButton(645,Button.frameid,TYPE_NULL,0,BUTTON_Back[644][0],6,0.0,-0.005,0.135,0.028,"ui\\widgets\\battlenet\\bnet-inputbox-back.blp")
-        CreateButton(646,Button.frameid,TYPE_NULL,0,BUTTON_Back[645][0],6,0.0,-0.005,0.135,0.028,"ui\\widgets\\battlenet\\bnet-inputbox-back.blp")
+
+        //每日任务
+        CreateButton(654,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.04,0.028,0.028,"war3mapImported\\UI_Pass_Text3.tga") 
+
+        CreateButton(641,Button.frameid,TYPE_NULL,0,BUTTON_Back[654][0],2,0.01,0.0,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
+        CreateButton(642,Button.frameid,TYPE_NULL,0,BUTTON_Back[641][0],6,0.0,-0.005,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
+        CreateButton(643,Button.frameid,TYPE_NULL,0,BUTTON_Back[642][0],6,0.0,-0.005,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
+        CreateButton(644,Button.frameid,TYPE_NULL,0,BUTTON_Back[641][0],2,0.01,0.0,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
+        CreateButton(645,Button.frameid,TYPE_NULL,0,BUTTON_Back[644][0],6,0.0,-0.005,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
+        CreateButton(646,Button.frameid,TYPE_NULL,0,BUTTON_Back[645][0],6,0.0,-0.005,0.14,0.028,"war3mapImported\\UI_Pass_MissionButton.tga") 
 
         CreateText(641,Button.frameid,"righttext008",5,5,-0.005,0.0,"0/20")
         CreateText(642,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
@@ -204,7 +206,7 @@ library PassCheckUI uses GameFrame,PassCheckData
         
 
         for i = 1,6
-            CreateButton(680+i,Button.frameid,TYPE_BUTTON,3,BUTTON_Back[640+i][0],3,0.0,0.0,0.028,0.028,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
+            CreateButton(680+i,Button.frameid,TYPE_BUTTON,3,BUTTON_Back[640+i][0],3,0.0,0.0,0.028,0.028,"war3mapImported\\UI_Pass_Text1.tga")
         end
         CreateText(681,Button.frameid,"centertext008",3,5,0.005,0.0,"击杀20个Boss")
         CreateText(682,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
@@ -215,34 +217,28 @@ library PassCheckUI uses GameFrame,PassCheckData
 
 
 
-        CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.01,0.01,0.01,"replaceabletextures\\commandbuttons\\btnreplay-play.blp")
-        CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.01,0.01,0.01,"replaceabletextures\\commandbuttons\\btnreplay-play.blp")
+        CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.01,0.01,0.01,"war3mapImported\\UI_Pass_Left.tga")
+        CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.01,0.01,0.01,"war3mapImported\\UI_Pass_Right.tga")
 
     endfunction
 
     function PassCheckUIInit()
 
         Button = FRAME.create() //背景注册
-        Title = FRAME.create()  //注册标题
         Back = FRAME.create()   //注册主背景
         Key = FRAME.create()    //注册快捷键文本
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Check",GameUI,Button)
         Button.SetPoint(4,GameUI,4,0,0)
-        Button.SetSize(0.318,0.247)
+        Button.SetSize(0.35,0.2875)
         origin = Button.frameid
 
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","Check",origin,Back)
         Back.SetPoint(4,origin,4,0,0)
-        Back.SetSize(0.318,0.247)
-        Back.SetTexture("ui\\widgets\\battlenet\\bnet-dialoguebox-background.blp",0)
-
-        //标题设置
-        Title.frameid = FRAME.Fdf("text018",origin,Title)
-        Title.SetText("|cffffcc33通行证|r")
-        Title.SetPoint(0,origin,0,0.005,-0.005)
+        Back.SetSize(0.35,0.2875)
+        Back.SetTexture("war3mapImported\\UI_Pass_Back.tga",0)
 
         //设置快捷键文本
         Key.frameid = FRAME.Fdf("centertext010",origin,Key)
