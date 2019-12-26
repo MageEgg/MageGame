@@ -1,0 +1,2 @@
+library GameChallenge_4 uses DamageCode
+endlibrary
