@@ -143,6 +143,7 @@ library PassCheckUI uses GameFrame,PassCheckData
         CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.005,0.056,0.02,"war3mapImported\\UI_Pass_LevelUp0.tga")
         
         
+        
 
         //等级预览
         CreateButton(651,Button.frameid,TYPE_NULL,0,Button.frameid,0,0.0103,-0.033,0.028,0.014,"war3mapImported\\UI_Pass_LevelBack.tga")
