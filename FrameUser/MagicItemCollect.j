@@ -11,15 +11,8 @@ library MagicItemCollectFrame uses GameFrame
     */
 
     private FRAME Button = 0
-    private FRAME Title = 0
-    private FRAME Key = 0
-
-
     private FRAME Back = 0
-    private FRAME Back1Tip = 0
-    
-    private FRAME Back2 = 0
-    private FRAME Back2Tip = 0
+
     
     
     private int origin = 0
@@ -63,8 +56,8 @@ library MagicItemCollectFrame uses GameFrame
             for x = 0,3
                 index = y*4+x+1
                 
-                CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.01+x*0.042,-0.04-y*0.042,0.039,0.039,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-                CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
+                CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.01+x*0.042,-0.035-y*0.042,0.038,0.038,"war3mapImported\\UI_MagicItem_Button1.tga")
+                //CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
 
 
                 
@@ -79,8 +72,8 @@ library MagicItemCollectFrame uses GameFrame
             for x = 0,2
                 index = y*3+x+9
                 
-                CreateButton(index,Button.frameid,TYPE_BUTTON,0,Back2.frameid,0,0.005+x*0.03,-0.02-y*0.03,0.025,0.025,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-                CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
+                CreateButton(index,Button.frameid,TYPE_BUTTON,0,Back.frameid,0,0.19+x*0.031,-0.035-y*0.031,0.028,0.028,"war3mapImported\\UI_MagicItem_Button1.tga")
+                //CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
             end
         end
 
@@ -90,11 +83,15 @@ library MagicItemCollectFrame uses GameFrame
         int index = 0
         
         for y = 0,1
-            for x = 0,6
-                index = y*7+x+ 1 + 50
+            for x = 0,3
+                index = y*4+x+ 1 + 50
                 
-                CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.01+x*0.024,-0.145-y*0.024,0.02,0.02,"war3mapImported\\alpha.tga")
-                CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
+                CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.01+x*0.042,-0.145-y*0.025,0.019,0.019,"war3mapImported\\alpha.tga")
+
+                DzFrameClearAllPoints( BUTTON_Back[index][2])
+                DzFrameSetPoint( BUTTON_Back[index][2], 3, BUTTON_Back[index][0], 5,0 , 0 )
+
+                CreateText(index,Button.frameid,"centertext008",4,4,0.019,0.0,"")
             end
         end
         
@@ -106,47 +103,21 @@ library MagicItemCollectFrame uses GameFrame
 
 
         Button = FRAME.create() //背景注册
-        Title = FRAME.create()  //注册标题
         Back = FRAME.create()   //注册主背景
-        Back1Tip = FRAME.create()  //注册主背景说明
-        Back2 = FRAME.create()  //注册羁绊背景
-        Back2Tip = FRAME.create()  //注册羁绊说明
-        Key = FRAME.create()    //注册快捷键文本
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Collect",GameUI,Button)
         Button.SetPoint(4,GameUI,4,0,0)
-        Button.SetSize(0.29,0.22)
+        Button.SetSize(0.29,0.2)
         origin = Button.frameid
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","Collect",origin,Back)
         Back.SetPoint(4,origin,4,0,0)
-        Back.SetSize(0.29,0.22)
-        Back.SetTexture("ui\\widgets\\battlenet\\bnet-dialoguebox-background.blp",0)
-
-        //羁绊背景设置
-        Back2.frameid = FRAME.Tag("BACKDROP","Collect",origin,Back2)
-        Back2.SetPoint(2,origin,2,-0.01,-0.04)
-        Back2.SetSize(0.095,0.17)
-        Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp",0)
+        Back.SetSize(0.29,0.2)
+        Back.SetTexture("war3mapImported\\UI_MagicItem_Back.tga",0)
 
 
 
-        Back2Tip.frameid = FRAME.Fdf("centertext010",origin,Back2Tip)
-        Back2Tip.SetText("|cffcccccc背包|r")
-        Back2Tip.SetPoint(1,Back2.frameid ,1,0.0,-0.005)
-
-
-        //标题设置
-        Title.frameid = FRAME.Fdf("text020",origin,Title)
-        Title.SetText("|cffffcc33法宝|r")
-        Title.SetPoint(0,origin,0,0.01,-0.01)
-
-        //设置快捷键文本
-        Key.frameid = FRAME.Fdf("text013",origin,Key)
-        Key.SetText("|cffccccccF4|r")
-        Key.SetPoint(6,Title.frameid ,8,0.005,0.0)
-        
 
         //创建法宝按钮
         CreateMagicItemButton1()
@@ -156,18 +127,15 @@ library MagicItemCollectFrame uses GameFrame
         //创建羁绊按钮
         CreateMagicItemButton3()
 
-        CreateButton(21,Button.frameid,TYPE_BUTTON,6,Back2.frameid,6, 0.01,0.005,0.03,0.02,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
-        CreateButton(22,Button.frameid,TYPE_BUTTON,8,Back2.frameid,8,-0.01,0.005,0.03,0.02,"ui\\widgets\\console\\human\\commandbutton\\human-multipleselection-border.blp")
+        CreateButton(21,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.061,0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Recast.tga")
+        CreateButton(22,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.01,0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Forge.tga")
 
-        CreateButton(23,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[21][0],1,0.0,0.005,0.032,0.015,"ui\\widgets\\escmenu\\human\\alliance-gold.blp")
-        CreateButton(24,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[22][0],1,0.0,0.005,0.032,0.015,"ui\\widgets\\escmenu\\human\\alliance-lumber.blp")
+        CreateButton(23,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[21][0],1,0.0,0.008,0.04,0.02,"war3mapImported\\UI_MagicItem_Resources1.tga")
+        CreateButton(24,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[22][0],1,0.0,0.008,0.04,0.02,"war3mapImported\\UI_MagicItem_Resources2.tga")
         CreateText(23,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
         CreateText(24,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
 
 
-        Back1Tip.frameid = FRAME.Fdf("centertext010",origin,Back1Tip)
-        Back1Tip.SetText("|cffcccccc悬停查看羁绊效果|r")
-        Back1Tip.SetPoint(1,BUTTON_Back[61][0] ,7,0.0,-0.01)
 
 
         Button.show = false
@@ -461,8 +429,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int n = 0
         int num = 0
         int min = 0
-        for f = 1,14
+        for f = 1,8
             DzFrameSetTexture(BUTTON_Back[f+50][1],"war3mapImported\\alpha.tga",0)
+            DzFrameSetTexture(BUTTON_Back[f+50][2],"war3mapImported\\alpha.tga",0)
             DzFrameSetText(BUTTON_Text[f+50],"")
         end
 
@@ -474,6 +443,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 if  num >= min
                     n = n + 1
                     DzFrameSetTexture(BUTTON_Back[n+50][1],GetTypeIdIcon(id),0)
+                    DzFrameSetTexture(BUTTON_Back[n+50][2],"war3mapImported\\UI_MagicItem_Button2.tga",0)
                     DzFrameSetText(BUTTON_Text[n+50],I2S(num))
                 endif
             endif
