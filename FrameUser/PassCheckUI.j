@@ -173,7 +173,7 @@ library PassCheckUI uses GameFrame,PassCheckData
             last = 630+i
         end
 
-
+ 
         
         //当前等级
         CreateButton(650,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.01,0.028,0.028,"war3mapImported\\UI_Pass_LevelText.tga") 
