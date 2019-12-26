@@ -129,6 +129,34 @@ library SystemCodes uses ServerTime,Define1
         return "|cffffffff"
     endfunction
 
+    function KillUnitTimer(unit wu,real time)
+        unit u1 = wu
+        TimerStart(time,false)
+        {
+            if  GetUnitState(u1,UNIT_STATE_LIFE) >= 0.4
+                KillUnit(u1)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    function RemoveUnitTimerFunc()
+        timer t = GetExpiredTimer()
+        unit u1 = LoadUnitHandle(ht,GetHandleId(t),1)
+        RemoveUnit(u1)
+        FlushChildHashtable(ht,GetHandleId(t))
+        DestroyTimer(t)
+        t = null
+        u1 = null
+    endfunction
+    function RemoveUnitTimer(unit wu,real time)
+        timer t = CreateTimer()
+        SaveUnitHandle(ht,GetHandleId(t),1,wu)
+        TimerStart(t,time,false,function RemoveUnitTimerFunc)
+        t = null
+    endfunction
+
     
     function Udis(unit u,unit u2)->real //单位间距离
         return Pow((GetUnitX(u)-GetUnitX(u2))*(GetUnitX(u)-GetUnitX(u2))+(GetUnitY(u)-GetUnitY(u2))*(GetUnitY(u)-GetUnitY(u2)),0.5)
@@ -144,15 +172,17 @@ library SystemCodes uses ServerTime,Define1
         return(Atan2(GetUnitY(u2)-GetUnitY(u),GetUnitX(u2)-GetUnitX(u)))
     endfunction
     
+    function AddPlayerState(int pid,playerstate whichPlayerState,integer value)
+        SetPlayerState(Player(pid),whichPlayerState,GetPlayerState(Player(pid),whichPlayerState)+value)
+    endfunction
     
-    
-    func SetPlayerCameraBoundsToRect(rect r)
+    function SetPlayerCameraBoundsToRect(rect r)
         real minX = GetRectMinX(r)
         real minY = GetRectMinY(r)
         real maxX = GetRectMaxX(r)
         real maxY = GetRectMaxY(r)
         SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
-    end
+    endfunction
 
     //物品处理
     function AddItemCharges(unit wu,item wi)
@@ -209,7 +239,6 @@ library SystemCodes uses ServerTime,Define1
         return false
     endfunction
 
-<<<<<<< HEAD
     #define UnitHasItemOfType IsUnitHasItemType
 
     function UnitHasItemOfTypeReNum(unit u,int itid)->int
@@ -290,8 +319,6 @@ library SystemCodes uses ServerTime,Define1
         ClearMapMusic()
         PlayMusic(music)
     endfunction
-=======
->>>>>>> 617bf9fdac7729ed6d32e86cc299051b90e712bb
     
     //坐标防止溢出
     function SetUnitXEx(unit wu,real x)
