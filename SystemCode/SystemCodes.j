@@ -1,11 +1,22 @@
 library SystemCodes uses ServerTime,Define1
-    func IsPlaying(int pid)->bool
+    
+    
+    function IsPlaying(int pid)->bool
         if GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
             return true
         else
             return false
         endif
-    end
+    endfunction
+
+    
+    function PlayerSelectOneUnit(int pid,unit u)
+        if  Player(pid)==GetLocalPlayer()
+            ClearSelection()
+            SelectUnit(u,true)
+        endif
+    endfunction
+
     function SetPlayerUnitPostion(unit u1,real x,real y) //移动单位+镜头
         if GetLocalPlayer() == GetOwningPlayer(u1)
             PanCameraToTimed( x, y, 0 )
@@ -20,6 +31,13 @@ library SystemCodes uses ServerTime,Define1
             SelectUnit(su,true)
         endif
         SetUnitPosition(u1,x,y)
+    endfunction
+
+    function SendPlayerUnit(int pid,real x,real y) //通用单位传送
+        DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        SetPlayerUnitPostion(Pu[1],x,y)
+        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        PlayerSelectOneUnit(pid,Pu[1])
     endfunction
     
     function Sdofplayer(player pp,real x ,real y,real time) //地图信号
@@ -395,13 +413,6 @@ library SystemCodes uses ServerTime,Define1
         int g = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"green")
         int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
         SetUnitVertexColor(wu,r,g,b,255) 
-    endfunction
-
-    function PlayerSelectOneUnit(int pid,unit u)
-        if  Player(pid)==GetLocalPlayer()
-            ClearSelection()
-            SelectUnit(u,true)
-        endif
     endfunction
     
 endlibrary
