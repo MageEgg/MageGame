@@ -109,6 +109,17 @@ library GameUIInit initializer GameUIInit uses OriginGameFrame
             call DzFrameSetPoint(DzFrameGetMinimapButton(n),1,DzFrameGetMinimapButton(n-1),7,0,-1)
         end
         
+        for w = 0,5 
+            DzFrameClearAllPoints(DzFrameGetItemBarButton(w))
+        end
+        DzFrameSetPoint( DzFrameGetItemBarButton(0), 4, DzGetGameUI(), 7, 0.1312, 0.096 )
+        DzFrameSetPoint( DzFrameGetItemBarButton(1), 4, DzGetGameUI(), 7, 0.1687, 0.096 )
+        DzFrameSetPoint( DzFrameGetItemBarButton(2), 4, DzGetGameUI(), 7, 0.1312, 0.0594 )
+        DzFrameSetPoint( DzFrameGetItemBarButton(3), 4, DzGetGameUI(), 7, 0.1687, 0.0594 )
+        DzFrameSetPoint( DzFrameGetItemBarButton(4), 4, DzGetGameUI(), 7, 0.1312, 0.0235 )
+        DzFrameSetPoint( DzFrameGetItemBarButton(5), 4, DzGetGameUI(), 7, 0.1687, 0.0235 )
+
+
         
         DzFrameClearAllPoints( DzFrameGetTooltip() )
         DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, 0, -0.45 )

@@ -11,6 +11,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     private FRAME Button = 0
     private FRAME Exp0 = 0
     private FRAME Exp1 = 0
+    private FRAME ExpName = 0
 
     private FRAME Button2 = 0
     private FRAME Back2 = 0
@@ -53,6 +54,26 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         endif
     endfunction
 
+
+    function ReHeroXpBar(int pid)
+        int last = 0
+        int now = 0
+        int use = 0
+        if  GetLocalPlayer() == Player(pid)
+            
+            if  GetHeroLevel(Pu[1]) == 1
+                last = 0
+            else
+                last = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])-1)
+            endif
+            
+            now = GetHeroXP(Pu[1])-last
+            use = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))-last
+            Exp1.width = 0.2199*(I2R(now)/I2R(use))+0.0001
+        endif
+    endfunction
+
+
     function HeroFrameUIInit()
         
         
@@ -62,6 +83,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         Button = FRAME.create() //经验条
         Exp0 = FRAME.create()   //经验条
         Exp1 = FRAME.create()   //经验条
+        ExpName = FRAME.create()   //经验条
+        
 
 
         Button2 = FRAME.create() //背景注册2
@@ -122,9 +145,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
         Exp1.frameid = FRAME.Tag("BACKDROP","Hero",origin,Exp1)
         Exp1.SetTexture("war3mapImported\\UI_Hero_Exp1.tga", 0)
-        Exp1.SetSize(0.11,0.008)
+        Exp1.SetSize(0.0001,0.008)
         Exp1.SetPoint(0,origin,0,0.0,0.0)
         
+        ExpName.frameid = FRAME.Fdf("centertext009",origin,ExpName)
+        ExpName.SetPoint(7,Exp0.frameid ,7,0,0)
+        ExpName.SetText("练气士")
 
         FrameSetScriptByExecute( Button.frameid, 1,150,TYPE_FUNC)
 
@@ -151,7 +177,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         end
         
         for i = 1,7
-            CreateButton(160+i,Button.frameid,TYPE_NOT,0,Button.frameid,0,-0.165,-0.015*(i-1)-0.01,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
+            CreateButton(160+i,Button.frameid,TYPE_NOT,0,Button.frameid,0,-0.165,-0.015*(i-1)-0.008,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         
         

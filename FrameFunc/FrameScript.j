@@ -72,8 +72,17 @@
     endfunction
     
     function UIShowHeroExp(int pid)
+        int last = 0
+        if  GetHeroLevel(Pu[1]) == 1
+            last = 0
+        else
+            last = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])-1)
+        endif
+        
+        int now = GetHeroXP(Pu[1])-last
+        int use = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))-last
         DzFrameShow(UI_TipsHead, true)
-        SetTipsData(1,"",I2S(GetHeroXP(Pu[1]))+"/"+I2S(DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))))
+        SetTipsData(1,"",I2S(now)+"/"+I2S(use))
         ShowTipsUI()
     endfunction
     
@@ -97,7 +106,7 @@
                     if  id == 160
                         ShowHeroFrame(pid,true)
                     elseif  id == 150
-                        UIShowHeroExp(id)
+                        UIShowHeroExp(pid)
                     else
                         //UIDebugShowIndex(id)
                     endif
