@@ -1,3 +1,5 @@
+scope KeyEvent initializer InitKeyBroadListener
+
     func KeyEventFunc()
         int pid = GetPlayerId(DzGetTriggerKeyPlayer())
         int key = DzGetTriggerKey()
@@ -84,7 +86,7 @@
         //endif
     end
 
-    function InitTrig_KeyBroadListener takes nothing returns nothing
+    function InitKeyBroadListener takes nothing returns nothing
         trigger trig = null
 
         trig = CreateTrigger()
@@ -127,3 +129,4 @@
         trig = null
     endfunction
 
+endscope

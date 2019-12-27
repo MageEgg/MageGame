@@ -73,7 +73,7 @@
     
     function UIShowHeroExp(int pid)
         DzFrameShow(UI_TipsHead, true)
-        SetTipsData(1,"","1/10")
+        SetTipsData(1,"",I2S(GetHeroXP(Pu[1]))+"/"+I2S(DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))))
         ShowTipsUI()
     endfunction
     
