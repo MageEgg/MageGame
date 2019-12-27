@@ -133,7 +133,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         function PlayerMissionAddNum(int pid,int missionid,int num)//任务计数
             int index = GetMissionIndex(pid,missionid)
             int data = PlayerPassData[index]
-            int use = GetMissionExp(missionid)
+            int use = GetMissionUse(missionid)
             if  data < use
                 data = data + num
                 if  data >= use
@@ -143,7 +143,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 else
                     PlayerPassData[index] = PlayerPassData[index] + num
                 endif
-                AddDzPlayerData(pid,5,index,data)
+                SetDzPlayerData(pid,5,index,PlayerPassData[index])
+                RePassClickFrame.execute(pid)
             else
                 BJDebugMsg(I2S(missionid)+"任务已完成")
             endif
@@ -155,6 +156,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 index = GetMissionIndex(pid,missionid)
                 if  index > 0
                     PlayerMissionAddNum(pid,missionid,num)
+
                 else
                     //BJDebugMsg(I2S(missionid)+"不是今日任务")
                 endif
