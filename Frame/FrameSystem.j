@@ -139,7 +139,7 @@ library GameUIInit initializer GameUIInit uses OriginGameFrame
         ExecuteFunc("LearnAbilityFrameInit")
         ExecuteFunc("ReplaceAbilityFrameInit")
 
-        
+        ExecuteFunc("InitAttackFrameUI")
 
         ExecuteFunc("InitAttackTipUI")
         ExecuteFunc("TipsToolInit")

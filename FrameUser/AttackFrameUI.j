@@ -1,4 +1,4 @@
-library AttackFrameUI initializer InitAttackFrameUI uses GameFrame
+library AttackFrameUI uses GameFrame
 
     private FRAME Button
     private FRAME AttackTimerUI 
@@ -39,17 +39,17 @@ library AttackFrameUI initializer InitAttackFrameUI uses GameFrame
         AttackTimerUI.SetPoint(4,GameUI,4,0,0.272)
 
         Button.frameid = FRAME.Tag("BUTTON","AttackTimerUIBUTTON",GameUI,0)
-        //Button.SetPoint(4,AttackTimerUI.frameid,4,0,0)
+        Button.SetPoint(4,AttackTimerUI.frameid,4,0,0)
         Button.SetSize(0.117,0.054)
 
         //文本设置
-        //AttackTimerTextUI.frameid = FRAME.Fdf("UITextOfAttackShow",AttackTimerUI,AttackTimerTextUI)
+        AttackTimerTextUI.frameid = FRAME.Fdf("centertext015",AttackTimerUI,AttackTimerTextUI)
         //AttackTimerTextUI.SetPoint(1,AttackTimerUI.frameid,1,0,-0.007)
         //AttackTimerTextUI.SetSize(0.117,0.03)
         //AttackTimerTextUI.SetText("|cff00ff00进攻怪第1波 210秒|r")
 
         //设置快捷键文本
-        //AttackTimerTextExUI.frameid = FRAME.Fdf("UITextOfAttackShow",AttackTimerTextUI,AttackTimerTextExUI)
+        AttackTimerTextExUI.frameid = FRAME.Fdf("centertext015",AttackTimerTextUI,AttackTimerTextExUI)
         //AttackTimerTextExUI.SetPoint(1,AttackTimerTextUI.frameid,4,0,-0.005)
         //AttackTimerTextExUI.SetSize(0.117,0.03)
         //AttackTimerTextExUI.SetText("|cff00ff00210秒|r")
