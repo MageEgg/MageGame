@@ -32,15 +32,15 @@ library AttackFrameUI uses GameFrame
         AttackTimerTextUI.frameid = FRAME.Fdf("centertext015",AttackTimerUI.frameid,AttackTimerTextUI)
         AttackTimerTextUI.SetPoint(1,AttackTimerUI.frameid,1,0,0)
         AttackTimerTextUI.SetSize(0.117,0.03)
-        AttackTimerTextUI.SetText("|cff00ff00进攻怪第1波 210秒|r")
+        AttackTimerTextUI.SetText("|cffffcc00等待玩家选择|r")
 
         //设置快捷键文本
         AttackTimerTextExUI.frameid = FRAME.Fdf("centertext015",AttackTimerTextUI.frameid,AttackTimerTextExUI)
         AttackTimerTextExUI.SetPoint(1,AttackTimerTextUI.frameid,4,0,-0.005)
         AttackTimerTextExUI.SetSize(0.117,0.03)
-        AttackTimerTextExUI.SetText("|cff00ff00210秒|r")
+        AttackTimerTextExUI.SetText("|cffffcc00等待玩家选择|r")
 
-        AttackTimerUI.show = false
+        //AttackTimerUI.show = false
     endfunction
 
 endlibrary
