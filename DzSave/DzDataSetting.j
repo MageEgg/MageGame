@@ -94,9 +94,11 @@ library DzDataSetting uses SystemCodes
                 max = 40
             endif
         elseif Group == 4
-            max = 9999
-        elseif 
-            max = 9999
+            if  flag == 1
+                max = MissionDay * 10
+            elseif  flag == 2
+                max = 0
+            endif
         endif
         data = GetDataMaximumValue(data,max)
         return data
