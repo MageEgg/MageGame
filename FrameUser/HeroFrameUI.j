@@ -126,6 +126,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         Exp1.SetPoint(0,origin,0,0.0,0.0)
         
 
+        FrameSetScriptByExecute( Button.frameid, 1,150,TYPE_FUNC)
 
         
 
