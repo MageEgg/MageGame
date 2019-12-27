@@ -126,7 +126,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
                 AddDzPlayerData(pid,4,1,exp)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[系统]：|r"+GetMissionName(missionid)+"任务完成！通行证经验+"+I2S(exp))
+                //DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[系统]：|r"+GetMissionName(missionid)+"任务完成！通行证经验+"+I2S(exp))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[系统]：|r任务完成！通行证经验+"+I2S(exp))
             endif
         endfunction
         
@@ -164,7 +165,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         endfunction
 
         function PlayerAddMission(int pid)//读取当前任务进度
-            for i = 1,5
+            for i = 1,MaxMissionNum
                 PlayerPassData[i] = GetDzPlayerData(pid,5,i)
             end
         endfunction

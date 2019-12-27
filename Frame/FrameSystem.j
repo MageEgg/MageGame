@@ -129,9 +129,8 @@ library GameUIInit initializer GameUIInit uses OriginGameFrame
         
         
         ExecuteFunc("HeroPowerFrameInit")
-        ExecuteFunc("InitShowSaveFrame")
         ExecuteFunc("PassCheckUIInit")
-
+        ExecuteFunc("InitShowSaveFrame")
         ExecuteFunc("HeroFrameUIInit")
         ExecuteFunc("MagicItemFrameInit")
         ExecuteFunc("PlotSelectFrameInit")

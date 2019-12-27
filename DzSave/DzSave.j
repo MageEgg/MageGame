@@ -200,6 +200,62 @@ library DzSave initializer InitDzData uses SystemCodes,DzAPI,DzDataSetting
         int data = num
         SaveDzPlayerData(pid,Group,flag,data)
     endfunction
+
+
+    //兼容函数开始
+    function SaveData(int pid,int Group,int flag,int num) //存储玩家数据
+        int data = 0
+        if  DzDataGroupLength(Group) != 0
+            if  flag <= GetDzDataGroupMaxMember(Group)
+                data = GetDzDataMaxValue(pid,Group,flag,num)
+                if  pid == 0
+                    DzArrayPlayerInt0[Group][flag] = data
+                elseif  pid == 1
+                    DzArrayPlayerInt1[Group][flag] = data
+                elseif  pid == 2
+                    DzArrayPlayerInt2[Group][flag] = data
+                elseif  pid == 3
+                    DzArrayPlayerInt3[Group][flag] = data
+                elseif  pid == 4
+                    DzArrayPlayerInt4[Group][flag] = data
+                elseif  pid == 5
+                    DzArrayPlayerInt5[Group][flag] = data
+                endif
+                SaveDzPlayerDataOfGroup.execute(pid,Group)
+            else
+                BJDebugMsg("超过第"+I2S(Group)+"存档位")
+            endif
+        else
+            BJDebugMsg("第"+I2S(Group)+"存档未使用")
+        endif
+    endfunction
+    function GetData(int pid,int Group,int flag)->int //获取存储数据：玩家，组，位
+        if  pid == 0
+            return DzArrayPlayerInt0[Group][flag]
+        elseif  pid == 1
+            return DzArrayPlayerInt1[Group][flag]
+        elseif  pid == 2
+            return DzArrayPlayerInt2[Group][flag]
+        elseif  pid == 3
+            return DzArrayPlayerInt3[Group][flag]
+        elseif  pid == 4
+            return DzArrayPlayerInt4[Group][flag]
+        elseif  pid == 5
+            return DzArrayPlayerInt5[Group][flag]
+        endif
+        return 0
+    endfunction
+    
+    function AddData(int pid,int Group,int flag,int num) //增加存储数据：玩家，组，位 数
+        int data = GetDzPlayerData(pid,Group,flag)+num
+        SaveDzPlayerData(pid,Group,flag,data)
+    endfunction
+    function SetData(int pid,int Group,int flag,int num) //设置存储数据：玩家，组，位 数
+        int data = num
+        SaveDzPlayerData(pid,Group,flag,data)
+    endfunction
+
+    //兼容函数结束
     
     function SaveDzRoom(int pid) //房间显示
         string s1 = ""
@@ -294,7 +350,7 @@ library DzSave initializer InitDzData uses SystemCodes,DzAPI,DzDataSetting
             elseif  time == 3
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        //DzSavePublic(pid,1) //全局存档 
+                        DzSavePublic(pid,1) //全局存档 
                     endif
                 end
             elseif  time == 4
