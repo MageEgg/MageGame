@@ -95,8 +95,6 @@ library DzDataSetting uses SystemCodes
             endif
         elseif Group == 4
             max = 9999
-        elseif 
-            max = 9999
         endif
         data = GetDataMaximumValue(data,max)
         return data
