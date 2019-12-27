@@ -1,36 +1,60 @@
 library AttackFrameUI initializer InitAttackFrameUI uses GameFrame
-    int array MapUIInt
 
-    #define AttackTimerUI       MapUIInt[0]
-    #define AttackTimerTextUI   MapUIInt[1]
-    #define AttackTimerTextExUI MapUIInt[2]
+    private FRAME Button
+    private FRAME AttackTimerUI 
+    private FRAME AttackTimerTextUI 
+    private FRAME AttackTimerTextExUI 
+
+    /*func CreateAttackTimerUI()
+        AttackTimerUI = DzCreateFrameByTagName("BACKDROP","AttackTimerUI",GameUI,"template",0)
+        DzFrameSetSize(AttackTimerUI,0.117,0.054)
+        DzFrameSetTexture(AttackTimerUI,"AttackTimerUI.tga",0)
+        DzFrameSetPoint(AttackTimerUI,4,GameUI,4,0,0.272)
+        
+        AttackTimerTextUI = DzCreateFrame("UITextCenter",AttackTimerUI, 20)//DzCreateFrameByTagName("itemnumber","AttackTimerTextUI",AttackTimerUI,"template",0)
+        DzFrameSetSize(AttackTimerTextUI,0.117,0.03)
+        DzFrameSetPoint(AttackTimerTextUI,1,AttackTimerUI,1,0,-0.007)
+        DzFrameSetText(AttackTimerTextUI,"|cff00ff00进攻怪第1波 210秒|r")
+
+        AttackTimerTextExUI = DzCreateFrame("UITextCenter",AttackTimerTextUI, 21)
+        DzFrameSetSize(AttackTimerTextExUI,0.117,0.03)
+        DzFrameSetPoint(AttackTimerTextExUI,1,AttackTimerTextUI,4,0,-0.005)
+        DzFrameSetText(AttackTimerTextExUI,"|cff00ff00210秒|r")
+        
+        DzFrameShow(AttackTimerUI,false)
+        
+    end*/
 
     function InitAttackFrameUI()
 
-        Button = FRAME.create() //背景注册
-        Back = FRAME.create()   //注册主背景
-        Key = FRAME.create()    //注册快捷键文本
-
-        //控件设置
-        Button.frameid = FRAME.Tag("BUTTON","Check",GameUI,Button)
-        Button.SetPoint(4,GameUI,4,0,0)
-        Button.SetSize(0.35,0.2875)
-        origin = Button.frameid
+        Button = FRAME.create() 
+        AttackTimerUI = FRAME.create() 
+        AttackTimerTextUI = FRAME.create()  
+        AttackTimerTextExUI = FRAME.create()  
 
         //背景设置
-        Back.frameid = FRAME.Tag("BACKDROP","Check",origin,Back)
-        Back.SetPoint(4,origin,4,0,0)
-        Back.SetSize(0.35,0.2875)
-        Back.SetTexture("war3mapImported\\UI_Pass_Back.tga",0)
+        AttackTimerUI.frameid = FRAME.Tag("BACKDROP","AttackTimerUI",GameUI,0)
+        AttackTimerUI.SetSize(0.117,0.054)
+        AttackTimerUI.SetTexture("war3mapImported\\UI_AttackTimer.tga",0)
+        AttackTimerUI.SetPoint(4,GameUI,4,0,0.272)
+
+        Button.frameid = FRAME.Tag("BUTTON","AttackTimerUIBUTTON",GameUI,0)
+        //Button.SetPoint(4,AttackTimerUI.frameid,4,0,0)
+        Button.SetSize(0.117,0.054)
+
+        //文本设置
+        //AttackTimerTextUI.frameid = FRAME.Fdf("UITextOfAttackShow",AttackTimerUI,AttackTimerTextUI)
+        //AttackTimerTextUI.SetPoint(1,AttackTimerUI.frameid,1,0,-0.007)
+        //AttackTimerTextUI.SetSize(0.117,0.03)
+        //AttackTimerTextUI.SetText("|cff00ff00进攻怪第1波 210秒|r")
 
         //设置快捷键文本
-        Key.frameid = FRAME.Fdf("centertext010",origin,Key)
-        Key.SetText("1/10")
-        Key.SetPoint(1,Button.frameid ,1,0.0,-0.015)
+        //AttackTimerTextExUI.frameid = FRAME.Fdf("UITextOfAttackShow",AttackTimerTextUI,AttackTimerTextExUI)
+        //AttackTimerTextExUI.SetPoint(1,AttackTimerTextUI.frameid,4,0,-0.005)
+        //AttackTimerTextExUI.SetSize(0.117,0.03)
+        //AttackTimerTextExUI.SetText("|cff00ff00210秒|r")
 
-        CreateFrameButton1()
-
-        Button.show = false
+        //AttackTimerUI.show = false
     endfunction
 
 endlibrary
