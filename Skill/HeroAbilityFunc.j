@@ -787,7 +787,7 @@ library HeroSpell  uses OtherDamageTimer
             loop
                 uu = FirstOfGroup(g.ejg)
                 exitwhen uu == null
-                UnitAddBuff(uu,'DB02',3,852095)//缺效果
+                UnitAddBuff(uu,'DB02',3,852095)
                 GroupRemoveUnit(g.ejg,uu)
             endloop
             
@@ -799,10 +799,20 @@ library HeroSpell  uses OtherDamageTimer
         
     endfunction
     
-    function SpellS235(unit u)
-        real b=(100-GetUnitLifePercent(u))*0.3
-        AddUnitStateExTimer(u,19,b,5)
-        UnitTimerAddSkill(u,'A235',5)
+    function SpellS235(unit u1)
+        unit u=u1
+        real b=((100-GetUnitLifePercent(u))*0.3)+5
+        AddUnitRealState(u,19,b)
+        UnitAddAbility(u,'A235')
+        TimerStart(5,false)
+        {
+            RemoveUnitStateEx(u,19,b)
+            RemoveUnitStateEx(u,20,LoadReal(ht,GetHandleId(u),'A235'))
+            UnitRemoveAbility(u,'A235')
+            SaveReal(ht,GetHandleId(u),'A235',0)
+            endtimer
+        }
+        flush locals
     endfunction
     
 function SpellS236(unit u,unit u1)
@@ -1144,6 +1154,8 @@ endfunction
                 SpellS232(u1.u)
             elseif  id== 'S233'
                 SpellS233(u1.u)
+            elseif  id== 'S235'
+                SpellS235(u1.u)
             endif
         elseif  id == 'S501'
             SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
