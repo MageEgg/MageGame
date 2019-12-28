@@ -73,6 +73,60 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         endif
     endfunction
 
+    function HeroAddExp(unit wu,int exp)
+        int last = 0
+        int now = GetHeroXP(wu) + exp
+        int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))-1
+
+        if  now > max
+            now = max
+        endif
+
+        if  now != GetHeroXP(wu)
+            SetHeroXP(wu,now,true)
+            ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
+        endif
+    endfunction
+    function HeroIncLevel(unit wu)
+        int now = GetHeroXP(wu)
+        int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))
+        if  now + 1 == max
+            SetHeroXP(wu,now+1,true)
+            ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
+        endif
+    endfunction
+
+    //添加道果
+    function AddPlayerImmortalFruit(unit wu,int id)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int num = GetUnitIntState(Pu[1],150)
+        int now = GetHeroXP(wu) 
+        int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))
+
+        if  max - now == 1
+            if  num < 10
+                num = num + 1
+                SetUnitIntState(Pu[1],150+num,id)
+                SetUnitIntState(Pu[1],150,num)
+                BJDebugMsg("num"+I2S(num))
+                AddEquipState(Pu[1],id)
+                HeroIncLevel(wu)
+                if  GetLocalPlayer() == Player(pid)
+                    DzFrameSetTexture(BUTTON_Back[150+num][1],GetTypeIdIcon(id),0)
+                endif
+            endif 
+        else
+
+            //CreateItem(id,GetUnitX(wu),GetUnitY(wu))
+            BJDebugMsg("经验不足")
+        endif
+    endfunction
+
+    function PlayerHeroMoveToImmortal(unit wu,int id)
+        
+    endfunction
+
+
 
     function HeroFrameUIInit()
         
@@ -261,20 +315,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     endfunction
 
 
-    //添加道果
-    function AddPlayerImmortalFruit(int pid,int id)
-        int num = GetUnitIntState(Pu[1],150)
-        if  num < 10
-            num = num + 1
-            SetUnitIntState(Pu[1],150+num,id)
-            SetUnitIntState(Pu[1],150,num)
-            BJDebugMsg("num"+I2S(num))
-            AddEquipState(Pu[1],id)
-            if  GetLocalPlayer() == Player(pid)
-                DzFrameSetTexture(BUTTON_Back[150+num][1],GetTypeIdIcon(id),0)
-            endif
-        endif 
-    endfunction
+    
     
 endlibrary
 
