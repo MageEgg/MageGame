@@ -100,8 +100,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     function AddPlayerImmortalFruit(unit wu,int id)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
-        int now = GetHeroXP(wu) 
-        int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))
+        int now = GetHeroXP(Pu[1]) 
+        int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
 
         if  max - now == 1
             if  num < 10
@@ -110,20 +110,29 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 SetUnitIntState(Pu[1],150,num)
                 BJDebugMsg("num"+I2S(num))
                 AddEquipState(Pu[1],id)
-                HeroIncLevel(wu)
+                HeroIncLevel(Pu[1])
                 if  GetLocalPlayer() == Player(pid)
                     DzFrameSetTexture(BUTTON_Back[150+num][1],GetTypeIdIcon(id),0)
                 endif
             endif 
         else
-
-            //CreateItem(id,GetUnitX(wu),GetUnitY(wu))
             BJDebugMsg("经验不足")
         endif
     endfunction
 
     function PlayerHeroMoveToImmortal(unit wu,int id)
-        
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int num = GetUnitIntState(Pu[1],150)
+        int now = GetHeroXP(Pu[1]) 
+        int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
+        if  max - now == 1
+            if  num < 10
+                SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+            endif 
+        else
+
+            BJDebugMsg("经验不足")
+        endif
     endfunction
 
 
