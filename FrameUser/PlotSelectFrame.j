@@ -313,9 +313,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
     endfunction
 
+    
     function PlayerTestPlot(int pid,int index)
         int Type = GetPlayerPlotStateByIndex(pid,index)
-        if  Type == 0 //and index == 1
+        if  Type == 0 and index == 1
             PlayerUnLockPlot(pid,index)
         elseif  Type  == 1
             PlayerFinishPlot(pid,index)
@@ -325,6 +326,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             endif
         endif
     endfunction
+    
 
     
 
