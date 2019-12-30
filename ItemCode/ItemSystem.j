@@ -69,7 +69,7 @@ scope ItemSystem initializer InitItemSystem
                 next = GetTypeIdData(itemid,106)
                 RemoveItem(UnitItemInSlot(Pu[1],i))
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
-                UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                //UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
             endif
         end
@@ -103,7 +103,7 @@ scope ItemSystem initializer InitItemSystem
                     AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                     RemoveItem(it)
                     UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                    //UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
                 endif
             else
