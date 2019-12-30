@@ -308,7 +308,6 @@ scope DeathEvent initializer InitDeathEvent
         int pid2 = GetPlayerId(GetOwningPlayer(u2))
         int uid = GetUnitTypeId(u1)
         int uid2 = GetUnitTypeId(u2)
-        BJDebugMsg("死亡事件")
         if  pid <= 5//玩家类型死亡
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
@@ -320,8 +319,10 @@ scope DeathEvent initializer InitDeathEvent
         
         if  u1 == GameDefendUnit
             GameOver()
+        elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
+            BJDebugMsg("闻太师！！！！")
+            AttackOperaBEnding(0)
         endif
-        
         
         if  pid > 7 
             
@@ -361,8 +362,6 @@ scope DeathEvent initializer InitDeathEvent
             else    
                 //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
             endif
-            
-
             
             if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
                 GroupRemoveUnit(AttackUnitGroup,u1)
