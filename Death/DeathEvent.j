@@ -321,7 +321,7 @@ scope DeathEvent initializer InitDeathEvent
             GameOver()
         elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
             BJDebugMsg("闻太师！！！！")
-            AttackOperaBEnding(0)
+            //AttackOperaBEnding(0)
         endif
         
         if  pid > 7 
@@ -353,11 +353,6 @@ scope DeathEvent initializer InitDeathEvent
                     if  GetUnitPointValueByType(uid) == 1
                         AddReviveWildMonster(u1,3,GetUnitPointX(u1),GetUnitPointY(u1))
                     endif
-                endif
-
-                if  u1 == AttackUnitBoss[10] and uid == 'mc06'
-                    BJDebugMsg("闻太师！！！！")
-                    //AttackOperaBEnding(0)
                 endif
             else    
                 //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
