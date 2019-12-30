@@ -356,7 +356,7 @@ scope DeathEvent initializer InitDeathEvent
 
                 if  u1 == AttackUnitBoss[10] and uid == 'mc06'
                     BJDebugMsg("闻太师！！！！")
-                    AttackOperaBEnding(0)
+                    //AttackOperaBEnding(0)
                 endif
             else    
                 //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")

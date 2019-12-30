@@ -3,6 +3,13 @@ scope AbilityStateData initializer init
     private function init()
         //输出代码
         //call InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
+        call InitAbilityData('S0W0',1,6,0,0,0,0,0,0,"W技能","|cffffff00需求：\n|r|cff808080 -境界3解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
+        call InitAbilityData('S0E0',1,6,0,0,0,0,0,0,"E技能","|cffffff00需求：\n|r|cff808080 -境界5解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
+        call InitAbilityData('S0R0',1,6,0,0,0,0,0,0,"R技能","|cffffff00需求：\n|r|cff808080 -境界7解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
+        call InitAbilityData('S0Q1',1,6,0,0,0,0,0,0,"Q技能","暂未学习技能","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
+        call InitAbilityData('S0W1',1,6,0,0,0,0,0,0,"W技能","暂未学习技能","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
+        call InitAbilityData('S0E1',1,6,0,0,0,0,0,0,"E技能","暂未学习技能","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
+        call InitAbilityData('S0R1',1,6,0,0,0,0,0,0,"R技能","暂未学习技能","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
         call InitAbilityData('S003',1,1,0,0,0,0,0,0,"残暴","致命概率+20%，致命倍率+300%","ReplaceableTextures\\CommandButtons\\BTNS003.blp")
         call InitAbilityData('S004',1,2,0,0,0,0,0,0,"无情","致命概率+5%，致命倍数+300%","ReplaceableTextures\\CommandButtons\\BTNS004.blp")
         call InitAbilityData('S005',1,2,0,0,0,0,0,0,"横扫千军","分裂+70%","ReplaceableTextures\\CommandButtons\\BTNS005.blp")
