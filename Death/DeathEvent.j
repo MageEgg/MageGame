@@ -130,33 +130,11 @@ scope DeathEvent initializer InitDeathEvent
         int index = 0
         int value = 0
         real gold = 0
-        real wood = 0
-        real jq = 0
-        real zq = 0
+        real wood = 1
         int exp = 0
         
-        if  uid >= 'g001' and uid <= 'g023'
-            if  uid == 'g001'
-                gold = 50
-            elseif  uid == 'g002'
-                gold = 300
-            elseif  uid == 'g003'
-                gold = 1000
-            elseif  uid == 'g004'
-                wood = 1
-            elseif  uid == 'g005'
-                wood = 5
-            elseif  uid == 'g006'
-                wood = 15
-            elseif  uid == 'g007'
-                wood = 30
-            elseif  uid == 'g008'
-                wood = 50
-            elseif  uid == 'g009'
-                jq = 20
-            elseif  uid == 'g010'
-                jq = 40
-            endif
+        if  uid == 'g00A'
+            gold = 10
         endif
         
         
@@ -164,56 +142,23 @@ scope DeathEvent initializer InitDeathEvent
         
         
         if  gold > 0
-            gold = gold * (1+GetUnitRealState(Pu[1],66)*0.01)
+            gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold)),255,202,0,255,90,0.023)
         endif
         if  wood > 0
-            wood = wood * (1+GetUnitRealState(Pu[1],67)*0.01)
             AdjustPlayerStateBJ( R2I(wood) ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(wood)),0x66,0xCD,0x00,255,90,0.023)
         endif
-        
-        if  jq > 0
-            jq = jq * (1+GetUnitRealState(Pu[1],69)*0.01)
-            AddUnitIntState(Pu[1],102,R2I(jq))
-            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(jq)),100,100,255,255,90,0.023)
-        endif
+
         
         
-        jq = GetUnitRealState(Pu[1],36)
-        if  jq > 0
-            AddUnitIntState(Pu[1],102,R2I(jq))
-            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(jq)),100,100,255,255,115,0.023)
-        endif
-        
-        wood = GetUnitRealState(Pu[1],37)
-        if  wood > 0
-            AdjustPlayerStateBJ( R2I(wood) ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(wood)),0x66,0xCD,0x00,255,65,0.023)
-        endif
         
         
-        zq = GetUnitRealState(Pu[1],48)
-        if  zq > 0
-            AddUnitRealState(Pu[1],39,zq)
-        endif
-        
+  
         
         if  exp > 0
-            AddHeroXP(Pu[1],exp,true)//额外经验
+            HeroAddExp( Pu[1],exp)
         endif
-        
-        for i = 1,5
-            value = R2I(GetUnitRealState(Pu[1],30+i))
-            if  value > 0
-                if  i >= 1 and i <= 4
-                    AddUnitRealState(Pu[1],i,value)
-                elseif  i == 5
-                    AddUnitRealState(Pu[1],7,value)
-                endif
-            endif
-        end
         
 
         
@@ -322,7 +267,7 @@ scope DeathEvent initializer InitDeathEvent
         int slv = 0
         int uid = GetUnitTypeId(tu)
         
-        AddUnitIntState(Pu[1],101,1+R2I(GetUnitRealState(wu,70)))
+        //AddUnitIntState(Pu[1],101,1+R2I(GetUnitRealState(wu,70)))
         
         
         //成长类物品
