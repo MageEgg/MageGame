@@ -16,6 +16,8 @@ library DzBase uses SystemCodes,DzAPI
     
     #define DzS DzArrayString[pid]
 
+    insert DzMatrix
+
     function GetDzDataGroupMaxValue(int Group)->int
         if  DzDataGroupLength(Group) == 2
             return 99
