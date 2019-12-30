@@ -59,7 +59,7 @@ scope DeathEvent initializer InitDeathEvent
     func RevivePlayerHeroTimer()
         int pid = GetHandleData(GetExpiredTimer())
         BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
-        ReviveHero(Pu[1],10816,12864,true)
+        ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
         if  Player(pid)==GetLocalPlayer()
             ClearSelection()
             SelectUnit(Pu[1],true)
@@ -357,10 +357,15 @@ scope DeathEvent initializer InitDeathEvent
             
 
             
-            //if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
-                
-            //    GroupRemoveUnit(AttackUnitGroup,u1)
-            //4endif
+            if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
+                GroupRemoveUnit(AttackUnitGroup,u1)
+            endif
+            if  IsUnitInGroup(u1,AttackOperaGroup_B_1)==true//用于进攻怪刷新单位组
+                GroupRemoveUnit(AttackOperaGroup_B_1,u1)
+            endif
+            if  IsUnitInGroup(u1,AttackOperaGroup_B_2)==true//用于进攻怪刷新单位组
+                GroupRemoveUnit(AttackOperaGroup_B_2,u1)
+            endif
             
             FlushChildHashtable(ht,GetHandleId(u1))
             RemoveUnitTimer(u1,2)
