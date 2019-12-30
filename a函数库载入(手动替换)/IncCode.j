@@ -47,11 +47,14 @@
 
 #include "MageGame\\UnitStateSystem\\UnitStateSystem.j"
 
+//进攻怪
+#include "MageGame\\AttackUnit\\AttackUnit.j"
+#include "MageGame\\AttackUnit\\CreateOpera.j"
+
 //物品系统
 #include "MageGame\\ItemCode\\ItemSystem.j"
 
 #include "MageGame\\ItemCode\\GiftandPrize.j"
-
 
 //副本
 #include "MageGame\\GameChallenge\\GameChallengeBase.j"
@@ -64,12 +67,11 @@
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
 
+//区域事件
+#include "MageGame\\RectEvent\\InitRctEvent.j"
 
 //死亡系统
 #include "MageGame\\Death\\DeathEvent.j"
-
-//区域事件
-#include "MageGame\\RectEvent\\InitRctEvent.j"
 
 
 //数据注册
