@@ -208,15 +208,6 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         end
         */
 
-        for x = 0,11
-            DzFrameSetScale(DzFrameFindByName("UnitsCheckBox",x),0.1)
-            DzFrameSetScale(DzFrameFindByName("VisionCheckBox",x),0.1)
-            DzFrameSetScale(DzFrameFindByName("AllianceSlot",x),0.1)
-            DzFrameSetScale(DzFrameFindByName("AllyCheckBox",x),0.1)
-            DzFrameSetScale(DzFrameFindByName("GoldBackdrop",x),0.1)
-            DzFrameSetScale(DzFrameFindByName("LumberBackdrop",x),0.1)
-        end
-
         //控件设置
         
         Button.frameid = FRAME.Tag("BUTTON","Hero",GameUI,Button)

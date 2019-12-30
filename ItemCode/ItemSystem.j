@@ -47,23 +47,73 @@ scope ItemSystem initializer InitItemSystem
         flush locals
     endfunction
     
+
+    function GetEquipIndex(int id)->int
+        if  id >= 'E001' and id <= 'E025'
+            return 1
+        elseif  id >= 'E101' and id <= 'E125'
+            return 2
+        elseif  id >= 'E201' and id <= 'E225'
+            return 3
+        endif
+        return 0
+    endfunction
+    function IncEquipKillUnitFunc(unit u1,unit u2)
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        int uid = GetUnitTypeId(u2)
+        int next = 0
+        int itemid = 0
+        for i = 0,5
+            itemid = GetItemTypeId(UnitItemInSlot(Pu[1],i))
+            if  GetTypeIdData(itemid,105) == uid
+                next = GetTypeIdData(itemid,106)
+                RemoveItem(UnitItemInSlot(Pu[1],i))
+                UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+                UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
+            endif
+        end
+    endfunction
  
     function IncEquipFunc(unit u1,item it)
         int pid = GetPlayerId(GetOwningPlayer(u1))
         int id = GetItemTypeId(it)
         int gold = GetTypeIdData(id,103)
         int next = GetTypeIdData(id,106)
+        int uid = GetTypeIdData(id,105)
+        int index = 0
+        
         if  next > 0
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
-                AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                RemoveItem(it)
-                UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+                
+                if  uid > 0
+                    index = GetEquipIndex(id)
+                    if  index != 0
+                        if  GetUnitTypeId(Pu[100+index]) == 0
+                            AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                            Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+128,270)
+                            IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                            HeroMoveToRoom(pid)
+
+                        else
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r正在挑战中")
+                        endif
+                    endif
+                else
+                    AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                    RemoveItem(it)
+                    UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
+                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
+                endif
             else
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
             endif
+        else    
+            BJDebugMsg("next"+I2S(next))
         endif
     endfunction
+
     
     function UseItemActions()
         unit u1 = GetTriggerUnit()
