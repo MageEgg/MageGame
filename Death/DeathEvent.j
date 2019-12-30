@@ -59,7 +59,7 @@ scope DeathEvent initializer InitDeathEvent
     func RevivePlayerHeroTimer()
         int pid = GetHandleData(GetExpiredTimer())
         BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
-        ReviveHero(Pu[1],10816,12864,true)
+        ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
         if  Player(pid)==GetLocalPlayer()
             ClearSelection()
             SelectUnit(Pu[1],true)
