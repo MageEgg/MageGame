@@ -58,14 +58,16 @@ scope DeathEvent initializer InitDeathEvent
     end
     func RevivePlayerHeroTimer()
         int pid = GetHandleData(GetExpiredTimer())
-        BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
-        ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
-        if  Player(pid)==GetLocalPlayer()
-            ClearSelection()
-            SelectUnit(Pu[1],true)
-            PanCameraToTimed(GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
+        if  GameOverBoolJu == false
+            BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
+            ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
+            if  Player(pid)==GetLocalPlayer()
+                ClearSelection()
+                SelectUnit(Pu[1],true)
+                PanCameraToTimed(GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
+            endif
+            PlayerDeathBool = false
         endif
-        PlayerDeathBool = false
         DestroyTimerDialog(Pdia[0])
         PauseTimer(GetExpiredTimer())
         DestroyTimer(GetExpiredTimer())
@@ -282,8 +284,8 @@ scope DeathEvent initializer InitDeathEvent
     function EndGameTimerTimerFunc()
     endfunction
 
-    function GameOverToast()
-        
+    function GameOver()
+        GameOverBoolJu = true
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
@@ -306,7 +308,7 @@ scope DeathEvent initializer InitDeathEvent
         int pid2 = GetPlayerId(GetOwningPlayer(u2))
         int uid = GetUnitTypeId(u1)
         int uid2 = GetUnitTypeId(u2)
-
+        BJDebugMsg("死亡事件")
         if  pid <= 5//玩家类型死亡
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
@@ -315,11 +317,11 @@ scope DeathEvent initializer InitDeathEvent
                 endif
             endif
         endif
-        /*
-        if  u1 == gg_unit_np01_0001
-            GameOverToast()
+        
+        if  u1 == GameDefendUnit
+            GameOver()
         endif
-        */
+        
         
         if  pid > 7 
             
@@ -350,6 +352,11 @@ scope DeathEvent initializer InitDeathEvent
                     if  GetUnitPointValueByType(uid) == 1
                         AddReviveWildMonster(u1,3,GetUnitPointX(u1),GetUnitPointY(u1))
                     endif
+                endif
+
+                if  u1 == AttackUnitBoss[10] and uid == 'mc06'
+                    BJDebugMsg("闻太师！！！！")
+                    AttackOperaBEnding(0)
                 endif
             else    
                 //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
