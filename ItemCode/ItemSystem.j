@@ -58,6 +58,22 @@ scope ItemSystem initializer InitItemSystem
         endif
         return 0
     endfunction
+    function IncEquipKillUnitFunc(unit u1,unit u2)
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        int uid = GetUnitTypeId(u2)
+        int next = 0
+        int itemid = 0
+        for i = 0,5
+            itemid = GetItemTypeId(UnitItemInSlot(Pu[1],i))
+            if  GetTypeIdData(itemid,105) == uid
+                next = GetTypeIdData(itemid,106)
+                RemoveItem(UnitItemInSlot(Pu[1],i))
+                UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+                UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
+            endif
+        end
+    endfunction
  
     function IncEquipFunc(unit u1,item it)
         int pid = GetPlayerId(GetOwningPlayer(u1))
@@ -87,7 +103,8 @@ scope ItemSystem initializer InitItemSystem
                     AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                     RemoveItem(it)
                     UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
                 endif
             else
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
@@ -96,6 +113,7 @@ scope ItemSystem initializer InitItemSystem
             BJDebugMsg("next"+I2S(next))
         endif
     endfunction
+
     
     function UseItemActions()
         unit u1 = GetTriggerUnit()
