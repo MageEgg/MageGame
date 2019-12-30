@@ -1,400 +1,370 @@
-library State initializer StateLibraryInit uses ejtimer,System,Define2
+library DamageCode uses UnitStateSet
+    int DAMAGE_TYPE_UNKNOWNa       =0
+    int DAMAGE_TYPE_NORMALa        =4
+    int DAMAGE_TYPE_ENHANCEDa      =5
+    int DAMAGE_TYPE_FIREa          =8
+    int DAMAGE_TYPE_COLDa          =9
+    int DAMAGE_TYPE_LIGHTNINGa     =10
+    int DAMAGE_TYPE_POISONa        =11
+    int DAMAGE_TYPE_DISEASEa       =12
+    int DAMAGE_TYPE_DIVINEa        =13
+    int DAMAGE_TYPE_MAGICa         =14
+    int DAMAGE_TYPE_SONICa         =15
+    int DAMAGE_TYPE_ACIDa          =16
+    int DAMAGE_TYPE_FORCEa         =17
+    int DAMAGE_TYPE_DEATHa         =18
+    int DAMAGE_TYPE_MINDa          =19
+    int DAMAGE_TYPE_PLANTa         =20
+    int DAMAGE_TYPE_DEFENSIVEa     =21
+    int DAMAGE_TYPE_DEMOLITIONa    =22
+    int DAMAGE_TYPE_SLOW_POISONa   =23
+    int DAMAGE_TYPE_SPIRIT_LINKa   =24
+    int DAMAGE_TYPE_SHADOW_STRIKEa =25
+    int DAMAGE_TYPE_UNIVERSALa     =26
+    
+    int ATTACK_TYPE_NORMALa         =0 //正常
+    int ATTACK_TYPE_MELEEa          =1 //
+    int ATTACK_TYPE_PIERCEa         =2 //穿刺
+    int ATTACK_TYPE_SIEGEa          =3 //攻城
+    int ATTACK_TYPE_MAGICa          =4 //
+    int ATTACK_TYPE_CHAOSa          =5 //混乱
+    int ATTACK_TYPE_HEROa           =6 //英雄
     
     
     
-    func InitTypeIdStrings(int id,string name,string icon,string tips)
-        SetTypeIdString(id,100,name)
-        SetTypeIdString(id,101,icon)
-        SetTypeIdString(id,102,tips)
-    end
-    func InitTypeIdTips(int id,string tip1,string tip2,string tip3,string tip4,string tip5)
-        SetTypeIdString(id,111,tip1)
-        SetTypeIdString(id,112,tip2)
-        SetTypeIdString(id,113,tip3)
-        SetTypeIdString(id,114,tip4)
-        SetTypeIdString(id,115,tip5)
-    end
-    
-    func InitTypeIdJbState(int id,int use1,string tip1,int use2,string tip2,int use3,string tip3,string tip0)
-        SetTypeIdString(id,120,tip0)
-        SetTypeIdString(id,121,tip1)
-        SetTypeIdString(id,122,tip2)
-        SetTypeIdString(id,123,tip3)
-        SetTypeIdData(id,121,use1)
-        SetTypeIdData(id,122,use2)
-        SetTypeIdData(id,123,use3)
-    end
-    func InitTypeIdJbStateOnec(int id,string tip1,string tip2,string tip3)
-        SetTypeIdString(id,131,tip1)
-        SetTypeIdString(id,132,tip2)
-        SetTypeIdString(id,133,tip3)
-    end
     
     
-    func InitEquipData(int id,int Type,int color,int gold,int wood,int kill,int NextId,int x,int y)
-        int max = 0
-        SetTypeIdData(id,100,Type)
-        SetTypeIdData(id,101,color)
-        SetTypeIdData(id,103,gold)
-        SetTypeIdData(id,104,wood)
-        SetTypeIdData(id,105,kill)
-        SetTypeIdData(id,106,NextId)
+    //闪避
+    function GetUnitSbState(unit wu)->real
+        real s = GetUnitRealState(wu,10)
+        if  s > 70
+            s = 70
+        endif
+        return s
+    endfunction
+    function GetUnitSb(unit wu)->real
+        real s = GetUnitSbState(wu)
+        s = s * 0.01
+        return s
+    endfunction
+    
+    //免伤
+    function GetUnitMsState(unit wu)->real
+        real s = GetUnitRealState(wu,11)
+        int lv = 0
+        if  s > 70
+            s = 70
+        endif
+        return s
+    endfunction
+    function GetUnitMs(unit wu)->real
+        real s = GetUnitMsState(wu)
+        s = s * 0.01
+        return s
+    endfunction
+    
+    //普攻伤害加强
+    function GetUnitPsState(unit wu)->real
+        real s = GetUnitRealState(wu,12)
+        int lv = 0
+        return s
+    endfunction
+    function GetUnitPs(unit wu)->real
+        real s = GetUnitPsState(wu)
+        s = s * 0.01
+        return s
+    endfunction
+    
+    
+    
+    
+    //物理穿透
+    function GetUnitWcState(unit wu)->real
+        real s = GetUnitRealState(wu,13)
+        if  s > 80
+            s = 80
+        endif
+        return s
+    endfunction
+    function GetUnitWc(unit wu)->real
+        real s = (GetUnitWcState(wu))
+        return s*0.01
+    endfunction
+    
+    //法术穿透
+    function GetUnitFcState(unit wu)->real
+        real s = GetUnitRealState(wu,14)
+        if  s > 80
+            s = 80
+        endif
+        return s
+    endfunction
+    function GetUnitFc(unit wu)->real
+        real s = (GetUnitFcState(wu))
+        return s*0.01
+    endfunction
+    
+    //获取物理加成结算
+    function GetUnitWsState(unit wu)->real
+        real s = GetUnitRealState(wu,15)
+        real lv = 0
+
+        return s
+    endfunction
+    function GetUnitWs(unit wu)->real
+        real s = GetUnitWsState(wu)
         
-        SetTypeIdData(id,151,x)
-        SetTypeIdData(id,152,y)
-    end
+        return s * 0.01
+    endfunction
     
-    
-    
-    func InitTypeIdData(int id,int Type,int color,int data1,int data2,int data3,int data4,int data5,int data6,int data7,int data8,int data9,int data10)
-        SetTypeIdData(id,100,Type)
-        SetTypeIdData(id,101,color)
+    //获取法术加成结算
+    function GetUnitFsState(unit wu)->real
+        real s = GetUnitRealState(wu,16)
+        real lv = 0
+
+        return s
+    endfunction
+    function GetUnitFs(unit wu)->real
+        real s = GetUnitFsState(wu)
         
-        SetTypeIdData(id,111,data1)
-        SetTypeIdData(id,112,data2)
-        SetTypeIdData(id,113,data3)
-        SetTypeIdData(id,114,data4)
-        SetTypeIdData(id,115,data5)
-        SetTypeIdData(id,116,data6)
-        SetTypeIdData(id,117,data7)
-        SetTypeIdData(id,118,data8)
-        SetTypeIdData(id,119,data9)
-        SetTypeIdData(id,120,data10)
+        return s * 0.01
+    endfunction
+    
+    //获取伤害加成结算
+    function GetUnitShState(unit wu)->real
+        real s = GetUnitRealState(wu,17)
+        if  s > 90
+            s = 90
+        endif
+        return s
+    endfunction
+    function GetUnitSh(unit wu)->real
+        real s = GetUnitShState(wu)
         
-    end
-    
-    function InitTypeState1(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,1,data1)
-        SetTypeIdReal(id,2,data2)
-        SetTypeIdReal(id,3,data3)
-        SetTypeIdReal(id,4,data4)
-        SetTypeIdReal(id,5,data5)
-        SetTypeIdReal(id,6,data6)
-        SetTypeIdReal(id,7,data7)
-        SetTypeIdReal(id,8,data8)
-        SetTypeIdReal(id,9,data9)
-        SetTypeIdReal(id,10,data10)
-    endfunction
-    function InitTypeState2(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,11,data1)
-        SetTypeIdReal(id,12,data2)
-        SetTypeIdReal(id,13,data3)
-        SetTypeIdReal(id,14,data4)
-        SetTypeIdReal(id,15,data5)
-        SetTypeIdReal(id,16,data6)
-        SetTypeIdReal(id,17,data7)
-        SetTypeIdReal(id,18,data8)
-        SetTypeIdReal(id,19,data9)
-        SetTypeIdReal(id,20,data10)
+        return s * 0.01
     endfunction
     
-    function InitTypeState3(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,21,data1)
-        SetTypeIdReal(id,22,data2)
-        SetTypeIdReal(id,23,data3)
-        SetTypeIdReal(id,24,data4)
-        SetTypeIdReal(id,25,data5)
-        SetTypeIdReal(id,26,data6)
-        SetTypeIdReal(id,27,data7)
-        SetTypeIdReal(id,28,data8)
-        SetTypeIdReal(id,29,data9)
-        SetTypeIdReal(id,30,data10)
+    
+    //获取抵抗加成结算
+    function GetUnitDkState(unit wu)->real
+        real s = GetUnitRealState(wu,18)
+        if  s > 90
+            s = 90
+        endif
+        return s
+    endfunction
+    function GetUnitDk(unit wu)->real
+        real s = GetUnitDkState(wu)
+    
+        return s * 0.01
     endfunction
     
-    function InitTypeState4(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,31,data1)
-        SetTypeIdReal(id,32,data2)
-        SetTypeIdReal(id,33,data3)
-        SetTypeIdReal(id,34,data4)
-        SetTypeIdReal(id,35,data5)
-        SetTypeIdReal(id,36,data6)
-        SetTypeIdReal(id,37,data7)
-        SetTypeIdReal(id,38,data8)
-        SetTypeIdReal(id,39,data9)
-        SetTypeIdReal(id,40,data10)
+    
+    //暴击
+    function GetUnitBjState(unit wu)->real
+        real s = GetUnitRealState(wu,19)
+        if  s > 100
+            s = 100
+        endif
+        return s
+    endfunction
+    function GetUnitBj(unit wu)->real
+        real s = GetUnitBjState(wu)
+        s = s * 0.01
+        return s
     endfunction
     
-    function InitTypeState5(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,41,data1)
-        SetTypeIdReal(id,42,data2)
-        SetTypeIdReal(id,43,data3)
-        SetTypeIdReal(id,44,data4)
-        SetTypeIdReal(id,45,data5)
-        SetTypeIdReal(id,46,data6)
-        SetTypeIdReal(id,47,data7)
-        SetTypeIdReal(id,48,data8)
-        SetTypeIdReal(id,49,data9)
-        SetTypeIdReal(id,50,data10)
+    //暴击伤害
+    function GetUnitBsState(unit wu)->real
+        real s = GetUnitRealState(wu,20)+150
+        return s
     endfunction
-    function InitTypeState6(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,51,data1)
-        SetTypeIdReal(id,52,data2)
-        SetTypeIdReal(id,53,data3)
-        SetTypeIdReal(id,54,data4)
-        SetTypeIdReal(id,55,data5)
-        SetTypeIdReal(id,56,data6)
-        SetTypeIdReal(id,57,data7)
-        SetTypeIdReal(id,58,data8)
-        SetTypeIdReal(id,59,data9)
-        SetTypeIdReal(id,60,data10)
+    
+    function GetUnitBs(unit wu)->real
+        real s = GetUnitBsState(wu)
+        return s*0.01
     endfunction
-    function InitTypeState7(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
-        SetTypeIdReal(id,61,data1)
-        SetTypeIdReal(id,62,data2)
-        SetTypeIdReal(id,63,data3)
-        SetTypeIdReal(id,64,data4)
-        SetTypeIdReal(id,65,data5)
-        SetTypeIdReal(id,66,data6)
-        SetTypeIdReal(id,67,data7)
-        SetTypeIdReal(id,68,data8)
-        SetTypeIdReal(id,69,data9)
-        SetTypeIdReal(id,70,data10)
+    
+    //吸血
+    function GetUnitWxState(unit wu)->real
+        real s = GetUnitRealState(wu,21)
+        real lv = 0
+        return s
     endfunction
+    function GetUnitWx(unit wu)->real
+        real s = GetUnitWxState(wu)
+        return s*0.01
+    endfunction
+    
+    
+    //分裂
+    function GetUnitFLState(unit wu)->real
+        real s = GetUnitRealState(wu,22)
+        return s
+    endfunction
+    function GetUnitFL(unit wu)->real
+        real s = GetUnitFLState(wu)
+        return s*0.01
+    endfunction
+    
+    
+    //致命概率
+    function GetUnitZmState(unit wu)->real
+        real s = GetUnitRealState(wu,23)
+
+        
+        if  s > 100
+            s = 100
+        endif
+        return s
+    endfunction
+    function GetUnitZm(unit wu)->real
+        real s = GetUnitZmState(wu)
+        return s*0.01
+    endfunction
+    //致命伤害
+    function GetUnitZsState(unit wu)->real
+        real s = GetUnitRealState(wu,23)+150
+        
+        return s
+    endfunction
+    function GetUnitZs(unit wu)->real
+        real s = GetUnitZsState(wu)
+        return s*0.01
+    endfunction
+    
 
     
-    function StateLibraryInit()
+    //冷却缩减
+    function GetUnitLsState(unit wu)->real
+        real s = GetUnitRealState(wu,25)
+        if  s > 80
+            s = 80
+        endif
+        return s
+    endfunction
+    function GetUnitLs(unit wu)->real
+        real s = GetUnitLsState(wu)
+        return 1+s*0.01
+    endfunction
+    
+    //冷却降低
+    function GetUnitLjState(unit wu)->real
+        real s = GetUnitRealState(wu,26)
+        return s
+    endfunction
+    function GetUnitLj(unit wu)->real
+        real s = GetUnitLjState(wu)
+        return s
+    endfunction
+    
+    function GetUnitChanceState(unit wu)->real
+        real s = GetUnitRealState(wu,27)
+        return s
+    endfunction
+    function GetUnitChance(unit wu)->real
+        real s = GetUnitChanceState(wu)
+        return s*0.01
+    endfunction
+    
+    function Chance(unit wu,real gl)->bool
+        real s = GetUnitChance(wu)
+        gl=gl*0.01
+        return GetRandomReal(0, 1) <= gl+s
+    endfunction
+    
 
-        StateName[1]="攻击"
-        StateName[2]="法强"
-        StateName[3]="护甲"
-        StateName[4]="法抗"
-        StateName[5]="生命值"
-        StateName[6]="魔法值"
-        StateName[7]="生命回复"
-        StateName[8]="魔法回复"
-        StateName[9]="攻速"
-        StateName[10]="闪避"
-        StateName[11]="免伤"
-        StateName[12]="普攻伤害"
-        StateName[13]="物穿"
-        StateName[14]="法穿"
-        StateName[15]="物理伤害"
-        StateName[16]="法术伤害"
-        StateName[17]="伤害加成"
-        StateName[18]="伤害减免"
-        StateName[19]="暴击"
-        StateName[20]="暴伤"
-        StateName[21]="伤害吸取"
-        StateName[22]="分裂"
-        StateName[23]="致命概率"
-        StateName[24]="致命倍率"
-        StateName[25]="冷却缩减"
-        StateName[26]="冷却降低"
-        StateName[27]=""
-        StateName[28]=""
-        StateName[29]=""
-        StateName[30]=""
-        StateName[31]="生命%"
-        StateName[32]="攻击%"
-        StateName[33]="法强%"
-        StateName[1001]=""
-        StateName[1002]=""
-        StateName[1003]=""
-        StateName[1004]=""
-        StateName[1005]=""
-        StateName[1006]=""
-        StateName[1007]=""
-        StateName[1008]=""
-        StateName[1009]="%"
-        StateName[1010]="%"
-        StateName[1011]="%"
-        StateName[1012]="%"
-        StateName[1013]="%"
-        StateName[1014]="%"
-        StateName[1015]="%"
-        StateName[1016]="%"
-        StateName[1017]="%"
-        StateName[1018]="%"
-        StateName[1019]="%"
-        StateName[1020]="%"
-        StateName[1021]="%"
-        StateName[1022]="%"
-        StateName[1023]="%"
-        StateName[1024]="%"
-        StateName[1025]="%"
-        StateName[1026]=""
-        StateName[1027]=""
-        StateName[1028]=""
-        StateName[1029]=""
-        StateName[1030]=""
-        StateName[1031]="%"
-        StateName[1032]="%"
-        StateName[1033]="%"
-                
-    endfunction
-    
-    function GetUnitIntState(unit wu,int StateId)->int
-        return GetUnitData(wu,StateId)
-    endfunction
-    
-    function SetUnitIntState(unit wu,int StateId,int value)
-        if  StateId < 100
-            //StateId = 0/0
-            //BJDebugMsg(I2S(StateId)+"错误的属性类型请检查")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]:错误的属性类型请检查"+I2S(StateId)+StateName[StateId]+"+"+I2S(value))
-        endif
-        SetUnitData(wu,StateId,value)
-    endfunction
-    
-    function AddUnitIntState(unit wu,int StateId,int value)
-        SetUnitIntState(wu,StateId,GetUnitIntState(wu,StateId)+value)
-    endfunction
-    
-    function GetUnitRealState(unit wu,int StateId)->real
-        real value = GetUnitReal(wu,StateId)
-        if  StateId == 1
-            value = GetUnitState(wu, ConvertUnitState(0x12))
-        elseif  StateId == 2
-            value = GetHeroStr(wu,true)
-        elseif  StateId == 3
-            value = GetUnitState(wu, ConvertUnitState(0x20))
-        elseif  StateId == 5
-            value = GetUnitState(wu,UNIT_STATE_MAX_LIFE)
-        elseif  StateId == 6
-            value = GetUnitState(wu,UNIT_STATE_MAX_MANA)
-        elseif  StateId == 9
-            value = GetUnitState(wu, ConvertUnitState(0x51))*10000
-        endif
-        return value
-    endfunction
+   
+ 
     
     
-    function SetUnitRealState(unit wu,int StateId,real value)
-        real r1 = 0
-        real r2 = 0
-        if  StateId > 99
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]:错误的属性类型请检查"+I2S(StateId))
-        endif
+    
+    
+    function SetEquipStateOfPlayer(unit wu,int newid,real offset)
+        real value = 0
         
-        SetUnitReal(wu,StateId,value)
-        if  StateId == 1
-            SetUnitState( wu, ConvertUnitState(0x12), value )
-        elseif  StateId == 2
-            SetHeroStr(wu,R2I(value),true)
-        elseif  StateId == 3
-            SetUnitState( wu, ConvertUnitState(0x20), value )
-        elseif  StateId == 5
-            r1 = GetUnitState( wu, UNIT_STATE_MAX_LIFE)
-            r2 = GetUnitState( wu, UNIT_STATE_LIFE)
-            SetUnitState( wu, UNIT_STATE_MAX_LIFE, value)
-            if  r1 < value
-                SetUnitState( wu, UNIT_STATE_LIFE, r2+(value-r1))
+        for i = 1,70
+            value = GetTypeIdReal(newid,i)
+            if  value != 0
+                AddUnitRealState(wu,i,value*offset)
             endif
-        elseif  StateId == 6
-            r1 = GetUnitState( wu, UNIT_STATE_MAX_MANA)
-            r2 = GetUnitState( wu, UNIT_STATE_MANA)
-            SetUnitState( wu, UNIT_STATE_MAX_MANA, value)
-            SetUnitState( wu, UNIT_STATE_MANA, r2+(value-r1))
-        elseif  StateId == 9
-            SetUnitState( wu, ConvertUnitState(0x51), value*0.0001 )
-            if  IsUnitType(wu, UNIT_TYPE_HERO) == true
-                SetHeroAgi(wu,R2I(value/100+0.1)-100,true)
-            endif
-        elseif  StateId == 25
-            if  value > 80
-                SetHeroInt(wu,80,true)
-            else
-                SetHeroInt(wu,R2I(value),true)
-            endif
-        elseif  StateId == 32
-            DzFrameSetText(BUTTON_Text[161],"|cffffcc00攻击：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 33
-            DzFrameSetText(BUTTON_Text[162],"|cffffcc00法强：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 31
-            DzFrameSetText(BUTTON_Text[163],"|cffffcc00生命：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 13
-            DzFrameSetText(BUTTON_Text[164],"|cffffcc00物穿：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 14
-            DzFrameSetText(BUTTON_Text[165],"|cffffcc00法穿：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 19
-            DzFrameSetText(BUTTON_Text[166],"|cffffcc00暴击：|r"+I2S(R2I(value))+"%")
-        /*elseif  StateId == 33
-            DzFrameSetText(BUTTON_Text[167],"|cffffcc00金币加成：|r"+R2I(value)+"%")*/
-        elseif  StateId == 10
-            DzFrameSetText(BUTTON_Text[168],"|cffffcc00闪避：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 18
-            DzFrameSetText(BUTTON_Text[169],"|cffffcc00减伤：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 21
-            DzFrameSetText(BUTTON_Text[170],"|cffffcc00吸血：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 17
-            DzFrameSetText(BUTTON_Text[171],"|cffffcc00增伤：|r"+I2S(R2I(value))+"%")
-        elseif  StateId == 20
-            DzFrameSetText(BUTTON_Text[172],"|cffffcc00暴伤：|r"+I2S(R2I(value))+"%")
-        endif
-    endfunction
-    
-    function AddUnitRealState(unit wu,int StateId,real value)
-        
-        if  StateId == 9
-            SetUnitRealState(wu,9,GetUnitRealState(wu,9)+value*100)
-        else
-            SetUnitRealState(wu,StateId,GetUnitRealState(wu,StateId)+value)
-        endif
-    endfunction
-    
-    
-    
-    
-    function RemoveUnitStateEx(unit wu,int StateId,real value)
-        if  StateId == 9
-            SetUnitRealState(wu,9,GetUnitRealState(wu,9)-value*100)
-        else
-            SetUnitRealState(wu,StateId,GetUnitRealState(wu,StateId)-value)
-        endif
-    endfunction
-    
-    
-    
-    
-    function InitHeroAddStateAbility(unit wu)
-        int skill = 0
-        for i = 1,31
-            skill = i
-            if  i > 9
-                skill = skill + 7
-            endif
-            UnitAddAbility(wu,'AD10'+skill)
-            UnitAddAbility(wu,'AD20'+skill)
-            UnitAddAbility(wu,'AD30'+skill)
         end
     endfunction
     
-    function SetUnitAddStateLevel(unit wu,int index,int value)
-        int id = 'AD00'+index*0x100
-        int skill = 0
-        for i = 1,31
-            skill = id + i
-            if  i > 9
-                skill = skill + 7
+    function SetEquipLvStateOfPlayer(unit wu,int newid,real lv,real offset)
+        real value = 0
+        
+        for i = 1,70
+            value = GetTypeIdReal(newid,i)
+            if  value != 0
+                AddUnitRealState(wu,i,value*offset*lv)
             endif
-            if  value - (value/2) * 2 == 1
-                SetUnitAbilityLevel(wu,skill,2)
-            else
-                SetUnitAbilityLevel(wu,skill,1)
-            endif
-            value = value / 2
         end
     endfunction
     
-    
-    
-    func AddUnitStateExTimer(unit wu,int id,real v,real t)
-        unit u1 = wu
-        int StateId = id
-        real value = v
-        real time = t
-        AddUnitRealState(u1,StateId,value)
-        TimerStart(time,false)
-        {
-            AddUnitRealState(u1,StateId,-value)
-            endtimer
-            flush locals
-        }
-        flush locals
+    function RemoveEquipState(unit wu,int eid)
+        SetEquipStateOfPlayer(wu,eid,-1)
+    end
+    function AddEquipState(unit wu,int eid)
+        SetEquipStateOfPlayer(wu,eid,1)
     end
     
+    function SetPlayerTechResearchedEx(player p,int id)
+        int pid = GetPlayerId(p)
+        SetPlayerTechResearched(p,id, 1)
+        AddEquipState(Pu[1],id)
+    end
     
+    function IsPlayerHasTech(player whichPlayer,int techid)->boolean
+        if  techid == 0
+            return true
+        endif
+        //BJDebugMsg("科技"+GetObjectName(techid)+I2S(GetPlayerTechCount(whichPlayer, techid, true)))
+        return GetPlayerTechCount(whichPlayer, techid, true) > 0
+    endfunction
+
+
+    function GetTypeIdIndex(int uid,int minid)->int
+        int index = 0
+        
+        if  uid >= minid + 0x100
+            index = uid - minid - 0xF6
+        else
+            index = uid - minid
+        endif
+
+        return index
+    endfunction
+    function GetUnitLucky(unit wu,real r)->boolean
+        int i = R2I(r)
+        return GetRandomInt(1,100)<=i
+    end
+    
+    function CalculationNewId(int id,int index)->int //计算新ID
+        if  index >= 10
+            return id + index + 0xF6
+        elseif  index == 0
+            return 0
+        endif
+        return id + index
+    endfunction
+    
+    
+    function KillTechMosterFunc(unit wu,int now,int last)->boolean
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  IsPlayerHasTech(GetOwningPlayer(wu),last) == true//如果拥有上一个
+            if  IsPlayerHasTech(GetOwningPlayer(wu),now) == false//如果当前是没有的
+                SetPlayerTechResearchedEx(GetOwningPlayer(wu),now)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：恭喜您！"+GetObjectName(now)+"激活成功！")
+                return true
+            else
+                return false
+                BJDebugMsg("该科技已经解锁"+GetObjectName(now))
+            endif
+        else
+            BJDebugMsg("不满足解锁条件"+GetObjectName(last)+I2S(last))
+            return false
+        endif
+    endfunction
 endlibrary
 
-
-    
