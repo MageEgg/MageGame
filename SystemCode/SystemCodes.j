@@ -421,6 +421,32 @@ library SystemCodes uses ServerTime,Define1
         int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
         SetUnitVertexColor(wu,r,g,b,255) 
     endfunction
+
+    function PauseAllUnitsFunc()
+        PauseUnit(GetEnumUnit(),bj_pauseAllUnitsFlag)
+    endfunction
+    
+    function PauseAllUnits(bool pause)
+        integer index = 0
+        player p = null
+        group g = CreateGroup()
+        bj_pauseAllUnitsFlag = pause
+        loop
+            p = Player(index)
+            if  GetPlayerController(p) == MAP_CONTROL_COMPUTER
+                PauseCompAI(p,pause)
+            endif
+            GroupEnumUnitsOfPlayer(g,p,null)
+            ForGroup(g,function PauseAllUnitsFunc)
+            GroupClear( g )
+            index = index + 1
+            exitwhen index == bj_MAX_PLAYER_SLOTS
+        endloop
+        GroupClear(g)
+        DestroyGroup(g)
+        g = null
+        p = null
+    endfunction
     
 endlibrary
 library UnitRanDropItem uses SystemCodes
