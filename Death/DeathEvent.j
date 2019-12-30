@@ -138,7 +138,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
         
         
-        exp = GetHeroLevel(Pu[1])*10
+        exp = 1
         
         
         if  gold > 0
