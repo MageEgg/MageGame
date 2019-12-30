@@ -42,11 +42,14 @@
 
 //属性系统
 #include "MageGame\\UnitStateSystem\\DamageCode.j"
+
 #include "MageGame\\UnitStateSystem\\SetMosterUnitState.j"
+
 #include "MageGame\\UnitStateSystem\\UnitStateSystem.j"
 
 //物品系统
 #include "MageGame\\ItemCode\\ItemSystem.j"
+
 #include "MageGame\\ItemCode\\GiftandPrize.j"
 
 
@@ -60,11 +63,27 @@
 #include "MageGame\\GameChallenge\\GameChallenge_6.j"
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
+/*
 
+//死亡系统
+#include "MageGame\\Death\\DeathEvent.j"
 
+//区域事件
+#include "MageGame\\RectEvent\\InitRctEvent.j"
 
+//玩家输入事件
+#include "MageGame\\PlayerEvent\\PlayerChat.j"
+
+#include "MageGame\\PlayerEvent\\PlayerGameLeave.j"
+
+#include "MageGame\\PlayerEvent\\PlayerGoldTurn.j"
+*/
 
 //数据注册
 #include "MageGame\\DataRegister\\InitAllStateData.j"
+
 #include "MageGame\\DataRegister\\InitAbilityStateData.j"
+
 #include "MageGame\\DataRegister\\InitAllTypeIdData.j"
+
+#include "MageGame\\DataRegister\\InitPrizeData.j"
