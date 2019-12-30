@@ -321,7 +321,7 @@ scope DeathEvent initializer InitDeathEvent
             GameOver()
         elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
             BJDebugMsg("闻太师！！！！")
-            //AttackOperaBEnding(0)
+            AttackOperaBEnding(0)
         endif
         
         if  pid > 7 
