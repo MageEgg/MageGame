@@ -39,6 +39,13 @@ library SystemCodes uses ServerTime,Define1
         DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         PlayerSelectOneUnit(pid,Pu[1])
     endfunction
+
+    function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
+        DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        SetUnitPosition(Pu[1],x,y)
+        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        PlayerSelectOneUnit(pid,Pu[1])
+    endfunction
     
     function Sdofplayer(player pp,real x ,real y,real time) //地图信号
         if pp == GetLocalPlayer()
