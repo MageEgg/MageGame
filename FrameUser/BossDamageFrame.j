@@ -1,8 +1,9 @@
 library BossDamageFrame uses GameFrame
 
-    int DamageBoardFrame = 0
-    bool IsBossDamageUIShow = false
-    private int name = 0
+    private FRAME Back = 0
+    private FRAME Name = 0
+    private int origin = 0
+
     
     function GetPlayerDamage(int pid)->real
         real dam = GetUnitRealState(Pu[1],99)
@@ -65,37 +66,7 @@ library BossDamageFrame uses GameFrame
         end
     endfunction
     
-    function CreateDamageShowItem(int id,int Type,int p1,int DadFrame,int p2,real x,real y,real sizex,real sizey,string origin)
-        EquipButton_back[id][1] = DzCreateFrameByTagName("BACKDROP","DamageShowItem_1"+I2S(id), DadFrame,"template",0)
-        DzFrameSetTexture(EquipButton_back[id][1], "war3mapImported\\alpha.tga", 0)
-        DzFrameSetPoint( EquipButton_back[id][1], p1, DadFrame, p2, x, y)
-        DzFrameSetSize( EquipButton_back[id][1], sizex,sizey)
-        
-        EquipButton_back[id][2] = DzCreateFrameByTagName("BACKDROP","DamageShowItem_2"+I2S(id), EquipButton_back[id][1],"template",0)
-        DzFrameSetTexture(EquipButton_back[id][2], "war3mapImported\\shanghaipaihang_0.blp", 0)
-        DzFrameSetPoint( EquipButton_back[id][2], MyFrame_ACHOR_TopRight, EquipButton_back[id][1], MyFrame_ACHOR_TopRight,0 , -0.015 )
-        DzFrameSetSize( EquipButton_back[id][2], sizex,0.01)
-        
-        EquipButton_back[id][3] = DzCreateFrameByTagName("BACKDROP","DamageShowItem_3"+I2S(id), EquipButton_back[id][2],"template",0)
-        DzFrameSetTexture(EquipButton_back[id][3], "war3mapImported\\shanghaipaihang_1.blp", 0)
-        DzFrameSetPoint( EquipButton_back[id][3], MyFrame_ACHOR_Right, EquipButton_back[id][2], MyFrame_ACHOR_Right,0 , 0 )
-        DzFrameSetSize( EquipButton_back[id][3], sizex*0.01,0.01)
-        
-        EquipButton_text[id][1] = DzCreateFrame("itemnumber",EquipButton_back[id][1], EquipButton_back[id][3])
-        call DzFrameSetPoint( EquipButton_text[id][1], MyFrame_ACHOR_TopRight, EquipButton_back[id][1], MyFrame_ACHOR_TopRight, -0.002, 0)
-        
-        EquipButton_text[id][2] = DzCreateFrame("itemnumber",EquipButton_back[id][1], EquipButton_text[id][1])
-        call DzFrameSetPoint( EquipButton_text[id][2], MyFrame_ACHOR_TopRight, EquipButton_back[id][2], MyFrame_ACHOR_TopRight, -0.002, 0)
-        
-        EquipButton_text[id][3] = DzCreateFrame("text010",EquipButton_back[id][1], EquipButton_text[id][2])
-        call DzFrameSetPoint( EquipButton_text[id][3], MyFrame_ACHOR_TopRight, EquipButton_back[id][3], MyFrame_ACHOR_TopLeft, -0.002, 0)
-        
-        EquipButton_back[id][5] = DzCreateFrameByTagName("BACKDROP","DamageShowItem_8"+I2S(id), EquipButton_back[id][1],"template",0)
-        DzFrameSetPoint( EquipButton_back[id][5], MyFrame_ACHOR_Center, EquipButton_back[id][1], MyFrame_ACHOR_Center,0 , 0 )
-        DzFrameSetSize( EquipButton_back[id][5], sizex,sizey)
-        DzFrameSetTexture(EquipButton_back[id][5], "war3mapImported\\alpha.tga", 0)
-        
-    endfunction
+    
     
     func BossDamageUICloceEx()
         int hp = 255
@@ -156,19 +127,30 @@ library BossDamageFrame uses GameFrame
         endif
     end
     
-    function InitDamageShowFrame()
-        DamageBoardFrame = DzCreateFrameByTagName("BACKDROP","DamageBoardFrame", DzGetGameUI(),"template",0)
-        DzFrameSetTexture(DamageBoardFrame, "UI\\Widgets\\BattleNet\\bnet-inputbox-back.blp", 0)
-        DzFrameSetPoint(DamageBoardFrame, MyFrame_ACHOR_TopRight, DzGetGameUI(), MyFrame_ACHOR_TopRight, -0.01, -0.16)
-        DzFrameSetSize(DamageBoardFrame, 0.15,0.17)
-        DzFrameSetAlpha( DamageBoardFrame,200)
+    function BossDamageFrameInit()
+
+        Back = FRAME.create()   //注册主背景
+        Name = FRAME.create() //经验条
+
+
         
-        name = DzCreateFrame("BossTips",DamageBoardFrame, DamageBoardFrame)
-        DzFrameSetPoint( name, MyFrame_ACHOR_Top, DamageBoardFrame, MyFrame_ACHOR_Top, 0, -0.008)
-        DzFrameSetText( name, "|cFF33FF00BOSS伤害排行|r" )
+
+        //背景设置
+        Back.frameid = FRAME.Tag("BACKDROP","BossDamag",GameUI,Back)
+        Back.SetPoint(2,GameUI,2,-0.01,-0.16)
+        Back.SetSize(0.15,0.17)
+        Back.SetTexture("UI\\Widgets\\BattleNet\\bnet-inputbox-back.blp",0)
+        Back.alpha = 200
+
+        origin = Back.frameid
+
+        name.frameid = FRAME.Fdf("centertext010",origin,Name)
+        name.SetPoint(1,origin ,1,0,-0.008)
+        name.SetText("|cFF33FF00BOSS伤害排行|r")
+
         
         for i = 1,4
-            CreateDamageShowItem(i+400,TYPE_FUNC,MyFrame_ACHOR_TopRight,DamageBoardFrame,MyFrame_ACHOR_TopRight,0,-0.028-(i-1)*0.035,0.15,0.03,"")
+            CreateDamageShowItem(i+450,TYPE_FUNC,MyFrame_ACHOR_TopRight,DamageBoardFrame,MyFrame_ACHOR_TopRight,0,-0.028-(i-1)*0.035,0.15,0.03,"")
         end
         DzFrameShow(DamageBoardFrame,false)
     endfunction
