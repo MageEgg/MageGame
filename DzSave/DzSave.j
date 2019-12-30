@@ -1,24 +1,4 @@
-library DzSave initializer InitDzData uses SystemCodes,DzAPI,DzDataSetting
-
-    string array DzArrayString[12][680]
-    int array DzArrayPlayerInt0[200][40]
-    int array DzArrayPlayerInt1[200][40]
-    int array DzArrayPlayerInt2[200][40]
-    int array DzArrayPlayerInt3[200][40]
-    int array DzArrayPlayerInt4[200][40]
-    int array DzArrayPlayerInt5[200][40]
-    int array DzArrayBaseInt
-    
-    #define DzEdition                 DzArrayBaseInt[0]
-    #define DzOriginServerNum         DzArrayBaseInt[1]
-    #define DzServerNum               DzArrayBaseInt[2]
-    #define DzDataGroupLength(num)    DzArrayBaseInt[10+num]
-    
-    #define DzS DzArrayString[pid]
-    
-    insert DzMatrix
-    
-    //insert DzDataSetting
+library DzSave initializer InitDzData uses DzDataSetting
 
     function InitFlushDzDataGroupLength()
         for Group = 0,DzOriginServerNum
