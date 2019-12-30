@@ -1,53 +1,7 @@
 scope ItemSystem initializer InitItemSystem
     
-    
-    
-    
-    
-    function PickupItemActions()
-        unit u1 = GetTriggerUnit()
-        int itemid = GetItemTypeId(GetManipulatedItem())
-        int pid = GetPlayerId(GetOwningPlayer(u1))
-        int i1 = 0
-        
-        if  GetItemType(GetManipulatedItem()) == ITEM_TYPE_ARTIFACT
-            AddEquipState(u1,itemid)
-            FormulaVerify()
-        elseif  GetItemType(GetManipulatedItem()) == ITEM_TYPE_CHARGED
-            AddItemCharges(u1,GetManipulatedItem())
-        else
-            FormulaVerify()
-        endif
-        
-        
-        DBUG("666")
-        if  itemid >= 'I00A'  and itemid <= 'I00Z'
-                if  AttackRoomTimer==false
-                DBUG("678")
-                AttackRoomUid = itemid - 'I00A' + 'g00A'
-                RefreshAttackRoom(pid,AttackRoomUid)
-            else
-                AttackRoomUid =  itemid - 'I00A' + 'g00A'
-            endif
-        elseif  itemid == 'IP01'
-            SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
-        elseif  itemid >= 'IJ01' and itemid <= 'IJ10'
-            AddPlayerImmortalFruit(u1,itemid)
-        elseif  itemid >= 'IT01' and itemid <= 'IT15'
-            PlayerHeroMoveToImmortal(u1,itemid)
-        endif
-        
-       
-         
-        if  IsItemPowerup(GetManipulatedItem()) == true //清除
-            
-            RemoveItem(GetManipulatedItem())
-        endif
-        
-        flush locals
-    endfunction
-    
 
+    //装备升级
     function GetEquipIndex(int id)->int
         if  id >= 'E001' and id <= 'E025'
             return 1
@@ -71,6 +25,11 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                 UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
+                if  next == 'E011' or next == 'E111' or next == 'E211'
+                    ShowUnit(Pu[24],true)
+                    LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
+                    PlayerTestPlot(pid,1)
+                endif
             endif
         end
     endfunction
@@ -113,6 +72,98 @@ scope ItemSystem initializer InitItemSystem
             BJDebugMsg("next"+I2S(next))
         endif
     endfunction
+
+    //读取玩家抽技能次数
+    function GetPlayerDrawNum(int pid,int index)->int
+        return PlayerInt[pid][110+index]
+    endfunction
+    //增加玩家抽技能次数
+    function AddPlayerDrawNum(int pid,int index)
+        PlayerInt[pid][110+index] ++
+    endfunction
+    //读取玩家抽技能需求
+    function GetPlayerDrawUse(int pid,int index,int num)->int
+        int use = 0
+        if  index == 1
+            use = 50 * num
+            if  use > 300
+                use = 300
+            endif
+        elseif  index == 2
+            use = 360 * num
+        elseif  index == 3
+            use = 1080 * num
+        endif
+        return use
+    endfunction
+    function RePlayerAbilityDrawTips(int pid,int index)
+        int id = 'IS00' + index
+        int num = GetPlayerDrawNum(pid,index)
+        int use = GetPlayerDrawUse(pid,index,num+1)
+        if  GetLocalPlayer() == Player(pid)
+            YDWESetItemDataString(id,2,GetObjectName(id)+"[ 第"+I2S(num)+"次 ]")
+            YDWESetItemDataString(id,3,"需要"+I2S(use)+"杀敌数")
+        endif
+    endfunction
+    //抽技能
+    function PlayerAbilityDraw(int pid,int itemid)
+        int index = itemid - 'IS00'
+        int num = GetPlayerDrawNum(pid,index)
+        int use = GetPlayerDrawUse(pid,index,num+1)
+        if  use > 0
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
+
+                AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                PlayerUseLearnAbilityBook(pid,index + 'CS00')
+                AddPlayerDrawNum(pid,index)
+                RePlayerAbilityDrawTips(pid,index)
+            else
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
+            endif
+        endif
+    endfunction
+    
+    
+    
+    
+    function PickupItemActions()
+        unit u1 = GetTriggerUnit()
+        int itemid = GetItemTypeId(GetManipulatedItem())
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        int i1 = 0
+        
+        if  GetItemType(GetManipulatedItem()) == ITEM_TYPE_ARTIFACT
+            AddEquipState(u1,itemid)
+            FormulaVerify()
+        elseif  GetItemType(GetManipulatedItem()) == ITEM_TYPE_CHARGED
+            AddItemCharges(u1,GetManipulatedItem())
+        else
+            FormulaVerify()
+        endif
+        
+        
+        if  itemid == 'IP01'
+            SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
+        elseif  itemid >= 'IJ01' and itemid <= 'IJ10'
+            AddPlayerImmortalFruit(u1,itemid)
+        elseif  itemid >= 'IT01' and itemid <= 'IT15'
+            PlayerHeroMoveToImmortal(u1,itemid)
+        elseif  itemid >= 'IS01' and itemid <= 'IS04'
+            PlayerAbilityDraw(pid,itemid)
+        endif
+
+
+        
+       
+         
+        if  IsItemPowerup(GetManipulatedItem()) == true //清除
+            
+            RemoveItem(GetManipulatedItem())
+        endif
+        
+        flush locals
+    endfunction
+    
 
     
     function UseItemActions()
