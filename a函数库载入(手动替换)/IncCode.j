@@ -63,7 +63,7 @@
 #include "MageGame\\GameChallenge\\GameChallenge_6.j"
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
-/*
+
 
 //死亡系统
 #include "MageGame\\Death\\DeathEvent.j"
@@ -71,13 +71,6 @@
 //区域事件
 #include "MageGame\\RectEvent\\InitRctEvent.j"
 
-//玩家输入事件
-#include "MageGame\\PlayerEvent\\PlayerChat.j"
-
-#include "MageGame\\PlayerEvent\\PlayerGameLeave.j"
-
-#include "MageGame\\PlayerEvent\\PlayerGoldTurn.j"
-*/
 
 //数据注册
 #include "MageGame\\DataRegister\\InitAllStateData.j"
