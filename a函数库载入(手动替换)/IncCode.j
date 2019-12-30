@@ -1,3 +1,6 @@
+
+
+
 #include "MageGame\\Frame\\FrameButton.j"
 
 #include "MageGame\\Frame\\FrameOrigin.j"
@@ -43,7 +46,8 @@
 #include "MageGame\\UnitStateSystem\\UnitStateSystem.j"
 
 //物品系统
-#include "MageGame\\ItemSystem\\ItemSystem.j"
+#include "MageGame\\ItemCode\\ItemSystem.j"
+#include "MageGame\\ItemCode\\GiftandPrize.j"
 
 
 //副本

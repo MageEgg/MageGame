@@ -1,4 +1,4 @@
-library GameUIInit initializer GameUIInit uses OriginGameFrame
+library GameUIInit initializer init uses OriginGameFrame
     int PlayerFrame = 0
     int LastFrame = 0
     hashtable uiht = InitHashtable()
@@ -156,7 +156,7 @@ library GameUIInit initializer GameUIInit uses OriginGameFrame
         
         DestroyTrigger(GetTriggeringTrigger())
     end
-    function GameUIInit()
+    private function init()
         trigger trig = CreateTrigger()
         TriggerRegisterTimerEvent(trig, 0, false)
         TriggerAddAction(trig, function GameUIInitFunction)
