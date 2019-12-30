@@ -5,11 +5,72 @@ library AttackFrameUI uses GameFrame
     FRAME AttackTimerTextUI 
     FRAME AttackTimerTextExUI 
 
+    FRAME AttackShowUI
+
     function ShowAttackTimerUI(bool flag)
         AttackTimerUI.show = flag
     endfunction
 
+    
+    function CloseAttackShowUI()
+        int time = 0
+        real x = 0
+        int ap = 255
+        AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
+        AttackShowUI.alpha = ap
+        TimerStart(0.004,true)
+        {
+            if  time < 50
+                time = time + 1
+                x = x + 0.005
+                ap = ap - 5
+                AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
+                AttackShowUI.alpha = ap
+            else
+                AttackShowUI.alpha = ap
+                AttackShowUI.show = false
+                endtimer    
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
 
+    function StandAttackShowUI(real time)
+        TimerStart(time,false)
+        {
+            CloseAttackShowUI()
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenAttackShowUI(string back,real t)
+        int time = 0
+        real x = -0.25
+        int ap = 5
+        real tt = t
+        AttackShowUI.SetTexture(back,0)
+        AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
+        AttackShowUI.alpha = ap
+        AttackShowUI.show = true
+        TimerStart(0.004,true)
+        {
+            if  time < 50
+                time = time + 1
+                x = x + 0.005
+                ap = ap + 5
+                AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
+                AttackShowUI.alpha = ap
+            else
+                StandAttackShowUI(tt)
+                endtimer    
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
 
     function InitAttackFrameUI()
 
@@ -41,6 +102,15 @@ library AttackFrameUI uses GameFrame
         AttackTimerTextExUI.SetText("|cffffcc00等待玩家选择|r")
 
         //AttackTimerUI.show = false
+
+        AttackShowUI = FRAME.create() 
+        AttackShowUI.frameid = FRAME.Tag("BACKDROP","AttackShowUI",GameUI,0)
+        AttackShowUI.SetSize(0.26,0.16)
+        AttackShowUI.SetTexture("war3mapImported\\UI_AttackTimer.tga",0)
+        AttackShowUI.SetPoint(4,GameUI,4,0,0.16)
+
+        AttackShowUI.show = false
+
     endfunction
 
 endlibrary
