@@ -1,5 +1,5 @@
 scope AllTypeIdData initializer init
-    private function InitDataString1()
+    function InitDataString1()
         call InitTypeIdStrings('IJ01',"低级道果","ReplaceableTextures\\CommandButtons\\BTNOrbOfFrost.blp","")
         call InitTypeIdStrings('IJ02',"中级道果","ReplaceableTextures\\CommandButtons\\BTNOrbOfVenom.blp","")
         call InitTypeIdStrings('IJ03',"高级道果","ReplaceableTextures\\CommandButtons\\BTNOrbOfCorruption.blp","")
@@ -88,9 +88,10 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB51',"招妖幡","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","")
         call InitTypeIdStrings('FB52',"九曲黄河阵","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","")
         call InitTypeIdStrings('FB53',"紫绶仙衣","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","")
+        BJDebugMsg("init1end")
     endfunction
 
-    private function InitDataString2()//注册法宝说明数据
+    function InitDataString2()//注册法宝说明数据
         InitTypeIdJbStateOnec('FJ01',"提高10%攻击力","提高25%攻击力","提高45%攻击力")
         InitTypeIdJbStateOnec('FJ02',"提高10%法术强度","提高25%法术强度","提高45%法术强度")
         InitTypeIdJbStateOnec('FJ03',"闪避/伤害减免增加4%","闪避/伤害减免增加12%","闪避/伤害减免增加24%")
@@ -111,8 +112,9 @@ scope AllTypeIdData initializer init
         InitTypeIdJbState('FJ07',3,"|cff999999秘宝(|r|cff00ff003|r|cff999999/6)\n提高|r|cff00ff0020|r|cff999999/40%法穿|r",6,"|cff999999秘宝(3/|r|cff00ff006|r|cff999999)\n提高20/|r|cff00ff0040|r|cff999999%法穿|r",0,"","|cff999999秘宝(3/6)\n提高20/40%法穿|r")
         InitTypeIdJbState('FJ08',2,"|cff999999坐骑(|r|cff00ff002|r|cff999999/4/6)\n提高|r|cff00ff005|r|cff999999/15/30%冷却缩减|r",4,"|cff999999坐骑(2/|r|cff00ff004|r|cff999999/6)\n提高5/|r|cff00ff0015|r|cff999999/30%冷却缩减|r",6,"|cff999999坐骑(2/4/|r|cff9999996|r|cff999999)\n提高5/15/|r|cff00ff0030|r|cff999999%冷却缩减|r","|cff999999坐骑(2/4/6)\n提高5/15/30%冷却缩减|r")
         InitTypeIdJbState('FJ09',2,"|cff999999法器(|r|cff00ff002|r|cff999999/4/6)\n增加|r|cff00ff0020|r|cff999999/60/120蓝量|r",4,"|cff999999法器(2/|r|cff00ff004|r|cff999999/6)\n增加20/|r|cff00ff0060|r|cff999999/120蓝量|r",6,"|cff999999法器(2/4/|r|cff9999996|r|cff999999)\n增加20/60/|r|cff00ff00120|r|cff999999蓝量|r","|cff999999法器(2/4/6)\n增加20/60/120蓝量|r")
+        BJDebugMsg("init2end")
     endfunction
-    private function InitDataInt1()
+    function InitDataInt1()
         InitTypeIdData('FB01',0,2,7,0,0,0,0,0,0,0,0,0)
         InitTypeIdData('FB02',0,4,4,0,0,0,0,0,0,0,0,0)
         InitTypeIdData('FB03',0,2,8,0,0,0,0,0,0,0,0,0)
@@ -173,8 +175,9 @@ scope AllTypeIdData initializer init
             InitTypeState1('FB40'+x,0,5,0,1,0,1,0,1,0,1)
             InitTypeState1('FB50'+x,2,5,0,1,20,0,0,1,0,1)
         end
+        BJDebugMsg("init3end")
     endfunction
-    private function InitDataInt2()
+    function InitDataInt2()
 
         InitEquipData('E001',0,0,6000,0,0,'E002',0,0)
         InitEquipData('E002',0,0,9000,0,0,'E003',0,0)
@@ -266,12 +269,16 @@ scope AllTypeIdData initializer init
         InitEquipData('IT12',0,0,0,0,0,0,1840,-5224)
         InitEquipData('IT13',0,0,0,0,0,0,4398,-5206)
         InitEquipData('IT14',0,0,0,0,0,0,7548,-6605)
-
+        BJDebugMsg("init4end")
     endfunction
     private function init()
+        BJDebugMsg("init1")
         ExecuteFunc("InitDataString1")
+        BJDebugMsg("init2")
         ExecuteFunc("InitDataString2")
+        BJDebugMsg("init3")
         ExecuteFunc("InitDataInt1")
+        BJDebugMsg("init4")
         ExecuteFunc("InitDataInt2")
 
     endfunction
