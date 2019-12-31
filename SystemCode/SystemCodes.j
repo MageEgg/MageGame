@@ -580,6 +580,27 @@ library UnitRanDropItem uses SystemCodes
             flush locals
         endfunction
     endscope
+
+    scope UnitPool initializer init
+        unitpool HeroPool = CreateUnitPool() 
+
+        function InitHeroPool()
+            for i = 1,9
+                UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
+            end
+            for i2 = 0,9
+                UnitPoolAddUnitType( HeroPool, 'H010'+i, 1 )
+                UnitPoolAddUnitType( HeroPool, 'H020'+i, 1 )
+            end
+            UnitPoolAddUnitType( HeroPool, 'H030', 1 )
+            UnitPoolAddUnitType( HeroPool, 'H031', 1 )
+        endfunction
+
+        private function init()
+            InitHeroPool()
+        endfunction
+
+    endscope
     
 endlibrary
 
