@@ -584,7 +584,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     scope UnitPool
         unitpool HeroPool = CreateUnitPool() 
 
-        function InitHeroPool()
+        function InitHeroPoolFunc()
             for i = 1,9
                 UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
             end
