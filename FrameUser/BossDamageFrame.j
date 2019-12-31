@@ -50,6 +50,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             endif
         else
             DzFrameSetSize( BUTTON_Back[461+pid][0], 0.001,0.01)
+            DzFrameSetText( BUTTON_Text[451+pid],"")
             DzFrameSetText( BUTTON_Text[461+pid],"")
         endif
         
@@ -146,12 +147,15 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
         
         for i = 1,4
-            CreateButton(450+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1*0.035),0.015,0.03,"war3mapImported\\shanghaipaihang_0.blp")
-            CreateButton(460+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1*0.035),0.015,0.03,"war3mapImported\\shanghaipaihang_1.blp")
-            CreateText(450+i,origin,"text009",5,5,-0.002,0,"")
-            CreateText(460+i,origin,"text009",5,3,0.0,0,"")
+            CreateButton(450+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1)*0.035,0.15,0.03,"war3mapImported\\shanghaipaihang_0.blp")
+            CreateButton(460+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1)*0.035,0.15,0.03,"war3mapImported\\shanghaipaihang_1.blp")
+            CreateText(450+i,origin,"text009",5,5,-0.002,0,"123")
+            CreateText(460+i,origin,"text009",5,3,0.0,0,"321")
         end
-        
+
+        int pid = 0
+        SetUnitRealState(Pu[1],99,100)
+        ReDamageRanking()
     endfunction
     
     
