@@ -1,5 +1,5 @@
 library GameChallenge0 uses GameChallengeBase
-
+    
     function GameChallenge_0_C_Death(int pid)
         if  GameChallengBool[0] == true and GameChallengBool[1] == true
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀玉石琵琶精(1/1)")
@@ -11,7 +11,7 @@ library GameChallenge0 uses GameChallengeBase
             PlayerReviveY = -7520
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r前日卜算，只知有一将星出世，想必就是阁下了。商汤气微，封神大典即将拉开序幕。道友可去西岐历练一番，日后可成大功！")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff寻找周文王|r)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff寻找周文王|r")
         endif
     endfunction
 
@@ -34,14 +34,14 @@ library GameChallenge0 uses GameChallengeBase
                 end
                 UnitAddItemEx(Pu[1],'E201')
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r妖魅已除，这些宝物就作为我的答谢了。唔？庄外妖气弥漫，似有妖物作祟。仁兄不若助我一臂之力，将其降伏？")
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀玉石琵琶精|r)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀玉石琵琶精|r")
             endif
         endif
     endfunction
 
     function GameChallenge_0_A(int pid)
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r纣王昏庸无道，商朝气运将至。姜子牙奉命下山主持封神榜，此时寄居于旧友宋异人府中，静待明君现世！")
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff寻找姜子牙|r)
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff寻找姜子牙|r")
         SetUnitAPOfBool(GameBiaoJI[0],0)
     endfunction
     
@@ -66,7 +66,7 @@ library GameChallenge0 uses GameChallengeBase
                     UnitAddItemEx(Pu[1],'E001')
                     UnitAddItemEx(Pu[1],'E101')
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看?")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀20个妖魅|r)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀20个妖魅|r")
                     SetUnitAPOfBool(GameBiaoJI[0],0)
                     for n = 1,3
                         SetUnitAPOfBool(GameBiaoJI[n],1)
@@ -98,7 +98,5 @@ library GameChallenge0 uses GameChallengeBase
 
         tig = null
     endfunction
-
-    
 
 endlibrary
