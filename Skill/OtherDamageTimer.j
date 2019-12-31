@@ -285,7 +285,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
     //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
     function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2)
         unit u1 = wu
-        unit u2 = m
+        unit u2 = m 
         real r1 = rac
         real x1 = GetUnitX(m)
         real y1 = GetUnitY(m)
