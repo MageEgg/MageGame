@@ -194,13 +194,17 @@ library CreateOpera uses DamageCode
                 if  GameLevel == 1 and GameOverBoolJu == false
                     AttackUnitWin()
                 else
+                    RemoveUnit(GameDefendUnit)
+                    GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,180)
+                    OriginalDefendX = GetUnitX(GameDefendUnit)
+                    OriginalDefendY = GetUnitY(GameDefendUnit)
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                     ShowBossDamageUI(false)
                     ShowBossDamageString()
                     for pid = 0,3
                         if  IsPlaying(pid) == true
                             UnitRemoveAbility(Pu[1],'AZ02')
-                            PlayerReviveX = -1660
+                            PlayerReviveX = -1664
                             PlayerReviveY = -6960
                             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                         endif

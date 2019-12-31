@@ -359,7 +359,7 @@ library AttackUnit uses DamageCode
     
     function CreateUnitTimer(int ordernum)
         real time = AttackUnitIntervalTime(0)[ordernum]
-        int FlushNum = AttackUnitFlushNum(0)[ordernum] - 1
+        int FlushNum = 2//AttackUnitFlushNum(0)[ordernum] - 1
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
         int Attacknum = 0
@@ -416,8 +416,8 @@ library AttackUnit uses DamageCode
         int r1 = 0
         BJDebugMsg("CreateNextTimer"+I2S(i)+"@@"+I2S(AttackUnitWN+1))
         AttackTimer = CreateTimer()
-        TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
-        //TimerStart(AttackTimer,8,false,function OpenAttackUnitTimer)
+        //TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
+        TimerStart(AttackTimer,8,false,function OpenAttackUnitTimer)
         if  i == 6
             AttackTimerUIText = "特殊事件 年兽贺岁"
         elseif  i == 13
