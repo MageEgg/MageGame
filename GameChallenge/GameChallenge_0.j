@@ -6,21 +6,14 @@ library GameChallenge0 uses GameChallengeBase
 
     function InitGameChallenge_0()
         
-        GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(gg_unit_np07_0001),GetUnitY(gg_unit_np07_0001),0)
-        
-        GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',GetUnitX(gg_unit_e009_0020),GetUnitY(gg_unit_e009_0020),GetUnitFacing(gg_unit_e009_0020))
-        RemoveUnit(gg_unit_e009_0020)
-        GameBiaoJI[2] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',GetUnitX(gg_unit_e009_0021),GetUnitY(gg_unit_e009_0021),GetUnitFacing(gg_unit_e009_0021))
-        RemoveUnit(gg_unit_e009_0021)
-        GameBiaoJI[3] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',GetUnitX(gg_unit_e009_0018),GetUnitY(gg_unit_e009_0018),GetUnitFacing(gg_unit_e009_0018))
-        RemoveUnit(gg_unit_e009_0018)
+        GameChalleng_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-4704,-4064,180)
+        GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-4704,-4064,0)
 
-        
-
-        GameBiaoJI[4] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',GetUnitX(gg_unit_e009_0022),GetUnitY(gg_unit_e009_0022),GetUnitFacing(gg_unit_e009_0022))
-        RemoveUnit(gg_unit_e009_0022)
-        GameBiaoJI[5] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',GetUnitX(gg_unit_e009_0023),GetUnitY(gg_unit_e009_0023),GetUnitFacing(gg_unit_e009_0023))
-        RemoveUnit(gg_unit_e009_0023)
+        GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5889.750,-4103.000,112.537)
+        GameBiaoJI[2] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5996.500,-3829.000,112.537)
+        GameBiaoJI[3] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-6119.000,-3517.000,112.537)
+        GameBiaoJI[4] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5674.000,-2726.250,48.455)
+        GameBiaoJI[5] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5462.750,-2476.000,48.455)
 
         for num = 1,5
             SetUnitVertexColor(GameBiaoJI[num],255,255,255,0)

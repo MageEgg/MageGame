@@ -1,4 +1,4 @@
-library GameChallengeBase uses DamageCode
+library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
     int array       GameChallengPlayerInt[12][680]
     unit array      GameChallengPlayerUnit[12][680]
     bool array      GameChallengPlayerBool[12][680]
@@ -8,9 +8,10 @@ library GameChallengeBase uses DamageCode
     #define GameBiaoJI         GameChallengUnit
 
 
+    #define GameChalleng_0_JZY GameChallengUnit[500]
 
-    #define GameChalleng_1_YZZ GameChallengUnit[500]
-    #define GameChalleng_1_LZZ GameChallengUnit[501]
+    #define GameChalleng_1_YZZ GameChallengUnit[510]
+    #define GameChalleng_1_LZZ GameChallengUnit[511]
 
     function InitGameChallengeFunc()
         ExecuteFunc("InitGameChallenge_0")
