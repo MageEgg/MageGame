@@ -519,7 +519,7 @@ library HeroSpell  uses OtherDamageTimer
          if     time<1
          else   
             if  time<m
-                jl=GetRandomReal(-120,120)
+                jl=GetRandomReal(-200,200)
                 x0 = xu+jl*Cos(ang+1.57)
                 y0 = yu+jl*Sin(ang+1.57)
                 mj=CreateTmUnit(GetOwningPlayer(u),"effect_shandianzhiqiang.mdl",x0,y0,ang/0.01745,0,1)
