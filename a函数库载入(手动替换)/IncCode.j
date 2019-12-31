@@ -27,6 +27,8 @@
 
 #include "MageGame\\SystemCode\\ItemFormula.j" 
 
+#include "MageGame\\SystemCode\\AttackRoom.j" 
+
 //插入存档
 #include "MageGame\\DzSave\\DzBase.j"
 
