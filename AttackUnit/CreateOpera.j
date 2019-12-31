@@ -45,7 +45,7 @@ library CreateOpera uses DamageCode
     endfunction
     function AttackPlayingHero(unit u)
         int pid = GetAttackPlayingHeroId()
-        IssueTargetOrderById(u,851983,Pu[1])
+        IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
     endfunction
     
     function AttackOperaAEnding()
