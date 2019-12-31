@@ -153,9 +153,6 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             CreateText(460+i,origin,"text009",5,3,0.0,0,"321")
         end
 
-        int pid = 0
-        SetUnitRealState(Pu[1],99,100)
-        ReDamageRanking()
     endfunction
     
     
