@@ -3,19 +3,19 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
     unit array      GameChallengPlayerUnit[12][680]
     bool array      GameChallengPlayerBool[12][680]
 
-    unit array      GameChallengUnit
+    unit array      GameChallengMapUnit
 
     #define GameChallengInt                 GameChallengPlayerInt[pid]
     #define GameChallengUnit                GameChallengPlayerUnit[pid]
     #define GameChallengBool                GameChallengPlayerBool[pid]
 
-    #define GameBiaoJI                      GameChallengUnit
+    #define GameBiaoJI                      GameChallengMapUnit
 
 
-    #define GameChalleng_0_JZY              GameChallengUnit[500]
+    #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
-    #define GameChalleng_1_YZZ              GameChallengUnit[510]
-    #define GameChalleng_1_LZZ              GameChallengUnit[511]
+    #define GameChalleng_1_YZZ              GameChallengMapUnit[510]
+    #define GameChalleng_1_LZZ              GameChallengMapUnit[511]
 
     function InitGameChallengeFunc()
         ExecuteFunc("InitGameChallenge_0")
