@@ -175,7 +175,7 @@ scope DeathEvent initializer InitDeathEvent
             IncEquipKillUnitFunc(wu,tu)
         elseif  uid >= 'u001' and uid <= 'u004'
             if  uid != 'u004'
-                Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
+                Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
             endif
         endif
 
