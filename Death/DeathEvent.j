@@ -285,17 +285,14 @@ scope DeathEvent initializer InitDeathEvent
                 if  uid >= 'mb01' and uid <= 'mb09'
                     AttackBossDeathEvent(u1)
                 endif
-                
-                if  uid >= 'm000' and uid <= 'mzzz'//野怪复活
-                    
-                    if  GetUnitPointValueByType(uid) == 1
-                        AddReviveWildMonster(u1,3,GetUnitPointX(u1),GetUnitPointY(u1))
-                    endif
-                endif
             else    
                 //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
             endif
             
+            if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
+                AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
+            endif
+
             if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
                 GroupRemoveUnit(AttackUnitGroup,u1)
             endif

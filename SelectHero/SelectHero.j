@@ -32,7 +32,7 @@ scope SelectHero
             endif
             
             
-            
+            SetUnitState(Pu[1],UNIT_STATE_MAX_LIFE,1000)
             
             UnitAddAbility(Pu[1],'AG01')
             UnitAddAbility(Pu[1],'AG02')
@@ -56,12 +56,8 @@ scope SelectHero
             
             LoadPlayerTechState(pid)
             
-        
-
-            
-            DzAPI_Map_StoreInteger( Player(pid), "PLCS",DzAPI_Map_CommentCount(Player(pid)) )
-            
-            
+    
+            GameChallenge_0Start(pid)
             
             if  SubString(GetPlayerName(Player(pid)),0,9) == "星耀丶"
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r欢迎星耀成员"+GetPlayerColorEx(pid)+GetPN(pid)+"，奖励木材1000！")
