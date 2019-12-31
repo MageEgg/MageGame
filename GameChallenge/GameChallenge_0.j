@@ -5,7 +5,7 @@ library GameChallenge0 uses GameChallengeBase
     
 
     function InitGameChallenge_0()
-        
+        /*
         GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(gg_unit_np07_0001),GetUnitY(gg_unit_np07_0001),0)
         
         GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',GetUnitX(gg_unit_e009_0020),GetUnitY(gg_unit_e009_0020),GetUnitFacing(gg_unit_e009_0020))
@@ -26,6 +26,8 @@ library GameChallenge0 uses GameChallengeBase
             SetUnitVertexColor(GameBiaoJI[num],255,255,255,0)
         end
         BJDebugMsg("InitGameChallenge_0")
+        */
+        
     endfunction
 
 endlibrary
