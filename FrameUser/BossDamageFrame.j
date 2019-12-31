@@ -159,8 +159,6 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
     endfunction
 
-
-
     function ShowBossDamageStringEx()
         for pid = 0,3
             PlayerBossDamageEx = GetUnitRealState(Pu[1],99)
@@ -199,10 +197,9 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
                 endif
             end
             if  hat != -1
-                PlayerReal[hat][3] = 0
+                PlayerReal[hat][2] = 0
                 if  b == 1
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励200杀敌数|r")
-                    AddUnitRealState(PlayerUnit[hat][1],34,200)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励XXX|r")
                 else
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
                 endif

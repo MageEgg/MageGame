@@ -227,7 +227,7 @@ library AttackUnit uses DamageCode
         real ey = 0
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
-        AttackBOSSDeathCos = 1
+        AttackBOSSLastCos = 1
         if  GameLevel <= 2
             AttackUnitWNOver = 18  //最终波
         elseif  GameLevel == 3
@@ -359,7 +359,7 @@ library AttackUnit uses DamageCode
     
     function CreateUnitTimer(int ordernum)
         real time = AttackUnitIntervalTime(0)[ordernum]
-        int FlushNum = 3//AttackUnitFlushNum(0)[ordernum] - 1
+        int FlushNum = 2//AttackUnitFlushNum(0)[ordernum] - 1
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
         int Attacknum = 0
@@ -417,7 +417,7 @@ library AttackUnit uses DamageCode
         BJDebugMsg("CreateNextTimer"+I2S(i)+"@@"+I2S(AttackUnitWN+1))
         AttackTimer = CreateTimer()
         //TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
-        TimerStart(AttackTimer,5,false,function OpenAttackUnitTimer)
+        TimerStart(AttackTimer,8,false,function OpenAttackUnitTimer)
         if  i == 6
             AttackTimerUIText = "特殊事件 年兽贺岁"
         elseif  i == 13
