@@ -29,6 +29,7 @@ library PlayerGlobals uses Define1
     #define AttackRoomUnitNum           PlayerInt[pid][12]//练功房单位数量
     
     //110-119 英雄技能数据
+    //120     送宝金蝉
 
     
     
