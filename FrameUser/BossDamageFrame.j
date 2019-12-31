@@ -58,13 +58,15 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     endfunction
     
     function ReDamageRanking()
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                RePlayerDamageRanking(pid,true)
-            else
-                RePlayerDamageRanking(pid,false)
-            endif
-        end
+        if  Back.show == true
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    RePlayerDamageRanking(pid,true)
+                else
+                    RePlayerDamageRanking(pid,false)
+                endif
+            end
+        endif
     endfunction
     
     
@@ -148,10 +150,12 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         
         for i = 1,4
             CreateButton(450+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1)*0.035,0.15,0.03,"war3mapImported\\shanghaipaihang_0.blp")
-            CreateButton(460+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1)*0.035,0.15,0.03,"war3mapImported\\shanghaipaihang_1.blp")
+            CreateButton(460+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1)*0.035,0.15,0.01,"war3mapImported\\shanghaipaihang_1.blp")
             CreateText(450+i,origin,"text009",5,5,-0.002,0,"123")
             CreateText(460+i,origin,"text009",5,3,0.0,0,"321")
         end
+
+        Back.show = false
 
     endfunction
 
