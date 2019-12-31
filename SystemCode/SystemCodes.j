@@ -456,7 +456,7 @@ library SystemCodes uses ServerTime,Define1
     endfunction
     
 endlibrary
-library UnitRanDropItem uses SystemCodes
+library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 //物品奖池 掉落
 
     
@@ -581,7 +581,7 @@ library UnitRanDropItem uses SystemCodes
         endfunction
     endscope
 
-    scope UnitPool// initializer InitUnitPool
+    scope UnitPool
         unitpool HeroPool = CreateUnitPool() 
 
         function InitHeroPoolFunc()
@@ -596,11 +596,13 @@ library UnitRanDropItem uses SystemCodes
             UnitPoolAddUnitType( HeroPool, 'H031', 1 )
         endfunction
 
-        private function InitUnitPool()
-            InitHeroPoolFunc()
-        endfunction
 
     endscope
+
+
+    function InitAllFunc()
+        ExecuteFunc("InitHeroPool")
+    endfunction
     
 endlibrary
 
