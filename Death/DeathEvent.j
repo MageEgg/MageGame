@@ -139,7 +139,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 10
         endif
         
-        BJDebugMsg("Kill"+GetObjectName(uid))
+        
         exp = 1
         
         
@@ -173,7 +173,13 @@ scope DeathEvent initializer InitDeathEvent
         
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
+        elseif  uid >= 'u001' and uid <= 'u004'
+            if  uid != 'u004'
+                Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
+            endif
         endif
+
+
 
         /*
         if  uid >= 'mR61' and uid <= 'mR79'//轮回
