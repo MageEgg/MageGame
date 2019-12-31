@@ -92,7 +92,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     end
     
     func BossDamageUIClose()
-        TimerStart(8,true)
+        TimerStart(5,true)
         {
             BossDamageUICloceEx()
             endtimer
