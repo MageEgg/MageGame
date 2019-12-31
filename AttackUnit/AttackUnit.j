@@ -272,7 +272,7 @@ library AttackUnit uses DamageCode
                 if  puid[k] != 0
                     for j = 1,unitnum
                         u = CreateUnit(Player(11),puid[k],pex[k],pey[k],0)
-                        UnitAddAbility(u,'A001')
+                        UnitAddAbility(u,'AZ01')
                         SetUnitXY(u,psx[k],psy[k])
                         PingMinimap(psx[k],psy[k],5)
                         IssuePointOrderById(u,851983,pex[k],pey[k])

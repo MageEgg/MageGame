@@ -42,6 +42,25 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
         SetUnitVertexColor(u,255,255,255,ap)
     endfunction
 
+    function IsCanMoveToRoom(int pid)->boolean
+        if  GameChallengBool[0] == false
+            return false
+        endif
+        if  GameChallengBool[1] == false
+            return false
+        endif
+        if  GameChallengBool[2] == false
+            return false
+        endif
+        if  GameChallengBool[3] == false
+            return false
+        endif
+        if  GetUnitAbilityLevel(Pu[1],'A003') > 0
+            return false
+        endif
+        return true
+    endfunction
+
 endlibrary
 
 
