@@ -279,6 +279,9 @@ scope DeathEvent initializer InitDeathEvent
                 //小怪死亡的其他功能
                 HeroKillMoster(u2,u1)
                 
+                //剧情任务等
+                GameChallengDeathEvent(u2,u1)
+
                 if  uid >= 'mb01' and uid <= 'mb09'
                     AttackBossDeathEvent(u1)
                 endif
