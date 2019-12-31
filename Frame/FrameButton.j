@@ -14,7 +14,7 @@ library GameFrame uses FRAME
         DzFrameSetPoint( BUTTON_Text[id], p1, BUTTON_Back[id][0], p2, x, y)
         DzFrameSetText(BUTTON_Text[id],origin)
     endfunction
-
+ 
     function CreateModel(int id,integer parent,int FrameType,int p1,int p2,real x,real y,string origin)
         BUTTON_Model[id] = DzCreateFrameByTagName("SPRITE","BUTTON_Model"+I2S(id), parent,"template",0)
         DzFrameSetPoint( BUTTON_Model[id], p1, BUTTON_Back[id][0], p2, x, y)

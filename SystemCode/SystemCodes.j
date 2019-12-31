@@ -1,6 +1,9 @@
 library SystemCodes uses ServerTime,Define1
     
-    
+    function GetPlayerNameOfColor(int pid)->string
+        return "玩家<"+PlayerColor+GetPlayerName(Player(pid))+"|r>"
+    endfunction
+
     function IsPlaying(int pid)->bool
         if GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
             return true
@@ -95,6 +98,10 @@ library SystemCodes uses ServerTime,Define1
             return SubString(R2S(r),0,l-8)+"万"
         endif
         return SubString(R2S(r),0,l-4)
+    end
+    func R2SI(real r)->string
+        int l = StringLength(R2S(r))
+        return SubString(R2S(r),0,l-2)
     end
 
     //获取基础属性
@@ -290,6 +297,10 @@ library SystemCodes uses ServerTime,Define1
         return J
     endfunction
 
+    function UnitAddItemEx(unit u,int itid)
+        UnitAddItem(u,CreateItem(itid,GetUnitX(u),GetUnitY(u)))
+    endfunction
+
     function RemoveItemEx(unit u,int itid)//删除英雄所有可贩卖的物品
         int a = 0
         for num = 0,5
@@ -421,9 +432,35 @@ library SystemCodes uses ServerTime,Define1
         int b = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_UNIT,uid,"blue")
         SetUnitVertexColor(wu,r,g,b,255) 
     endfunction
+
+    function PauseAllUnitsFunc()
+        PauseUnit(GetEnumUnit(),bj_pauseAllUnitsFlag)
+    endfunction
+    
+    function PauseAllUnits(bool pause)
+        integer index = 0
+        player p = null
+        group g = CreateGroup()
+        bj_pauseAllUnitsFlag = pause
+        loop
+            p = Player(index)
+            if  GetPlayerController(p) == MAP_CONTROL_COMPUTER
+                PauseCompAI(p,pause)
+            endif
+            GroupEnumUnitsOfPlayer(g,p,null)
+            ForGroup(g,function PauseAllUnitsFunc)
+            GroupClear( g )
+            index = index + 1
+            exitwhen index == bj_MAX_PLAYER_SLOTS
+        endloop
+        GroupClear(g)
+        DestroyGroup(g)
+        g = null
+        p = null
+    endfunction
     
 endlibrary
-library UnitRanDropItem uses SystemCodes
+library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 //物品奖池 掉落
 
     
@@ -547,6 +584,29 @@ library UnitRanDropItem uses SystemCodes
             flush locals
         endfunction
     endscope
+
+    scope UnitPool
+        unitpool HeroPool = CreateUnitPool() 
+
+        function InitHeroPoolFunc()
+            for i = 1,9
+                UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
+            end
+            for i2 = 0,9
+                UnitPoolAddUnitType( HeroPool, 'H010'+i2, 1 )
+                UnitPoolAddUnitType( HeroPool, 'H020'+i2, 1 )
+            end
+            UnitPoolAddUnitType( HeroPool, 'H030', 1 )
+            UnitPoolAddUnitType( HeroPool, 'H031', 1 )
+        endfunction
+
+
+    endscope
+
+
+    function InitAllFunc()
+        ExecuteFunc("InitHeroPoolFunc")
+    endfunction
     
 endlibrary
 

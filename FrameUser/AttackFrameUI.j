@@ -18,7 +18,7 @@ library AttackFrameUI uses GameFrame
         int ap = 255
         AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
         AttackShowUI.alpha = ap
-        TimerStart(0.004,true)
+        TimerStart(0.0035,true)
         {
             if  time < 50
                 time = time + 1
@@ -55,7 +55,7 @@ library AttackFrameUI uses GameFrame
         AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
         AttackShowUI.alpha = ap
         AttackShowUI.show = true
-        TimerStart(0.004,true)
+        TimerStart(0.0035,true)
         {
             if  time < 50
                 time = time + 1

@@ -161,73 +161,18 @@ scope DeathEvent initializer InitDeathEvent
         if  exp > 0
             HeroAddExp( Pu[1],exp)
         endif
-        
-
-        
     end
-    
-   
-    
-  
-   
-    
-    
-
-    
-  
-    
-    
-    
-    
-    func KillBossFunc(int index)
-        
-        real min = 0
-        int hat = 0
-        real ch = 0
-        int b = 1
-        int maxpid = -1
-        int num = 0
-        for n = 1,6
-            min = 0
-            hat = -1
-            for pid = 0,3
-                ch = GetUnitRealState(Pu[1],99)
-                if  ch > min and ch > 0
-                    hat = pid
-                    min = ch
-                endif
-            end
-            if  hat != -1
-                if  maxpid == -1
-                    maxpid = hat
-                endif
-                SetUnitRealState(PlayerUnit[hat][1],99,0)
-                if  b == 1
-                    num = index * 8 
-                elseif  b == 2
-                    num = index * 6
-                elseif  b == 3
-                    num = index * 4
-                elseif  b == 4
-                    num = index * 2
-                endif
-                
-                num = R2I(I2R(num) * GetRandomReal(0.8,1.2) * (1 + I2R(GameLevel) * 0.1))
-                if  num <= 0
-                    num = 1
-                endif
-                
-                AddUnitRealState( PlayerUnit[hat][1] ,31,num)
-                
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[BOSS伤害排行]:|r第"+I2S(b)+"名 "+ GetPN(hat) +" 伤害值:"+R2S1(min)+" 奖励杀敌属性+"+I2S(num))
-                b = b + 1
-            endif
-        end
-    end
-    
-    
-    
-    
+    function CreateNewForg(int id1,int id2)
+        int pid = id1
+        int uid = id2
+        TimerStart(30,false)
+        {
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
+            LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
+            flush locals
+        }
+        flush locals
+    endfunction
     
     function HeroKillMoster(unit wu,unit tu)
         //wu是凶手 tu是死亡单位
@@ -239,7 +184,13 @@ scope DeathEvent initializer InitDeathEvent
         
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
+        elseif  uid >= 'u001' and uid <= 'u004'
+            if  uid != 'u004'
+                CreateNewForg(pid,uid)
+            endif
         endif
+
+
 
         /*
         if  uid >= 'mR61' and uid <= 'mR79'//轮回
@@ -281,7 +232,17 @@ scope DeathEvent initializer InitDeathEvent
 
     end
     
-    function EndGameTimerTimerFunc()
+    function AttackBossDeathEvent(unit boss)
+        AttackBOSSDeathCos = AttackBOSSDeathCos + 1
+        BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
+        if  AttackBOSSDeathCos == AttackBOSSLastCos
+            AttackBOSSDeathCos = 0
+            ShowBossDamageUI(false)
+            ShowBossDamageString()
+            if  GetUnitTypeId(boss) == 'mb00'+(AttackUnitWNOver/3)
+                AttackUnitWin()
+            endif
+        endif
     endfunction
 
     function GameOver()
@@ -321,7 +282,7 @@ scope DeathEvent initializer InitDeathEvent
             GameOver()
         elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
             BJDebugMsg("闻太师！！！！")
-            //AttackOperaBEnding(0)
+            AttackOperaBEnding(0)
         endif
         
         if  pid > 7 
@@ -335,29 +296,20 @@ scope DeathEvent initializer InitDeathEvent
                 //小怪死亡的其他功能
                 HeroKillMoster(u2,u1)
                 
+                //剧情任务等
+                GameChallengDeathEvent(u2,u1)
+
                 if  uid >= 'mb01' and uid <= 'mb09'
-                    /*BossNum = BossNum - 1
-                    if  BossNum <= 0
-                        
-                        
-                        if  uid == 'mb08'
-                            GameWin()
-                        else
-                            KillBossFunc(uid - 'mb00')
-                        endif
-                    endif*/
-                endif
-                
-                if  uid >= 'm000' and uid <= 'mzzz'//野怪复活
-                    
-                    if  GetUnitPointValueByType(uid) == 1
-                        AddReviveWildMonster(u1,3,GetUnitPointX(u1),GetUnitPointY(u1))
-                    endif
+                    AttackBossDeathEvent(u1)
                 endif
             else    
                 //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
             endif
             
+            if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
+                AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
+            endif
+
             if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
                 GroupRemoveUnit(AttackUnitGroup,u1)
             endif

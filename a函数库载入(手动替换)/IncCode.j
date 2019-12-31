@@ -27,6 +27,8 @@
 
 #include "MageGame\\SystemCode\\ItemFormula.j" 
 
+#include "MageGame\\SystemCode\\AttackRoom.j" 
+
 //插入存档
 #include "MageGame\\DzSave\\DzBase.j"
 
@@ -47,14 +49,18 @@
 
 #include "MageGame\\UnitStateSystem\\UnitStateSystem.j"
 
+//进攻怪
+#include "MageGame\\AttackUnit\\AttackUnit.j"
+#include "MageGame\\AttackUnit\\CreateOpera.j"
+
 //物品系统
 #include "MageGame\\ItemCode\\ItemSystem.j"
 
 #include "MageGame\\ItemCode\\GiftandPrize.j"
 
-
 //副本
 #include "MageGame\\GameChallenge\\GameChallengeBase.j"
+#include "MageGame\\GameChallenge\\GameChallenge_0.j"
 #include "MageGame\\GameChallenge\\GameChallenge_1.j"
 #include "MageGame\\GameChallenge\\GameChallenge_2.j"
 #include "MageGame\\GameChallenge\\GameChallenge_3.j"
@@ -63,13 +69,16 @@
 #include "MageGame\\GameChallenge\\GameChallenge_6.j"
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
+#include "MageGame\\GameChallenge\\GameChallengDeath.j"
 
-
-//死亡系统
-#include "MageGame\\Death\\DeathEvent.j"
+//选择英雄
+#include "MageGame\\SelectHero\\SelectHero.j"
 
 //区域事件
 #include "MageGame\\RectEvent\\InitRctEvent.j"
+
+//死亡系统
+#include "MageGame\\Death\\DeathEvent.j"
 
 
 //数据注册
