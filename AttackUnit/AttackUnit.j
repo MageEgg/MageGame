@@ -227,6 +227,7 @@ library AttackUnit uses DamageCode
         real ey = 0
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
+        AttackBOSSDeathCos = 1
         if  GameLevel <= 2
             AttackUnitWNOver = 18  //最终波
         elseif  GameLevel == 3
