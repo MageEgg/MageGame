@@ -154,6 +154,58 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         end
 
     endfunction
+
+
+
+    function ShowBossDamageStringEx()
+        for pid = 0,3
+            PlayerBossDamageEx = GetUnitRealState(Pu[1],99)
+        end
+    endfunction
+    
+    function GetPlayerBossDamageShow(real damage)->string
+        if  damage >= 100000000
+            damage = damage/100000000
+            if  damage > 10000
+                return R2SI(damage/10000)+"万亿"
+            else
+                return R2SI(damage)+"亿"
+            endif
+        elseif  damage >= 10000
+            return R2SI(damage/10000)+"万"
+        else
+            return R2SI(damage)
+        endif
+    endfunction
+    
+    function ShowBossDamageString()
+        real min = 0
+        int hat = 0
+        real ch = 0
+        int b = 1
+        ShowBossDamageStringEx()
+        for n = 1,4
+            min = 0
+            hat = -1
+            for pid = 0,3
+                ch = PlayerBossDamageEx
+                if  ch > min and ch != 0
+                    hat = pid
+                    min = ch
+                endif
+            end
+            if  hat != -1
+                PlayerReal[hat][3] = 0
+                if  b == 1
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励200杀敌数|r")
+                    AddUnitRealState(PlayerUnit[hat][1],34,200)
+                else
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
+                endif
+                b = b + 1
+            endif
+        end
+    endfunction
     
     
 endlibrary

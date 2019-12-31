@@ -34,6 +34,7 @@ library PlayerGlobals uses Define1
     
     #define PlayerReviveX               PlayerReal[pid][0]//复活x
     #define PlayerReviveY               PlayerReal[pid][1]//复活y
+    #define PlayerBossDamageEx          PlayerReal[pid][2] //BOSS伤害
 
 
 

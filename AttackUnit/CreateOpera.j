@@ -50,7 +50,6 @@ library CreateOpera uses DamageCode
     
     function AttackOperaAEnding()
         int time = 0
-        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         FlushChildHashtable(ht,GetHandleId(AttackTimer))
         DestroyTimer(AttackTimer)
         AttackTimer = null
@@ -70,7 +69,9 @@ library CreateOpera uses DamageCode
                 endif
             else
                 AttackUnitOperaBoss = null
-                SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+                SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                ShowBossDamageUI(false)
+                ShowBossDamageString()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         if  pid == 0
@@ -161,6 +162,8 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaA4()
+        ExecuteFunc("ClearDamageRanking")
+        ShowBossDamageUI(true)
         SetUnitAnimation(AttackUnitOperaBoss,"attack")
         LocAddEffectSetSize(1685,-3104,"effect_red-yumao-zhendi-paoxiao.mdx",2)
         TimerStart(0.5,false)
@@ -191,6 +194,8 @@ library CreateOpera uses DamageCode
                     AttackUnitWin()
                 else
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                    ShowBossDamageUI(false)
+                    ShowBossDamageString()
                     for pid = 0,3
                         if  IsPlaying(pid) == true
                             if  pid == 0
@@ -444,6 +449,8 @@ library CreateOpera uses DamageCode
         ForGroup(AttackOperaGroup_B_1,function AttackOperaGroup_B_1Func)
         ForGroup(AttackOperaGroup_B_2,function AttackOperaGroup_B_2Func)
         CreateOperaBTimer()
+        ExecuteFunc("ClearDamageRanking")
+        ShowBossDamageUI(true)
     endfunction
     
     ////////////////////////////////分割线///////////////////////////////
@@ -474,6 +481,8 @@ library CreateOpera uses DamageCode
             else
                 AttackUnitOperaBoss = null
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                ShowBossDamageUI(false)
+                ShowBossDamageString()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         if  pid == 0
@@ -618,6 +627,8 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaC4()
+        ExecuteFunc("ClearDamageRanking")
+        ShowBossDamageUI(true)
         TimerStart(0.4,false)
         {
             SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
