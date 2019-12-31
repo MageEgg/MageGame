@@ -26,7 +26,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
                 SetUnitRealState(wu,i,R2I(value))
             endif
         end
-        if  GetUnitPointValue(wu) == 1
+        if  GetUnitPointValue(wu) != 100
             SetUnitPointX(wu,GetUnitX(wu))
             SetUnitPointY(wu,GetUnitY(wu))
         endif
@@ -108,6 +108,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetMosterUnitState(wu)
         elseif  id >= 'u000' and id <= 'uzzz'
             SetMosterUnitState(wu)
+            BJDebugMsg("uzzzuzzzuzzzuzzzuzzzuzzz")
         elseif  id >= 'H000' and id <= 'Hzzz'
             SetHeroUnitState(wu)
         elseif  id >= 'sp00' and id <= 'sp99'
