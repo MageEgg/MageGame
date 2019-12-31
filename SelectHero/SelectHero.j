@@ -32,7 +32,7 @@ scope SelectHero
             endif
             
             
-            SetUnitState(Pu[1],UNIT_STATE_MAX_LIFE,1000)
+            SetUnitRealState(Pu[1],5,1000)
             
             UnitAddAbility(Pu[1],'AG01')
             UnitAddAbility(Pu[1],'AG02')

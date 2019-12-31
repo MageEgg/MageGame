@@ -106,6 +106,8 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetAttackUnitState(wu)
         elseif  id >= 'Mb00' and id <= 'Mb99'
             SetMosterUnitState(wu)
+        elseif  id >= 'u000' and id <= 'uzzz'
+            SetMosterUnitState(wu)
         elseif  id >= 'H000' and id <= 'Hzzz'
             SetHeroUnitState(wu)
         elseif  id >= 'sp00' and id <= 'sp99'

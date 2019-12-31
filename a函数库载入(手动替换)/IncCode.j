@@ -69,6 +69,7 @@
 #include "MageGame\\GameChallenge\\GameChallenge_6.j"
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
+#include "MageGame\\GameChallenge\\GameChallengDeath.j"
 
 //选择英雄
 #include "MageGame\\SelectHero\\SelectHero.j"
