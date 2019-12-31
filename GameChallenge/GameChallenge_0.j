@@ -112,7 +112,7 @@ library GameChallenge0 uses GameChallengeBase
         GameBiaoJI[4] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5674.000,-2726.250,48.455)
         GameBiaoJI[5] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5462.750,-2476.000,48.455)
 
-        GameBiaoJI[6] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),-4064,0)
+        GameBiaoJI[6] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
 
         for num = 0,6
             SetUnitColor(GameBiaoJI[num], PLAYER_COLOR_RED )

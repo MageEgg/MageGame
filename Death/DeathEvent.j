@@ -290,7 +290,6 @@ scope DeathEvent initializer InitDeathEvent
             endif
             
             if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
-                BJDebugMsg("复活")
                 AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
             endif
 

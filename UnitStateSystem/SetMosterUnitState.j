@@ -108,7 +108,6 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetMosterUnitState(wu)
         elseif  id >= 'u000' and id <= 'uzzz'
             SetMosterUnitState(wu)
-            BJDebugMsg("uzzzuzzzuzzzuzzzuzzzuzzz")
         elseif  id >= 'H000' and id <= 'Hzzz'
             SetHeroUnitState(wu)
         elseif  id >= 'sp00' and id <= 'sp99'
