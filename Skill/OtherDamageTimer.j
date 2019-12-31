@@ -1,5 +1,5 @@
 library OtherDamageTimer uses SystemTimer
-    private constant int    S = 40  //位移默认速度
+    private constant int    S = 60  //位移默认速度
     private constant real   L = 0.02//位移默认周期
     
     int IsCanFlyNum = 0
@@ -37,10 +37,14 @@ library OtherDamageTimer uses SystemTimer
         string b=b1
         effect tx=AddSpecialEffect(s,x0,y0)
         EXSetEffectZ( tx, high )
+        EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
+        EXEffectMatRotateY( tx, Pang(x0, high,x,0)/0.01745 )
+        EXEffectMatRotateX( tx, Pang(y0, high,y,0)/0.01745)
+        
         TimerStart(0.03,true)
         {   if  EXGetEffectZ(tx)>0
                 EXSetEffectXY(tx, EXGetEffectX(tx)+(long/(high/speed)*Cos(Pang(x0,y0,x,y))),EXGetEffectY(tx)+(long/(high/speed)*Sin(Pang(x0,y0,x,y))) )
-                EXSetEffectZ( tx, EXGetEffectZ(tx)-speed )
+                EXSetEffectZ(tx, EXGetEffectZ(tx)-speed )
                 if  EXGetEffectZ(tx)<speed
                     EXSetEffectZ( tx, 0 )
                 endif
@@ -220,9 +224,9 @@ endfunction
         }
         flush locals
     endfunction
-    
+
     //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
-    function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real t,real high,bool b1,bool b2,int attt,int damt)
+function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2,int sid1,int lv1,int mid1)
         unit u1 = wu
         unit u2 = m
         real r1 = rac
@@ -235,8 +239,9 @@ endfunction
         int time = R2I(dis/S)
         bool bool1 = b1
         bool bool2 = b2
-        int atttype = attt
-        int damtype = damt
+        int sid = sid1
+        int lv = lv1
+        int mid = mid1
         group wg = CreateGroup()
         group ug = CreateGroup()
         int n = 0
@@ -244,7 +249,61 @@ endfunction
         SetUnitFlyHeight(m,high,0)
         UnitRemoveAbility(m,'Amrf')
         ////额外判断
-        TimerStart(t,true)
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            real dam2 = 0
+            time = time - 1
+            if  time > 0
+                x1 = x1 + x2
+                y1 = y1 + y2
+                SetUnitPosition(u2,x1,y1)
+                if  r1 > 0
+                    GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",sid,lv,mid))
+                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                endif
+            else
+                //额外判断
+                if  ug != null
+                    GroupRemoveUnit(ug,u2)
+                endif
+                GroupClear(wg)
+                GroupClear(ug)
+                DestroyGroup(wg)
+                DestroyGroup(ug)
+                KillUnit(u2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+                    
+                    
+    //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
+    function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2)
+        unit u1 = wu
+        unit u2 = m
+        real r1 = rac
+        real x1 = GetUnitX(m)
+        real y1 = GetUnitY(m)
+        real x2 = S*Cos(Ang)
+        real y2 = S*Sin(Ang)
+        real ang = Ang
+        real damage = dam
+        int time = R2I(dis/S)
+        bool bool1 = b1
+        bool bool2 = b2
+        group wg = CreateGroup()
+        group ug = CreateGroup()
+        int n = 0
+        UnitAddAbility(m,'Amrf')
+        SetUnitFlyHeight(m,high,0)
+        UnitRemoveAbility(m,'Amrf')
+        ////额外判断
+        TimerStart(0.03,true)
         {
             group gg = CreateGroup()
             real dam2 = 0
@@ -259,7 +318,7 @@ endfunction
                     
                     GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnit(GetOwningPlayer(u1),wg,""))
                     
-                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ConvertAttackType(atttype),ConvertDamageType(damtype),WEAPON_TYPE_AXE_MEDIUM_CHOP)
+                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endif
             else
                 //额外判断
@@ -294,7 +353,7 @@ endfunction
                 if  dam == 0
                     CreateTmFuncZero(wu,u,r,rac,dis,time,high)
                 else
-                    CreateTmFunc(wu,u,r,dam,rac,dis,time,high,b1,b2,attt,damt)
+                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2)
                 endif
             endif
         end
@@ -314,7 +373,7 @@ endfunction
                 if  dam == 0
                     CreateTmFuncZero(wu,u,r,rac,dis,time,high)
                 else
-                    CreateTmFunc(wu,u,r,dam,rac,dis,time,high,b1,b2,attt,damt)
+                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2)
                 endif
             endif
         end
@@ -619,5 +678,4 @@ endfunction
 
     
 endlibrary
-
 
