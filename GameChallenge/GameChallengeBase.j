@@ -33,9 +33,17 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
     function SetUnitAPOfBool(unit u,int boolid)
         int ap = 0
         for pid = 0,3
-            if  GameChallengBool[boolid] == false
-                if  Player(pid) == GetLocalPlayer()
-                    ap = 255
+            if  boolid > 0
+                if  GameChallengBool[boolid] == false and GameChallengBool[boolid-1] == true
+                    if  Player(pid) == GetLocalPlayer()
+                        ap = 255
+                    endif
+                endif
+            else 
+                if  GameChallengBool[boolid] == false
+                    if  Player(pid) == GetLocalPlayer()
+                        ap = 255
+                    endif
                 endif
             endif
         end

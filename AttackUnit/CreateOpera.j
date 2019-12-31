@@ -74,11 +74,10 @@ library CreateOpera uses DamageCode
                 ShowBossDamageString()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
-                        if  pid == 0
-                            PlayerReviveX = -6528
-                            PlayerReviveY = -7520
-                            SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
-                        endif
+                        UnitRemoveAbility(Pu[1],'AZ02')
+                        PlayerReviveX = -6528
+                        PlayerReviveY = -7520
+                        SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                     endif
                 end
                 GoonAttackUnitGroup()
@@ -135,6 +134,7 @@ library CreateOpera uses DamageCode
                     PlayerReviveY = -3328
                     SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
                 endif
+                UnitAddAbility(Pu[1],'AZ02')
             endif
         end
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
@@ -199,11 +199,10 @@ library CreateOpera uses DamageCode
                     ShowBossDamageString()
                     for pid = 0,3
                         if  IsPlaying(pid) == true
-                            if  pid == 0
-                                PlayerReviveX = -1660
-                                PlayerReviveY = -6960
-                                SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
-                            endif
+                            UnitRemoveAbility(Pu[1],'AZ02')
+                            PlayerReviveX = -1660
+                            PlayerReviveY = -6960
+                            SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                         endif
                     end
                     CreateNextTimer(AttackUnitOrderNum)
@@ -309,6 +308,7 @@ library CreateOpera uses DamageCode
                     PlayerReviveY = -524
                     SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
                 endif
+                UnitAddAbility(Pu[1],'AZ02')
             endif
         end
         
@@ -487,11 +487,10 @@ library CreateOpera uses DamageCode
                 ShowBossDamageString()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
-                        if  pid == 0
-                            PlayerReviveX = -1660
-                            PlayerReviveY = -6960
-                            SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
-                        endif
+                        UnitRemoveAbility(Pu[1],'AZ02')
+                        PlayerReviveX = -1660
+                        PlayerReviveY = -6960
+                        SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                     endif
                 end
                 GoonAttackUnitGroup()
@@ -552,6 +551,7 @@ library CreateOpera uses DamageCode
                     PlayerReviveY = -2880
                     SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
                 endif
+                UnitAddAbility(Pu[1],'AZ02')
             endif
         end
         AttackOperaGroup_C_1 = CreateGroup()
