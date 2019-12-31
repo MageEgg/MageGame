@@ -117,11 +117,11 @@ library HeroSpell  uses OtherDamageTimer
         flush locals
     endfunction
 
-    function SpellS023(unit u1,unit u2,real damage)//乘胜追击
+    function SpellS023(unit u1,unit u2,real damage)//天罚
         real x=GetUnitX(u2)
         real y=GetUnitY(u2)
         IndexGroup g = IndexGroup.create()
-        DestroyEffect(AddSpecialEffect("effect_daoguang-new.mdl",x,y))
+        DestroyEffect(AddSpecialEffect("effect_[dz.spell]002_blue",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
         UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
@@ -198,6 +198,7 @@ library HeroSpell  uses OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            DestroyEffect(AddSpecialEffect("effect_fire-boom-new",x,y))
             g.destroy()
             SaveInteger(ht,GetHandleId(u1),'S035',0)
         endif
@@ -215,6 +216,7 @@ library HeroSpell  uses OtherDamageTimer
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
         UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        DestroyEffect(AddSpecialEffect("effect_white-qiquan-juhuang",x,y))
         g.destroy()
         SaveInteger(ht,GetHandleId(u1),'S038',0)
         flush locals
@@ -253,6 +255,7 @@ library HeroSpell  uses OtherDamageTimer
         real x=GetUnitX(u2)
         real y=GetUnitY(u2)
         IndexGroup g = IndexGroup.create()
+        DestroyEffect(AddSpecialEffect("effect_white-qiquan-special",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
         UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
@@ -300,7 +303,26 @@ library HeroSpell  uses OtherDamageTimer
     real x=x1
     real y=y1
     real damage=damage1
-    int id =0
+    integer id =0
+    DestroyEffect(AddSpecialEffect("effect_az_earthshaker_a.mdl",GetUnitX(u),GetUnitY(u)))
+    string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
+    unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+    SetUnitVertexColor( mj, 20, 20, 50, 100 )
+     TimerStart(0.03,true)
+    {
+        if  GetUnitFlyHeight(mj)<500
+            UnitAddAbility(mj,'Amrf')
+            SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)+50,0)
+            UnitRemoveAbility(mj,'Amrf')
+            
+        else
+            SetUnitAnimation( mj, "Attack" )
+            RemoveUnitTimer(mj,0.7)
+            EffectDown(u,x,y,GetUnitX(u),GetUnitY(u),"effect_az_herosbfire_c.mdl",10,500,400,damage,"effect_az_kaer_t1.mdl")
+             //伤害来源，目标点xy，起始点xy，特效路径，速度，高度，伤害半径，伤害,落地爆炸特效
+            endtimer
+        endif
+    }
     
     for i = 1,4
         id = 'AG00' + i
@@ -361,21 +383,47 @@ library HeroSpell  uses OtherDamageTimer
         real t=1/I2R(Numb)
         real damage=damage1
         int time=0
-        ShowUnit( u, false )
-        TimerStart(t,true)
+        effect e=AddSpecialEffect("effect_jianzhen.mdl",x,y)
+        EXSetEffectSize(e,2)
+        group g=CreateGroup()
+        unit uu=null
+        real ang=0
+        real dis=0
+        integer i=0
+        string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
+        unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        SetUnitVertexColor( mj, 20, 20, 50, 100 )
+        SetUnitTimeScale( mj, 4.00 )
+        TimerStart(0.03,true)
         {   
             time=time+1
-            if  time<=Numb
-                IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                LocAddEffectTimer(x,y,"effect_zhanji-blue-shu.mdl",0.5)
-                g.destroy()
+            i=i+1
+            if  time<=33
+
             else
-                ShowUnit( u, true )
-                SelectUnitForPlayerSingle( u, GetOwningPlayer(u) )
-                u = null
-                endtimer
+                if  time<=133
+                   
+                     if i>=10-(time/(30-Numb))
+                        i=0
+                        ang=GetRandomReal(-3.14,3.14)
+                        dis=GetRandomReal(100,300)
+                        GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                        SetUnitX(mj,x+(400*Cos(ang)))
+                        SetUnitY(mj,y+(400*Sin(ang)))
+                        SetUnitFacing(mj,Rad2Deg(ang))
+                        SetUnitAnimation( mj, "Attack" )
+                        LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
+                        LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
+                        LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
+                    endif
+                else
+                    DestroyEffect(e)
+                    DestroyGroup(g)
+                    RemoveUnit(mj)
+                    u = null
+                    endtimer
+                endif
             endif
             flush locals
         }
@@ -409,6 +457,7 @@ library HeroSpell  uses OtherDamageTimer
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitAddEffectTimer(u1,"effect_blue-slash-more.mdx",0.5)
         g.destroy()
         SaveInteger(ht,GetHandleId(u),'S075',LoadInteger(ht,GetHandleId(u),'S075')+10)
         TimerStart(2,false)
@@ -423,10 +472,12 @@ library HeroSpell  uses OtherDamageTimer
 
     function SpellS075(unit u,unit u1,real damage)//夺命刺
         UnitDamageTarget(u,u1,damage, true, true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+        UnitAddEffectTimer(u,"effect_zzmxcl_tuci.mdx",0.5)
         if IsPlayerHasAbility(u,'S076') == true
             SpellS076(u,u1,damage/8*3)
         endif
     endfunction
+    
 
     function SpellS078(unit u2,real x1,real y1,real damage1)
         unit u=u2
@@ -448,40 +499,42 @@ library HeroSpell  uses OtherDamageTimer
     endfunction
 
     function SpellS080(unit u2,real x1,real y1,real damage1)
-        /*unit u=u2
-        real x=x1
-        real y=y1
+        unit u=u2
         real damage=damage1 
-        string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
         unit mj=null
+        real xu=GetUnitX(u)
+        real yu=GetUnitY(u)
         real x0=0
         real y0=0
         real jl=0
-        real ang=0
+        real ang=Pang(GetUnitX(u),GetUnitY(u),x1,y1)
         real time=0
         real m=3+(GetUnitRealState(u,1)/30000)
-        group g1 = CreateGroup()
-        group g2 = CreateGroup()
+        effect tx=AddSpecialEffect("effect_[ake]war3ake.com - 4395525332922981471277570.mdl",xu,yu)
+        EXEffectMatRotateZ(tx,ang/0.01745)
+        EXSetEffectSpeed(tx,9)
         TimerStart(0.1,true)
         {   
-            time=time+0.3
+            time=time+0.1
+         if     time<1
+         else   
             if  time<m
-                ang=Pang(GetUnitX(u),GetUnitY(u),x,y)+0.7+time
-                x0 = GetUnitX(u)+200*Cos(ang)
-                y0 = GetUnitY(u)+200*Sin(ang)
-                jl=0
-                ang=0
-                g1=null
-                g2=null
-                mj=CreateTmUnit(GetOwningPlayer(u),"effect_sfeidao.mdl",x0,y0,Pang(x0,y0,x,y)/0.01745,0,1)
-                CreateTmTimer(u,mj,Pang(x0,y0,x,y),damage,50,800,g1,g2,1,0.1)
+                jl=GetRandomReal(-120,120)
+                x0 = xu+jl*Cos(ang+1.57)
+                y0 = yu+jl*Sin(ang+1.57)
+                mj=CreateTmUnit(GetOwningPlayer(u),"effect_shandianzhiqiang.mdl",x0,y0,ang/0.01745,0,1)
+                CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),true,false)
+                
+                 //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
             else
+                DestroyEffect(tx)
                 endtimer
             endif
             flush locals
+        endif
         }
         flush locals
-        */
+        
     endfunction
 
     function SpellS081(unit u2,real x1,real y1,real damage1)//真空领域
@@ -575,6 +628,7 @@ library HeroSpell  uses OtherDamageTimer
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        DestroyEffect(AddSpecialEffect("AZ_Monkeykingbattle_W1_Impact.MDX",x,y))
         g.destroy()
         u = null
     endfunction
@@ -656,6 +710,25 @@ library HeroSpell  uses OtherDamageTimer
         g.destroy()
         u = null
     endfunction    
+
+ function SpellS109(unit u,unit u1)
+    real x=GetUnitX(u1)
+    real y=GetUnitY(u1)
+    real damage=10
+    IndexGroup g = IndexGroup.create()
+    GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+    LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az_pafeathermoon_c_caster.mdl")
+    if GetUnitRealState(u,1)>GetUnitRealState(u,2)
+        damage=GetUnitRealState(u,1)*12
+        GroupRemoveUnit(g.ejg,u1)
+        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+    else
+        damage=GetUnitRealState(u,2)*12
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+    endif
+    g.destroy()
+    u = null
+endfunction
         
 
       function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
@@ -738,14 +811,13 @@ library HeroSpell  uses OtherDamageTimer
             ang=GetRandomReal(-3.14, 3.14)
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
-            mj=CreateUnit(GetOwningPlayer(u),'e001',x,y,GetRandomDirectionDeg())
-            GroupAddUnit(mjz,mj)
+            LocAddEffectTimer(x,y,"effect_shenshoushentong.mdx",1)
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
         else
-             DestroyEffect(AddSpecialEffect("effect_[dz.spell]002.mdl",GetUnitX(u),GetUnitY(u)))
+             
            loop
                 uu = FirstOfGroup(mjz)
                 exitwhen uu == null
@@ -782,7 +854,7 @@ library HeroSpell  uses OtherDamageTimer
         TimerStart(2,false)
         {
             IndexGroup g = IndexGroup.create()
-            LocAddEffect(GetUnitX(u),GetUnitY(u),"")
+            LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
             GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             loop
                 uu = FirstOfGroup(g.ejg)
@@ -796,7 +868,9 @@ library HeroSpell  uses OtherDamageTimer
     
     function SpellS234(unit u,unit u1,real damage)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-        
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupAddBuffEx(GetOwningPlayer(u),"",'DB02',5,852095,100))
+        g.destroy()
     endfunction
     
     function SpellS235(unit u1)
@@ -819,6 +893,7 @@ function SpellS236(unit u,unit u1)
      real damage=0
      SetUnitX(u,GetUnitX(u1))
      SetUnitY(u,GetUnitY(u1))
+     AddUnitStateExTimer(u,9,220,3)
     if GetUnitRealState(u,1)>GetUnitRealState(u,2)
         damage=GetUnitRealState(u,1)*12
         UnitDamageTarget(u,u1,damage, true,true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
@@ -830,11 +905,13 @@ endfunction
 
 function SpellS237(unit u)
     AddUnitStateExTimer(u,25,40,5)
+     UnitTimerAddSkill(u,'A237',5)
 endfunction
+
+
     
     
-    
-    
+
     function SpellS250(unit u1,real damage1)
         unit u=u1
         unit mj=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u),GetUnitY(u),0)
@@ -1105,9 +1182,14 @@ endfunction
         int pid = GetPlayerId(GetOwningPlayer(u1.u))
         
         real damage = 0
+
+        if GetUnitAbilityLevel(u1.u, 'A237')>0 
+            AddUnitStateExTimer(u1.u,17,10,5)
+        endif 
+         
         
-        
-        BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
+
+        //BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
         damage = GetAbilityDamage(wu,id,lv)
         if  id >= 'S000' and id <= 'S300'
             if  id== 'S006'
