@@ -151,8 +151,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     endfunction
 
 //事件类
-    function geiqian(unit si,unit kill)
-        PlayerHeroKillUnit.execute(kill,si)
+    function AttackRoomKillUnit(unit wu,unit tu)
+        PlayerHeroKillUnit.execute(wu,tu)
     endfunction
     function SoulToFrog(int pid)
         real x = AttackRoomPostion[pid][1] 
@@ -212,6 +212,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real x = GetUnitX(ku)
         real y = GetUnitY(ku)
         int pid=GetPlayerId(GetOwningPlayer(ku))
+        AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
         if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == true
             if  GetUnitTypeId(Pu[27]) == 'u001'

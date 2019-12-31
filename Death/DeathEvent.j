@@ -139,7 +139,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 10
         endif
         
-        
+        BJDebugMsg("Kill"+GetObjectName(uid))
         exp = 1
         
         
