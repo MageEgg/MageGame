@@ -38,7 +38,7 @@ scope KeyEvent initializer InitKeyBroadListener
                     HeroMoveToHome(pid)
                 endif
             elseif  key == 114 //F3
-                if  PlayerDeathBool == false
+                if  PlayerDeathBool == false and IsCanMoveToRoom(pid) == true
                     HeroMoveToRoom(pid)
                 endif
             elseif  key == 115 //F4

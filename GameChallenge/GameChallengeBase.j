@@ -55,7 +55,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
         if  GameChallengBool[3] == false
             return false
         endif
-        if  GetUnitAbilityLevel(Pu[1],'A003') > 0
+        if  GetUnitAbilityLevel(Pu[1],'AZ02') > 0
             return false
         endif
         return true
