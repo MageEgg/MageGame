@@ -7,6 +7,7 @@ library GameChallenge0 uses GameChallengeBase
             for n = 4,5
                 SetUnitAPOfBool(GameBiaoJI[n],2)
             end
+            SetUnitAPOfBool(GameBiaoJI[6],3)
             PlayerReviveX = -6528
             PlayerReviveY = -7520
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
@@ -33,6 +34,7 @@ library GameChallenge0 uses GameChallengeBase
                     SetUnitAPOfBool(GameBiaoJI[n],2)
                 end
                 UnitAddItemEx(Pu[1],'E201')
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E201')+"！\n")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r妖魅已除，这些宝物就作为我的答谢了。唔？庄外妖气弥漫，似有妖物作祟。仁兄不若助我一臂之力，将其降伏？")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀玉石琵琶精|r")
             endif
@@ -65,12 +67,34 @@ library GameChallenge0 uses GameChallengeBase
                     GameChallengBool[0] = true
                     UnitAddItemEx(Pu[1],'E001')
                     UnitAddItemEx(Pu[1],'E101')
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E101')+"！\n")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看?")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀20个妖魅|r")
                     SetUnitAPOfBool(GameBiaoJI[0],0)
                     for n = 1,3
                         SetUnitAPOfBool(GameBiaoJI[n],1)
                     end
+                endif
+            endif
+        endif
+        flush locals
+    endfunction
+
+    function EnRctGameDefendUnit()
+        unit u1 = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == Pu[1]
+                if  GameChallengBool[0] == true and GameChallengBool[1] == true and GameChallengBool[2] == true
+                    if  GameChallengBool[3] == false
+                        GameChallengBool[3] = true
+                        SetUnitAPOfBool(GameBiaoJI[6],3)
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币！\n")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff使用F3传送至修炼池|r")
+
+                    endif
                 endif
             endif
         endif
@@ -88,13 +112,20 @@ library GameChallenge0 uses GameChallengeBase
         GameBiaoJI[4] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5674.000,-2726.250,48.455)
         GameBiaoJI[5] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5462.750,-2476.000,48.455)
 
-        for num = 0,5
+        GameBiaoJI[6] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
+
+        for num = 0,6
+            SetUnitColor(GameBiaoJI[num], PLAYER_COLOR_RED )
             SetUnitVertexColor(GameBiaoJI[num],255,255,255,0)
         end
         
         tig = CreateTrigger() //姜子牙
         TriggerRegisterUnitInRange(tig, GameChalleng_0_JZY,150,null)
         TriggerAddAction(tig, function EnRctGameChalleng_0_JZY)
+
+        tig = CreateTrigger() //周文王
+        TriggerRegisterUnitInRange(tig, GameDefendUnit,200,null)
+        TriggerAddAction(tig, function EnRctGameDefendUnit)
 
         tig = null
     endfunction

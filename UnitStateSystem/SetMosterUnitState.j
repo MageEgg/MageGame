@@ -26,7 +26,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
                 SetUnitRealState(wu,i,R2I(value))
             endif
         end
-        if  GetUnitPointValue(wu) == 1
+        if  GetUnitPointValue(wu) != 100
             SetUnitPointX(wu,GetUnitX(wu))
             SetUnitPointY(wu,GetUnitY(wu))
         endif
@@ -105,6 +105,8 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         elseif  id >= 'g001' and id <= 'g099'
             SetAttackUnitState(wu)
         elseif  id >= 'Mb00' and id <= 'Mb99'
+            SetMosterUnitState(wu)
+        elseif  id >= 'u000' and id <= 'uzzz'
             SetMosterUnitState(wu)
         elseif  id >= 'H000' and id <= 'Hzzz'
             SetHeroUnitState(wu)
