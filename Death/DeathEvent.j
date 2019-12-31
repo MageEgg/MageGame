@@ -161,73 +161,7 @@ scope DeathEvent initializer InitDeathEvent
         if  exp > 0
             HeroAddExp( Pu[1],exp)
         endif
-        
-
-        
     end
-    
-   
-    
-  
-   
-    
-    
-
-    
-  
-    
-    
-    
-    
-    func KillBossFunc(int index)
-        
-        real min = 0
-        int hat = 0
-        real ch = 0
-        int b = 1
-        int maxpid = -1
-        int num = 0
-        for n = 1,6
-            min = 0
-            hat = -1
-            for pid = 0,3
-                ch = GetUnitRealState(Pu[1],99)
-                if  ch > min and ch > 0
-                    hat = pid
-                    min = ch
-                endif
-            end
-            if  hat != -1
-                if  maxpid == -1
-                    maxpid = hat
-                endif
-                SetUnitRealState(PlayerUnit[hat][1],99,0)
-                if  b == 1
-                    num = index * 8 
-                elseif  b == 2
-                    num = index * 6
-                elseif  b == 3
-                    num = index * 4
-                elseif  b == 4
-                    num = index * 2
-                endif
-                
-                num = R2I(I2R(num) * GetRandomReal(0.8,1.2) * (1 + I2R(GameLevel) * 0.1))
-                if  num <= 0
-                    num = 1
-                endif
-                
-                AddUnitRealState( PlayerUnit[hat][1] ,31,num)
-                
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[BOSS伤害排行]:|r第"+I2S(b)+"名 "+ GetPN(hat) +" 伤害值:"+R2S1(min)+" 奖励杀敌属性+"+I2S(num))
-                b = b + 1
-            endif
-        end
-    end
-    
-    
-    
-    
     
     function HeroKillMoster(unit wu,unit tu)
         //wu是凶手 tu是死亡单位
@@ -281,7 +215,17 @@ scope DeathEvent initializer InitDeathEvent
 
     end
     
-    function EndGameTimerTimerFunc()
+    function AttackBossDeathEvent(unit boss)
+        AttackBOSSDeathCos = AttackBOSSDeathCos + 1
+        BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
+        if  AttackBOSSDeathCos == AttackBOSSLastCos
+            AttackBOSSDeathCos = 0
+            ShowBossDamageUI(false)
+            ShowBossDamageString()
+            if  GetUnitTypeId(boss) == 'mb00'+(AttackUnitWNOver/3)
+                AttackUnitWin()
+            endif
+        endif
     endfunction
 
     function GameOver()
@@ -336,16 +280,7 @@ scope DeathEvent initializer InitDeathEvent
                 HeroKillMoster(u2,u1)
                 
                 if  uid >= 'mb01' and uid <= 'mb09'
-                    /*BossNum = BossNum - 1
-                    if  BossNum <= 0
-                        
-                        
-                        if  uid == 'mb08'
-                            GameWin()
-                        else
-                            KillBossFunc(uid - 'mb00')
-                        endif
-                    endif*/
+                    AttackBossDeathEvent(u1)
                 endif
                 
                 if  uid >= 'm000' and uid <= 'mzzz'//野怪复活
