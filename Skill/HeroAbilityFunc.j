@@ -167,7 +167,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
             real y2=GetUnitY(u1)
             
             
-            CreateTmEx(u,"effect_fireshockrun1.mdl",x1,y1,x2,y2,damage,3,12,200,800,0.03,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+            CreateTmEx(u,"effect_by_wood_effect_yuzhiboyou_fire_haohuoqiu.mdx",x1,y1,x2,y2,damage,3,12,200,800,0.03,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
             SaveInteger(ht,GetHandleId(u),'S030',0)
         endif
     flush locals
@@ -269,7 +269,8 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
         real y=GetUnitY(u)
         real damage=I2R(LoadInteger(ht,GetHandleId(u),159379))*damage1
         IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        DestroyEffect(AddSpecialEffect("effect_green-texiao-shandian.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_dubao-texiao.mdl","origin",0))
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         flush locals
@@ -278,7 +279,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
 
     function SpellS047(unit u,real damage)//叠加毒
         poisondamage(u,damage)
-        effect tx= AddSpecialEffectTargetUnitBJ( "origin", u, "war3mapImported\\az_doomdragon_t.mdx" )
+        effect tx= AddSpecialEffectTargetUnitBJ( "origin", u, "effect_az_doomdragon_t.mdx" )
         TimerStart(8,false)
         {
             DestroyEffect(tx)
@@ -523,7 +524,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
                 x0 = xu+jl*Cos(ang+1.57)
                 y0 = yu+jl*Sin(ang+1.57)
                 mj=CreateTmUnit(GetOwningPlayer(u),"effect_shandianzhiqiang.mdl",x0,y0,ang/0.01745,0,1)
-                //CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),true,false)
+                CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),true,false)
                 
                  //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
             else
