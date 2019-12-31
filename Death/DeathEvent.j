@@ -162,6 +162,17 @@ scope DeathEvent initializer InitDeathEvent
             HeroAddExp( Pu[1],exp)
         endif
     end
+    function CreateNewForg(int id1,int id2)
+        int pid = id1
+        int uid = id2
+        TimerStart(30,false)
+        {
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
+            LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
+            flush locals
+        }
+        flush locals
+    endfunction
     
     function HeroKillMoster(unit wu,unit tu)
         //wu是凶手 tu是死亡单位
@@ -175,7 +186,7 @@ scope DeathEvent initializer InitDeathEvent
             IncEquipKillUnitFunc(wu,tu)
         elseif  uid >= 'u001' and uid <= 'u004'
             if  uid != 'u004'
-                Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
+                CreateNewForg(pid,uid)
             endif
         endif
 
