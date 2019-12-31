@@ -601,7 +601,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
 
     function InitAllFunc()
-        ExecuteFunc("InitHeroPool")
+        ExecuteFunc("InitHeroPoolFunc")
     endfunction
     
 endlibrary
