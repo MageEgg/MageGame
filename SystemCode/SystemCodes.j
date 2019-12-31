@@ -1,6 +1,9 @@
 library SystemCodes uses ServerTime,Define1
     
-    
+    function GetPlayerNameOfColor(int pid)->string
+        return "玩家<"+PlayerColor+GetPlayerName(Player(pid))+"|r>"
+    endfunction
+
     function IsPlaying(int pid)->bool
         if GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
             return true
@@ -95,6 +98,10 @@ library SystemCodes uses ServerTime,Define1
             return SubString(R2S(r),0,l-8)+"万"
         endif
         return SubString(R2S(r),0,l-4)
+    end
+    func R2SI(real r)->string
+        int l = StringLength(R2S(r))
+        return SubString(R2S(r),0,l-2)
     end
 
     //获取基础属性

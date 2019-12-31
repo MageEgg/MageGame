@@ -1,4 +1,4 @@
-library BossDamageFrame uses GameFrame
+library BossDamageFrame uses GameFrame,System,SystemCodes
 
     private FRAME Back = 0
     private FRAME Name = 0
@@ -20,8 +20,8 @@ library BossDamageFrame uses GameFrame
     
     function ClearDamageRanking()
         for i = 0,3
-            DzFrameSetSize( EquipButton_back[401+i][3], 0.001,0.01)
-            DzFrameSetText( EquipButton_text[401+i][2],"")
+            DzFrameSetSize( BUTTON_Back[461+i][0], 0.001,0.01)
+            DzFrameSetText( BUTTON_Text[461+i],"")
         end
     endfunction
     
@@ -40,20 +40,20 @@ library BossDamageFrame uses GameFrame
                 else
                     r1 = 0
                 endif
-                DzFrameSetText( EquipButton_text[401+pid][1],GetPlayerNameOfColor(pid))
-                DzFrameSetText( EquipButton_text[401+pid][2],R2SI(r1*100)+"%")
-                DzFrameSetSize( EquipButton_back[401+pid][3], 0.14*(r1),0.01)
+                DzFrameSetText( BUTTON_Text[451+pid],GetPlayerNameOfColor(pid))
+                DzFrameSetText( BUTTON_Text[461+pid],R2SI(r1*100)+"%")
+                DzFrameSetSize( BUTTON_Back[461+pid][0], 0.14*(r1),0.01)
             else
-                DzFrameSetText( EquipButton_text[401+pid][1],GetPlayerNameOfColor(pid))
-                DzFrameSetSize( EquipButton_back[401+pid][3], 0.001,0.01)
-                DzFrameSetText( EquipButton_text[401+pid][2],"0.0%")
+                DzFrameSetText( BUTTON_Text[451+pid],GetPlayerNameOfColor(pid))
+                DzFrameSetText( BUTTON_Text[461+pid],"0.0%")
+                DzFrameSetSize( BUTTON_Back[461+pid][0], 0.001,0.01)
             endif
         else
-            DzFrameSetSize( EquipButton_back[401+pid][3], 0.001,0.01)
-            DzFrameSetText( EquipButton_text[401+pid][2],"")
+            DzFrameSetSize( BUTTON_Back[461+pid][0], 0.001,0.01)
+            DzFrameSetText( BUTTON_Text[461+pid],"")
         endif
         
-        DzFrameShow(EquipButton_back[401+pid][1],show)
+        DzFrameShow(BUTTON_Back[461+pid][0],show)
     endfunction
     
     function ReDamageRanking()
@@ -69,17 +69,15 @@ library BossDamageFrame uses GameFrame
     
     
     func BossDamageUICloceEx()
-        int hp = 255
         int time = 0
+        Back.alpha = 255
         TimerStart(0.006,true)
         {
             if  time < 50
                 time = time + 1
-                hp = hp - 5
-                DzFrameSetAlpha(DamageBoardFrame,hp)
+                Back.alpha = Back.alpha - 5
             else
-                DzFrameShow(DamageBoardFrame,false)
-                IsBossDamageUIShow = false
+                Back.show = false
                 for pid = 0,3
                     SetUnitRealState(Pu[1],99,0)
                 end
@@ -99,18 +97,16 @@ library BossDamageFrame uses GameFrame
         }
         flush locals
     end
+
     func BossDamageUIOpen()
-        int hp = 5
         int time = 0
-        DzFrameShow(DamageBoardFrame,true)
-        DzFrameSetAlpha(DamageBoardFrame,hp)
-        IsBossDamageUIShow = true
+        Back.show = true
+        Back.alpha = 5
         TimerStart(0.006,true)
         {
             if  time < 50
                 time = time + 1
-                hp = hp + 5
-                DzFrameSetAlpha(DamageBoardFrame,hp)
+                Back.alpha = Back.alpha + 5
             else
                 endtimer
             endif
@@ -144,15 +140,18 @@ library BossDamageFrame uses GameFrame
 
         origin = Back.frameid
 
-        name.frameid = FRAME.Fdf("centertext010",origin,Name)
-        name.SetPoint(1,origin ,1,0,-0.008)
-        name.SetText("|cFF33FF00BOSS伤害排行|r")
+        Name.frameid = FRAME.Fdf("centertext012",origin,Name)
+        Name.SetPoint(1,origin ,1,0,-0.008)
+        Name.SetText("|cFF33FF00BOSS伤害排行|r")
 
         
         for i = 1,4
-            CreateDamageShowItem(i+450,TYPE_FUNC,MyFrame_ACHOR_TopRight,DamageBoardFrame,MyFrame_ACHOR_TopRight,0,-0.028-(i-1)*0.035,0.15,0.03,"")
+            CreateButton(450+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1*0.035),0.015,0.03,"war3mapImported\\shanghaipaihang_0.blp")
+            CreateButton(460+i,origin,TYPE_FUNC,2,origin,2,0,-0.028-(i-1*0.035),0.015,0.03,"war3mapImported\\shanghaipaihang_1.blp")
+            CreateText(450+i,origin,"text009",5,5,-0.002,0,"")
+            CreateText(460+i,origin,"text009",5,3,0.0,0,"")
         end
-        DzFrameShow(DamageBoardFrame,false)
+        
     endfunction
     
     
