@@ -297,6 +297,10 @@ library SystemCodes uses ServerTime,Define1
         return J
     endfunction
 
+    function UnitAddItemEx(unit u,int itid)
+        UnitAddItem(u,CreateItem(itid,GetUnitX(u),GetUnitY(u)))
+    endfunction
+
     function RemoveItemEx(unit u,int itid)//删除英雄所有可贩卖的物品
         int a = 0
         for num = 0,5
