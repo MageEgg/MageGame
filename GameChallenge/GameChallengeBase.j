@@ -1,14 +1,19 @@
-library GameChallengeBase initializer InitGameChallenge uses DamageCode
+library GameChallengeBase uses DamageCode
     int array       GameChallengPlayerInt[12][680]
     unit array      GameChallengPlayerUnit[12][680]
     bool array      GameChallengPlayerBool[12][680]
 
     unit array      GameChallengUnit
 
-    #define GameChalleng_1_YZZ GameChallengUnit[0]
-    #define GameChalleng_1_LZZ GameChallengUnit[1]
+    #define GameBiaoJI         GameChallengUnit
+
+
+
+    #define GameChalleng_1_YZZ GameChallengUnit[500]
+    #define GameChalleng_1_LZZ GameChallengUnit[501]
 
     function InitGameChallengeFunc()
+        ExecuteFunc("InitGameChallenge_0")
         ExecuteFunc("InitGameChallenge_1")
         ExecuteFunc("InitGameChallenge_2")
         ExecuteFunc("InitGameChallenge_3")
@@ -17,14 +22,8 @@ library GameChallengeBase initializer InitGameChallenge uses DamageCode
         ExecuteFunc("InitGameChallenge_6")
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
-        DestroyTrigger(GetTriggeringTrigger())
     endfunction
 
-    function InitGameChallenge()
-        trigger trg = CreateTrigger()
-        TriggerRegisterTimerEventSingle(trg,0 )
-        TriggerAddAction(trg, function InitGameChallengeFunc)
-    endfunction
 endlibrary
 
 

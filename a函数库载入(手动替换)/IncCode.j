@@ -58,6 +58,7 @@
 
 //副本
 #include "MageGame\\GameChallenge\\GameChallengeBase.j"
+#include "MageGame\\GameChallenge\\GameChallenge_0.j"
 #include "MageGame\\GameChallenge\\GameChallenge_1.j"
 #include "MageGame\\GameChallenge\\GameChallenge_2.j"
 #include "MageGame\\GameChallenge\\GameChallenge_3.j"
