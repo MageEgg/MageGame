@@ -67,6 +67,9 @@
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
 
+//选择英雄
+#include "MageGame\\SelectHero\\SelectHero.j"
+
 //区域事件
 #include "MageGame\\RectEvent\\InitRctEvent.j"
 
