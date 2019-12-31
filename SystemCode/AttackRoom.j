@@ -38,30 +38,32 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         
         
         for pid = 0,3//玩家数量
-            x = AttackRoomPostion[pid][1]
-            y = AttackRoomPostion[pid][2]
-            
-            AttackRoomGroup[pid] = CreateGroup()
-            AttackRoomUid = 'g00A'
-            AttackRoomUnitNum = 10
-            
-            Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
-            Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
-            Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
-            Pu[24]=CreateUnit(Player(pid),'np04',x+512,y,270)//副本入口
-            Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
-            Pu[26]=CreateUnit(Player(pid),'np06',x-512,y+256,270)//药品商店
-            
-            Pu[27]=CreateUnit(Player(pid),'u001',x+512,y+256,270)//送宝金蝉
-            UnitAddAbility(Pu[27],'Avul')
-            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,101)
-            SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-            SetUnitVertexColor(Pu[27],255,255,255,50)
-            PauseUnit(Pu[27],true)
-            
-            ShowUnit(Pu[23],false)
-            ShowUnit(Pu[24],false)
-            ShowUnit(Pu[25],false)
+            if  IsPlaying(pid) == true
+                x = AttackRoomPostion[pid][1]
+                y = AttackRoomPostion[pid][2]
+                
+                AttackRoomGroup[pid] = CreateGroup()
+                AttackRoomUid = 'g00A'
+                AttackRoomUnitNum = 10
+                
+                Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
+                Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
+                Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
+                Pu[24]=CreateUnit(Player(pid),'np04',x+512,y,270)//副本入口
+                Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
+                Pu[26]=CreateUnit(Player(pid),'np06',x-512,y+256,270)//药品商店
+                
+                Pu[27]=CreateUnit(Player(pid),'u001',x+384,y+192,225)//送宝金蝉
+                UnitAddAbility(Pu[27],'Avul')
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,101)
+                SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+                SetUnitVertexColor(Pu[27],255,255,255,50)
+                PauseUnit(Pu[27],true)
+                
+                ShowUnit(Pu[23],false)
+                ShowUnit(Pu[24],false)
+                ShowUnit(Pu[25],false)
+            endif
         end
         
         
@@ -151,8 +153,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     endfunction
 
 //事件类
-    function geiqian(unit si,unit kill)
-        PlayerHeroKillUnit.execute(kill,si)
+    function AttackRoomKillUnit(unit wu,unit tu)
+        PlayerHeroKillUnit.execute(wu,tu)
     endfunction
     function SoulToFrog(int pid)
         real x = AttackRoomPostion[pid][1] 
@@ -160,7 +162,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         if  GetUnitTypeId(Pu[27]) == 'u001'
             RemoveUnit(Pu[27])
             Pu[27]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
-            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'n001',x+384,y+192,270)
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+384,y+192,225)
             LocAddEffect(x+512,y+256,"effect_az_bw_lina_t1-2.mdl")
         endif
     endfunction
@@ -212,6 +214,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real x = GetUnitX(ku)
         real y = GetUnitY(ku)
         int pid=GetPlayerId(GetOwningPlayer(ku))
+        AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
         if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == true
             if  GetUnitTypeId(Pu[27]) == 'u001'
