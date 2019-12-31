@@ -285,6 +285,7 @@ library AttackUnit uses DamageCode
             endif
             if  FlushNum == 1
                 ExecuteFunc("ClearDamageRanking")
+                ShowBossDamageUI(true)
             endif
             FlushNum = FlushNum - 1
             SaveInteger(ht,GetHandleId(t),1,FlushNum)
