@@ -225,4 +225,37 @@ library HeroAbilityFunc2 uses OtherDamageTimer
     endfunction
 
 
+    function SpellS503(unit wu)
+        unit u1 = wu
+        real damage = GetAbilityDamage(wu,'S503',1)
+        real x = GetUnitX(wu)
+        real y = GetUnitY(wu)
+        LocAddEffectSetSize(x,y,"effect_tx_asad (24).mdl",1.8)
+        TimerStart(0.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+
+            LocAddEffectSetSize(x,y,"effect_tx_asad (25).mdl",1.8)
+
+            g.destroy()
+            endtimer
+
+            flush locals
+        }
+        flush locals
+        
+    endfunction
+    function SpellS503Select(real x,real y)
+        for pid = 0,3
+            if  GetUnitTypeId(Pu[1]) == 'H003'
+                if  IsUnitInRangeXY(Pu[1], x, y, 600) == true
+                    SpellS503(Pu[1])
+                endif
+            endif
+        end
+    endfunction
+
+
 endlibrary

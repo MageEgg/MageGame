@@ -38,8 +38,8 @@ library OtherDamageTimer uses SystemTimer
         effect tx=AddSpecialEffect(s,x0,y0)
         EXSetEffectZ( tx, high )
         EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
-        EXEffectMatRotateY( tx, Pang(x0, high,x,0)/0.01745 )
-        EXEffectMatRotateX( tx, Pang(y0, high,y,0)/0.01745)
+        //EXEffectMatRotateY( tx, Pang(x0, high,x,0)/0.01745 )
+        //EXEffectMatRotateX( tx, Pang(y0, high,y,0)/0.01745)
         
         TimerStart(0.03,true)
         {   if  EXGetEffectZ(tx)>0
@@ -52,7 +52,7 @@ library OtherDamageTimer uses SystemTimer
                 DestroyEffect(tx)
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x,y,r,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 LocAddEffect(x,y,b)
                 g.destroy()
                 u=null
@@ -155,7 +155,7 @@ function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,re
             uu = GroupPickRandomUnit(g1)
             GroupClear(g1)
             GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             if uu !=null
                 Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
                 DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
