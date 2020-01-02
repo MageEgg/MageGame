@@ -29,7 +29,7 @@ scope ItemSystem initializer InitItemSystem
                     if  Pu[24] == null
                         Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
-                        PlayerUnLockPlot(pid,index)
+                        PlayerUnLockPlot(pid,1)
                     endif
                 endif
             endif
