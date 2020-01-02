@@ -354,7 +354,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
                 if  num < 75
                     AddUnitRealState(wu,15,2)
                     AddUnitRealState(wu,16,2)
-                    GetUnitIntState(wu,'S511',num+1)
+                    SetUnitIntState(wu,'S511',num+1)
                 endif
                 BJDebugMsg("命途多舛 成功")
                 return true
