@@ -186,6 +186,22 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         UnitAddEffect(u,"effect_effect_az_goods_tp_target_effect(4).mdl")
     endfunction
 
+    function GetGameChallengOperaSelsect()->int
+        int cosa = 0
+        int cosb = 0
+        for num = 1,8
+            if  GameChallengOperaWay[num] == 1
+                cosa = cosa + 1
+            elseif  GameChallengOperaWay[num] == 2
+                cosb = cosb + 1
+            endif
+        end
+        if  cosb > 4
+            return 0
+        endif
+        return GetRandomInt(0,1)
+    endfunction
+
     function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
         real life = 0
         life = GetUnitRealState(u,5)*(1.0+0.2*PlayerChallengeCosNum(flag))

@@ -104,7 +104,7 @@ library CreateOpera uses DamageCode
         StopAttackUnitGroup()
         PanCameraToTimed(1685,-3104,0)
         OpenAttackShowUI("UI_AttackShow_2.tga",0.5)
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpear_A)
+        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_A)
         TimerStart(1,false)
         {
             ExecuteFunc("CreateOperaA2")
@@ -267,7 +267,7 @@ library CreateOpera uses DamageCode
         KillAttackUnitGroup()
         PanCameraToTimed(2795,26,0)
         OpenAttackShowUI("UI_AttackShow_3.tga",0.5)
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpear_B)
+        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_B)
         TimerStart(1,false)
         {
             ExecuteFunc("CreateOperaB2")
@@ -519,9 +519,9 @@ library CreateOpera uses DamageCode
     function CreateOperaC()
         StopAttackUnitGroup()
         RemoveUnit(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e003',-100000,-100000,0))
-        PanCameraToTimed(GetRectCenterX(gg_rct_AttackOpear_C),GetRectCenterY(gg_rct_AttackOpear_C),0)
+        PanCameraToTimed(GetRectCenterX(gg_rct_AttackOpera_C),GetRectCenterY(gg_rct_AttackOpera_C),0)
         OpenAttackShowUI("UI_AttackShow_4.tga",0.5)
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpear_C)
+        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_C)
         TimerStart(1,false)
         {
             ExecuteFunc("CreateOperaC2")

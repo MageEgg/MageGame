@@ -254,7 +254,7 @@ library GameChallenge1 uses GameChallengeBase
         if  GameChallengInt[12] == 2
             GameChallengInt[12] = 0
             if  GameChallengOperaWay[1] == 0
-                if  GetRandomInt(0,1) == 0
+                if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[1] = 1
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r追兵已退，我便送父王回西岐。")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
