@@ -22,7 +22,7 @@ library GameChallenge2 uses GameChallengeBase
         if  GameChallengInt[20] == 4
             GameChallengInt[20] = 0
             if  GameChallengOperaWay[2] == 0
-                if  GetRandomInt(0,1) == 0
+                if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[2] = 1
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[哪吒]：|r一人做事一人当，岂有连累父母之理！今我削肉剔骨，不累双亲。")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r后太乙真人以莲花化身复活哪吒，并化去哪吒杀性。")
@@ -41,7 +41,7 @@ library GameChallenge2 uses GameChallengeBase
             GameChallenge_2Flush(pid)
             PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
             //奖励
-            PlayerFinishPlot(pid,2)
+            PlayerFinishPlotEx(pid,2)
         endif
     endfunction
 
@@ -153,7 +153,7 @@ library GameChallenge2 uses GameChallengeBase
         GameChallenge_2Flush(pid)
         IsFinshChallenge(2) = true
         //奖励
-        PlayerFinishPlot(pid,2)
+        PlayerFinishPlotEx(pid,2)
     endfunction
 
     function EnRctGameChalleng_2_Water1()
