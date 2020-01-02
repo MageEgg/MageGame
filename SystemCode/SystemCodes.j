@@ -39,14 +39,14 @@ library SystemCodes uses ServerTime,Define1
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetPlayerUnitPostion(Pu[1],x,y)
-        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))
         PlayerSelectOneUnit(pid,Pu[1])
     endfunction
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetUnitPosition(Pu[1],x,y)
-        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))
         PlayerSelectOneUnit(pid,Pu[1])
     endfunction
     
@@ -458,6 +458,10 @@ library SystemCodes uses ServerTime,Define1
         g = null
         p = null
     endfunction
+
+    function IsLocInRect(rect r,real x,real y)->bool
+        return (GetRectMinX(r) <= x) and (x <= GetRectMaxX(r)) and (GetRectMinY(r) <= y) and (y <= GetRectMaxY(r))
+    endfunction
     
 endlibrary
 library UnitRanDropItem initializer InitAllFunc uses SystemCodes
@@ -589,6 +593,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         unitpool HeroPool = CreateUnitPool() 
 
         function InitHeroPoolFunc()
+        /*
             for i = 1,9
                 UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
             end
@@ -598,6 +603,8 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             end
             UnitPoolAddUnitType( HeroPool, 'H030', 1 )
             UnitPoolAddUnitType( HeroPool, 'H031', 1 )
+            */
+            UnitPoolAddUnitType( HeroPool, 'H004', 1 )
         endfunction
 
 
