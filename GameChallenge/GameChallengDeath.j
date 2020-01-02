@@ -27,6 +27,8 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChalleng_1_JLDeath(pid,u2)
         elseif  uid2 == 'uf12'
             GameChalleng_1_LZZDeath(pid,u2)
+        elseif  uid2 == 'uf13' or uid2 == 'uf14'
+            GameChalleng_1_JYDeath(pid,u2)
         endif
         flush locals
     endfunction
