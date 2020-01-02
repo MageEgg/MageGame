@@ -1,5 +1,23 @@
 scope KeyEvent initializer InitKeyBroadListener
 
+    private array bool KeyPlayerBool[6][680]
+    #define KeyBool KeyPlayerBool[pid]
+
+    func KeyBoolTimer(int id,int kb)
+        int pid = id
+        int key = kb
+        KeyBool[key] = true
+        TimerStart(0.25,false)
+        {
+            if  KeyBool[key] == true
+                KeyBool[key] = false
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    end
+
     func KeyEventFunc()
         int pid = GetPlayerId(DzGetTriggerKeyPlayer())
         int key = DzGetTriggerKey()
@@ -64,6 +82,15 @@ scope KeyEvent initializer InitKeyBroadListener
                 SetPlayerSkillPostion( pid, 3,DzGetMouseTerrainX(),DzGetMouseTerrainY())
             elseif  key == 82
                 SetPlayerSkillPostion( pid, 4,DzGetMouseTerrainX(),DzGetMouseTerrainY())
+            elseif  key == 88
+                if  KeyBool[key] == true
+                    KeyBool[key] = false
+                    if  Player(pid) == GetLocalPlayer()
+                        ClearTextMessages()
+                    endif
+                else
+                    KeyBoolTimer(pid,key)
+                endif
             elseif  key == 72 //H
                 /*if  SPu == Pu[1]
                     IssueImmediateOrderById(Pu[1], 851993 )
@@ -93,7 +120,7 @@ scope KeyEvent initializer InitKeyBroadListener
         DzTriggerRegisterKeyEventTrg(trig,1,27) //Esc
         DzTriggerRegisterKeyEventTrg(trig,1,9) //Tab
         DzTriggerRegisterKeyEventTrg(trig,1,66) //B
-        DzTriggerRegisterKeyEventTrg(trig,1,88)//X 67) //C
+        DzTriggerRegisterKeyEventTrg(trig,1,88) //X
         DzTriggerRegisterKeyEventTrg(trig,1,68) //D
         DzTriggerRegisterKeyEventTrg(trig,1,69) //E
         DzTriggerRegisterKeyEventTrg(trig,1,70) //F

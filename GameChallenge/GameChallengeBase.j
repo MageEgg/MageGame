@@ -145,9 +145,27 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
     endfunction
 
+    function CreateUsesGameChallengUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
+        BJDebugMsg(I2S(num))
+        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,ang)
+        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],0)
+        SetUnitRealState(GameChallengUnit[num],99,num)
+        UnitAddAbility(GameChallengUnit[num],'AZ99')
+        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+    endfunction
+
     function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
         BJDebugMsg(I2S(num))
         GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid,x,y,0)
+        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],0)
+        SetUnitRealState(GameChallengUnit[num],99,num)
+        UnitAddAbility(GameChallengUnit[num],'AZ99')
+        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+    endfunction
+
+    function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
+        BJDebugMsg(I2S(num))
+        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid,x,y,ang)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],0)
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
@@ -158,6 +176,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         UnitAddEffect(u,"effect_az_goods_lvlup(3).mdl")
         SetUnitXY(u,x,y)
         LocAddEffect(x,y,"effect_effect_az_goods_tp_target_effect(4).mdl")
+    endfunction
+
+    function UnitAddEffectOfGameChalleng(unit u)
+        UnitAddEffect(u,"effect_az_goods_lvlup(3).mdl")
+        UnitAddEffect(u,"effect_effect_az_goods_tp_target_effect(4).mdl")
     endfunction
 
 endlibrary
