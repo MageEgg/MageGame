@@ -439,6 +439,10 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         UnitApplyTimedLife(Pu[63], 'BHwe', 6 )
     endfunction
 
+    function SpellS514(unit wu,real damage)
+        
+    endfunction
+
     function SpellS516(unit wu)
         int num = GetUnitIntState(wu,'S511')
         SetUnitIntState(wu,'S511',num+1)
