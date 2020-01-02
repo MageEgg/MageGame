@@ -12,8 +12,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define GameChallengUnit                GameChallengPlayerUnit[pid]
     #define GameChallengBool                GameChallengPlayerBool[pid]
 
-    #define PlayerInChallengeShowUnit       GameChallengUnit[0]
-    #define IsPlayerInChallenge             GameChallengBool[0]
+    #define PlayerInChallengeShowUnit       GameChallengUnit[500]
+    #define IsPlayerInChallenge             GameChallengBool[500]
     #define IsFinshChallenge(num)           GameChallengBool[500+num]
 
     #define PlayerInChallengeNumber         GameChallengInt[500]
