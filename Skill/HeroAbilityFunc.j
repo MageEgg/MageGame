@@ -979,7 +979,13 @@ endfunction
         
 
         //BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
-        damage = GetAbilityDamage(wu,id,lv)
+        if  wu == Pu[63]
+            damage = GetAbilityDamage(Pu[1],id,lv) * 0.5
+        else
+            damage = GetAbilityDamage(wu,id,lv)
+        endif
+
+
         if  id >= 'S000' and id <= 'S300'
             if  id== 'S006'
                 SpellS006(u1.u,sx,sy,damage)

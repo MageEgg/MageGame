@@ -418,6 +418,26 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         }
         flush locals
     endfunction
+    function SpellS513Spell(unit wu)->bool
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  GetUnitTypeId(wu) == 'H013'
+            if  Pu[63] != null
+                return true
+            endif
+        endif
+        return false
+    endfunction
+    function SpellS513(unit wu,real sx,real sy)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  Pu[63] != null
+            RemoveUnit(Pu[63])
+        endif
+        BJDebugMsg("createm")
+        Pu[63] = CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"file"),sx,sy,0,0,YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"modelScale"))
+        SetUnitVertexColor(Pu[63],255,255,255,180)
+        UnitAddEffect(Pu[63],"Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl"
+        UnitApplyTimedLife(Pu[63], 'BHwe', 6 )
+    endfunction
 
     function SpellS516(unit wu)
         int num = GetUnitIntState(wu,'S511')
