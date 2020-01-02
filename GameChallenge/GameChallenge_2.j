@@ -24,7 +24,7 @@ library GameChallenge2 uses GameChallengeBase
             PlayerInChallengeNumber = 1
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            GameChallengUnit[29] = CreateUnit(Player(9),'np08',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
+            GameChallengUnit[29] = CreateUnit(Player(9),'np21',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[29],UnitAPOfPlayer)
             UnitAddAbility(GameChallengUnit[29],'AZ99')
             SetUnitAbilityLevel(GameChallengUnit[29],'AZ99',pid+1)
@@ -125,7 +125,8 @@ library GameChallenge2 uses GameChallengeBase
                 GameChallengUnit[21] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5536,3872,0)
                 SetUnitVertexColor(GameChallengUnit[21],255,255,255,0)
 
-
+                GameChallengUnit[22] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np22',-5536,3872,0)
+                SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
             endif
         end
 
