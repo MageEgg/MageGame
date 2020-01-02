@@ -1,4 +1,23 @@
 library GameChallenge2 uses GameChallengeBase
+    
+    function GameChallenge_2Flush(int pid)
+        for num = 0,5
+            SetUnitVertexColor(GameChallengUnit[20+num],255,255,255,0)
+        end
+        GameChallengInt[20] = 0
+        GameChallengInt[21] = 0
+        if  GameChallengUnit[29] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[29]))
+            RemoveUnit(GameChallengUnit[29])
+            GameChallengUnit[29] = null
+        endif
+        GameChallengCanUsesUnitFlush(pid)
+        ShowUnitOfAllPlayer(Pu[1])
+        RemoveUnit(PlayerInChallengeShowUnit)
+        PlayerInChallengeShowUnit = null
+        PlayerInChallengeNumber = 0
+        IsPlayerInChallenge = false
+    endfunction
 
     function OpenGameChallenge_2(int pid,int ty)
         real x = 0
