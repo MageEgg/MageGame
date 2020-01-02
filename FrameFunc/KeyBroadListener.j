@@ -1,5 +1,23 @@
 scope KeyEvent initializer InitKeyBroadListener
 
+    private bool array KeyPlayerBool[6][680]
+    #define KeyBool KeyPlayerBool[pid]
+
+    function KeyDoubleTimer(int id,int kb)
+        int pid = id
+        int keybool = kb
+        KeyBool[keybool] = true
+        TimerStart(0.25,false)
+        {
+            if  KeyBool[keybool] == true
+                KeyBool[keybool] = false
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     func KeyEventFunc()
         int pid = GetPlayerId(DzGetTriggerKeyPlayer())
         int key = DzGetTriggerKey()
@@ -51,7 +69,21 @@ scope KeyEvent initializer InitKeyBroadListener
                 
             elseif  key == 119 or key == 192//F8 ~
             elseif  key == 187 //+
+                h = GetCameraField(CAMERA_FIELD_TARGET_DISTANCE) + 120
+                if  Player(pid) == GetLocalPlayer()
+                    if  h > 3400
+                        h = 3400
+                    endif
+                    SetCameraField( CAMERA_FIELD_TARGET_DISTANCE, h, 0.15 )
+                endif
             elseif  key == 189 //-
+                h = GetCameraField(CAMERA_FIELD_TARGET_DISTANCE) - 120
+                if  Player(pid) == GetLocalPlayer()
+                    if  h < 1000
+                        h = 1000
+                    endif
+                    SetCameraField( CAMERA_FIELD_TARGET_DISTANCE, h, 0.15 )
+                endif
             elseif  key == 68
                 SetPlayerSkillPostion( pid, 8,DzGetMouseTerrainX(),DzGetMouseTerrainY())
             elseif  key == 70
@@ -64,6 +96,15 @@ scope KeyEvent initializer InitKeyBroadListener
                 SetPlayerSkillPostion( pid, 3,DzGetMouseTerrainX(),DzGetMouseTerrainY())
             elseif  key == 82
                 SetPlayerSkillPostion( pid, 4,DzGetMouseTerrainX(),DzGetMouseTerrainY())
+            elseif  key == 88
+                if  KeyBool[key] == true
+                    KeyBool[key] = false
+                    if  Player(pid) == GetLocalPlayer()
+                        ClearTextMessages()
+                    endif
+                else
+                    KeyDoubleTimer(pid,key)
+                endif
             elseif  key == 72 //H
                 /*if  SPu == Pu[1]
                     IssueImmediateOrderById(Pu[1], 851993 )
@@ -93,7 +134,7 @@ scope KeyEvent initializer InitKeyBroadListener
         DzTriggerRegisterKeyEventTrg(trig,1,27) //Esc
         DzTriggerRegisterKeyEventTrg(trig,1,9) //Tab
         DzTriggerRegisterKeyEventTrg(trig,1,66) //B
-        DzTriggerRegisterKeyEventTrg(trig,1,88)//X 67) //C
+        DzTriggerRegisterKeyEventTrg(trig,1,88) //X
         DzTriggerRegisterKeyEventTrg(trig,1,68) //D
         DzTriggerRegisterKeyEventTrg(trig,1,69) //E
         DzTriggerRegisterKeyEventTrg(trig,1,70) //F
