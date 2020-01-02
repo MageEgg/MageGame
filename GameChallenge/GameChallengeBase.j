@@ -10,13 +10,26 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
     #define GameChallengUnit                GameChallengPlayerUnit[pid]
     #define GameChallengBool                GameChallengPlayerBool[pid]
 
+    #define HeroTaskShowUnit                GameChallengUnit[0]
+
     #define GameBiaoJI                      GameChallengMapUnit
 
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
-    #define GameChalleng_1_YZZ              GameChallengMapUnit[510]
-    #define GameChalleng_1_LZZ              GameChallengMapUnit[511]
+
+    /////////////////////////////////////////////////////
+    /*
+    新手 0-9
+    副本 10-20
+
+
+
+
+
+    //500之后
+    */
+    /////////////////////////////////////////////////////
 
     function InitGameChallengeFunc()
         ExecuteFunc("InitGameChallenge_0")
@@ -67,6 +80,50 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode
             return false
         endif
         return true
+    endfunction
+
+
+    function SetUnitFollowAlways(int id)
+        int pid = id
+        TimerStart(0.01,true)
+        {
+            if  HeroTaskShowUnit != null
+                SetUnitXY(HeroTaskShowUnit,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function ShowHeroGetTask(int pid)
+        int ap = 255
+        ShowUnitOfOnlyPlayerEx(Pu[1])
+        HeroTaskShowUnit = CreateUnit(Player(pid),'e00A',GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
+        if  Player(pid) == GetLocalPlayer()
+            ap = 0
+        endif
+        SetUnitVertexColor(HeroTaskShowUnit,255,255,255,ap)
+        SetUnitFollowAlways(pid)
+    endfunction
+
+    function GetCanUsesGameChallengUnitID(int pid)->int
+        for num = 500,600
+            if  GameChallengUnit[num] != null
+                return num
+            endif
+        end
+        return 0
+    endfunction
+
+    
+    function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
+        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,0)
+        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],0)
+        SetUnitRealState(GameChallengUnit[num],99,num)
+        UnitAddAbility(GameChallengUnit[num],'AZ99')
+        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
     endfunction
 
 endlibrary

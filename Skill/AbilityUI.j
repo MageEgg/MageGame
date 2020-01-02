@@ -36,8 +36,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     end
     
     function GetAbilityCD(unit wu,int id)->real
-        real r1 = GetTypeIdData(id,104)
-        real r2 = GetUnitRealState(wu,10)
+        real r1 = GetTypeIdReal(id,100)
+        real r2 = GetUnitRealState(wu,25)
         return r1 * (1-r2*0.01)
     endfunction
     
@@ -327,12 +327,12 @@ function SetAbilityCD_AC(unit u,int id,real cd)//设置被动技能CD
     YDWESetUnitAbilityDataReal( u,  GetHeroAbilityIndex(u,id)+'AC00', 1, 105, cd )
     YDWESetUnitAbilityState( u, GetHeroAbilityIndex(u,id)+'AC00', 1, cd )
 endfunction
-   
+
 function SetAbilityCD_AG(unit u,int id,real cd)//设置主动技能CD
-    YDWESetUnitAbilityDataReal( u,id, 1, 105, cd )
-    YDWESetUnitAbilityState( u,id, 1, cd )
+    integer lv=GetUnitAbilityLevel(u,id)
+    YDWESetUnitAbilityDataReal( u,id, lv, 105, cd )
+    YDWESetUnitAbilityState( u,id,1, cd )
 endfunction
-    
     
 
 
