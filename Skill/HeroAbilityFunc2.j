@@ -356,10 +356,11 @@ library HeroAbilityFunc2 uses OtherDamageTimer
                     AddUnitRealState(wu,16,2)
                     GetUnitIntState(wu,'S511',num+1)
                 endif
-                BJDebugMsg("命途多舛")
-                return false
-            else
+                BJDebugMsg("命途多舛 成功")
                 return true
+            else
+                BJDebugMsg("命途多舛 失败")
+                return false
             endif
         else
             return true
