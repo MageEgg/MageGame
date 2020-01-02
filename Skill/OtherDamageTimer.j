@@ -283,7 +283,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                     
                     
     //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
-    function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2)
+    function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,boolean b1,boolean b2,integer attt,integer damt)
         unit u1 = wu
         unit u2 = m 
         real r1 = rac
@@ -296,6 +296,8 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         int time = R2I(dis/S)
         bool bool1 = b1
         bool bool2 = b2
+        int atttype = attt
+        int damtype = damt
         group wg = CreateGroup()
         group ug = CreateGroup()
         int n = 0
@@ -318,7 +320,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                     
                     GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnit(GetOwningPlayer(u1),wg,""))
                     
-                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ConvertAttackType(atttype),ConvertDamageType(damtype),null)
                 endif
             else
                 //额外判断
@@ -353,7 +355,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                 if  dam == 0
                     CreateTmFuncZero(wu,u,r,rac,dis,time,high)
                 else
-                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2)
+                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2,attt,damt)
                 endif
             endif
         end
@@ -373,7 +375,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                 if  dam == 0
                     CreateTmFuncZero(wu,u,r,rac,dis,time,high)
                 else
-                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2)
+                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2,attt,damt)
                 endif
             endif
         end
