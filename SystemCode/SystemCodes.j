@@ -458,6 +458,10 @@ library SystemCodes uses ServerTime,Define1
         g = null
         p = null
     endfunction
+
+    function IsLocInRect(rect r,real x,real y)->bool
+        return (GetRectMinX(r) <= x) and (x <= GetRectMaxX(r)) and (GetRectMinY(r) <= y) and (y <= GetRectMaxY(r))
+    endfunction
     
 endlibrary
 library UnitRanDropItem initializer InitAllFunc uses SystemCodes
