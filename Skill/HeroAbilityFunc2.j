@@ -248,8 +248,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             endif
         end
     endfunction
-<<<<<<< HEAD
-=======
+    
     function SpellS504_2(unit wu,real x,real y,real dam)
         unit u1 = wu
         real x1 = x
@@ -311,7 +310,6 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             
         endif
     endfunction
->>>>>>> 5f50b90cacba45dea1f773e71a8ceb6ca656670c
 
 
 endlibrary
