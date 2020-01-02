@@ -49,6 +49,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_6")
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
+        ExecuteFunc("InitGameChallengeLeaveRctEvent")
     endfunction
 
     function SetUnitAPOfBool(unit u,int boolid)

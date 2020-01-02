@@ -274,6 +274,7 @@ scope DeathEvent initializer InitDeathEvent
                 if  u1 == Pu[1]
                     RevivePlayerHero(pid)
                     BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+                    GameChallengPlayerDeathEvent(u1)
                 endif
             endif
         endif

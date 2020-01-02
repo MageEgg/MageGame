@@ -33,29 +33,61 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         endif
     endfunction
 
+    function FlushGameChallenge(int pid,int flag)
+        if  flag == 1
+            GameChallenge_1Flush(pid)
+        elseif  flag == 2
+            GameChallenge_2Flush(pid)
+        elseif  flag == 3
+            GameChallenge_3Flush(pid)
+        elseif  flag == 4
+            GameChallenge_4Flush(pid)
+        elseif  flag == 5
+            GameChallenge_5Flush(pid)
+        elseif  flag == 6
+            GameChallenge_6Flush(pid)
+        elseif  flag == 7
+            GameChallenge_7Flush(pid)
+        elseif  flag == 8
+            GameChallenge_8Flush(pid)
+        endif
+    endfunction 
+
     function GameChallengPlayerDeathEvent(unit wu)
         unit u1 = wu
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
-            if  PlayerInChallengeNumber == 1
-                GameChallenge_1Flush(pid)
-            elseif  PlayerInChallengeNumber == 2
-                GameChallenge_2Flush(pid)
-            elseif  PlayerInChallengeNumber == 3
-                GameChallenge_3Flush(pid)
-            elseif  PlayerInChallengeNumber == 4
-                GameChallenge_4Flush(pid)
-            elseif  PlayerInChallengeNumber == 5
-                GameChallenge_5Flush(pid)
-            elseif  PlayerInChallengeNumber == 6
-                GameChallenge_6Flush(pid)
-            elseif  PlayerInChallengeNumber == 7
-                GameChallenge_7Flush(pid)
-            elseif  PlayerInChallengeNumber == 8
-                GameChallenge_8Flush(pid)
+            FlushGameChallenge(pid,PlayerInChallengeNumber)
+        endif
+        flush locals
+    endfunction
+
+    function GameChallengPlayerLeaveRctEvent()
+        unit u1 = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == Pu[1]
+                if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
+                    FlushGameChallenge(pid,PlayerInChallengeNumber)
+                endif
             endif
         endif
         flush locals
+    endfunction
+    
+    function InitGameChallengeLeaveRctEvent()
+        trigger tig = null
+        region rectRegion = null
+
+        tig = CreateTrigger() 
+        rectRegion = CreateRegion()
+        RegionAddRect(rectRegion,gg_rct_ChallengeRctConA)
+        RegionAddRect(rectRegion,gg_rct_ChallengeRctConB)
+        TriggerRegisterLeaveRegion(tig,rectRegion,null)
+        TriggerAddAction(tig, function GameChallengPlayerLeaveRctEvent)
+
+        tig = null
+        rectRegion = null
     endfunction
 
     function GameChallengDeathEvent(unit wu,unit tu)

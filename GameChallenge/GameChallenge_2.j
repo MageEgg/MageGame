@@ -232,7 +232,7 @@ library GameChallenge2 uses GameChallengeBase
 
     function InitGameChallenge_2()
         trigger tig = null
-        region rectRegion = null
+
         for pid = 0,3
             if  IsPlaying(pid) == true
                 GameChallengUnit[20] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-6080,3072,0)
@@ -262,15 +262,7 @@ library GameChallenge2 uses GameChallengeBase
         end
         TriggerAddAction(tig, function EnRctGameChalleng_2_Water2)
 
-        /*tig = CreateTrigger() 
-        rectRegion = CreateRegion()
-        RegionAddRect(rectRegion,gg_rct_ChallengeRct_1_4)
-        TriggerRegisterEnterRegion(tig,rectRegion,null)
-        TriggerAddAction(tig, function FuncEnterRctChallengeRct_1_4)*/
-
-
         tig = null
-        rectRegion = null
     endfunction
 
 endlibrary
