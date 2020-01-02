@@ -108,6 +108,13 @@ library DamageCode uses UnitStateSet
     function GetUnitWsState(unit wu)->real
         real s = GetUnitRealState(wu,15)
         real lv = 0
+        int uid = GetUnitTypeId(wu)
+
+        if  uid == 'H009'
+            if  GetUnitPsState(wu)>= 120
+                s = s + 30
+            endif
+        endif
 
         return s
     endfunction

@@ -129,7 +129,7 @@ call InitAbilityData('S508',1,0,2,6,0,0,2,0,"镜花之舞","每次触发被动�
 call InitAbilityData('S509',1,0,0,0,0,0,0,0,"奕剑之道","奕剑之道，在于无招。\n普攻伤害+30%\n\n普攻伤害超过120%时，物理伤害+30%。","ReplaceableTextures\\CommandButtons\\BTNS509.blp")
 call InitAbilityData('S510',2,0,0,0,0,0,0,2,"八九玄功","使用后依次变幻形态，并获得相应加成：\n金龙形态：暴击+10%\n白虎形态：攻速+45%\n人形态：冷却-10%","ReplaceableTextures\\CommandButtons\\BTNS510.blp")
 call InitAbilityData('S511',1,0,0,0,0,0,0,0,"命途多舛","释放普通技能有50%几率失败，但成功了将增加2%伤害加成，上限150%。","ReplaceableTextures\\CommandButtons\\BTNS511.blp")
-call InitAbilityData('S512',2,0,0,6,0,0,1,12,"天王宝塔","掷出天王宝塔镇压目标，造成攻击*6物理伤害并眩晕2秒。\n暴击>30%时，伤害翻倍。","ReplaceableTextures\\CommandButtons\\BTNS512.blp")
+call InitAbilityData('S512',2,0,1,6,0,0,1,12,"天王宝塔","掷出天王宝塔镇压目标，造成攻击*6物理伤害并眩晕2秒。\n暴击>30%时，伤害翻倍。","ReplaceableTextures\\CommandButtons\\BTNS512.blp")
 call InitAbilityData('S513',3,0,0,0,0,0,0,12,"身外法身","使用毫毛在目标地点幻化一个法身，可重复施放你的技能，但只造成50%伤害。\n\n法身无法攻击，不可选取，不受攻击。","ReplaceableTextures\\CommandButtons\\BTNS513.blp")
 call InitAbilityData('S514',2,0,2,4,0,0,2,10,"冰封万里","对自身500码范围发动一次冰暴，造成法强*4法术伤害\n\n冷却缩减>30%：额外对自身800码发动一次冰暴，造成法强*6法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS514.blp")
 call InitAbilityData('S515',1,0,2,8,0,0,2,0,"日月珠","每次施法凝聚一颗日月珠环绕自身，数量达到8颗时，向攻击目标造成法强*8范围伤害。","ReplaceableTextures\\CommandButtons\\BTNS515.blp")

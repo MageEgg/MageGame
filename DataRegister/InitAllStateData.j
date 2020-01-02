@@ -274,6 +274,27 @@ function InitStateData4()
 InitTypeState4('S099',15,0,0,0,0,0,0,0,0,0)
 endfunction
 function InitStateData5()
+InitTypeState2('H009',0,30,0,0,0,0,0,0,0,0)	
+	InitTypeState3('H010',0,0,0,0,10,0,0,0,0,0)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+InitTypeState2('H028',0,0,0,0,50,-100,0,0,0,0)	
+
 endfunction
 function InitStateData6()
 endfunction
