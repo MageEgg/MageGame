@@ -348,7 +348,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
 
     function SpellS511Spell(unit wu)->bool
         int num = 0
-        if  GetUnitTypeId(wu) == 'S511'
+        if  GetUnitTypeId(wu) == 'H511'
             if  GetRandomInt(1,100)<= 50
                 num = GetUnitIntState(wu,'S511')
                 if  num < 75
