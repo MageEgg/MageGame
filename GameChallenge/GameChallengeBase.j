@@ -23,6 +23,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
+    #define UnitAPOfPlayer  0
+
 
     /////////////////////////////////////////////////////
     /*
@@ -150,6 +152,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+    endfunction
+
+    function SetUnitPositionOfGameChalleng(unit u,real x,real y)
+        UnitAddEffect(u,"effect_az_goods_lvlup(3).mdl")
+        SetUnitXY(u,x,y)
+        LocAddEffect(x,y,"effect_effect_az_goods_tp_target_effect(4).mdl")
     endfunction
 
 endlibrary

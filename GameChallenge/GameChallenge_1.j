@@ -30,9 +30,9 @@ library GameChallenge1 uses GameChallengeBase
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往云中子|r")
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[10],0)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[11],0)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[12],0)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[10],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[11],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[12],UnitAPOfPlayer)
         elseif  ty == 1
             x = -4544
             y = 896
@@ -41,8 +41,8 @@ library GameChallenge1 uses GameChallengeBase
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往文王姬昌|r")
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[14],0)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[15],0)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[14],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[15],UnitAPOfPlayer)
         endif
     endfunction
 
@@ -84,9 +84,7 @@ library GameChallenge1 uses GameChallengeBase
         int num = 0
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r这些兵器都不合适我啊。咦，那两颗红杏好像很好吃的样子！啊！！！我怎么了！！！")
-        UnitAddEffect(GameChallengUnit[19],"effect_az_goods_lvlup(3).mdl")
-        SetUnitXY(GameChallengUnit[19],x,y)
-        LocAddEffect(x,y,"effect_effect_az_goods_tp_target_effect(4).mdl")
+        SetUnitPositionOfGameChalleng(GameChallengUnit[19],x,y)
         RemoveUnitTimer(GameChallengUnit[19],0.5)
         GameChallengUnit[19] = null
         TimerStart(0.4,false)
@@ -117,7 +115,7 @@ library GameChallenge1 uses GameChallengeBase
 
     function GameChalleng_1_XYTimerEx(int id)
         int pid = id
-        TimerStart(0.2,true)
+        TimerStart(0.15,true)
         {   
             int num = 0
             real x = 0
@@ -163,7 +161,7 @@ library GameChallenge1 uses GameChallengeBase
                 if  GameChallengUnit[19] == null and IsFinshChallenge(1) == false and IsPlayerInChallenge == true
                     SetUnitVertexColor(GameChallengUnit[11],255,255,255,0)
                     GameChallengUnit[19] = CreateUnit(Player(9),'np08',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
-                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],0)
+                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],UnitAPOfPlayer)
                     UnitAddAbility(GameChallengUnit[19],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[19],851983,GetRectCenterX(gg_rct_ChallengeRct_1_1),GetRectCenterY(gg_rct_ChallengeRct_1_1))
@@ -280,7 +278,7 @@ library GameChallenge1 uses GameChallengeBase
                 if  GameChallengUnit[19] == null and IsPlayerInChallenge == true
                     SetUnitVertexColor(GameChallengUnit[15],255,255,255,0)
                     GameChallengUnit[19] = CreateUnit(Player(9),'np08',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
-                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],0)
+                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],UnitAPOfPlayer)
                     UnitAddAbility(GameChallengUnit[19],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[19],851983,-3776,1472)
@@ -301,9 +299,7 @@ library GameChallenge1 uses GameChallengeBase
             if  u1 == GameChallengUnit[19]
                 x = -4224
                 y = 1600
-                UnitAddEffect(GameChallengUnit[19],"effect_az_goods_lvlup(3).mdl")
-                SetUnitXY(GameChallengUnit[19],x,y)
-                LocAddEffect(x,y,"effect_effect_az_goods_tp_target_effect(4).mdl")
+                SetUnitPositionOfGameChalleng(GameChallengUnit[19],x,y)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r纣王今既放归我父王，为何又派你俩来追袭？反复无常，实在可恨！")
                 IssueImmediateOrderById(GameChallengUnit[19], 851993 )
                 num = GetCanUsesGameChallengUnitID(pid)
