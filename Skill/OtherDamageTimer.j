@@ -38,8 +38,8 @@ library OtherDamageTimer uses SystemTimer
         effect tx=AddSpecialEffect(s,x0,y0)
         EXSetEffectZ( tx, high )
         EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
-        EXEffectMatRotateY( tx, Pang(x0, high,x,0)/0.01745 )
-        EXEffectMatRotateX( tx, Pang(y0, high,y,0)/0.01745)
+        //EXEffectMatRotateY( tx, Pang(x0, high,x,0)/0.01745 )
+        //EXEffectMatRotateX( tx, Pang(y0, high,y,0)/0.01745)
         
         TimerStart(0.03,true)
         {   if  EXGetEffectZ(tx)>0
@@ -52,7 +52,7 @@ library OtherDamageTimer uses SystemTimer
                 DestroyEffect(tx)
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x,y,r,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 LocAddEffect(x,y,b)
                 g.destroy()
                 u=null
@@ -155,7 +155,7 @@ function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,re
             uu = GroupPickRandomUnit(g1)
             GroupClear(g1)
             GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             if uu !=null
                 Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
                 DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
@@ -283,7 +283,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                     
                     
     //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
-    function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2)
+    function CreateTmFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,boolean b1,boolean b2,integer attt,integer damt)
         unit u1 = wu
         unit u2 = m 
         real r1 = rac
@@ -296,6 +296,8 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         int time = R2I(dis/S)
         bool bool1 = b1
         bool bool2 = b2
+        int atttype = attt
+        int damtype = damt
         group wg = CreateGroup()
         group ug = CreateGroup()
         int n = 0
@@ -318,7 +320,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                     
                     GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnit(GetOwningPlayer(u1),wg,""))
                     
-                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ConvertAttackType(atttype),ConvertDamageType(damtype),null)
                 endif
             else
                 //额外判断
@@ -353,7 +355,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                 if  dam == 0
                     CreateTmFuncZero(wu,u,r,rac,dis,time,high)
                 else
-                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2)
+                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2,attt,damt)
                 endif
             endif
         end
@@ -373,7 +375,7 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
                 if  dam == 0
                     CreateTmFuncZero(wu,u,r,rac,dis,time,high)
                 else
-                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2)
+                    CreateTmFunc(wu,u,r,dam,rac,dis,high,b1,b2,attt,damt)
                 endif
             endif
         end
