@@ -346,6 +346,28 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         endif
     endfunction
 
+    function SpellS508(unit wu)
+        int num = 0
+        real damage = 0
+        if  GetUnitTypeId(wu) == 'H008'
+            num = GetUnitIntState(wu,'S508')
+            if  num < 7
+                AddUnitRealState(wu,9,10)
+                SetUnitIntState(wu,'S508',num + 1)
+            else
+                damage = GetAbilityDamage(wu,'S508',1)
+                AddUnitRealState(wu,9,-60)
+                SetUnitIntState(wu,'S508',0)
+                
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_earthshaker_a.mdl")
+                g.destroy()
+            endif
+        endif
+    endfunction
+
     function SpellS511Spell(unit wu)->bool
         int num = 0
         if  GetUnitTypeId(wu) == 'H011'
