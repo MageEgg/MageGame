@@ -69,7 +69,21 @@ scope KeyEvent initializer InitKeyBroadListener
                 
             elseif  key == 119 or key == 192//F8 ~
             elseif  key == 187 //+
+                h = GetCameraField(CAMERA_FIELD_TARGET_DISTANCE) + 120
+                if  Player(pid) == GetLocalPlayer()
+                    if  h > 3400
+                        h = 3400
+                    endif
+                    SetCameraField( CAMERA_FIELD_TARGET_DISTANCE, h, 0.15 )
+                endif
             elseif  key == 189 //-
+                h = GetCameraField(CAMERA_FIELD_TARGET_DISTANCE) - 120
+                if  Player(pid) == GetLocalPlayer()
+                    if  h < 1000
+                        h = 1000
+                    endif
+                    SetCameraField( CAMERA_FIELD_TARGET_DISTANCE, h, 0.15 )
+                endif
             elseif  key == 68
                 SetPlayerSkillPostion( pid, 8,DzGetMouseTerrainX(),DzGetMouseTerrainY())
             elseif  key == 70
