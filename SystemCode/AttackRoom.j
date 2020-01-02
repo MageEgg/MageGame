@@ -190,10 +190,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
             else
                 real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+2
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MANA)
-                SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
-                SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
-                if  life+0.5 >= maxlife
-                    SoulToFrog(pid)
+                if  maxlife > 0
+                    SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
+                    SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
+                
+                    if  life+0.5 >= maxlife
+                        SoulToFrog(pid)
+                    endif
                 endif
                 RemoveUnit(u1)
                 endtimer

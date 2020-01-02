@@ -470,6 +470,9 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             endif
         end
     endfunction
+    function SpellS526(unit wu,unit tu)
+        
+    endfunction
 
     function SpellS529Spell(unit wu)->bool
         for pid = 0,3
