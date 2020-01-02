@@ -25,16 +25,16 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real y = 0
         
         //初始化练功房刷怪坐标
-        SetAttackRoomRefreshPostion(0,-2816,-2816)
-        SetAttackRoomRefreshPostion(1,-768,-2816)
-        SetAttackRoomRefreshPostion(2,-2816,-4864)
-        SetAttackRoomRefreshPostion(3,-768,-4864)
+        SetAttackRoomRefreshPostion(0,-8512,-5312)
+        SetAttackRoomRefreshPostion(1,-5312,-5312)
+        SetAttackRoomRefreshPostion(2,-8512,-8512)
+        SetAttackRoomRefreshPostion(3,-5312,-8512)
         
         //初始化练功房进入坐标
-        SetAttackRoomMovePostion(0,-2816,-2816)
-        SetAttackRoomMovePostion(1,-768,-2816)
-        SetAttackRoomMovePostion(2,-2816,-4864)
-        SetAttackRoomMovePostion(3,-768,-4864)
+        SetAttackRoomMovePostion(0,-8512,-5312)
+        SetAttackRoomMovePostion(1,-5312,-5312)
+        SetAttackRoomMovePostion(2,-8512,-8512)
+        SetAttackRoomMovePostion(3,-5312,-8512)
         
         
         for pid = 0,3//玩家数量
