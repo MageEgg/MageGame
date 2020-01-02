@@ -18,6 +18,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define PlayerInChallengeNumber         GameChallengInt[500]
 
+    #define PlayerChallengeCosNum(num)      GameChallengInt[501+num]
+
     #define GameBiaoJI                      GameChallengMapUnit
 
 
@@ -182,6 +184,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function UnitAddEffectOfGameChalleng(unit u)
         UnitAddEffect(u,"effect_az_goods_lvlup(3).mdl")
         UnitAddEffect(u,"effect_effect_az_goods_tp_target_effect(4).mdl")
+    endfunction
+
+    function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
+        real life = 0
+        life = GetUnitRealState(u,5)*(1.0+0.2*PlayerChallengeCosNum(flag))
+        SetUnitRealState(u,5,life)
     endfunction
 
 endlibrary

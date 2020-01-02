@@ -58,6 +58,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
             FlushGameChallenge(pid,PlayerInChallengeNumber)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]]:|cffff0000英雄死亡，挑战失败！！！|r")
         endif
         flush locals
     endfunction
@@ -69,6 +70,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             if  u1 == Pu[1]
                 if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
                     FlushGameChallenge(pid,PlayerInChallengeNumber)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]]:|cffff0000英雄离开副本，挑战失败！！！|r")
                 endif
             endif
         endif

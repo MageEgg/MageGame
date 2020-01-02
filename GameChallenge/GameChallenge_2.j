@@ -39,6 +39,7 @@ library GameChallenge2 uses GameChallengeBase
                 endif
             endif
             GameChallenge_2Flush(pid)
+            PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
             //奖励
             PlayerFinishPlot(pid,2)
         endif
@@ -83,6 +84,7 @@ library GameChallenge2 uses GameChallengeBase
                     endif
                     ang = Atan2(GetUnitY(GameChallengUnit[19])-y,GetUnitX(GameChallengUnit[19])-x)/0.01745
                     CreateUsesGameChallengUnitExOfAng(pid,num,'uf23',x,y,ang)
+                    SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
                     UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                     UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     SetUnitAnimation(GameChallengUnit[num],"attack")
