@@ -1024,7 +1024,7 @@ endfunction
         elseif  id == 'S504'
             SpellS504(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
         elseif  id == 'S516'
-            SpellS502(u1.u)
+            SpellS516(u1.u)
         endif
         
         u1.destroy()

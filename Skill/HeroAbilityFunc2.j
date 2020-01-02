@@ -348,7 +348,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
 
     function SpellS511Spell(unit wu)->bool
         int num = 0
-        if  GetUnitTypeId(wu) == 'H511'
+        if  GetUnitTypeId(wu) == 'H011'
             if  GetRandomInt(1,100)<= 50
                 num = GetUnitIntState(wu,'S511')
                 if  num < 75
@@ -365,6 +365,27 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         else
             return true
         endif
+    endfunction
+
+    function SpellS516(unit wu)
+        int num = GetUnitIntState(wu,'S511')
+        SetUnitIntState(wu,'S511',num+1)
+        if  num + 1 == 30
+            AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.6)
+        endif
+        UnitAddEffect(wu,"effect_az-leiji.mdl")
+        KillUnit(wu)
+        BJDebugMsg("自杀了")
+        for pid= 0,3
+            if  IsPlaying(pid) == true
+                if  PlayerDeathBool == false
+                    SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE))
+                endif
+                AddUnitStateExTimer(Pu[1],15,15,6)
+                AddUnitStateExTimer(Pu[1],16,15,6)
+                UnitAddEffect(Pu[1],"effect_e_buffattack.mdl")
+            endif
+        end
     endfunction
 
 
