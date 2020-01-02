@@ -1,22 +1,22 @@
 scope KeyEvent initializer InitKeyBroadListener
 
-    private array bool KeyPlayerBool[6][680]
+    private bool array KeyPlayerBool[6][680]
     #define KeyBool KeyPlayerBool[pid]
 
-    func KeyBoolTimer(int id,int kb)
+    function KeyDoubleTimer(int id,int kb)
         int pid = id
-        int key = kb
-        KeyBool[key] = true
+        int keybool = kb
+        KeyBool[keybool] = true
         TimerStart(0.25,false)
         {
-            if  KeyBool[key] == true
-                KeyBool[key] = false
+            if  KeyBool[keybool] == true
+                KeyBool[keybool] = false
             endif
             endtimer
             flush locals
         }
         flush locals
-    end
+    endfunction
 
     func KeyEventFunc()
         int pid = GetPlayerId(DzGetTriggerKeyPlayer())
@@ -89,7 +89,7 @@ scope KeyEvent initializer InitKeyBroadListener
                         ClearTextMessages()
                     endif
                 else
-                    KeyBoolTimer(pid,key)
+                    KeyDoubleTimer(pid,key)
                 endif
             elseif  key == 72 //H
                 /*if  SPu == Pu[1]
