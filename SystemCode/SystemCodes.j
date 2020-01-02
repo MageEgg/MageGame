@@ -39,14 +39,14 @@ library SystemCodes uses ServerTime,Define1
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetPlayerUnitPostion(Pu[1],x,y)
-        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))
         PlayerSelectOneUnit(pid,Pu[1])
     endfunction
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetUnitPosition(Pu[1],x,y)
-        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))
         PlayerSelectOneUnit(pid,Pu[1])
     endfunction
     
