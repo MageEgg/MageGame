@@ -435,7 +435,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         BJDebugMsg("createm")
         Pu[63] = CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"file"),sx,sy,0,0,YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"modelScale"))
         SetUnitVertexColor(Pu[63],255,255,255,180)
-        UnitAddEffect(Pu[63],"Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl"
+        UnitAddEffect(Pu[63],"Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl")
         UnitApplyTimedLife(Pu[63], 'BHwe', 6 )
     endfunction
 
