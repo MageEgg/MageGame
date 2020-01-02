@@ -444,13 +444,10 @@ library HeroAbilityFunc2 uses OtherDamageTimer
     endfunction
 
     function SpellS517(unit wu)
-        int num = 0
-        if  GetUnitTypeId(wu) == 'H017'
-            num = GetUnitIntState(wu,'S517')
+        int num = GetUnitIntState(wu,'S517')
             SetUnitIntState(wu,'S517',num+1)
             AddUnitRealState(wu,2,100)
             UnitAddEffect(wu,"effect_e_buffblue2.mdl")
-        endif
     endfunction
 
     function SpellS516(unit wu)
@@ -473,6 +470,29 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             endif
         end
     endfunction
+
+    function SpellS529Spell(unit wu)->bool
+        for pid = 0,3
+            if  GetUnitTypeId(Pu[1]) == 'H029'
+                if  YDWEGetUnitAbilityState(Pu[1],'AC05', 1) == 0
+                    
+                    ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
+                    LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
+                    
+                    if  GetOwningPlayer(wu)==GetLocalPlayer()
+                        ClearSelection()
+                        SelectUnit(wu,true)
+                        PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
+                    endif
+                    YDWESetUnitAbilityDataReal( Pu[1],'AC05', 1, 105, 15 )
+                    YDWESetUnitAbilityState( Pu[1], 'AC05', 1, 15)
+                    return true
+                endif
+            endif
+        end
+        return false
+    endfunction
+    
 
 
 endlibrary

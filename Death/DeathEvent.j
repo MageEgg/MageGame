@@ -272,9 +272,12 @@ scope DeathEvent initializer InitDeathEvent
         if  pid <= 5//玩家类型死亡
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
-                    RevivePlayerHero(pid)
-                    BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
-                    GameChallengPlayerDeathEvent(u1)
+                    if  SpellS529Spell(u1) == false
+                        RevivePlayerHero(pid)
+                        BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+                        GameChallengPlayerDeathEvent(u1)
+                        
+                    endif
                 endif
             endif
         endif

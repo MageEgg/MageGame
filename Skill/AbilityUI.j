@@ -306,7 +306,9 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
         if  GetTypeIdData(id,101) != 6
             DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"学习成功！")
-            SpellS517(wu) //天賦 天资聪颖   
+            if  GetUnitTypeId(wu) == 'H017'
+                SpellS517.execute(wu) //天賦 天资聪颖   
+            endif
         endif
     endfunction
     
