@@ -265,7 +265,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             if  time >= 1
 
                 LocAddEffectTimerOrSize(x1,y1,ang/0.01745,"effect_az_caster_Red.mdl",0,1.8)
-                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1),ang,damage,200,600,75,true,false)
+                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1),ang,damage,200,600,75,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                 SetUnitAnimationByIndex(u1,2)
                 if  time == 1
                     if  false//GetUnitBjState(u1)<30
@@ -275,7 +275,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             else
                 
                 ang = ang - 0.8
-                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1.5),ang,damage*4,300,900,75,true,false)
+                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1.5),ang,damage*4,300,900,75,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             endif
             SetUnitPosition(u1,x1,y1)
             EXSetUnitFacing( u1, ang/0.01745 )
@@ -313,13 +313,13 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         TimerStart(0.02,true)
         {
             
-            IndexGroup g
+            
             if  Pdis(x1,y1,x2,y2) > 50
                 x1 = x1 + 50 * Cos(ang)
                 y1 = y1 + 50 * Sin(ang)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitPosition(u2,x1+50*Cos(ang),y1+50*Sin(ang))
-                g = IndexGroup.create()
+                IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
                 UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 g.destroy()
@@ -348,7 +348,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
 
     function SpellS511Spell(unit wu)->bool
         int num = 0
-        if  GetUnitTypeId(wu) == 'H511'
+        if  GetUnitTypeId(wu) == 'H011'
             if  GetRandomInt(1,100)<= 50
                 num = GetUnitIntState(wu,'S511')
                 if  num < 75
@@ -365,6 +365,45 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         else
             return true
         endif
+    endfunction
+    function SpellS512(unit wu,real sx,real sy,real dam)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        real damage = dam
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"war3mapImported\\GF2_TALOU03.mdl",x1,y1,0,1500,2)
+        LocAddEffectSetSize(x1,y1,"effect_yellow-guangzhu-new2.mdl",3)
+        SetUnitFlyHeight(u2,0,5000.00)
+        TimerStart(0.2,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS516(unit wu)
+        int num = GetUnitIntState(wu,'S511')
+        SetUnitIntState(wu,'S511',num+1)
+        if  num + 1 == 30
+            AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.6)
+        endif
+        LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az-leiji.mdl")
+        KillUnit(wu)
+        BJDebugMsg("自杀了")
+        for pid= 0,3
+            if  IsPlaying(pid) == true
+                if  PlayerDeathBool == false
+                    SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE))
+                endif
+                AddUnitStateExTimer(Pu[1],15,15,6)
+                AddUnitStateExTimer(Pu[1],16,15,6)
+                LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffattack.mdl")
+            endif
+        end
     endfunction
 
 
