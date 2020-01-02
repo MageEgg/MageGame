@@ -373,11 +373,11 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         real damage = dam
         unit u2 = CreateTmUnit(GetOwningPlayer(wu),"war3mapImported\\GF2_TALOU03.mdl",x1,y1,0,1500,2)
         LocAddEffectSetSize(x1,y1,"effect_yellow-guangzhu-new2.mdl",3)
-        SetUnitFlyHeight(uu,0,5000.00)
+        SetUnitFlyHeight(u2,0,5000.00)
         TimerStart(0.2,false)
         {
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+            GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
