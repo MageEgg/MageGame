@@ -393,7 +393,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         real x1 = sx
         real y1 = sy
         real damage = dam
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"war3mapImported\\GF2_TALOU03.mdl",x1,y1,0,1500,2)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_GF2_TALOU.mdl",x1,y1,0,1500,2)
         int time = 0
         if  GetUnitBjState(u1)>=30
             damage = damage * 2
@@ -441,6 +441,16 @@ library HeroAbilityFunc2 uses OtherDamageTimer
 
     function SpellS514(unit wu,real damage)
         
+    endfunction
+
+    function SpellS517(unit wu)
+        int num = 0
+        if  GetUnitTypeId(wu) == 'H017'
+            num = GetUnitIntState(wu,'S517')
+            SetUnitIntState(wu,'S517',num+1)
+            AddUnitRealState(wu,2,100)
+            UnitAddEffect(wu,"effect_e_buffblue2.mdl")
+        endif
     endfunction
 
     function SpellS516(unit wu)
