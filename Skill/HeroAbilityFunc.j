@@ -728,11 +728,11 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
     real damage=10
     IndexGroup g = IndexGroup.create()
     GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-    LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az_pafeathermoon_c_caster.mdl")
+    LocAddEffect(x,y,"effect_by_wood_gongchengsipai_2.mdl")
     if GetUnitRealState(u,1)>GetUnitRealState(u,2)
         damage=GetUnitRealState(u,1)*12
         GroupRemoveUnit(g.ejg,u1)
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
     else
         damage=GetUnitRealState(u,2)*12
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -848,6 +848,7 @@ endfunction
         AddUnitStateExTimer(u,18,20,3)
         UnitTimerAddSkill(u,'A232',3)  //添加判断Buff
         IndexGroup g = IndexGroup.create()
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-dao-mofa.mdl")
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         loop
             uu = FirstOfGroup(g.ejg)
