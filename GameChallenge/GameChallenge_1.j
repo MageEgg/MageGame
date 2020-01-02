@@ -61,10 +61,8 @@ library GameChallenge1 uses GameChallengeBase
         endif
     endfunction
 
-    function GameChalleng_1_JLDeathTimer(int id,int n,real r1,real r2)
+    function GameChalleng_1_JLDeathTimer(int id,int n)
         int pid = id
-        real x = r1
-        real y = r2
         int num = n
         TimerStart(0.6,false)
         {
@@ -100,7 +98,7 @@ library GameChallenge1 uses GameChallengeBase
                     SetUnitAnimation(GameChallengUnit[num],"attack")
                 endif
                 Sdofplayer(Player(pid),x,y,3)
-                GameChalleng_1_JLDeathTimer(pid,num,x,y)
+                GameChalleng_1_JLDeathTimer(pid,num)
             endif
             endtimer
             flush locals
@@ -114,7 +112,7 @@ library GameChallenge1 uses GameChallengeBase
         GameChallenge_1Flush(pid)
         IsFinshChallenge(1) = true
         //奖励
-        PlayerFinishPlot(pid,1)
+        PlayerFinishPlotEx(pid,1)
     endfunction
 
     function GameChalleng_1_XYTimerEx(int id)
@@ -273,7 +271,7 @@ library GameChallenge1 uses GameChallengeBase
             GameChallenge_1Flush(pid)
             PlayerChallengeCosNum(1) = PlayerChallengeCosNum(1) + 1
             //奖励
-            PlayerFinishPlot(pid,1)
+            PlayerFinishPlotEx(pid,1)
         endif
     endfunction
 

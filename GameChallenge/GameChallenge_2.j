@@ -41,7 +41,7 @@ library GameChallenge2 uses GameChallengeBase
             GameChallenge_2Flush(pid)
             PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
             //奖励
-            PlayerFinishPlot(pid,2)
+            PlayerFinishPlotEx(pid,2)
         endif
     endfunction
 
@@ -153,7 +153,7 @@ library GameChallenge2 uses GameChallengeBase
         GameChallenge_2Flush(pid)
         IsFinshChallenge(2) = true
         //奖励
-        PlayerFinishPlot(pid,2)
+        PlayerFinishPlotEx(pid,2)
     endfunction
 
     function EnRctGameChalleng_2_Water1()

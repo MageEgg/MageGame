@@ -192,6 +192,18 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(u,5,life)
     endfunction
 
+    function PlayerFinishPlotEx(int id,int f)
+        int pid = id
+        int flag = f
+        TimerStart(1,false)
+        {
+            PlayerFinishPlot(pid,flag)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
 endlibrary
 
 
