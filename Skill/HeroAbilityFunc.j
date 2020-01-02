@@ -527,7 +527,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
                 x0 = xu+jl*Cos(ang+1.57)
                 y0 = yu+jl*Sin(ang+1.57)
                 mj=CreateTmUnit(GetOwningPlayer(u),"effect_shandianzhiqiang.mdl",x0,y0,ang/0.01745,0,1)
-                CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),true,false,1,4)
+                CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),true,false,0,4)
                 
                  //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
             else
