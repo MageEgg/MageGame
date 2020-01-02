@@ -14,10 +14,6 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         TimerStart(0.2,false)
         {
             IndexGroup g = IndexGroup.create()
-            x1 = x1 + 100*Cos(ang)
-            y1 = y1 + 100*Sin(ang)
-            SetUnitX(wu,x1)
-            SetUnitY(wu,y1)
             x1 = x1 + 50*Cos(ang)
             y1 = y1 + 50*Sin(ang)
             LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
@@ -41,10 +37,6 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         TimerStart(0.2,false)
         {
             IndexGroup g = IndexGroup.create()
-            x1 = x1 + 100*Cos(ang)
-            y1 = y1 + 100*Sin(ang)
-            SetUnitX(wu,x1)
-            SetUnitY(wu,y1)
             LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",4)
             
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
@@ -222,6 +214,100 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             flush locals
         }
         flush locals
+    endfunction
+
+
+    function SpellS503(unit wu)
+        unit u1 = wu
+        real damage = GetAbilityDamage(wu,'S503',1)
+        real x = GetUnitX(wu)
+        real y = GetUnitY(wu)
+        LocAddEffectSetSize(x,y,"effect_tx_asad (24).mdl",1.8)
+        TimerStart(0.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+
+            LocAddEffectSetSize(x,y,"effect_tx_asad (25).mdl",1.8)
+
+            g.destroy()
+            endtimer
+
+            flush locals
+        }
+        flush locals
+        
+    endfunction
+    function SpellS503Select(real x,real y)
+        for pid = 0,3
+            if  GetUnitTypeId(Pu[1]) == 'H003'
+                if  IsUnitInRangeXY(Pu[1], x, y, 600) == true
+                    SpellS503(Pu[1])
+                endif
+            endif
+        end
+    endfunction
+    function SpellS504_2(unit wu,real x,real y,real dam)
+        unit u1 = wu
+        real x1 = x
+        real y1 = y
+        real damage = dam
+        
+    endfunction
+    function SpellS504(unit wu,real sx,real sy,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = sx
+        real y2 = sy
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_blue-daoguang-new.mdl",x1,y1,GetUnitFacing(u1),0,1.0)
+        real ang = Pang(x1,y1,x2,y2)
+        group g1 = CreateGroup()
+        real damage = dam
+        if  Pdis(x1,y1,x2,y2) > 800
+            x2 = x1 + 800 * Cos(ang)
+            y2 = y1 + 800 * Sin(ang)
+        endif
+        EXSetUnitCollisionType( false,u1, 1 )
+        SetUnitPathing( u1, false )
+        EXSetUnitFacing( u1, ang/0.01745 )
+        SetUnitFacing(u1,ang/0.01745)
+        UnitApplyTimedLife(u2, 'BHwe', 0.5)
+        TimerStart(0.02,true)
+        {
+            
+            IndexGroup g
+            if  Pdis(x1,y1,x2,y2) > 50
+                x1 = x1 + 50 * Cos(ang)
+                y1 = y1 + 50 * Sin(ang)
+                SetUnitPosition(u1,x1,y1)
+                SetUnitPosition(u2,x1+50*Cos(ang),y1+50*Sin(ang))
+                g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                g.destroy()
+            else
+                EXSetUnitCollisionType( true,u1, 1 )
+                SetUnitPathing( u1, true )
+                SetUnitAnimation(u1,"stand")
+                DestroyGroup(g1)
+                SpellS504_2(u1,x1+50*Cos(ang),y1+50*Sin(ang),damage)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS506(unit wu,unit tu)
+        if  GetUnitState(tu,UNIT_STATE_LIFE)/GetUnitState(tu,UNIT_STATE_MAX_LIFE) <= 0.15
+            LocAddEffectTimerOrSize(GetUnitX(tu),GetUnitY(tu),Uang(wu,tu)/0.01745+20,"effect_hero_attack2.mdl",0,0.7)
+            LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
+            BJDebugMsg(GetUnitName(tu)+R2S(GetUnitState(tu,UNIT_STATE_LIFE)))
+            UnitDamageTarget(wu,tu,99999999,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,null)
+            
+        endif
     endfunction
 
 

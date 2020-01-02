@@ -26,9 +26,11 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
                 if  next == 'E011' or next == 'E111' or next == 'E211'
-                    ShowUnit(Pu[24],true)
-                    LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
-                    PlayerTestPlot(pid,1)
+                    if  Pu[24] == null
+                        Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
+                        LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
+                        PlayerUnLockPlot(pid,1)
+                    endif
                 endif
             endif
         end
@@ -50,6 +52,8 @@ scope ItemSystem initializer InitItemSystem
                     if  index != 0
                         if  GetUnitTypeId(Pu[100+index]) == 0
                             AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+
+
                             Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+128,270)
                             IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                             HeroMoveToRoom(pid)
