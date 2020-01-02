@@ -57,7 +57,7 @@ library GameChallenge2 uses GameChallengeBase
         int time = 0
         TimerStart(0.5,true)
         {
-            if  time < 4
+            if  time < 4 and IsPlayerInChallenge == true
                 time = time + 1
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0

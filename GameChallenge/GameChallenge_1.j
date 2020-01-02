@@ -68,9 +68,11 @@ library GameChallenge1 uses GameChallengeBase
         int num = n
         TimerStart(0.6,false)
         {
-            SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
-            IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败雷震子|r")
+            if  IsPlayerInChallenge == true
+                SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败雷震子|r")
+            endif
             endtimer
             flush locals
         }
@@ -89,15 +91,17 @@ library GameChallenge1 uses GameChallengeBase
         GameChallengUnit[19] = null
         TimerStart(0.4,false)
         {
-            num = GetCanUsesGameChallengUnitID(pid)
-            if  num != 0
-                CreateUsesGameChallengUnitEx(pid,num,'uf12',x,y)
-                UnitAddEffect(GameChallengUnit[num],"effect_red-yumao-zhendi-paoxiao.mdx")
-                UnitAddEffect(GameChallengUnit[num],"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdx")
-                SetUnitAnimation(GameChallengUnit[num],"attack")
+            if  IsPlayerInChallenge == true
+                num = GetCanUsesGameChallengUnitID(pid)
+                if  num != 0
+                    CreateUsesGameChallengUnitEx(pid,num,'uf12',x,y)
+                    UnitAddEffect(GameChallengUnit[num],"effect_red-yumao-zhendi-paoxiao.mdx")
+                    UnitAddEffect(GameChallengUnit[num],"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdx")
+                    SetUnitAnimation(GameChallengUnit[num],"attack")
+                endif
+                Sdofplayer(Player(pid),x,y,3)
+                GameChalleng_1_JLDeathTimer(pid,num,x,y)
             endif
-            Sdofplayer(Player(pid),x,y,3)
-            GameChalleng_1_JLDeathTimer(pid,num,x,y)
             endtimer
             flush locals
         }
@@ -120,7 +124,7 @@ library GameChallenge1 uses GameChallengeBase
             int num = 0
             real x = 0
             real y = 0
-            if  GameChallengInt[10] < 40
+            if  GameChallengInt[10] < 40 and IsPlayerInChallenge == true
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0 and GameChallengInt[11] < 5
                     x = GetUnitX(GameChallengUnit[19])+GetRandomReal(-380,380)
@@ -145,7 +149,9 @@ library GameChallenge1 uses GameChallengeBase
         int pid = id
         TimerStart(1,false)
         {
-            GameChalleng_1_XYTimerEx(pid)
+            if  IsPlayerInChallenge == true
+                GameChalleng_1_XYTimerEx(pid)
+            endif
             endtimer   
             flush locals
         }
