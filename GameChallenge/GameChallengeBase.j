@@ -4,14 +4,17 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     unit array      GameChallengPlayerUnit[12][680]
     bool array      GameChallengPlayerBool[12][680]
 
+    int array      GameChallengOperaWay
+
     unit array      GameChallengMapUnit
 
     #define GameChallengInt                 GameChallengPlayerInt[pid]
     #define GameChallengUnit                GameChallengPlayerUnit[pid]
     #define GameChallengBool                GameChallengPlayerBool[pid]
 
-    #define PlayerInChallengeShowUnit       GameChallengUnit[0]
-    #define IsPlayerInChallenge             GameChallengBool[0]
+    #define PlayerInChallengeShowUnit       GameChallengUnit[500]
+    #define IsPlayerInChallenge             GameChallengBool[500]
+    #define IsFinshChallenge(num)           GameChallengBool[500+num]
 
     #define PlayerInChallengeNumber         GameChallengInt[500]
 
@@ -125,6 +128,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             if  GameChallengUnit[num] != null
                 FlushChildHashtable(ht,GetHandleId(GameChallengUnit[num]))
                 RemoveUnit(GameChallengUnit[num])
+                GameChallengUnit[num] = null
             endif
         end
     endfunction

@@ -39,9 +39,11 @@ scope FrameButton
                 endif
             elseif  Type == TYPE_FUNC
                 if  id >= 301 and id <= 308//选择副本按钮
-                    PlayerTestPlot(pid,id-300)
+                    //PlayerTestPlot(pid,id-300)
+                    OpenGameChallenge(pid,id-300,GetPlayerPlotType(pid))
                 elseif  id >= 311 and id <= 318//选择副本按钮
-                    PlayerTestPlot(pid,id-310)
+                    //PlayerTestPlot(pid,id-310)
+                    OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
                 endif
             endif
         endif

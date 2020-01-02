@@ -1,7 +1,7 @@
 library GameChallenge1 uses GameChallengeBase
 
     function GameChallenge_1Flush(int pid)
-        for num = 0,3
+        for num = 0,5
             SetUnitVertexColor(GameChallengUnit[10+num],255,255,255,0)
         end
         GameChallengInt[10] = 0
@@ -9,6 +9,7 @@ library GameChallenge1 uses GameChallengeBase
         if  GameChallengUnit[19] != null
             FlushChildHashtable(ht,GetHandleId(GameChallengUnit[19]))
             RemoveUnit(GameChallengUnit[19])
+            GameChallengUnit[19] = null
         endif
         GameChallengCanUsesUnitFlush(pid)
         ShowUnitOfAllPlayer(Pu[1])
@@ -18,17 +19,31 @@ library GameChallenge1 uses GameChallengeBase
         IsPlayerInChallenge = false
     endfunction
 
-    function OpenGameChallenge_1(int pid)
-        real x = GetRectCenterX(gg_rct_ChallengeRct_1_1)
-        real y = GetRectCenterY(gg_rct_ChallengeRct_1_1)
-        IsPlayerInChallenge = true
-        PlayerInChallengeNumber = 1
-        SendPlayerUnit(pid,x,y)
-        ShowHeroGetTask(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往云中子|r")
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[10],0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[11],0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[12],0)
+    function OpenGameChallenge_1(int pid,int ty)
+        real x = 0
+        real y = 0
+        if  ty == 0
+            x = GetRectCenterX(gg_rct_ChallengeRct_1_1)
+            y = GetRectCenterY(gg_rct_ChallengeRct_1_1)
+            IsPlayerInChallenge = true
+            PlayerInChallengeNumber = 1
+            SendPlayerUnit(pid,x,y)
+            ShowHeroGetTask(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往云中子|r")
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[10],0)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[11],0)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[12],0)
+        elseif  ty == 1
+            x = -4544
+            y = 896
+            IsPlayerInChallenge = true
+            PlayerInChallengeNumber = 1
+            SendPlayerUnit(pid,x,y)
+            ShowHeroGetTask(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往文王姬昌|r")
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[14],0)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[15],0)
+        endif
     endfunction
 
     function GameChalleng_1_XYDeath(int pid,unit u2)
@@ -95,6 +110,7 @@ library GameChallenge1 uses GameChallengeBase
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云中子]：|r奇哉！奇哉！福祸相依，待我传你玄妙真仙诀，炼就风雷金刚体！")
         GameChallenge_1Flush(pid)
+        IsFinshChallenge(1) = true
         //奖励
         PlayerFinishPlot(pid,1)
     endfunction
@@ -144,15 +160,17 @@ library GameChallenge1 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                SetUnitVertexColor(GameChallengUnit[11],255,255,255,0)
-                GameChallengUnit[19] = CreateUnit(Player(9),'np08',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
-                ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],0)
-                UnitAddAbility(GameChallengUnit[19],'AZ99')
-                SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
-                IssuePointOrderById(GameChallengUnit[19],851983,GetRectCenterX(gg_rct_ChallengeRct_1_1),GetRectCenterY(gg_rct_ChallengeRct_1_1))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云中子]：|r雷震子，你义父有难，到剑冢取一适手兵器前去解救。")
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀40个护冢小妖|r")
-                GameChalleng_1_XYTimer(pid)
+                if  GameChallengUnit[19] == null and IsFinshChallenge(1) == false and IsPlayerInChallenge == true
+                    SetUnitVertexColor(GameChallengUnit[11],255,255,255,0)
+                    GameChallengUnit[19] = CreateUnit(Player(9),'np08',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
+                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],0)
+                    UnitAddAbility(GameChallengUnit[19],'AZ99')
+                    SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
+                    IssuePointOrderById(GameChallengUnit[19],851983,GetRectCenterX(gg_rct_ChallengeRct_1_1),GetRectCenterY(gg_rct_ChallengeRct_1_1))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云中子]：|r雷震子，你义父有难，到剑冢取一适手兵器前去解救。")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀40个护冢小妖|r")
+                    GameChalleng_1_XYTimer(pid)
+                endif
             endif
         endif
         flush locals
@@ -228,6 +246,93 @@ library GameChallenge1 uses GameChallengeBase
         endif
     endfunction
 
+    function GameChalleng_1_JYDeath(int pid,unit u2)
+        GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
+        GameChallengInt[12] = GameChallengInt[12] + 1
+        if  GameChallengInt[12] == 2
+            GameChallengInt[12] = 0
+            if  GameChallengOperaWay[1] == 0
+                if  GetRandomInt(0,1) == 0
+                    GameChallengOperaWay[1] = 1
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r追兵已退，我便送父王回西岐。")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")                                   
+                else
+                    GameChallengOperaWay[1] = 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r糟糕！雷震子怒意攻心，入魔远走了！")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
+                endif
+            endif
+            GameChallenge_1Flush(pid)
+            //奖励
+            PlayerFinishPlot(pid,1)
+        endif
+    endfunction
+
+    function EnRctGameChalleng_1_JY()
+        unit u1 = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == Pu[1]
+                if  GameChallengUnit[19] == null and IsPlayerInChallenge == true
+                    SetUnitVertexColor(GameChallengUnit[15],255,255,255,0)
+                    GameChallengUnit[19] = CreateUnit(Player(9),'np08',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
+                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],0)
+                    UnitAddAbility(GameChallengUnit[19],'AZ99')
+                    SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
+                    IssuePointOrderById(GameChallengUnit[19],851983,-3776,1472)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r父王，孩儿救你来也，且待我退去追兵！")
+                endif
+            endif
+        endif
+        flush locals
+    endfunction
+
+    function EnRctGameChalleng_1_JY2()
+        unit u1 = GetTriggerUnit()
+        int pid = GetUnitAbilityLevel(u1,'AZ99')-1
+        int num = 0
+        real x = 0
+        real y = 0
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == GameChallengUnit[19]
+                x = -4224
+                y = 1600
+                UnitAddEffect(GameChallengUnit[19],"effect_az_goods_lvlup(3).mdl")
+                SetUnitXY(GameChallengUnit[19],x,y)
+                LocAddEffect(x,y,"effect_effect_az_goods_tp_target_effect(4).mdl")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r纣王今既放归我父王，为何又派你俩来追袭？反复无常，实在可恨！")
+                IssueImmediateOrderById(GameChallengUnit[19], 851993 )
+                num = GetCanUsesGameChallengUnitID(pid)
+                if  num != 0
+                    x = -3744
+                    y = 1664
+                    CreateUsesGameChallengUnit(pid,num,'uf13',x,y)
+                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    Sdofplayer(Player(pid),x,y,3)
+                    UnitAddEffect(GameChallengUnit[num],"effect_red-yumao-zhendi-paoxiao.mdx")
+                    UnitAddEffect(GameChallengUnit[num],"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdx")
+                    SetUnitAnimation(GameChallengUnit[num],"attack")
+                endif
+                num = GetCanUsesGameChallengUnitID(pid)
+                if  num != 0
+                    x = -3584
+                    y = 1440
+                    CreateUsesGameChallengUnit(pid,num,'uf14',x,y)
+                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    Sdofplayer(Player(pid),x,y,3)
+                    UnitAddEffect(GameChallengUnit[num],"effect_red-yumao-zhendi-paoxiao.mdx")
+                    UnitAddEffect(GameChallengUnit[num],"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdx")
+                    SetUnitAnimation(GameChallengUnit[num],"attack")
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击退殷破败和雷开|r")
+            endif
+        endif
+    endfunction
+
     function InitGameChallenge_1()
         trigger tig = null
         region rectRegion = null
@@ -243,6 +348,14 @@ library GameChallenge1 uses GameChallengeBase
 
                 GameChallengUnit[13] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-4352,-288,0)
                 SetUnitVertexColor(GameChallengUnit[10],255,255,255,0)
+
+                GameChallengUnit[14] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np11',-4608,640,40)
+                SetUnitVertexColor(GameChallengUnit[10],255,255,255,0)
+                GameChallengUnit[15] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-4608,640,0)
+                SetUnitVertexColor(GameChallengUnit[11],255,255,255,0)
+
+                GameChallengUnit[16] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-3776,1472,0)
+                SetUnitVertexColor(GameChallengUnit[10],255,255,255,0)
             endif
         end
 
@@ -253,6 +366,7 @@ library GameChallenge1 uses GameChallengeBase
             endif
         end
         TriggerAddAction(tig, function EnRctGameChalleng_1_YZZ)
+
         tig = CreateTrigger() //剑灵点
         for pid = 0,3
             if  IsPlaying(pid) == true
@@ -260,6 +374,21 @@ library GameChallenge1 uses GameChallengeBase
             endif
         end
         TriggerAddAction(tig, function EnRctGameChalleng_1_JLD)
+
+        tig = CreateTrigger() //救援点
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                TriggerRegisterUnitInRange(tig,GameChallengUnit[14],100,null)
+            endif
+        end
+        TriggerAddAction(tig, function EnRctGameChalleng_1_JY)
+        tig = CreateTrigger() //救援点2
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                TriggerRegisterUnitInRange(tig,GameChallengUnit[16],150,null)
+            endif
+        end
+        TriggerAddAction(tig, function EnRctGameChalleng_1_JY2)
 
 
         tig = CreateTrigger() //

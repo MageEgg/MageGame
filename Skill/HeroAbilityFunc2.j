@@ -248,13 +248,48 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             endif
         end
     endfunction
-    
-    function SpellS504_2(unit wu,real x,real y,real dam)
+    function SpellS504_2(unit wu,real x,real y,real face,real dam)
         unit u1 = wu
         real x1 = x
         real y1 = y
+        real ang = face-0.4
         real damage = dam
-        
+        int time = 4
+        EXSetUnitFacing( u1, ang/0.01745 )
+        SetUnitFacing(u1,ang/0.01745)
+        SetUnitAnimationByIndex(u1,2)
+        TimerStart(0.2,true)
+        {
+            
+            time = time - 1
+            if  time >= 1
+
+                LocAddEffectTimerOrSize(x1,y1,ang/0.01745,"effect_az_caster_Red.mdl",0,1.8)
+                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1),ang,damage,200,600,75,true,false)
+                SetUnitAnimationByIndex(u1,2)
+                if  time == 1
+                    if  false//GetUnitBjState(u1)<30
+                        time = 0
+                    endif
+                endif
+            else
+                
+                ang = ang - 0.8
+                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1.5),ang,damage*4,300,900,75,true,false)
+            endif
+            SetUnitPosition(u1,x1,y1)
+            EXSetUnitFacing( u1, ang/0.01745 )
+            SetUnitFacing(u1,ang/0.01745)
+            ang = ang + 0.4
+            if  time <= 0
+                //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
+                SetUnitAnimation(u1,"stand")
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+
     endfunction
     function SpellS504(unit wu,real sx,real sy,real dam)
         unit u1 = wu
@@ -262,7 +297,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         real y1 = GetUnitY(u1)
         real x2 = sx
         real y2 = sy
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_blue-daoguang-new.mdl",x1,y1,GetUnitFacing(u1),0,1.0)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_red-daoguang-new.mdl",x1,y1,GetUnitFacing(u1),0,1.0)
         real ang = Pang(x1,y1,x2,y2)
         group g1 = CreateGroup()
         real damage = dam
@@ -293,7 +328,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
                 SetUnitPathing( u1, true )
                 SetUnitAnimation(u1,"stand")
                 DestroyGroup(g1)
-                SpellS504_2(u1,x1+50*Cos(ang),y1+50*Sin(ang),damage)
+                SpellS504_2(u1,x1,y1,ang,damage)
                 endtimer
             endif
             flush locals
@@ -308,6 +343,27 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             BJDebugMsg(GetUnitName(tu)+R2S(GetUnitState(tu,UNIT_STATE_LIFE)))
             UnitDamageTarget(wu,tu,99999999,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,null)
             
+        endif
+    endfunction
+
+    function SpellS511Spell(unit wu)->bool
+        int num = 0
+        if  GetUnitTypeId(wu) == 'H511'
+            if  GetRandomInt(1,100)<= 50
+                num = GetUnitIntState(wu,'S511')
+                if  num < 75
+                    AddUnitRealState(wu,15,2)
+                    AddUnitRealState(wu,16,2)
+                    SetUnitIntState(wu,'S511',num+1)
+                endif
+                BJDebugMsg("命途多舛 成功")
+                return true
+            else
+                BJDebugMsg("命途多舛 失败")
+                return false
+            endif
+        else
+            return true
         endif
     endfunction
 
