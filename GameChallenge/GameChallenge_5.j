@@ -346,7 +346,7 @@ library GameChallenge5 uses GameChallengeBase
         int pid = GetUnitAbilityLevel(u1,'AZ99')-1
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == GameChallengUnit[59]
-                if  GameChallengInt[50] == 13
+                if  GameChallengInt[50] == 14
                     GameChallengInt[50] = 0
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[白鹤童子]：|r师叔，老爷法牒，送符印将此绳解去。")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r谢老师慈悯。")
