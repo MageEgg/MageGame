@@ -617,8 +617,210 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         }
     endfunction
 
-    function SpellS525(unit wu,real sx,real sy,real damage)
+    function SpellS525_1(unit wu,real sx,real sy,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = sx
+        real y2 = sy
+        real damage = dam
+        real ang = Pang(x1,y1,x2,y2)
+        real mx = x1+250*Cos(ang+1.5705)
+        real my = y1+250*Sin(ang+1.5705)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_spiritarrow_byepsilon.mdl",x1,y1,ang/0.01745,0,0.1)
+        group g1 = CreateGroup()
+        int num = 0
+        TimerStart(0.02,true)
+        {
+            IndexGroup  g
+            real speed = num
+            if  speed > 60
+                speed = 60
+            endif
+            SetUnitScale(u2,0.3+speed/56,0.3+speed/56,0.3+speed/56)
+            num = num + 1
+            if  num < 36
+                
+                ang = ang - 0.1745
+                mx = x1+250*Cos(ang+1.5705)
+                my = y1+250*Sin(ang+1.5705)
+                SetUnitFacing(u2,ang/0.01745)
+                EXSetUnitFacing( u2, ang/0.01745 )
+                SetUnitX(u2,mx)
+                SetUnitY(u2,my)
+                g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+                g.destroy()
+                
+            else
+                if  Pdis(mx,my,x2,y2) > 60
+                    ang = Pang(mx,my,x2,y2)
+                    mx = mx + speed * Cos(ang)
+                    my = my + speed * Sin(ang)
+                    SetUnitFacing(u2,ang/0.01745)
+                    EXSetUnitFacing( u2, ang/0.01745 )
+                    SetUnitX(u2,mx)
+                    SetUnitY(u2,my)
+                    g = IndexGroup.create()
+                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+                    g.destroy()
+                else
+                    DestroyGroup(g1)
+                    KillUnit(u2)
+                    endtimer
+                endif
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS525_2(unit wu,real sx,real sy,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = sx
+        real y2 = sy
+        real damage = dam
+        real ang = Pang(x1,y1,x2,y2)
+        real mx = x1+200*Cos(ang-1.5705)
+        real my = y1+200*Sin(ang-1.5705)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_spiritarrow_byepsilon.mdl",x1,y1,ang/0.01745,0,0.1)
+        group g1 = CreateGroup()
+        int num = 0
+        TimerStart(0.02,true)
+        {
+            IndexGroup  g
+            real speed = num
+            if  speed > 60
+                speed = 60
+            endif
+            SetUnitScale(u2,0.3+speed/56,0.3+speed/56,0.3+speed/56)
+            num = num + 1
+            if  num < 36
+                
+                ang = ang + 0.1745
+                mx = x1+200*Cos(ang-1.5705)
+                my = y1+200*Sin(ang-1.5705)
+                SetUnitFacing(u2,ang/0.01745)
+                EXSetUnitFacing( u2, ang/0.01745 )
+                SetUnitX(u2,mx)
+                SetUnitY(u2,my)
+                g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+                g.destroy()
+                
+            else
+                if  Pdis(mx,my,x2,y2) > 60
+                    ang = Pang(mx,my,x2,y2)
+                    mx = mx + speed * Cos(ang)
+                    my = my + speed * Sin(ang)
+                    SetUnitFacing(u2,ang/0.01745)
+                    EXSetUnitFacing( u2, ang/0.01745 )
+                    SetUnitX(u2,mx)
+                    SetUnitY(u2,my)
+                    g = IndexGroup.create()
+                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+                    g.destroy()
+                else
+                    DestroyGroup(g1)
+                    KillUnit(u2)
+                    endtimer
+                endif
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS525_3(unit wu,real sx,real sy,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = sx
+        real y2 = sy
+        real damage = dam
+        real ang = Pang(x1,y1,x2,y2)
+        real mx = x1+150*Cos(ang+1.5705)
+        real my = y1+150*Sin(ang+1.5705)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_spiritarrow_byepsilon.mdl",x1,y1,ang/0.01745,0,0.1)
+        group g1 = CreateGroup()
+        int num = 0
+        TimerStart(0.02,true)
+        {
+            IndexGroup  g
+            real speed = num
+            if  speed > 60
+                speed = 60
+            endif
+            SetUnitScale(u2,0.3+speed/56,0.3+speed/56,0.3+speed/56)
+            num = num + 1
+            if  num < 36
+                
+                ang = ang - 0.1745
+                mx = x1+150*Cos(ang+1.5705)
+                my = y1+150*Sin(ang+1.5705)
+                SetUnitFacing(u2,ang/0.01745)
+                EXSetUnitFacing( u2, ang/0.01745 )
+                SetUnitX(u2,mx)
+                SetUnitY(u2,my)
+                g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+                g.destroy()
+                
+            else
+                if  Pdis(mx,my,x2,y2) > 60
+                    ang = Pang(mx,my,x2,y2)
+                    mx = mx + speed * Cos(ang)
+                    my = my + speed * Sin(ang)
+                    SetUnitFacing(u2,ang/0.01745)
+                    EXSetUnitFacing( u2, ang/0.01745 )
+                    SetUnitX(u2,mx)
+                    SetUnitY(u2,my)
+                    g = IndexGroup.create()
+                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+                    g.destroy()
+                else
+                    DestroyGroup(g1)
+                    KillUnit(u2)
+                    endtimer
+                endif
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS525(unit wu,real sx,real sy,real dam)
+        unit u1 = wu
+        real x2 = 0
+        real y2 = 0
+        if  Pdis(GetUnitX(wu),GetUnitY(wu),sx,sy) >= 1000
+            x2 = GetUnitX(wu) + 1000 * Cos(Pang(GetUnitX(wu),GetUnitY(wu),sx,sy))
+            y2 = GetUnitY(wu) + 1000 * Sin(Pang(GetUnitX(wu),GetUnitY(wu),sx,sy))
+        else
+            x2 = x2 + sx
+            y2 = y2 + sy
+        endif
         
+        real damage = dam
+        int time = 0
+        SpellS525_1(u1,x2,y2,damage)
+        TimerStart(0.1,true)
+        {
+            time = time + 1
+            if  time == 1
+                SpellS525_2(u1,x2,y2,damage)
+            else
+                SpellS525_3(u1,x2,y2,damage)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
     endfunction
 
     function SpellS526(unit wu,unit tu,real damage)
