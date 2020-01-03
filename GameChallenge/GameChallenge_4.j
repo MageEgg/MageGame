@@ -8,11 +8,6 @@ library GameChallenge4 uses GameChallengeBase
         end
         GameChallengInt[40] = 0
         SetUnitAnimation(GameChallengUnit[43],"stand")
-        if  GameChallengUnit[49] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[49]))
-            RemoveUnit(GameChallengUnit[49])
-            GameChallengUnit[49] = null
-        endif
         GameChallengCanUsesUnitFlush(pid)
         ShowUnitOfAllPlayer(Pu[1])
         RemoveUnit(PlayerInChallengeShowUnit)
