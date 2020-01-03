@@ -514,7 +514,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
         real ang=Pang(GetUnitX(u),GetUnitY(u),x1,y1)
         real time=0
         real m=3+(GetUnitRealState(u,1)/30000)
-        effect tx=AddSpecialEffect("effect_[ake]war3ake.com - 4395525332922981471277570.mdl",xu,yu)
+        effect tx=AddSpecialEffect("effect_gate.mdl",xu,yu)
         EXEffectMatRotateZ(tx,ang/0.01745)
         EXSetEffectSpeed(tx,9)
         TimerStart(0.1,true)
