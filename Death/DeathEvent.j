@@ -235,7 +235,7 @@ scope DeathEvent initializer InitDeathEvent
     function AttackBossDeathEvent(unit boss)
         AttackBOSSDeathCos = AttackBOSSDeathCos + 1
         BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
-        if  AttackBOSSDeathCos == AttackBOSSLastCos
+        if  AttackBOSSDeathCos == PlayerNum//AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             ShowBossDamageUI(false)
             ShowBossDamageString()

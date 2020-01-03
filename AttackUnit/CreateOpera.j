@@ -75,8 +75,8 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ02')
-                        PlayerReviveX = -6528
-                        PlayerReviveY = -7520
+                        PlayerReviveX = -6656
+                        PlayerReviveY = -6656
                         SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                     endif
                 end
@@ -492,7 +492,7 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ02')
-                        PlayerReviveX = -1660
+                        PlayerReviveX = -1664
                         PlayerReviveY = -6960
                         SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                     endif
