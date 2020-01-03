@@ -110,11 +110,11 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChalleng_1_LZZDeath(pid,u2)
         elseif  uid2 == 'uf13' or uid2 == 'uf14'
             GameChalleng_1_JYDeath(pid,u2)
-        elseif  uid2 == 'uf21'
+        elseif  uid2 == 'uf20'
             GameChalleng_2_WaterDeath1(pid,u2)
-        elseif  uid2 == 'uf22'
+        elseif  uid2 == 'uf21'
             GameChalleng_2_WaterDeath2(pid,u2)
-        elseif  uid2 == 'uf23'
+        elseif  uid2 == 'uf22'
             GameChalleng_2_WaterDeath3(pid,u2)
         elseif  uid2 == 'uf30'
             GameChalleng_3_HTHDeath(pid,u2)
@@ -126,10 +126,12 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChalleng_4_DeathA(pid,u2)
         elseif  (uid2 >= 'uf42' and uid2 <= 'uf49') or uid2 == 'uf50'
             GameChalleng_4_Zhen_Death(pid,u2)
-        elseif  uid2 >= 'uf51' and uid2 <= 'uf54'
+        elseif  uid2 >= 'uf51' and uid2 <= 'uf55'
             GameChalleng_5_WayDeath(pid,u2)
-        elseif  uid2 >= 'uf60' and uid2 <= 'uf63'
+        elseif  uid2 >= 'uf60' and uid2 <= 'uf62'
             GameChallenge_6_A_Death(pid,u2)
+        elseif  uid2 >= 'uf70' and uid2 <= 'uf73'
+            GameChallenge_7_Death(pid,u2)
         endif
         BJDebugMsg(YDWEId2S(uid2))
         flush locals

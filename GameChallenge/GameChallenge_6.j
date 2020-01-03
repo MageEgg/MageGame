@@ -77,7 +77,7 @@ library GameChallenge6 uses GameChallengeBase
     function OpenGameChallenge_6(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_5Flush(pid)
+        GameChallenge_6Flush(pid)
         if  ty == 0
             x = -2272
             y = 6720
