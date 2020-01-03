@@ -267,11 +267,21 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
     function SpellS046(unit u,real damage1)//引爆毒
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        real damage=I2R(LoadInteger(ht,GetHandleId(u),159379))*damage1
+        real damage=0
+        unit gu=null
         IndexGroup g = IndexGroup.create()
         DestroyEffect(AddSpecialEffect("effect_green-texiao-shandian.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_dubao-texiao.mdl","origin",0))
-        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    loop
+                        gu = FirstOfGroup(g.ejg)
+                        exitwhen gu == null
+                                if  I2R(LoadInteger(ht,GetHandleId(gu),159379))>0
+                                    damage=I2R(LoadInteger(ht,GetHandleId(gu),159379))*damage1
+                                    UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+                                endif
+                        GroupRemoveUnit(g.ejg,gu)
+                    endloop
+        gu=null
         g.destroy()
         flush locals
     endfunction
