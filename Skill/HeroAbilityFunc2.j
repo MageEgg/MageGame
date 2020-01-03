@@ -440,14 +440,21 @@ library HeroAbilityFunc2 uses OtherDamageTimer
     endfunction
 
     function SpellS514(unit wu,real damage)
-        
+        real x = GetUnitX(wu)
+        real y = GetUnitY(wu)
+        LocAddEffectSetSize(x,y,"effect_az-ice-zhendi.mdl",2.0)
+        AddEffectInAreaSetSize(x,y,500,1.0,10,"effect_hero_lich_n1s_bingdong2.mdl")
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,x,y,500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        g.destroy()
     endfunction
 
     function SpellS517(unit wu)
         int num = GetUnitIntState(wu,'S517')
-            SetUnitIntState(wu,'S517',num+1)
-            AddUnitRealState(wu,2,100)
-            UnitAddEffect(wu,"effect_e_buffblue2.mdl")
+        SetUnitIntState(wu,'S517',num+1)
+        AddUnitRealState(wu,2,100)
+        UnitAddEffect(wu,"effect_e_buffblue2.mdl")
     endfunction
 
     function SpellS516(unit wu)
@@ -469,6 +476,30 @@ library HeroAbilityFunc2 uses OtherDamageTimer
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffattack.mdl")
             endif
         end
+    endfunction
+
+    function SpellS518(unit wu,int id)
+        real value = 0
+        if  GetUnitTypeId(wu) == 'H018'
+            if  GetRandomInt(1,100) <= 50
+                for i = 1,70
+                    value = GetTypeIdReal(id,i)
+                    if  value != 0
+                        AddUnitRealState(wu,i,value*0.5)
+                    endif
+                end
+                LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_blue-dao-mofa.mdl")
+            endif
+        endif
+    endfunction
+
+    function SpellS523(unit wu,unit tu)
+        real life = GetUnitState(tu,UNIT_STATE_LIFE)
+        real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
+        SetUnitState(tu,UNIT_STATE_LIFE,life + maxlife * 0.3)
+        AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.1,4)
+        AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.1,4)
+        LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffgreen2a.mdl")
     endfunction
     function SpellS526(unit wu,unit tu)
         

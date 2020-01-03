@@ -1044,8 +1044,12 @@ endfunction
             SpellS512(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
         elseif  id == 'S513'
             SpellS513(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7))
+        elseif  id == 'S514'
+            SpellS514(u1.u,damage)
         elseif  id == 'S516'
             SpellS516(u1.u)
+        elseif  id == 'S523'
+            SpellS523(u1.u,u2.u)
         endif
         
         u1.destroy()
