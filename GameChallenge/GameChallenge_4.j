@@ -1,18 +1,11 @@
 library GameChallenge4 uses GameChallengeBase
 
-    private int array unitcos
-
     function GameChallenge_4Flush(int pid)
         for num = 0,7
             SetUnitVertexColor(GameChallengUnit[40+num],255,255,255,0)
         end
         GameChallengInt[40] = 0
         SetUnitAnimation(GameChallengUnit[43],"stand")
-        if  GameChallengUnit[49] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[49]))
-            RemoveUnit(GameChallengUnit[49])
-            GameChallengUnit[49] = null
-        endif
         GameChallengCanUsesUnitFlush(pid)
         ShowUnitOfAllPlayer(Pu[1])
         RemoveUnit(PlayerInChallengeShowUnit)
@@ -53,7 +46,6 @@ library GameChallenge4 uses GameChallengeBase
     endfunction
 
     function GameChalleng_4_DeathA(int pid,unit u2)
-        BJDebugMsg("GameChalleng_4_DeathA")
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         GameChallengInt[40] = GameChallengInt[40] + 1
         if  GameChallengInt[40] == 3
@@ -152,10 +144,12 @@ library GameChallenge4 uses GameChallengeBase
         int pid = id
         TimerStart(1,false)
         {   
-            GameChallenge_4Flush(pid)
-            IsFinshChallenge(4) = true
-            //奖励
-            PlayerFinishPlotEx(pid,4)
+            if  IsPlayerInChallenge == true
+                GameChallenge_4Flush(pid)
+                IsFinshChallenge(4) = true
+                //奖励
+                PlayerFinishPlotEx(pid,4)
+            endif
             endtimer
             flush locals
         }
@@ -595,26 +589,28 @@ library GameChallenge4 uses GameChallengeBase
         int pid = id
         TimerStart(1,false)
         {
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r九曲黄河阵已破！！！")
-            if  GameChallengOperaWay[4] == 0
-                if  GetGameChallengOperaSelsect() == 0
-                    GameChallengOperaWay[4] = 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[杨戬]：|r方才走神，不想被魔气趁机入体，谢道兄搭救。")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")   
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r") 
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")                                
-                else
-                    GameChallengOperaWay[4] = 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[杨戬]：|r你给不了我答案。")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r")   
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
+            if  IsPlayerInChallenge == true
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r九曲黄河阵已破！！！")
+                if  GameChallengOperaWay[4] == 0
+                    if  GetGameChallengOperaSelsect() == 0
+                        GameChallengOperaWay[4] = 1
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[杨戬]：|r方才走神，不想被魔气趁机入体，谢道兄搭救。")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")   
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r") 
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")                                
+                    else
+                        GameChallengOperaWay[4] = 2
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[杨戬]：|r你给不了我答案。")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r")   
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
+                    endif
                 endif
+                GameChallenge_4Flush(pid)
+                PlayerChallengeCosNum(4) = PlayerChallengeCosNum(4) + 1
+                //奖励
+                PlayerFinishPlotEx(pid,4)
             endif
-            GameChallenge_4Flush(pid)
-            PlayerChallengeCosNum(4) = PlayerChallengeCosNum(4) + 1
-            //奖励
-            PlayerFinishPlotEx(pid,4)
             endtimer
             flush locals
         }

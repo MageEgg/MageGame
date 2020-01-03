@@ -126,6 +126,8 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChalleng_4_DeathA(pid,u2)
         elseif  (uid2 >= 'uf42' and uid2 <= 'uf49') or uid2 == 'uf50'
             GameChalleng_4_Zhen_Death(pid,u2)
+        elseif  uid2 >= 'uf51' and uid2 <= 'uf54'
+            GameChalleng_5_WayDeath(pid,u2)
         endif
         BJDebugMsg(YDWEId2S(uid2))
         flush locals
