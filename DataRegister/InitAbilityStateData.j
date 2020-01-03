@@ -52,7 +52,7 @@ call InitAbilityData('S041',1,5,0,0,0,0,0,0,"速攻","增加25%攻击速度","Re
 call InitAbilityData('S042',1,5,0,0,0,0,0,0,"若风","法术伤害-50%，攻击速度+40%","ReplaceableTextures\\CommandButtons\\BTNS042.blp")
 call InitAbilityData('S043',1,5,1,2,0,0,2,0,"气流杀","攻击12.5%概率对目标范围造成AD*2法术伤害","ReplaceableTextures\\CommandButtons\\BTNS043.blp")
 call InitAbilityData('S045',1,1,0,0,0,0,0,0,"毒仙","毒体持续时间翻倍，每秒叠加2次，上限翻倍。","ReplaceableTextures\\CommandButtons\\BTNS045.blp")
-call InitAbilityData('S046',2,2,2,0,0,0,2,0,"引爆","对自身范围内敌人造成AP*中毒叠加次数法术伤害","ReplaceableTextures\\CommandButtons\\BTNS046.blp")
+call InitAbilityData('S046',2,2,2,1,0,0,2,6,"引爆","对自身范围内敌人造成AP*中毒叠加次数法术伤害","ReplaceableTextures\\CommandButtons\\BTNS046.blp")
 call InitAbilityData('S047',2,3,2,0.25,0,0,2,16,"毒体","开启后使周围地方单位进入中毒状态，每秒损失AP*0.25生命。\n法术伤害，持续伤害可叠加，每秒叠加一次，上限8次。","ReplaceableTextures\\CommandButtons\\BTNS047.blp")
 call InitAbilityData('S048',1,3,0,0,0,0,2,0,"狐媚术","攻击12.5%概率对目标范围施加一次魅惑，造成AP*3法术伤害，持续时间内降低6%攻速及移动速度。\n持续时间内，减速效果可叠加，上限8次","ReplaceableTextures\\CommandButtons\\BTNS048.blp")
 call InitAbilityData('S049',2,3,2,0,0,0,2,8,"失心令","对自身范围内敌人造成AP*魅惑层数法术伤害","ReplaceableTextures\\CommandButtons\\BTNS049.blp")

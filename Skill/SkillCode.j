@@ -32,43 +32,46 @@ library SkillCode uses System,State,DamageCode
          integer cs=LoadInteger(ht,GetHandleId(mb),Poison) 
           if  cs<PoisonNumberMax(u)
                 SaveInteger(ht,GetHandleId(mb),Poison,cs+PoisonNumber(u))
+                cs=LoadInteger(ht,GetHandleId(mb),Poison)
                 UnitDamageTarget(u, mb, 10+(cs*damage), false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)      
                 TimerStart(Poisontime(u),false)
                 {
-                SaveInteger(ht,GetHandleId(mb),Poison,cs-1)
+                cs=LoadInteger(ht,GetHandleId(mb),Poison)
+                SaveInteger(ht,GetHandleId(mb),Poison,cs-PoisonNumber(u))
                 flush locals
                 endtimer
-                    }
+                }
             endif
         endfunction
 
         function poisondamage(unit wu1,real damage1)
         unit wu=wu1
-        int time=0
+        integer time=0
         real damage=damage1
+        group g = CreateGroup()
+        unit gu=null 
         TimerStart(1,true)
           {
             time=time+1
-            if time<8
-                group g = CreateGroup()
-                GroupEnumUnitsInRange( g,GetUnitX(wu),GetUnitX(wu),2000,null)
-                unit gu = null
+            if time<=8
+                
+                GroupEnumUnitsInRange(g,GetUnitX(wu),GetUnitY(wu),2000,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                     loop
                         gu = FirstOfGroup(g)
                         exitwhen gu == null
-                    
-                        if  (IsUnitEnemy(gu,GetOwningPlayer(wu)) == true) and (IsUnitAliveBJ(gu) == true)
-                            if  Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(gu),GetUnitY(gu))<800
+                            if  Udis(wu,gu)<800
                                 poisonBuff(wu,gu,damage)  
                             else
                                 int cs=LoadInteger(ht,GetHandleId(gu),Poison) 
-                                UnitDamageTarget(wu, gu, 10+(cs*damage), false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+                                if  cs>0
+                                    UnitDamageTarget(wu, gu, (cs*damage), false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+                                endif
                             endif
-                        endif
                         GroupRemoveUnit(g,gu)
                     endloop
-                    DestroyGroup(g)
+                   
             else
+                    DestroyGroup(g)
                     wu=null
                     endtimer
             endif
