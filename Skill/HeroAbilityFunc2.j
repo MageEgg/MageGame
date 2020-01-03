@@ -628,7 +628,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
     function SpellS527(unit wu,unit tu)
         int pid = GetPlayerId(GetOwningPlayer(tu))
         if  Pu[1] == tu and wu != tu
-            r1 = GetUnitRealState(tu,1)*0.3
+            real r1 = GetUnitRealState(tu,1)*0.3
             AddUnitStateExTimer(tu,1,-r1,30)
             AddUnitStateExTimer(wu,1,r1,30)
             KillUnit(tu)
