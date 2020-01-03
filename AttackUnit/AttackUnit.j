@@ -369,18 +369,20 @@ library AttackUnit uses DamageCode
         int Attacknum = 0
         real BossTime = 0
         for k = 0,3
-            puid[k] = AttackUnitID(k)[ordernum]
-            psx[k] = AttackUnitStartX(k)[ordernum]
-            psy[k] = AttackUnitStartY(k)[ordernum]
-            pex[k] = AttackUnitEndX(k)[ordernum]
-            pey[k] = AttackUnitEndY(k)[ordernum]
-            if  puid[k] != 0
-                for j = 1,unitnum
-                    u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
-                    SetUnitXY(u,psx[k],psy[k])
-                    IssuePointOrderById(u,851983,pex[k],pey[k])
-                    GroupAddUnit(AttackUnitGroup,u)
-                end
+            if  IsPlaying(k) == true
+                puid[k] = AttackUnitID(k)[ordernum]
+                psx[k] = AttackUnitStartX(k)[ordernum]
+                psy[k] = AttackUnitStartY(k)[ordernum]
+                pex[k] = AttackUnitEndX(k)[ordernum]
+                pey[k] = AttackUnitEndY(k)[ordernum]
+                if  puid[k] != 0
+                    for j = 1,unitnum
+                        u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
+                        SetUnitXY(u,psx[k],psy[k])
+                        IssuePointOrderById(u,851983,pex[k],pey[k])
+                        GroupAddUnit(AttackUnitGroup,u)
+                    end
+                endif
             endif
         end
         //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffff0000开始进攻！！！|r")
