@@ -616,6 +616,11 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             endif
         }
     endfunction
+
+    function SpellS525(unit wu,real sx,real sy,real damage)
+        
+    endfunction
+
     function SpellS526(unit wu,unit tu,real damage)
         if  YDWEGetUnitAbilityState(wu,'AC05', 1) == 0
             SetUnitAnimationByIndex(wu,4)
