@@ -221,6 +221,19 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
 
+    function SendPlayerUnitTimer(int id,real r1,real r2)
+        int pid = id
+        real x = r1
+        real y = r2
+        TimerStart(0.1,false)
+        {
+            SendPlayerUnit(pid,x,y)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
 endlibrary
 
 
