@@ -17,6 +17,45 @@ library GameChallenge5 uses GameChallengeBase
         IsPlayerInChallenge = false
     endfunction
 
+    function GameChallenge_5_BTimer(int id)
+        int pid = id
+        int time = 0
+        int num = 0
+        real x = 0
+        real y = 0
+        TimerStart(1,true)
+        {
+            time = time + 1
+            if  IsPlayerInChallenge == true
+                if  time == 1
+                    num = GetCanUsesGameChallengUnitID(pid)
+                    if  num != 0
+                        x = 16
+                        y = 4640
+                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf54',x,y,270)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
+                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r土行孙归营！！！")
+                    endif
+                elseif  time == 2
+                    SetUnitPositionOfGameChalleng(GameChallengUnit[num],x,4300)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[土行孙]：|r来者何人！！！敢私探吾营，是自送死期！！！")
+                elseif  time == 3
+                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败土行孙|r")
+                    endtimer
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function OpenGameChallenge_5(int pid,int ty)
         real x = 0
         real y = 0
@@ -32,14 +71,14 @@ library GameChallenge5 uses GameChallengeBase
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[51],UnitAPOfPlayer)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往姜子牙|r")
         elseif  ty == 1
-            x = -1728
-            y = -896
+            x = 16
+            y = 3968
             IsPlayerInChallenge = true
             PlayerInChallengeNumber = 5
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r天仙赵公明助闻太师攻打西岐，神秘大能-陆压传子牙“钉头七箭书”应对。")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往姜子牙|r")
+            GameChallengInt[50] = 100
+            GameChallenge_5_BTimer(pid)
         endif
     endfunction
 
@@ -48,7 +87,7 @@ library GameChallenge5 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  GameChallengUnit[59] == null and IsFinshChallenge(5) == false and IsPlayerInChallenge == true
+                if  GameChallengUnit[59] == null and GameChallengInt[50] == 0 and IsFinshChallenge(5) == false and IsPlayerInChallenge == true
                     SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
                     SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
                     GameChallengUnit[59] = CreateUnit(Player(9),'np07',GetUnitX(Pu[1]),GetUnitY(Pu[1]),180)
@@ -105,6 +144,38 @@ library GameChallenge5 uses GameChallengeBase
         flush locals
     endfunction
 
+    function Challeng_5_WayB_End(int id)
+        int pid = id
+        TimerStart(1,false)
+        {
+            if  IsPlayerInChallenge == true
+                if  GameChallengOperaWay[5] == 0
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r此时，惧留孙及时赶到。")
+                    if  GetGameChallengOperaSelsect() == 0
+                        GameChallengOperaWay[5] = 1
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[惧留孙]：|r道兄请留孽徒一命，子牙后有用他之处，可助西岐一臂之力。")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")   
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")  
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")                                 
+                    else
+                        GameChallengOperaWay[5] = 2
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r你失手杀死了土行孙，惧留孙后以仙丹将其复活。")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r")   
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
+                    endif
+                endif
+                GameChallenge_4Flush(pid)
+                PlayerChallengeCosNum(5) = PlayerChallengeCosNum(5) + 1
+                //奖励
+                PlayerFinishPlotEx(pid,5)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function GameChalleng_5_WayDeath(int pid,unit u2)
         int uid = GetUnitTypeId(u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
@@ -131,6 +202,9 @@ library GameChallenge5 uses GameChallengeBase
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[55]),GetUnitY(GameChallengUnit[55]))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
+        elseif  uid == 'uf54'
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击败土行孙！！！")
+            Challeng_5_WayB_End(pid)
         endif
     endfunction
 
