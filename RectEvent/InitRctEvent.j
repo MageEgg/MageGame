@@ -31,12 +31,53 @@ scope InitRctEvent initializer InitRctEvent
             DisplayTimedTextToPlayer(GetOwningPlayer(GetTriggerUnit()),0,0,5,"|cffffcc00[系统]|r:这不是你的练功房！")
         endif
     endfunction
+
+    function InGameRect()
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+        if  Pu[1] == GetTriggerUnit()
+            real minX = GetRectMinX(gg_rct_GameRect)
+            real minY = GetRectMinY(gg_rct_GameRect)
+            real maxX = GetRectMaxX(gg_rct_GameRect)
+            real maxY = GetRectMaxY(gg_rct_GameRect)
+            if  GetLocalPlayer() == Player(pid)
+                call SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
+            endif
+        endif
+    endfunction
+    function OutGameRect()
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+        if  Pu[1] == GetTriggerUnit()
+            real minX = GetRectMinX(bj_mapInitialPlayableArea)
+            real minY = GetRectMinY(bj_mapInitialPlayableArea)
+            real maxX = GetRectMaxX(bj_mapInitialPlayableArea)
+            real maxY = GetRectMaxY(bj_mapInitialPlayableArea)
+            if  GetLocalPlayer() == Player(pid)
+                call SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
+            endif
+        endif
+    endfunction
     
     
+    function InitRctEventFunc(rect rec,bool in,code cod)
+        trigger trig = CreateTrigger()
+        region rectRegion = CreateRegion()
+        RegionAddRect(rectRegion, rec)
+        if  in == true
+            TriggerRegisterEnterRegion(trig, rectRegion, null)
+        else
+            TriggerRegisterLeaveRegion(trig, rectRegion, null)
+        endif
+        TriggerAddAction(trig, cod)
+        flush locals
+    endfunction
+
     function InitRctEvent()
         region rectRegion = null
         trigger trig = null
         
+
+        InitRctEventFunc(gg_rct_GameRect,true,function InGameRect)
+        InitRctEventFunc(gg_rct_GameRect,false,function OutGameRect)
         
         /*
         trig = CreateTrigger()

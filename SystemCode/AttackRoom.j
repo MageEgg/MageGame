@@ -162,6 +162,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         if  GetUnitTypeId(Pu[27]) == 'u001'
             RemoveUnit(Pu[27])
             Pu[27]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
+            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,351)
+            SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+384,y+192,225)
             LocAddEffect(x+512,y+256,"effect_az_bw_lina_t1-2.mdl")
         endif
@@ -189,7 +191,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 SetUnitY(u1,y1)
             else
                 real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+2
-                real maxlife = GetUnitState(Pu[27],UNIT_STATE_MANA)
+                real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
                     SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
@@ -211,6 +213,52 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         end
     endfunction
     
+
+
+    function SoulTimer2Func(int id,real x,real y)
+        int pid = id
+        real x1 = x
+        real y1 = y
+        real x2 = GetUnitX(Pu[27])
+        real y2 = GetUnitY(Pu[27])
+        real ang = Pang(x2,y2,x1,y1)
+        real speed = GetRandomReal(20,40)
+        unit u1 =  CreateTmUnit(Player(pid),"Abilities\\Weapons\\SpiritOfVengeanceMissile\\SpiritOfVengeanceMissile.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,5.0)
+        SetUnitPropWindow( u1, 6.26 )
+        SetUnitTurnSpeed( u1, GetRandomReal(0.01,0.2))
+        
+        TimerStart(0.03,true)
+        {
+            real dis = Pdis(x1,y1,x2,y2)
+            if  dis > 50
+                x1 = x1 + speed * Cos(GetUnitFacing(u1)*0.01745)
+                y1 = y1 + speed * Sin(GetUnitFacing(u1)*0.01745)
+                SetUnitFacing(u1,Pang(x1,y1,x2,y2)/0.01745)
+                SetUnitX(u1,x1)
+                SetUnitY(u1,y1)
+            else
+                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+10
+                real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
+                if  maxlife > 0
+                    SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
+                    //SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
+                
+                    if  life+0.5 >= maxlife
+                        BJDebugMsg("占星一下")
+                        SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+                    endif
+                endif
+                RemoveUnit(u1)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SoulTimer2(int pid,real x,real y)
+        SoulTimer2Func(pid,x,y)
+    endfunction
     
     //任意单位死亡 触发单位，凶手单位
     function AttackRoomUnitDeath(unit wu,unit ku)
@@ -222,6 +270,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == true
             if  GetUnitTypeId(Pu[27]) == 'u001'
                 SoulTimer(pid,x,y)
+            elseif  GetUnitTypeId(Pu[27]) == 'np03'
+                SoulTimer2(pid,x,y)
             endif
             AttackRoomTimer = true
             TimerStart(1,false)
