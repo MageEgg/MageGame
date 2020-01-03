@@ -1112,6 +1112,8 @@ endfunction
             SpellS523(u1.u,u2.u)
         elseif  id == 'S524'
             SpellS524(u1.u,u2.u)
+        elseif  id == 'S525'
+            SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
         elseif  id == 'S527'
             SpellS527(u1.u,u2.u)
         endif

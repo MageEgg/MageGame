@@ -8,6 +8,9 @@ library GameChallenge2 uses GameChallengeBase
             GameChallengUnit[29] = null
         endif
         GameChallengInt[20] = 0
+        if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
+            UnitRemoveAbility(Pu[1],'AZ04')
+        endif
         GameChallengCanUsesUnitFlush(pid)
         ShowUnitOfAllPlayer(Pu[1])
         RemoveUnit(PlayerInChallengeShowUnit)
@@ -117,6 +120,7 @@ library GameChallenge2 uses GameChallengeBase
             PlayerInChallengeNumber = 2
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
+            UnitAddAbility(Pu[1],'AZ04')
             GameChallengUnit[29] = CreateUnit(Player(9),'np21',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[29],UnitAPOfPlayer)
             UnitAddAbility(GameChallengUnit[29],'AZ99')

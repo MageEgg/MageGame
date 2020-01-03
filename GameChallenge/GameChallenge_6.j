@@ -162,6 +162,8 @@ library GameChallenge6 uses GameChallengeBase
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         int num = n
         SetUnitFacing(u1,ang/0.01745)
+        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
+        SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.03,true)
         {
             time = time - 1
@@ -171,10 +173,12 @@ library GameChallenge6 uses GameChallengeBase
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitAnimation(u1,"walk")
-                if  ModuloInteger(time,5) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdx",1.4)
-                endif
+                //if  ModuloInteger(time,2) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
+                //endif
             else
+                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
+                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
                 GameChalleng_6_JumpAttack2TimerEnd(pid,num)
                 endtimer
             endif
@@ -230,6 +234,8 @@ library GameChallenge6 uses GameChallengeBase
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         int flag = fl
         SetUnitFacing(u1,ang/0.01745)
+        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
+        SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.035,true)
         {
             time = time - 1
@@ -239,10 +245,12 @@ library GameChallenge6 uses GameChallengeBase
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitAnimation(u1,"walk")
-                if  ModuloInteger(time,4) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdx",1.4)
-                endif
+                //if  ModuloInteger(time,2) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
+                //endif
             else
+                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
+                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
                 if  flag == 0
                     GameChalleng_6_JumpAttack1(pid)
                 elseif  flag == 1
