@@ -178,7 +178,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real y2 = GetUnitY(Pu[27])
         real ang = Pang(x2,y2,x1,y1)
         real speed = GetRandomReal(20,40)
-        unit u1 =  CreateTmUnit(Player(pid),"Abilities\\Weapons\\SpiritOfVengeanceMissile\\SpiritOfVengeanceMissile.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,1.0)
+        unit u1 =  CreateTmUnit(Player(pid),"xkt_boss_zhaohuan_miss.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,1.0)
         SetUnitPropWindow( u1, 6.26 )
         SetUnitTurnSpeed( u1, GetRandomReal(0.01,0.2))
         
@@ -225,7 +225,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real y2 = GetUnitY(Pu[27])
         real ang = Pang(x2,y2,x1,y1)
         real speed = GetRandomReal(20,40)
-        unit u1 =  CreateTmUnit(Player(pid),"Abilities\\Weapons\\SpiritOfVengeanceMissile\\SpiritOfVengeanceMissile.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,5.0)
+        unit u1 =  CreateTmUnit(Player(pid),"xkt_boss_zhaohuan_miss.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,2.0)
         SetUnitPropWindow( u1, 6.26 )
         SetUnitTurnSpeed( u1, GetRandomReal(0.01,0.2))
         
