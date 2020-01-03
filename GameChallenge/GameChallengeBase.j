@@ -1,5 +1,9 @@
 library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,PlotSelectFrame
 
+    int array unitplayercos[6][680]
+
+    #define unitcos unitplayercos[pid]
+
     int array       GameChallengPlayerInt[12][680]
     unit array      GameChallengPlayerUnit[12][680]
     bool array      GameChallengPlayerBool[12][680]
@@ -211,9 +215,23 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function PlayerFinishPlotEx(int id,int f)
         int pid = id
         int flag = f
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r正在结算奖励。。。")
         TimerStart(1,false)
         {
             PlayerFinishPlot(pid,flag)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SendPlayerUnitTimer(int id,real r1,real r2)
+        int pid = id
+        real x = r1
+        real y = r2
+        TimerStart(0.1,false)
+        {
+            SendPlayerUnit(pid,x,y)
             endtimer
             flush locals
         }

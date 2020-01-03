@@ -142,75 +142,75 @@ library AttackUnit uses DamageCode
     endfunction
     
     function InitAttackUnitOfLevel()
-        InitAttackUnitData(1,0,150,3,20,1,-7450,-7590,'m001',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(2,0,150,3,20,1,-7450,-7590,'m002',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(3,0,150,3,20,1,-7450,-7590,'m003',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(4,0,150,3,20,1,-7450,-7590,'m004',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(5,0,150,3,20,1,-7450,-7590,'m005',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(6,0,30,3,20,1,-7450,-7590,'m006',0,0,0,-4736,-7520,0,0,0,0,0,0)
+        InitAttackUnitData(1,0,150,3,20,1,-6910,-6912,'m001','m001','m001','m001',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(2,0,150,3,20,1,-6910,-6912,'m002','m002','m002','m002',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(3,0,150,3,20,1,-6910,-6912,'m003','m003','m003','m003',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(4,0,150,3,20,1,-6910,-6912,'m004','m004','m004','m004',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(5,0,150,3,20,1,-6910,-6912,'m005','m005','m005','m005',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(6,0,30,3,20,1,-6910,-6912,'m006','m006','m006','m006',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
         InitAttackUnitData(7,1,120,3,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitData(8,0,120,3,20,1,-7450,-7590,'m007',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(9,0,120,3,20,1,-7450,-7590,'m008',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(10,0,120,6,20,1,-7450,-7590,'m009',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(11,0,120,6,20,1,-7450,-7590,'m010',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(12,0,120,6,20,1,-7450,-7590,'m011',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(13,0,30,6,20,1,-7450,-7590,'m012',0,0,0,-4736,-7520,0,0,0,0,0,0)
+        InitAttackUnitData(8,0,120,3,20,1,-6910,-6912,'m007','m007','m007','m007',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(9,0,120,3,20,1,-6910,-6912,'m008','m008','m008','m008',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(10,0,120,6,20,1,-6910,-6912,'m009','m009','m009','m009',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(11,0,120,6,20,1,-6910,-6912,'m010','m010','m010','m010',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(12,0,120,6,20,1,-6910,-6912,'m011','m011','m011','m011',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(13,0,30,6,20,1,-6910,-6912,'m012','m012','m012','m012',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
         InitAttackUnitData(14,1,120,6,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitData(15,0,120,6,20,1,-1655,-7456,'m013',0,0,0,-1655,-6112,0,0,0,0,0,0)
-        InitAttackUnitData(16,0,120,6,20,1,-1655,-7456,'m014',0,0,0,-1655,-6112,0,0,0,0,0,0)
-        InitAttackUnitData(17,0,30,6,20,1,-1655,-7456,'m015',0,0,0,-1655,-6112,0,0,0,0,0,0)
+        InitAttackUnitData(15,0,120,6,20,1,-1664,-7440,'m013','m013','m013','m013',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+        InitAttackUnitData(16,0,120,6,20,1,-1664,-7440,'m014','m014','m014','m014',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+        InitAttackUnitData(17,0,30,6,20,1,-1664,-7440,'m015','m015','m015','m015',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
 
-        InitAttackUnitData(101,0,0,1,1,0,-7450,-7590,'mb01',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(102,0,0,1,1,0,-7450,-7590,'mb02',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(103,0,0,1,1,0,-7450,-7590,'mb03',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(104,0,0,1,1,0,-7450,-7590,'mb04',0,0,0,-4736,-7520,0,0,0,0,0,0)
-        InitAttackUnitData(105,0,0,1,1,0,-1655,-7456,'mb05',0,0,0,-1655,-6112,0,0,0,0,0,0)
-        InitAttackUnitData(106,0,0,1,1,0,-1655,-7456,'mb06',0,0,0,-1655,-6112,0,0,0,0,0,0)
-        InitAttackUnitData(107,0,0,1,1,0,-1655,-7456,'mb07',0,0,0,-1655,-6112,0,0,0,0,0,0)
-        InitAttackUnitData(108,0,0,1,1,0,-1655,-7456,'mb08',0,0,0,-1655,-6112,0,0,0,0,0,0)
-        InitAttackUnitData(109,0,0,1,1,0,-1655,-7456,'mb09',0,0,0,-1655,-6112,0,0,0,0,0,0)
+        InitAttackUnitData(101,0,0,1,1,1,-6910,-6912,'mb01','mb01','mb01','mb01',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(102,0,0,1,1,1,-6910,-6912,'mb02','mb02','mb02','mb02',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(103,0,0,1,1,1,-6910,-6912,'mb03','mb03','mb03','mb03',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(104,0,0,1,1,1,-6910,-6912,'mb04','mb04','mb04','mb04',-6910,-4800,-4640,-6912,-6910,-9056,-9088,-6912)
+        InitAttackUnitData(105,0,0,1,1,1,-1664,-7440,'mb05','mb05','mb05','mb05',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+        InitAttackUnitData(106,0,0,1,1,1,-1664,-7440,'mb06','mb06','mb06','mb06',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+        InitAttackUnitData(107,0,0,1,1,1,-1664,-7440,'mb07','mb07','mb07','mb07',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+        InitAttackUnitData(108,0,0,1,1,1,-1664,-7440,'mb08','mb08','mb08','mb08',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+        InitAttackUnitData(109,0,0,1,1,1,-1664,-7440,'mb09','mb09','mb09','mb09',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
 
     endfunction
     
     function InitAttackUnitOfLevelEx(int lv)
         if  lv == 2
             InitAttackUnitData(18,1,180,6,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            InitAttackUnitData(19,0,30,8,15,1,-1655,-7456,'m016',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(20,0,30,8,15,1,-1655,-7456,'m017',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(21,0,0,8,15,1,-1655,-7456,'m018',0,0,0,-1655,-6112,0,0,0,0,0,0)
+            InitAttackUnitData(19,0,30,8,15,1,-1664,-7440,'m016','m016','m016','m016',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(20,0,30,8,15,1,-1664,-7440,'m017','m017','m017','m017',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(21,0,0,8,15,1,-1664,-7440,'m018','m018','m018','m018',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
         elseif  lv == 3
             InitAttackUnitData(18,1,120,6,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            InitAttackUnitData(19,0,120,6,20,1,-1655,-7456,'m016',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(20,0,120,6,20,1,-1655,-7456,'m017',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(21,0,180,6,20,1,-1655,-7456,'m018',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(22,0,30,8,15,1,-1655,-7456,'m019',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(23,0,30,8,15,1,-1655,-7456,'m020',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(24,0,0,8,15,1,-1655,-7456,'m021',0,0,0,-1655,-6112,0,0,0,0,0,0)
+            InitAttackUnitData(19,0,120,6,20,1,-1664,-7440,'m016','m016','m016','m016',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(20,0,120,6,20,1,-1664,-7440,'m017','m017','m017','m017',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(21,0,180,6,20,1,-1664,-7440,'m018','m018','m018','m018',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(22,0,30,8,15,1,-1664,-7440,'m019','m019','m019','m019',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(23,0,30,8,15,1,-1664,-7440,'m020','m020','m020','m020',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(24,0,0,8,15,1,-1664,-7440,'m021','m021','m021','m021',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
         elseif  lv == 4
             InitAttackUnitData(18,1,120,6,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            InitAttackUnitData(19,0,120,6,20,1,-1655,-7456,'m016',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(20,0,120,6,20,1,-1655,-7456,'m017',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(21,0,120,6,20,1,-1655,-7456,'m018',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(22,0,120,6,20,1,-1655,-7456,'m019',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(23,0,120,6,20,1,-1655,-7456,'m020',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(24,0,180,6,20,1,-1655,-7456,'m021',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(25,0,30,8,15,1,-1655,-7456,'m022',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(26,0,30,8,15,1,-1655,-7456,'m023',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(27,0,0,8,15,1,-1655,-7456,'m024',0,0,0,-1655,-6112,0,0,0,0,0,0)
+            InitAttackUnitData(19,0,120,6,20,1,-1664,-7440,'m016','m016','m016','m016',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(20,0,120,6,20,1,-1664,-7440,'m017','m017','m017','m017',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(21,0,120,6,20,1,-1664,-7440,'m018','m018','m018','m018',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(22,0,120,6,20,1,-1664,-7440,'m019','m019','m019','m019',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(23,0,120,6,20,1,-1664,-7440,'m020','m020','m020','m020',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(24,0,180,6,20,1,-1664,-7440,'m021','m021','m021','m021',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(25,0,30,8,15,1,-1664,-7440,'m022','m022','m022','m022',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(26,0,30,8,15,1,-1664,-7440,'m023','m023','m023','m023',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(27,0,0,8,15,1,-1664,-7440,'m024','m024','m024','m024',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
         elseif  lv >= 5 and lv <= 7
             InitAttackUnitData(18,1,120,6,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            InitAttackUnitData(19,0,120,6,20,1,-1655,-7456,'m016',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(20,0,120,6,20,1,-1655,-7456,'m017',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(21,0,120,6,20,1,-1655,-7456,'m018',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(22,0,120,6,20,1,-1655,-7456,'m019',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(23,0,120,6,20,1,-1655,-7456,'m020',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(24,0,120,6,20,1,-1655,-7456,'m021',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(25,0,120,6,20,1,-1655,-7456,'m022',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(26,0,120,6,20,1,-1655,-7456,'m023',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(27,0,180,6,20,1,-1655,-7456,'m024',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(28,0,30,8,15,1,-1655,-7456,'m025',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(28,0,30,8,15,1,-1655,-7456,'m026',0,0,0,-1655,-6112,0,0,0,0,0,0)
-            InitAttackUnitData(29,0,0,8,15,1,-1655,-7456,'m027',0,0,0,-1655,-6112,0,0,0,0,0,0)
+            InitAttackUnitData(19,0,120,6,20,1,-1664,-7440,'m016','m016','m016','m016',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(20,0,120,6,20,1,-1664,-7440,'m017','m017','m017','m017',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(21,0,120,6,20,1,-1664,-7440,'m018','m018','m018','m018',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(22,0,120,6,20,1,-1664,-7440,'m019','m019','m019','m019',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(23,0,120,6,20,1,-1664,-7440,'m020','m020','m020','m020',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(24,0,120,6,20,1,-1664,-7440,'m021','m021','m021','m021',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(25,0,120,6,20,1,-1664,-7440,'m022','m022','m022','m022',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(26,0,120,6,20,1,-1664,-7440,'m023','m023','m023','m023',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(27,0,180,6,20,1,-1664,-7440,'m024','m024','m024','m024',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(28,0,30,8,15,1,-1664,-7440,'m025','m025','m025','m025',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(28,0,30,8,15,1,-1664,-7440,'m026','m026','m026','m026',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
+            InitAttackUnitData(29,0,0,8,15,1,-1664,-7440,'m027','m027','m027','m027',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
         endif
     endfunction
     
@@ -264,20 +264,22 @@ library AttackUnit uses DamageCode
         unit u = null
         if  FlushNum > 0
             for k = 0,3
-                puid[k] = AttackUnitID(k)[ordernum]
-                psx[k] = AttackUnitStartX(k)[ordernum]
-                psy[k] = AttackUnitStartY(k)[ordernum]
-                pex[k] = AttackUnitEndX(k)[ordernum]
-                pey[k] = AttackUnitEndY(k)[ordernum]
-                if  puid[k] != 0
-                    for j = 1,unitnum
-                        u = CreateUnit(Player(11),puid[k],pex[k],pey[k],0)
-                        UnitAddAbility(u,'AZ01')
-                        SetUnitXY(u,psx[k],psy[k])
-                        PingMinimap(psx[k],psy[k],5)
-                        IssuePointOrderById(u,851983,pex[k],pey[k])
-                        GroupAddUnit(AttackUnitGroup,u)
-                    end
+                if  IsPlaying(k) == true
+                    puid[k] = AttackUnitID(k)[ordernum]
+                    psx[k] = AttackUnitStartX(k)[ordernum]
+                    psy[k] = AttackUnitStartY(k)[ordernum]
+                    pex[k] = AttackUnitEndX(k)[ordernum]
+                    pey[k] = AttackUnitEndY(k)[ordernum]
+                    if  puid[k] != 0
+                        for j = 1,unitnum
+                            u = CreateUnit(Player(11),puid[k],pex[k],pey[k],0)
+                            UnitAddAbility(u,'AZ01')
+                            SetUnitXY(u,psx[k],psy[k])
+                            PingMinimap(psx[k],psy[k],5)
+                            IssuePointOrderById(u,851983,pex[k],pey[k])
+                            GroupAddUnit(AttackUnitGroup,u)
+                        end
+                    endif
                 endif
             end
             if  num == FlushNum
@@ -332,18 +334,20 @@ library AttackUnit uses DamageCode
         unit u = null
         if  FlushNum > 0
             for k = 0,3
-                puid[k] = AttackUnitID(k)[ordernum]
-                psx[k] = AttackUnitStartX(k)[ordernum]
-                psy[k] = AttackUnitStartY(k)[ordernum]
-                pex[k] = AttackUnitEndX(k)[ordernum]
-                pey[k] = AttackUnitEndY(k)[ordernum]
-                if  puid[k] != 0
-                    for j = 1,unitnum
-                        u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
-                        SetUnitXY(u,psx[k],psy[k])
-                        IssuePointOrderById(u,851983,pex[k],pey[k])
-                        GroupAddUnit(AttackUnitGroup,u)
-                    end
+                if  IsPlaying(k) == true
+                    puid[k] = AttackUnitID(k)[ordernum]
+                    psx[k] = AttackUnitStartX(k)[ordernum]
+                    psy[k] = AttackUnitStartY(k)[ordernum]
+                    pex[k] = AttackUnitEndX(k)[ordernum]
+                    pey[k] = AttackUnitEndY(k)[ordernum]
+                    if  puid[k] != 0
+                        for j = 1,unitnum
+                            u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
+                            SetUnitXY(u,psx[k],psy[k])
+                            IssuePointOrderById(u,851983,pex[k],pey[k])
+                            GroupAddUnit(AttackUnitGroup,u)
+                        end
+                    endif
                 endif
             end
             FlushNum = FlushNum - 1
@@ -365,18 +369,20 @@ library AttackUnit uses DamageCode
         int Attacknum = 0
         real BossTime = 0
         for k = 0,3
-            puid[k] = AttackUnitID(k)[ordernum]
-            psx[k] = AttackUnitStartX(k)[ordernum]
-            psy[k] = AttackUnitStartY(k)[ordernum]
-            pex[k] = AttackUnitEndX(k)[ordernum]
-            pey[k] = AttackUnitEndY(k)[ordernum]
-            if  puid[k] != 0
-                for j = 1,unitnum
-                    u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
-                    SetUnitXY(u,psx[k],psy[k])
-                    IssuePointOrderById(u,851983,pex[k],pey[k])
-                    GroupAddUnit(AttackUnitGroup,u)
-                end
+            if  IsPlaying(k) == true
+                puid[k] = AttackUnitID(k)[ordernum]
+                psx[k] = AttackUnitStartX(k)[ordernum]
+                psy[k] = AttackUnitStartY(k)[ordernum]
+                pex[k] = AttackUnitEndX(k)[ordernum]
+                pey[k] = AttackUnitEndY(k)[ordernum]
+                if  puid[k] != 0
+                    for j = 1,unitnum
+                        u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
+                        SetUnitXY(u,psx[k],psy[k])
+                        IssuePointOrderById(u,851983,pex[k],pey[k])
+                        GroupAddUnit(AttackUnitGroup,u)
+                    end
+                endif
             endif
         end
         //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffff0000开始进攻！！！|r")

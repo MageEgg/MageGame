@@ -128,7 +128,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                     LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")
                 endif
                 if  GetLocalPlayer() == Player(pid)
-                    DzFrameSetTexture(BUTTON_Back[150+num][1],GetTypeIdIcon(id),0)
+                    DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
                 endif
             endif 
         else
@@ -267,6 +267,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         
         for i = 1,10
             CreateButton(150+i,Button.frameid,TYPE_BUTTON,0,Button.frameid,6,0.005+0.0215*(i-1),-0.003,0.018,0.018,"war3mapImported\\UI_Level_Button.tga")
+            CreateModel(150+i,Button.frameid,TYPE_BUTTON,6,6,-0.005,-0.002,"")
         end
         
         for i = 1,7
@@ -274,7 +275,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         end
         
         
-        CreateModel(151,Button.frameid,TYPE_BUTTON,6,6,-0.009,0.0,"war3mapImported\\ch_DG1x.mdx")
+        
         
         Button2.frameid = FRAME.Tag("BUTTON","Hero",origin,Button2)
         Button2.SetPoint(0,origin,0,-0.165,0.0)

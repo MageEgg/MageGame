@@ -27,14 +27,16 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         //初始化练功房刷怪坐标
         SetAttackRoomRefreshPostion(0,-8512,-5312)
         SetAttackRoomRefreshPostion(1,-5312,-5312)
-        SetAttackRoomRefreshPostion(2,-8512,-8512)
-        SetAttackRoomRefreshPostion(3,-5312,-8512)
+        SetAttackRoomRefreshPostion(2,-5312,-8512)
+        SetAttackRoomRefreshPostion(3,-8512,-8512)
+        
         
         //初始化练功房进入坐标
         SetAttackRoomMovePostion(0,-8512,-5312)
         SetAttackRoomMovePostion(1,-5312,-5312)
-        SetAttackRoomMovePostion(2,-8512,-8512)
-        SetAttackRoomMovePostion(3,-5312,-8512)
+        SetAttackRoomMovePostion(2,-5312,-8512)
+        SetAttackRoomMovePostion(3,-8512,-8512)
+        
         
         
         for pid = 0,3//玩家数量
@@ -176,7 +178,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real y2 = GetUnitY(Pu[27])
         real ang = Pang(x2,y2,x1,y1)
         real speed = GetRandomReal(20,40)
-        unit u1 =  CreateTmUnit(Player(pid),"Abilities\\Weapons\\SpiritOfVengeanceMissile\\SpiritOfVengeanceMissile.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,1.0)
+        unit u1 =  CreateTmUnit(Player(pid),"xkt_boss_zhaohuan_miss.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,1.0)
         SetUnitPropWindow( u1, 6.26 )
         SetUnitTurnSpeed( u1, GetRandomReal(0.01,0.2))
         
@@ -223,7 +225,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real y2 = GetUnitY(Pu[27])
         real ang = Pang(x2,y2,x1,y1)
         real speed = GetRandomReal(20,40)
-        unit u1 =  CreateTmUnit(Player(pid),"Abilities\\Weapons\\SpiritOfVengeanceMissile\\SpiritOfVengeanceMissile.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,5.0)
+        unit u1 =  CreateTmUnit(Player(pid),"xkt_boss_zhaohuan_miss.mdl",x,y,ang/0.01745+(40-speed)*GetRandomInt(-1,1),50,2.0)
         SetUnitPropWindow( u1, 6.26 )
         SetUnitTurnSpeed( u1, GetRandomReal(0.01,0.2))
         
