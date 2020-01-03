@@ -255,7 +255,7 @@ scope AllTypeIdData initializer init
         InitEquipData('E224',0,0,34800,0,0,'E225',0,0)
 
 
-        InitEquipData('IT01',0,0,0,0,0,0,-7657,-4635)
+        InitEquipData('IT01',0,0,0,0,0,0,-8155,-3943)
         InitEquipData('IT02',0,0,0,0,0,0,-7872,-2816)
         InitEquipData('IT03',0,0,0,0,0,0,-8048,-1563)
         InitEquipData('IT04',0,0,0,0,0,0,-7794,195)

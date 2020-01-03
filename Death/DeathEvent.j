@@ -140,7 +140,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
         
         
-        exp = 1
+        exp = 5
         
         
         if  gold > 0
@@ -187,6 +187,28 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u001' and uid <= 'u004'
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
+            endif
+        elseif  uid >= 'uJ00' and uid <= 'uJzz'
+            if  uid == 'uJ00'
+                AddPlayerImmortalFruit(Pu[1],'IJ01')
+            elseif  uid == 'uJ10'
+                AddPlayerImmortalFruit(Pu[1],'IJ02')
+            elseif  uid == 'uJ20'
+                AddPlayerImmortalFruit(Pu[1],'IJ03')
+            elseif  uid == 'uJ30'
+                AddPlayerImmortalFruit(Pu[1],'IJ04')
+            elseif  uid == 'uJ40'
+                AddPlayerImmortalFruit(Pu[1],'IJ05')
+            elseif  uid == 'uJ50'
+                AddPlayerImmortalFruit(Pu[1],'IJ06')
+            elseif  uid == 'uJ60'
+                AddPlayerImmortalFruit(Pu[1],'IJ07')
+            elseif  uid == 'uJ70'
+                AddPlayerImmortalFruit(Pu[1],'IJ08')
+            elseif  uid == 'uJ80'
+                AddPlayerImmortalFruit(Pu[1],'IJ09')
+            elseif  uid == 'uJ90'
+                AddPlayerImmortalFruit(Pu[1],'IJ10')
             endif
         endif
 
