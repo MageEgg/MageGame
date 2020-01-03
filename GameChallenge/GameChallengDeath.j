@@ -135,7 +135,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         elseif  uid2 >= 'uf80' and uid2 <= 'uf87'
             GameChallenge_8_Death(pid,u2)
         endif
-        BJDebugMsg(YDWEId2S(uid2))
+        //BJDebugMsg(YDWEId2S(uid2))
         flush locals
     endfunction
 

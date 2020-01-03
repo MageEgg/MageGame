@@ -20,6 +20,18 @@ library SystemCodes uses ServerTime,Define1
         endif
     endfunction
 
+    function IsLocInRect(rect r,real x,real y)->bool
+        return (GetRectMinX(r) <= x) and (x <= GetRectMaxX(r)) and (GetRectMinY(r) <= y) and (y <= GetRectMaxY(r))
+    endfunction
+    
+    function SetPlayerCameraBoundsToRect(rect r)
+        real minX = GetRectMinX(r)
+        real minY = GetRectMinY(r)
+        real maxX = GetRectMaxX(r)
+        real maxY = GetRectMaxY(r)
+        SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
+    endfunction
+
     function SetPlayerUnitPostion(unit u1,real x,real y) //移动单位+镜头
         if GetLocalPlayer() == GetOwningPlayer(u1)
             PanCameraToTimed( x, y, 0 )
@@ -37,6 +49,17 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
+        if  IsLocInRect(gg_rct_GameRect,x,y) == true
+            if  GetLocalPlayer() == Player(pid)
+                SetPlayerCameraBoundsToRect(gg_rct_GameRect)
+            endif
+        else
+            if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true and IsLocInRect(gg_rct_GameRect,x,y) == false
+                if  GetLocalPlayer() == Player(pid)
+                    SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                endif
+            endif      
+        endif
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetPlayerUnitPostion(Pu[1],x,y)
         DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))
@@ -206,14 +229,6 @@ library SystemCodes uses ServerTime,Define1
     
     function AddPlayerState(int pid,playerstate whichPlayerState,integer value)
         SetPlayerState(Player(pid),whichPlayerState,GetPlayerState(Player(pid),whichPlayerState)+value)
-    endfunction
-    
-    function SetPlayerCameraBoundsToRect(rect r)
-        real minX = GetRectMinX(r)
-        real minY = GetRectMinY(r)
-        real maxX = GetRectMaxX(r)
-        real maxY = GetRectMaxY(r)
-        SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
     endfunction
 
     //物品处理
@@ -457,10 +472,6 @@ library SystemCodes uses ServerTime,Define1
         DestroyGroup(g)
         g = null
         p = null
-    endfunction
-
-    function IsLocInRect(rect r,real x,real y)->bool
-        return (GetRectMinX(r) <= x) and (x <= GetRectMaxX(r)) and (GetRectMinY(r) <= y) and (y <= GetRectMaxY(r))
     endfunction
     
 endlibrary
