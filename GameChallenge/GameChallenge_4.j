@@ -1,7 +1,5 @@
 library GameChallenge4 uses GameChallengeBase
 
-    private int array unitcos
-
     function GameChallenge_4Flush(int pid)
         for num = 0,7
             SetUnitVertexColor(GameChallengUnit[40+num],255,255,255,0)
@@ -48,7 +46,6 @@ library GameChallenge4 uses GameChallengeBase
     endfunction
 
     function GameChalleng_4_DeathA(int pid,unit u2)
-        BJDebugMsg("GameChalleng_4_DeathA")
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         GameChallengInt[40] = GameChallengInt[40] + 1
         if  GameChallengInt[40] == 3

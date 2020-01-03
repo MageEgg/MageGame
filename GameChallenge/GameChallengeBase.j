@@ -1,5 +1,9 @@
 library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,PlotSelectFrame
 
+    int array unitplayercos[6][680]
+
+    #define unitcos unitplayercos[pid]
+
     int array       GameChallengPlayerInt[12][680]
     unit array      GameChallengPlayerUnit[12][680]
     bool array      GameChallengPlayerBool[12][680]
