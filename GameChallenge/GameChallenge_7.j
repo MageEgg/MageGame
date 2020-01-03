@@ -81,7 +81,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 4
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第一剑r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第一剑|r")
                     endtimer
                 endif
             else
@@ -126,7 +126,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第二剑r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第二剑|r")
                     endtimer
                 endif
             else
@@ -169,7 +169,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第三剑r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第三剑|r")
                     endtimer
                 endif
             else
@@ -212,7 +212,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第四剑r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第四剑|r")
                     endtimer
                 endif
             else
