@@ -438,16 +438,36 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         UnitAddEffect(Pu[63],"Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl")
         UnitApplyTimedLife(Pu[63], 'BHwe', 6 )
     endfunction
-
+//effect_ice23.mdl
+    function SpellS514Timer(unit u1,real dam,real sx,real sy)
+        unit wu = u1
+        real damage = dam
+        real x = sx
+        real y = sy
+        TimerStart(0.8,false)
+        {
+            LocAddEffectSetSize(x,y,"effect_ice23.mdl",0.5)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,damage*1.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     function SpellS514(unit wu,real damage)
         real x = GetUnitX(wu)
         real y = GetUnitY(wu)
-        LocAddEffectSetSize(x,y,"effect_az-ice-zhendi.mdl",2.0)
+        LocAddEffectSetSize(x,y,"effect_az_fenghuang.mdl",1.2)
         AddEffectInAreaSetSize(x,y,500,1.0,10,"effect_hero_lich_n1s_bingdong2.mdl")
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
+        if  GetUnitLsState(wu) >= 30
+            SpellS514Timer(wu,damage,x,y)
+        endif
     endfunction
 
     function SpellS517(unit wu)
