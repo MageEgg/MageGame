@@ -118,9 +118,12 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChalleng_2_WaterDeath3(pid,u2)
         elseif  uid2 == 'uf30'
             GameChalleng_3_HTHDeath(pid,u2)
-        elseif  uid2 >= 'uf31' or uid2 == 'uf34'
+        elseif  uid2 >= 'uf31' and uid2 <= 'uf34'
             GameChalleng_3_SMJDeath(pid,u2)
+        elseif  uid2 == 'uf40' or uid2 == 'uf41'
+            GameChalleng_4_DeathA(pid,u2)
         endif
+        BJDebugMsg(YDWEId2S(uid2))
         flush locals
     endfunction
 

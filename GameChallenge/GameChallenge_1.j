@@ -22,6 +22,7 @@ library GameChallenge1 uses GameChallengeBase
     function OpenGameChallenge_1(int pid,int ty)
         real x = 0
         real y = 0
+        GameChallenge_1Flush(pid)
         if  ty == 0
             x = GetRectCenterX(gg_rct_ChallengeRct_1_1)
             y = GetRectCenterY(gg_rct_ChallengeRct_1_1)
