@@ -211,6 +211,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function PlayerFinishPlotEx(int id,int f)
         int pid = id
         int flag = f
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r正在结算奖励。。。")
         TimerStart(1,false)
         {
             PlayerFinishPlot(pid,flag)

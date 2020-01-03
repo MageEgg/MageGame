@@ -62,11 +62,15 @@ library GameChallenge3 uses GameChallengeBase
         TimerStart(0.5,true)
         {
             time = time + 1
-            if  time == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[黄天化]：|r弟子为什么在这里？")
-            elseif  time == 2
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[道德真君]：|r好畜生！若不是看在子牙面上，决不救你！")
-            elseif  time == 3
+            if  IsPlayerInChallenge == true
+                if  time == 1
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[黄天化]：|r弟子为什么在这里？")
+                elseif  time == 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[道德真君]：|r好畜生！若不是看在子牙面上，决不救你！")
+                elseif  time == 3
+                    endtimer
+                endif
+            else
                 endtimer
             endif
             flush locals
@@ -77,6 +81,7 @@ library GameChallenge3 uses GameChallengeBase
     function OpenGameChallenge_3(int pid,int ty)
         real x = 0
         real y = 0
+        GameChallenge_3Flush(pid)
         if  ty == 0
             x = -6432
             y = 6752
@@ -230,7 +235,7 @@ library GameChallenge3 uses GameChallengeBase
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')-1
             time = time - 1
-            if  time > 0
+            if  time > 0 and IsPlayerInChallenge == true
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitFacing(u1,ang/0.01745)
@@ -254,7 +259,9 @@ library GameChallenge3 uses GameChallengeBase
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff跟随黄天化|r")
         TimerStart(0.5,false)
         {
-            SMJJumpTimer2Func(u1,-4128,6600)
+            if  IsPlayerInChallenge == true
+                SMJJumpTimer2Func(u1,-4128,6600)
+            endif
             endtimer
             flush locals
         }
@@ -274,8 +281,9 @@ library GameChallenge3 uses GameChallengeBase
         SetUnitFacing(u1,ang/0.01745)
         TimerStart(0.03,true)
         {
+            int pid = GetUnitAbilityLevel(u1,'AZ99')-1
             time = time - 1
-            if  time > 0
+            if  time > 0 and IsPlayerInChallenge == true
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitFacing(u1,ang/0.01745)
@@ -306,8 +314,6 @@ library GameChallenge3 uses GameChallengeBase
         endif
         flush locals
     endfunction
-
-
 
     function InitGameChallenge_3()
         trigger tig = null

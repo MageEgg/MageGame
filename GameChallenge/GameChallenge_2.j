@@ -109,6 +109,7 @@ library GameChallenge2 uses GameChallengeBase
     function OpenGameChallenge_2(int pid,int ty)
         real x = 0
         real y = 0
+        GameChallenge_2Flush(pid)
         if  ty == 0
             x = -5664
             y = 2496
