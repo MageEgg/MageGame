@@ -32,7 +32,7 @@ library GameChallenge5 uses GameChallengeBase
                     if  num != 0
                         x = 16
                         y = 4640
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf54',x,y,270)
+                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf55',x,y,270)
                         SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
@@ -195,14 +195,14 @@ library GameChallenge5 uses GameChallengeBase
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[54]),GetUnitY(GameChallengUnit[54]))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
-        elseif  uid == 'uf53'
+        elseif  uid == 'uf53' or uid == 'uf54'
             GameChallengInt[50] = GameChallengInt[50] + 1
-            if  GameChallengInt[50] == 13
+            if  GameChallengInt[50] == 14
                 RemoveChainOfUnit(pid)
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[55]),GetUnitY(GameChallengUnit[55]))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
-        elseif  uid == 'uf54'
+        elseif  uid == 'uf55'
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击败土行孙！！！")
             Challeng_5_WayB_End(pid)
         endif
@@ -324,7 +324,17 @@ library GameChallenge5 uses GameChallengeBase
                             SetUnitAnimation(GameChallengUnit[num],"attack")
                         endif
                     end
-                    EnRctGameChalleng_5_WayTimer(pid,12)
+                    num = GetCanUsesGameChallengUnitID(pid)
+                    if  num != 0
+                        unitcos[13] = num
+                        x1 = x + GetRandomReal(-350,350)
+                        y1 = y + GetRandomReal(-350,350)
+                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf54',x1,y1,Atan2(GetUnitY(Pu[1])-y1,GetUnitX(Pu[1])-x1)/0.01745)
+                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
+                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                    endif
+                    EnRctGameChalleng_5_WayTimer(pid,13)
                 endif
             endif
         endif
@@ -336,7 +346,7 @@ library GameChallenge5 uses GameChallengeBase
         int pid = GetUnitAbilityLevel(u1,'AZ99')-1
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == GameChallengUnit[59]
-                if  GameChallengInt[50] == 13
+                if  GameChallengInt[50] == 14
                     GameChallengInt[50] = 0
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[白鹤童子]：|r师叔，老爷法牒，送符印将此绳解去。")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r谢老师慈悯。")

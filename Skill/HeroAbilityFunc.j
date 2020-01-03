@@ -1,5 +1,6 @@
-library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
+library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
 //SpellHeroSkillAction(unit wu,unit tu,real sx,real sy,int id,int lv,int index)
+
 
    function GetUnitAttackNumb(unit wu)->int //S036
         int i=1
@@ -9,9 +10,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
         return i
     endfunction
     
-    function Summon(int id,int sl,real time)
     
-     endfunction
     
 
 
@@ -418,7 +417,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
                         SetUnitFacing(mj,Rad2Deg(ang))
                         SetUnitAnimation( mj, "Attack" )
                         LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
-                        LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
+                        LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdl")
                         LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
                     endif
                 else
@@ -461,7 +460,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-        UnitAddEffectTimer(u1,"effect_blue-slash-more.mdx",0.5)
+        UnitAddEffectTimer(u1,"effect_blue-slash-more.mdl",0.5)
         g.destroy()
         SaveInteger(ht,GetHandleId(u),'S075',LoadInteger(ht,GetHandleId(u),'S075')+10)
         TimerStart(2,false)
@@ -476,7 +475,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
 
     function SpellS075(unit u,unit u1,real damage)//夺命刺
         UnitDamageTarget(u,u1,damage, true, true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-        UnitAddEffectTimer(u,"effect_zzmxcl_tuci.mdx",0.5)
+        UnitAddEffectTimer(u,"effect_zzmxcl_tuci.mdl",0.5)
         if IsPlayerHasAbility(u,'S076') == true
             SpellS076(u,u1,damage/8*3)
         endif
@@ -632,7 +631,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        DestroyEffect(AddSpecialEffect("AZ_Monkeykingbattle_W1_Impact.mdl",x,y))
+        DestroyEffect(AddSpecialEffect("effect_az_monkeykingbattle_w1_impact.mdl",x,y))
         g.destroy()
         u = null
     endfunction
@@ -660,7 +659,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            DestroyEffect(AddSpecialEffect("effect_red-yumao-zhendi-paoxiao.mdl",x,y))
+            LocAddEffectSetRotate(x,y,GetUnitFacing(u),"effect_red-yumao-zhendi-paoxiao.mdl")
             g.destroy()
             SaveInteger(ht,GetHandleId(u),'S097',0)
             u = null
@@ -718,9 +717,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
         u = null
     endfunction  
 
-    function SpellS104(unit u,real damage)  
 
-    endfunction
 
  function SpellS109(unit u,unit u1)
     real x=GetUnitX(u1)
@@ -740,6 +737,58 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2
     g.destroy()
     u = null
 endfunction
+
+function SpellS110(unit u1,real x1,real y1,real damage1)
+        unit u=u1
+        real x=x1
+        real y=y1
+        int Numb=R2I(GetUnitRealState(u,9)/0.3/10000)
+        real t=1/I2R(Numb)
+        real damage=damage1
+        int time=0
+        group g=CreateGroup()
+        unit uu=null
+        real ang=0
+        real dis=0
+        integer i=0
+        string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
+        unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        SetUnitVertexColor( mj, 20, 20, 50, 100 )
+        SetUnitTimeScale( mj, 4.00 )
+        TimerStart(0.03,true)
+        {   
+            time=time+1
+            i=i+1
+                if  time<=33
+                    if i>=10-(time/(30-Numb))
+                        i=0
+                        ang=GetRandomReal(-3.14,3.14)
+                        dis=GetRandomReal(100,300)
+                        GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                        SetUnitX(mj,x+(400*Cos(ang)))
+                        SetUnitY(mj,y+(400*Sin(ang)))
+                        SetUnitFacing(mj,Rad2Deg(ang))
+                        SetUnitAnimation( mj, "Attack")
+                        LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
+                        LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
+                        LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
+                    endif
+                else
+                    DestroyGroup(g)
+                    RemoveUnit(mj)
+                    u = null
+                    endtimer
+                endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+
+  /*  function SpellS111(unit u,real damage)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z104')
+    endfunction*/
         
 
       function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1

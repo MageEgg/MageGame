@@ -8,6 +8,9 @@ library GameChallenge2 uses GameChallengeBase
             GameChallengUnit[29] = null
         endif
         GameChallengInt[20] = 0
+        if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
+            UnitRemoveAbility(Pu[1],'AZ04')
+        endif
         GameChallengCanUsesUnitFlush(pid)
         ShowUnitOfAllPlayer(Pu[1])
         RemoveUnit(PlayerInChallengeShowUnit)
@@ -83,7 +86,7 @@ library GameChallenge2 uses GameChallengeBase
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[敖广]：|r我等已奏明玉帝，捉拿你夫妇问罪！")
                     endif
                     ang = Atan2(GetUnitY(GameChallengUnit[19])-y,GetUnitX(GameChallengUnit[19])-x)/0.01745
-                    CreateUsesGameChallengUnitExOfAng(pid,num,'uf23',x,y,ang)
+                    CreateUsesGameChallengUnitExOfAng(pid,num,'uf22',x,y,ang)
                     SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
                     UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                     UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
@@ -117,6 +120,7 @@ library GameChallenge2 uses GameChallengeBase
             PlayerInChallengeNumber = 2
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
+            UnitAddAbility(Pu[1],'AZ04')
             GameChallengUnit[29] = CreateUnit(Player(9),'np21',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[29],UnitAPOfPlayer)
             UnitAddAbility(GameChallengUnit[29],'AZ99')
@@ -173,22 +177,12 @@ library GameChallenge2 uses GameChallengeBase
                 if  num != 0
                     x = GetUnitX(GameChallengUnit[20])
                     y = GetUnitY(GameChallengUnit[20])
-                    CreateUsesGameChallengUnit(pid,num,'uf21',x,y)
+                    CreateUsesGameChallengUnit(pid,num,'uf20',x,y)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     UnitAddEffect(Pu[1],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     Sdofplayer(Player(pid),x,y,3)
                 endif
-                for n = 1,4
-                    num = GetCanUsesGameChallengUnitID(pid)
-                    if  num != 0
-                        x = GetUnitX(GameChallengUnit[20])+GetRandomReal(-380,380)
-                        y = GetUnitY(GameChallengUnit[20])+GetRandomReal(-380,380)
-                        CreateUsesGameChallengUnit(pid,num,'uf20',x,y)
-                        IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                        UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
-                    endif
-                end
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[巡海夜叉]：|r谁人作怪，使得龙宫摇动？！")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀巡海夜叉|r")
             endif
@@ -211,22 +205,12 @@ library GameChallenge2 uses GameChallengeBase
                 if  num != 0
                     x = GetUnitX(GameChallengUnit[21])
                     y = GetUnitY(GameChallengUnit[21])
-                    CreateUsesGameChallengUnit(pid,num,'uf22',x,y)
+                    CreateUsesGameChallengUnit(pid,num,'uf21',x,y)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     UnitAddEffect(Pu[1],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     Sdofplayer(Player(pid),x,y,3)
                 endif
-                for n = 1,4
-                    num = GetCanUsesGameChallengUnitID(pid)
-                    if  num != 0
-                        x = GetUnitX(GameChallengUnit[21])+GetRandomReal(-380,380)
-                        y = GetUnitY(GameChallengUnit[21])+GetRandomReal(-380,380)
-                        CreateUsesGameChallengUnit(pid,num,'uf20',x,y)
-                        IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                        UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
-                    endif
-                end
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[龙王三太子]：|r好泼贼！夜叉李艮乃天王点差，你敢大胆将他打死！")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀龙王三太子|r")
             endif

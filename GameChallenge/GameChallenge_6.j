@@ -1,7 +1,7 @@
 library GameChallenge6 uses GameChallengeBase
 
     function GameChallenge_6Flush(int pid)
-        for num = 0,2
+        for num = 0,3
             SetUnitVertexColor(GameChallengUnit[60+num],255,255,255,0)
         end
         GameChallengInt[60] = 0
@@ -33,10 +33,51 @@ library GameChallenge6 uses GameChallengeBase
         flush locals
     endfunction
 
+    function OpenGameChallenge_6_B_Timer(int id)
+        int pid = id
+        int time = 0
+        int num = 0
+        real x = 0
+        real y = 0
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r殷郊奉命下山助西岐攻伐纣。")
+        TimerStart(1,true)
+        {
+            time = time + 1
+            if  IsPlayerInChallenge == true
+                if  time == 1
+                    num = GetCanUsesGameChallengUnitID(pid)
+                    if  num != 0
+                        x = -1696
+                        y = 8224
+                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf62',x,y,315)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
+                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                    endif
+                elseif  time == 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[申公豹]：|r殷殿下，你父亲固得罪于天下，可与之为仇。但殿下弟弟殷洪，听说他下山助周，没想姜子牙欲邀功，竟用太极图把他化成灰了！")
+                elseif  time == 3
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00["+GetPlayerName(Player(pid))+"]：|r信口胡说！")
+                elseif  time == 4
+                    UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
+                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败申公豹|r")
+                    endtimer
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function OpenGameChallenge_6(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_5Flush(pid)
+        GameChallenge_6Flush(pid)
         if  ty == 0
             x = -2272
             y = 6720
@@ -49,14 +90,15 @@ library GameChallenge6 uses GameChallengeBase
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[62],UnitAPOfPlayer)
             OpenGameChallenge_6_A_ChatTimer(pid)
         elseif  ty == 1
-            x = 16
-            y = 3968
+            x = -1440
+            y = 7904
             IsPlayerInChallenge = true
-            PlayerInChallengeNumber = 5
+            PlayerInChallengeNumber = 6
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            GameChallengInt[50] = 100
-            GameChallenge_5_BTimer(pid)
+            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[63],UnitAPOfPlayer)
+            UnitAddEffectOfGameChalleng(GameChallengUnit[63])
+            OpenGameChallenge_6_B_Timer(pid)
         endif
     endfunction
 
@@ -120,6 +162,8 @@ library GameChallenge6 uses GameChallengeBase
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         int num = n
         SetUnitFacing(u1,ang/0.01745)
+        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
+        SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.03,true)
         {
             time = time - 1
@@ -129,10 +173,12 @@ library GameChallenge6 uses GameChallengeBase
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitAnimation(u1,"walk")
-                if  ModuloInteger(time,5) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdx",1.4)
-                endif
+                //if  ModuloInteger(time,2) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
+                //endif
             else
+                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
+                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
                 GameChalleng_6_JumpAttack2TimerEnd(pid,num)
                 endtimer
             endif
@@ -188,6 +234,8 @@ library GameChallenge6 uses GameChallengeBase
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         int flag = fl
         SetUnitFacing(u1,ang/0.01745)
+        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
+        SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.035,true)
         {
             time = time - 1
@@ -197,10 +245,12 @@ library GameChallenge6 uses GameChallengeBase
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitAnimation(u1,"walk")
-                if  ModuloInteger(time,4) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdx",1.4)
-                endif
+                //if  ModuloInteger(time,2) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
+                //endif
             else
+                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
+                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
                 if  flag == 0
                     GameChalleng_6_JumpAttack1(pid)
                 elseif  flag == 1
@@ -253,6 +303,27 @@ library GameChallenge6 uses GameChallengeBase
                 //奖励
                 PlayerFinishPlotEx(pid,6)
             endif
+        elseif  uid == 'uf62'
+            if  GameChallengOperaWay[6] == 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀申公豹！")
+                if  GetGameChallengOperaSelsect() == 0
+                    GameChallengOperaWay[6] = 1
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[殷郊]：|r吾奉师尊之命，此事不可鲁莽。师尊自会给我一个答案。")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")   
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r") 
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")                                  
+                else
+                    GameChallengOperaWay[6] = 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[殷郊]：|r兄弟竟死于恶人之手，我与姜尚不共戴天！")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r")   
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r") 
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r") 
+                endif
+            endif
+            GameChallenge_6Flush(pid)
+            PlayerChallengeCosNum(6) = PlayerChallengeCosNum(6) + 1
+            //奖励
+            PlayerFinishPlotEx(pid,6)
         endif
     endfunction
 
@@ -266,6 +337,9 @@ library GameChallenge6 uses GameChallengeBase
                 SetUnitVertexColor(GameChallengUnit[61],255,255,255,0)
                 GameChallengUnit[62] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2048,6560,0)
                 SetUnitVertexColor(GameChallengUnit[62],255,255,255,0)
+
+                GameChallengUnit[63] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np25',-1504,8352,225)
+                SetUnitVertexColor(GameChallengUnit[63],255,255,255,0)
             endif
         end
         

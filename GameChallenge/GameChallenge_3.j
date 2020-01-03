@@ -231,6 +231,8 @@ library GameChallenge3 uses GameChallengeBase
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         SetUnitFacing(u1,ang/0.01745)
+        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
+        SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.03,true)
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')-1
@@ -241,10 +243,12 @@ library GameChallenge3 uses GameChallengeBase
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitAnimation(u1,"walk")
-                if  ModuloInteger(time,5) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdx",1.4)
-                endif
+                //if  ModuloInteger(time,2) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
+                //endif
             else
+                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
+                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
                 OpenGameChallenge_3_SMJTimer(pid)
                 endtimer
             endif
@@ -279,6 +283,8 @@ library GameChallenge3 uses GameChallengeBase
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         SetUnitFacing(u1,ang/0.01745)
+        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
+        SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.03,true)
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')-1
@@ -289,10 +295,12 @@ library GameChallenge3 uses GameChallengeBase
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
                 SetUnitAnimation(u1,"walk")
-                if  ModuloInteger(time,5) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdx",1.4)
-                endif
+                //if  ModuloInteger(time,2) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
+                //endif
             else
+                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
+                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
                 SMJJumpTimer2(u1)
                 endtimer
             endif
