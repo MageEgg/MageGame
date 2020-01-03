@@ -513,6 +513,34 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         endif
     endfunction
 
+    function SpellS519(unit wu,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+        real damage = dam
+        int time = 5
+        TimerStart(0.2,true)
+        {
+            
+            real dis = GetRandomReal(0,300)
+            real ang = GetRandomReal(-3.14,3.14)
+            real x = x1 + dis*Cos(ang)
+            real y = y1 + dis*Sin(ang)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffect(x,y,"effect_yellow-guangzhu-new2.mdl")
+            g.destroy()
+
+            time = time - 1
+            if  time <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function SpellS523(unit wu,unit tu)
         real life = GetUnitState(tu,UNIT_STATE_LIFE)
         real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
@@ -521,8 +549,9 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.1,4)
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffgreen2a.mdl")
     endfunction
-    function SpellS526(unit wu,unit tu)
-        
+    function SpellS526(unit wu,unit tu,real damage)
+
+        //DAMAGE_TYPE_ENHANCED
     endfunction
 
     function SpellS529Spell(unit wu)->bool
