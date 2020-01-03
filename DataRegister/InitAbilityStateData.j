@@ -78,7 +78,7 @@ call InitAbilityData('S075',1,1,1,8,0,0,1,0,"夺命刺","攻击15%概率对目�
 call InitAbilityData('S076',1,3,1,3,0,0,1,0,"连环刺","攻击15%概率对目标范围造成AD*3物理伤害，\n触发后2s内夺命刺概率增加10%。","ReplaceableTextures\\CommandButtons\\BTNS076.blp")
 call InitAbilityData('S078',3,1,1,1,0,0,1,8,"彗星灭世","对目标范围造成AD*3*蓄力时间物理伤害。攻击越高，蓄力时间越长。","ReplaceableTextures\\CommandButtons\\BTNS078.blp")
 call InitAbilityData('S079',3,1,2,1,0,0,2,8,"龙神陨光","对指向直线范围造成AP*3*蓄力时间物理伤害。攻击越高，蓄力时间越长。","ReplaceableTextures\\CommandButtons\\BTNS079.blp")
-call InitAbilityData('S080',3,2,1,1,0,0,1,8,"剑灵诛仙式","0","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
+call InitAbilityData('S080',3,2,1,1,0,0,1,8,"剑灵诛仙式","万剑出鞘，对目标范围造成攻击*2物理伤害。攻击越高，持续时间越长。","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
 call InitAbilityData('S081',3,2,2,1,0,0,2,8,"真空领域","将目标范围内的所有单位聚卷入重心，每0.5秒造成AP*1法术伤害。法强越高，持续时间越长。","ReplaceableTextures\\CommandButtons\\BTNS081.blp")
 call InitAbilityData('S082',2,3,1,1,0,0,1,8,"雷神之子","召唤四个雷球，雷球每0.75秒对发起范围攻击造成AD*0.25物理伤害。攻击越高，雷球持续时间越长。","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
 call InitAbilityData('S083',2,3,2,1,0,0,2,8,"十方飓风破","自身每0.75秒向周围逸散暴风，造成AP*1法术伤害。法强越高，持续时间越长。\n每3w法强提升1秒","ReplaceableTextures\\CommandButtons\\BTNS083.blp")
@@ -88,7 +88,7 @@ call InitAbilityData('S087',2,2,0,0,0,0,0,7,"五行道兵","召唤1个五行道�
 call InitAbilityData('S088',1,2,0,0,0,0,0,0,"通灵契约","召唤物数量+2","ReplaceableTextures\\CommandButtons\\BTNS088.blp")
 call InitAbilityData('S089',2,3,0,0,0,0,0,16,"天神道兵","召唤1个天神道兵。道兵每次攻击伤害递增10%，上限100%。\n道兵攻击=人物25%AP+25%AD，每秒攻击2次\n通灵秘术：进化为混沌道兵，攻击=人物50%AP+50%AD，每次攻击伤害递增20%，上限200%。\n持续12秒","ReplaceableTextures\\CommandButtons\\BTNS089.blp")
 call InitAbilityData('S090',2,3,0,0,0,0,2,10,"噬魂灵魄","召唤1个噬魂灵魄，使周围600码单位生机骤减，每0.5秒损失AP*0.3生命。\n法术伤害，多个噬魂灵魄伤害可叠加。","ReplaceableTextures\\CommandButtons\\BTNS090.blp")
-call InitAbilityData('S091',2,1,0,0,0,0,0,12,"魔主","吞噬场上属于自己的所有召唤物，4s内自身获得以下相应加成：\n幻影剑阵：暴击+30%\n五行道兵：AD+40%，AP+40%\n天道神兵：攻击速度+80%\n噬魂灵魄：冷却缩减+25%","ReplaceableTextures\\CommandButtons\\BTNS091.blp")
+call InitAbilityData('S091',2,1,0,0,0,0,0,12,"魔主","吞噬场上属于自己的所有召唤物，4s内自身获得以下相应加成：\n幻影剑阵：暴击+30%\n五行道兵：AD+40%，AP+40%\n天道神兵：攻击速度+80%\n噬魂龙魄：冷却缩减-25%","ReplaceableTextures\\CommandButtons\\BTNS091.blp")
 call InitAbilityData('S094',1,1,5,2.6,0,0,1,0,"五色华光","被攻击10%概率对周围敌人造成生命值*2.6物理伤害","ReplaceableTextures\\CommandButtons\\BTNS094.blp")
 call InitAbilityData('S095',1,1,5,5,0,0,2,0,"佛陀法身","被攻击20%概率触对周围敌人AP*5法术伤害","ReplaceableTextures\\CommandButtons\\BTNS095.blp")
 call InitAbilityData('S096',1,1,5,5,0,0,1,0,"酒仙剑舞","被攻击20%概率对周围敌人AD*5物理伤害","ReplaceableTextures\\CommandButtons\\BTNS096.blp")
@@ -99,11 +99,15 @@ call InitAbilityData('S100',2,2,0,0,0,0,0,0,"挑衅","增加怪物100%攻速，�
 call InitAbilityData('S101',3,3,1,2,0,0,1,0,"雷光破","对目标范围造成AD*2物理伤害，额外造成最大生命值*1.3物理伤害。","ReplaceableTextures\\CommandButtons\\BTNS101.blp")
 call InitAbilityData('S102',1,4,5,0.6,0,0,2,0,"黑龙之灵","每0.8秒对自身范围内敌人造成生命值*0.6法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS102.blp")
 call InitAbilityData('S103',2,5,0,0,0,0,0,8,"梦魇","召唤3个无敌的敌对鬼影环绕自身。\n鬼影攻击力为1，每秒攻击1次。","ReplaceableTextures\\CommandButtons\\BTNS103.blp")
-call InitAbilityData('S104',1,5,0,0,0,0,0,0,"熔炉之身","每0.8秒对自身范围内敌人造成生命值*0.3法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
+call InitAbilityData('S104',1,5,5,0,0,0,0,0,"熔炉之身","每0.8秒对自身范围内敌人造成生命值*0.3法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
 call InitAbilityData('S105',1,1,0,0,0,0,0,0,"后发制人","闪避时对攻击来源范围内敌人造成（AD+AP）*2法术伤害","ReplaceableTextures\\CommandButtons\\BTNS105.blp")
 call InitAbilityData('S106',1,3,0,1,0,0,2,0,"未命名","闪避时对自身周围敌人造成（AD+AP）*1法术伤害","ReplaceableTextures\\CommandButtons\\BTNS106.blp")
 call InitAbilityData('S107',1,2,0,0,0,0,0,0,"未命名","增加25%闪避","ReplaceableTextures\\CommandButtons\\BTNS107.blp")
 call InitAbilityData('S108',1,3,0,0,0,0,0,0,"未命名","增加15%闪避","ReplaceableTextures\\CommandButtons\\BTNS108.blp")
+call InitAbilityData('S109',1,5,99,0.5,0,0,1,0,"基础剑术","对目标附近200码范围造成攻击和法强相关的自适应伤害。","ReplaceableTextures\\CommandButtons\\BTNS109.blp")
+
+
+
 
 call InitAbilityData('S230',9,0,1,12,0,0,1,20,"血之裂痕","扑杀目标范围，造成AD*12物理伤害，随后引发岩浆爆发，造成每秒AD*4伤害，持续3秒。","ReplaceableTextures\\CommandButtons\\BTNS230.blp")
 call InitAbilityData('S231',10,0,2,2,0,0,2,20,"十绝阵","召唤道棺从天而降，砸向自身周围。每个道棺造成AP*2法术伤害。\n基础数量6个，每1W5法强增加1个道棺数。\n总持续时间3秒，施法期间无法攻击和移动。","ReplaceableTextures\\CommandButtons\\BTNS231.blp")
@@ -115,9 +119,6 @@ call InitAbilityData('S236',4,0,0,12,0,0,2,12,"神威一击","突刺至目标身
 call InitAbilityData('S237',2,0,0,0,0,0,0,20,"道法自然","持续时间内，冷却缩减+40%，每次释放技能增加自身10%伤害加成。","ReplaceableTextures\\CommandButtons\\BTNS237.blp")
 call InitAbilityData('S238',2,0,1,2,0,0,1,20,"孔雀之魂","持续时间内，冷却缩减+40%，每次释放技能增加自身10%伤害加成。","ReplaceableTextures\\CommandButtons\\BTNS238.blp")
 call InitAbilityData('S239',1,0,0,0,0,0,0,20,"未命名","获得后每波增加波数相关的金币&木头奖励。\n该收益在被替换后，效果消失。","ReplaceableTextures\\CommandButtons\\BTNS239.blp")
-
-
-
 call InitAbilityData('S501',2,0,1,2,0,0,1,12,"天罚连击","向前挥砍后突刺造成大量伤害。\n挥砍一段：造成2*攻击物理伤害。\n挥砍二段：造成2*攻击物理伤害。\n突刺：8%目标已损失生命伤害。","ReplaceableTextures\\CommandButtons\\BTNS501.blp")
 call InitAbilityData('S502',4,0,1,2,0,0,1,10,"土遁袭杀","钻入地底突进至目标身后进行2次爪击，每次造成攻击*2伤害。\n\n每提高100%攻击速度额外增加一次爪击。","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
 call InitAbilityData('S503',1,0,99,1,0,0,2,0.2,"玉清合荒","周围600码范围内的敌/友军释放主动技能时，对自身周围造成（攻击+法强）*1法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS503.blp")
@@ -130,13 +131,13 @@ call InitAbilityData('S509',1,0,0,0,0,0,0,0,"奕剑之道","奕剑之道，在�
 call InitAbilityData('S510',2,0,0,0,0,0,0,2,"八九玄功","使用后依次变幻形态，并获得相应加成：\n金龙形态：暴击+10%\n白虎形态：攻速+45%\n人形态：冷却-10%","ReplaceableTextures\\CommandButtons\\BTNS510.blp")
 call InitAbilityData('S511',1,0,0,0,0,0,0,0,"命途多舛","释放普通技能有50%几率失败，但成功了将增加2%伤害加成，上限150%。","ReplaceableTextures\\CommandButtons\\BTNS511.blp")
 call InitAbilityData('S512',2,0,1,6,0,0,1,12,"天王宝塔","掷出天王宝塔镇压目标，造成攻击*6物理伤害并眩晕2秒。\n暴击>30%时，伤害翻倍。","ReplaceableTextures\\CommandButtons\\BTNS512.blp")
-call InitAbilityData('S513',3,0,0,0,0,0,0,12,"身外法身","使用毫毛在目标地点幻化一个法身，可重复施放你的技能，但只造成50%伤害。\n\n法身无法攻击，不可选取，不受攻击。","ReplaceableTextures\\CommandButtons\\BTNS513.blp")
+call InitAbilityData('S513',2,0,0,0,0,0,0,12,"身外法身","使用毫毛在目标地点幻化一个法身，可重复施放你的技能，但只造成50%伤害。\n\n法身无法攻击，不可选取，不受攻击。","ReplaceableTextures\\CommandButtons\\BTNS513.blp")
 call InitAbilityData('S514',2,0,2,4,0,0,2,10,"冰封万里","对自身500码范围发动一次冰暴，造成法强*4法术伤害\n\n冷却缩减>30%：额外对自身800码发动一次冰暴，造成法强*6法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS514.blp")
 call InitAbilityData('S515',1,0,2,8,0,0,2,0,"日月珠","每次施法凝聚一颗日月珠环绕自身，数量达到8颗时，向攻击目标造成法强*8范围伤害。","ReplaceableTextures\\CommandButtons\\BTNS515.blp")
 call InitAbilityData('S516',2,0,0,0,0,0,0,30,"悔悟","自裁悔过，所有人回复满额生命，6秒内提高15%伤害加成。\n\n悔过次数>30：永久增加自身当前攻击60%","ReplaceableTextures\\CommandButtons\\BTNS516.blp")
 call InitAbilityData('S517',1,0,0,0,0,0,0,0,"天资聪颖","每次学习技能获得一定法强永久加成。","ReplaceableTextures\\CommandButtons\\BTNS517.blp")
 call InitAbilityData('S518',1,0,0,0,0,0,0,0,"九转神功","每次突破境界时，50%几率获得额外12%突破属性收益","ReplaceableTextures\\CommandButtons\\BTNS518.blp")
-call InitAbilityData('S519',1,0,2,2,0,0,2,0,"天眼神光","攻击10%几率或施法时，开启天眼向目标位置发射神光，造成法强*2法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS519.blp")
+call InitAbilityData('S519',1,0,2,2,0,0,2,0,"天眼神光","攻击10%几率或施法时，开启天眼向自身范围发射神光，造成法强*2法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS519.blp")
 call InitAbilityData('S520',1,0,0,0,0,0,0,0,"莲花化身","承受技能伤害减少50%，免疫技能负面效果。","ReplaceableTextures\\CommandButtons\\BTNS520.blp")
 call InitAbilityData('S521',2,0,0,0,0,0,0,40,"中秋快乐","每次使用获得一个随机月饼。\n蛋黄月饼：回复80%生命，解除异常状态\n豆沙月饼：回复70%蓝量\n冰皮月饼：攻击速度+60%\n果蔬月饼：法术伤害提高40%\n鲜肉月饼\n物理伤害提高40%\n\n状态持续15秒。","ReplaceableTextures\\CommandButtons\\BTNS521.blp")
 call InitAbilityData('S522',1,0,0,0,0,0,0,0,"风雷咒术","获得风雷咒术加持，攻击速度提高200%。过快的攻击速度导致物理伤害降低70%。","ReplaceableTextures\\CommandButtons\\BTNS522.blp")
@@ -149,8 +150,6 @@ call InitAbilityData('S528',1,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是�
 call InitAbilityData('S529',1,0,0,0,0,0,0,15,"神医救世","队友或你死亡时，直接复活。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,"百发百中","攻击必定命中。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
 call InitAbilityData('S531',1,0,0,0,0,0,0,0,"料事如神","每次占星挑战成功，增加一定法强。","ReplaceableTextures\\CommandButtons\\BTNS531.blp")
-
-
     endfunction
 endscope
 

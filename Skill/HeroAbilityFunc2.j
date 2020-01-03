@@ -549,9 +549,98 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.1,4)
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffgreen2a.mdl")
     endfunction
-    function SpellS526(unit wu,unit tu,real damage)
 
+    function SpellS524(unit wu,unit tu)
+        int ran = GetRandomInt(1,100)
+        real r1 = 0
+        real r2 = 0
+        int pid = GetPlayerId(GetOwningPlayer(tu))
+        if  Pu[1] == tu and wu != tu
+            if  ran <= 30
+                AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.2,180)
+                AddUnitStateExTimer(wu,2,GetUnitRealState(wu,2)*0.2,180)
+                AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.2,180)
+                AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.2,180)
+                BJDebugMsg("成功")
+            elseif  ran <= 70
+                r1 = GetUnitRealState(tu,1)*0.4
+                r2 = GetUnitRealState(tu,2)*0.4
+                AddUnitStateExTimer(tu,1,-r1,180)
+                AddUnitStateExTimer(tu,2,-r2,180)
+                AddUnitStateExTimer(wu,1,r1,180)
+                AddUnitStateExTimer(wu,2,r2,180)
+                BJDebugMsg("暴力")
+            else
+                r1 = GetUnitRealState(wu,1)*0.4
+                r2 = GetUnitRealState(wu,2)*0.4
+                AddUnitStateExTimer(wu,1,-r1,180)
+                AddUnitStateExTimer(wu,2,-r2,180)
+                AddUnitStateExTimer(tu,1,r1,180)
+                AddUnitStateExTimer(tu,2,r2,180)
+                BJDebugMsg("失败")
+            endif
+            LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_goods_lvlup(green).mdl")
+        else
+            BJDebugMsg("错误的目标")
+            int lv = GetUnitAbilityLevel(wu,'AG05')
+            UnitRemoveAbility(wu,'AG05')
+            UnitAddAbility(wu,'AG05')
+            SetUnitAbilityLevel(wu,'AG05',lv)
+        endif
+    endfunction
+
+    function SpellS526Timer(unit wu,real f,real dam)
+        unit u1 = wu
+        real ang = f
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        int time = 5
+        real damage = dam
+        group g1 = CreateGroup()
+        LocAddEffectSetRotateSize(x1,y1,ang/0.01745,0.6,"effect_hero_attack5.mdl")
+        TimerStart(0.05,true)
+        {
+            x1 = x1 + 200*Cos(ang)
+            y1 = y1 + 200*Sin(ang)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+            UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+            g.destroy()
+            LocAddEffectSetSize(x1,y1,"effect_az_tormentedsoul_t1.mdl",0.7)
+            
+
+            time = time - 1
+            if  time <= 0
+                DestroyGroup(g1)
+                endtimer
+            endif
+        }
+    endfunction
+    function SpellS526(unit wu,unit tu,real damage)
+        if  YDWEGetUnitAbilityState(wu,'AC05', 1) == 0
+            SetUnitAnimationByIndex(wu,4)
+            YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
+            YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
+            SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage)
         //DAMAGE_TYPE_ENHANCED
+        endif
+    endfunction
+    function SpellS527(unit wu,unit tu)
+        int pid = GetPlayerId(GetOwningPlayer(tu))
+        if  Pu[1] == tu and wu != tu
+            r1 = GetUnitRealState(tu,1)*0.3
+            AddUnitStateExTimer(tu,1,-r1,30)
+            AddUnitStateExTimer(wu,1,r1,30)
+            KillUnit(tu)
+            LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然斩杀了队友！")
+        else
+            BJDebugMsg("错误的目标")
+            int lv = GetUnitAbilityLevel(wu,'AG05')
+            UnitRemoveAbility(wu,'AG05')
+            UnitAddAbility(wu,'AG05')
+            SetUnitAbilityLevel(wu,'AG05',lv)
+        endif
     endfunction
 
     function SpellS529Spell(unit wu)->bool
@@ -579,3 +668,4 @@ library HeroAbilityFunc2 uses OtherDamageTimer
 
 
 endlibrary
+
