@@ -1,5 +1,6 @@
 library HeroAbilityFunc2 uses OtherDamageTimer
     
+
     function SpellS501_0(unit u1,real sx,real sy,real dam)
         
         unit wu = u1
@@ -336,6 +337,27 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         flush locals
     endfunction
 
+    function SpellS505Damage(unit wu)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        real x = GetUnitX(wu)
+        real y = GetUnitY(wu)
+        wu = Pu[1]
+        LocAddEffectSetSize(x,y,"effect_tt (5).mdl",2)
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,x,y,150,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,g.ejg,GetAbilityDamage(wu,'S505',1),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        g.destroy()
+    endfunction
+
+    function SpellS505(unit wu)
+        SetUnitIntState(wu,'S505',0)
+        for i = 1,6
+            UnitAddBuff(wu,'AZ03',1,852274)
+        end
+    endfunction
+
+
+
     function SpellS506(unit wu,unit tu)
         if  GetUnitState(tu,UNIT_STATE_LIFE)/GetUnitState(tu,UNIT_STATE_MAX_LIFE) <= 0.15
             LocAddEffectTimerOrSize(GetUnitX(tu),GetUnitY(tu),Uang(wu,tu)/0.01745+20,"effect_hero_attack2.mdl",0,0.7)
@@ -365,6 +387,29 @@ library HeroAbilityFunc2 uses OtherDamageTimer
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_earthshaker_a.mdl")
                 g.destroy()
             endif
+        endif
+    endfunction
+
+    function SpellS510(unit wu)
+        int index = GetUnitIntState(wu,'S510')
+        if  index == 0
+            AddUnitRealState(wu,25,-10)
+            AddUnitRealState(wu,19,10)
+            SetUnitIntState(wu,'S510',1)
+            DzSetUnitModel( wu, "units\\creeps\\BronzeDragon\\BronzeDragon.mdl" )
+            
+        elseif  index == 1
+            AddUnitRealState(wu,19,-10)
+            AddUnitRealState(wu,9,45)
+            SetUnitIntState(wu,'S510',2)
+            DzSetUnitModel( wu, "units\\nightelf\\HeroMoonPriestess\\HeroMoonPriestess.mdl" )
+            
+        elseif  index == 2
+            AddUnitRealState(wu,9,-45)
+            AddUnitRealState(wu,25,10)
+            SetUnitIntState(wu,'S510',0)
+            DzSetUnitModel( wu, "H010.mdl" )
+            
         endif
     endfunction
 
@@ -617,7 +662,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         }
     endfunction
 
-    function SpellS525_1(unit wu,real sx,real sy,real dam)
+    function SpellS525_1(unit wu,real sx,real sy,real dam,real d)
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
@@ -625,8 +670,10 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         real y2 = sy
         real damage = dam
         real ang = Pang(x1,y1,x2,y2)
-        real mx = x1+250*Cos(ang+1.5705)
-        real my = y1+250*Sin(ang+1.5705)
+        real dis = d
+        real mx = x1+dis*Cos(ang+1.5705)
+        real my = y1+dis*Sin(ang+1.5705)
+        
         unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_spiritarrow_byepsilon.mdl",x1,y1,ang/0.01745,0,0.1)
         group g1 = CreateGroup()
         int num = 0
@@ -642,8 +689,8 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             if  num < 36
                 
                 ang = ang - 0.1745
-                mx = x1+250*Cos(ang+1.5705)
-                my = y1+250*Sin(ang+1.5705)
+                mx = x1+dis*Cos(ang+1.5705)
+                my = y1+dis*Sin(ang+1.5705)
                 SetUnitFacing(u2,ang/0.01745)
                 EXSetUnitFacing( u2, ang/0.01745 )
                 SetUnitX(u2,mx)
@@ -676,7 +723,7 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         }
         flush locals
     endfunction
-    function SpellS525_2(unit wu,real sx,real sy,real dam)
+    function SpellS525_2(unit wu,real sx,real sy,real dam,real d)
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
@@ -684,8 +731,9 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         real y2 = sy
         real damage = dam
         real ang = Pang(x1,y1,x2,y2)
-        real mx = x1+200*Cos(ang-1.5705)
-        real my = y1+200*Sin(ang-1.5705)
+        real dis = d
+        real mx = x1+dis*Cos(ang-1.5705)
+        real my = y1+dis*Sin(ang-1.5705)
         unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_spiritarrow_byepsilon.mdl",x1,y1,ang/0.01745,0,0.1)
         group g1 = CreateGroup()
         int num = 0
@@ -701,8 +749,8 @@ library HeroAbilityFunc2 uses OtherDamageTimer
             if  num < 36
                 
                 ang = ang + 0.1745
-                mx = x1+200*Cos(ang-1.5705)
-                my = y1+200*Sin(ang-1.5705)
+                mx = x1+dis*Cos(ang-1.5705)
+                my = y1+dis*Sin(ang-1.5705)
                 SetUnitFacing(u2,ang/0.01745)
                 EXSetUnitFacing( u2, ang/0.01745 )
                 SetUnitX(u2,mx)
@@ -735,87 +783,23 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         }
         flush locals
     endfunction
-    function SpellS525_3(unit wu,real sx,real sy,real dam)
-        unit u1 = wu
-        real x1 = GetUnitX(u1)
-        real y1 = GetUnitY(u1)
-        real x2 = sx
-        real y2 = sy
-        real damage = dam
-        real ang = Pang(x1,y1,x2,y2)
-        real mx = x1+150*Cos(ang+1.5705)
-        real my = y1+150*Sin(ang+1.5705)
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_spiritarrow_byepsilon.mdl",x1,y1,ang/0.01745,0,0.1)
-        group g1 = CreateGroup()
-        int num = 0
-        TimerStart(0.02,true)
-        {
-            IndexGroup  g
-            real speed = num
-            if  speed > 60
-                speed = 60
-            endif
-            SetUnitScale(u2,0.3+speed/56,0.3+speed/56,0.3+speed/56)
-            num = num + 1
-            if  num < 36
-                
-                ang = ang - 0.1745
-                mx = x1+150*Cos(ang+1.5705)
-                my = y1+150*Sin(ang+1.5705)
-                SetUnitFacing(u2,ang/0.01745)
-                EXSetUnitFacing( u2, ang/0.01745 )
-                SetUnitX(u2,mx)
-                SetUnitY(u2,my)
-                g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
-                UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
-                g.destroy()
-                
-            else
-                if  Pdis(mx,my,x2,y2) > 60
-                    ang = Pang(mx,my,x2,y2)
-                    mx = mx + speed * Cos(ang)
-                    my = my + speed * Sin(ang)
-                    SetUnitFacing(u2,ang/0.01745)
-                    EXSetUnitFacing( u2, ang/0.01745 )
-                    SetUnitX(u2,mx)
-                    SetUnitY(u2,my)
-                    g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
-                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
-                    g.destroy()
-                else
-                    DestroyGroup(g1)
-                    KillUnit(u2)
-                    endtimer
-                endif
-            endif
-            flush locals
-        }
-        flush locals
-    endfunction
+    
     function SpellS525(unit wu,real sx,real sy,real dam)
         unit u1 = wu
-        real x2 = 0
-        real y2 = 0
-        if  Pdis(GetUnitX(wu),GetUnitY(wu),sx,sy) >= 1000
-            x2 = GetUnitX(wu) + 1000 * Cos(Pang(GetUnitX(wu),GetUnitY(wu),sx,sy))
-            y2 = GetUnitY(wu) + 1000 * Sin(Pang(GetUnitX(wu),GetUnitY(wu),sx,sy))
-        else
-            x2 = x2 + sx
-            y2 = y2 + sy
-        endif
-        
+        real x2 = GetUnitX(wu) + 1000 * Cos(Pang(GetUnitX(wu),GetUnitY(wu),sx,sy))
+        real y2 = GetUnitY(wu) + 1000 * Sin(Pang(GetUnitX(wu),GetUnitY(wu),sx,sy))
         real damage = dam
         int time = 0
-        SpellS525_1(u1,x2,y2,damage)
+        SpellS525_1(u1,x2,y2,damage,150)
         TimerStart(0.1,true)
         {
             time = time + 1
             if  time == 1
-                SpellS525_2(u1,x2,y2,damage)
+                SpellS525_2(u1,x2,y2,damage,200)
+            elseif  time == 2
+                SpellS525_1(u1,x2,y2,damage,250)
             else
-                SpellS525_3(u1,x2,y2,damage)
+                SpellS525_2(u1,x2,y2,damage,300)
                 endtimer
             endif
             flush locals
@@ -871,8 +855,44 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         end
         return false
     endfunction
-    
 
+    
+    
+    /*
+    function SpellS102Timer(unit wu,real dam,real face)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real dis = GetRandomReal(200,400)
+        real x2 = x1 + dis * Cos(face*0.01745)
+        real y2 = y1 + dis * Sin(face*0.01745)
+        real damage = dam
+        real ang = (face + 180) * 0.01745
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_BlackworksDragonHead3.mdl",x2,y2,GetUnitFacing(u1),50,0.5)
+        int num = 0
+        TimerStart(0.03,true)
+        {
+            ang += 0.1745
+            num += 1
+            x1 = x2 + dis * Cos(ang)
+            y1 = y2 + dis * Sin(ang)
+            SetUnitX(u2,x1)
+            SetUnitY(u2,y1)
+            EXSetUnitFacing( u2, ang/0.01745+90)
+            SetUnitFacing(u2,ang/0.01745+90)
+            if  num >= 36
+                RemoveUnit(u2)
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS102(unit wu,real damage)
+        for i = 0,3
+            SpellS102Timer(wu,damage,GetRandomReal(1,360))
+        end
+    endfunction
+    */
 
 endlibrary
 

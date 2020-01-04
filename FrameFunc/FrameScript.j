@@ -48,6 +48,7 @@
     endfunction
     
     function BoxShowTips(int pid,int id)
+        BJDebugMsg("show"+YDWEId2S(id))
         if  id >= 'FB01' and id <= 'FB99'
             BoxShowMagicItemPublic(pid,id)
         elseif  id >= 'S001' and id <= 'S999'

@@ -217,7 +217,29 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         end
     endfunction
     
+    function AstrologyFunc(int pid)
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        int ran = GetRandomInt(0,4)
+        if  ran == 0
+            for i = 1,10
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'u010',x-512,y+384,270)
+                IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
+                bj_lastCreatedUnit = null
+            end
+        else
+            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'u010'+ran,x-512,y+384,270)
+            IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+            UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
+            bj_lastCreatedUnit = null
+        endif
 
+        if  GetUnitTypeId(Pu[1]) == 'H031'
+            AddUnitRealState(Pu[1],2,1)
+            BJDebugMsg("占星加法强")
+        endif
+    endfunction
 
     function SoulTimer2Func(int id,real x,real y)
         int pid = id
@@ -250,6 +272,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                     if  life+0.5 >= maxlife
                         BJDebugMsg("占星一下")
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+                        AstrologyFunc(pid)
                     endif
                 endif
                 RemoveUnit(u1)

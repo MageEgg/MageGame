@@ -35,24 +35,16 @@ scope InitRctEvent initializer InitRctEvent
     function InGameRect()
         int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
         if  Pu[1] == GetTriggerUnit()
-            real minX = GetRectMinX(gg_rct_GameRect)
-            real minY = GetRectMinY(gg_rct_GameRect)
-            real maxX = GetRectMaxX(gg_rct_GameRect)
-            real maxY = GetRectMaxY(gg_rct_GameRect)
             if  GetLocalPlayer() == Player(pid)
-                call SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
+                SetPlayerCameraBoundsToRect(gg_rct_GameRect)
             endif
         endif
     endfunction
     function OutGameRect()
         int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
         if  Pu[1] == GetTriggerUnit()
-            real minX = GetRectMinX(bj_mapInitialPlayableArea)
-            real minY = GetRectMinY(bj_mapInitialPlayableArea)
-            real maxX = GetRectMaxX(bj_mapInitialPlayableArea)
-            real maxY = GetRectMaxY(bj_mapInitialPlayableArea)
             if  GetLocalPlayer() == Player(pid)
-                call SetCameraBounds(minX, minY, minX, maxY, maxX, maxY, maxX, minY)
+                SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
             endif
         endif
     endfunction
@@ -76,8 +68,8 @@ scope InitRctEvent initializer InitRctEvent
         trigger trig = null
         
 
-        InitRctEventFunc(gg_rct_GameRect,true,function InGameRect)
-        InitRctEventFunc(gg_rct_GameRect,false,function OutGameRect)
+        //InitRctEventFunc(gg_rct_GameRect,true,function InGameRect)
+        //InitRctEventFunc(gg_rct_GameRect,false,function OutGameRect)
         
         /*
         trig = CreateTrigger()
