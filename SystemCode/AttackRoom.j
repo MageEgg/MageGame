@@ -96,6 +96,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
             SetUnitInvulnerable( u, false )
             SetUnitPathing( u, true )
             ShowUnit(u,true)
+            PauseUnit(u,false)
             GroupAddUnit(AttackRoomGroup[pid],u)
             GroupRemoveUnit(diesgroup[uid],u)
            
@@ -115,6 +116,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
         ShowUnit( u, false )
+        PauseUnit(u,true)
         flush locals
     endfunction
                 

@@ -309,6 +309,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             if  GetUnitTypeId(wu) == 'H017'
                 SpellS517.execute(wu) //天賦 天资聪颖   
             endif
+
+            if  id == 'S104'
+                SpellS104.execute(wu) //熔炉之身
+            endif
         endif
     endfunction
     
