@@ -1,15 +1,26 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
-        call InitTypeIdStrings('IJ01',"低级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ02',"中级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ03',"高级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ04',"黄级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ05',"玄级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ06',"地级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ07',"天级道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ08',"仙品道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ09',"至圣道果","war3mapImported\\ch_DG1x.mdx","")
-        call InitTypeIdStrings('IJ10',"混沌道果","war3mapImported\\ch_DG1x.mdx","")
+    
+
+
+
+
+
+
+
+
+
+
+        call InitTypeIdStrings('IJ01',"低级道果","war3mapImported\\ch_DG1x.mdx","攻击+878|n法强+878|n生命值+1756")
+        call InitTypeIdStrings('IJ02',"中级道果","war3mapImported\\ch_DG1x.mdx","攻击+1316|n法强+1316|n生命值+2634")
+        call InitTypeIdStrings('IJ03',"高级道果","war3mapImported\\ch_DG1x.mdx","攻击+1975|n法强+1975|n生命值+3950")
+        call InitTypeIdStrings('IJ04',"黄级道果","war3mapImported\\ch_DG1x.mdx","攻击+2963|n法强+2963|n生命值+5925")
+        call InitTypeIdStrings('IJ05',"玄级道果","war3mapImported\\ch_DG1x.mdx","攻击+4444|n法强+4444|n生命值+8888")
+        call InitTypeIdStrings('IJ06',"地级道果","war3mapImported\\ch_DG1x.mdx","攻击+6666|n法强+6666|n生命值+13333")
+        call InitTypeIdStrings('IJ07',"天级道果","war3mapImported\\ch_DG1x.mdx","攻击+10000|n法强+10000|n生命值+20000")
+        call InitTypeIdStrings('IJ08',"仙品道果","war3mapImported\\ch_DG1x.mdx","攻击+15000|n法强+15000|n生命值+30000")
+        call InitTypeIdStrings('IJ09',"至圣道果","war3mapImported\\ch_DG1x.mdx","攻击+22500|n法强+22500|n生命值+45000")
+        call InitTypeIdStrings('IJ10',"混沌道果","war3mapImported\\ch_DG1x.mdx","攻击+45000|n法强+45000|n生命值+90000")
         call InitTypeIdStrings('CS01',"低阶技能书","ReplaceableTextures\\CommandButtons\\BTNTome.blp","随机技能")
         call InitTypeIdStrings('CS02',"中阶技能书","ReplaceableTextures\\CommandButtons\\BTNTome.blp","随机技能")
         call InitTypeIdStrings('CS03',"高阶技能书","ReplaceableTextures\\CommandButtons\\BTNTome.blp","随机技能")

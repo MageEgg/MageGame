@@ -306,6 +306,10 @@ scope DeathEvent initializer InitDeathEvent
                         
                     endif
                 endif
+            else
+                if  uid == 'H005'
+                    SpellS505Damage(u1)
+                endif
             endif
         endif
         
