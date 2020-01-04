@@ -99,7 +99,7 @@ call InitAbilityData('S100',2,2,0,0,0,0,0,0,"挑衅","增加怪物100%攻速，�
 call InitAbilityData('S101',3,3,1,2,0,0,1,0,"雷光破","对目标范围造成AD*2物理伤害，额外造成最大生命值*1.3物理伤害。","ReplaceableTextures\\CommandButtons\\BTNS101.blp")
 call InitAbilityData('S102',1,4,5,0.6,0,0,2,0,"黑龙之灵","每0.8秒对自身范围内敌人造成生命值*0.6法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS102.blp")
 call InitAbilityData('S103',2,5,0,0,0,0,0,8,"梦魇","召唤3个无敌的敌对鬼影环绕自身。\n鬼影攻击力为1，每秒攻击1次。","ReplaceableTextures\\CommandButtons\\BTNS103.blp")
-call InitAbilityData('S104',1,5,5,0,0,0,0,0,"熔炉之身","每0.8秒对自身范围内敌人造成生命值*0.3法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
+call InitAbilityData('S104',1,5,5,0.3,0,0,0,0,"熔炉之身","每0.8秒对自身范围内敌人造成生命值*0.3法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
 call InitAbilityData('S105',1,1,0,0,0,0,0,0,"后发制人","闪避时对攻击来源范围内敌人造成（AD+AP）*2法术伤害","ReplaceableTextures\\CommandButtons\\BTNS105.blp")
 call InitAbilityData('S106',1,3,0,1,0,0,2,0,"未命名","闪避时对自身周围敌人造成（AD+AP）*1法术伤害","ReplaceableTextures\\CommandButtons\\BTNS106.blp")
 call InitAbilityData('S107',1,2,0,0,0,0,0,0,"未命名","增加25%闪避","ReplaceableTextures\\CommandButtons\\BTNS107.blp")

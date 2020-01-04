@@ -718,7 +718,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
     
     function SpellS101(unit u,real x,real y,real damage)
         IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_az_zeusking_impact-black.mdl","origin",0))
         LocAddEffect(x,y,"effect_white-shandian-qiquan.mdl")
         UnitDamageGroup(u,g.ejg,damage+(GetUnitRealState(u,5)*1.3),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
@@ -728,12 +728,33 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
      function SpellS102(unit u,real damage)
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage+(GetUnitRealState(u,5)*1.3),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        g.destroy()
-        u = null
+
     endfunction  
+
+    function SpellS104(unit u1)
+        unit u=u1
+        real x=GetUnitX(u)
+        real y=GetUnitY(u)
+        
+        effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u,"chest") 
+        TimerStart(0.8,true)
+        {
+        if  IsPlayerHasAbility(u,'S104') == true
+            x=GetUnitX(u)
+            y=GetUnitY(u)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"Environment\\LargeBuildingFire\\LargeBuildingFire2.mdl","origin",0))
+            UnitDamageGroup(u,g.ejg,GetUnitRealState(u,5)*0.3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+           
+        else
+            u = null
+            DestroyEffect(tx)
+            endtimer
+        endif
+        }
+
+    endfunction    
 
 
 
@@ -1090,6 +1111,8 @@ endfunction
                 SpellS083(u1.u,damage)
             elseif  id== 'S100'    
                 SpellS100(u1.u)
+            elseif  id== 'S101'    
+                SpellS101(u1.u,sx,sy,damage)
             
             
             elseif  id== 'S230'
