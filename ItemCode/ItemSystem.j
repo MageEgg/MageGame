@@ -185,6 +185,22 @@ scope ItemSystem initializer InitItemSystem
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid >= 'E201' and itemid <= 'E224'
             IncEquipFunc(u1,GetManipulatedItem())
+        elseif  itemid == 'I001'
+            
+            SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_LIFE)+GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.8)
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffgreen2a.mdl")
+        elseif  itemid == 'I002'
+            SetUnitState(Pu[1],UNIT_STATE_MANA,GetUnitState(Pu[1],UNIT_STATE_MANA)+GetUnitState(Pu[1],UNIT_STATE_MAX_MANA)*0.6)
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffblue2.mdl")
+        elseif  itemid == 'I003'
+            AddUnitStateExTimer(Pu[1],9,60,15)
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffyellow2.mdl")
+        elseif  itemid == 'I004'
+            AddUnitStateExTimer(Pu[1],15,40,15)
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
+        elseif  itemid == 'I005'
+            AddUnitStateExTimer(Pu[1],16,40,15)
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
         endif
         
         flush locals

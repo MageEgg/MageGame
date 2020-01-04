@@ -44,12 +44,10 @@ library LearnAbilityFrame uses GameFrame
 
     //获取玩家技能槽数量
     function GetPlayerAbilitySlot(int pid)->int
-        if  GetUnitIntState(Pu[1],150) >= 5
+        if  GameLevel >= 3
             return 3
-        elseif  GetUnitIntState(Pu[1],150) >= 3
-            return 2
         endif
-        return 1
+        return 2
     endfunction
 
     function GetPlayerNullIndex(int pid)->int

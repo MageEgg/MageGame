@@ -46,9 +46,14 @@ scope SelectHero
             UnitAddAbility(Pu[1],'A002')
 
             HeroAddAbilityByIndex(Pu[1],1,'S0Q1')
-            HeroAddAbilityByIndex(Pu[1],2,'S0W0')
-            HeroAddAbilityByIndex(Pu[1],3,'S0E0')
+            HeroAddAbilityByIndex(Pu[1],2,'S0W1')
+            if  GameLevel >= 3
+                HeroAddAbilityByIndex(Pu[1],3,'S0E1')
+            else
+                HeroAddAbilityByIndex(Pu[1],3,'S0E0')
+            endif
             HeroAddAbilityByIndex(Pu[1],4,'S0R0')
+            
             
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             

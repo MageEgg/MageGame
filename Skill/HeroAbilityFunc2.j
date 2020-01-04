@@ -390,6 +390,29 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         endif
     endfunction
 
+    function SpellS510(unit wu)
+        int index = GetUnitIntState(wu,'S510')
+        if  index == 0
+            AddUnitRealState(wu,25,-10)
+            AddUnitRealState(wu,19,10)
+            SetUnitIntState(wu,'S510',1)
+            DzSetUnitModel( wu, "units\\creeps\\BronzeDragon\\BronzeDragon.mdl" )
+            
+        elseif  index == 1
+            AddUnitRealState(wu,19,-10)
+            AddUnitRealState(wu,9,45)
+            SetUnitIntState(wu,'S510',2)
+            DzSetUnitModel( wu, "units\\nightelf\\HeroMoonPriestess\\HeroMoonPriestess.mdl" )
+            
+        elseif  index == 2
+            AddUnitRealState(wu,9,-45)
+            AddUnitRealState(wu,25,10)
+            SetUnitIntState(wu,'S510',0)
+            DzSetUnitModel( wu, "H010.mdl" )
+            
+        endif
+    endfunction
+
     function SpellS511Spell(unit wu)->bool
         int num = 0
         if  GetUnitTypeId(wu) == 'H011'
@@ -832,6 +855,8 @@ library HeroAbilityFunc2 uses OtherDamageTimer
         end
         return false
     endfunction
+
+    
     
     /*
     function SpellS102Timer(unit wu,real dam,real face)

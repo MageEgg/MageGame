@@ -118,11 +118,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 BJDebugMsg("num"+I2S(num))
                 AddEquipState(Pu[1],id)
                 HeroIncLevel(Pu[1])
-                if  num == 3
-                    ReAddAbilityByIndex(Pu[1],2,'S0W1')
-                elseif num == 5
-                    ReAddAbilityByIndex(Pu[1],3,'S0E1')
-                elseif num == 7
+                if  num == 7
                     ReAddAbilityByIndex(Pu[1],4,'S0R1')
                     ShowUnit(Pu[25],true)
                     LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")

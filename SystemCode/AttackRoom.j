@@ -232,6 +232,11 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
             UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
             bj_lastCreatedUnit = null
         endif
+
+        if  GetUnitTypeId(Pu[1]) == 'H031'
+            AddUnitRealState(Pu[1],2,1)
+            BJDebugMsg("占星加法强")
+        endif
     endfunction
 
     function SoulTimer2Func(int id,real x,real y)
