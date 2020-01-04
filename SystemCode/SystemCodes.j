@@ -94,7 +94,7 @@ library SystemCodes uses ServerTime,Define1
         int l = StringLength(R2S(r))
         if r >= 100000000
             return SubString(R2S(r),0,l-12)+"亿"
-        elseif r >= 10000
+        elseif r >= 1000000
             return SubString(R2S(r),0,l-8)+"万"
         endif
         return SubString(R2S(r),0,l-4)
