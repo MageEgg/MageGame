@@ -1,4 +1,4 @@
-scope InitAllStateData initializer init InitMapEquipState
+scope InitAllStateData initializer InitMapEquipState
 function InitStateData1()
 InitTypeState1('S007',0,0,0,0,0,0,0,0,-80,0)
 InitTypeState1('S031',0,0,0,0,0,0,0,0,-40,0)

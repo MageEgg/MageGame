@@ -281,6 +281,50 @@ library DamageCode uses UnitStateSet
     endfunction
     
 
+
+
+    function GetPerHPState(unit wu)-real
+        real s = GetUnitRealState(wu,31)
+        return s
+    endfunction
+
+    function GetPerAPState(unit wu)-real
+        real s = GetUnitRealState(wu,32)
+        return s
+    endfunction
+
+    function GetPerSPState(unit wu)-real
+        real s = GetUnitRealState(wu,33)
+        return s
+    endfunction
+
+    function GetPerASState(unit wu)-real
+        real s = GetUnitRealState(wu,34)
+        return s
+    endfunction
+
+    function GetPerSSState(unit wu)-real
+        real s = GetUnitRealState(wu,35)
+        return s
+    endfunction
+
+    function GetPercentage(unit wu,int index)->real
+        if  index == 1
+            return  GetPerHP(wu)*0.01
+        elseif  index == 2
+            return  GetPerAP(wu)*0.01
+        elseif  index == 3
+            return  GetPerSP(wu)*0.01
+        elseif  index == 4
+            return  GetPerAS(wu)*0.01
+        elseif  index == 5
+            return  GetPerSS(wu)*0.01
+        endif
+        return 0
+    endfunction
+
+
+    
    
  
     
