@@ -1252,7 +1252,7 @@ endfunction
         flush locals
     endfunction
 
-    function SpellHeroSkillActionTimerNum(unit wu,unit tu,real sx,real sy,int id,int lv,real time,int num
+    function SpellHeroSkillActionTimerNum(unit wu,unit tu,real sx,real sy,int id,int lv,real time,int num)
         unit u1 = wu
         unit u2 = tu
         real x = sx

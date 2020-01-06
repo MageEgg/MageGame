@@ -127,6 +127,42 @@ scope ItemSystem initializer InitItemSystem
         endif
     endfunction
     
+    //抽兽魂
+    function IsHasBeastSoul(int pid,int index)->bool
+        int num = GetUnitIntState(Pu[1],190)
+        if  num == 0
+            return false
+        else
+            for i = 1,num
+                if  GetUnitIntState(Pu[1],190+i) == index
+                    return true
+                endif
+            end
+        endif
+        return false
+    endfunction
+    function PlayerBeastSoulDraw(int pid,int itemid)
+        int index = itemid - 'IH00'
+        int num = GetUnitIntState(Pu[1],190)
+        if  num < 3
+            if  true
+                if  IsHasBeastSoul(pid,index) == false
+                    SetUnitIntState(Pu[1],190+num + 1,index)
+                    SetUnitIntState(Pu[1],190,num + 1)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
+                    if  num == 2
+                        int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
+                        HeroAddAbilityByIndex(Pu[1],4,id)
+                    endif
+                else
+                    BJDebugMsg("重复的")
+                endif
+            endif
+            
+        endif
+
+    endfunction
+    
     
     
     
@@ -154,6 +190,8 @@ scope ItemSystem initializer InitItemSystem
             PlayerHeroMoveToImmortal(u1,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS04'
             PlayerAbilityDraw(pid,itemid)
+        elseif  itemid >= 'IH01' and itemid <= 'IH08'
+            PlayerBeastSoulDraw(pid,itemid)
         endif
 
 

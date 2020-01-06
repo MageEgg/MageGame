@@ -3,6 +3,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     /*
     150-160     道果
     161-172     附加属性
+    190-193     兽魂
     */
     private FRAME Back = 0
     private int origin = 0
