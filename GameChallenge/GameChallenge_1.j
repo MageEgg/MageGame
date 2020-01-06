@@ -6,17 +6,14 @@ library GameChallenge1 uses GameChallengeBase
         end
         GameChallengInt[10] = 0
         GameChallengInt[11] = 0
+        GameChallengBool[10] = false
+        GameChallengBool[11] = false
         if  GameChallengUnit[19] != null
             FlushChildHashtable(ht,GetHandleId(GameChallengUnit[19]))
             RemoveUnit(GameChallengUnit[19])
             GameChallengUnit[19] = null
         endif
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
 
     function OpenGameChallenge_1(int pid,int ty)
@@ -47,6 +44,29 @@ library GameChallenge1 uses GameChallengeBase
         endif
     endfunction
 
+    function GameChalleng_1_XYDeathTimer(int id)
+        int pid = id
+        real dis1 = 0
+        real dis2 = 0
+        IssuePointOrderById(GameChallengUnit[19],851983,GetUnitX(GameChallengUnit[13]),GetUnitY(GameChallengUnit[13]))
+        dis1 = Udis(GameChallengUnit[19],GameChallengUnit[13])
+        TimerStart(0.3,true)
+        {
+            dis2 = dis1
+            dis1 = Udis(GameChallengUnit[19],GameChallengUnit[13])
+            if  GameChallengBool[11] == false
+                if  dis2 < dis1
+                    IssuePointOrderById(GameChallengUnit[19],851983,GetUnitX(GameChallengUnit[13]),GetUnitY(GameChallengUnit[13]))
+                endif
+            else
+                BJDebugMsg("END GameChalleng_1_XYDeathTimer")
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function GameChalleng_1_XYDeath(int pid,unit u2)
         if  GameChallengInt[10] < 40
             GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
@@ -56,9 +76,12 @@ library GameChallenge1 uses GameChallengeBase
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
             endif
         elseif  GameChallengInt[10] == 40
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
-            SetUnitVertexColor(GameChallengUnit[12],255,255,255,0)
-            IssuePointOrderById(GameChallengUnit[19],851983,GetUnitX(GameChallengUnit[13]),GetUnitY(GameChallengUnit[13]))
+            if  GameChallengBool[10] == false    
+                GameChallengBool[10] = true
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                SetUnitVertexColor(GameChallengUnit[12],255,255,255,0)
+                GameChalleng_1_XYDeathTimer(pid)
+            endif
         endif
     endfunction
 
@@ -235,6 +258,7 @@ library GameChallenge1 uses GameChallengeBase
         real y = 0
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == GameChallengUnit[19]
+                GameChallengBool[11] = true
                 IssueImmediateOrderById(u1, 851993 )
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
