@@ -564,7 +564,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
         real m=3+(GetUnitRealState(u1,2)/30000)
         real x=x1
         real y=y1
-        int n = 0
+        integer n = 0
         LocAddEffectTimer(x,y,"effect_az_blacksmoke.mdl",m)
         TimerStart(0.03,true)
         {
