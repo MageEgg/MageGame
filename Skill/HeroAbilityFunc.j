@@ -629,6 +629,23 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
         flush locals
     endfunction
 
+    function SpellS086(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z100')
+    endfunction
+
+    function SpellS087(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z100')
+    endfunction
+
+
+    function SpellS089(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z102')
+    endfunction
+
+    function SpellS090(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z103')
+    endfunction
+
 
     function SpellS094(unit u1,real damage)
         unit u=u1
@@ -827,9 +844,9 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
 
 
 
-  /*  function SpellS111(unit u,real damage)
+    function SpellS111(unit u)
         Summon(u,GetUnitX(u),GetUnitY(u),'z104')
-    endfunction*/
+    endfunction
 
 function SpellS116(unit u1,real damage1)
     unit u=u1
@@ -1153,12 +1170,23 @@ endfunction
                 SpellS082(u1.u,damage)
             elseif  id== 'S083'    
                 SpellS083(u1.u,damage)
+            elseif  id== 'S086'    
+                SpellS086(u1.u)
+            elseif  id== 'S087'    
+                SpellS087(u1.u)
+            elseif  id== 'S089'    
+                SpellS089(u1.u)
+            elseif  id== 'S090'    
+                SpellS090(u1.u)
             elseif  id== 'S100'    
                 SpellS100(u1.u)
             elseif  id== 'S101'    
                 SpellS101(u1.u,sx,sy,damage)
+            elseif  id== 'S111'    
+                SpellS111(u1.u)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
+
              elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
             
