@@ -1230,6 +1230,20 @@ endfunction
             SpellS527(u1.u,u2.u)
         endif
         
+        if  id >= 'AZ0A' and id <= 'AZ0Z'
+            BossFuncSpell(u1.u,u2.u,id)
+        elseif  id >= 'AZ1A' and id <= 'AZ1Z'
+            BossFuncSpell(u1.u,u2.u,id)
+        elseif  id >= 'AZ2A' and id <= 'AZ2Z'
+            BossFuncSpell(u1.u,u2.u,id)
+        elseif  id >= 'AZ3A' and id <= 'AZ3Z'
+            BossFuncSpell(u1.u,u2.u,id)
+        elseif  id >= 'AZ4A' and id <= 'AZ4Z'
+            BossFuncSpell(u1.u,u2.u,id)
+        elseif  id >= 'AZ5A' and id <= 'AZ5Z'
+            BossFuncSpell(u1.u,u2.u,id)
+        endif
+
         u1.destroy()
         u2.destroy()
         flush locals
