@@ -104,10 +104,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer
     endfunction
     function BossFuncSpell3()
         insert BossSpell
-        
-
-        
-        
+        group gg = CreateGroup()
+        LocAddEffectSetSize(x1,y1,"effect2_az_nevermore_r2(1).mdl",8)
+        GroupEnumUnitsInRange(gg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
         flush locals
     endfunction
     function BossFuncSpell4()
@@ -326,7 +328,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
             BossFuncStart(u1,u2,LINE_A,ang,damage,1.5,"BossFuncSpell1")
         elseif  id == 'AZ0B'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell2")
         elseif  id == 'AZ0C'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")

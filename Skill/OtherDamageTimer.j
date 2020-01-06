@@ -673,9 +673,39 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         flush locals
     endfunction 
     
-    
-    
-
+    //延迟伤害 伤害来源 延迟时间 坐标x y 伤害 伤害范围 伤害类型4个 选取特效 buffId buff等级 buff命令
+    function UnitGroupAddDamageTimerAddBuff(unit tu,real time,real r1,real r2,real dam,real r,bool b1,bool b2,int attt,int damt,string s,int i1,int i2,int i3)
+        unit u1 = tu
+        real x = r1
+        real y = r2
+        real damage = dam
+        real rac = r
+        bool bool1 = b1
+        bool bool2 = b2
+        int atttype = attt
+        int damtype = damt
+        string eff = s
+        int buffskill = i1
+        int bufflv = i2
+        int bufforder = i3
+        group gg = CreateGroup()
+        GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),eff,buffskill,bufflv,bufforder))
+        TimerStart(time,false)
+        {
+            unit uu = null
+            loop
+                uu = FirstOfGroup(gg)
+                exitwhen uu == null
+                UnitDamageTarget(u1,uu,damage,bool1,bool2,ConvertAttackType(atttype),ConvertDamageType(damtype),WEAPON_TYPE_AXE_MEDIUM_CHOP)
+                GroupRemoveUnit(gg,uu)
+            endloop
+            GroupClear(gg)
+            DestroyGroup(gg)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     
 
     
