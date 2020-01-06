@@ -574,7 +574,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x,y,600,GroupSetToCenter(GetOwningPlayer(u1),x,y,n,""))
                 if  n == 16
-                    UnitDamageGroup(u1,g.ejg,damage*0.03,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     n=0
                 endif
                 g.destroy()
