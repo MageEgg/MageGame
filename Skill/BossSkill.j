@@ -301,6 +301,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         if  id == 'AZA0'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            //true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa
         endif
         flush locals
     endfunction
