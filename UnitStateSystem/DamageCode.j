@@ -310,15 +310,15 @@ library DamageCode uses UnitStateSet
 
     function GetPercentage(unit wu,int index)->real
         if  index == 1
-            return  GetPerHP(wu)*0.01
+            return  GetPerHPState(wu)*0.01
         elseif  index == 2
-            return  GetPerAP(wu)*0.01
+            return  GetPerAPState(wu)*0.01
         elseif  index == 3
-            return  GetPerSP(wu)*0.01
+            return  GetPerSPState(wu)*0.01
         elseif  index == 4
-            return  GetPerAS(wu)*0.01
+            return  GetPerASState(wu)*0.01
         elseif  index == 5
-            return  GetPerSS(wu)*0.01
+            return  GetPerSSState(wu)*0.01
         endif
         return 0
     endfunction
