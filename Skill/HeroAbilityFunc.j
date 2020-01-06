@@ -829,6 +829,31 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         Summon(u,GetUnitX(u),GetUnitY(u),'z104')
     endfunction*/
         
+function SpellS116(unit u1,real damage1)
+    unit u=u1
+    real damage=damage1
+    int Num=0
+    real x=0
+    real y=0
+    real dis=0
+    real ang=0
+    TimerStart(1,true)
+    {
+        Num=Num+1
+        if  Num<=m
+            dis=GetRandomReal(0, 400)
+            ang=GetRandomReal(-3.14, 3.14)
+            x=GetUnitX(u)+(dis*Cos(ang))
+            y=GetUnitY(u)+(dis*Sin(ang))
+            LocAddEffectTimer(x,y,"effect_shenshoushentong.mdx",1)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+        else
+            endtimer
+        endif    
+    }
 
       function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
