@@ -68,6 +68,8 @@ scope SelectHero
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r欢迎星耀成员"+GetPlayerColorEx(pid)+GetPN(pid)+"，奖励木材1000！")
                 AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             endif
+
+            InitHeroAddStateAbility.execute(Pu[1])
             
         endif
     endfunction

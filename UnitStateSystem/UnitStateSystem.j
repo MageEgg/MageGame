@@ -226,6 +226,10 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     function GetUnitIntState(unit wu,int StateId)->int
         return GetUnitData(wu,StateId)
     endfunction
+
+    
+
+
     
     function SetUnitIntState(unit wu,int StateId,int value)
         if  StateId < 100
@@ -245,7 +249,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         if  StateId == 1
             value = GetUnitState(wu, ConvertUnitState(0x12))
         elseif  StateId == 2
-            value = GetHeroStr(wu,true)
+            value = GetHeroStr(wu,false)
         elseif  StateId == 3
             value = GetUnitState(wu, ConvertUnitState(0x20))
         elseif  StateId == 5
@@ -259,6 +263,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     endfunction
     
     
+
     function SetUnitRealState(unit wu,int StateId,real value)
         real r1 = 0
         real r2 = 0
@@ -274,17 +279,13 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         elseif  StateId == 3
             SetUnitState( wu, ConvertUnitState(0x20), value )
         elseif  StateId == 5
-            r1 = GetUnitState( wu, UNIT_STATE_MAX_LIFE)
-            r2 = GetUnitState( wu, UNIT_STATE_LIFE)
+            r1 = GetUnitState( wu, UNIT_STATE_LIFE)/GetUnitState( wu, UNIT_STATE_MAX_LIFE)
             SetUnitState( wu, UNIT_STATE_MAX_LIFE, value)
-            if  r1 < value
-                SetUnitState( wu, UNIT_STATE_LIFE, r2+(value-r1))
-            endif
+            SetUnitState( wu, UNIT_STATE_LIFE, r1 * GetUnitState( wu, UNIT_STATE_MAX_LIFE))
         elseif  StateId == 6
-            r1 = GetUnitState( wu, UNIT_STATE_MAX_MANA)
-            r2 = GetUnitState( wu, UNIT_STATE_MANA)
+            r1 = GetUnitState( wu, UNIT_STATE_MANA)/GetUnitState( wu, UNIT_STATE_MAX_MANA)
             SetUnitState( wu, UNIT_STATE_MAX_MANA, value)
-            SetUnitState( wu, UNIT_STATE_MANA, r2+(value-r1))
+            SetUnitState( wu, UNIT_STATE_MANA, r1 * GetUnitState( wu, UNIT_STATE_MAX_MANA))
         elseif  StateId == 9
             SetUnitState( wu, ConvertUnitState(0x51), value*0.0001 )
             if  IsUnitType(wu, UNIT_TYPE_HERO) == true
@@ -321,6 +322,18 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         elseif  StateId == 20
             DzFrameSetText(BUTTON_Text[172],"|cffffcc00暴伤：|r"+I2S(R2I(value))+"%")
         endif
+
+        if  StateId == 5
+            RePercentageState.execute(wu,1)
+        elseif  StateId == 1
+            RePercentageState.execute(wu,2)
+        elseif  StateId == 2
+            RePercentageState.execute(wu,3)
+        elseif  StateId == 9
+            RePercentageState.execute(wu,4)
+        elseif  StateId == 25
+            RePercentageState.execute(wu,5)
+        endif
     endfunction
     
     function AddUnitRealState(unit wu,int StateId,real value)
@@ -348,21 +361,29 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     
     function InitHeroAddStateAbility(unit wu)
         int skill = 0
-        for i = 1,31
+        for i = 0,30
             skill = i
             if  i > 9
                 skill = skill + 7
             endif
-            UnitAddAbility(wu,'AD10'+skill)
-            UnitAddAbility(wu,'AD20'+skill)
-            UnitAddAbility(wu,'AD30'+skill)
+            UnitAddAbility(wu,'AQ10'+skill)
+            UnitAddAbility(wu,'AQ20'+skill)
+            UnitAddAbility(wu,'AQ30'+skill)
+            UnitAddAbility(wu,'AQ40'+skill)
         end
     endfunction
     
     function SetUnitAddStateLevel(unit wu,int index,int value)
-        int id = 'AD00'+index*0x100
+        int id = 'AQ00'+index*0x100
         int skill = 0
-        for i = 1,31
+        if  value < 0
+            value = 1073741824+value
+            BJDebugMsg("负数"+I2S(value))
+            SetUnitAbilityLevel(wu,id,2)
+        else
+            SetUnitAbilityLevel(wu,id,1)
+        endif
+        for i = 1,30
             skill = id + i
             if  i > 9
                 skill = skill + 7
@@ -375,6 +396,10 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
             value = value / 2
         end
     endfunction
+
+
+
+    
     
     
     

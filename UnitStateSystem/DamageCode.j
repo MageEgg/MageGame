@@ -290,41 +290,145 @@ library DamageCode uses UnitStateSet
 
     function GetPerAPState(unit wu)->real
         real s = GetUnitRealState(wu,32)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  wu == Pu[1]
+            if  IsPlayerHasAbility.evaluate(wu,'S071') == true
+                s = s + GetHeroAgi(wu,false)/4.4
+            endif
+        endif
         return s
     endfunction
 
     function GetPerSPState(unit wu)->real
         real s = GetUnitRealState(wu,33)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  wu == Pu[1]
+            if  IsPlayerHasAbility.evaluate(wu,'S054') == true
+                s = s + GetUnitLsState(wu)/0.8
+            endif
+        endif
         return s
+    endfunction
+
+
+    function PerIsPlayerHasAbility(unit wu,int id)->bool
+        for index = 1,4
+            if  GetUnitIntState(wu,110+index) == id
+                return true
+            endif
+        end
+        return false
     endfunction
 
     function GetPerASState(unit wu)->real
         real s = GetUnitRealState(wu,34)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  wu == Pu[1]
+            if  PerIsPlayerHasAbility(wu,'S071') == true
+                BJDebugMsg("拥有")
+                s = -100
+            endif
+        endif
         return s
     endfunction
 
     function GetPerSSState(unit wu)->real
         real s = GetUnitRealState(wu,35)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  wu == Pu[1]
+            if  PerIsPlayerHasAbility(wu,'S054') == true
+                BJDebugMsg("拥有")
+                s = -100
+            endif
+        endif
         return s
     endfunction
 
     function GetPercentage(unit wu,int index)->real
+        real s = 0
         if  index == 1
-            return  GetPerHPState(wu)*0.01
+            s = GetPerHPState(wu)*0.01
         elseif  index == 2
-            return  GetPerAPState(wu)*0.01
+            s = GetPerAPState(wu)*0.01
         elseif  index == 3
-            return  GetPerSPState(wu)*0.01
+            s = GetPerSPState(wu)*0.01
         elseif  index == 4
-            return  GetPerASState(wu)*0.01
+            s = GetPerASState(wu)*0.01
         elseif  index == 5
-            return  GetPerSSState(wu)*0.01
+            s = GetPerSSState(wu)*0.01
         endif
-        return 0
+        BJDebugMsg("index:"+I2S(index)+"GetPercentage"+R2S(s))
+        return s
+    endfunction
+
+    function GetPercentageState(unit wu,int index)->int
+        real value = GetPercentage(wu,index)
+        int state = 0
+        if  index == 1
+            state = R2I(value * GetUnitRealState(wu,5))
+        elseif  index == 2
+            state = R2I(value * GetUnitRealState(wu,1))
+        elseif  index == 3
+            state = R2I(value * GetUnitRealState(wu,2))
+        elseif  index == 4
+            state = R2I(value * GetHeroAgi(wu,true))
+        elseif  index == 5
+            state = R2I(value * GetUnitLsState(wu))
+        endif
+
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  wu == Pu[1]
+            
+        endif
+
+
+        return state
     endfunction
 
 
     
+    function RePercentageStateSetLife(unit wu,real value)
+        SetUnitReal(wu,5,value)
+        real r1 = GetUnitState( wu, UNIT_STATE_LIFE)/GetUnitState( wu, UNIT_STATE_MAX_LIFE)
+        SetUnitState( wu, UNIT_STATE_MAX_LIFE, value)
+        SetUnitState( wu, UNIT_STATE_LIFE, r1 * GetUnitState( wu, UNIT_STATE_MAX_LIFE))
+        
+    endfunction
+
+    function RePercentageState(unit wu,int index)
+        int state = 0
+        real value
+        
+
+        if  index == 1
+            //生命加成
+            real life = GetUnitRealState(wu,5) - GetUnitIntState(wu,101)
+            state = R2I(GetPercentage(wu,1)*life)
+            if  state != GetUnitIntState(wu,101)
+                RePercentageStateSetLife(wu,GetUnitRealState(wu,5)+state-GetUnitIntState(wu,101))
+                SetUnitIntState(wu,101,state)
+            elseif  GetUnitIntState(wu,101) == 0 and GetPercentage(wu,1) > 0
+                RePercentageStateSetLife(wu,GetUnitRealState(wu,5)+state)
+                SetUnitIntState(wu,101,state)
+            endif
+        else
+            state = GetPercentageState(wu,index)
+            if  state != GetUnitIntState(wu,100+index)
+                if  index == 2
+                    SetUnitAddStateLevel(wu,4,state)
+                elseif  index == 3
+                    SetUnitAddStateLevel(wu,1,state)
+                elseif  index == 4
+                    SetUnitAddStateLevel(wu,2,state)
+                elseif  index == 5
+                    SetUnitAddStateLevel(wu,3,state)
+                endif
+                SetUnitIntState(wu,100+index,state)
+                BJDebugMsg("index"+I2S(index)+"&"+"state"+I2S(state))
+            endif
+            
+        endif
+    endfunction
    
  
     

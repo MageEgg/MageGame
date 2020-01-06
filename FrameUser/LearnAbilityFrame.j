@@ -299,6 +299,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
                     PlayerLearnAbilityFunc(pid,id)
                 else
                     RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                    BJDebugMsg("回收"+GetTypeIdName(rid))
                 endif
             endif
             SetUnitIntState(Pu[1],130+i,0)
@@ -335,19 +336,25 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
     function PlayerUseLearnAbilityBook(int pid,int itemid)
         int rid = 0
-        if  GetUnitIntState(Pu[1],120) > 0
+        for i =1,3
+            rid = GetUnitIntState(Pu[1],130+i)
+            if  rid > 0
+                RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                BJDebugMsg("回收"+GetTypeIdName(rid))
+            endif
+            SetUnitIntState(Pu[1],130+i,0)
+        end
+
+
+        rid = GetUnitIntState(Pu[1],120)
+        if  rid > 0
+            RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+            BJDebugMsg("回收"+GetTypeIdName(rid))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了学习技能！")
             SetUnitIntState(Pu[1],120,0)
-
-            for i =1,3
-                rid = GetUnitIntState(Pu[1],130+i)
-                if  rid > 0
-                    RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
-                endif
-                SetUnitIntState(Pu[1],130+i,0)
-            end
-
             CloseReplaceFrame(pid)
+        else
+            BJDebugMsg("新窗口学习技能")
         endif
         if  GameLevel >= 3
             PlayerLearnThreeAbilityFunc(pid,GetLearnAbilityBookId(pid,itemid),GetLearnAbilityBookId(pid,itemid),GetLearnAbilityBookId(pid,itemid))

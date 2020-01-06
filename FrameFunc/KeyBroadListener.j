@@ -22,14 +22,36 @@ scope KeyEvent initializer InitKeyBroadListener
         int pid = GetPlayerId(DzGetTriggerKeyPlayer())
         int key = DzGetTriggerKey()
         real h = 0
+        int rid = 0
         if  Pu[1] != null
             if  key == 27 //Esc
                 if  GetUnitIntState(Pu[1],120) > 0
+                    
+                    for i =1,3
+                        rid = GetUnitIntState(Pu[1],130+i)
+                        if  rid > 0
+                            RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                            BJDebugMsg("回收"+GetTypeIdName(rid))
+                        endif
+                        SetUnitIntState(Pu[1],130+i,0)
+                    end
+                    rid = GetUnitIntState(Pu[1],120)
+                    RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                    BJDebugMsg("回收"+GetTypeIdName(rid))
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了学习技能！")
                     SetUnitIntState(Pu[1],120,0)
                     CloseReplaceFrame(pid)
                 elseif  GetUnitIntState(Pu[1],131) > 0
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了选择技能！")
+                    
+                    for i =1,3
+                        rid = GetUnitIntState(Pu[1],130+i)
+                        if  rid > 0
+                            RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                            BJDebugMsg("回收"+GetTypeIdName(rid))
+                        endif
+                        SetUnitIntState(Pu[1],130+i,0)
+                    end
                     SetUnitIntState(Pu[1],131,0)
                     SetUnitIntState(Pu[1],132,0)
                     SetUnitIntState(Pu[1],133,0)
