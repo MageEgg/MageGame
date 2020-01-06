@@ -283,27 +283,27 @@ library DamageCode uses UnitStateSet
 
 
 
-    function GetPerHPState(unit wu)-real
+    function GetPerHPState(unit wu)->real
         real s = GetUnitRealState(wu,31)
         return s
     endfunction
 
-    function GetPerAPState(unit wu)-real
+    function GetPerAPState(unit wu)->real
         real s = GetUnitRealState(wu,32)
         return s
     endfunction
 
-    function GetPerSPState(unit wu)-real
+    function GetPerSPState(unit wu)->real
         real s = GetUnitRealState(wu,33)
         return s
     endfunction
 
-    function GetPerASState(unit wu)-real
+    function GetPerASState(unit wu)->real
         real s = GetUnitRealState(wu,34)
         return s
     endfunction
 
-    function GetPerSSState(unit wu)-real
+    function GetPerSSState(unit wu)->real
         real s = GetUnitRealState(wu,35)
         return s
     endfunction
