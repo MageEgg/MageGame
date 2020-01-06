@@ -11,12 +11,7 @@ library GameChallenge2 uses GameChallengeBase
         if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
             UnitRemoveAbility(Pu[1],'AZ04')
         endif
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
 
     function GameChalleng_2_WaterDeath3(int pid,unit u2)

@@ -10,12 +10,7 @@ library GameChallenge8 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[89])
             GameChallengUnit[89] = null
         endif
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
 
     function GameChallenge_8_BTimer(int id)

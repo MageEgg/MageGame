@@ -4,12 +4,7 @@ library GameChallenge7 uses GameChallengeBase
         for num = 0,9
             SetUnitVertexColor(GameChallengUnit[70+num],255,255,255,0)
         end
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
     
     function OpenGameChallenge_7_A_Timer(int id)

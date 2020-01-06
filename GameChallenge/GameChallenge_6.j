@@ -10,12 +10,7 @@ library GameChallenge6 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[69])
             GameChallengUnit[69] = null
         endif
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
 
     function OpenGameChallenge_6_A_ChatTimer(int id)

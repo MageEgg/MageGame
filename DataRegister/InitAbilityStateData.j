@@ -105,8 +105,13 @@ call InitAbilityData('S106',1,3,0,1,0,0,2,0,"未命名","闪避时对自身周�
 call InitAbilityData('S107',1,2,0,0,0,0,0,0,"未命名","增加25%闪避","ReplaceableTextures\\CommandButtons\\BTNS107.blp")
 call InitAbilityData('S108',1,3,0,0,0,0,0,0,"未命名","增加15%闪避","ReplaceableTextures\\CommandButtons\\BTNS108.blp")
 call InitAbilityData('S109',1,5,99,0.5,0,0,1,0,"基础剑术","对目标附近200码范围造成攻击和法强相关的自适应伤害。","ReplaceableTextures\\CommandButtons\\BTNS109.blp")
-
-
+call InitAbilityData('S111',2,4,2,2,0,0,2,12,"寒霜符箓","在自身脚下放置1个寒霜符，敌方单位进入该区域时发生爆炸，造成AP*2法术伤害。该技能属于召唤类技能","ReplaceableTextures\\CommandButtons\\BTNS111.blp")
+call InitAbilityData('S113',3,4,1,3,0,0,1,8,"紫金葫","投射一个紫金葫，沿途造成AD*3物理伤害，到达目标区域后爆炸，造成AP*3法术伤害30%几率额外投射2个葫芦。","ReplaceableTextures\\CommandButtons\\BTNS113.blp")
+call InitAbilityData('S114',1,4,0,0,0,0,0,0,"除妖","增加10%暴击率","ReplaceableTextures\\CommandButtons\\BTNS114.blp")
+call InitAbilityData('S115',3,4,1,3,0,0,1,8,"震天箭","向目标区域射出一支震天箭，造成攻击*3物理伤害距离越远伤害越高","ReplaceableTextures\\CommandButtons\\BTNS115.blp")
+call InitAbilityData('S116',2,4,2,2,0,0,2,8,"罪焰","自身600码范围随机点产生一次罪焰，造成AP*2法术伤害间隔1秒","ReplaceableTextures\\CommandButtons\\BTNS116.blp")
+call InitAbilityData('S117',1,4,2,3,0,0,2,0,"元气破","攻击15%几率对目标范围造成AP*3法术伤害，并回复10点蓝量","ReplaceableTextures\\CommandButtons\\BTNS117.blp")
+call InitAbilityData('S123',2,5,2,3,0,0,2,8,"冰暴术","自身600码范围随机点产生一次冰暴，造成AP*3法术伤害间隔1s","ReplaceableTextures\\CommandButtons\\BTNS123.blp")
 
 
 call InitAbilityData('S230',9,0,1,12,0,0,1,20,"血之裂痕","扑杀目标范围，造成AD*12物理伤害，随后引发岩浆爆发，造成每秒AD*4伤害，持续3秒。","ReplaceableTextures\\CommandButtons\\BTNS230.blp")

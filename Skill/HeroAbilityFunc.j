@@ -564,7 +564,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
         real m=3+(GetUnitRealState(u1,2)/30000)
         real x=x1
         real y=y1
-        int n = 0
+        integer n = 0
         LocAddEffectTimer(x,y,"effect_az_blacksmoke.mdl",m)
         TimerStart(0.03,true)
         {
@@ -574,7 +574,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x,y,600,GroupSetToCenter(GetOwningPlayer(u1),x,y,n,""))
                 if  n == 16
-                    UnitDamageGroup(u1,g.ejg,damage*0.03,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     n=0
                 endif
                 g.destroy()
@@ -627,6 +627,23 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
             AroundSystem(u,bj_lastCreatedUnit,0.75,Num*0.75,20,320,damage)
         end
         flush locals
+    endfunction
+
+    function SpellS086(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z100')
+    endfunction
+
+    function SpellS087(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z100')
+    endfunction
+
+
+    function SpellS089(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z102')
+    endfunction
+
+    function SpellS090(unit u)
+        Summon(u,GetUnitX(u),GetUnitY(u),'z103')
     endfunction
 
 
@@ -825,10 +842,65 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
     endfunction
 
 
-  /*  function SpellS111(unit u,real damage)
+
+
+    function SpellS111(unit u)
         Summon(u,GetUnitX(u),GetUnitY(u),'z104')
-    endfunction*/
-        
+    endfunction
+
+function SpellS116(unit u1,real damage1)
+    unit u=u1
+    real damage=damage1
+    int Num=0
+    real x=0
+    real y=0
+    real dis=0
+    real ang=0
+    TimerStart(1,true)
+    {
+        Num=Num+1
+        if  Num<=8
+            dis=GetRandomReal(0, 600)
+            ang=GetRandomReal(-3.14, 3.14)
+            x=GetUnitX(u)+(dis*Cos(ang))
+            y=GetUnitY(u)+(dis*Sin(ang))
+            LocAddEffect(x,y,"effect_by_wood_effect_yuzhiboyou_fire_tianzhao_fangchu_1_1.mdl")
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+        else
+            endtimer
+        endif    
+    }
+    endfunction
+
+    function SpellS123(unit u1,real damage1)
+    unit u=u1
+    real damage=damage1
+    int Num=0
+    real x=0
+    real y=0
+    real dis=0
+    real ang=0
+    TimerStart(1,true)
+    {
+        Num=Num+1
+        if  Num<=8
+            dis=GetRandomReal(0, 600)
+            ang=GetRandomReal(-3.14, 3.14)
+            x=GetUnitX(u)+(dis*Cos(ang))
+            y=GetUnitY(u)+(dis*Sin(ang))
+            LocAddEffect(x,y,"effect_hero_lich_n1s_bingdong2.mdl")
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+        else
+            endtimer
+        endif    
+    }
+    endfunction
 
       function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
@@ -899,9 +971,6 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
     real y=0
     real dis=0
     real ang=0
-    unit mj=null
-    unit uu=null
-    group mjz=CreateGroup()
     TimerStart(3/(m+1),true)
     {
         Num=Num+1
@@ -916,14 +985,6 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
         else
-             
-           loop
-                uu = FirstOfGroup(mjz)
-                exitwhen uu == null
-                KillUnit(uu)
-                GroupRemoveUnit(mjz,uu)
-            endloop
-            GroupClear(mjz)
             endtimer
         endif    
     }
@@ -1109,11 +1170,25 @@ endfunction
                 SpellS082(u1.u,damage)
             elseif  id== 'S083'    
                 SpellS083(u1.u,damage)
+            elseif  id== 'S086'    
+                SpellS086(u1.u)
+            elseif  id== 'S087'    
+                SpellS087(u1.u)
+            elseif  id== 'S089'    
+                SpellS089(u1.u)
+            elseif  id== 'S090'    
+                SpellS090(u1.u)
             elseif  id== 'S100'    
                 SpellS100(u1.u)
             elseif  id== 'S101'    
                 SpellS101(u1.u,sx,sy,damage)
-            
+            elseif  id== 'S111'    
+                SpellS111(u1.u)
+            elseif  id== 'S116'    
+                SpellS116(u1.u,damage)
+
+             elseif  id== 'S123'    
+                SpellS123(u1.u,damage)
             
             elseif  id== 'S230'
                 SpellS230(u1.u,sx,sy,damage)

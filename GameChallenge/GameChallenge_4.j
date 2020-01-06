@@ -6,12 +6,7 @@ library GameChallenge4 uses GameChallengeBase
         end
         GameChallengInt[40] = 0
         SetUnitAnimation(GameChallengUnit[43],"stand")
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
 
     function OpenGameChallenge_4(int pid,int ty)
@@ -683,14 +678,12 @@ library GameChallenge4 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  IsFinshChallenge(4) == false and IsPlayerInChallenge == true
-                    if  GameChallengInt[40] == 0 
-                        GameChallengInt[40] = 1
-                        SetUnitVertexColor(GameChallengUnit[47],255,255,255,0)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云霄娘娘]：|r既杀吾兄赵公明，便看你等能破得此阵不！")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破九曲黄河阵|r")
-                        GameChalleng_4_Zhen_1(pid)
-                    endif
+                if  IsPlayerInChallenge == true and GameChallengInt[40] == 0 
+                    GameChallengInt[40] = 1
+                    SetUnitVertexColor(GameChallengUnit[47],255,255,255,0)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云霄娘娘]：|r既杀吾兄赵公明，便看你等能破得此阵不！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破九曲黄河阵|r")
+                    GameChalleng_4_Zhen_1(pid)
                 endif
             endif
         endif

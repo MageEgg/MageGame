@@ -6,24 +6,49 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
                 DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r该副本已完成！！！")
             else
                 if  IsPlayerInChallenge == false
-                    if  flag == 1
-                        OpenGameChallenge_1(pid,ty)
-                    elseif  flag == 2
-                        OpenGameChallenge_2(pid,ty)
-                    elseif  flag == 3
-                        OpenGameChallenge_3(pid,ty)
-                    elseif  flag == 4
-                        OpenGameChallenge_4(pid,ty)
-                    elseif  flag == 5
-                        OpenGameChallenge_5(pid,ty)
-                    elseif  flag == 6
-                        OpenGameChallenge_6(pid,ty)
-                    elseif  flag == 7
-                        OpenGameChallenge_7(pid,ty)
-                    elseif  flag == 8
-                        OpenGameChallenge_8(pid,ty)
+                    if  GetPlayerPlotStateByIndex(pid,flag) == 3
+                        if  GetPlayerPlotPartNum(pid) > 0
+                            if  flag == 1
+                                OpenGameChallenge_1(pid,ty)
+                            elseif  flag == 2
+                                OpenGameChallenge_2(pid,ty)
+                            elseif  flag == 3
+                                OpenGameChallenge_3(pid,ty)
+                            elseif  flag == 4
+                                OpenGameChallenge_4(pid,ty)
+                            elseif  flag == 5
+                                OpenGameChallenge_5(pid,ty)
+                            elseif  flag == 6
+                                OpenGameChallenge_6(pid,ty)
+                            elseif  flag == 7
+                                OpenGameChallenge_7(pid,ty)
+                            elseif  flag == 8
+                                OpenGameChallenge_8(pid,ty)
+                            endif
+                            ClosePlotFrame(pid)
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r您已经没有时渊碎片了！")
+                        endif
+                    else
+                        if  flag == 1
+                            OpenGameChallenge_1(pid,ty)
+                        elseif  flag == 2
+                            OpenGameChallenge_2(pid,ty)
+                        elseif  flag == 3
+                            OpenGameChallenge_3(pid,ty)
+                        elseif  flag == 4
+                            OpenGameChallenge_4(pid,ty)
+                        elseif  flag == 5
+                            OpenGameChallenge_5(pid,ty)
+                        elseif  flag == 6
+                            OpenGameChallenge_6(pid,ty)
+                        elseif  flag == 7
+                            OpenGameChallenge_7(pid,ty)
+                        elseif  flag == 8
+                            OpenGameChallenge_8(pid,ty)
+                        endif
+                        ClosePlotFrame(pid)
                     endif
-                    ClosePlotFrame(pid)
                 else    
                     DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r当前正在挑战副本！！！")
                 endif

@@ -237,6 +237,15 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         }
         flush locals
     endfunction
+    
+    function GameChallenge_GlobalFlush(int pid)
+        GameChallengCanUsesUnitFlush(pid)
+        ShowUnitOfAllPlayer(Pu[1])
+        RemoveUnit(PlayerInChallengeShowUnit)
+        PlayerInChallengeShowUnit = null
+        PlayerInChallengeNumber = 0
+        IsPlayerInChallenge = false
+    endfunction
 
 endlibrary
 
