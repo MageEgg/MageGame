@@ -293,7 +293,7 @@ library DamageCode uses UnitStateSet
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  wu == Pu[1]
             if  IsPlayerHasAbility.evaluate(wu,'S071') == true
-                s = s + GetHeroAgi(wu,false)/4.4
+                s = s + GetHeroAgi(wu,true)/4.4
             endif
         endif
         return s
@@ -325,7 +325,6 @@ library DamageCode uses UnitStateSet
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  wu == Pu[1]
             if  PerIsPlayerHasAbility(wu,'S071') == true
-                BJDebugMsg("拥有")
                 s = -100
             endif
         endif
@@ -337,7 +336,6 @@ library DamageCode uses UnitStateSet
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  wu == Pu[1]
             if  PerIsPlayerHasAbility(wu,'S054') == true
-                BJDebugMsg("拥有")
                 s = -100
             endif
         endif
@@ -357,7 +355,7 @@ library DamageCode uses UnitStateSet
         elseif  index == 5
             s = GetPerSSState(wu)*0.01
         endif
-        BJDebugMsg("index:"+I2S(index)+"GetPercentage"+R2S(s))
+        //BJDebugMsg("index:"+I2S(index)+"GetPercentage"+R2S(s))
         return s
     endfunction
 
@@ -371,7 +369,7 @@ library DamageCode uses UnitStateSet
         elseif  index == 3
             state = R2I(value * GetUnitRealState(wu,2))
         elseif  index == 4
-            state = R2I(value * GetHeroAgi(wu,true))
+            state = R2I(value * GetHeroAgi(wu,false))
         elseif  index == 5
             state = R2I(value * GetUnitLsState(wu))
         endif
@@ -419,12 +417,15 @@ library DamageCode uses UnitStateSet
                 elseif  index == 3
                     SetUnitAddStateLevel(wu,1,state)
                 elseif  index == 4
+                    SetUnitState( wu, ConvertUnitState(0x51), (GetUnitState(wu, ConvertUnitState(0x51))*10000 - GetUnitIntState(wu,100+index)*100+state*100)*0.0001 )
+                    
                     SetUnitAddStateLevel(wu,2,state)
+                    
                 elseif  index == 5
                     SetUnitAddStateLevel(wu,3,state)
                 endif
                 SetUnitIntState(wu,100+index,state)
-                BJDebugMsg("index"+I2S(index)+"&"+"state"+I2S(state))
+                //BJDebugMsg("index"+I2S(index)+"&"+"state"+I2S(state))
             endif
             
         endif

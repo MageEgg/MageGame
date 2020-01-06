@@ -10,8 +10,12 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         real value = 0
         for i = 1,40
             value = GetTypeIdReal(uid,i)
-            if  value > 0
-                SetUnitRealState(wu,i,R2I(value))
+            if  value != 0
+                if  i == 9
+                    AddUnitRealState(wu,i,R2I(value))
+                else
+                    SetUnitRealState(wu,i,R2I(value))
+                endif
             endif
         end
     end
@@ -22,8 +26,12 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         real value = 0
         for i = 1,40
             value = GetTypeIdReal(uid,i)
-            if  value > 0
-                SetUnitRealState(wu,i,R2I(value))
+            if  value != 0
+                if  i == 9
+                    AddUnitRealState(wu,i,R2I(value))
+                else
+                    SetUnitRealState(wu,i,R2I(value))
+                endif
             endif
         end
         if  GetUnitPointValue(wu) != 100
@@ -67,8 +75,12 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             endif
             
             
-            if  value > 0
-                SetUnitRealState(wu,i,R2I(value))
+            if  value != 0
+                if  i == 9
+                    AddUnitRealState(wu,i,R2I(value))
+                else
+                    SetUnitRealState(wu,i,R2I(value))
+                endif
             endif
         end
         
@@ -85,9 +97,12 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         
         for i = 1,70
             value = GetTypeIdReal(uid,i)
-            if  value > 0
-                
-                SetUnitRealState(wu,i,R2I(value))
+            if  value != 0
+                if  i == 9
+                    AddUnitRealState(wu,i,R2I(value))
+                else
+                    SetUnitRealState(wu,i,R2I(value))
+                endif
             endif
         end
         

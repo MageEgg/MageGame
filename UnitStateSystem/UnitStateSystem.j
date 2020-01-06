@@ -287,6 +287,13 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
             SetUnitState( wu, UNIT_STATE_MAX_MANA, value)
             SetUnitState( wu, UNIT_STATE_MANA, r1 * GetUnitState( wu, UNIT_STATE_MAX_MANA))
         elseif  StateId == 9
+            int as = GetUnitIntState(wu,104)*100
+            if  as != 0
+                SetUnitState( wu, ConvertUnitState(0x51), (GetUnitState(wu, ConvertUnitState(0x51))*10000 - as)*0.0001 )
+                SetUnitIntState(wu,104,0)
+                value = value - as
+                SetUnitReal(wu,StateId,value)
+            endif
             SetUnitState( wu, ConvertUnitState(0x51), value*0.0001 )
             if  IsUnitType(wu, UNIT_TYPE_HERO) == true
                 SetHeroAgi(wu,R2I(value/100+0.1)-100,true)
@@ -376,6 +383,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     function SetUnitAddStateLevel(unit wu,int index,int value)
         int id = 'AQ00'+index*0x100
         int skill = 0
+        
         if  value < 0
             value = 1073741824+value
             BJDebugMsg("负数"+I2S(value))
@@ -395,6 +403,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
             endif
             value = value / 2
         end
+        
+
     endfunction
 
 
