@@ -634,7 +634,7 @@ library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
     endfunction
 
     function SpellS087(unit u)
-        Summon(u,GetUnitX(u),GetUnitY(u),'z100')
+        Summon(u,GetUnitX(u),GetUnitY(u),'z101')
     endfunction
 
 
@@ -846,6 +846,10 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
 
     function SpellS111(unit u)
         Summon(u,GetUnitX(u),GetUnitY(u),'z104')
+    endfunction
+
+     function SpellS112(unit u,real x,real y)
+        Summon(u,x,y,'z105')
     endfunction
 
 function SpellS116(unit u1,real damage1)
@@ -1184,6 +1188,8 @@ endfunction
                 SpellS101(u1.u,sx,sy,damage)
             elseif  id== 'S111'    
                 SpellS111(u1.u)
+             elseif  id== 'S112'    
+                SpellS112(u1.u,sx,sy)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
 
