@@ -1251,6 +1251,27 @@ endfunction
         }
         flush locals
     endfunction
+
+    function SpellHeroSkillActionTimerNum(unit wu,unit tu,real sx,real sy,int id,int lv,real time,int num
+        unit u1 = wu
+        unit u2 = tu
+        real x = sx
+        real y = sy
+        int i1 = id
+        int i2 = lv
+        int n = num
+        TimerStart(time,true)
+        {
+
+            SpellHeroSkillAction(u1,u2,x,y,i1,i2)
+            n = n - 1
+            if  n <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
     
 endlibrary
 
