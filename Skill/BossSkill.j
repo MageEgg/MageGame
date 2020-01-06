@@ -41,20 +41,25 @@ library BossSkill uses AbilityUI,OtherDamageTimer
 
     piece BossSpell
         unit u1 = boss
-        real x = bossx
-        real y = bossy
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = bossx
+        real y2 = bossy
+        real ang = Atan2(y2-y1,x2-x1)
         real damage = bossdamage
+        FlushBoss()
     endpiece
 
     //////////////////////////模版////////////////////////////
     //////////////////////////模版////////////////////////////
     //////////////////////////模版////////////////////////////
+
+    //true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa
+
     function BossFuncStartTemplate()
         insert BossSpell
         
 
-        
-        FlushBoss()
         flush locals
     endfunction
     //////////////////////////模版////////////////////////////
@@ -64,19 +69,23 @@ library BossSkill uses AbilityUI,OtherDamageTimer
 
     function BossFuncSpell1()
         insert BossSpell
-        
-
-        
-        FlushBoss()
+        damage = damage / 2
+        //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
+        CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+        TimerStart(0.4,false)
+        {
+            CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+            endtimer
+            flush locals
+        }
         flush locals
     endfunction
 
     function BossFuncSpell2()
         insert BossSpell
-        
-
-        
-        FlushBoss()
+        damage = damage / 2
+        //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
+        CreateTm(u1,'e00Q',x1,y1,ang,damage,3,15,220,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
     function BossFuncSpell3()
@@ -84,7 +93,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell4()
@@ -92,7 +101,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell5()
@@ -100,7 +109,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell6()
@@ -108,7 +117,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell7()
@@ -116,7 +125,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
 
@@ -125,7 +134,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell9()
@@ -133,7 +142,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell10()
@@ -141,7 +150,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell11()
@@ -149,7 +158,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
 
@@ -158,7 +167,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell13()
@@ -166,7 +175,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell14()
@@ -174,7 +183,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell15()
@@ -182,7 +191,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell16()
@@ -190,7 +199,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
 
@@ -199,7 +208,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell18()
@@ -207,7 +216,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell19()
@@ -215,7 +224,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell20()
@@ -223,7 +232,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell21()
@@ -231,7 +240,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
 
@@ -240,7 +249,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell23()
@@ -248,7 +257,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell24()
@@ -256,7 +265,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell25()
@@ -264,7 +273,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell26()
@@ -272,7 +281,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell27()
@@ -280,7 +289,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
     function BossFuncSpell28()
@@ -288,7 +297,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         
 
         
-        FlushBoss()
+        
         flush locals
     endfunction
 
@@ -298,10 +307,109 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         int uid = 0
         real ang = 0
         real damage = 0
-        if  id == 'AZA0'
+        if  id == 'AZ0A'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
-            //true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa
+        elseif  id == 'AZ0B'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0C'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0D'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0E'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0F'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0G'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0H'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0I'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0J'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0K'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0L'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0M'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0N'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0O'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0P'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ0Q'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        ////////////////////////////分割线////////////////////////////////
+        elseif  id == 'AZ1A'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1B'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1C'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1D'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1E'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1F'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1G'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1H'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1I'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1J'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1K'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1L'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1M'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1N'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1O'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1P'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id == 'AZ1Q'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
         endif
         flush locals
     endfunction
