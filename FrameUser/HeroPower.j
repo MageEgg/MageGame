@@ -194,7 +194,7 @@ library HeroPowerFrame uses GameFrame
         Model2.SetAnimate(0,false)
         
 
-
+        Model1.show = false
 
         TimerStart(CreateTimer(),0.03,true,function PlayerHeroPowerTimer)
 
