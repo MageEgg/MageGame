@@ -1,4 +1,4 @@
-library HeroSpell  uses OtherDamageTimer,HeroAbilityFunc2//,Summon
+library HeroSpell uses HeroAbilityFunc2,BossSkill,Summon
 //SpellHeroSkillAction(unit wu,unit tu,real sx,real sy,int id,int lv,int index)
 
 
