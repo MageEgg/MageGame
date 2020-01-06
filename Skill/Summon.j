@@ -1,4 +1,4 @@
-library Summon  initializer SummonInit uses AbilityUI
+library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
 
     group array SummonGroup
 
@@ -37,12 +37,30 @@ library Summon  initializer SummonInit uses AbilityUI
         }
     endfunction
     
+    function Z105Spell(unit u1,unit summon1)
+        unit u=u1
+        unit summon=summon1
+        real x=0
+        real y=0
+        TimerStart(1,true)
+                {
+                    x=GetUnitX(summon)
+                    y=GetUnitY(summon)
+                    if   GetUnitState(summon, UNIT_STATE_LIFE) > 0
+                         CreateTmEx(summon,"Abilities\\Weapons\\GuardTowerMissile\\GuardTowerMissile.mdl",x,y,GetUnitX(u),GetUnitY(u),GetUnitRealState(u,1),8,45,70,800,0.03,100,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa) 
+                    else
+                        u = null
+                        endtimer
+                    endif
+                }
+    endfunction
+    
     function Z103Spell(unit u1,unit summon1)
-    unit u=u1
-    unit summon=summon1
-    real x=0
-    real y=0
-     TimerStart(0.5,true)
+        unit u=u1
+        unit summon=summon1
+        real x=0
+        real y=0
+        TimerStart(0.5,true)
                 {
                     x=GetUnitX(summon)
                     y=GetUnitY(summon)
@@ -146,6 +164,18 @@ library Summon  initializer SummonInit uses AbilityUI
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
                 UnitApplyTimedLife(summon, 'BHwe', 60 )
                 trap(u,summon)
+            endloop
+        endif
+        
+         if  id=='z105'
+            Number=Number+1         //机关塔
+            loop    
+                exitwhen LoadInteger(ht,GetHandleId(u),id)>=Number
+                summon=CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
+                GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
+                SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
+                UnitApplyTimedLife(summon, 'BHwe', 4.5 )
+                Z105Spell(u,summon)
             endloop
         endif
         
