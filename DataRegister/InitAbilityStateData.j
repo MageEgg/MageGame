@@ -4,8 +4,8 @@ scope AbilityStateData initializer init
         //输出代码
 //call InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
 call InitAbilityData('S0Q0',1,6,0,0,0,0,0,0,"Q技能","|cffffff00需求：\n|r|cff808080 - 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
-call InitAbilityData('S0W0',1,6,0,0,0,0,0,0,"W技能","|cffffff00需求：\n|r|cff808080 - 境界3解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
-call InitAbilityData('S0E0',1,6,0,0,0,0,0,0,"E技能","|cffffff00需求：\n|r|cff808080 - 境界5解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
+call InitAbilityData('S0W0',1,6,0,0,0,0,0,0,"W技能","|cffffff00需求：\n|r|cff808080 - 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
+call InitAbilityData('S0E0',1,6,0,0,0,0,0,0,"E技能","|cffffff00需求：\n|r|cff808080 - 难度3解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
 call InitAbilityData('S0R0',1,6,0,0,0,0,0,0,"R技能","|cffffff00需求：\n|r|cff808080 - 境界7解锁|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
 call InitAbilityData('S0Q1',1,6,0,0,0,0,0,0,"Q技能","暂未学习技能","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
 call InitAbilityData('S0W1',1,6,0,0,0,0,0,0,"W技能","暂未学习技能","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")

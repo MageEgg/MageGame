@@ -265,6 +265,10 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int id = GetUnitIntState(Pu[1],120)
         int max = GetPlayerAbilitySlot(pid)
         if  index <= max
+            int rid = GetUnitIntState(Pu[1],110+index)
+            RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+            BJDebugMsg("替换回收"+GetTypeIdName(rid))
+
             HeroRemoveAbilityByIndex(Pu[1],index)
             HeroAddAbilityByIndex(Pu[1],index,id)
             SetUnitIntState(Pu[1],120,0)
