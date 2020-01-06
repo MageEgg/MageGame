@@ -10,12 +10,7 @@ library GameChallenge3 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[39])
             GameChallengUnit[39] = null
         endif
-        GameChallengCanUsesUnitFlush(pid)
-        ShowUnitOfAllPlayer(Pu[1])
-        RemoveUnit(PlayerInChallengeShowUnit)
-        PlayerInChallengeShowUnit = null
-        PlayerInChallengeNumber = 0
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlush(pid)
     endfunction
 
     function GameChalleng_3_SMJDeath(int pid,unit u2)
