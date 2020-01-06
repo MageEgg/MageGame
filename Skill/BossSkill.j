@@ -5,6 +5,20 @@ library BossSkill uses AbilityUI,OtherDamageTimer
     private real bossy = 0
     private real bossdamage = 0
 
+    #define RAC_A_300   'e00E'
+    #define RAC_A_400   'e00F'
+    #define RAC_A_500   'e00G'
+    #define RAC_A_600   'e00H'
+
+    #define RAC_B_300   'e00L'
+    #define RAC_B_400   'e00I'
+    #define RAC_B_500   'e00J'
+    #define RAC_B_600   'e00K'
+
+    #define LINE_A      'e00M'
+    #define LINE_A2     'e00N'
+    #define LINE_B      'e00O'
+
     function SetBoss(unit u,real x,real y,real damage)
         boss = u
         bossx = x
@@ -309,7 +323,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         real damage = 0
         if  id == 'AZ0A'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,LINE_A,ang,damage,1.5,"BossFuncSpell1")
         elseif  id == 'AZ0B'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
