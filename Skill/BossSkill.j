@@ -645,9 +645,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
-    function BossFuncSpell29Ex(unit wu,unit tu,real dam)
+    function BossFuncSpell29Ex(unit wu,real dam)
         unit u1 = wu
-        unit u2 = tu
         real x1 = GetUnitX(wu)
         real y1 = GetUnitY(wu)
         unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_dark-xuanfen.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
@@ -683,6 +682,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         insert BossSpell
         unit u3 = null
         real size = GetUnitScaleSize(u1)
+        real dis = Pdis(x1,y1,x2,y2)
         damage = damage / 3
         EXSetUnitFacing(u1,ang/0.01745)
         SetUnitFacing(u1,ang/0.01745)
@@ -690,17 +690,15 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         SetUnitScale(u1,0.001,0.001,0.001)
         TimerStart(0.03,true)
         {
-            real dis = Pids(x1,y1,x2,y2)
-            ang = Pang(x1,y1,x2,y2)
             if  dis > 50
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
-                SetUnitXY(u1,x1,Y1)
-                SetUnitXY(u3,x1,Y1)
+                SetUnitXY(u1,x1,y1)
+                SetUnitXY(u3,x1,y1)
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitFacing(u3,ang/0.01745)
             else
-                BossFuncSpell29Ex(u1,u2,damage)
+                BossFuncSpell29Ex(u1,damage)
                 SetUnitScale(u1,size,size,size)
                 RemoveUnit(u3)
                 endtimer
