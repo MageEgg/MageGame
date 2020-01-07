@@ -924,7 +924,7 @@ function SpellS116(unit u1,real damage1)
         TimerStart(0.5,true)
         {   
             if n<10
-                UnitAddLife(u,GetUnitState(whichunit,UNIT_STATE_MAX_LIFE)*0.06)
+                UnitAddLife(u,GetUnitState(u,UNIT_STATE_MAX_LIFE)*0.06)
                 n=n+1
             else
                 endtimer
