@@ -420,9 +420,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell17()
         insert BossSpell
         //龙王
-        
-        
-        
+        CreateTm(u1,'e00Z',x1,y1,ang,damage,1,0,210,1500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
@@ -496,11 +494,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell23()
         insert BossSpell
-        unit u2 = CreateUnit(GetOwningPlayer(u1),'e00V',x1,y1,ang/0.0175)
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'e00Y',x1,y1,ang/0.0175)
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
+        real size = GetUnitScaleSize(u1)
         LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+        SetUnitScale(u1,0.01,0.01,0.01)
         TimerStart(0.02,true)
         {
             time = time - 1
@@ -512,9 +512,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             else
                 RemoveUnit(u2)
                 SetUnitXY(u1,x1,y1)
+                SetUnitScale(u1,size,size,size)
                 SetUnitAnimation(u1,"attack")
                 LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
-                
+                AddEffectInAreaOfUnitAndAnimation(x1,y1,290,5,'e010',"stand",1,0.8)
                 UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 endtimer
             endif
