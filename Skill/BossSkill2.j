@@ -1,4 +1,4 @@
-library BossSkill2 uses BossSkill
+library BossSkill2 uses AbilityUI,OtherDamageTimer
 
     function JJFuncSpell01(unit wu,unit tu)
 
@@ -148,6 +148,54 @@ library BossSkill2 uses BossSkill
             flush locals
         }
         flush locals
+    endfunction
+
+
+
+    function JJFuncSpell05Timer(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        int num = 2
+        IndexGroup g = IndexGroup.create()
+        int gg = g
+        LocAddEffect(x1,y1,"effect2_az_coco_e2.mdl")
+        GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        TimerStart(1,true)
+        {
+            IndexGroup g = gg 
+            LocAddEffectSetSize(x1,y1,"effect_az_tormentedsoul_t1.mdl",0.5)
+            GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            num = num - 1
+            if  num <= 0
+                g.destroy()
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function JJFuncSpell05(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        int num = 3
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,0.6)
+        TimerStart(2,true)
+        {
+            JJFuncSpell05Timer(u1,x1,y1)
+            num = num - 1
+            if  num <= 0
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+        
     endfunction
 
 endlibrary
