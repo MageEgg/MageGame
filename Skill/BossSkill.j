@@ -680,27 +680,28 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell29()
         insert BossSpell
-        unit u3 = null
+        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect_az_chongfeng.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
+        real xx = 30*Cos(ang)
+        real yy = 30*Sin(ang)
+        int time = R2I(Pdis(x1,y1,x2,y2)/30)
         real size = GetUnitScaleSize(u1)
-        real dis = Pdis(x1,y1,x2,y2)
-        damage = damage / 3
-        EXSetUnitFacing(u1,ang/0.01745)
-        SetUnitFacing(u1,ang/0.01745)
-        u3 = CreateTmUnit(GetOwningPlayer(u1),"effect_az_chongfeng.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
-        SetUnitScale(u1,0.001,0.001,0.001)
-        TimerStart(0.03,true)
+        LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+        SetUnitScale(u1,0.01,0.01,0.01)
+        TimerStart(0.02,true)
         {
-            if  dis > 50
-                x1 = x1 + 30 * Cos(ang)
-                y1 = y1 + 30 * Sin(ang)
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
                 SetUnitXY(u1,x1,y1)
-                SetUnitXY(u3,x1,y1)
-                SetUnitFacing(u1,ang/0.01745)
-                SetUnitFacing(u3,ang/0.01745)
+                SetUnitXY(u2,x1,y1)
             else
-                BossFuncSpell29Ex(u1,damage)
+                RemoveUnit(u2)
+                SetUnitXY(u1,x1,y1)
                 SetUnitScale(u1,size,size,size)
-                RemoveUnit(u3)
+                SetUnitAnimation(u1,"attack")
+                LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+                BossFuncSpell29Ex(u1,damage)
                 endtimer
             endif
             flush locals
