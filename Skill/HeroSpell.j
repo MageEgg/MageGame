@@ -918,6 +918,88 @@ function SpellS116(unit u1,real damage1)
     }
     endfunction
 
+
+    function SpellS124Attack(unit wu,effect tx1,unit mb1,real dam1,group g1,integer num1)//确定目标发起冲锋
+        group gg = g1
+        unit u=wu
+        unit u1=mb1
+        effect tx=tx1
+        real dam=dam1
+        integer num=num1
+        real dis=0
+        real ang=0
+        TimerStart(0.03,true)
+        {   
+        ang=Pang(EXGetEffectX(tx),EXGetEffectY(tx),GetUnitX(u1),GetUnitY(u1))
+        dis=Pdis(EXGetEffectX(tx),EXGetEffectY(tx),GetUnitX(u1),GetUnitY(u1))
+        if  dis>40
+            EXSetEffectXY(tx, EXGetEffectX(tx)+40*Cos(ang),EXGetEffectY(tx)+40*Sin(ang)) 
+        else
+            EXSetEffectXY(tx, GetUnitX(u1),GetUnitY(u1)) 
+            if  u1==u
+                UnitAddMana(u,num*5)
+                DestroyEffect(tx)
+                flush locals
+                endtimer
+            else
+                UnitDamageTarget(u,u1,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                SpellS124mb.execute(u,tx,u1,dam,gg,num)
+                flush locals
+                endtimer
+            endif
+        endif
+        }
+    endfunction
+
+    function SpellS124mb(unit u,effect tx,unit u2,real dam,group g2,integer num)//寻找目标
+        real x = GetUnitX(u2)
+        real y = GetUnitY(u2)
+        real mdis = 99999
+        real dis = 0
+        unit u4 = null
+        unit u3 = null
+        group g = CreateGroup()
+        if  num<5
+            num=num+1
+            GroupEnumUnitsInRange(g,x,y,1000,null)
+            loop
+                u4 = FirstOfGroup(g)
+                exitwhen u4 == null
+                if  GetUnitState(u4,UNIT_STATE_LIFE)>0  and IsUnitInGroup(u4, g2) == false
+                    set dis = SquareRoot(Pow(x-GetUnitX(u4),2)+Pow(y-GetUnitY(u4),2))
+                    if  dis < mdis  then
+                        u3 = u4
+                        mdis = dis
+                    endif
+                endif
+                GroupRemoveUnit(g,u4)
+            endloop
+            DestroyGroup(g)
+            g=null
+            GroupAddUnit(g2,u3)
+            if  u3 == null
+                u3=u
+            endif
+        else
+            u3=u
+        endif
+        SpellS124Attack(u,tx,u3,dam,g2,num)
+        
+
+    endfunction
+    
+    function SpellS124(unit wu,unit eu,real dam)//收到释放技能命令
+        integer num = 0
+        effect tx=AddSpecialEffect("effect_youling.mdl",GetUnitX(wu),GetUnitY(wu))
+        EXSetEffectZ( tx, 100 )
+        group gg = CreateGroup()
+        GroupAddUnit(gg,eu)
+        SpellS124Attack(wu,tx,eu,dam,gg,num)
+        flush locals
+    endfunction
+
+   
+
     function SpellS127(unit u1)
         unit u=u1
         integer n=0
@@ -1221,6 +1303,9 @@ endfunction
 
             elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
+            elseif  id== 'S124'    
+                SpellS124(u1.u,u2.u,damage)
+
 
             elseif  id== 'S127'    
                 SpellS127(u1.u)

@@ -113,6 +113,7 @@ call InitAbilityData('S115',3,4,1,3,0,0,1,8,"震天箭","向目标区域射出�
 call InitAbilityData('S116',2,4,2,2,0,0,2,8,"罪焰","自身600码范围随机点产生一次罪焰，造成AP*2法术伤害间隔1秒","ReplaceableTextures\\CommandButtons\\BTNS116.blp")
 call InitAbilityData('S117',1,4,2,3,0,0,2,0,"元气破","攻击15%几率对目标范围造成AP*3法术伤害，并回复10点蓝量","ReplaceableTextures\\CommandButtons\\BTNS117.blp")
 call InitAbilityData('S123',2,5,2,3,0,0,2,8,"冰暴术","自身600码范围随机点产生一次冰暴，造成AP*3法术伤害间隔1s","ReplaceableTextures\\CommandButtons\\BTNS123.blp")
+call InitAbilityData('S124',4,5,2,3,0,0,2,8,"驭雷术","向目标投射一个电球，造成AP*3法术伤害。电球返回自身时，回复命中次数*5蓝量。电球最多跳跃6次。","ReplaceableTextures\\CommandButtons\\BTNS124.blp")
 call InitAbilityData('S127',2,5,0,0,0,0,0,10,"回春术","5秒内回复60%最大生命值效果不可叠加","ReplaceableTextures\\CommandButtons\\BTNS127.blp")
 
 
