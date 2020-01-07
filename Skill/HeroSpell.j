@@ -918,14 +918,14 @@ function SpellS116(unit u1,real damage1)
     }
     endfunction
 
-    function SpellS123(unit u1)
+    function SpellS127(unit u1)
         unit u=u1
         integer n=0
         TimerStart(0.5,true)
         {   
-            n=n+1
             if n<10
                 UnitAddLife(u,GetUnitState(whichunit,UNIT_STATE_MAX_LIFE)*0.06)
+                n=n+1
             else
                 endtimer
             endif
@@ -1219,8 +1219,11 @@ endfunction
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
 
-             elseif  id== 'S123'    
+            elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
+
+            elseif  id== 'S127'    
+                SpellS127(u1.u)
             
             elseif  id== 'S230'
                 SpellS230(u1.u,sx,sy,damage)
