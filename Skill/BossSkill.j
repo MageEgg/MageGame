@@ -238,26 +238,33 @@ library BossSkill uses AbilityUI,OtherDamageTimer
     endfunction
     function BossFuncSpell9()
         insert BossSpell
-        
-
-        
-        
+        damage = damage / 3.5
+        CreateTm(u1,'e00U',x1,y1,ang,damage,5,10,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
     function BossFuncSpell10()
         insert BossSpell
-        
-
-        
-        
+        damage = damage / 3.5
+        CreateTm(u1,'e00V',x1,y1,ang,damage,5,10,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
     function BossFuncSpell11()
         insert BossSpell
-        
-
-        
-        
+        int time = 0
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            time = time + 1
+            if  time <= 10
+                GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                AddEffectInArea(x2,y2,350,1,"effect_tx_asad (24).mdl")
+                LocAddEffectSetSize(x2,y2,"effect_az_pafeathermoon_b.mdx",3.6)
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
 
@@ -437,13 +444,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer
             BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell8")
         elseif  id == 'AZ0I'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell9")
         elseif  id == 'AZ0J'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell10")
         elseif  id == 'AZ0K'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell11")
         elseif  id == 'AZ0L'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
