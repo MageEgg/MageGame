@@ -689,7 +689,11 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         int bufflv = i2
         int bufforder = i3
         group gg = CreateGroup()
-        GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),eff,buffskill,bufflv,bufforder))
+        if  buffskill == 0
+            GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStr(GetOwningPlayer(u1),"origin",eff,0))
+        else
+            GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),eff,buffskill,bufflv,bufforder))
+        endif
         TimerStart(time,false)
         {
             unit uu = null
