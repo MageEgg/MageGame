@@ -97,7 +97,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         TimerStart(0.4,true)
         {
             time = time + 1
-            if  time < 2
+            if  time <= 2
                 CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             else
                 endtimer
@@ -135,12 +135,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer
     function BossFuncSpell5()
         insert BossSpell
         group gg = CreateGroup()
-        unit uu = CreateUnit(GetOwningPlayer(u1),'e00S',GetUnitX(u1),GetUnitY(u1),ang/0.01745)
+        unit uu = null
         real newx = 0
         real newy = 0
+        newx = x1+250*Cos(ang)
+        newy = y1+250*Sin(ang)
+        uu = CreateUnit(GetOwningPlayer(u1),'e00S',x1,y1,ang/0.01745)
         RemoveUnitTimer(uu,1)
-        newx = x2+250*Cos(ang)
-        newy = y2+250*Sin(ang)
         GroupEnumUnitsInRange(gg,newx,newy,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
         UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
@@ -418,7 +419,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell7")
         elseif  id == 'AZ0H'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell8")
         elseif  id == 'AZ0I'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
