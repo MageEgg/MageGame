@@ -523,6 +523,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 JJFuncSpell04(u1,x2,y2)
             elseif  id == 'AZ2E'
                 JJFuncSpell05(u1,x2,y2)
+            elseif  id == 'AZ2H'
+                JJFuncSpell08(u1,x2,y2)
+            elseif  id == 'AZ2J'
+                JJFuncSpell10(u1,x2,y2)
             endif
         endif
         flush locals

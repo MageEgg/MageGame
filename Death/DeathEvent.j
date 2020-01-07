@@ -22,12 +22,18 @@ scope DeathEvent initializer InitDeathEvent
     
     func ReviveWildMonsterTimer()
         int max = ReviveUnitMax
+        real ang = 0
         unit u = null
         if  max > 0
             for i = 1,max
                 NowReviveUnitTime = NowReviveUnitTime - 1
                 if  NowReviveUnitTime == 0
-                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),NowReviveUnitType,NowReviveUnitX,NowReviveUnitY,GetRandomReal(0,360))
+                    if  NowReviveUnitType == 'uJ90'
+                        ang = 270
+                    else
+                        ang = GetRandomReal(0,360)
+                    endif
+                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),NowReviveUnitType,NowReviveUnitX,NowReviveUnitY,ang)
 
                     SetUnitPointX(u,NowReviveUnitX)
                     SetUnitPointY(u,NowReviveUnitY)
