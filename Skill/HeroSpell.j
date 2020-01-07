@@ -1271,7 +1271,7 @@ endfunction
             AddUnitStateExTimer(u1.u,17,10,5)
         endif 
 
-        //BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
+        BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
         if  wu == Pu[63]
             damage = GetAbilityDamage(Pu[1],id,lv) * 0.5
         else

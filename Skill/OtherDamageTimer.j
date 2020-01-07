@@ -64,147 +64,144 @@ library OtherDamageTimer uses SystemTimer
     endfunction
     
    //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-function AroundSystem(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
-    unit u=u1
-    unit mj=mj1
-    real time=time1
-    real speed=speed1
-    real jvli=jvli1
-    real damage=damage1
-    real x1=GetUnitX(mj)
-    real y1=GetUnitY(mj)
-    group g1=CreateGroup()
-    real qtime=qtime1
-    real xzsd=360/(qtime/0.03)*0.01745
-    real ang=Uang(u,mj)
-    real yxtime=0
-    
-    TimerStart(0.03,true)    
-    {
-        IndexGroup g = IndexGroup.create()
+    function AroundSystem(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
+        unit u=u1
+        unit mj=mj1
+        real time=time1
+        real speed=speed1
+        real jvli=jvli1
+        real damage=damage1
+        real x1=GetUnitX(mj)
+        real y1=GetUnitY(mj)
+        group g1=CreateGroup()
+        real qtime=qtime1
+        real xzsd=360/(qtime/0.03)*0.01745
+        real ang=Uang(u,mj)
+        real yxtime=0
         
-        yxtime=yxtime+0.03
-        time=time-0.03
-        if  yxtime>=1
-            yxtime=0
-            GroupClear(g1)
-        endif
-        if   time>=jvli/(speed/0.03)      
-            if  Udis(u,mj)<=jvli
-                ang=ang+xzsd
-                x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
-                y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
-                SetUnitX(mj,x1)
-                SetUnitY(mj,y1)
-            else
-                ang=ang+xzsd
-                x1 = GetUnitX(u)+jvli*Cos(ang)
-                y1 = GetUnitY(u)+jvli*Sin(ang)
-                SetUnitX(mj,x1)
-                SetUnitY(mj,y1)
+        TimerStart(0.03,true)    
+        {
+            IndexGroup g = IndexGroup.create()
+            
+            yxtime=yxtime+0.03
+            time=time-0.03
+            if  yxtime>=1
+                yxtime=0
+                GroupClear(g1)
             endif
-     
-            GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
-            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            g.destroy()
-        else
-            if  Udis(u,mj)>50
-                ang=ang+xzsd
-                x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
-                y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
-                SetUnitX(mj,x1)
-                SetUnitY(mj,y1)
+            if   time>=jvli/(speed/0.03)      
+                if  Udis(u,mj)<=jvli
+                    ang=ang+xzsd
+                    x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
+                    y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
+                    SetUnitX(mj,x1)
+                    SetUnitY(mj,y1)
+                else
+                    ang=ang+xzsd
+                    x1 = GetUnitX(u)+jvli*Cos(ang)
+                    y1 = GetUnitY(u)+jvli*Sin(ang)
+                    SetUnitX(mj,x1)
+                    SetUnitY(mj,y1)
+                endif
+        
                 GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
             else
-                DestroyGroup(g1)
-                RemoveUnit(mj)
-                endtimer
-            endif
-       endif
-       flush locals
-    }
-    flush locals
-endfunction
-
-function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
-    unit u=u1
-    unit mj=mj1
-    unit uu=null
-    real time=time1
-    real speed=speed1
-    real jvli=jvli1
-    real damage=damage1
-    real x1=GetUnitX(mj)
-    real y1=GetUnitY(mj)
-    group g1=CreateGroup()
-    real qtime=qtime1
-    real xzsd=360/(qtime/0.03)*0.01745
-    real ang=Uang(u,mj)
-    real yxtime=0
-    
-    TimerStart(0.03,true)    
-    {
-        IndexGroup g = IndexGroup.create()
-        yxtime=yxtime+0.03
-        time=time-0.03
-        if  yxtime>=0.75
-            yxtime=0
-            GroupEnumUnitsInRange(g1,x1,y1,800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))  
-            uu = GroupPickRandomUnit(g1)
-            GroupClear(g1)
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-            UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-            if uu !=null
-                Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
-                DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
-            endif
-            g.destroy()
+                if  Udis(u,mj)>50
+                    ang=ang+xzsd
+                    x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
+                    y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
+                    SetUnitX(mj,x1)
+                    SetUnitY(mj,y1)
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
+                    UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    g.destroy()
+                else
+                    DestroyGroup(g1)
+                    RemoveUnit(mj)
+                    endtimer
+                endif
         endif
-        if  time>=jvli/(speed/0.03)      
-            if  Udis(u,mj)<=jvli
-                ang=ang+xzsd
-                x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
-                y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
-                SetUnitX(mj,x1)
-                SetUnitY(mj,y1)
-            else
-                ang=ang+xzsd
-                x1 = GetUnitX(u)+jvli*Cos(ang)
-                y1 = GetUnitY(u)+jvli*Sin(ang)
-                SetUnitX(mj,x1)
-                SetUnitY(mj,y1)
-            endif
-        else
-            if  Udis(u,mj)>50
-                ang=ang+xzsd
-                x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
-                y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
-                SetUnitX(mj,x1)
-                SetUnitY(mj,y1)
-            else
-                DestroyGroup(g1)
-                RemoveUnit(mj)
-                endtimer
-            endif
-       endif
-       flush locals
-    }
-    flush locals
-endfunction
+        flush locals
+        }
+        flush locals
+    endfunction
+
+    function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
+        unit u=u1
+        unit mj=mj1
+        unit uu=null
+        real time=time1
+        real speed=speed1
+        real jvli=jvli1
+        real damage=damage1
+        real x1=GetUnitX(mj)
+        real y1=GetUnitY(mj)
+        group g1=CreateGroup()
+        real qtime=qtime1
+        real xzsd=360/(qtime/0.03)*0.01745
+        real ang=Uang(u,mj)
+        real yxtime=0
         
-        function CreateTmFuncZero(unit wu,unit m,real Ang,real rac,real dis,real t,real high)
+        TimerStart(0.03,true)    
+        {
+            IndexGroup g = IndexGroup.create()
+            yxtime=yxtime+0.03
+            time=time-0.03
+            if  yxtime>=0.75
+                yxtime=0
+                GroupEnumUnitsInRange(g1,x1,y1,800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))  
+                uu = GroupPickRandomUnit(g1)
+                GroupClear(g1)
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                if uu !=null
+                    Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
+                    DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
+                endif
+                g.destroy()
+            endif
+            if  time>=jvli/(speed/0.03)      
+                if  Udis(u,mj)<=jvli
+                    ang=ang+xzsd
+                    x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
+                    y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
+                    SetUnitX(mj,x1)
+                    SetUnitY(mj,y1)
+                else
+                    ang=ang+xzsd
+                    x1 = GetUnitX(u)+jvli*Cos(ang)
+                    y1 = GetUnitY(u)+jvli*Sin(ang)
+                    SetUnitX(mj,x1)
+                    SetUnitY(mj,y1)
+                endif
+            else
+                if  Udis(u,mj)>50
+                    ang=ang+xzsd
+                    x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
+                    y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
+                    SetUnitX(mj,x1)
+                    SetUnitY(mj,y1)
+                else
+                    DestroyGroup(g1)
+                    RemoveUnit(mj)
+                    endtimer
+                endif
+        endif
+        flush locals
+        }
+        flush locals
+    endfunction
+        
+    function CreateTmFuncZero(unit wu,unit m,real Ang,real rac,real dis,real t,real high)
         unit u1 = wu
-        unit u2 = m
-        real r1 = rac
+        unit u2 = m 
         real x1 = GetUnitX(m)
         real y1 = GetUnitY(m)
         real x2 = S*Cos(Ang)
         real y2 = S*Sin(Ang)
-        real ang = Ang
         int time = R2I(dis/S)
-        int n = 0
         UnitAddAbility(m,'Amrf')
         SetUnitFlyHeight(m,high,0)
         UnitRemoveAbility(m,'Amrf')
@@ -226,7 +223,7 @@ endfunction
     endfunction
 
     //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
-function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2,int sid1,int lv1,int mid1)
+    function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real high,bool b1,bool b2,int sid1,int lv1,int mid1)
         unit u1 = wu
         unit u2 = m
         real r1 = rac
@@ -234,7 +231,6 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         real y1 = GetUnitY(m)
         real x2 = S*Cos(Ang)
         real y2 = S*Sin(Ang)
-        real ang = Ang
         real damage = dam
         int time = R2I(dis/S)
         bool bool1 = b1
@@ -291,7 +287,6 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         real y1 = GetUnitY(m)
         real x2 = S*Cos(Ang)
         real y2 = S*Sin(Ang)
-        real ang = Ang
         real damage = dam
         int time = R2I(dis/S)
         bool bool1 = b1
@@ -689,7 +684,11 @@ function CreateTmBuffFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,rea
         int bufflv = i2
         int bufforder = i3
         group gg = CreateGroup()
-        GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),eff,buffskill,bufflv,bufforder))
+        if  buffskill == 0
+            GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStr(GetOwningPlayer(u1),"origin",eff,0))
+        else
+            GroupEnumUnitsInRange(gg,x,y,rac,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),eff,buffskill,bufflv,bufforder))
+        endif
         TimerStart(time,false)
         {
             unit uu = null
