@@ -287,14 +287,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     newx = x2
                     newy = y2
                     uu = CreateUnit(GetOwningPlayer(u1),'e00W',newx,newy,0)
-                    RemoveUnitTimer(uu,0.3)
+                    RemoveUnitTimer(uu,0.8)
                     UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,150,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 elseif  time == 2 or time == 5 or time == 8
                     for num = 1,6
                         newx = x2+150*Cos(60*num*0.01745)
                         newy = y2+150*Sin(60*num*0.01745)
                         uu = CreateUnit(GetOwningPlayer(u1),'e00W',newx,newy,0)
-                        RemoveUnitTimer(uu,0.3)
+                        RemoveUnitTimer(uu,0.8)
                     end
                     UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 elseif  time == 3 or time == 6 or time == 9
@@ -302,7 +302,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                         newx = x2+300*Cos(45*num*0.01745)
                         newy = y2+300*Sin(45*num*0.01745)
                         uu = CreateUnit(GetOwningPlayer(u1),'e00W',newx,newy,0)
-                        RemoveUnitTimer(uu,0.3)
+                        RemoveUnitTimer(uu,0.8)
                     end
                     UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,450,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 endif
