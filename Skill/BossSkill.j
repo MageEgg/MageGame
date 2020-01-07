@@ -498,7 +498,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
-        real size = YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"modelscale")
+        real size = GetUnitScaleSize(u1)
         LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
         SetUnitScale(u1,0.01,0.01,0.01)
         TimerStart(0.02,true)

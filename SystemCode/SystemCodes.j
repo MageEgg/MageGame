@@ -413,6 +413,10 @@ library SystemCodes uses ServerTime,Define1
         SetUnitFacing(wu,ang/0.01745)
     endfunction
     
+    function GetUnitScaleSize(unit u)->real
+        return YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"modelscale")
+    endfunction
+
     ///////////////////////////异步函数////////////////////////////
     function ShowUnitOfOnlyPlayerEx(unit wu)
         int uid = GetUnitTypeId(wu)
