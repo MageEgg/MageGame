@@ -124,7 +124,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer
     function BossFuncSpell4()
         insert BossSpell
         group gg = CreateGroup()
-        AddEffectInArea(x2,y2,390,55,"effect2_az_nevermore_r2(1).mdl")
+        AddEffectInArea(x2,y2,390,25,"effect2_az_nevermore_r2(1).mdl")
+        LocAddEffect(x2,y2,"effect3_desecrategreen.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
         UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
@@ -134,8 +135,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer
     function BossFuncSpell5()
         insert BossSpell
         group gg = CreateGroup()
-        AddEffectInArea(x2,y2,370,7,"effect2_az_cocoguanyu_t2_death.mdl")
-        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        unit uu = CreateUnit(GetOwningPlayer(u1),'e00S',GetUnitX(u1),GetUnitY(u1),ang/0.01745)
+        real newx = 0
+        real newy = 0
+        RemoveUnitTimer(uu,1)
+        newx = x2+250*Cos(ang)
+        newy = y2+250*Sin(ang)
+        GroupEnumUnitsInRange(gg,newx,newy,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
         UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
@@ -176,10 +182,41 @@ library BossSkill uses AbilityUI,OtherDamageTimer
 
     function BossFuncSpell8()
         insert BossSpell
-        
-
-        
-        
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'e00T',x1-100*Cos(ang),y1-100*Cos(ang),ang/0.01745)
+        RemoveUnitTimer(u2,1.3)
+        u2 = CreateUnit(GetOwningPlayer(u1),'e000',x1,y1,ang/0.01745)
+        real xx = 30*Cos(ang)
+        real yy = 30*Sin(ang)
+        int time = R2I(2000/30)
+        group wg = CreateGroup()
+        group ug = CreateGroup()
+        int num = -1
+        GroupAddUnit(ug,u2)
+        TimerStart(0.002,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                SetUnitXY(u2,x1,y1)
+                if  ModuloInteger(time,6) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_tx_asad (24).mdl",1)
+                endif
+                GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                RemoveUnit(u2)
+                GroupClear(wg)
+                GroupClear(ug)
+                DestroyGroup(wg)
+                DestroyGroup(ug)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
     function BossFuncSpell9()
