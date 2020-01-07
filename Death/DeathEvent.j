@@ -288,6 +288,34 @@ scope DeathEvent initializer InitDeathEvent
             endtimer
         }
     endfunction
+
+    function FB47FuncTimer(unit wu)
+        unit u1 = wu
+        SetUnitIntState(wu,'FC43',1)
+        TimerStart(15,false)
+        {
+            SetUnitIntState(u1,'FC43',1)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    function FB47Func(unit wu)->bool
+        if  GetUnitIntState(wu,'FB43') > 0
+            if  GetUnitIntState(wu,'FC43') == 0
+                ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
+                LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
+                
+                if  GetOwningPlayer(wu)==GetLocalPlayer()
+                    ClearSelection()
+                    SelectUnit(wu,true)
+                    PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
+                endif
+                return true
+            endif
+        endif
+        return false
+    endfunction
     
     function DeathEventFunc()
     
@@ -306,10 +334,11 @@ scope DeathEvent initializer InitDeathEvent
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
                     if  SpellS529Spell(u1) == false
-                        RevivePlayerHero(pid)
-                        BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
-                        GameChallengPlayerDeathEvent(u1)
-                        
+                        if  FB47Func(u1) == false
+                            RevivePlayerHero(pid)
+                            BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+                            GameChallengPlayerDeathEvent(u1)
+                        endif
                     endif
                 endif
             else
