@@ -168,8 +168,15 @@ scope DeathEvent initializer InitDeathEvent
                 AddUnitIntState(Pu[1],'FC17',1)
             endif
         endif
-
+        if  GetUnitIntState(Pu[1],'FB32') > 0
+            value = GetUnitIntState(Pu[1],'FC32')
+            if  value < 60000
+                AddUnitRealState(Pu[1],2,100)
+                AddUnitIntState(Pu[1],'FC32',100)
+            endif
+        endif
     end
+
     function CreateNewForg(int id1,int id2)
         int pid = id1
         int uid = id2
@@ -340,8 +347,16 @@ scope DeathEvent initializer InitDeathEvent
                             RevivePlayerHero(pid)
                             BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
                             GameChallengPlayerDeathEvent(u1)
+
+                            if  GetUnitIntState(Pu[1],'FB17') > 0
+                                //清除法宝的伤害加成
+                                AddUnitRealState(Pu[1],17,-GetUnitIntState(Pu[1],'FC17'))
+                                SetUnitIntState(Pu[1],'FC17',0)
+                            endif
+
                         endif
                     endif
+
                 endif
             else
                 if  uid == 'H005'

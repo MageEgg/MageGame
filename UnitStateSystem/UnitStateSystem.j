@@ -258,6 +258,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
             value = GetUnitState(wu,UNIT_STATE_MAX_MANA)
         elseif  StateId == 9
             value = GetUnitState(wu, ConvertUnitState(0x51))*10000
+        elseif  StateId == 51
+            value = GetUnitState( wu, ConvertUnitState(0x16))
         endif
         return value
     endfunction
@@ -304,6 +306,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
             else
                 SetHeroInt(wu,R2I(value),true)
             endif
+        elseif  StateId == 51
+            SetUnitState( wu, ConvertUnitState(0x16), value )
         elseif  StateId == 32
             DzFrameSetText(BUTTON_Text[161],"|cffffcc00攻击：|r"+I2S(R2I(value))+"%")
         elseif  StateId == 33
