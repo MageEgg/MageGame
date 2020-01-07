@@ -923,6 +923,8 @@ function SpellS116(unit u1,real damage1)
         TimerStart(0.5,true)
         {
             UnitAddLife(u,GetUnitState(whichunit,UNIT_STATE_MAX_LIFE)*0.06)
+            endtimer
+        }
 
     endfunction
 
