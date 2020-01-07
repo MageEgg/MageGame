@@ -666,7 +666,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
                 EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
                 DestroyEffect(eff)
-                GroupEnumUnitsInRange(gg,x2,y2,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                GroupEnumUnitsInRange(gg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u3)
@@ -690,8 +690,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         SetUnitScale(u1,0.001,0.001,0.001)
         TimerStart(0.03,true)
         {
-            real dis = Udis(u1,u2)
-            ang = Uang(u1,u2)
+            real dis = Pids(x1,y1,x2,y2)
+            ang = Pang(x1,y1,x2,y2)
             if  dis > 50
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
