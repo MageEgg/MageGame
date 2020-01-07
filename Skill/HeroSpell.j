@@ -471,34 +471,66 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    
-    function SpellS074(unit u,real x1,real y1,real damage)
-        unit u1 = u 
-        real x = x1
-        real y = y1
-        real dam = damage
-        integer time = 100
-        group wg = CreateGroup()
-        real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
-        x = GetUnitX(u1)
-        y = GetUnitY(u1)
-        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_shandianzhiqiang.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,0,1)
- 
+    function SpellS074_2(unit u,unit mj,real damage1)
+        unit u1=u
+        unit u2=mj
+        real dam=damage1
+        real ang=Uang(u2,u1)
+        real dis=Udis(u2,u1)
+        integer i=0
+         group wg = CreateGroup()
         TimerStart(0.03,true)
+        {
+            i=i+1
+            if i>30
+                ang=Uang(u2,u1)
+                dis=Udis(u2,u1)
+                group gg = CreateGroup()
+                if  dis>70
+                    SetUnitX(u2,GetUnitX(u2)+70*Cos(ang))
+                    SetUnitY(u2,GetUnitY(u2)+70*Sin(ang))
+                    GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'ABFG',3,852075))
+                    UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                else
+                    SetUnitX(u2,GetUnitX(u1))
+                    SetUnitY(u2,GetUnitY(u1))
+                    GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'ABFG',3,852075))
+                    UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                    RemoveUnit(u2)
+                    flush locals
+                    endtimer
+                endif
+                GroupClear(gg)
+                DestroyGroup(gg)
+            endif
+        }
+            
+
+    endfunction
+
+    function SpellS074_1(unit u,real ang1,real damage1)
+        unit u1=u
+        real ang=ang1
+        real dam=damage1
+        integer time=25
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_fense-lizi-toushewu.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,70,1)
+        group wg = CreateGroup()
+        real x=0
+        real y=0
+        TimerStart(0.02,true)
         {
             group gg = CreateGroup()
             time = time - 1
-            dam=dam+(dam*0.03)+10
             if  time > 0
-                x = x + 50*Cos(ang)
-                y = y + 50*Sin(ang)
+                x = GetUnitX(u2) + 50*Cos(ang)
+                y = GetUnitY(u2) + 50*Sin(ang)
                 SetUnitPosition(u2,x,y)
-                GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
+                GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'ABFG',3,852075))
+                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
             else
                 GroupClear(wg)
                 DestroyGroup(wg)
-                KillUnit(u2)
+                SpellS074_2(u1,u2,dam)
                 endtimer
             endif
             GroupClear(gg)
@@ -506,6 +538,14 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             flush locals
         }
         flush locals
+    endfunction
+    
+    function SpellS074(unit u,real x,real y,real damage)
+        real ang=Pang(GetUnitX(u),GetUnitY(u),x,y)
+        ang=ang-0.31
+        for i= 0,2
+            SpellS074_1(u,ang+(I2R(i)*0.31),damage)
+        end
     endfunction
 
     function SpellS076(unit wu,unit u1,real damage)//连环刺
@@ -1403,6 +1443,8 @@ endfunction
                 SpellS070(u1.u,sx,sy,damage)
             elseif  id== 'S073'
                 SpellS073(u1.u,damage)
+            elseif  id== 'S074'
+                SpellS074(u1.u,sx,sy,damage)
             elseif  id== 'S078'
                 SpellS078(u1.u,sx,sy,damage)
             elseif  id== 'S080'
