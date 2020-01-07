@@ -145,9 +145,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 10
         endif
         
-        
         exp = 5
-        
         
         if  gold > 0
             gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)
@@ -158,15 +156,19 @@ scope DeathEvent initializer InitDeathEvent
             AdjustPlayerStateBJ( R2I(wood) ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
         endif
 
-        
-        
-        
-        
-  
-        
         if  exp > 0
             HeroAddExp( Pu[1],exp)
         endif
+
+
+        if  GetUnitIntState(Pu[1],'FB17') > 0
+            value = GetUnitIntState(Pu[1],'FC17')
+            if  value < 30
+                AddUnitRealState(Pu[1],17,1)
+                AddUnitIntState(Pu[1],'FC17',1)
+            endif
+        endif
+
     end
     function CreateNewForg(int id1,int id2)
         int pid = id1
