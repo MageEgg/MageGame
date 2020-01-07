@@ -790,6 +790,57 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
 
 
+    function FB40Func(unit wu)
+        unit u1 = wu
+        int time = 20
+        SetUnitIntState(u1,'FC40',20)
+        UnitAddAbility(u1,'AZ40')
+        TimerStart(1,true)
+        {
+            time = time - 1
+            SetUnitIntState(u1,'FC40',time)
+            if  time <= 13
+                if  GetUnitAbilityLevel(u1,'AZ40') > 0
+                    UnitRemoveAbility(u1,'AZ40')
+                endif
+            endif
+            if  time <= 0
+                SetUnitIntState(u1,'FC40',0)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function FB47FuncTimer(unit wu)
+        unit u1 = wu
+        SetUnitIntState(wu,'FC43',1)
+        TimerStart(15,false)
+        {
+            SetUnitIntState(u1,'FC43',1)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    function FB47Func(unit wu)->bool
+        if  GetUnitIntState(wu,'FB43') > 0
+            if  GetUnitIntState(wu,'FC43') == 0
+                ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
+                LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
+                
+                if  GetOwningPlayer(wu)==GetLocalPlayer()
+                    ClearSelection()
+                    SelectUnit(wu,true)
+                    PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
+                endif
+                return true
+            endif
+        endif
+        return false
+    endfunction
+
     #undef MagicItemMax
     #undef MagicItemIndex
     #undef MagicItemStateMax
