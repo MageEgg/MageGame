@@ -257,6 +257,7 @@ endfunction
 function InitStateData5()
 endfunction
 function InitStateData6()
+InitTypeState6('FB08',200,0,0,0,0,0,0,0,0,0)
 endfunction
 function InitStateData7()
 endfunction

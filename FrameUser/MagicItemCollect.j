@@ -515,8 +515,99 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
     endfunction
 
+    //羁绊属性
+    function SetMagicItemState(int pid,int index,int now,int offset)
+        int s1 = 0
+        int s2 = 0
+        int v1 = 0
+        int v2 = 0
+        BJDebugMsg("index"+I2S(index)+"_now"+I2S(now)+"_off"+I2S(offset))
+        if  index == 1
+            s1 = 32
+            if  now >= 6
+                v1 = 45
+            elseif  now >= 4
+                v1 = 25
+            elseif  now >= 2
+                v1 = 10
+            endif
+        elseif  index == 2
+            s1 = 33
+            if  now >= 6
+                v1 = 45
+            elseif  now >= 4
+                v1 = 25
+            elseif  now >= 2
+                v1 = 10
+            endif
+        elseif  index == 3
+            s1 = 10
+            s2 = 18
+            if  now >= 6
+                v1 = 24
+                v2 = 24
+            elseif  now >= 3
+                v1 = 12
+                v2 = 12
+            endif
+        elseif  index == 4
+            s1 = 19
+            s2 = 20
+            if  now >= 4
+                v1 = 12
+                v2 = 120
+            elseif  now >= 2
+                v1 = 6
+                v2 = 60
+            endif
+        elseif  index == 5
+            s1 = 13
+            if  now >= 6
+                v1 = 25
+            elseif  now >= 3
+                v1 = 10
+            endif
+        elseif  index == 7
+            s1 = 14
+            if  now >= 6
+                v1 = 25
+            elseif  now >= 3
+                v1 = 10
+            endif
+        elseif  index == 8
+            s1 = 25
+            if  now >= 6
+                v1 = 30
+            elseif  now >= 4
+                v1 = 15
+            elseif  now >= 2
+                v1 = 5
+            endif
+        elseif  index == 9
+            s1 = 6
+            if  now >= 6
+                v1 = 120
+            elseif  now >= 4
+                v1 = 60
+            elseif  now >= 2
+                v1 = 20
+            endif
+        endif
+        if  s1 > 0 and v1 > 0
+            AddUnitRealState(Pu[1],s1,v1*offset)
+        endif
+        if  s2 > 0 and v2 > 0
+            AddUnitRealState(Pu[1],s2,v2*offset)
+        endif
+    endfunction
 
-
+    function ReMagicItemState(int pid,int index,int add)
+        int now = GetUnitIntState(Pu[1],index)
+        int new = now + add
+        SetUnitIntState(Pu[1],index,new)
+        SetMagicItemState(pid,index-MagicItemStateIndex,now,-1)
+        SetMagicItemState(pid,index-MagicItemStateIndex,new,1)
+    endfunction
 
     //移除刷新羁绊数据
     function RemPlayerMagicItemState(int pid,int index)
@@ -532,7 +623,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
-                    AddUnitIntState(Pu[1],MagicItemStateIndex+value,-1)
+                    ReMagicItemState(pid,MagicItemStateIndex+value,-1)
                 endif
             end
         endif
@@ -552,7 +643,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
-                    AddUnitIntState(Pu[1],MagicItemStateIndex+value,1)
+                    ReMagicItemState(pid,MagicItemStateIndex+value,1)
                 endif
             end
         endif
