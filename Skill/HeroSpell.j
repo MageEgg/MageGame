@@ -1128,8 +1128,6 @@ endfunction
         if GetUnitAbilityLevel(u1.u, 'A237')>0 
             AddUnitStateExTimer(u1.u,17,10,5)
         endif 
-         
-        
 
         //BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
         if  wu == Pu[63]
@@ -1137,7 +1135,6 @@ endfunction
         else
             damage = GetAbilityDamage(wu,id,lv)
         endif
-
 
         if  id >= 'S000' and id <= 'S300'
             if  id== 'S006'
@@ -1236,20 +1233,6 @@ endfunction
             SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
         elseif  id == 'S527'
             SpellS527(u1.u,u2.u)
-        endif
-        
-        if  id >= 'AZ0A' and id <= 'AZ0Z'
-            BossFuncSpell(u1.u,u2.u,id)
-        elseif  id >= 'AZ1A' and id <= 'AZ1Z'
-            BossFuncSpell(u1.u,u2.u,id)
-        elseif  id >= 'AZ2A' and id <= 'AZ2Z'
-            BossFuncSpell(u1.u,u2.u,id)
-        elseif  id >= 'AZ3A' and id <= 'AZ3Z'
-            BossFuncSpell(u1.u,u2.u,id)
-        elseif  id >= 'AZ4A' and id <= 'AZ4Z'
-            BossFuncSpell(u1.u,u2.u,id)
-        elseif  id >= 'AZ5A' and id <= 'AZ5Z'
-            BossFuncSpell(u1.u,u2.u,id)
         endif
 
         u1.destroy()
