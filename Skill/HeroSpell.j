@@ -852,6 +852,66 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         Summon(u,x,y,'z105')
     endfunction
 
+    function SpellS113Attack(unit u,real x1,real y1,real damage)
+        unit u1 = u 
+        real x = x1
+        real y = y1
+        real dam = damage
+        real dis=0
+        group wg = CreateGroup()
+        real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
+        real x0 = GetUnitX(u1)
+        real y0 = GetUnitY(u1)
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",x0,y0,ang/0.01745,0,1)
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            dis=Pdis(GetUnitX(u2),GetUnitY(u2),x,y)
+            if  dis > 50
+                x0 = GetUnitX(u2) + 50*Cos(ang)
+                y0 = GetUnitY(u2) + 50*Sin(ang)
+                SetUnitPosition(u2,x0,y0)
+                GroupEnumUnitsInRange(gg,x0,y0,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
+            else
+                GroupClear(wg)
+                SetUnitPosition(u2,x,y)
+                GroupEnumUnitsInRange(gg,x0,y0,400,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,dam,false,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                DestroyGroup(wg)
+                KillUnit(u2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS113(unit u,real x1,real y1,real damage)
+        unit u1 = u 
+        real x = x1
+        real y = y1
+        real dam = damage
+        integer i=0
+        if  Chance(u1,30)==true
+            TimerStart(0.2,true)
+            {
+                i=i+1
+                if  i <= 3
+                    SpellS113Attack(u1,x,y,dam)
+                else
+                    endtimer
+                endif
+            }
+        else
+            SpellS113Attack(u1,x,y,dam)
+        endif
+        flush locals
+
+    endfunction
+
     function SpellS115(unit u,real x1,real y1,real damage)
         unit u1 = u 
         real x = x1
@@ -1334,6 +1394,8 @@ endfunction
                 SpellS111(u1.u)
              elseif  id== 'S112'    
                 SpellS112(u1.u,sx,sy)
+             elseif  id== 'S113'    
+                SpellS113(u1.u,sx,sy,damage)
              elseif  id== 'S115'    
                 SpellS115(u1.u,sx,sy,damage)
             elseif  id== 'S116'    
