@@ -471,6 +471,43 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
+    
+    function SpellS074(unit u,real x1,real y1,real damage)
+        unit u1 = u 
+        real x = x1
+        real y = y1
+        real dam = damage
+        integer time = 100
+        group wg = CreateGroup()
+        real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
+        x = GetUnitX(u1)
+        y = GetUnitY(u1)
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_shandianzhiqiang.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,0,1)
+ 
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            dam=dam+(dam*0.03)+10
+            if  time > 0
+                x = x + 50*Cos(ang)
+                y = y + 50*Sin(ang)
+                SetUnitPosition(u2,x,y)
+                GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
+            else
+                GroupClear(wg)
+                DestroyGroup(wg)
+                KillUnit(u2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function SpellS076(unit wu,unit u1,real damage)//连环刺
         unit u=wu
         real x=GetUnitX(u1)
