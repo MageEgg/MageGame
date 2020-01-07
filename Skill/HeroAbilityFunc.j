@@ -170,7 +170,11 @@ library HeroAbilityFunc uses OtherDamageTimer
                 EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
                 
                 DestroyEffect(eff)
-                
+
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
                 
             else
                 RemoveUnit(u3)
@@ -188,6 +192,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         real y1 = GetUnitY(wu)
         real ang = Uang(u1,u2)
         real size = YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"modelScale")
+        group g1 = CreateGroup()
         EXSetUnitFacing( u1, ang/0.01745 )
         SetUnitFacing(u1,ang/0.01745)
         unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_az_chongfeng.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
@@ -205,9 +210,15 @@ library HeroAbilityFunc uses OtherDamageTimer
                 SetUnitY(u3,y1)
                 SetUnitFacing(u1,ang/0.01745)
                 SetUnitFacing(u3,ang/0.01745)
+
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
             else
                 SpellS502_2(u1,u2,damage)
                 SetUnitScale(u1,size,size,size)
+                DestroyGroup(g1)
                 RemoveUnit(u3)
                 endtimer
             endif

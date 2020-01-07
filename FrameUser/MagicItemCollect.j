@@ -344,7 +344,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetTipsData(1,"",GetTypeIdName(id))
 
             SetTipsData(10,"",GetMagicItemStateAllName(id))
-            SetTipsData(11,"",GetTypeIdStateTips(id))
+            SetTipsData(11,"","|cff666666基础属性|r|n" + GetTypeIdTips(id))
             
             SetTipsData(12,"",GetMagicItemCollectTips(pid,id))
 
