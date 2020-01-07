@@ -334,6 +334,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             endif
         endif
     endfunction
+
     function JJFuncSpell09_1(unit wu,real sx,real sy)
         unit u1 = wu
         real x1 = sx
@@ -342,7 +343,8 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         TimerStart(1.5,false)
         {
             IndexGroup g = IndexGroup.create()
-            LocAddEffectSetSize(x1,y1,"effect_zm(30).mdl",1.0)
+            LocAddEffectTimerOrSize(x1,y1,0,"effect2_chanrao.mdl",1.0,1.2)
+            LocAddEffectSetSize(x1,y1,"effect_forestbolt.mdl",2.0)
             GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
@@ -353,12 +355,77 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         flush locals
     endfunction
     function JJFuncSpell09_2(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1.2)
+        TimerStart(1.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            LocAddEffectSetSize(x1,y1,"effect_forestbolth.mdl",2.0)
+            GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            RemoveUnit(u2)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
     function JJFuncSpell09_3(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1.2)
+        TimerStart(1.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            LocAddEffectSetSize(x1,y1,"effect_az_kaer_t1.mdl",0.8)
+            GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            RemoveUnit(u2)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
     function JJFuncSpell09_4(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1.2)
+        TimerStart(1.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            LocAddEffect(x1,y1,"effect_az_cwdullahan_d1target.mdl")
+            LocAddEffect(x1,y1,"effect_green-texiao-shandian.mdl")
+            GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            RemoveUnit(u2)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
     function JJFuncSpell09_5(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1.2)
+        TimerStart(1.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            LocAddEffect(x1,y1,"effect_hero_grandmagus_n1s_z_down.mdl")
+            GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,1000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            RemoveUnit(u2)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
     function JJFuncSpell09(unit wu,real sx,real sy)
         int lv = GetUnitAbilityLevel(wu,'AZ07')
