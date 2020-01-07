@@ -1,4 +1,4 @@
-library BossSkill uses AbilityUI,OtherDamageTimer
+library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     private unit boss = null
     private real bossx = 0
@@ -461,6 +461,16 @@ library BossSkill uses AbilityUI,OtherDamageTimer
         elseif  id == 'AZ1Q'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+        elseif  id >= 'AZ2A' and id <= 'AZ2Z'
+            if  id == 'AZ2B'
+                JJFuncSpell02(u1,x2,y2)
+            elseif  id == 'AZ2C'
+                JJFuncSpell03(u1,x2,y2)
+            elseif  id == 'AZ2D'
+                JJFuncSpell04(u1,x2,y2)
+            elseif  id == 'AZ2E'
+                JJFuncSpell05(u1,x2,y2)
+            endif
         endif
         flush locals
     endfunction
