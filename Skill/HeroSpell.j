@@ -848,6 +848,10 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         Summon(u,GetUnitX(u),GetUnitY(u),'z104')
     endfunction
 
+    function SpellS112(unit u,real x,real y)
+        Summon(u,x,y,'z105')
+    endfunction
+
 function SpellS116(unit u1,real damage1)
     unit u=u1
     real damage=damage1
@@ -856,11 +860,11 @@ function SpellS116(unit u1,real damage1)
     real y=0
     real dis=0
     real ang=0
-    TimerStart(1,true)
+    TimerStart(0.5,true)
     {
         Num=Num+1
         if  Num<=8
-            dis=GetRandomReal(0, 600)
+            dis=GetRandomReal(0, 300)
             ang=GetRandomReal(-3.14, 3.14)
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
@@ -883,11 +887,11 @@ function SpellS116(unit u1,real damage1)
     real y=0
     real dis=0
     real ang=0
-    TimerStart(1,true)
+    TimerStart(0.5,true)
     {
         Num=Num+1
         if  Num<=8
-            dis=GetRandomReal(0, 600)
+            dis=GetRandomReal(0, 300)
             ang=GetRandomReal(-3.14, 3.14)
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
@@ -1179,8 +1183,12 @@ endfunction
                 SpellS100(u1.u)
             elseif  id== 'S101'    
                 SpellS101(u1.u,sx,sy,damage)
+            elseif  id== 'S110'    
+                SpellS110(u1.u,sx,sy,damage)
             elseif  id== 'S111'    
                 SpellS111(u1.u)
+             elseif  id== 'S112'    
+                SpellS112(u1.u,sx,sy)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
 
