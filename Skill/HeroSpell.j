@@ -860,15 +860,18 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         integer time = 100
         group wg = CreateGroup()
         real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
+        x = GetUnitX(u1)
+        y = GetUnitY(u1)
         unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_shandianzhiqiang.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,0,1)
+ 
         TimerStart(0.03,true)
         {
             group gg = CreateGroup()
             time = time - 1
             dam=dam+(dam*0.03)+10
             if  time > 0
-                x = x + 30*Cos(ang)
-                y = y + 30*Sin(ang)
+                x = x + 50*Cos(ang)
+                y = y + 50*Sin(ang)
                 SetUnitPosition(u2,x,y)
                 GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
                 UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
@@ -1331,6 +1334,8 @@ endfunction
                 SpellS111(u1.u)
              elseif  id== 'S112'    
                 SpellS112(u1.u,sx,sy)
+             elseif  id== 'S115'    
+                SpellS115(u1.u,sx,sy,damage)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
 

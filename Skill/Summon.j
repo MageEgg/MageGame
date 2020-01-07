@@ -95,6 +95,11 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
         if IsPlayerHasAbility(u,'S088') == true
             Number=Number+2
         endif
+        if IsPlayerHasAbility(u,'S507') == true
+            if  GetUnitRealState(u,14)>=30
+                Number=Number+2
+            endif
+        endif
 
         if  id=='z100'
              Number=Number+4         //此单位最大召唤数
