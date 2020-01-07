@@ -131,6 +131,7 @@ library SkillCode uses System,State,DamageCode
                 lifem = amount
             endif
             SetUnitState(whichunit,UNIT_STATE_LIFE,lifea+lifem)
+            DestroyEffect(AddSpecialEffect("effect_e_buffgreen2a.mdl",GetUnitX(whichunit),GetUnitY(whichunit)))
         endif
     endfunction
     
@@ -142,6 +143,7 @@ library SkillCode uses System,State,DamageCode
                 lifem = amount
             endif
             SetUnitState(whichunit,UNIT_STATE_MANA,lifea+lifem)
+            DestroyEffect(AddSpecialEffect("effect_e_buffblue2.mdl",GetUnitX(whichunit),GetUnitY(whichunit)))
         endif
     endfunction
     

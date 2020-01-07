@@ -879,6 +879,18 @@ function SpellS116(unit u1,real damage1)
     }
     endfunction
 
+    function SpellS117(unit u1,unit u2,real damage)//元气破
+        real x=GetUnitX(u2)
+        real y=GetUnitY(u2)
+        IndexGroup g = IndexGroup.create()
+        DestroyEffect(AddSpecialEffect("effect2_blue-texiao-meuikandong.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitAddMana(u1,10)
+        g.destroy()
+        flush locals
+    endfunction
+
     function SpellS123(unit u1,real damage1)
     unit u=u1
     real damage=damage1
@@ -906,7 +918,15 @@ function SpellS116(unit u1,real damage1)
     }
     endfunction
 
-      function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
+    function SpellS123(unit u1)
+        unit u=u1
+        TimerStart(0.5,true)
+        {
+            UnitAddLife(u,GetUnitState(whichunit,UNIT_STATE_MAX_LIFE)*0.06)
+
+    endfunction
+
+    function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
