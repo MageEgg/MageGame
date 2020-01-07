@@ -331,7 +331,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 s =  s + "\n" + GetMagicItemCollectLevelTips(GetMagicStateId(value),num) + "\n"
             endif
         end
-        return "\n|cff666666羁绊|r" + s
+        return "\n|cff999999羁绊|r" + s
     endfunction
 
     
@@ -341,10 +341,10 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             DzFrameShow(UI_TipsHead, true)
             
 
-            SetTipsData(1,"",GetTypeIdName(id))
+            SetTipsData(1,"GetTypeIdIcon(id)",GetTypeIdName(id))
 
             SetTipsData(10,"",GetMagicItemStateAllName(id))
-            SetTipsData(11,"",GetTypeIdStateTips(id))
+            SetTipsData(11,"","|cff999999基础属性|r|n" + GetTypeIdTips(id))
             
             SetTipsData(12,"",GetMagicItemCollectTips(pid,id))
 
@@ -393,7 +393,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     if  i == last
                         SetTipsData(h,"","|cff00cc33"+I2S(use)+"："+GetTypeIdString(id,130+i))
                     else
-                        SetTipsData(h,"","|cff666666"+I2S(use)+"："+GetTypeIdString(id,130+i))
+                        SetTipsData(h,"","|cff999999"+I2S(use)+"："+GetTypeIdString(id,130+i))
                     endif
                     
                     h = h + 1
@@ -493,8 +493,12 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     function RemPlayerMagicItemState(int pid,int index)
         int value = 0
         int id = GetPlayerMagicItem(pid,index)
+        
+        
         //if  IsMagicItemOnly(pid,index) == true
         if  id > 0
+            RemoveEquipState(Pu[1],id)
+            AddUnitIntState(Pu[1],id,-1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
@@ -512,6 +516,8 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         
         //if  IsMagicItemOnly(pid,index) == true
         if  id > 0
+            AddEquipState(Pu[1],id)
+            AddUnitIntState(Pu[1],id,1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
@@ -531,6 +537,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetUnitIntState(Pu[1],MagicItemIndex+index,value)
             if  index <= 8
                 AddPlayerMagicItemState(pid,index)
+                
                 BJDebugMsg("法宝增加属性"+GetTypeIdName(value))
             else    
                 BJDebugMsg("不增加属性"+GetTypeIdName(value))

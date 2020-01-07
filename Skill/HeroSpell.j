@@ -852,6 +852,39 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         Summon(u,x,y,'z105')
     endfunction
 
+    function SpellS115(unit u,real x1,real y1,real damage)
+        unit u1 = u 
+        real x = x1
+        real y = y1
+        real dam = damage
+        integer time = 100
+        group wg = CreateGroup()
+        real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_shandianzhiqiang.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,0,1)
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            dam=dam+(dam*0.03)+10
+            if  time > 0
+                x = x + 30*Cos(ang)
+                y = y + 30*Sin(ang)
+                SetUnitPosition(u2,x,y)
+                GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
+            else
+                GroupClear(wg)
+                DestroyGroup(wg)
+                KillUnit(u2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
 function SpellS116(unit u1,real damage1)
     unit u=u1
     real damage=damage1
@@ -877,6 +910,18 @@ function SpellS116(unit u1,real damage1)
             endtimer
         endif    
     }
+    endfunction
+
+    function SpellS117(unit u1,unit u2,real damage)//元气破
+        real x=GetUnitX(u2)
+        real y=GetUnitY(u2)
+        IndexGroup g = IndexGroup.create()
+        DestroyEffect(AddSpecialEffect("effect2_blue-texiao-meuikandong.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitAddMana(u1,10)
+        g.destroy()
+        flush locals
     endfunction
 
     function SpellS123(unit u1,real damage1)
@@ -906,7 +951,104 @@ function SpellS116(unit u1,real damage1)
     }
     endfunction
 
-      function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
+
+    function SpellS124Attack(unit wu,effect tx1,unit mb1,real dam1,group g1,integer num1)//确定目标发起冲锋
+        group gg = g1
+        unit u=wu
+        unit u1=mb1
+        effect tx=tx1
+        real dam=dam1
+        integer num=num1
+        real dis=0
+        real ang=0
+        TimerStart(0.03,true)
+        {   
+        ang=Pang(EXGetEffectX(tx),EXGetEffectY(tx),GetUnitX(u1),GetUnitY(u1))
+        dis=Pdis(EXGetEffectX(tx),EXGetEffectY(tx),GetUnitX(u1),GetUnitY(u1))
+        if  dis>40
+            EXSetEffectXY(tx, EXGetEffectX(tx)+40*Cos(ang),EXGetEffectY(tx)+40*Sin(ang)) 
+        else
+            EXSetEffectXY(tx, GetUnitX(u1),GetUnitY(u1)) 
+            if  u1==u
+                UnitAddMana(u,num*5)
+                DestroyEffect(tx)
+                flush locals
+                endtimer
+            else
+                UnitDamageTarget(u,u1,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                SpellS124mb.execute(u,tx,u1,dam,gg,num)
+                flush locals
+                endtimer
+            endif
+        endif
+        }
+    endfunction
+
+    function SpellS124mb(unit u,effect tx,unit u2,real dam,group g2,integer num)//寻找目标
+        real x = GetUnitX(u2)
+        real y = GetUnitY(u2)
+        real mdis = 99999
+        real dis = 0
+        unit u4 = null
+        unit u3 = null
+        group g = CreateGroup()
+        if  num<5
+            num=num+1
+            GroupEnumUnitsInRange(g,x,y,1000,null)
+            loop
+                u4 = FirstOfGroup(g)
+                exitwhen u4 == null
+                if  GetUnitState(u4,UNIT_STATE_LIFE)>0  and IsUnitInGroup(u4, g2) == false
+                    set dis = SquareRoot(Pow(x-GetUnitX(u4),2)+Pow(y-GetUnitY(u4),2))
+                    if  dis < mdis  then
+                        u3 = u4
+                        mdis = dis
+                    endif
+                endif
+                GroupRemoveUnit(g,u4)
+            endloop
+            DestroyGroup(g)
+            g=null
+            GroupAddUnit(g2,u3)
+            if  u3 == null
+                u3=u
+            endif
+        else
+            u3=u
+        endif
+        SpellS124Attack(u,tx,u3,dam,g2,num)
+        
+
+    endfunction
+    
+    function SpellS124(unit wu,unit eu,real dam)//收到释放技能命令
+        integer num = 0
+        effect tx=AddSpecialEffect("effect_youling.mdl",GetUnitX(wu),GetUnitY(wu))
+        EXSetEffectZ( tx, 100 )
+        group gg = CreateGroup()
+        GroupAddUnit(gg,eu)
+        SpellS124Attack(wu,tx,eu,dam,gg,num)
+        flush locals
+    endfunction
+
+   
+
+    function SpellS127(unit u1)
+        unit u=u1
+        integer n=0
+        TimerStart(0.5,true)
+        {   
+            if n<10
+                UnitAddLife(u,GetUnitState(u,UNIT_STATE_MAX_LIFE)*0.06)
+                n=n+1
+            else
+                endtimer
+            endif
+        }
+
+    endfunction
+
+    function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
@@ -1129,7 +1271,7 @@ endfunction
             AddUnitStateExTimer(u1.u,17,10,5)
         endif 
 
-        //BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
+        BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
         if  wu == Pu[63]
             damage = GetAbilityDamage(Pu[1],id,lv) * 0.5
         else
@@ -1192,8 +1334,14 @@ endfunction
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
 
-             elseif  id== 'S123'    
+            elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
+            elseif  id== 'S124'    
+                SpellS124(u1.u,u2.u,damage)
+
+
+            elseif  id== 'S127'    
+                SpellS127(u1.u)
             
             elseif  id== 'S230'
                 SpellS230(u1.u,sx,sy,damage)
