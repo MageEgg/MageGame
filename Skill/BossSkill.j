@@ -421,7 +421,6 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell17()
         insert BossSpell
-        //龙王
         CreateTm(u1,'e00Z',x1,y1,ang,damage,1,0,210,1500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
@@ -653,6 +652,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real damage = dam
         int time = 0
         effect eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
+        EXSetEffectSize(eff,1.5)
         EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
         DestroyEffect(eff)
         TimerStart(0.2,true)
@@ -665,7 +665,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
                 EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
                 DestroyEffect(eff)
-                GroupEnumUnitsInRange(gg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                GroupEnumUnitsInRange(gg,x1,y1,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
                 UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u3)
@@ -711,28 +711,174 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell30()
         insert BossSpell
-        
+        group gg = CreateGroup()
+        real newx = 0
+        real newy = 0
+        LocAddEffect(x2,y2,"effect3_desecrateblack.mdl")
+        for num = 1,12
+            newx = x2+400*Cos(30*num*0.01745)
+            newy = y2+400*Sin(30*num*0.01745)
+            LocAddEffect(newx,newy,"Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl")
+        end
+        for num = 1,8
+            newx = x2+200*Cos(45*num*0.01745)
+            newy = y2+200*Sin(45*num*0.01745)
+            LocAddEffect(newx,newy,"Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl")
+        end
+        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+    
+    function BossFuncSpellFlyOfBird(unit wu,real r1,real r2)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = r1 
+        real y2 = r2
+        real ang = Atan2(y2-y1,x2-x1)
+        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect_dummy_dawn_bird_00.mdl",x1,y1,Atan2(y1-y2,x1-x2)/0.01745,50,1.8)
+        real xx = 50*Cos(ang)
+        real yy = 50*Sin(ang)
+        int time = R2I(Pdis(x1,y1,x2,y2)/50)
+        real size = GetUnitScaleSize(u1)
+        LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",2)
+        SetUnitScale(u1,0.01,0.01,0.01)
+        TimerStart(0.007,true)
+        {
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                SetUnitXY(u1,x1,y1)
+                SetUnitXY(u2,x1,y1)
+                SetUnitFacing(u1,ang/0.01745)
+                SetUnitFacing(u2,Atan2(y1-y2,x1-x2)/0.01745)
+                if  ModuloInteger(time,4) == 0
+                    LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",2)
+                endif
+            else
+                RemoveUnit(u2)
+                SetUnitXY(u1,x1,y1)
+                SetUnitScale(u1,size,size,size)
+                SetUnitAnimation(u1,"attack")
+                LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
 
-        
-        
+    function BossFuncSpell31Ex(unit wu,real r1,real r2,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = r1
+        real y2 = r2
+        real damage = dam
+        int time = 0
+        PauseUnit(u1,true)
+        SetUnitInvulnerable(u1,false)
+        BossFuncSpellFlyOfBird(u1,x2 + 400*Cos(18*0.01745),y2 + 400*Sin(18*0.01745))
+        TimerStart(0.18,true)
+        {
+            group gg = null
+            time = time + 1   
+            if  time <= 4
+                if  time == 1
+                    BossFuncSpellFlyOfBird(u1,x2 + 400*Cos(234*0.01745),y2 + 400*Sin(234*0.01745))
+                elseif  time == 2
+                    BossFuncSpellFlyOfBird(u1,x2 + 400*Cos(90*0.01745),y2 + 400*Sin(90*0.01745))
+                elseif  time == 3
+                    BossFuncSpellFlyOfBird(u1,x2 + 400*Cos(306*0.01745),y2 + 400*Sin(306*0.01745))
+                elseif  time == 4
+                    BossFuncSpellFlyOfBird(u1,x2 + 400*Cos(162*0.01745),y2 + 400*Sin(162*0.01745))
+                endif
+            else
+                SetUnitAnimation(u1,"attack")
+                gg = CreateGroup()
+                UnitAddEffect(u1,"effect_az_goods_lvlup(3).mdl")
+                SetUnitXY(u1,x2,y2)
+                LocAddEffect(x2,y2,"effect_effect_az_goods_tp_target_effect(4).mdl")
+                LocAddEffectSetSize(x2,y2,"effect2_by_wood_effect2_war3_shuangdongxinxing.mdl",1.7)
+                GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffdj,2,0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                GroupClear(gg)
+                DestroyGroup(gg)
+                PauseUnit(u1,false)
+                SetUnitInvulnerable(u1,true)
+                endtimer
+            endif
+            flush locals
+        }
         flush locals
     endfunction
 
     function BossFuncSpell31()
         insert BossSpell
-        
-
-        
-        
+        real newx = x2 + 400*Cos(162*0.01745)
+        real newy = y2 + 400*Sin(162*0.01745)
+        UnitAddEffect(u1,"effect_az_goods_lvlup(3).mdl")
+        SetUnitXY(u1,newx,newy)
+        LocAddEffect(newx,newy,"effect_effect_az_goods_tp_target_effect(4).mdl")
+        TimerStart(0.01,false)
+        {
+            BossFuncSpell31Ex(u1,x2,y2,damage)
+            endtimer
+            flush locals
+        }
         flush locals
     endfunction
 
     function BossFuncSpell32()
         insert BossSpell
-        
-
-        
-        
+        unit u3 = CreateUnit(GetOwningPlayer(u1),'e016',x1,y1,ang/0.01745)
+        real size = 1
+        real xx = 35*Cos(ang)
+        real yy = 35*Sin(ang)
+        int time = R2I(Pdis(x1,y1,x2,y2)/35)
+        int mod = time/200
+        SetUnitAnimation(u3,"walk" )
+        UnitAddEffectSetSize(u3,"Abilities\\Spells\\NightElf\\BattleRoar\\RoarCaster.mdl",1)
+        TimerStart(0.02,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                SetUnitXY(u3,x1,y1)
+                SetUnitFacing(u3,ang/0.01745)
+                if  mod > 0
+                    if  ModuloInteger(time,mod) ==  0
+                        size = size + 0.01
+                        if  size > 3
+                            size = 3
+                        endif
+                        SetUnitScale(u3,size,size,size)
+                    endif
+                else
+                    size = size + 0.2
+                    if  size > 3
+                        size = 3
+                    endif
+                    SetUnitScale(u3,size,size,size)
+                endif
+            else
+                SetUnitAnimation(u3,"attack")
+                LocAddEffectSetSize(x1,y1,"effect_az_cwdullahan_d1target.mdx",3)
+                GroupEnumUnitsInRange(gg,x1,y1,500,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                RemoveUnitTimer(u3,0.5)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
 
@@ -927,10 +1073,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell29")
         elseif  id == 'AZ1D'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell30")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell30")
         elseif  id == 'AZ1E'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell31")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell31")
         elseif  id == 'AZ1F'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell32")
