@@ -5,11 +5,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     private real bossy = 0
     private real bossdamage = 0
 
+    #define RAC_A_200   'e013'
     #define RAC_A_300   'e00H'
     #define RAC_A_400   'e00E'
     #define RAC_A_500   'e00F'
     #define RAC_A_600   'e00G'
 
+    #define RAC_B_200   'e012'
     #define RAC_B_300   'e00L'
     #define RAC_B_400   'e00I'
     #define RAC_B_500   'e00J'
@@ -187,7 +189,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         {
             group gg = CreateGroup()
             time = time + 1
-            if  time < 5
+            if  time <= 5
                 AddEffectInArea(x2,y2,390,5,"Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
@@ -523,31 +525,192 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         }
         flush locals
     endfunction
+
     function BossFuncSpell24()
         insert BossSpell
-        
-
-        
-        
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'e000',x1,y1,ang/0.01745)
+        real xx = 30*Cos(ang)
+        real yy = 30*Sin(ang)
+        int time = R2I(2000/30)
+        group wg = CreateGroup()
+        group ug = CreateGroup()
+        GroupAddUnit(ug,u2)
+        TimerStart(0.002,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                SetUnitXY(u2,x1,y1)
+                if  ModuloInteger(time,6) == 0
+                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'e010',x1,y1,GetRandomReal(0,360)),0.8)
+                endif
+                GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                RemoveUnit(u2)
+                GroupClear(wg)
+                GroupClear(ug)
+                DestroyGroup(wg)
+                DestroyGroup(ug)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
+
     function BossFuncSpell25()
         insert BossSpell
-        
-
-        
-        
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'e011',x2,y2,0)
+        int time = 0
+        damage = damage / 5
+        TimerStart(0.3,true)
+        {
+            group gg = CreateGroup()
+            time = time + 1
+            if  time <= 5
+                AddEffectInArea(x2,y2,200,8,"Abilities\\Spells\\Undead\\DeathandDecay\\DeathandDecayTarget.mdl")
+                GroupEnumUnitsInRange(gg,x2,y2,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                RemoveUnit(u2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
+
     function BossFuncSpell26()
         insert BossSpell
-        
-
-        
-        
+        int time = 0
+        damage = damage / 2
+        //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
+        CreateTm(u1,'e014',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+        TimerStart(0.3,true)
+        {
+            time = time + 1
+            if  time <= 2
+                CreateTm(u1,'e014',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+            else
+                endtimer
+            endif
+            flush locals
+        }
         flush locals
     endfunction
+
     function BossFuncSpell27()
+        insert BossSpell
+        int time = 0
+        damage = damage / 4
+        TimerStart(0.25,true)
+        {
+            group gg = CreateGroup()
+            real ran = 0
+            time = time + 1
+            if  time <= 4
+                for num = 1,2
+                    ran = GetRandomReal(0,360)
+                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'e015',x2,y2,ran),1)
+                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'e015',x2,y2,ran+90),1)
+                end
+                LocAddEffectSetSize(x2,y2,"effect2_az_cocoguanyu_t2_death.mdl",1)
+                GroupEnumUnitsInRange(gg,x2,y2,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function BossFuncSpell28()
+        insert BossSpell
+        group gg = CreateGroup()
+        LocAddEffectSetSize(x2,y2,"effect_shengguang.mdl",2.4)
+        GroupEnumUnitsInRange(gg,x2,y2,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function BossFuncSpell29Ex(unit wu,unit tu,real dam)
+        unit u1 = wu
+        unit u2 = tu
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+        unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_dark-xuanfen.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
+        real damage = dam
+        int time = 0
+        effect eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
+        EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
+        DestroyEffect(eff)
+        TimerStart(0.2,true)
+        {
+            group gg = CreateGroup()
+            x1 = GetUnitX(u1)
+            y1 = GetUnitY(u1)
+            time = time + 1
+            if  time <= 3
+                eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
+                EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
+                DestroyEffect(eff)
+                GroupEnumUnitsInRange(gg,x2,y2,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                RemoveUnit(u3)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function BossFuncSpell29()
+        insert BossSpell
+        unit u3 = null
+        real size = GetUnitScaleSize(u1)
+        damage = damage / 3
+        EXSetUnitFacing(u1,ang/0.01745)
+        SetUnitFacing(u1,ang/0.01745)
+        u3 = CreateTmUnit(GetOwningPlayer(u1),"effect_az_chongfeng.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
+        SetUnitScale(u1,0.001,0.001,0.001)
+        TimerStart(0.03,true)
+        {
+            real dis = Udis(u1,u2)
+            ang = Uang(u1,u2)
+            if  dis > 50
+                x1 = x1 + 30 * Cos(ang)
+                y1 = y1 + 30 * Sin(ang)
+                SetUnitXY(u1,x1,Y1)
+                SetUnitXY(u3,x1,Y1)
+                SetUnitFacing(u1,ang/0.01745)
+                SetUnitFacing(u3,ang/0.01745)
+            else
+                BossFuncSpell29Ex(u1,u2,damage)
+                SetUnitScale(u1,size,size,size)
+                RemoveUnit(u3)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function BossFuncSpell30()
         insert BossSpell
         
 
@@ -555,7 +718,107 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         
         flush locals
     endfunction
-    function BossFuncSpell28()
+
+    function BossFuncSpell31()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell32()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell33()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell34()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell35()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell36()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell37()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell38()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell39()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell40()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell41()
+        insert BossSpell
+        
+
+        
+        
+        flush locals
+    endfunction
+
+    function BossFuncSpell42()
         insert BossSpell
         
 
@@ -610,7 +873,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell11")
         elseif  id == 'AZ0L'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell12")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.3,"BossFuncSpell12")
         elseif  id == 'AZ0M'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell13")
@@ -640,68 +903,59 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell21")
         elseif  id == 'AZ0V'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell22")
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.3,"BossFuncSpell22")
         elseif  id == 'AZ0W'
             damage = GetUnitRealState(u1,1)
             BossFuncStart(u1,u2,RAC_A_300,ang,damage,1.5,"BossFuncSpell23")
         elseif  id == 'AZ0X'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell15")
+            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell24")
         elseif  id == 'AZ0Y'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell15")
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.2,"BossFuncSpell25")
+        elseif  id == 'AZ0Z'
+            damage = GetUnitRealState(u1,1)
+            BossFuncStart(u1,u2,LINE_B,ang,damage,1.2,"BossFuncSpell26")
         ////////////////////////////分割线////////////////////////////////
         elseif  id == 'AZ1A'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.2,"BossFuncSpell27")
         elseif  id == 'AZ1B'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.5,"BossFuncSpell28")
         elseif  id == 'AZ1C'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell29")
         elseif  id == 'AZ1D'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell30")
         elseif  id == 'AZ1E'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell31")
         elseif  id == 'AZ1F'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell32")
         elseif  id == 'AZ1G'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell33")
         elseif  id == 'AZ1H'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell34")
         elseif  id == 'AZ1I'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell35")
         elseif  id == 'AZ1J'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell36")
         elseif  id == 'AZ1K'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell37")
         elseif  id == 'AZ1L'
             damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
-        elseif  id == 'AZ1M'
-            damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
-        elseif  id == 'AZ1N'
-            damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
-        elseif  id == 'AZ1O'
-            damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
-        elseif  id == 'AZ1P'
-            damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
-        elseif  id == 'AZ1Q'
-            damage = GetUnitRealState(u1,1)
-            BossFuncStart(u1,u2,uid,ang,damage,1.5,"BossFuncSpell1")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell38")
+
+        ////////////////////////////分割线////////////////////////////////
+
         elseif  id >= 'AZ2A' and id <= 'AZ2Z'
             if  id == 'AZ2B'
                 JJFuncSpell02(u1,x2,y2)
