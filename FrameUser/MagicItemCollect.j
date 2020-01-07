@@ -337,6 +337,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     
     function BoxShowMagicItemPublic(int pid,int id)
         int h = 10
+        int value = 0
         if  id > 0
             DzFrameShow(UI_TipsHead, true)
             
@@ -346,7 +347,20 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetTipsData(10,"",GetMagicItemStateAllName(id))
             SetTipsData(11,"","|cff999999基础属性|r|n" + GetTypeIdTips(id))
             
-            SetTipsData(12,"",GetMagicItemCollectTips(pid,id))
+            if  id == 'FB17'
+                value = GetUnitIntState(Pu[1],'FC17')
+                SetTipsData(12,"","|cff00ff00当前加成："+I2S(value)+"%")
+                h = 13
+            elseif  id == 'FB32'
+                value = GetUnitIntState(Pu[1],'FC32')
+                SetTipsData(12,"","|cff00ff00当前加成："+I2S(value))
+                h = 13
+            else
+                h = 12
+            endif
+            
+
+            SetTipsData(h,"",GetMagicItemCollectTips(pid,id))
 
 
             ShowTipsUI()
@@ -489,6 +503,21 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         end
         return true
     endfunction
+
+    function RePlayerMagicOtherState(int pid,int id,int offset)
+        int value = 0
+        if  id == 'FB17'
+            value = GetUnitIntState(Pu[1],'FC17')
+            AddUnitRealState(Pu[1],17,value*offset)
+        elseif  id == 'FB32'
+            value = GetUnitIntState(Pu[1],'FC32')
+            AddUnitRealState(Pu[1],2,value*offset)
+        endif
+    endfunction
+
+
+
+
     //移除刷新羁绊数据
     function RemPlayerMagicItemState(int pid,int index)
         int value = 0
@@ -499,6 +528,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             RemoveEquipState(Pu[1],id)
             AddUnitIntState(Pu[1],id,-1)
+            RePlayerMagicOtherState(pid,id,-1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
@@ -518,6 +548,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             AddEquipState(Pu[1],id)
             AddUnitIntState(Pu[1],id,1)
+            RePlayerMagicOtherState(pid,id,1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
