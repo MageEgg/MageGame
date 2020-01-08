@@ -103,9 +103,9 @@ library PlayerTaskUI uses GameFrame
         PlayerTaskUI_TaskText.SetSize(0.055,0.037)
         PlayerTaskUI_TaskText.SetText("|cffffcc00击杀新手BOSS|r")
 
-        PlayerTaskUI_ChatTextA.frameid = FRAME.Fdf("text013",PlayerTaskUI_ChatBack.frameid,PlayerTaskUI_ChatTextA)
+        PlayerTaskUI_ChatTextA.frameid = FRAME.Tag("TEXT","PlayerTaskUI_ChatTextA",PlayerTaskUI_ChatBack.frameid,0)
         PlayerTaskUI_ChatTextA.SetPoint(0,PlayerTaskUI_ChatBack.frameid,0,0.003,-0.002)
-        PlayerTaskUI_ChatTextA.SetSize(0.282,0.013)
+        PlayerTaskUI_ChatTextA.SetSize(0.282,0.012)
         PlayerTaskUI_ChatTextA.SetText("|cffffcc00剧情：|r")
 
         PlayerTaskUI_ChatTextB.frameid = FRAME.Tag("TEXT","PlayerTaskUI_ChatTextB",PlayerTaskUI_ChatTextA.frameid,0)
