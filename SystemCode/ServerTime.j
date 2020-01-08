@@ -1,4 +1,4 @@
-library ServerTime uses ejtimer
+library ServerTime initializer UpdateTimeAll uses ejtimer
     
         int NS = 31536000
         int LS = 31622400	
@@ -10,7 +10,11 @@ library ServerTime uses ejtimer
         int ServerTime = 0
         int array NormalMon
         string array DayStr
-        
+
+        int DzPuTime = 0
+        int DzMissionWeek = 0
+        int GamePuOverDay = 0
+
         int TimeTestDay = 0
         int TimeMon = 0
         int TimeWeek = 0
@@ -137,12 +141,36 @@ library ServerTime uses ejtimer
         endfunction
         function UpdateTimeAll() //初始化
             InitArray()
+            DzPuTime = 1578412800
             ServerTime = DzAPI_Map_GetGameStartTime()
-            if  ServerTime < 1538323200 //测试返回
-                ServerTime = 1538323200
+            if  ServerTime < DzPuTime
+                ServerTime = DzPuTime + 86400 * 1 
             endif
+            
+            ServerTime = ServerTime + GetRandomInt(1,10)
+
+            ServerTime = ServerTime - 18000
             GetDate(ServerTime)
 
+            DzMissionWeek = TimeWeek
+            MissionDay = (ServerTime-DzPuTime)/86400
+            if  MissionDay < 0
+                MissionDay = 0
+            endif
+
+            ServerTime = ServerTime + 18000
+            GetDate(ServerTime)
+
+            StartTimeYear = TimeYear
+            StartTimeMon = TimeMon
+            StartTimeDay = TimeDay
+            GamePuOverDay = (ServerTime-DzPuTime)/86400
+            if  GamePuOverDay < 0
+                GamePuOverDay = 0
+            endif
+            BJDebugMsg.execute("初始化天数 已发布：："+I2S(GamePuOverDay))
+            BJDebugMsg.execute("初始化天数 通行证：："+I2S(MissionDay))
+            
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,ServerTimeDeBug())
         endfunction
         

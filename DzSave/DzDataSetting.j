@@ -4,7 +4,7 @@ library DzDataSetting uses DzBase
     
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
-    // 组1 1位 
+    // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包？
     // 组2
     // 组3
     // 组4 记录通行证经验
@@ -53,10 +53,8 @@ library DzDataSetting uses DzBase
         int max = GetDzDataGroupMaxValue(Group)
         //在此处添加 组 位 最大值
         if  Group == 1
-            if  flag == 1
-                max = 10
-            elseif  flag >= 11
-                max = 40
+            if  flag == 7
+                max = GamePuOverDay
             endif
         elseif Group == 4
             max = 9999

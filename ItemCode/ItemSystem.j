@@ -55,11 +55,13 @@ scope ItemSystem initializer InitItemSystem
 
 
                             Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
+                            SetPlayerOnlyDamage(Pu[100+index],pid)
                             IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                             HeroMoveToRoom(pid)
 
                         else
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r正在挑战中")
+                            HeroMoveToRoom(pid)
+                            //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r正在挑战中")
                         endif
                     endif
                 else

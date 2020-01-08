@@ -55,7 +55,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
                 Pu[26]=CreateUnit(Player(pid),'np06',x-512,y+256,270)//药品商店
                 
-                Pu[27]=CreateUnit(Player(pid),'u001',x+384,y+192,225)//送宝金蝉
+                Pu[27]=CreateUnit(Player(pid),'np27',x+384,y+192,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
                 SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,101)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
@@ -85,6 +85,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         unit u = FirstOfGroup(diesgroup[uid])
         if  u == null
             u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, AttackRoomPostion[pid][3], AttackRoomPostion[pid][4], bj_UNIT_FACING )
+            SetPlayerOnlyDamage(u,pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
             SetUnitLifePercentBJ( u, 100 )
@@ -99,7 +100,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
             PauseUnit(u,false)
             GroupAddUnit(AttackRoomGroup[pid],u)
             GroupRemoveUnit(diesgroup[uid],u)
-           
+            SetPlayerOnlyDamage(u,pid)
         endif
         u = null
     endfunction
@@ -163,13 +164,18 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     function SoulToFrog(int pid)
         real x = AttackRoomPostion[pid][1] 
         real y = AttackRoomPostion[pid][2] 
-        if  GetUnitTypeId(Pu[27]) == 'u001'
+        if  GetUnitTypeId(Pu[27]) == 'np27'
             RemoveUnit(Pu[27])
-            Pu[27]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
+            
+            Pu[27]=CreateUnit(Player(pid),'np28',x+512,y+512,270)
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,351)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+384,y+192,225)
-            LocAddEffect(x+512,y+256,"effect_az_bw_lina_t1-2.mdl")
+
+
+            Pu[28]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
+            
         endif
     endfunction
     function SoulTimerFunc(int id,real x,real y)
@@ -187,7 +193,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         TimerStart(0.03,true)
         {
             real dis = Pdis(x1,y1,x2,y2)
-            if  dis > 50 and GetUnitTypeId(Pu[27]) == 'u001'
+            if  dis > 50 and GetUnitTypeId(Pu[27]) == 'np27'
                 x1 = x1 + speed * Cos(GetUnitFacing(u1)*0.01745)
                 y1 = y1 + speed * Sin(GetUnitFacing(u1)*0.01745)
                 SetUnitFacing(u1,Pang(x1,y1,x2,y2)/0.01745)
@@ -217,10 +223,10 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         end
     endfunction
     
-    function AstrologyFunc(int pid)
+    function AstrologyFunc(int pid)//占星
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        int ran = GetRandomInt(0,4)
+        int ran = GetRandomInt(0,2)
         int num = 0
         int id = 'u0AA'+ran*0x100+num
 
@@ -229,12 +235,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
+                SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
                 bj_lastCreatedUnit = null
             end
         else
             bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
+            SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
             bj_lastCreatedUnit = null
         endif
 
@@ -243,6 +251,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
             BJDebugMsg("占星加法强")
         endif
     endfunction
+
+
+
 
     function SoulTimer2Func(int id,real x,real y)
         int pid = id
@@ -273,9 +284,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                     //SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
                 
                     if  life+0.5 >= maxlife
-                        BJDebugMsg("占星一下")
+                        
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-                        AstrologyFunc(pid)
+                        LocAddEffect(GetUnitX(Pu[27]),GetUnitY(Pu[27]),"effect_az_bw_lina_t1-2.mdl")
                     endif
                 endif
                 RemoveUnit(u1)
@@ -298,19 +309,21 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
         if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == true
-            if  GetUnitTypeId(Pu[27]) == 'u001'
+            if  GetUnitTypeId(Pu[27]) == 'np27'
                 SoulTimer(pid,x,y)
-            elseif  GetUnitTypeId(Pu[27]) == 'np03'
+            elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
             AttackRoomTimer = true
-            TimerStart(1,false)
+            TimerStart(0.8,false)
             {
                 RefreshAttackRoom(pid,AttackRoomUid)
                 
                 AttackRoomTimer = false
                 endtimer
+                flush locals
             }
+            flush locals
         endif
     
     endfunction

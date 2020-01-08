@@ -1,4 +1,4 @@
-library DzSave initializer InitDzData uses DzGameFunc
+library DzSave initializer InitDzData uses DzDataSetting
 
     function InitFlushDzDataGroupLength()
         for Group = 0,DzOriginServerNum
