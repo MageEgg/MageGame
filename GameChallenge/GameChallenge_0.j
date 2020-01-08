@@ -11,6 +11,8 @@ library GameChallenge0 uses GameChallengeBase
             PlayerReviveX = -6656
             PlayerReviveY = -6656
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+            PlayerReviveX = -6752
+            PlayerReviveY = -6752
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r前日卜算，只知有一将星出世，想必就是阁下了。商汤气微，封神大典即将拉开序幕。道友可去西岐历练一番，日后可成大功！")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff寻找周文王|r")
         endif
@@ -125,7 +127,7 @@ library GameChallenge0 uses GameChallengeBase
         TriggerAddAction(tig, function EnRctGameChalleng_0_JZY)
 
         tig = CreateTrigger() //周文王
-        TriggerRegisterUnitInRange(tig, GameDefendUnit,200,null)
+        TriggerRegisterUnitInRange(tig, GameDefendUnit,250,null)
         TriggerAddAction(tig, function EnRctGameDefendUnit)
 
         tig = null

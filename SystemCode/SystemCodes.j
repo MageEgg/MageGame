@@ -570,12 +570,14 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
     
     scope Dorp
+
         int DropUnitNum = 1
         int array DropUnitID
-        int array UnitDropItemID[3][2700]
-        int array UnitDropItemRan[3][2700]
+        int array UnitDropItemID[3][1000]
+        real array UnitDropItemRan[3][1000]
         
-        function UnitRanDropItemData(int u,int i1,int r1,int i2,int r2,int i3,int r3)
+        func UnitRanDropItemData(int u,int i1,real r1,int i2,real r2,int i3,real r3)
+            DropUnitNum = DropUnitNum + 1
             DropUnitID[DropUnitNum] = u
             UnitDropItemID[0][DropUnitNum] = i1
             UnitDropItemID[1][DropUnitNum] = i2
@@ -583,10 +585,9 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitDropItemRan[0][DropUnitNum] = r1
             UnitDropItemRan[1][DropUnitNum] = r2
             UnitDropItemRan[2][DropUnitNum] = r3
-            DropUnitNum = DropUnitNum + 1
-        endfunction
+        end
 
-        function DropItemTimerFunc()
+        /*function DropItemTimerFunc()
             timer t = GetExpiredTimer()
             item it = LoadItemHandle(ht,GetHandleId(t),1)
             int time = GetItemUserData(it) - 1
@@ -600,21 +601,19 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             endif
             t = null
             it = null
-        endfunction
+        endfunction*/
 
         function RanDropItem(unit wu,int pid)
             unit u1 = wu
             int max = DropUnitNum
-            int ran = 0
-            int Item = 0
+            real ran = 0
             for i = 0,max
                 if  GetUnitTypeId(u1) == DropUnitID[i]
                     for n = 0,2
-                        ran = R2I(I2R(UnitDropItemRan[n][i]))
-                        
-                        if  GetRandomInt(1,1000) <= ran and ran != 0
+                        ran = UnitDropItemRan[n][i]
+                        if  GetRandomReal(1,100) <= ran and ran != 0
                             CreateItem(UnitDropItemID[n][i],GetUnitX(u1),GetUnitY(u1))
-                            Item = Item + 1
+                            DestroyEffect(AddSpecialEffectTarget("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl",u1,"origin"))
                         endif
                     end
                     exitwhen true
