@@ -1166,10 +1166,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell51()
         insert BossSpell
         group gg = CreateGroup()
-        LocAddEffectSetSize(x2,y2,"effect2_zhendi-yinghua.mdl",1.2)
-        LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.1)
-        AddEffectInArea(x2,y2,380,8,"effect2_az_goods_force staff(3).mdl")
-        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        LocAddEffectSetSize(x2,y2,"effect2_zhendi-yinghua.mdl",1.5)
+        LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.0)
+        LocAddEffectSetSize(x2,y2,"effect2_blue-blink-lizi-start.mdl",1.1)
+        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"effect2_az_goods_force staff(3).mdl","origin",0))
         UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
@@ -1178,23 +1178,22 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell52()
         insert BossSpell
-        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect2_green-fulan.mdl",x2,y2,0,20,1.5)
-        unit u3 = CreateTmUnit(GetOwningPlayer(u1),"effect2_zise-buff-guangzhu.mdl",x2,y2,0,20,1.2)
+        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect2_green-fulan.mdl",x2,y2,0,20,2.0)
+        unit u3 = CreateTmUnit(GetOwningPlayer(u1),"effect2_green-fulan.mdl",x2,y2,0,20,1.0)
+        unit u4 = CreateTmUnit(GetOwningPlayer(u1),"effect2_zise-buff-guangzhu.mdl",x2,y2,0,20,1.2)
         int time = 0
         damage = damage / 10
         TimerStart(0.3,true)
         {
             group gg = CreateGroup()
             time = time + 1
-            if  time <= 3
-                AddEffectInArea(x2,y2,380,6,"effect3_red-zhendi.mdl")
-                AddEffectInArea(x2,y2,380,6,"effect2_zhendi-qiquan-boom.mdl")
-                LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.2)
+            if  time <= 10
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffcf,2,0))
                 UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 RemoveUnit(u3)
+                RemoveUnit(u4)
                 endtimer
             endif
             GroupClear(gg)
