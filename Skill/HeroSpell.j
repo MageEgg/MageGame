@@ -76,7 +76,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS008(unit u)//催枯
         if  GetUnitAbilityLevel(u,'A008')==0
-            AddUnitStateExTimer(u,18,-30,4)
             UnitTimerAddSkill(u,'A008',4)
             flush locals
         endif
