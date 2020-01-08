@@ -22,6 +22,7 @@ scope SelectHero
             //Pu[2] = CreateUnit(Player(pid),'zs00',1038,-5667,0)
             
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
+            ShowPlayerSignInLastTime(pid) //登陆刷新
             if  Player(pid)==GetLocalPlayer()
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                 PanCameraToTimed(PlayerReviveX,PlayerReviveY, 0 )

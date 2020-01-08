@@ -8,11 +8,12 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
         end
     endfunction
 
-    function z100Attack(unit u,unit u1)
-        unit u2 = m 
-        real x1 = GetUnitX(m)
-        real y1 = GetUnitY(m)
-        real Ang =Uang(u,u1)
+    function z100Attack(unit u,unit mb1)
+        unit u2 = u
+        unit mb = mb1
+        real x1 = GetUnitX(u2)
+        real y1 = GetUnitY(u2)
+        real Ang =Uang(u2,mb)
         real x2 = 50*Cos(Ang)
         real y2 = 50*Sin(Ang)
         integer time =10
@@ -131,7 +132,8 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
 
             loop    
                 exitwhen LoadInteger(ht,GetHandleId(u),id)>=Number
-                summon=CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
+                summon=CreateUnit(GetOwningPlayer(u),id,x+(100*Cos(LoadInteger(ht,GetHandleId(u),id)*0.785)),y+(100*Sin(LoadInteger(ht,GetHandleId(u),id)*0.785)),GetUnitFacing(u))
+
                 GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
                 SetUnitRealState(summon,1,GetUnitRealState(u,1)*0.3)
