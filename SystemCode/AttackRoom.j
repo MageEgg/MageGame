@@ -221,15 +221,18 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         int ran = GetRandomInt(0,4)
+        int num = 0
+        int id = 'u0AA'+ran*0x100+num
+
         if  ran == 0
             for i = 1,10
-                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'u010',x-512,y+384,270)
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
                 bj_lastCreatedUnit = null
             end
         else
-            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'u010'+ran,x-512,y+384,270)
+            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
             bj_lastCreatedUnit = null
