@@ -908,16 +908,30 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     real y=GetUnitY(u1)
     real ad = GetUnitAttack(u)
     real ap = GetHeroStr(u,true)
-    IndexGroup g = IndexGroup.create()
-    GroupEnumUnitsInRange(g.ejg,x,y,250,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-    GroupRemoveUnit(g.ejg,u1)
-    LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.3)
-    if  ad > ap
-        UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-    else
-        UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+    
+    IndexGroup g 
+    if  GetUnitAbilityLevel(u,'AZ15') > 0
+        g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,x,y,250,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        GroupRemoveUnit(g.ejg,u1)
+        LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.3)
+        if  ad > ap
+            UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        else
+            UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        endif
+        g.destroy()
     endif
-    g.destroy()
+    if  GetUnitAbilityLevel(u,'AZ16') > 0
+        if  Chance(u,15) == true
+            UnitAddEffect(u,"effect_az_sniper(2)_t_misslie.mdl")
+            if  ad > ap
+                UnitDamageTarget(u,u1,ad*3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null))
+            else
+                UnitDamageTarget(u,u1,ad*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            endif
+        endif
+    endif
     flush locals
 endfunction
 
