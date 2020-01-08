@@ -134,7 +134,7 @@ scope DeathEvent initializer InitDeathEvent
                     
     endfunction
     
-   function PlayerHeroAddState(int pid,int uid,unit wu)
+    function PlayerHeroAddState(int pid,int uid,unit wu)
         int index = 0
         int value = 0
         real gold = 0
@@ -149,7 +149,7 @@ scope DeathEvent initializer InitDeathEvent
             endif
         endif
         
-        exp = 5
+        exp = 1
         
         if  gold > 0
             gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)
