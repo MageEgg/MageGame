@@ -57,7 +57,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 
                 Pu[27]=CreateUnit(Player(pid),'np27',x+384,y+192,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,1201)
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
@@ -236,6 +236,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+                
+                
                 bj_lastCreatedUnit = null
             end
         elseif  ran == 1
@@ -243,12 +245,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+                
                 bj_lastCreatedUnit = null
             end
         else
             bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+            
             bj_lastCreatedUnit = null
         endif
 
