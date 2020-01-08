@@ -370,12 +370,22 @@ library CreateOpera uses DamageCode
         GroupAddUnit(AttackOperaGroup_B_2,AttackUnitOperaBoss)
         SetUnitOwnerTimer(AttackUnitOperaBoss,PLAYER_NEUTRAL_AGGRESSIVE,4.5)
         
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc02',3133,686,225)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc02',3136,672,225)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
 
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc03',3455,365,225)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc03',3488,672,225)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
+        GroupAddUnit(AttackOperaGroup_B_2,u)
+        SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
+
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc04',3136,352,225)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
+        GroupAddUnit(AttackOperaGroup_B_2,u)
+        SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
+
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc05',3488,352,225)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
