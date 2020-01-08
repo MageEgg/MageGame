@@ -34,12 +34,17 @@ scope SelectHero
             
             SetUnitRealState(Pu[1],5,1000)
             
+
+            UnitAddAbility(Pu[1],'M001')//魔法书
+
             UnitAddAbility(Pu[1],'AG01')
             UnitAddAbility(Pu[1],'AG02')
             UnitAddAbility(Pu[1],'AG03')
             UnitAddAbility(Pu[1],'AG04')
             UnitAddAbility(Pu[1],'AG05')
+
             UnitAddAbility(Pu[1],'AG06')
+            UnitAddAbility(Pu[1],'AG09')//法宝
             
             UnitAddAbility(Pu[1],'AG08')
 
