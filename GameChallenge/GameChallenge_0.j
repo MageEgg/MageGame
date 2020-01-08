@@ -7,6 +7,7 @@ library GameChallenge0 uses GameChallengeBase
             for n = 4,5
                 SetUnitAPOfBool(GameBiaoJI[n],2)
             end
+            UnitAddAbility(Pu[1],'AZ16')
             SetUnitAPOfBool(GameBiaoJI[6],3)
             PlayerReviveX = -6656
             PlayerReviveY = -6656
@@ -69,6 +70,7 @@ library GameChallenge0 uses GameChallengeBase
                     GameChallengBool[0] = true
                     UnitAddItemEx(Pu[1],'E001')
                     UnitAddItemEx(Pu[1],'E101')
+                    UnitAddAbility(Pu[1],'AZ15')
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E101')+"！\n")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看?")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀20个妖魅|r")
