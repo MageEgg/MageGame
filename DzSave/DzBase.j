@@ -8,6 +8,7 @@ library DzBase uses SystemCodes,DzAPI
     int array DzArrayPlayerInt4[200][40]
     int array DzArrayPlayerInt5[200][40]
     int array DzArrayBaseInt
+    bool array IsDzNewPlayer
     
     //#define DzEdition                 DzArrayBaseInt[0]
     #define DzOriginServerNum         DzArrayBaseInt[1]
