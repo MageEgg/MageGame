@@ -103,6 +103,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
                 else
                     SetUnitRealState(wu,i,R2I(value))
                 endif
+                BJDebugMsg(GetUnitName(wu)+StateName[i]+"+"+R2S(value))
             endif
         end
         
