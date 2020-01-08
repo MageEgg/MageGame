@@ -368,7 +368,6 @@ library CreateOpera uses DamageCode
         UnitAddAbility(AttackUnitOperaBoss,'AZ01')
         LocAddEffect(3800,1020,"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,AttackUnitOperaBoss)
-        SetUnitOwnerTimer(AttackUnitOperaBoss,PLAYER_NEUTRAL_AGGRESSIVE,4.5)
         
         u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc02',3136,672,225)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
@@ -467,6 +466,11 @@ library CreateOpera uses DamageCode
         CreateOperaBTimer()
         ExecuteFunc("ClearDamageRanking")
         ShowBossDamageUI(true)
+    endfunction
+
+    function OpenOperaB_Boss()
+        SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+        AttackPlayingHero(AttackUnitOperaBoss)
     endfunction
     
     ////////////////////////////////分割线///////////////////////////////
