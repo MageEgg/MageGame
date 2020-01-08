@@ -3,8 +3,8 @@ library DzDataSetting uses DzBase
     ///////////////////////////////////////////////////////////
     
     //请在这里记录注释存档数据
-    // 组0 用于记录版本
-    // 组1 长度2 共30位 1
+    // 组0 用于存储玩家上一次游戏时间戳
+    // 组1 1位 
     // 组2
     // 组3
     // 组4 记录通行证经验
@@ -12,7 +12,6 @@ library DzDataSetting uses DzBase
     // 组6
 
     function DzDataBaseSetting()
-        DzEdition = 1000 //地图版本号
         DzOriginServerNum = 49 //地图已申请的存档组
     endfunction
     

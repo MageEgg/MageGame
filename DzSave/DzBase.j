@@ -9,7 +9,7 @@ library DzBase uses SystemCodes,DzAPI
     int array DzArrayPlayerInt5[200][40]
     int array DzArrayBaseInt
     
-    #define DzEdition                 DzArrayBaseInt[0]
+    //#define DzEdition                 DzArrayBaseInt[0]
     #define DzOriginServerNum         DzArrayBaseInt[1]
     #define DzServerNum               DzArrayBaseInt[2]
     #define DzDataGroupLength(num)    DzArrayBaseInt[10+num]

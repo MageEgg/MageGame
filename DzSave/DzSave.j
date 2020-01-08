@@ -1,4 +1,4 @@
-library DzSave initializer InitDzData uses DzDataSetting
+library DzSave initializer InitDzData uses DzGameFunc
 
     function InitFlushDzDataGroupLength()
         for Group = 0,DzOriginServerNum
@@ -282,8 +282,8 @@ library DzSave initializer InitDzData uses DzDataSetting
         SaveDzRoom(pid)
     endfunction
 
-    function SaveDzEdition(int pid) //存储版本号
-        DzS[0] = I2S(DzEdition)
+    function SaveDzServerTime(int pid) //存储版本号
+        DzS[0] = I2S(ServerTime)
         if  DzConA[0] == 1
             DzAPI_Map_StoreString( Player(pid),"DZ0", DzS[0] )
         endif
@@ -348,7 +348,7 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 6
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        SaveDzEdition(pid) //更新版本
+                        SaveDzServerTime(pid) //更新版本
                     endif
                 end
             elseif  time == 7
