@@ -711,7 +711,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS087(unit u)
-        Summon(u,GetUnitX(u),GetUnitY(u),'z100')
+        Summon(u,GetUnitX(u),GetUnitY(u),'z101')
     endfunction
 
 
