@@ -730,20 +730,21 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             uu=FirstOfGroup(SummonGroup[pid])
             exitwhen uu==null
             if  GetUnitTypeId(uu)=='z100'
+                GroupRemoveUnit(SummonGroup[pid],uu)
+                SaveInteger(ht,GetHandleId(u),'z100',LoadInteger(ht,GetHandleId(u),'z100')-1)
+                KillUnit(uu)
                 if GetUnitAbilityLevel(u,'A086')==0
-                    GroupRemoveUnit(SummonGroup[pid],uu)
-                    SaveInteger(ht,GetHandleId(u),'z100',LoadInteger(ht,GetHandleId(u),'z100')-1)
-                    KillUnit(uu)
                     AddUnitStateExTimer(u,19,30,4)
                     UnitTimerAddSkill(u,'A086',4)
                 endif
             endif
 
             if  GetUnitTypeId(uu)=='z101'
+                GroupRemoveUnit(SummonGroup[pid],uu)
+                SaveInteger(ht,GetHandleId(u),'z101',LoadInteger(ht,GetHandleId(u),'z101')-1)
+                KillUnit(uu)
                 if GetUnitAbilityLevel(u,'A087')==0
-                    GroupRemoveUnit(SummonGroup[pid],uu)
-                    SaveInteger(ht,GetHandleId(u),'z101',LoadInteger(ht,GetHandleId(u),'z101')-1)
-                    KillUnit(uu)
+                  
                     AddUnitStateExTimer(u,32,40,4)
                     AddUnitStateExTimer(u,33,40,4)
                     UnitTimerAddSkill(u,'A087',4)
@@ -751,20 +752,20 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
 
             if  GetUnitTypeId(uu)=='z102'
-                if GetUnitAbilityLevel(u,'A089')==0
-                    GroupRemoveUnit(SummonGroup[pid],uu)
-                    SaveInteger(ht,GetHandleId(u),'z102',LoadInteger(ht,GetHandleId(u),'z102')-1)
-                    KillUnit(uu)
+                GroupRemoveUnit(SummonGroup[pid],uu)
+                SaveInteger(ht,GetHandleId(u),'z102',LoadInteger(ht,GetHandleId(u),'z102')-1)
+                KillUnit(uu)
+                if  GetUnitAbilityLevel(u,'A089')==0
                     AddUnitStateExTimer(u,9,80,4)
                     UnitTimerAddSkill(u,'A089',4)
                 endif
             endif
 
             if  GetUnitTypeId(uu)=='z103'
-                if GetUnitAbilityLevel(u,'A090')==0
-                    GroupRemoveUnit(SummonGroup[pid],uu)
-                    SaveInteger(ht,GetHandleId(u),'z103',LoadInteger(ht,GetHandleId(u),'z103')-1)
-                    KillUnit(uu)
+                GroupRemoveUnit(SummonGroup[pid],uu)
+                SaveInteger(ht,GetHandleId(u),'z103',LoadInteger(ht,GetHandleId(u),'z103')-1)
+                KillUnit(uu)
+                if  GetUnitAbilityLevel(u,'A090')==0
                     AddUnitStateExTimer(u,9,80,4)
                     UnitTimerAddSkill(u,'A090',4)
                 endif
