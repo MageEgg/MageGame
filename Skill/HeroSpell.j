@@ -909,9 +909,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     real ad = GetUnitAttack(u)
     real ap = GetHeroStr(u,true)
     IndexGroup g = IndexGroup.create()
-    GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+    GroupEnumUnitsInRange(g.ejg,x,y,250,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
     GroupRemoveUnit(g.ejg,u1)
-    LocAddEffect(x,y,"effect_by_wood_gongchengsipai_2.mdl")
+    LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.3)
     if  ad > ap
         UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
     else
