@@ -483,10 +483,10 @@ library SystemCodes uses ServerTime,Define1
     //////////////////////////////////顺序调整分割///////////////////////////////////////
 
     function SetPlayerOnlyDamage(unit u,int pid)
-        UnitAddAbility(u'AZ99')
+        UnitAddAbility(u,'AZ99')
         SetUnitAbilityLevel(u,'AZ99',pid+1)
     endfunction
-    
+
     function RemovePlayerOnlyDamage(unit u,int pid)
         if  GetUnitAbilityLevel(u'AZ99') > 0
             UnitRemoveAbility(u'AZ99')
