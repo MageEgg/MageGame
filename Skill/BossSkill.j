@@ -1163,6 +1163,47 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    function BossFuncSpell51()
+        insert BossSpell
+        group gg = CreateGroup()
+        LocAddEffectSetSize(x2,y2,"effect2_zhendi-yinghua.mdl",1.2)
+        LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.1)
+        AddEffectInArea(x2,y2,380,8,"effect2_az_goods_force staff(3).mdl")
+        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function BossFuncSpell52()
+        insert BossSpell
+        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect2_green-fulan.mdl",x2,y2,0,20,1.5)
+        unit u3 = CreateTmUnit(GetOwningPlayer(u1),"effect2_zise-buff-guangzhu.mdl",x2,y2,0,20,1.2)
+        int time = 0
+        damage = damage / 10
+        TimerStart(0.3,true)
+        {
+            group gg = CreateGroup()
+            time = time + 1
+            if  time <= 3
+                AddEffectInArea(x2,y2,380,6,"effect3_red-zhendi.mdl")
+                AddEffectInArea(x2,y2,380,6,"effect2_zhendi-qiquan-boom.mdl")
+                LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.2)
+                GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffcf,2,0))
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                RemoveUnit(u2)
+                RemoveUnit(u3)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
 
     function BossFuncSpell(unit wu,unit tu,int id)
         unit u1 = wu
@@ -1332,7 +1373,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell51")
         elseif  id == 'AZ1Z'
             damage = attack*4
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell52")
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell52")
 
         ////////////////////////////分割线////////////////////////////////
 
