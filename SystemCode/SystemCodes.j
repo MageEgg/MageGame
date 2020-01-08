@@ -416,6 +416,8 @@ library SystemCodes uses ServerTime,Define1
     function GetUnitScaleSize(unit u)->real
         return YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"modelscale")
     endfunction
+    
+    #define GetUnitScale   GetUnitScaleSize
 
     ///////////////////////////异步函数////////////////////////////
     function ShowUnitOfOnlyPlayerEx(unit wu)
@@ -619,7 +621,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitPoolAddUnitType( HeroPool, 'H030', 1 )
             UnitPoolAddUnitType( HeroPool, 'H031', 1 )
             */
-            UnitPoolAddUnitType( HeroPool, 'H002', 1 )
+            UnitPoolAddUnitType( HeroPool, 'H006', 1 )
 
         endfunction
 

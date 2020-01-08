@@ -369,15 +369,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
 
 
-    function SpellS506(unit wu,unit tu)
-        if  GetUnitState(tu,UNIT_STATE_LIFE)/GetUnitState(tu,UNIT_STATE_MAX_LIFE) <= 0.15
-            LocAddEffectTimerOrSize(GetUnitX(tu),GetUnitY(tu),Uang(wu,tu)/0.01745+20,"effect_hero_attack2.mdl",0,0.7)
-            LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
-            BJDebugMsg(GetUnitName(tu)+R2S(GetUnitState(tu,UNIT_STATE_LIFE)))
-            UnitDamageTarget(wu,tu,99999999,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,null)
-            
-        endif
-    endfunction
+    
 
     function SpellS508(unit wu)
         int num = 0

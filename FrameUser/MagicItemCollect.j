@@ -331,22 +331,36 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 s =  s + "\n" + GetMagicItemCollectLevelTips(GetMagicStateId(value),num) + "\n"
             endif
         end
-        return "\n|cff666666羁绊|r" + s
+        return "\n|cff999999羁绊|r" + s
     endfunction
 
     
     function BoxShowMagicItemPublic(int pid,int id)
         int h = 10
+        int value = 0
         if  id > 0
             DzFrameShow(UI_TipsHead, true)
             
 
-            SetTipsData(1,"",GetTypeIdName(id))
+            SetTipsData(1,"GetTypeIdIcon(id)",GetTypeIdName(id))
 
             SetTipsData(10,"",GetMagicItemStateAllName(id))
-            SetTipsData(11,"","|cff666666基础属性|r|n" + GetTypeIdTips(id))
+            SetTipsData(11,"","|cff999999基础属性|r|n" + GetTypeIdTips(id))
             
-            SetTipsData(12,"",GetMagicItemCollectTips(pid,id))
+            if  id == 'FB17'
+                value = GetUnitIntState(Pu[1],'FC17')
+                SetTipsData(12,"","|cff00ff00当前加成："+I2S(value)+"%")
+                h = 13
+            elseif  id == 'FB32'
+                value = GetUnitIntState(Pu[1],'FC32')
+                SetTipsData(12,"","|cff00ff00当前加成："+I2S(value))
+                h = 13
+            else
+                h = 12
+            endif
+            
+
+            SetTipsData(h,"",GetMagicItemCollectTips(pid,id))
 
 
             ShowTipsUI()
@@ -393,7 +407,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     if  i == last
                         SetTipsData(h,"","|cff00cc33"+I2S(use)+"："+GetTypeIdString(id,130+i))
                     else
-                        SetTipsData(h,"","|cff666666"+I2S(use)+"："+GetTypeIdString(id,130+i))
+                        SetTipsData(h,"","|cff999999"+I2S(use)+"："+GetTypeIdString(id,130+i))
                     endif
                     
                     h = h + 1
@@ -489,16 +503,127 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         end
         return true
     endfunction
+
+    function RePlayerMagicOtherState(int pid,int id,int offset)
+        int value = 0
+        if  id == 'FB17'
+            value = GetUnitIntState(Pu[1],'FC17')
+            AddUnitRealState(Pu[1],17,value*offset)
+        elseif  id == 'FB32'
+            value = GetUnitIntState(Pu[1],'FC32')
+            AddUnitRealState(Pu[1],2,value*offset)
+        endif
+    endfunction
+
+    //羁绊属性
+    function SetMagicItemState(int pid,int index,int now,int offset)
+        int s1 = 0
+        int s2 = 0
+        int v1 = 0
+        int v2 = 0
+        BJDebugMsg("index"+I2S(index)+"_now"+I2S(now)+"_off"+I2S(offset))
+        if  index == 1
+            s1 = 32
+            if  now >= 6
+                v1 = 45
+            elseif  now >= 4
+                v1 = 25
+            elseif  now >= 2
+                v1 = 10
+            endif
+        elseif  index == 2
+            s1 = 33
+            if  now >= 6
+                v1 = 45
+            elseif  now >= 4
+                v1 = 25
+            elseif  now >= 2
+                v1 = 10
+            endif
+        elseif  index == 3
+            s1 = 10
+            s2 = 18
+            if  now >= 6
+                v1 = 24
+                v2 = 24
+            elseif  now >= 3
+                v1 = 12
+                v2 = 12
+            endif
+        elseif  index == 4
+            s1 = 19
+            s2 = 20
+            if  now >= 4
+                v1 = 12
+                v2 = 120
+            elseif  now >= 2
+                v1 = 6
+                v2 = 60
+            endif
+        elseif  index == 5
+            s1 = 13
+            if  now >= 6
+                v1 = 25
+            elseif  now >= 3
+                v1 = 10
+            endif
+        elseif  index == 7
+            s1 = 14
+            if  now >= 6
+                v1 = 25
+            elseif  now >= 3
+                v1 = 10
+            endif
+        elseif  index == 8
+            s1 = 25
+            if  now >= 6
+                v1 = 30
+            elseif  now >= 4
+                v1 = 15
+            elseif  now >= 2
+                v1 = 5
+            endif
+        elseif  index == 9
+            s1 = 6
+            if  now >= 6
+                v1 = 120
+            elseif  now >= 4
+                v1 = 60
+            elseif  now >= 2
+                v1 = 20
+            endif
+        endif
+        if  s1 > 0 and v1 > 0
+            AddUnitRealState(Pu[1],s1,v1*offset)
+        endif
+        if  s2 > 0 and v2 > 0
+            AddUnitRealState(Pu[1],s2,v2*offset)
+        endif
+    endfunction
+
+    function ReMagicItemState(int pid,int index,int add)
+        int now = GetUnitIntState(Pu[1],index)
+        int new = now + add
+        SetUnitIntState(Pu[1],index,new)
+        SetMagicItemState(pid,index-MagicItemStateIndex,now,-1)
+        SetMagicItemState(pid,index-MagicItemStateIndex,new,1)
+    endfunction
+
     //移除刷新羁绊数据
     function RemPlayerMagicItemState(int pid,int index)
         int value = 0
         int id = GetPlayerMagicItem(pid,index)
+        
+        
         //if  IsMagicItemOnly(pid,index) == true
         if  id > 0
+            RemoveEquipState(Pu[1],id)
+            AddUnitIntState(Pu[1],id,-1)
+            RePlayerMagicOtherState(pid,id,-1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
-                    AddUnitIntState(Pu[1],MagicItemStateIndex+value,-1)
+                    ReMagicItemState(pid,MagicItemStateIndex+value,-1)
                 endif
             end
         endif
@@ -512,10 +637,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         
         //if  IsMagicItemOnly(pid,index) == true
         if  id > 0
+            AddEquipState(Pu[1],id)
+            AddUnitIntState(Pu[1],id,1)
+            RePlayerMagicOtherState(pid,id,1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
-                    AddUnitIntState(Pu[1],MagicItemStateIndex+value,1)
+                    ReMagicItemState(pid,MagicItemStateIndex+value,1)
                 endif
             end
         endif
@@ -531,6 +659,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetUnitIntState(Pu[1],MagicItemIndex+index,value)
             if  index <= 8
                 AddPlayerMagicItemState(pid,index)
+                
                 BJDebugMsg("法宝增加属性"+GetTypeIdName(value))
             else    
                 BJDebugMsg("不增加属性"+GetTypeIdName(value))
@@ -660,6 +789,57 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
 
+
+    function FB40Func(unit wu)
+        unit u1 = wu
+        int time = 20
+        SetUnitIntState(u1,'FC40',20)
+        UnitAddAbility(u1,'AZ40')
+        TimerStart(1,true)
+        {
+            time = time - 1
+            SetUnitIntState(u1,'FC40',time)
+            if  time <= 13
+                if  GetUnitAbilityLevel(u1,'AZ40') > 0
+                    UnitRemoveAbility(u1,'AZ40')
+                endif
+            endif
+            if  time <= 0
+                SetUnitIntState(u1,'FC40',0)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function FB47FuncTimer(unit wu)
+        unit u1 = wu
+        SetUnitIntState(wu,'FC43',1)
+        TimerStart(15,false)
+        {
+            SetUnitIntState(u1,'FC43',1)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    function FB47Func(unit wu)->bool
+        if  GetUnitIntState(wu,'FB43') > 0
+            if  GetUnitIntState(wu,'FC43') == 0
+                ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
+                LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
+                
+                if  GetOwningPlayer(wu)==GetLocalPlayer()
+                    ClearSelection()
+                    SelectUnit(wu,true)
+                    PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
+                endif
+                return true
+            endif
+        endif
+        return false
+    endfunction
 
     #undef MagicItemMax
     #undef MagicItemIndex

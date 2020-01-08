@@ -145,9 +145,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 10
         endif
         
-        
         exp = 5
-        
         
         if  gold > 0
             gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)
@@ -158,16 +156,27 @@ scope DeathEvent initializer InitDeathEvent
             AdjustPlayerStateBJ( R2I(wood) ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
         endif
 
-        
-        
-        
-        
-  
-        
         if  exp > 0
             HeroAddExp( Pu[1],exp)
         endif
+
+
+        if  GetUnitIntState(Pu[1],'FB17') > 0
+            value = GetUnitIntState(Pu[1],'FC17')
+            if  value < 30
+                AddUnitRealState(Pu[1],17,1)
+                AddUnitIntState(Pu[1],'FC17',1)
+            endif
+        endif
+        if  GetUnitIntState(Pu[1],'FB32') > 0
+            value = GetUnitIntState(Pu[1],'FC32')
+            if  value < 60000
+                AddUnitRealState(Pu[1],2,100)
+                AddUnitIntState(Pu[1],'FC32',100)
+            endif
+        endif
     end
+
     function CreateNewForg(int id1,int id2)
         int pid = id1
         int uid = id2
@@ -288,6 +297,8 @@ scope DeathEvent initializer InitDeathEvent
             endtimer
         }
     endfunction
+
+    
     
     function DeathEventFunc()
     
@@ -306,11 +317,20 @@ scope DeathEvent initializer InitDeathEvent
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
                     if  SpellS529Spell(u1) == false
-                        RevivePlayerHero(pid)
-                        BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
-                        GameChallengPlayerDeathEvent(u1)
-                        
+                        if  FB47Func(u1) == false
+                            RevivePlayerHero(pid)
+                            BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+                            GameChallengPlayerDeathEvent(u1)
+
+                            if  GetUnitIntState(Pu[1],'FB17') > 0
+                                //清除法宝的伤害加成
+                                AddUnitRealState(Pu[1],17,-GetUnitIntState(Pu[1],'FC17'))
+                                SetUnitIntState(Pu[1],'FC17',0)
+                            endif
+
+                        endif
                     endif
+
                 endif
             else
                 if  uid == 'H005'

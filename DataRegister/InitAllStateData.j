@@ -1,4 +1,5 @@
 scope InitAllStateData initializer InitMapEquipState
+
 function InitStateData1()
 InitTypeState1('S007',0,0,0,0,0,0,0,0,-80,0)
 InitTypeState1('S031',0,0,0,0,0,0,0,0,-40,0)
@@ -8,6 +9,7 @@ InitTypeState1('S041',0,0,0,0,0,0,0,0,25,0)
 InitTypeState1('S042',0,0,0,0,0,0,0,0,40,0)
 InitTypeState1('S107',0,0,0,0,0,0,0,0,0,25)
 InitTypeState1('S108',0,0,0,0,0,0,0,0,0,15)
+InitTypeState1('S126',0,0,0,0,0,0,0,0,0,10)
 InitTypeState1('E001',1000,0,0,0,0,0,0,0,13,0)
 InitTypeState1('E002',2000,0,0,0,0,0,0,0,13,0)
 InitTypeState1('E003',3000,0,0,0,0,0,0,0,13,0)
@@ -103,7 +105,7 @@ InitTypeState1('FB37',15000,0,0,0,0,0,0,0,0,0)
 InitTypeState1('FB41',0,15000,0,0,0,0,0,0,0,0)
 InitTypeState1('FB48',0,0,0,0,0,0,0,0,0,10)
 InitTypeState1('FB52',0,0,0,0,80000,0,0,0,0,0)
-endfunction
+	endfunction
 function InitStateData2()
 InitTypeState2('S001',0,120,0,0,0,0,0,0,0,0)
 InitTypeState2('S007',0,100,0,0,0,0,0,0,0,0)
@@ -118,6 +120,9 @@ InitTypeState2('S037',0,-50,0,0,0,0,0,0,0,0)
 InitTypeState2('S042',0,0,0,0,0,-50,0,0,0,0)
 InitTypeState2('S066',0,0,0,25,0,0,0,0,0,0)
 InitTypeState2('S068',0,0,0,15,0,0,0,0,0,0)
+InitTypeState2('S114',0,0,0,0,0,0,0,0,10,0)
+InitTypeState2('S121',0,0,0,10,0,0,0,0,0,0)
+InitTypeState2('S122',0,0,10,0,0,0,0,0,0,0)
 InitTypeState2('E006',0,0,0,0,0,0,0,0,3,0)
 InitTypeState2('E007',0,0,0,0,0,0,0,0,3,0)
 InitTypeState2('E008',0,0,0,0,0,0,0,0,3,0)
@@ -201,8 +206,11 @@ InitTypeState3('S012',0,30,0,0,0,0,0,0,0,0)
 InitTypeState3('S013',0,0,15,0,0,0,0,0,0,0)
 InitTypeState3('S014',0,0,0,200,0,0,0,0,0,0)
 InitTypeState3('S015',0,0,10,0,0,0,0,0,0,0)
+InitTypeState3('S029',0,0,0,0,0,0,10,0,0,0)
 InitTypeState3('S058',0,0,0,0,15,0,0,0,0,0)
 InitTypeState3('S059',0,0,0,0,10,0,0,0,0,0)
+InitTypeState3('S118',0,0,0,0,0,0,0,3,0,0)
+InitTypeState3('S119',3,0,0,0,0,0,0,0,0,0)
 InitTypeState3('E101',0,0,0,0,3,0,0,0,0,0)
 InitTypeState3('E102',0,0,0,0,3,0,0,0,0,0)
 InitTypeState3('E103',0,0,0,0,3,0,0,0,0,0)
@@ -229,7 +237,7 @@ InitTypeState3('E123',0,0,0,0,15,0,0,0,0,0)
 InitTypeState3('E124',0,0,0,0,15,0,0,0,0,0)
 InitTypeState3('E125',0,0,0,0,15,0,0,0,0,0)
 InitTypeState3('H010',0,0,0,0,10,0,0,0,0,0)
-InitTypeState3('FB01',0,0,0,0,15,0,0,0,0,0)
+InitTypeState3('FB01',0,0,0,0,13,0,0,0,0,0)
 InitTypeState3('FB19',0,0,0,0,7,0,0,0,0,0)
 InitTypeState3('FB22',0,0,0,0,10,0,0,0,0,0)
 InitTypeState3('FB33',5,0,0,0,0,0,0,0,0,0)
@@ -244,12 +252,13 @@ InitTypeState4('FB15',30,0,0,0,0,0,0,0,0,0)
 InitTypeState4('FB26',0,0,15,0,0,0,0,0,0,0)
 InitTypeState4('FB28',0,10,0,0,0,0,0,0,0,0)
 InitTypeState4('FB30',0,0,10,0,0,0,0,0,0,0)
-InitTypeState4('FB47',0,0,80,0,0,0,0,0,0,0)
+InitTypeState4('FB47',0,80,0,0,0,0,0,0,0,0)
 endfunction
 function InitStateData5()
 endfunction
 function InitStateData6()
-	endfunction
+InitTypeState6('FB08',200,0,0,0,0,0,0,0,0,0)
+endfunction
 function InitStateData7()
 endfunction
 function InitMapEquipState()
@@ -262,6 +271,3 @@ ExecuteFunc("InitStateData6")
 ExecuteFunc("InitStateData7")
 endfunction
 endscope
-
-
-
