@@ -471,6 +471,83 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
+    function SpellS074_2(unit u,unit mj,real damage1)
+        unit u1=u
+        unit u2=mj
+        real dam=damage1
+        real ang=Uang(u2,u1)
+        real dis=Udis(u2,u1)
+        integer i=0
+         group wg = CreateGroup()
+        TimerStart(0.03,true)
+        {
+            i=i+1
+            if i>30
+                ang=Uang(u2,u1)
+                dis=Udis(u2,u1)
+                group gg = CreateGroup()
+                if  dis>70
+                    SetUnitX(u2,GetUnitX(u2)+70*Cos(ang))
+                    SetUnitY(u2,GetUnitY(u2)+70*Sin(ang))
+                    GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'ABFG',3,852075))
+                    UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                else
+                    SetUnitX(u2,GetUnitX(u1))
+                    SetUnitY(u2,GetUnitY(u1))
+                    GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'ABFG',3,852075))
+                    UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                    RemoveUnit(u2)
+                    flush locals
+                    endtimer
+                endif
+                GroupClear(gg)
+                DestroyGroup(gg)
+            endif
+        }
+            
+
+    endfunction
+
+    function SpellS074_1(unit u,real ang1,real damage1)
+        unit u1=u
+        real ang=ang1
+        real dam=damage1
+        integer time=25
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_fense-lizi-toushewu.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,70,1)
+        group wg = CreateGroup()
+        real x=0
+        real y=0
+        TimerStart(0.02,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            if  time > 0
+                x = GetUnitX(u2) + 50*Cos(ang)
+                y = GetUnitY(u2) + 50*Sin(ang)
+                SetUnitPosition(u2,x,y)
+                GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'ABFG',3,852075))
+                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+            else
+                GroupClear(wg)
+                DestroyGroup(wg)
+                SpellS074_2(u1,u2,dam)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+    
+    function SpellS074(unit u,real x,real y,real damage)
+        real ang=Pang(GetUnitX(u),GetUnitY(u),x,y)
+        ang=ang-0.31
+        for i= 0,2
+            SpellS074_1(u,ang+(I2R(i)*0.31),damage)
+        end
+    endfunction
+
     function SpellS076(unit wu,unit u1,real damage)//连环刺
         unit u=wu
         real x=GetUnitX(u1)
@@ -642,8 +719,58 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         Summon(u,GetUnitX(u),GetUnitY(u),'z102')
     endfunction
 
-    function SpellS090(unit u)
+     function SpellS090(unit u)
         Summon(u,GetUnitX(u),GetUnitY(u),'z103')
+    endfunction
+
+    function SpellS091(unit u)
+        integer pid = GetPlayerId(GetOwningPlayer(u))
+        unit uu=null
+        loop
+            uu=FirstOfGroup(SummonGroup[pid])
+            exitwhen uu==null
+            if  GetUnitTypeId(uu)=='z100'
+                if GetUnitAbilityLevel(u,'A086')==0
+                    GroupRemoveUnit(SummonGroup[pid],uu)
+                    SaveInteger(ht,GetHandleId(u),'z100',LoadInteger(ht,GetHandleId(u),'z100')-1)
+                    KillUnit(uu)
+                    AddUnitStateExTimer(u,19,30,4)
+                    UnitTimerAddSkill(u,'A086',4)
+                endif
+            endif
+
+            if  GetUnitTypeId(uu)=='z101'
+                if GetUnitAbilityLevel(u,'A087')==0
+                    GroupRemoveUnit(SummonGroup[pid],uu)
+                    SaveInteger(ht,GetHandleId(u),'z101',LoadInteger(ht,GetHandleId(u),'z101')-1)
+                    KillUnit(uu)
+                    AddUnitStateExTimer(u,32,40,4)
+                    AddUnitStateExTimer(u,33,40,4)
+                    UnitTimerAddSkill(u,'A087',4)
+                endif
+            endif
+
+            if  GetUnitTypeId(uu)=='z102'
+                if GetUnitAbilityLevel(u,'A089')==0
+                    GroupRemoveUnit(SummonGroup[pid],uu)
+                    SaveInteger(ht,GetHandleId(u),'z102',LoadInteger(ht,GetHandleId(u),'z102')-1)
+                    KillUnit(uu)
+                    AddUnitStateExTimer(u,9,80,4)
+                    UnitTimerAddSkill(u,'A089',4)
+                endif
+            endif
+
+            if  GetUnitTypeId(uu)=='z103'
+                if GetUnitAbilityLevel(u,'A090')==0
+                    GroupRemoveUnit(SummonGroup[pid],uu)
+                    SaveInteger(ht,GetHandleId(u),'z103',LoadInteger(ht,GetHandleId(u),'z103')-1)
+                    KillUnit(uu)
+                    AddUnitStateExTimer(u,9,80,4)
+                    UnitTimerAddSkill(u,'A090',4)
+                endif
+            endif
+        endloop
+        u=null
     endfunction
 
 
@@ -852,6 +979,66 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         Summon(u,x,y,'z105')
     endfunction
 
+    function SpellS113Attack(unit u,real x1,real y1,real damage)
+        unit u1 = u 
+        real x = x1
+        real y = y1
+        real dam = damage
+        real dis=0
+        group wg = CreateGroup()
+        real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
+        real x0 = GetUnitX(u1)
+        real y0 = GetUnitY(u1)
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",x0,y0,ang/0.01745,0,1)
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            dis=Pdis(GetUnitX(u2),GetUnitY(u2),x,y)
+            if  dis > 50
+                x0 = GetUnitX(u2) + 50*Cos(ang)
+                y0 = GetUnitY(u2) + 50*Sin(ang)
+                SetUnitPosition(u2,x0,y0)
+                GroupEnumUnitsInRange(gg,x0,y0,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
+            else
+                GroupClear(wg)
+                SetUnitPosition(u2,x,y)
+                GroupEnumUnitsInRange(gg,x0,y0,400,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                UnitDamageGroup(u1,gg,dam,false,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                DestroyGroup(wg)
+                KillUnit(u2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS113(unit u,real x1,real y1,real damage)
+        unit u1 = u 
+        real x = x1
+        real y = y1
+        real dam = damage
+        integer i=0
+        if  Chance(u1,30)==true
+            TimerStart(0.2,true)
+            {
+                i=i+1
+                if  i <= 3
+                    SpellS113Attack(u1,x,y,dam)
+                else
+                    endtimer
+                endif
+            }
+        else
+            SpellS113Attack(u1,x,y,dam)
+        endif
+        flush locals
+
+    endfunction
+
     function SpellS115(unit u,real x1,real y1,real damage)
         unit u1 = u 
         real x = x1
@@ -860,15 +1047,18 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         integer time = 100
         group wg = CreateGroup()
         real ang=Pang(GetUnitX(u1),GetUnitY(u1),x,y)
+        x = GetUnitX(u1)
+        y = GetUnitY(u1)
         unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_shandianzhiqiang.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,0,1)
+ 
         TimerStart(0.03,true)
         {
             group gg = CreateGroup()
             time = time - 1
             dam=dam+(dam*0.03)+10
             if  time > 0
-                x = x + 30*Cos(ang)
-                y = y + 30*Sin(ang)
+                x = x + 50*Cos(ang)
+                y = y + 50*Sin(ang)
                 SetUnitPosition(u2,x,y)
                 GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
                 UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
@@ -1303,6 +1493,8 @@ endfunction
                 SpellS070(u1.u,sx,sy,damage)
             elseif  id== 'S073'
                 SpellS073(u1.u,damage)
+            elseif  id== 'S074'
+                SpellS074(u1.u,sx,sy,damage)
             elseif  id== 'S078'
                 SpellS078(u1.u,sx,sy,damage)
             elseif  id== 'S080'
@@ -1321,6 +1513,8 @@ endfunction
                 SpellS089(u1.u)
             elseif  id== 'S090'    
                 SpellS090(u1.u)
+             elseif  id== 'S091'    
+                SpellS091(u1.u)
             elseif  id== 'S100'    
                 SpellS100(u1.u)
             elseif  id== 'S101'    
@@ -1331,6 +1525,10 @@ endfunction
                 SpellS111(u1.u)
              elseif  id== 'S112'    
                 SpellS112(u1.u,sx,sy)
+             elseif  id== 'S113'    
+                SpellS113(u1.u,sx,sy,damage)
+             elseif  id== 'S115'    
+                SpellS115(u1.u,sx,sy,damage)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
 
