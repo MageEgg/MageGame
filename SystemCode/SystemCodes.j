@@ -488,7 +488,7 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function RemovePlayerOnlyDamage(unit u,int pid)
-        if  GetUnitAbilityLevel(u'AZ99') > 0
+        if  GetUnitAbilityLevel(u,'AZ99') > 0
             UnitRemoveAbility(u,'AZ99')
         endif
     endfunction
