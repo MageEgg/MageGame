@@ -915,7 +915,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     if  ad > ap
         UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
     else
-        UnitDamageGroup(u,g.ejg,a[],false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
     endif
     g.destroy()
     flush locals
