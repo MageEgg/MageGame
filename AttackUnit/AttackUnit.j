@@ -254,7 +254,54 @@ library AttackUnit uses DamageCode
     function AttackUnitGroupTimer()
         ForGroup(AttackUnitGroup,function AttackUnitGroupFunc)
     endfunction
+
+    function AddBossAttachUnitState(unit u)
+        int uid = GetUnitTypeId(u)+256
+        real value = 0
+        for i = 1,40
+            value = GetTypeIdReal(uid,i)
+            if  value != 0
+                if  i == 9
+                    AddUnitRealState(u,i,R2I(value))
+                else
+                    SetUnitRealState(u,i,R2I(value))
+                endif
+            endif
+        end
+    endfunction
     
+    function CreateBossAttachUnitFunc(unit wu,real ex,real ey)
+        real x = GetUnitX(wu)
+        real y = GetUnitY(wu)
+        real sx = 0
+        real sy = 0 
+        unit u = null
+        for num = 1,4
+            sx = x + 250*Cos((90*num+45)*0.01745)
+            sy = y + 250*Sin((90*num+45)*0.01745)
+            u = CreateUnit(Player(11),'ma01'+GetRandomInt(0,8),ex,ey,GetUnitFacing(wu))
+            AddBossAttachUnitState(u)
+            SetUnitXY(u,sx,sy)
+            IssuePointOrderById(u,851983,ex,ey)
+            GroupAddUnit(AttackUnitGroup,u)
+        end
+        BJDebugMsg("CreateBossAttachUnit")
+        u = null
+    endfunction
+
+    function CreateBossAttachUnit(unit wu,real x,real y,real time)
+        unit u = wu
+        real ex = x
+        real ey = y
+        TimerStart(time,false)
+        {
+            CreateBossAttachUnitFunc(u,ex,ey)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function OpenCreateBossTimer()
         timer t = GetExpiredTimer()
         int FlushNum = LoadInteger(ht,GetHandleId(t),1)
@@ -278,6 +325,7 @@ library AttackUnit uses DamageCode
                             PingMinimap(psx[k],psy[k],5)
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
+                            CreateBossAttachUnit(u,pex[k],pey[k],3)
                         end
                     endif
                 endif

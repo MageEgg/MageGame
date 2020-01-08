@@ -66,7 +66,10 @@ library DamageCode uses UnitStateSet
     //普攻伤害加强
     function GetUnitPsState(unit wu)->real
         real s = GetUnitRealState(wu,12)
-        int lv = 0
+        if  s <= -100
+            s = -100
+        endif
+
         return s
     endfunction
     function GetUnitPs(unit wu)->real
@@ -116,6 +119,10 @@ library DamageCode uses UnitStateSet
             endif
         endif
 
+        if  s <= -100
+            s = -100
+        endif
+
         return s
     endfunction
     function GetUnitWs(unit wu)->real
@@ -128,6 +135,9 @@ library DamageCode uses UnitStateSet
     function GetUnitFsState(unit wu)->real
         real s = GetUnitRealState(wu,16)
         real lv = 0
+        if  s <= -100
+            s = -100
+        endif
 
         return s
     endfunction
@@ -142,6 +152,9 @@ library DamageCode uses UnitStateSet
         real s = GetUnitRealState(wu,17)
         if  s > 90
             s = 90
+        elseif  s <= -100
+            s = -100
+        
         endif
         return s
     endfunction
@@ -231,7 +244,7 @@ library DamageCode uses UnitStateSet
     endfunction
     //致命伤害
     function GetUnitZsState(unit wu)->real
-        real s = GetUnitRealState(wu,23)
+        real s = GetUnitRealState(wu,24)
         
         return s
     endfunction
