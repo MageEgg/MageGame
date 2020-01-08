@@ -116,7 +116,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 num = num + 1
                 SetUnitIntState(Pu[1],150+num,id)
                 SetUnitIntState(Pu[1],150,num)
-                BJDebugMsg("num"+I2S(num))
+                //BJDebugMsg("num"+I2S(num))
                 AddEquipState(Pu[1],id)
                 HeroIncLevel(Pu[1])
                 if  num == 7

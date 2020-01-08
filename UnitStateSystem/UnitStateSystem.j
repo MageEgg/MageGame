@@ -390,7 +390,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         
         if  value < 0
             value = 1073741824+value
-            BJDebugMsg("负数"+I2S(value))
+            //BJDebugMsg("负数"+I2S(value))
             SetUnitAbilityLevel(wu,id,2)
         else
             SetUnitAbilityLevel(wu,id,1)

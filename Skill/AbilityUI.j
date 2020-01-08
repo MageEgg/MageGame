@@ -24,7 +24,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         real r1 = GetTypeIdReal(id,101)
         real r2 = GetTypeIdReal(id,102)
         int chi = GetTypeIdData(id,102)     
-        BJDebugMsg(GetUnitName(wu))
+        //BJDebugMsg(GetUnitName(wu))
         if  chi == 99
             return r1 * (GetUnitAttack(wu)+GetUnitRealState(wu,2))
         elseif  chi == 1

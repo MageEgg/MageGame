@@ -183,7 +183,7 @@ library DamageCode uses UnitStateSet
     
     //暴击伤害
     function GetUnitBsState(unit wu)->real
-        real s = GetUnitRealState(wu,20)+150
+        real s = GetUnitRealState(wu,20)
         return s
     endfunction
     
@@ -231,7 +231,7 @@ library DamageCode uses UnitStateSet
     endfunction
     //致命伤害
     function GetUnitZsState(unit wu)->real
-        real s = GetUnitRealState(wu,23)+150
+        real s = GetUnitRealState(wu,23)
         
         return s
     endfunction

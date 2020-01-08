@@ -912,9 +912,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     IndexGroup g 
     if  GetUnitAbilityLevel(u,'AZ15') > 0
         g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x,y,250,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         GroupRemoveUnit(g.ejg,u1)
-        LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.3)
+        LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
         if  ad > ap
             UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         else
@@ -924,7 +924,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endif
     if  GetUnitAbilityLevel(u,'AZ16') > 0
         if  Chance(u,15) == true
-            UnitAddEffect(u,"effect_az_sniper(2)_t_misslie.mdl")
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect2_az_goods_force staff(3).mdl")
             if  ad > ap
                 UnitDamageTarget(u,u1,ad*3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else

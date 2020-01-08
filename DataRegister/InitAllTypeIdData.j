@@ -1,12 +1,5 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
-    
-
-
-
-
-
-
         call InitTypeIdStrings('FB01',"打神鞭","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","冷却+13%")
         call InitTypeIdStrings('FB02',"中央戊己旗","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","蓝量回复+4/s")
         call InitTypeIdStrings('FB03',"四不像","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","攻击+20%")
@@ -88,7 +81,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IP03',"鸿蒙结晶","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","消耗鸿蒙结晶，可将指定法宝锻造为高一品阶的随机法宝。")
         BJDebugMsg("init1end")
     endfunction
-
     function InitDataString2()//注册法宝说明数据
         InitTypeIdJbStateOnec('FJ01',"提高10%攻击力","提高25%攻击力","提高45%攻击力")
         InitTypeIdJbStateOnec('FJ02',"提高10%法术强度","提高25%法术强度","提高45%法术强度")
@@ -99,7 +91,6 @@ scope AllTypeIdData initializer init
         InitTypeIdJbStateOnec('FJ07',"提高20%法穿","提高40%法穿","")
         InitTypeIdJbStateOnec('FJ08',"提高5%冷却缩减","提高15%冷却缩减","提高30%冷却缩减")
         InitTypeIdJbStateOnec('FJ09',"增加20蓝量","增加60蓝量","增加120蓝量")
-
         InitTypeIdJbState('FJ01',2,"|cff999999武器(|r|cff00ff002|r|cff999999/4/6)\n提高|r|cff00ff0010|r|cff999999/25/45%攻击力|r",4,"|cff999999武器(2/|r|cff00ff004|r|cff999999/6)\n提高10/|r|cff00ff0025|r|cff999999/45%攻击力|r",6,"|cff999999武器(2/4/|r|cff00FF006|r|cff999999)\n提高10/25/|r|cff00ff0045|r|cff999999%攻击力|r","|cff999999武器(2/4/6)\n提高10/25/45%攻击力|r")
         InitTypeIdJbState('FJ02',2,"|cff999999副手(|r|cff00ff002|r|cff999999/4/6)\n提高|r|cff00ff0010|r|cff999999/25/45%法术强度|r",4,"|cff999999副手(2/|r|cff00ff004|r|cff999999/6)\n提高10/|r|cff00ff0025|r|cff999999/45%法术强度|r",6,"|cff999999副手(2/4/|r|cff00FF006|r|cff999999)\n提高10/25/|r|cff00ff0045|r|cff999999%法术强度|r","|cff999999副手(2/4/6)\n提高10/25/45%法术强度|r")
         InitTypeIdJbState('FJ03',3,"|cff999999护具(|r|cff00ff003|r|cff999999/6)\n闪避/伤害减免增加|r|cff00ff0012|r|cff999999/24%|r",6,"|cff999999护具(3/|r|cff00ff006|r|cff999999)\n闪避/伤害减免增加12/|r|cff00ff0024|r|cff999999%|r",0,"","|cff999999护具(3/6)\n闪避/伤害减免增加12/24%|r")
@@ -109,12 +100,8 @@ scope AllTypeIdData initializer init
         InitTypeIdJbState('FJ07',3,"|cff999999秘宝(|r|cff00ff003|r|cff999999/6)\n提高|r|cff00ff0020|r|cff999999/40%法穿|r",6,"|cff999999秘宝(3/|r|cff00ff006|r|cff999999)\n提高20/|r|cff00ff0040|r|cff999999%法穿|r",0,"","|cff999999秘宝(3/6)\n提高20/40%法穿|r")
         InitTypeIdJbState('FJ08',2,"|cff999999坐骑(|r|cff00ff002|r|cff999999/4/6)\n提高|r|cff00ff005|r|cff999999/15/30%冷却缩减|r",4,"|cff999999坐骑(2/|r|cff00ff004|r|cff999999/6)\n提高5/|r|cff00ff0015|r|cff999999/30%冷却缩减|r",6,"|cff999999坐骑(2/4/|r|cff00FF006|r|cff999999)\n提高5/15/|r|cff00ff0030|r|cff999999%冷却缩减|r","|cff999999坐骑(2/4/6)\n提高5/15/30%冷却缩减|r")
         InitTypeIdJbState('FJ09',2,"|cff999999法器(|r|cff00ff002|r|cff999999/4/6)\n增加|r|cff00ff0020|r|cff999999/60/120蓝量|r",4,"|cff999999法器(2/|r|cff00ff004|r|cff999999/6)\n增加20/|r|cff00ff0060|r|cff999999/120蓝量|r",6,"|cff999999法器(2/4/|r|cff00FF006|r|cff999999)\n增加20/60/|r|cff00ff00120|r|cff999999蓝量|r","|cff999999法器(2/4/6)\n增加20/60/120蓝量|r")
-
-    
         BJDebugMsg("init2end")
     endfunction
-    
-
     function InitDataInt1()
         InitTypeIdData('FB01',0,2,7,0,0,0,0,0,0,0,0,0)
         InitTypeIdData('FB02',0,4,4,0,0,0,0,0,0,0,0,0)
@@ -171,7 +158,6 @@ scope AllTypeIdData initializer init
         BJDebugMsg("init3end")
     endfunction
     function InitDataInt2()
-
         InitEquipData('E001',0,0,2000,0,0,'E002',0,0)
         InitEquipData('E002',0,0,2000,0,0,'E003',0,0)
         InitEquipData('E003',0,0,2000,0,0,'E004',0,0)
@@ -196,7 +182,6 @@ scope AllTypeIdData initializer init
         InitEquipData('E022',0,0,42000,0,0,'E023',0,0)
         InitEquipData('E023',0,0,42000,0,0,'E024',0,0)
         InitEquipData('E024',0,0,42000,0,0,'E025',0,0)
-
         InitEquipData('E101',0,0,2000,0,0,'E102',0,0)
         InitEquipData('E102',0,0,2000,0,0,'E103',0,0)
         InitEquipData('E103',0,0,2000,0,0,'E104',0,0)
@@ -221,7 +206,6 @@ scope AllTypeIdData initializer init
         InitEquipData('E122',0,0,42000,0,0,'E123',0,0)
         InitEquipData('E123',0,0,42000,0,0,'E124',0,0)
         InitEquipData('E124',0,0,42000,0,0,'E125',0,0)
-
         InitEquipData('E201',0,0,2000,0,0,'E202',0,0)
         InitEquipData('E202',0,0,2000,0,0,'E203',0,0)
         InitEquipData('E203',0,0,2000,0,0,'E204',0,0)
@@ -246,9 +230,6 @@ scope AllTypeIdData initializer init
         InitEquipData('E222',0,0,42000,0,0,'E223',0,0)
         InitEquipData('E223',0,0,42000,0,0,'E224',0,0)
         InitEquipData('E224',0,0,42000,0,0,'E225',0,0)
-
-
-
         InitEquipData('IT01',0,0,0,0,0,0,-8155,-3943)
         InitEquipData('IT02',0,0,0,0,0,0,-7872,-2816)
         InitEquipData('IT03',0,0,0,0,0,0,-8048,-1563)
@@ -280,22 +261,20 @@ scope AllTypeIdData initializer init
         SetTypeIdData('u0AK',103,3690)
         SetTypeIdData('u0AL',103,4166)
         SetTypeIdData('u0AM',103,4761)
-        SetTypeIdData('u0BA',103,2476)
-        SetTypeIdData('u0BB',103,4953)
-        SetTypeIdData('u0BC',103,6858)
-        SetTypeIdData('u0BD',103,13717)
-        SetTypeIdData('u0BE',103,16766)
-        SetTypeIdData('u0BF',103,25882)
-        SetTypeIdData('u0BG',103,35294)
-        SetTypeIdData('u0BH',103,36190)
-        SetTypeIdData('u0BI',103,43809)
-        SetTypeIdData('u0BJ',103,51428)
-        SetTypeIdData('u0BK',103,59047)
-        SetTypeIdData('u0BL',103,66666)
-        SetTypeIdData('u0BM',103,76190)
-
+        SetTypeIdData('u0BA',103,619)
+        SetTypeIdData('u0BB',103,1238)
+        SetTypeIdData('u0BC',103,1715)
+        SetTypeIdData('u0BD',103,3429)
+        SetTypeIdData('u0BE',103,4192)
+        SetTypeIdData('u0BF',103,6471)
+        SetTypeIdData('u0BG',103,8842)
+        SetTypeIdData('u0BH',103,9048)
+        SetTypeIdData('u0BI',103,10952)
+        SetTypeIdData('u0BJ',103,12857)
+        SetTypeIdData('u0BK',103,14762)
+        SetTypeIdData('u0BL',103,16667)
+        SetTypeIdData('u0BM',103,19048)
     endfunction
-    
     function InitUnitDropData()
         //初始化单位掉落
         UnitRanDropItemData('u0CA','I011',1000,0,0,0,0)
@@ -321,9 +300,7 @@ scope AllTypeIdData initializer init
         ExecuteFunc("InitDataInt1")
         BJDebugMsg("init4")
         ExecuteFunc("InitDataInt2")
-        
         ExecuteFunc("InitUnitKillGold")
-
         ExecuteFunc("InitUnitDropData")
     endfunction
 endscope

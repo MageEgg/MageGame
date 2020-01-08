@@ -238,6 +238,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
                 bj_lastCreatedUnit = null
             end
+        elseif  ran == 1
+            for i = 1,4
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+                IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+                bj_lastCreatedUnit = null
+            end
         else
             bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )

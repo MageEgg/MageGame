@@ -2,7 +2,7 @@ scope FrameButton
     func FrameFunc(int pid,int frame,int eventId)
         int Type = GetFrameType(frame)
         int id = Frame2Id(frame)
-        BJDebugMsg(I2S(id))
+        //BJDebugMsg(I2S(id))
         if  Pu[1] != null
             if  Type == TYPE_BUTTON
                 if  id >= 1 and id <= 17//法宝

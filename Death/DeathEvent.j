@@ -65,7 +65,7 @@ scope DeathEvent initializer InitDeathEvent
     function RevivePlayerHeroTimer()
         int pid = GetHandleData(GetExpiredTimer())
         if  GameOverBoolJu == false
-            BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
+            //BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
             ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
             if  Player(pid)==GetLocalPlayer()
                 ClearSelection()
@@ -229,6 +229,8 @@ scope DeathEvent initializer InitDeathEvent
             elseif  uid == 'uJ90'
                 AddPlayerImmortalFruit(Pu[1],'IJ10')
             endif
+        elseif  uid >= 'u001' and uid <= 'u004'
+            AddUnitRealState(Pu[1],41,80)
         endif
 
 

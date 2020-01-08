@@ -103,7 +103,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //设置时渊碎片
     function SetPlayerPlotPartNum(int pid,int num)
         Pint[309] = num
-        BJDebugMsg("309 is "+I2S(num))
+        //BJDebugMsg("309 is "+I2S(num))
         if  GetLocalPlayer() == Player(pid)
             DzFrameSetText(BUTTON_Text[309],I2S(num))
         endif

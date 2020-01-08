@@ -56,7 +56,7 @@ scope AllPrizeData initializer init
             RegisterPrizePoolData(pid,12,'FB52')
             RegisterPrizePoolData(pid,13,'FB53')
         end
-        BJDebugMsg("奖池1加载完毕")
+        //BJDebugMsg("奖池1加载完毕")
     endfunction
     function InitPrizeData2()
         for pid = 0,3
@@ -164,7 +164,7 @@ scope AllPrizeData initializer init
             RegisterPrizePoolData(pid,0,'S208')
             RegisterPrizePoolData(pid,0,'S209')
         end
-        BJDebugMsg("奖池2加载完毕")
+        //BJDebugMsg("奖池2加载完毕")
     endfunction
     function InitItemFormulaData()
         //注册合成
