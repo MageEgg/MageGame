@@ -633,7 +633,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         unitpool HeroPool = CreateUnitPool() 
 
         function InitHeroPoolFunc()
-            /*
+            
             for i = 1,9
                 UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
             end
@@ -643,8 +643,8 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             end
             UnitPoolAddUnitType( HeroPool, 'H030', 1 )
             UnitPoolAddUnitType( HeroPool, 'H031', 1 )
-            */
-UnitPoolAddUnitType( HeroPool, 'H028', 1 )
+            
+//UnitPoolAddUnitType( HeroPool, 'H028', 1 )
         endfunction
 
 
