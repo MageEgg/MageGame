@@ -593,8 +593,8 @@ library HeroAbilityFunc uses OtherDamageTimer
         real life = GetUnitState(tu,UNIT_STATE_LIFE)
         real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
         SetUnitState(tu,UNIT_STATE_LIFE,life + maxlife * 0.3)
-        AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.1,4)
-        AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.1,4)
+        AddUnitStateExTimer(tu,32,10,4)
+        AddUnitStateExTimer(tu,33,10,4)
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffgreen2a.mdl")
     endfunction
 
