@@ -274,7 +274,7 @@ InitTypeState1('u0EA',2726,0,19,14,889920,0,0,0,0,0)
 InitTypeState1('u0EB',4726,0,34,25,2787480,0,0,0,0,0)
 InitTypeState1('u0EC',9350,0,49,36,8037120,0,0,0,0,0)
 InitTypeState1('u020',2,0,6,5,2066,0,0,0,0,0)
-InitTypeState1('u021',40,0,6,5,61992,0,0,0,0,0)
+InitTypeState1('u021',40,0,6,5,15842,0,0,0,0,0)
 endfunction
 function InitStateData2()
 InitTypeState2('S001',0,120,0,0,0,0,0,0,0,0)

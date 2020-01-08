@@ -24,7 +24,7 @@ scope ItemSystem initializer InitItemSystem
                 RemoveItem(UnitItemInSlot(Pu[1],i))
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                 UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
                 if  next == 'E011' or next == 'E111' or next == 'E211'
                     if  Pu[24] == null
                         Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
@@ -69,10 +69,10 @@ scope ItemSystem initializer InitItemSystem
                     RemoveItem(it)
                     UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
                     UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
                 endif
             else
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
             endif
         else    
             BJDebugMsg("next"+I2S(next))
@@ -124,7 +124,7 @@ scope ItemSystem initializer InitItemSystem
                 AddPlayerDrawNum(pid,index)
                 RePlayerAbilityDrawTips(pid,index)
             else
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
             endif
         endif
     endfunction
@@ -151,7 +151,7 @@ scope ItemSystem initializer InitItemSystem
                 if  IsHasBeastSoul(pid,index) == false
                     SetUnitIntState(Pu[1],190+num + 1,index)
                     SetUnitIntState(Pu[1],190,num + 1)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
                     if  num == 2
                         int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
                         HeroAddAbilityByIndex(Pu[1],4,id)
@@ -193,8 +193,11 @@ scope ItemSystem initializer InitItemSystem
             PlayerHeroMoveToImmortal(u1,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS04'
             PlayerAbilityDraw(pid,itemid)
+        elseif  itemid == 'IS11'
+            AstrologyFunc(pid)
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
+
         endif
 
 
@@ -217,6 +220,7 @@ scope ItemSystem initializer InitItemSystem
         int pid = GetPlayerId(GetOwningPlayer(u1))
         int gold = 0
         int i1 = 0
+        int i2 = 0
 
         if  itemid >= 'CS01' and itemid <= 'CS04'
             PlayerUseLearnAbilityBook(pid,itemid)
@@ -242,6 +246,25 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'I005'
             AddUnitStateExTimer(Pu[1],16,40,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
+        elseif  itemid >= 'I011' and itemid <= 'I014'//聚宝盆
+            if  itemid == 'I011'
+                gold = 5500
+                i1 = 1000
+            elseif  itemid == 'I012'
+                gold = 31000
+                i1 = 3500
+            elseif  itemid == 'I013'
+                gold = 48000
+                i1 = 10000
+            elseif  itemid == 'I014'
+                gold = 81000
+                i1 = 19800
+            endif
+            AddUnitRealState(Pu[1],1,i1)
+            AddUnitRealState(Pu[1],2,i1)
+            AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击及法强+"+I2S(i1))
+
         endif
         
         flush locals
