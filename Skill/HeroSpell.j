@@ -1578,6 +1578,8 @@ endfunction
                 SpellS232(u1.u)
             elseif  id== 'S233'
                 SpellS233(u1.u)
+            elseif  id== 'S234'
+                SpellS234(u1.u,u2.u,damage)
             elseif  id== 'S235'
                 SpellS235(u1.u)
             endif
