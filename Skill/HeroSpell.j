@@ -906,20 +906,19 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
  function SpellS109(unit u,unit u1)
     real x=GetUnitX(u1)
     real y=GetUnitY(u1)
-    real damage=10
+    real ad = GetUnitAttack(u)
+    real ap = GetHeroStr(u,true)
     IndexGroup g = IndexGroup.create()
     GroupEnumUnitsInRange(g.ejg,x,y,200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+    GroupRemoveUnit(g.ejg,u1)
     LocAddEffect(x,y,"effect_by_wood_gongchengsipai_2.mdl")
-    if GetUnitRealState(u,1)>GetUnitRealState(u,2)
-        damage=GetUnitRealState(u,1)*12
-        GroupRemoveUnit(g.ejg,u1)
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+    if  ad > ap
+        UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
     else
-        damage=GetUnitRealState(u,2)*12
-        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u,g.ejg,a[],false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
     endif
     g.destroy()
-    u = null
+    flush locals
 endfunction
 
 function SpellS110(unit u1,real x1,real y1,real damage1)
