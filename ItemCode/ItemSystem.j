@@ -154,6 +154,7 @@ scope ItemSystem initializer InitItemSystem
                         int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
                         HeroAddAbilityByIndex(Pu[1],4,id)
                     endif
+                    UnitAddAbility(Pu[1],'M006'+num)
                 else
                     BJDebugMsg("重复的")
                 endif

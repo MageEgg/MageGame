@@ -128,13 +128,13 @@ scope KeyEvent initializer InitKeyBroadListener
                     KeyDoubleTimer(pid,key)
                 endif
             elseif  key == 72 //H
-                /*if  SPu == Pu[1]
+                if  Pu[5] == Pu[1]
                     IssueImmediateOrderById(Pu[1], 851993 )
-                endif*/
+                endif
             elseif  key == 83 //S
-                /*if  SPu == Pu[1]
+                if  Pu[5] == Pu[1]
                     IssueImmediateOrderById(Pu[1], 851972 )
-                endif*/
+                endif
             endif
         endif
     end
