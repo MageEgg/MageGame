@@ -1114,6 +1114,19 @@ function SpellS116(unit u1,real damage1)
         flush locals
     endfunction
 
+     function SpellS120(unit u1,real damage)//憾地击
+        unit u=u1
+        real x=GetUnitX(u)
+        real y=GetUnitY(u)
+        IndexGroup g = IndexGroup.create()
+        AddUnitStateExTimer(u,13,15,3)
+        DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        g.destroy()
+        u = null
+    endfunction
+
     function SpellS123(unit u1,real damage1)
     unit u=u1
     real damage=damage1
@@ -1365,9 +1378,11 @@ function SpellS116(unit u1,real damage1)
     
     function SpellS234(unit u,unit u1,real damage)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-        IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupAddBuffEx(GetOwningPlayer(u),"",'DB02',5,852095,100))
-        g.destroy()
+        unit UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
+        UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
+        UnitAddAbility(UnitAddBuffUnit,'DB03')
+        SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
+        IssuePointOrderById( UnitAddBuffUnit, 852668,GetUnitX(u1),GetUnitY(u1) )
     endfunction
     
     function SpellS235(unit u1)

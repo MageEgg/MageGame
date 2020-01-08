@@ -133,7 +133,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             loop    
                 exitwhen LoadInteger(ht,GetHandleId(u),id)>=Number
                 summon=CreateUnit(GetOwningPlayer(u),id,x+(100*Cos(LoadInteger(ht,GetHandleId(u),id)*0.785)),y+(100*Sin(LoadInteger(ht,GetHandleId(u),id)*0.785)),GetUnitFacing(u))
-
+                IssuePointOrder( summon, "patrol", x, y )
                 GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
                 SetUnitRealState(summon,1,GetUnitRealState(u,1)*0.3)
