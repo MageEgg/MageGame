@@ -57,7 +57,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                 
                 Pu[27]=CreateUnit(Player(pid),'np27',x+384,y+192,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,101)
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,1201)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
@@ -168,7 +168,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
             RemoveUnit(Pu[27])
             
             Pu[27]=CreateUnit(Player(pid),'np28',x+512,y+512,270)
-            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,351)
+            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
 
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+384,y+192,225)
