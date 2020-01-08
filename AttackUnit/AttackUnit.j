@@ -255,8 +255,8 @@ library AttackUnit uses DamageCode
         ForGroup(AttackUnitGroup,function AttackUnitGroupFunc)
     endfunction
 
-    function AddBossAttachUnitState(unit u)
-        int uid = GetUnitTypeId(u)+256
+    function AddBossAttachUnitState(unit u,int id)
+        int uid = 'ma11'+id-'mb01'
         real value = 0
         for i = 1,40
             value = GetTypeIdReal(uid,i)
@@ -280,7 +280,7 @@ library AttackUnit uses DamageCode
             sx = x + 250*Cos((90*num+45)*0.01745)
             sy = y + 250*Sin((90*num+45)*0.01745)
             u = CreateUnit(Player(11),'ma01'+GetRandomInt(0,8),ex,ey,GetUnitFacing(wu))
-            AddBossAttachUnitState(u)
+            AddBossAttachUnitState(u,GetUnitTypeId(wu))
             SetUnitXY(u,sx,sy)
             IssuePointOrderById(u,851983,ex,ey)
             GroupAddUnit(AttackUnitGroup,u)
