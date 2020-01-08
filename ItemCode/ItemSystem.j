@@ -55,6 +55,7 @@ scope ItemSystem initializer InitItemSystem
 
 
                             Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
+                            
                             SetPlayerOnlyDamage(Pu[100+index],pid)
                             IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                             HeroMoveToRoom(pid)
