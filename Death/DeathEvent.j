@@ -54,15 +54,15 @@ scope DeathEvent initializer InitDeathEvent
         endif
         u = null
     end
-    func AddReviveWildMonster(unit wu,int time,real x,real y)
+    function AddReviveWildMonster(unit wu,int time,real x,real y)
         int max = ReviveUnitMax + 1
         ReviveUnitMax = max
         MaxReviveUnitType = GetUnitTypeId(wu)
         MaxReviveUnitTime = time
         MaxReviveUnitX = x
         MaxReviveUnitY = y
-    end
-    func RevivePlayerHeroTimer()
+    endfunction
+    function RevivePlayerHeroTimer()
         int pid = GetHandleData(GetExpiredTimer())
         if  GameOverBoolJu == false
             BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
@@ -77,8 +77,8 @@ scope DeathEvent initializer InitDeathEvent
         DestroyTimerDialog(Pdia[0])
         PauseTimer(GetExpiredTimer())
         DestroyTimer(GetExpiredTimer())
-    end
-    func RevivePlayerHero(int pid)
+    endfunction
+    function RevivePlayerHero(int pid)
         timer wt = CreateTimer()
         PlayerDeathBool = true
         SetHandleData(wt,pid)
@@ -87,9 +87,9 @@ scope DeathEvent initializer InitDeathEvent
         TimerDialogDisplay(Pdia[0], true)
         TimerStart(wt,8,false,function RevivePlayerHeroTimer)
         wt = null
-    end
+    endfunction
     
-    func PlayerItemGrowFunc(int pid,item it)
+    function PlayerItemGrowFunc(int pid,item it)
         int id = GetItemTypeId(it)
         int num = GetItemCharges(it)
         
@@ -101,10 +101,10 @@ scope DeathEvent initializer InitDeathEvent
             
             
         endif
-    end
+    endfunction
 
     
-    func PlayerItemWRTFunc(int pid,item it,int exp)
+    function PlayerItemWRTFunc(int pid,item it,int exp)
         int id = GetItemTypeId(it)
         int num = GetItemCharges(it)
         
@@ -116,10 +116,10 @@ scope DeathEvent initializer InitDeathEvent
             UnitAddItem(Pu[1],CreateItem(id+1,0,0))
             
         endif
-    end
+    endfunction
 
     
-    func PlayerItemGrow(int pid)
+    function PlayerItemGrow(int pid)
         int id = 0
         int lv = 0
         for i1 = 0,5
@@ -132,17 +132,21 @@ scope DeathEvent initializer InitDeathEvent
             endif
         end
                     
-    end
+    endfunction
     
-   func PlayerHeroAddState(int pid,int uid,unit wu)
+   function PlayerHeroAddState(int pid,int uid,unit wu)
         int index = 0
         int value = 0
         real gold = 0
         real wood = 1
         int exp = 0
         
-        if  uid == 'g00A'
-            gold = 10
+
+        gold = GetTypeIdData(uid,103)
+        if  gold == 0
+            if  uid != 'u020'
+                gold = 10
+            endif
         endif
         
         exp = 5
@@ -175,7 +179,7 @@ scope DeathEvent initializer InitDeathEvent
                 AddUnitIntState(Pu[1],'FC32',100)
             endif
         endif
-    end
+    endfunction
 
     function CreateNewForg(int id1,int id2)
         int pid = id1
@@ -183,7 +187,7 @@ scope DeathEvent initializer InitDeathEvent
         TimerStart(30,false)
         {
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
-            LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
+            //LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
             flush locals
         }
         flush locals

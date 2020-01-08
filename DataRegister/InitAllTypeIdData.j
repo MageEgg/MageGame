@@ -264,6 +264,53 @@ scope AllTypeIdData initializer init
         InitEquipData('IT14',0,0,0,0,0,0,7548,-6605)
         BJDebugMsg("init4end")
     endfunction
+    function InitUnitKillGold()
+        SetTypeIdData('u0AA',103,10)
+        SetTypeIdData('u0AA',103,154)
+        SetTypeIdData('u0AB',103,309)
+        SetTypeIdData('u0AC',103,428)
+        SetTypeIdData('u0AD',103,857)
+        SetTypeIdData('u0AE',103,1047)
+        SetTypeIdData('u0AF',103,1617)
+        SetTypeIdData('u0AG',103,2205)
+        SetTypeIdData('u0AH',103,2261)
+        SetTypeIdData('u0AI',103,2738)
+        SetTypeIdData('u0AJ',103,3214)
+        SetTypeIdData('u0AK',103,3690)
+        SetTypeIdData('u0AL',103,4166)
+        SetTypeIdData('u0AM',103,4761)
+        SetTypeIdData('u0BA',103,2476)
+        SetTypeIdData('u0BB',103,4953)
+        SetTypeIdData('u0BC',103,6858)
+        SetTypeIdData('u0BD',103,13717)
+        SetTypeIdData('u0BE',103,16766)
+        SetTypeIdData('u0BF',103,25882)
+        SetTypeIdData('u0BG',103,35294)
+        SetTypeIdData('u0BH',103,36190)
+        SetTypeIdData('u0BI',103,43809)
+        SetTypeIdData('u0BJ',103,51428)
+        SetTypeIdData('u0BK',103,59047)
+        SetTypeIdData('u0BL',103,66666)
+        SetTypeIdData('u0BM',103,76190)
+
+    endfunction
+    
+    function InitUnitDropData()
+        //初始化单位掉落
+        UnitRanDropItemData('u0CA','I011',1000,0,0,0,0)
+        UnitRanDropItemData('u0CB','I011',1000,0,0,0,0)
+        UnitRanDropItemData('u0CC','I011',1000,0,0,0,0)
+        UnitRanDropItemData('u0CD','I012',1000,0,0,0,0)
+        UnitRanDropItemData('u0CE','I012',1000,0,0,0,0)
+        UnitRanDropItemData('u0CF','I012',1000,0,0,0,0)
+        UnitRanDropItemData('u0CG','I013',1000,0,0,0,0)
+        UnitRanDropItemData('u0CH','I013',1000,0,0,0,0)
+        UnitRanDropItemData('u0CI','I013',1000,0,0,0,0)
+        UnitRanDropItemData('u0CJ','I014',1000,0,0,0,0)
+        UnitRanDropItemData('u0CK','I014',1000,0,0,0,0)
+        UnitRanDropItemData('u0CL','I014',1000,0,0,0,0)
+        UnitRanDropItemData('u0CM','I014',1000,0,0,0,0)
+    endfunction
     private function init()
         BJDebugMsg("init1")
         ExecuteFunc("InitDataString1")
@@ -273,6 +320,9 @@ scope AllTypeIdData initializer init
         ExecuteFunc("InitDataInt1")
         BJDebugMsg("init4")
         ExecuteFunc("InitDataInt2")
+        
+        ExecuteFunc("InitUnitKillGold")
 
+        ExecuteFunc("InitUnitDropData")
     endfunction
 endscope
