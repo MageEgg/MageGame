@@ -926,7 +926,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         if  Chance(u,15) == true
             UnitAddEffect(u,"effect_az_sniper(2)_t_misslie.mdl")
             if  ad > ap
-                UnitDamageTarget(u,u1,ad*3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null))
+                UnitDamageTarget(u,u1,ad*3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 UnitDamageTarget(u,u1,ad*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
