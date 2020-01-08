@@ -989,7 +989,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         insert BossSpell
         group gg = CreateGroup()
         LocAddEffectSetSize(x2,y2,"effect_az_earthshaker_a.mdl",1)
-        AddEffectInAreaSetSizeTimer(x2,y2,360,1.5,15,"effect3_impalemisstarget.mdl",0.8)
+        AddEffectInAreaSetSizeTimer(x2,y2,380,1.5,15,"effect3_impalemisstarget.mdl",0.8)
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
         UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
