@@ -1,5 +1,4 @@
-library DzGameFunc uses DzSave
-
+piece DzGameFunc
     function DzPalyerSignInRefresh(int pid,int week,int mission)
         BJDebugMsg("week:"+I2S(week)+" @@ TimeWeek:"+I2S(TimeWeek))
         if  week != TimeWeek
@@ -21,13 +20,6 @@ library DzGameFunc uses DzSave
         SetDzPlayerData(pid,1,8,DzMissionWeek)
     endfunction
     
-    function DzSaveDzTimeNewPlayer(int pid) //新玩家存时间
-        SetDzPlayerData(pid,1,1,TimeMon)
-        SetDzPlayerData(pid,1,2,TimeDay)
-        SetDzPlayerData(pid,1,3,TimeWeek)
-        SetDzPlayerData(pid,1,8,DzMissionWeek)
-    endfunction
-
     function ShowPlayerSignInLastTime(int pid)
         int mon = GetDzPlayerData(pid,1,1) //月
         int day = GetDzPlayerData(pid,1,2) //日
@@ -103,6 +95,5 @@ library DzGameFunc uses DzSave
         }
     endfunction
 
-
-endlibrary
+endpiece
 

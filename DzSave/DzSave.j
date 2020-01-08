@@ -289,17 +289,23 @@ library DzSave initializer InitDzData uses DzDataSetting
         endif
     endfunction
     
+    insert DzGameFunc
+
+    function IsDzDataNewPlayer(int pid)->bool
+        if  (DzS[0] == "" or DzS[0] == null) and StringLength(DzS[1]) != 60
+            return true
+        else
+            return false
+        endif
+    endfunction
+
     function DzDataNewPlayer(int pid) //新玩家
-        string data = DzS[0]
-        if  data == "" or data == null or StringLength(DzS[1]) != 60
+        if  IsDzDataNewPlayer(pid) == true
             for Group = 1,DzServerNum
                 DzS[Group] = "000000000000000000000000000000000000000000000000000000000000"
             end
         endif
     endfunction
-    
-    insert DzConfig
-    insert DzGameFunc
     
     function InitDzSetting()
         BJDebugMsg("InitDzSetting")
@@ -324,6 +330,9 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 2
                 for pid = 0,5
                     if  IsPlaying(pid) == true
+                        if  IsDzDataNewPlayer(pid) == true
+                            IsDzNewPlayer[pid] = true
+                        endif
                         DzDataNewPlayer(pid) //新玩家
                     endif
                 end
@@ -343,6 +352,9 @@ library DzSave initializer InitDzData uses DzDataSetting
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzPlayerDataFlush(pid) //刷新游戏数据
+                        if  IsDzNewPlayer[pid] == true
+                            DzSaveDzTime(pid)
+                        endif
                     endif
                 end
             elseif  time == 6
