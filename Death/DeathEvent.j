@@ -148,6 +148,11 @@ scope DeathEvent initializer InitDeathEvent
                 gold = 10
             endif
         endif
+        if  IsPlayerHasAbility(Pu[1],'S129') == true 
+            gold = gold + 3
+        endif
+
+
         
         exp = 1
         

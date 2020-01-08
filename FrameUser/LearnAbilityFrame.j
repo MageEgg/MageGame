@@ -57,7 +57,7 @@ library LearnAbilityFrame uses GameFrame
             id = GetUnitIntState(Pu[1],110+index)
             if  id == 0
                 return index
-            elseif  GetTypeIdData(id,101) == 6
+            elseif  GetTypeIdData(id,101) == 9
                 return index
             endif
         end

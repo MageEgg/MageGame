@@ -162,7 +162,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         elseif  color == 7
             name = name + "\nD级"
         elseif  color == 8
-            name = name + "\nC-级"
+            name = name + "\nD-级"
         endif
         
         
