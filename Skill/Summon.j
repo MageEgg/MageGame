@@ -7,6 +7,30 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             SummonGroup[pid] = CreateGroup()
         end
     endfunction
+
+    function z100Attack(unit u,unit u1)
+        unit u2 = m 
+        real x1 = GetUnitX(m)
+        real y1 = GetUnitY(m)
+        real Ang =Uang(u,u1)
+        real x2 = 50*Cos(Ang)
+        real y2 = 50*Sin(Ang)
+        integer time =10
+        ////额外判断
+        TimerStart(0.03,true)
+        {
+            time = time - 1
+            if  time > 0
+                x1 = x1 + x2
+                y1 = y1 + y2
+                SetUnitPosition(u2,x1,y1)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
     
     function trap(unit u1,unit summon1)
         unit u=u1
