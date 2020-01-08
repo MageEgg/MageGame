@@ -13,6 +13,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
 
         int DzPuTime = 0
         int DzMissionWeek = 0
+        int GamePuOverDay = 0
 
         int TimeTestDay = 0
         int TimeMon = 0
@@ -139,7 +140,6 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             GetDate(ServerTime)
         endfunction
         function UpdateTimeAll() //初始化
-            int GamePuOverDay = 0
             InitArray()
             DzPuTime = 1578412800
             ServerTime = DzAPI_Map_GetGameStartTime()

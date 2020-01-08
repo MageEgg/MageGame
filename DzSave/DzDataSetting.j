@@ -53,10 +53,8 @@ library DzDataSetting uses DzBase
         int max = GetDzDataGroupMaxValue(Group)
         //在此处添加 组 位 最大值
         if  Group == 1
-            if  flag == 1
-                max = 10
-            elseif  flag >= 11
-                max = 40
+            if  flag == 7
+                max = GamePuOverDay
             endif
         elseif Group == 4
             max = 9999
