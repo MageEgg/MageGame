@@ -27,7 +27,7 @@
 
 #include "MageGame\\SystemCode\\ItemFormula.j" 
 
-#include "MageGame\\SystemCode\\AttackRoom.j" 
+#include "MageGame\\SystemCode\\AttackRoom.j"
 
 //插入存档
 #include "MageGame\\DzSave\\DzBase.j"
@@ -39,6 +39,8 @@
 #include "MageGame\\DzSave\\DzMatrix.j"
 
 #include "MageGame\\DzSave\\DzMoZhiMapLevel.j"
+
+#include "MageGame\\DzSave\\DzGameFunc.j" 
 
 #include "MageGame\\DzSave\\DzSave.j" 
 
