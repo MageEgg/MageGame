@@ -253,23 +253,38 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     
     
-    function RemAbilityState(unit wu,int eid)
-        SetEquipStateOfPlayer(wu,eid,-1)
+    function RemAbilityState(unit wu,int id)
+        SetEquipStateOfPlayer(wu,id,-1)
+        if  id == 'S034'
+            UnitRemoveAbility(wu,'A034')
+        endif
     endfunction
     
-    function AddAbilityState(unit wu,int eid)
-        SetEquipStateOfPlayer(wu,eid,1)
+    function AddAbilityState(unit wu,int id)
+        SetEquipStateOfPlayer(wu,id,1)
+
+        if  GetTypeIdData(id,101) != 6
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"学习成功！")
+            if  GetUnitTypeId(wu) == 'H017'
+                SpellS517.execute(wu) //天賦 天资聪颖   
+            endif
+        endif
+
+        if  id == 'S104'
+            SpellS104.execute(wu) //熔炉之身
+        elseif  id == 'S034'
+            UnitAddAbility(wu,'A034')
+        endif
+        
     endfunction
     
     
     
     function HeroRemoveAbilityByIndex (unit wu,int index)
         RemAbilityState(wu,GetUnitIntState(wu,110+index))
-        
         SetUnitIntState(wu,110+index,0)
         SetUnitIntState(wu,120+index,0)
         ReHeroAbilityTips(wu,index)
-        
         DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能删除成功！")
     endfunction
     
@@ -301,19 +316,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         SetUnitIntState(wu,120+index,1)
         AddAbilityState(wu,id)
         ReHeroAbilityTips(wu,index)
-        if  GetTypeIdData(id,101) > 0
-            UnitAddAbility(wu,GetTypeIdData(id,101))
-        endif
-        if  GetTypeIdData(id,101) != 6
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"学习成功！")
-            if  GetUnitTypeId(wu) == 'H017'
-                SpellS517.execute(wu) //天賦 天资聪颖   
-            endif
-
-            if  id == 'S104'
-                SpellS104.execute(wu) //熔炉之身
-            endif
-        endif
+        
+        
     endfunction
     
     function HeroAddNewAbility(unit wu,int id)->bool
