@@ -77,18 +77,61 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
     endfunction
 
     function InitRegisterMission()//注册任务
-        RegisterPassCheckMission(1,1,10,"击杀","击杀10个Boss")
-        RegisterPassCheckMission(2,1,20,"击杀","击杀20个小怪")
-        RegisterPassCheckMission(3,1,30,"击杀","击杀30个Boss")
-        RegisterPassCheckMission(4,1,40,"击杀","击杀40个Boss")
-        RegisterPassCheckMission(5,3,50,"击杀","击杀50个Boss")
-        RegisterPassCheckMission(6,3,60,"击杀","击杀60个Boss")
+        RegisterPassCheckMission(1,1,1,"","通关难1或以上")
+        RegisterPassCheckMission(2,1,1,"","通关难3或以上")
+        RegisterPassCheckMission(3,1,1,"","通关难5或以上")
+        RegisterPassCheckMission(4,1,1,"","使用指定英雄通关任意难度")
+        RegisterPassCheckMission(5,1,3,"","通关3次任意难度")
+        RegisterPassCheckMission(6,1,24,"","击杀24个进攻精英怪")
+        RegisterPassCheckMission(7,1,1,"","境界突破至金仙并通关")
+        RegisterPassCheckMission(8,1,6,"","获得6次D级技能")
+        RegisterPassCheckMission(9,1,1,"","获得1次法宝羁绊")
+        RegisterPassCheckMission(10,1,1,"","多人通关任意难度")
+        RegisterPassCheckMission(11,1,1,"","单次伤害超过9999999")
+        RegisterPassCheckMission(12,1,2,"","获得2次神兽技能")
+
+
+        RegisterPassCheckMission(21,3,1,"","20秒内击杀闻太师")
+        RegisterPassCheckMission(22,3,24,"","击杀24个进攻Boss")
+        RegisterPassCheckMission(23,3,1,"","通关难7")
+        RegisterPassCheckMission(24,3,1,"","获得1个造化至宝级别的法宝")
+        RegisterPassCheckMission(25,3,6,"","获得6次S级技能")
+        RegisterPassCheckMission(26,3,1,"","境界突破至圣人")
+        RegisterPassCheckMission(27,3,5,"","锻造6次法宝")
+        RegisterPassCheckMission(28,3,6,"","获得6个先天神器品质的法宝")
     endfunction
 
     function InitRegisterDay()//注册每日任务
-        for i = 1,5
-            RegisterPassCheckDay(i,1,2,3,4,5,6)
-        end
+        RegisterPassCheckDay(1,1,4,5,6,21,22)
+        RegisterPassCheckDay(2,2,7,8,9,22,25)
+        RegisterPassCheckDay(3,3,10,11,12,21,25)
+        RegisterPassCheckDay(4,2,4,7,10,24,27)
+        RegisterPassCheckDay(5,1,5,8,11,25,28)
+        RegisterPassCheckDay(6,3,6,9,12,23,26)
+        RegisterPassCheckDay(7,4,5,6,7,27,21)
+        RegisterPassCheckDay(8,8,9,10,11,26,24)
+        RegisterPassCheckDay(9,6,7,8,9,28,22)
+        RegisterPassCheckDay(10,10,11,12,1,24,27)
+        RegisterPassCheckDay(11,4,9,1,7,22,23)
+        RegisterPassCheckDay(12,8,10,12,2,27,21)
+        RegisterPassCheckDay(13,5,7,9,11,26,23)
+        RegisterPassCheckDay(14,7,4,10,8,23,24)
+        RegisterPassCheckDay(15,2,6,10,8,28,26)
+        RegisterPassCheckDay(16,9,6,3,10,25,28)
+        RegisterPassCheckDay(17,8,5,2,11,21,22)
+        RegisterPassCheckDay(18,1,4,5,6,22,25)
+        RegisterPassCheckDay(19,2,7,8,9,21,25)
+        RegisterPassCheckDay(20,3,10,11,12,24,27)
+        RegisterPassCheckDay(21,2,4,7,10,25,28)
+        RegisterPassCheckDay(22,1,5,8,11,23,26)
+        RegisterPassCheckDay(23,3,6,9,12,27,21)
+        RegisterPassCheckDay(24,4,5,6,7,26,24)
+        RegisterPassCheckDay(25,8,9,10,11,28,22)
+        RegisterPassCheckDay(26,6,7,8,9,24,27)
+        RegisterPassCheckDay(27,10,11,12,1,22,23)
+        RegisterPassCheckDay(28,4,9,1,7,27,21)
+        RegisterPassCheckDay(29,8,10,12,2,26,23)
+        RegisterPassCheckDay(30,5,7,9,11,23,24)
     endfunction
 
     function InitPassCheckMission()
@@ -215,7 +258,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
     
 
     function GetPassCheckPrizeId(int id,int num)->int
-        return GetPassCheckPrize(Page*10+id,1)
+        return GetPassCheckPrize(Page*10+id,num)
     endfunction
 
     
