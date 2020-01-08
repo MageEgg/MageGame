@@ -180,6 +180,12 @@ library SystemCodes uses ServerTime,Define1
             return "|cff00FA9A"
         elseif  color == 5
             return "|cffffffff"
+        elseif  color == 7
+            return "|cffffffff"
+        elseif  color == 8
+            return "|cffffffff"
+        elseif  color == 9
+            return "|cff00FA9A"
         endif
         return "|cffffffff"
     endfunction

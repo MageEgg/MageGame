@@ -143,7 +143,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
             endif 
         else
-
+            ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
             BJDebugMsg("经验不足")
         endif
     endfunction

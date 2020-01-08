@@ -103,7 +103,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             id = GetUnitIntState(wu,110+index)
             if  id == 0
                 return index
-            elseif GetTypeIdData(id,101) == 6
+            elseif GetTypeIdData(id,101) == 9
                 return index
             endif
         end
@@ -131,6 +131,12 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         elseif  color == 4
             return "|cff00FA9A"
         elseif  color == 5
+            return "|cff00FA9A"
+        elseif  color == 6
+            return "|cffffffff"
+        elseif  color == 7
+            return "|cffffffff"
+        elseif  color == 8
             return "|cffffffff"
         endif
         return "|cffffffff"
@@ -150,12 +156,18 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         elseif  color == 4
             name = name + "\nC级"
         elseif  color == 5
+            name = name + "\nC-级"
+        elseif  color == 6
+            name = name + "\nD+级"
+        elseif  color == 7
             name = name + "\nD级"
+        elseif  color == 8
+            name = name + "\nC-级"
         endif
         
         
         if  GetTypeIdData(id,100) == 1
-            if  color != 6
+            if  color != 9
                 name = name + " |r被动"
             endif
         else
@@ -263,7 +275,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function AddAbilityState(unit wu,int id)
         SetEquipStateOfPlayer(wu,id,1)
 
-        if  GetTypeIdData(id,101) != 6
+        if  GetTypeIdData(id,101) != 9
             DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"学习成功！")
             if  GetUnitTypeId(wu) == 'H017'
                 SpellS517.execute(wu) //天賦 天资聪颖   

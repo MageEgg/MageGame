@@ -73,6 +73,7 @@ scope ItemSystem initializer InitItemSystem
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
                 endif
             else
+                
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
             endif
         else    
