@@ -285,8 +285,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 SpellS517.execute(wu) //天賦 天资聪颖   
             endif
         endif
-        integer pid=GetPlayerId(GetOwningPlayer(wu))
-
+        
         if  id == 'S104'
             SpellS104.execute(wu) //熔炉之身
         elseif  id == 'S034'
