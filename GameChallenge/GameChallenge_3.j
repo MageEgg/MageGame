@@ -120,10 +120,11 @@ library GameChallenge3 uses GameChallengeBase
         real ang = 0
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  GameChallengUnit[39] == null and IsFinshChallenge(3) == false and IsPlayerInChallenge == true
+                if  GameChallengUnit[39] == null and GameChallengInt[30] == 0 and IsFinshChallenge(3) == false and IsPlayerInChallenge == true
                     SetUnitVertexColor(GameChallengUnit[31],255,255,255,0)
                     x = -5280
                     y = 7104
+                    GameChallengInt[30] = 1
                     num = GetCanUsesGameChallengUnitID(pid)
                     if  num != 0
                         ang = Atan2(GetUnitY(GameChallengUnit[30])-y,GetUnitX(GameChallengUnit[30])-x)/0.01745
@@ -202,7 +203,8 @@ library GameChallenge3 uses GameChallengeBase
         flush locals
     endfunction
 
-    function SMJJumpTimer2Func(unit wu,real r1,real r2)
+    function SMJJumpTimer2Func(int id,unit wu,real r1,real r2)
+        int pid = id
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
@@ -217,7 +219,6 @@ library GameChallenge3 uses GameChallengeBase
         SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.03,true)
         {
-            int pid = GetUnitAbilityLevel(u1,'AZ99')-1
             time = time - 1
             if  time > 0 and IsPlayerInChallenge == true
                 x1 = x1 + xx
@@ -239,14 +240,14 @@ library GameChallenge3 uses GameChallengeBase
         flush locals
     endfunction
 
-    function SMJJumpTimer2(unit wu)
+    function SMJJumpTimer2(int id,unit wu)
         unit u1 = wu
-        int pid = GetUnitAbilityLevel(u1,'AZ99')-1
+        int pid = id
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随黄天化|r",0)
         TimerStart(0.5,false)
         {
             if  IsPlayerInChallenge == true
-                SMJJumpTimer2Func(u1,-4128,6600)
+                SMJJumpTimer2Func(pid,u1,-4128,6600)
             endif
             endtimer
             flush locals
@@ -254,7 +255,8 @@ library GameChallenge3 uses GameChallengeBase
         flush locals
     endfunction
 
-    function SMJJumpTimer1(unit wu,real r1,real r2)
+    function SMJJumpTimer1(int id,unit wu,real r1,real r2)
+        int pid = id
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
@@ -269,7 +271,6 @@ library GameChallenge3 uses GameChallengeBase
         SetUnitVertexColor(u1,255,255,255,0)
         TimerStart(0.03,true)
         {
-            int pid = GetUnitAbilityLevel(u1,'AZ99')-1
             time = time - 1
             if  time > 0 and IsPlayerInChallenge == true
                 x1 = x1 + xx
@@ -283,7 +284,7 @@ library GameChallenge3 uses GameChallengeBase
             else
                 LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
                 ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
-                SMJJumpTimer2(u1)
+                SMJJumpTimer2(pid,u1)
                 endtimer
             endif
             flush locals
@@ -299,7 +300,7 @@ library GameChallenge3 uses GameChallengeBase
                 SetUnitVertexColor(GameChallengUnit[33],255,255,255,0)
                 SetPlayerTaskUIChatOfPlayer(pid,"道德真君","你速往西岐，再会魔家四将，可成大功！",2.5)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随黄天化|r",0)
-                SMJJumpTimer1(u1,-4320,7648)
+                SMJJumpTimer1(pid,u1,-4320,7648)
             endif
         endif
         flush locals
@@ -311,13 +312,17 @@ library GameChallenge3 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[30] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np09',-5824,6464,270)
                 SetUnitVertexColor(GameChallengUnit[30],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[30],0x01)
                 GameChallengUnit[31] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-5824,6464,0)
                 SetUnitVertexColor(GameChallengUnit[31],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[31],0x01)
 
                 GameChallengUnit[32] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np13',-5952,8064,0)
                 SetUnitVertexColor(GameChallengUnit[32],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[32],0x01)
                 GameChallengUnit[33] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-5952,8064,0)
                 SetUnitVertexColor(GameChallengUnit[33],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[33],0x01)
             endif
         end
 

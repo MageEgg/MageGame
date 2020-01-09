@@ -999,6 +999,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     if  GetUnitAbilityLevel(u,'AZ16') > 0
         if  Chance(u,15) == true
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect2_az_goods_force staff(3).mdl")
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_attackslam.mdx")
             if  ad >= ap
                 UnitDamageTarget(u,u1,ad*3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else

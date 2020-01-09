@@ -331,13 +331,16 @@ library GameChallenge6 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[60] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',-2048,6368,180)
                 SetUnitVertexColor(GameChallengUnit[60],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[60],0x01)
                 GameChallengUnit[61] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-2048,6368,0)
                 SetUnitVertexColor(GameChallengUnit[61],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[61],0x01)
                 GameChallengUnit[62] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2048,6560,0)
                 SetUnitVertexColor(GameChallengUnit[62],255,255,255,0)
-
+                EXSetUnitMoveType(GameChallengUnit[62],0x01)
                 GameChallengUnit[63] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np25',-1504,8352,225)
                 SetUnitVertexColor(GameChallengUnit[63],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[63],0x01)
             endif
         end
         
