@@ -51,7 +51,7 @@ library GameChallenge6 uses GameChallengeBase
                         SetUnitAnimation(GameChallengUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetPlayerTaskUIChatOfPlayer(pid,"申公豹","殷殿下，你父亲固得罪于天下，可与之为仇。但殿下弟弟殷洪，听说他下山助周，没想姜子牙欲邀功，竟用太极图把他化成灰了！",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"申公豹","殷殿下，你父亲固得罪于天下，可与之为仇。但殿下弟弟，听说他下山助周，没想姜子牙欲邀功，竟用太极图把他化成灰了！",0)
                 elseif  time == 3
                     SetPlayerTaskUIChatOfPlayer(pid,GetPlayerName(Player(pid)),"信口胡说！！！",0)
                 elseif  time == 4
