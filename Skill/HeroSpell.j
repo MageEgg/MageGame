@@ -867,12 +867,71 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u,g.ejg,damage+(GetUnitRealState(u,5)*1.3),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
         u = null
-    endfunction    
-    
-     function SpellS102(unit u,real damage)
-        real x=GetUnitX(u)
-        real y=GetUnitY(u)
+    endfunction 
 
+    function SpellS102_1(unit u1,unit mj1,real damage1)
+        unit u=u1
+        unit mj=mj1
+        real damage=damage1
+        real Mang=GetRandomReal(0,360)
+        real x=0
+        real y=0 
+        real speed=40
+        group g=CreateGroup()
+        group g1=CreateGroup()
+        TimerStart(0.03,true)
+        {
+           if   IsPlayerHasAbility(u,'S102') == true 
+                if GetUnitFacing(mj) == Mang
+                    GroupClear(g1)
+                    if  Udis(mj,u)>500
+                        Mang=(Rad2Deg(Uang(mj,u)))
+                        if  Udis(mj,u)>2000
+                            speed=speed+2
+                        else
+                            if  speed>40
+                                speed=speed-2
+                            endif
+                        endif
+                    else
+                        Mang=GetRandomReal(0,360)
+                    endif
+                else
+                    if  Udis(mj,u)>500
+                        Mang=(Rad2Deg(Uang(mj,u)))
+                    endif
+                    SetUnitFacing(mj,Mang)
+                    if  speed>=44
+                        speed=speed-4
+                    endif
+                endif
+                x=GetUnitX(mj)+(speed*Cos(Deg2Rad(GetUnitFacing(mj))))
+                y=GetUnitY(mj)+(speed*Sin(Deg2Rad(GetUnitFacing(mj))))
+                GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
+                UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                SetUnitX(mj,x)
+                SetUnitY(mj,y)
+            else
+                KillUnit(mj)
+                flush locals
+                endtimer
+            endif
+        }
+        flush locals
+    endfunction 
+
+    function SpellS102(unit u,real damage)
+        real dis=(GetRandomReal(0,500))
+        real ang=GetRandomReal(-3.14,3.14)
+        real x=0
+        real y=0
+        unit mj=null
+        for i=1,3
+            x=GetUnitX(u)+(dis*Cos(ang))
+            y=GetUnitY(u)+(dis*Sin(ang))
+            mj=CreateTmUnit(GetOwningPlayer(u),"effect_BlackworksDragonHead3.mdl",x,y,GetRandomReal(-3.14,3.14),10,1)
+            SpellS102_1(u,mj,damage)
+        end
     endfunction  
 
     function SpellS104(unit u1)
@@ -1546,7 +1605,7 @@ endfunction
             elseif  id== 'S100'    
                 SpellS100(u1.u)
             elseif  id== 'S101'    
-                SpellS101(u1.u,sx,sy,damage)
+                SpellS101(u1.u,sx,sy,damage)    
             elseif  id== 'S110'    
                 SpellS110(u1.u,sx,sy,damage)
             elseif  id== 'S111'    
