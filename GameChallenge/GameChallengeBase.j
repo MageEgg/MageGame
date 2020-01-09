@@ -276,6 +276,23 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerTaskUI_ChatTextB.SetText("")
     endfunction
 
+    function SetPlayerZDLPointEx(int id,bool b,real time)
+        int pid = id
+        bool show = b
+        TimerStart(time,false)
+        {
+            if  show == true    
+                SetPlayerZDLPoint(pid,1)
+            else
+                SetPlayerZDLPoint(pid,0)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+        
+
 endlibrary
 
 

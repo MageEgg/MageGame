@@ -46,6 +46,7 @@ library GameChallenge0 uses GameChallengeBase
     endfunction
 
     function GameChallenge_0_A(int pid)
+        SetPlayerZDLPointEx(pid,true,0)
         ShowPlayerTaskUIOfPlayer(pid,true,0)
         SetPlayerTaskUIChatOfPlayer(pid,"剧情","纣王昏庸无道，商朝气运将至。姜子牙奉命下山主持封神榜，此时寄居于旧友宋异人府中，静待明君现世！",0.3)
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff寻找姜子牙|r",0.3)
@@ -102,6 +103,7 @@ library GameChallenge0 uses GameChallengeBase
                         ShowPlayerTaskUIOfPlayer(pid,false,2.5)
                         SetPlayerTaskUIChatOfPlayer(pid," "," ",2.5)
                         SetPlayerTaskUITaskOfPlayer(pid," ",2.5)
+                        SetPlayerZDLPointEx(pid,false,2.7)
                     endif
                 endif
             endif
