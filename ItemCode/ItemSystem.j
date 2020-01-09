@@ -257,25 +257,6 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'I005'
             AddUnitStateExTimer(Pu[1],16,40,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
-        elseif  itemid >= 'I011' and itemid <= 'I014'//聚宝盆
-            if  itemid == 'I011'
-                gold = 5500
-                i1 = 1000
-            elseif  itemid == 'I012'
-                gold = 31000
-                i1 = 3500
-            elseif  itemid == 'I013'
-                gold = 48000
-                i1 = 10000
-            elseif  itemid == 'I014'
-                gold = 81000
-                i1 = 19800
-            endif
-            AddUnitRealState(Pu[1],1,i1)
-            AddUnitRealState(Pu[1],2,i1)
-            AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击及法强+"+I2S(i1))
-
         endif
         
         flush locals

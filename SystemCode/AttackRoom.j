@@ -116,7 +116,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
 
-            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+384,y+512,225)
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+256,y+512,225)
 
 
             Pu[28]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
