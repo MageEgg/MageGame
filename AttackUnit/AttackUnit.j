@@ -373,6 +373,14 @@ library AttackUnit uses DamageCode
         }
         flush locals
     endfunction
+
+    function AddUnitGoldState(unit u)
+        if  GetRandomReal(0,1) <= 0.1
+            UnitAddAbility(u,'AZ17')
+        elseif  GetRandomReal(0,1) <= 0.1
+            UnitAddAbility(u,'AZ18')
+        endif
+    endfunction
     
     function OpenCreateUnitTimer()
         timer t = GetExpiredTimer()
@@ -394,6 +402,7 @@ library AttackUnit uses DamageCode
                             SetUnitXY(u,psx[k],psy[k])
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
+                            AddUnitGoldState(u)
                         end
                     endif
                 endif
@@ -408,7 +417,7 @@ library AttackUnit uses DamageCode
         t = null
         u = null
     endfunction
-    
+
     function CreateUnitTimer(int ordernum)
         real time = AttackUnitIntervalTime(0)[ordernum]
         int FlushNum = AttackUnitFlushNum(0)[ordernum] - 1
@@ -429,6 +438,7 @@ library AttackUnit uses DamageCode
                         SetUnitXY(u,psx[k],psy[k])
                         IssuePointOrderById(u,851983,pex[k],pey[k])
                         GroupAddUnit(AttackUnitGroup,u)
+                        AddUnitGoldState(u)
                     end
                 endif
             endif
