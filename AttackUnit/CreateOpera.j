@@ -71,7 +71,7 @@ library CreateOpera uses DamageCode
                 AttackUnitOperaBoss = null
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                 ShowBossDamageUI(false)
-                ShowBossDamageString()
+                ShowBossDamageStringNianShou()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ02')
