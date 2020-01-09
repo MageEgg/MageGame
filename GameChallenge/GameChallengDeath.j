@@ -60,21 +60,21 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
 
     function FlushGameChallenge(int pid,int flag)
         if  flag == 1
-            GameChallenge_1Flush(pid)
+            GameChallenge_1Flush(pid,0)
         elseif  flag == 2
-            GameChallenge_2Flush(pid)
+            GameChallenge_2Flush(pid,0)
         elseif  flag == 3
-            GameChallenge_3Flush(pid)
+            GameChallenge_3Flush(pid,0)
         elseif  flag == 4
-            GameChallenge_4Flush(pid)
+            GameChallenge_4Flush(pid,0)
         elseif  flag == 5
-            GameChallenge_5Flush(pid)
+            GameChallenge_5Flush(pid,0)
         elseif  flag == 6
-            GameChallenge_6Flush(pid)
+            GameChallenge_6Flush(pid,0)
         elseif  flag == 7
-            GameChallenge_7Flush(pid)
+            GameChallenge_7Flush(pid,0)
         elseif  flag == 8
-            GameChallenge_8Flush(pid)
+            GameChallenge_8Flush(pid,0)
         endif
     endfunction 
 

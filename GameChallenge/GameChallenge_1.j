@@ -1,6 +1,6 @@
 library GameChallenge1 uses GameChallengeBase
 
-    function GameChallenge_1Flush(int pid)
+    function GameChallenge_1Flush(int pid,real time)
         for num = 0,5
             SetUnitVertexColor(GameChallengUnit[10+num],255,255,255,0)
         end
@@ -13,13 +13,14 @@ library GameChallenge1 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[19])
             GameChallengUnit[19] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function OpenGameChallenge_1(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_1Flush(pid)
+        GameChallenge_1Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = GetRectCenterX(gg_rct_ChallengeRct_1_1)
             y = GetRectCenterY(gg_rct_ChallengeRct_1_1)
@@ -27,7 +28,8 @@ library GameChallenge1 uses GameChallengeBase
             PlayerInChallengeNumber = 1
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往云中子|r")
+            SetPlayerTaskUIChatOfPlayer(pid,"任务","前往云中子！",0.3)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往云中子|r",0.3)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[10],UnitAPOfPlayer)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[11],UnitAPOfPlayer)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[12],UnitAPOfPlayer)
@@ -38,7 +40,8 @@ library GameChallenge1 uses GameChallengeBase
             PlayerInChallengeNumber = 1
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往文王姬昌|r")
+            SetPlayerTaskUIChatOfPlayer(pid,"任务","前往文王姬昌！",0.3)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往文王姬昌|r",0.3)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[14],UnitAPOfPlayer)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[15],UnitAPOfPlayer)
         endif
@@ -72,13 +75,14 @@ library GameChallenge1 uses GameChallengeBase
             GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
             GameChallengInt[10] = GameChallengInt[10] + 1
             GameChallengInt[11] = GameChallengInt[11] - 1
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀护冢小妖|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[10])+"/40",0)
             if  GameChallengInt[10] == 1 or ModuloInteger(GameChallengInt[10],5) == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
             endif
         elseif  GameChallengInt[10] == 40
             if  GameChallengBool[10] == false    
                 GameChallengBool[10] = true
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
                 SetUnitVertexColor(GameChallengUnit[12],255,255,255,0)
                 GameChalleng_1_XYDeathTimer(pid)
             endif
@@ -93,7 +97,7 @@ library GameChallenge1 uses GameChallengeBase
             if  IsPlayerInChallenge == true
                 SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                 IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败雷震子|r")
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败雷震子|r",0)
             endif
             endtimer
             flush locals
@@ -107,7 +111,7 @@ library GameChallenge1 uses GameChallengeBase
         real y = -192
         int num = 0
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r这些兵器都不合适我啊。咦，那两颗红杏好像很好吃的样子！啊！！！我怎么了！！！")
+        SetPlayerTaskUIChatOfPlayer(pid,"雷震子","这些兵器都不合适我啊。咦，那两颗红杏好像很好吃的样子！啊！！！我怎么了！！！",0)
         SetUnitPositionOfGameChalleng(GameChallengUnit[19],x,y)
         RemoveUnitTimer(GameChallengUnit[19],0.5)
         GameChallengUnit[19] = null
@@ -132,8 +136,9 @@ library GameChallenge1 uses GameChallengeBase
 
     function GameChalleng_1_LZZDeath(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云中子]：|r奇哉！奇哉！福祸相依，待我传你玄妙真仙诀，炼就风雷金刚体！")
-        GameChallenge_1Flush(pid)
+        SetPlayerTaskUIChatOfPlayer(pid,"云中子","奇哉！奇哉！福祸相依，待我传你玄妙真仙诀，炼就风雷金刚体！",0)
+        SetPlayerTaskUITaskOfPlayer(pid,"",0)
+        GameChallenge_1Flush(pid,2)
         IsFinshChallenge(1) = true
         //奖励
         PlayerFinishPlotEx(pid,1)
@@ -193,8 +198,8 @@ library GameChallenge1 uses GameChallengeBase
                     UnitAddAbility(GameChallengUnit[19],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[19],851983,GetRectCenterX(gg_rct_ChallengeRct_1_1),GetRectCenterY(gg_rct_ChallengeRct_1_1))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云中子]：|r雷震子，你义父有难，到剑冢取一适手兵器前去解救。")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀40个护冢小妖|r")
+                    SetPlayerTaskUIChatOfPlayer(pid,"云中子","雷震子，你义父有难，到剑冢取一适手兵器前去解救。",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀40个护冢小妖|r",0)
                     GameChalleng_1_XYTimer(pid)
                 endif
             endif
@@ -268,7 +273,7 @@ library GameChallenge1 uses GameChallengeBase
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     Sdofplayer(Player(pid),x,y,3)
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀剑灵|r")
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀剑灵|r",0)
             endif
         endif
     endfunction
@@ -281,19 +286,19 @@ library GameChallenge1 uses GameChallengeBase
             if  GameChallengOperaWay[1] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[1] = 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r追兵已退，我便送父王回西岐。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"雷震子","追兵已退，我便送父王回西岐。",0)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")                                   
                 else
                     GameChallengOperaWay[1] = 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r糟糕！雷震子怒意攻心，入魔远走了！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","糟糕！雷震子怒意攻心，入魔远走了！",0)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
                 endif
             endif
-            GameChallenge_1Flush(pid)
+            GameChallenge_1Flush(pid,2)
             PlayerChallengeCosNum(1) = PlayerChallengeCosNum(1) + 1
             //奖励
             PlayerFinishPlotEx(pid,1)
@@ -312,7 +317,7 @@ library GameChallenge1 uses GameChallengeBase
                     UnitAddAbility(GameChallengUnit[19],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[19],851983,-3776,1472)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r父王，孩儿救你来也，且待我退去追兵！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"雷震子","父王，孩儿救你来也，且待我退去追兵！",0)
                 endif
             endif
         endif
@@ -330,7 +335,7 @@ library GameChallenge1 uses GameChallengeBase
                 x = -4224
                 y = 1600
                 SetUnitPositionOfGameChalleng(GameChallengUnit[19],x,y)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[雷震子]：|r纣王今既放归我父王，为何又派你俩来追袭？反复无常，实在可恨！")
+                SetPlayerTaskUIChatOfPlayer(pid,"雷震子","纣王今既放归我父王，为何又派你俩来追袭？反复无常，实在可恨！",0)
                 IssueImmediateOrderById(GameChallengUnit[19], 851993 )
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
@@ -356,7 +361,7 @@ library GameChallenge1 uses GameChallengeBase
                     UnitAddEffect(GameChallengUnit[num],"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdx")
                     SetUnitAnimation(GameChallengUnit[num],"attack")
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击退殷破败和雷开|r")
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击退殷破败和雷开|r",0)
             endif
         endif
     endfunction

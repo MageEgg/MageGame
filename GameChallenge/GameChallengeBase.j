@@ -144,7 +144,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     
     function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
-        BJDebugMsg(I2S(num))
+        //BJDebugMsg(I2S(num))
         GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,0)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
         SetUnitRealState(GameChallengUnit[num],99,num)
@@ -153,7 +153,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function CreateUsesGameChallengUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
-        BJDebugMsg(I2S(num))
+        //BJDebugMsg(I2S(num))
         GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,ang)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
         SetUnitRealState(GameChallengUnit[num],99,num)
@@ -162,7 +162,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
-        BJDebugMsg(I2S(num))
+        //BJDebugMsg(I2S(num))
         GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid,x,y,0)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
         SetUnitRealState(GameChallengUnit[num],99,num)
@@ -171,7 +171,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
-        BJDebugMsg(I2S(num))
+        //BJDebugMsg(I2S(num))
         GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid,x,y,ang)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
         SetUnitRealState(GameChallengUnit[num],99,num)
@@ -238,13 +238,14 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
     
-    function GameChallenge_GlobalFlush(int pid)
+    function GameChallenge_GlobalFlush(int pid,real time)
         GameChallengCanUsesUnitFlush(pid)
         ShowUnitOfAllPlayer(Pu[1])
         RemoveUnit(PlayerInChallengeShowUnit)
         PlayerInChallengeShowUnit = null
         PlayerInChallengeNumber = 0
         IsPlayerInChallenge = false
+        ShowPlayerTaskUIOfPlayer(pid,false,time)
     endfunction
 
 endlibrary

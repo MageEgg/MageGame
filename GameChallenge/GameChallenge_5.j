@@ -1,6 +1,6 @@
 library GameChallenge5 uses GameChallengeBase
 
-    function GameChallenge_5Flush(int pid)
+    function GameChallenge_5Flush(int pid,real time)
         SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
         SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
         GameChallengInt[50] = 0
@@ -9,7 +9,7 @@ library GameChallenge5 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[59])
             GameChallengUnit[59] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function GameChallenge_5_BTimer(int id)
@@ -32,15 +32,15 @@ library GameChallenge5 uses GameChallengeBase
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r土行孙归营！！！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"剧情","土行孙归营！！！",0)
                     endif
                 elseif  time == 2
                     SetUnitPositionOfGameChalleng(GameChallengUnit[num],x,4300)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[土行孙]：|r来者何人！！！敢私探吾营，是自送死期！！！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"土行孙","来者何人！！！敢私探吾营，是自送死期！！！",0)
                 elseif  time == 3
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败土行孙|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败土行孙|r",0)
                     endtimer
                 endif
             else
@@ -54,7 +54,8 @@ library GameChallenge5 uses GameChallengeBase
     function OpenGameChallenge_5(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_5Flush(pid)
+        GameChallenge_5Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -512
             y = 3936
@@ -64,7 +65,8 @@ library GameChallenge5 uses GameChallengeBase
             ShowHeroGetTask(pid)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[50],UnitAPOfPlayer)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[51],UnitAPOfPlayer)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往姜子牙|r")
+            SetPlayerTaskUIChatOfPlayer(pid,"任务","前往姜子牙",0.3)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往姜子牙|r",0.3)
         elseif  ty == 1
             x = 16
             y = 3968
@@ -90,8 +92,8 @@ library GameChallenge5 uses GameChallengeBase
                     UnitAddAbility(GameChallengUnit[59],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[59],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[52]),GetUnitY(GameChallengUnit[52]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r土行孙这绳有古怪，快救我回营！")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
+                    SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","土行孙这绳有古怪，快救我回营！",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff解救姜子牙|r",0)
                 endif
             endif
         endif
@@ -145,22 +147,22 @@ library GameChallenge5 uses GameChallengeBase
         {
             if  IsPlayerInChallenge == true
                 if  GameChallengOperaWay[5] == 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r此时，惧留孙及时赶到。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","此时，惧留孙及时赶到。",0)
                     if  GetGameChallengOperaSelsect() == 0
                         GameChallengOperaWay[5] = 1
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[惧留孙]：|r道兄请留孽徒一命，子牙后有用他之处，可助西岐一臂之力。")
+                        SetPlayerTaskUIChatOfPlayer(pid,"惧留孙","道兄请留孽徒一命，子牙后有用他之处，可助西岐一臂之力。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")  
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")                                 
                     else
                         GameChallengOperaWay[5] = 2
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r你失手杀死了土行孙，惧留孙后以仙丹将其复活。")
+                        SetPlayerTaskUIChatOfPlayer(pid,"剧情","你失手杀死了土行孙，惧留孙后以仙丹将其复活。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
                     endif
                 endif
-                GameChallenge_4Flush(pid)
+                GameChallenge_5Flush(pid,2)
                 PlayerChallengeCosNum(5) = PlayerChallengeCosNum(5) + 1
                 //奖励
                 PlayerFinishPlotEx(pid,5)
@@ -180,7 +182,6 @@ library GameChallenge5 uses GameChallengeBase
                 GameChallengInt[50] = 0
                 RemoveChainOfUnit(pid)
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[53]),GetUnitY(GameChallengUnit[53]))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
         elseif  uid == 'uf52'
             GameChallengInt[50] = GameChallengInt[50] + 1
@@ -188,17 +189,15 @@ library GameChallenge5 uses GameChallengeBase
                 GameChallengInt[50] = 0
                 RemoveChainOfUnit(pid)
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[54]),GetUnitY(GameChallengUnit[54]))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
         elseif  uid == 'uf53' or uid == 'uf54'
             GameChallengInt[50] = GameChallengInt[50] + 1
             if  GameChallengInt[50] == 14
                 RemoveChainOfUnit(pid)
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[55]),GetUnitY(GameChallengUnit[55]))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
         elseif  uid == 'uf55'
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击败土行孙！！！")
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败土行孙！！！",0)
             Challeng_5_WayB_End(pid)
         endif
     endfunction
@@ -213,7 +212,6 @@ library GameChallenge5 uses GameChallengeBase
                     SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 end
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff解救姜子牙|r")
             endif
             endtimer
             flush locals
@@ -343,9 +341,9 @@ library GameChallenge5 uses GameChallengeBase
             if  u1 == GameChallengUnit[59]
                 if  GameChallengInt[50] == 14
                     GameChallengInt[50] = 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[白鹤童子]：|r师叔，老爷法牒，送符印将此绳解去。")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r谢老师慈悯。")
-                    GameChallenge_5Flush(pid)
+                    SetPlayerTaskUIChatOfPlayer(pid,"白鹤童子","师叔，老爷法牒，送符印将此绳解去。",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","谢老师慈悯。",1)
+                    GameChallenge_5Flush(pid,2)
                     IsFinshChallenge(5) = true
                     //奖励
                     PlayerFinishPlotEx(pid,5)

@@ -1,18 +1,19 @@
 library GameChallenge4 uses GameChallengeBase
 
-    function GameChallenge_4Flush(int pid)
+    function GameChallenge_4Flush(int pid,real time)
         for num = 0,7
             SetUnitVertexColor(GameChallengUnit[40+num],255,255,255,0)
         end
         GameChallengInt[40] = 0
         SetUnitAnimation(GameChallengUnit[43],"stand")
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function OpenGameChallenge_4(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_4Flush(pid)
+        GameChallenge_4Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -1728
             y = -896
@@ -20,8 +21,8 @@ library GameChallenge4 uses GameChallengeBase
             PlayerInChallengeNumber = 4
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r天仙赵公明助闻太师攻打西岐，神秘大能-陆压传子牙“钉头七箭书”应对。")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往姜子牙|r")
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","天仙赵公明助闻太师攻打西岐，神秘大能-陆压传子牙“钉头七箭书”应对。",0.3)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往姜子牙|r",0.3)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[40],UnitAPOfPlayer)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[41],UnitAPOfPlayer)
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[42],UnitAPOfPlayer)
@@ -33,7 +34,8 @@ library GameChallenge4 uses GameChallengeBase
             PlayerInChallengeNumber = 4
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往赵公明|r")
+            SetPlayerTaskUIChatOfPlayer(pid,"任务","前往赵公明！",0.3)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往赵公明|r",0.3)
             for num = 3,7
                 ShowUnitOfOnlyPlayer(pid,GameChallengUnit[40+num],UnitAPOfPlayer)
             end
@@ -46,8 +48,8 @@ library GameChallenge4 uses GameChallengeBase
         if  GameChallengInt[40] == 3
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[41],UnitAPOfPlayer)
             UnitAddItemEx(Pu[1],'IZ00')
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功夺回箭书！！！")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff前往姜子牙交换箭书|r")
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功夺回箭书！！！",0)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往姜子牙交换箭书|r",0)
         endif
     endfunction
 
@@ -87,7 +89,7 @@ library GameChallenge4 uses GameChallengeBase
                 IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[b],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                 IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀击杀陈九公和姚少司，夺回箭书|r")
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀陈九公和姚少司，夺回箭书|r",0)
             endif
             endtimer
             flush locals
@@ -140,7 +142,7 @@ library GameChallenge4 uses GameChallengeBase
         TimerStart(1,false)
         {   
             if  IsPlayerInChallenge == true
-                GameChallenge_4Flush(pid)
+                GameChallenge_4Flush(pid,2)
                 IsFinshChallenge(4) = true
                 //奖励
                 PlayerFinishPlotEx(pid,4)
@@ -173,7 +175,7 @@ library GameChallenge4 uses GameChallengeBase
                 KillUnit(u1)
                 if  GameChallengInt[40] == 4
                     SetUnitAnimation(GameChallengUnit[43],"death")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r赵公明死亡！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","赵公明死亡！！！",0)
                     EnRctGameChalleng_4_ReTimer2(pid)
                 endif
                 endtimer
@@ -190,7 +192,7 @@ library GameChallenge4 uses GameChallengeBase
             if  u1 == Pu[1]
                 if  IsFinshChallenge(4) == false and IsPlayerInChallenge == true
                     if  GameChallengInt[40] == 0 
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r我刚才正施法，只见一声响，便不见了箭书。你快去抢回来！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","我刚才正施法，只见一声响，便不见了箭书。你快去抢回来！",0)
                         GameChallengInt[40] = 1
                         SetUnitVertexColor(GameChallengUnit[41],255,255,255,0)
                         EnRctGameChalleng_4_JZYTimer(pid)
@@ -198,7 +200,7 @@ library GameChallenge4 uses GameChallengeBase
                         GameChallengInt[40] = 4
                         RemoveItem(UnitItemInSlot(Pu[1],UnitHasItemOfTypeReNum(Pu[1],'IZ00')))
                         SetUnitVertexColor(GameChallengUnit[41],255,255,255,0)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r智勇双全，奇功万古！赵公明定绝今日！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","智勇双全，奇功万古！赵公明定绝今日！",0)
                         EnRctGameChalleng_4_ReTimer(pid)
                     endif
                 endif
@@ -230,12 +232,12 @@ library GameChallenge4 uses GameChallengeBase
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[魔化杨戬]：|r我是谁？我在哪？我要到哪去？")
+                        SetPlayerTaskUIChatOfPlayer(pid,"魔化杨戬","我是谁？我在哪？我要到哪去？",0)
                     endif
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第九阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第九阵|r",0)
                     endtimer
                 endif
             else
@@ -279,7 +281,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第八阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第八阵|r",0)
                     endtimer
                 endif
             else
@@ -317,7 +319,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第七阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第七阵|r",0)
                     endtimer
                 endif
             else
@@ -361,7 +363,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第六阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第六阵|r",0)
                     endtimer
                 endif
             else
@@ -399,7 +401,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第五阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第五阵|r",0)
                     endtimer
                 endif
             else
@@ -443,7 +445,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第四阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第四阵|r",0)
                     endtimer
                 endif
             else
@@ -481,7 +483,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第三阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第三阵|r",0)
                     endtimer
                 endif
             else
@@ -525,7 +527,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第二阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第二阵|r",0)
                     endtimer
                 endif
             else
@@ -569,7 +571,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破第一阵|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第一阵|r",0)
                     endtimer
                 endif
             else
@@ -585,23 +587,23 @@ library GameChallenge4 uses GameChallengeBase
         TimerStart(1,false)
         {
             if  IsPlayerInChallenge == true
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r九曲黄河阵已破！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","九曲黄河阵已破！！！",0)
                 if  GameChallengOperaWay[4] == 0
                     if  GetGameChallengOperaSelsect() == 0
                         GameChallengOperaWay[4] = 1
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[杨戬]：|r方才走神，不想被魔气趁机入体，谢道兄搭救。")
+                        SetPlayerTaskUIChatOfPlayer(pid,"杨戬","方才走神，不想被魔气趁机入体，谢道兄搭救。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r") 
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")                                
                     else
                         GameChallengOperaWay[4] = 2
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[杨戬]：|r你给不了我答案。")
+                        SetPlayerTaskUIChatOfPlayer(pid,"杨戬","你给不了我答案。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
                     endif
                 endif
-                GameChallenge_4Flush(pid)
+                GameChallenge_4Flush(pid,2)
                 PlayerChallengeCosNum(4) = PlayerChallengeCosNum(4) + 1
                 //奖励
                 PlayerFinishPlotEx(pid,4)
@@ -619,55 +621,55 @@ library GameChallenge4 uses GameChallengeBase
             GameChallengInt[40] = GameChallengInt[40] + 1
             if  GameChallengInt[40] == 4
                 GameChallengInt[40] = 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第一阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第一阵！！！",0)
                 GameChalleng_4_Zhen_2(pid)
             endif
         elseif  uid == 'uf43'
             GameChallengInt[40] = GameChallengInt[40] + 1
             if  GameChallengInt[40] == 7
                 GameChallengInt[40] = 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第二阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第二阵！！！",0)
                 GameChalleng_4_Zhen_3(pid)
             endif
         elseif  uid == 'uf44'
             if  GameChallengInt[40] == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第三阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第三阵！！！",0)
                 GameChalleng_4_Zhen_4(pid)
             endif
         elseif  uid == 'uf45'
             GameChallengInt[40] = GameChallengInt[40] + 1
             if  GameChallengInt[40] == 10
                 GameChallengInt[40] = 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第四阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第四阵！！！",0)
                 GameChalleng_4_Zhen_5(pid)
             endif
         elseif  uid == 'uf46'
             if  GameChallengInt[40] == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第五阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第五阵！！！",0)
                 GameChalleng_4_Zhen_6(pid)   
             endif
         elseif  uid == 'uf47'
             GameChallengInt[40] = GameChallengInt[40] + 1
             if  GameChallengInt[40] == 13
                 GameChallengInt[40] = 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第六阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第六阵！！！",0)
                 GameChalleng_4_Zhen_7(pid)
             endif  
         elseif  uid == 'uf48'
             if  GameChallengInt[40] == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第七阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第七阵！！！",0)
                 GameChalleng_4_Zhen_8(pid)   
             endif
         elseif  uid == 'uf49'
             GameChallengInt[40] = GameChallengInt[40] + 1
             if  GameChallengInt[40] == 16
                 GameChallengInt[40] = 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第八阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第八阵！！！",0)
                 GameChalleng_4_Zhen_9(pid)
             endif
         elseif  uid == 'uf50'
             if  GameChallengInt[40] == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功突破第九阵！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功突破第九阵！！！",0)
                 GameChalleng_4_Zhen_End(pid)
             endif
         endif
@@ -681,8 +683,8 @@ library GameChallenge4 uses GameChallengeBase
                 if  IsPlayerInChallenge == true and GameChallengInt[40] == 0 
                     GameChallengInt[40] = 1
                     SetUnitVertexColor(GameChallengUnit[47],255,255,255,0)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[云霄娘娘]：|r既杀吾兄赵公明，便看你等能破得此阵不！")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff突破九曲黄河阵|r")
+                    SetPlayerTaskUIChatOfPlayer(pid,"云霄娘娘","既杀吾兄赵公明，便看你等能破得此阵不！",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破九曲黄河阵|r",0)
                     GameChalleng_4_Zhen_1(pid)
                 endif
             endif

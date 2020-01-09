@@ -11,6 +11,63 @@ library PlayerTaskUI uses GameFrame
     private FRAME PlayerTaskUI_TaskTitle
     private FRAME PlayerTaskUI_TaskText
 
+    function ClosePlayerTaskUI()
+        int hp = 255
+        int time = 0
+        PlayerTaskUI_Back.alpha = hp
+        PlayerTaskUI_Back.show = true
+        TimerStart(0.004,true)
+        {
+            if  time < 50
+                time = time + 1
+                hp = hp - 5
+                PlayerTaskUI_Back.alpha = hp
+            else
+                PlayerTaskUI_Back.alpha = 0
+                PlayerTaskUI_Back.show = false
+                endtimer    
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenPlayerTaskUI()
+        int hp = 0
+        int time = 0
+        PlayerTaskUI_Back.alpha = hp
+        PlayerTaskUI_Back.show = true
+        TimerStart(0.004,true)
+        {
+            if  time < 50
+                time = time + 1
+                hp = hp + 5
+                PlayerTaskUI_Back.alpha = hp
+            else
+                PlayerTaskUI_Back.alpha = 255
+                PlayerTaskUI_Back.show = true
+                endtimer    
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function ShowPlayerTaskUI(bool b,real time)
+        bool show = b
+        TimerStart(time,false)
+        {
+            if  show == true
+                OpenPlayerTaskUI()
+            else
+                ClosePlayerTaskUI()
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function ClosePlayerTaskUIOfPlayer(int id)
         int pid = id
         int hp = 255
@@ -67,62 +124,20 @@ library PlayerTaskUI uses GameFrame
         flush locals
     endfunction
 
-    function ShowPlayerTaskUIOfPlayer(int pid,bool show)
-        if  show == true
-            OpenPlayerTaskUIOfPlayer(pid)
-        else
-            ClosePlayerTaskUIOfPlayer(pid)
-        endif
-    endfunction
-
-    function ClosePlayerTaskUI()
-        int hp = 255
-        int time = 0
-        PlayerTaskUI_Back.alpha = hp
-        PlayerTaskUI_Back.show = true
-        TimerStart(0.004,true)
+    function ShowPlayerTaskUIOfPlayer(int id,bool b,real time)
+        int pid = id
+        bool show = b
+        TimerStart(time,false)
         {
-            if  time < 50
-                time = time + 1
-                hp = hp - 5
-                PlayerTaskUI_Back.alpha = hp
+            if  show == true
+                OpenPlayerTaskUIOfPlayer(pid)
             else
-                PlayerTaskUI_Back.alpha = 0
-                PlayerTaskUI_Back.show = false
-                endtimer    
+                ClosePlayerTaskUIOfPlayer(pid)
             endif
+            endtimer
             flush locals
         }
         flush locals
-    endfunction
-
-    function OpenPlayerTaskUI()
-        int hp = 0
-        int time = 0
-        PlayerTaskUI_Back.alpha = hp
-        PlayerTaskUI_Back.show = true
-        TimerStart(0.004,true)
-        {
-            if  time < 50
-                time = time + 1
-                hp = hp + 5
-                PlayerTaskUI_Back.alpha = hp
-            else
-                PlayerTaskUI_Back.alpha = 255
-                PlayerTaskUI_Back.show = true
-                endtimer    
-            endif
-            flush locals
-        }
-        flush locals
-    endfunction
-
-    function ShowPlayerTaskUI(bool show)
-        if  show == true
-            OpenPlayerTaskUI()
-        else
-            ClosePlayerTaskUI()
-        endif
     endfunction
 
     function SetPlayerTaskUITask(string s,real time)
@@ -158,16 +173,16 @@ library PlayerTaskUI uses GameFrame
         TimerStart(0.01,true)
         {
             time = time + 1
-            if  time <= 100
+            if  time <= 100 and cos < StringLength(chat)
                 show = SubString(chat,cos,cos+2)
                 if  show == "|c"
-                    show = SubString(chat,cos,cos+13)
+                    show = SubString(chat,0,cos+13)
                     cos = cos + 13
                 elseif  show == "|r"
-                    show = SubString(chat,cos,cos+5)
+                    show = SubString(chat,0,cos+5)
                     cos = cos + 5
                 else
-                    show = SubString(chat,cos,cos+3)
+                    show = SubString(chat,0,cos+3)
                     cos = cos + 3
                 endif
                 PlayerTaskUI_ChatTextB.SetText(show)
@@ -202,16 +217,16 @@ library PlayerTaskUI uses GameFrame
         TimerStart(0.01,true)
         {
             time = time + 1
-            if  time <= 100
+            if  time <= 100 and cos < StringLength(chat)
                 show = SubString(chat,cos,cos+2)
                 if  show == "|c"
-                    show = SubString(chat,cos,cos+13)
+                    show = SubString(chat,0,cos+13)
                     cos = cos + 13
                 elseif  show == "|r"
-                    show = SubString(chat,cos,cos+5)
+                    show = SubString(chat,0,cos+5)
                     cos = cos + 5
                 else
-                    show = SubString(chat,cos,cos+3)
+                    show = SubString(chat,0,cos+3)
                     cos = cos + 3
                 endif
                 if  Player(pid) == GetLocalPlayer()
@@ -256,17 +271,17 @@ library PlayerTaskUI uses GameFrame
         PlayerTaskUI_Back.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_Back",GameUI,0)
         PlayerTaskUI_Back.SetSize(0.36,0.07)
         PlayerTaskUI_Back.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
-        PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.127)
+        PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.126)
 
-        PlayerTaskUI_TaskBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_Back.frameid,0)
-        PlayerTaskUI_TaskBack.SetSize(0.058,0.058)
-        PlayerTaskUI_TaskBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
-        PlayerTaskUI_TaskBack.SetPoint(3,PlayerTaskUI_Back.frameid,3,0.005,0)
-
-        PlayerTaskUI_ChatBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_TaskBack.frameid,0)
+        PlayerTaskUI_ChatBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_Back.frameid,0)
         PlayerTaskUI_ChatBack.SetSize(0.288,0.058)
         PlayerTaskUI_ChatBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
-        PlayerTaskUI_ChatBack.SetPoint(3,PlayerTaskUI_TaskBack.frameid,5,0.004,0)
+        PlayerTaskUI_ChatBack.SetPoint(3,PlayerTaskUI_Back.frameid,3,0.005,0)
+
+        PlayerTaskUI_TaskBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_ChatBack.frameid,0)
+        PlayerTaskUI_TaskBack.SetSize(0.058,0.058)
+        PlayerTaskUI_TaskBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
+        PlayerTaskUI_TaskBack.SetPoint(3,PlayerTaskUI_ChatBack.frameid,5,0.004,0)
 
         PlayerTaskUI_TaskTitle.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_TaskBack.frameid,0)
         PlayerTaskUI_TaskTitle.SetSize(0.058,0.014)

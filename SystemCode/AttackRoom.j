@@ -20,61 +20,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
         //设置怪物刷新坐标
     endfunction
     
-    function AttackRoomInit()
-        real x = 0
-        real y = 0
-        
-        //初始化练功房刷怪坐标
-        SetAttackRoomRefreshPostion(0,-8512,-5312)
-        SetAttackRoomRefreshPostion(1,-5312,-5312)
-        SetAttackRoomRefreshPostion(2,-5312,-8512)
-        SetAttackRoomRefreshPostion(3,-8512,-8512)
-        
-        
-        //初始化练功房进入坐标
-        SetAttackRoomMovePostion(0,-8512,-5312)
-        SetAttackRoomMovePostion(1,-5312,-5312)
-        SetAttackRoomMovePostion(2,-5312,-8512)
-        SetAttackRoomMovePostion(3,-8512,-8512)
-        
-        
-        
-        for pid = 0,3//玩家数量
-            if  IsPlaying(pid) == true
-                x = AttackRoomPostion[pid][1]
-                y = AttackRoomPostion[pid][2]
-                
-                AttackRoomGroup[pid] = CreateGroup()
-                AttackRoomUid = 'g00A'
-                AttackRoomUnitNum = 10
-                
-                Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
-                Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
-                Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
-                
-                Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
-                //Pu[26]=CreateUnit(Player(pid),'np06',x-512,y+256,270)//药品商店
-                
-                Pu[27]=CreateUnit(Player(pid),'np27',x+384,y+192,225)//送宝金蝉
-                UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
-                SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-                SetUnitVertexColor(Pu[27],255,255,255,50)
-                PauseUnit(Pu[27],true)
-                
-                ShowUnit(Pu[23],false)
-                
-                ShowUnit(Pu[25],false)
-            endif
-        end
-        
-        
-        for g = 1,1//怪物种类数量
-            diesgroup[g] = CreateGroup()
-        end
-        
-        
-    endfunction
+    
     
     
     
@@ -263,7 +209,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     endfunction
 
 
-
+    //星阵给奖励
+    function SoulTimer2FuncGivePrize(int pid)
+        int ran = GetRandomInt(1,100)
+        if  ran <= 33
+            
+        endif
+    endfunction
 
     function SoulTimer2Func(int id,real x,real y)
         int pid = id
@@ -297,6 +249,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                         
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                         LocAddEffect(GetUnitX(Pu[27]),GetUnitY(Pu[27]),"effect_az_bw_lina_t1-2.mdl")
+                        SoulTimer2FuncGivePrize(pid)
                     endif
                 endif
                 RemoveUnit(u1)
@@ -339,13 +292,68 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     endfunction
     
     function HeroMoveToRoom(int pid)
-        DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
-        SetPlayerUnitPostionSelectUnit(Pu[1],AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],Pu[1])
-        DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]))
+        SendPlayerUnit(pid,AttackRoomPostion[pid][1],AttackRoomPostion[pid][2])
         if  AttackRoomTimer==false
             RefreshAttackRoom(pid,AttackRoomUid)
         endif
     endfunction
-    
+    function AttackRoomInit()
+        real x = 0
+        real y = 0
+        
+        //初始化练功房刷怪坐标
+        SetAttackRoomRefreshPostion(0,-8512,-5312)
+        SetAttackRoomRefreshPostion(1,-5312,-5312)
+        SetAttackRoomRefreshPostion(2,-5312,-8512)
+        SetAttackRoomRefreshPostion(3,-8512,-8512)
+        
+        
+        //初始化练功房进入坐标
+        SetAttackRoomMovePostion(0,-8512,-5312)
+        SetAttackRoomMovePostion(1,-5312,-5312)
+        SetAttackRoomMovePostion(2,-5312,-8512)
+        SetAttackRoomMovePostion(3,-8512,-8512)
+        for g = 1,1//怪物种类数量
+            diesgroup[g] = CreateGroup()
+        end
+        
+        
+        
+        for pid = 0,3//玩家数量
+            if  IsPlaying(pid) == true
+                x = AttackRoomPostion[pid][1]
+                y = AttackRoomPostion[pid][2]
+                
+                AttackRoomGroup[pid] = CreateGroup()
+                AttackRoomUid = 'g00A'
+                AttackRoomUnitNum = 10
+                
+                Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
+                Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
+                Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
+                
+                Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
+                //Pu[26]=CreateUnit(Player(pid),'np06',x-512,y+256,270)//药品商店
+                
+                Pu[27]=CreateUnit(Player(pid),'np27',x+384,y+192,225)//送宝金蝉
+                UnitAddAbility(Pu[27],'Avul')
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
+                SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+                SetUnitVertexColor(Pu[27],255,255,255,50)
+                PauseUnit(Pu[27],true)
+                
+                ShowUnit(Pu[23],false)
+                
+                ShowUnit(Pu[25],false)
+
+
+                RefreshAttackRoom(pid,AttackRoomUid)
+            endif
+        end
+        
+        
+        
+        
+    endfunction
    
 endlibrary
