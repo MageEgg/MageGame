@@ -1,9 +1,7 @@
 
 scope AbilityStateData initializer init
     private function init()
-        //输出代码
-
-//call InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
+//输出代码
 //call InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
 call InitAbilityData('S0Q0',1,9,0,0,0,0,0,0,"Q技能","|cffffff00需求：\n|r|cff808080 - 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
 call InitAbilityData('S0W0',1,9,0,0,0,0,0,0,"W技能","|cffffff00需求：\n|r|cff808080 - 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTNCancel.blp")
@@ -121,7 +119,7 @@ call InitAbilityData('S120',2,5,1,3,0,0,1,8,"撼地击","对自身周围造成AD
 call InitAbilityData('S121',1,6,0,0,0,0,0,0,"锁魂","增加10%法术穿透","ReplaceableTextures\\CommandButtons\\BTNS121.blp")
 call InitAbilityData('S122',1,6,0,0,0,0,0,0,"破甲","增加10%护甲穿透","ReplaceableTextures\\CommandButtons\\BTNS122.blp")
 call InitAbilityData('S123',2,7,2,3,0,0,2,8,"冰暴术","自身600码范围随机点产生一次冰暴，造成AP*3法术伤害间隔1s","ReplaceableTextures\\CommandButtons\\BTNS123.blp")
-call InitAbilityData('S124',4,7,2,3,0,0,2,8,"驭雷术","向目标投射一个电球，造成AP*3法术伤害。电球返回自身时，回复命中次数*5蓝量。电球最多跳跃6次。","ReplaceableTextures\\CommandButtons\\BTNS124.blp")
+call InitAbilityData('S124',5,7,2,3,0,0,2,8,"驭雷术","向目标投射一个电球，造成AP*3法术伤害。电球返回自身时，回复命中次数*5蓝量。电球最多跳跃6次。","ReplaceableTextures\\CommandButtons\\BTNS124.blp")
 call InitAbilityData('S125',1,7,0,0,0,0,0,0,"斩铁式","被攻击10%概率提高50%普攻伤害。","ReplaceableTextures\\CommandButtons\\BTNS125.blp")
 call InitAbilityData('S126',1,7,0,0,0,0,0,0,"灵巧","闪避+10%","ReplaceableTextures\\CommandButtons\\BTNS126.blp")
 call InitAbilityData('S127',2,7,0,0,0,0,0,10,"回春术","5秒内回复60%最大生命值\n效果不可叠加","ReplaceableTextures\\CommandButtons\\BTNS127.blp")
@@ -131,14 +129,14 @@ call InitAbilityData('S230',9,0,1,12,0,0,1,20,"血之裂痕","扑杀目标范围
 call InitAbilityData('S231',10,0,2,2,0,0,2,20,"十绝阵","召唤道棺从天而降，砸向自身周围。每个道棺造成AP*2法术伤害。\n基础数量6个，每1W5法强增加1个道棺数。\n总持续时间3秒，施法期间无法攻击和移动。","ReplaceableTextures\\CommandButtons\\BTNS231.blp")
 call InitAbilityData('S232',2,0,5,2,0,0,2,12,"八荒斗神","强制800范围内所有敌方单位攻击自己，伤害免疫+20%\n每次被攻击，对目标造成生命值*2法术伤害","ReplaceableTextures\\CommandButtons\\BTNS232.blp")
 call InitAbilityData('S233',2,0,0,0,0,0,0,20,"冰封之域","2s后，自身周围敌人进入极冻状态（模拟眩晕），承受物理伤害+100%，承受法术伤害-50%。","ReplaceableTextures\\CommandButtons\\BTNS233.blp")
-call InitAbilityData('S234',4,0,2,12,0,0,2,20,"离魂秘术","对目标造成AP*12伤害，随后使目标范围600码单位无法攻击，承受法术伤害+80%，承受物理伤害-50%","ReplaceableTextures\\CommandButtons\\BTNS234.blp")
+call InitAbilityData('S234',5,0,2,12,0,0,2,20,"离魂秘术","对目标造成AP*12伤害，随后使目标范围600码单位无法攻击，承受法术伤害+80%，承受物理伤害-50%","ReplaceableTextures\\CommandButtons\\BTNS234.blp")
 call InitAbilityData('S235',2,0,0,0,0,0,0,15,"修罗之怒","释放后根据当前血量增加自身3%~33%暴击概率，持续时间内，每次暴击增加自身30%暴击伤害。","ReplaceableTextures\\CommandButtons\\BTNS235.blp")
-call InitAbilityData('S236',4,0,0,12,0,0,2,12,"神威一击","突刺至目标身后，造成AD或AP*12伤害。随后攻击速度+220%。\n若攻击力最高，则造成攻击力相关物理伤害。\n若法术强度最高，则造成法强相关法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS236.blp")
+call InitAbilityData('S236',5,0,0,12,0,0,2,12,"神威一击","突刺至目标身后，造成AD或AP*12伤害。随后攻击速度+220%。\n若攻击力最高，则造成攻击力相关物理伤害。\n若法术强度最高，则造成法强相关法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS236.blp")
 call InitAbilityData('S237',2,0,0,0,0,0,0,20,"道法自然","持续时间内，冷却缩减+40%，每次释放技能增加自身10%伤害加成。","ReplaceableTextures\\CommandButtons\\BTNS237.blp")
 call InitAbilityData('S238',2,0,1,2,0,0,1,20,"孔雀之魂","持续时间内，冷却缩减+40%，每次释放技能增加自身10%伤害加成。","ReplaceableTextures\\CommandButtons\\BTNS238.blp")
 call InitAbilityData('S239',1,0,0,0,0,0,0,20,"未命名","获得后每波增加波数相关的金币&木头奖励。\n该收益在被替换后，效果消失。","ReplaceableTextures\\CommandButtons\\BTNS239.blp")
 call InitAbilityData('S501',2,0,1,2,0,0,1,12,"天罚连击","向前挥砍后突刺造成大量伤害。\n挥砍一段：造成2*攻击物理伤害。\n挥砍二段：造成2*攻击物理伤害。\n突刺：8%目标已损失生命伤害。","ReplaceableTextures\\CommandButtons\\BTNS501.blp")
-call InitAbilityData('S502',4,0,1,2,0,0,1,10,"土遁袭杀","钻入地底突进至目标身后进行2次爪击，每次造成攻击*2伤害。\n\n每提高100%攻击速度额外增加一次爪击。","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
+call InitAbilityData('S502',5,0,1,2,0,0,1,10,"土遁袭杀","钻入地底突进至目标身后进行2次爪击，每次造成攻击*2伤害。\n\n每提高100%攻击速度额外增加一次爪击。","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
 call InitAbilityData('S503',1,0,99,1,0,0,2,0.2,"玉清合荒","周围600码范围内的敌/友军释放主动技能时，对自身周围造成（攻击+法强）*1法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS503.blp")
 call InitAbilityData('S504',2,0,1,2,0,0,1,10,"火尖枪舞","突刺并向前方瞬间刺击3次，每次造成攻击*2物理伤害。\n\n暴击达到30%时，额外造成一次刺击，造成攻击*8物理伤害。","ReplaceableTextures\\CommandButtons\\BTNS504.blp")
 call InitAbilityData('S505',2,0,2,4,0,0,2,12,"一气化三清","幻化6个无法移动的分身，每个分身拥有70%攻击力。\n4秒后分身爆炸，对周围400码造成4*法强法术伤害。","ReplaceableTextures\\CommandButtons\\BTNS505.blp")
@@ -168,7 +166,6 @@ call InitAbilityData('S528',1,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是�
 call InitAbilityData('S529',1,0,0,0,0,0,0,15,"神医救世","队友或你死亡时，直接复活。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,"百发百中","攻击必定命中。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
 call InitAbilityData('S531',1,0,0,0,0,0,0,0,"料事如神","每次占星挑战成功，增加一定法强。","ReplaceableTextures\\CommandButtons\\BTNS531.blp")
-
 
     endfunction
 endscope
