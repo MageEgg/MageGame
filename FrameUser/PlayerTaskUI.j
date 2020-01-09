@@ -1,37 +1,37 @@
 library PlayerTaskUI uses GameFrame
 
-    FRAME PlayerTaskUI_Back
+    private FRAME PlayerTaskUI_Back
 
-    FRAME PlayerTaskUI_ChatBack
-    FRAME PlayerTaskUI_ChatTitle 
-    FRAME PlayerTaskUI_ChatTextA
-    FRAME PlayerTaskUI_ChatTextB
+    private FRAME PlayerTaskUI_ChatBack
+    private FRAME PlayerTaskUI_ChatTitle 
+    private FRAME PlayerTaskUI_ChatTextA
+    private FRAME PlayerTaskUI_ChatTextB
 
-    FRAME PlayerTaskUI_TaskBack
-    FRAME PlayerTaskUI_TaskTitle
-    FRAME PlayerTaskUI_TaskText
+    private FRAME PlayerTaskUI_TaskBack
+    private FRAME PlayerTaskUI_TaskTitle
+    private FRAME PlayerTaskUI_TaskText
 
-    function ShowPlayerTaskUI(bool flag)
-        PlayerTaskUI_Back.show = flag
-    endfunction
-
-    /*function ClosePlayerTaskUI()
+    function ClosePlayerTaskUIOfPlayer(int id)
+        int pid = id
+        int hp = 255
         int time = 0
-        real x = 0
-        int ap = 255
-        AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
-        AttackShowUI.alpha = ap
-        TimerStart(0.0035,true)
+        if  Player(pid) == GetLocalPlayer()
+            PlayerTaskUI_Back.alpha = hp
+            PlayerTaskUI_Back.show = true
+        endif
+        TimerStart(0.004,true)
         {
             if  time < 50
                 time = time + 1
-                x = x + 0.005
-                ap = ap - 5
-                AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
-                AttackShowUI.alpha = ap
+                if  Player(pid) == GetLocalPlayer()
+                    hp = hp - 5
+                    PlayerTaskUI_Back.alpha = hp
+                endif
             else
-                AttackShowUI.alpha = ap
-                AttackShowUI.show = false
+                if  Player(pid) == GetLocalPlayer()
+                    PlayerTaskUI_Back.alpha = 0
+                    PlayerTaskUI_Back.show = false
+                endif
                 endtimer    
             endif
             flush locals
@@ -39,31 +39,207 @@ library PlayerTaskUI uses GameFrame
         flush locals
     endfunction
 
-    function OpenPlayerTaskUI(string back,real t)
+    function OpenPlayerTaskUIOfPlayer(int id)
+        int pid = id
+        int hp = 0
         int time = 0
-        real x = -0.25
-        int ap = 5
-        real tt = t
-        AttackShowUI.SetTexture(back,0)
-        AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
-        AttackShowUI.alpha = ap
-        AttackShowUI.show = true
-        TimerStart(0.0035,true)
+        if  Player(pid) == GetLocalPlayer()
+            PlayerTaskUI_Back.alpha = hp
+            PlayerTaskUI_Back.show = true
+        endif
+        TimerStart(0.004,true)
         {
             if  time < 50
                 time = time + 1
-                x = x + 0.005
-                ap = ap + 5
-                AttackShowUI.SetPoint(4,GameUI,4,x,0.16)
-                AttackShowUI.alpha = ap
+                if  Player(pid) == GetLocalPlayer()
+                    hp = hp + 5
+                    PlayerTaskUI_Back.alpha = hp
+                endif
             else
-                StandAttackShowUI(tt)
+                if  Player(pid) == GetLocalPlayer()
+                    PlayerTaskUI_Back.alpha = 255
+                    PlayerTaskUI_Back.show = true
+                endif
                 endtimer    
             endif
             flush locals
         }
         flush locals
-    endfunction*/
+    endfunction
+
+    function ShowPlayerTaskUIOfPlayer(int pid,bool show)
+        if  show == true
+            OpenPlayerTaskUIOfPlayer(pid)
+        else
+            ClosePlayerTaskUIOfPlayer(pid)
+        endif
+    endfunction
+
+    function ClosePlayerTaskUI()
+        int hp = 255
+        int time = 0
+        PlayerTaskUI_Back.alpha = hp
+        PlayerTaskUI_Back.show = true
+        TimerStart(0.004,true)
+        {
+            if  time < 50
+                time = time + 1
+                hp = hp - 5
+                PlayerTaskUI_Back.alpha = hp
+            else
+                PlayerTaskUI_Back.alpha = 0
+                PlayerTaskUI_Back.show = false
+                endtimer    
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenPlayerTaskUI()
+        int hp = 0
+        int time = 0
+        PlayerTaskUI_Back.alpha = hp
+        PlayerTaskUI_Back.show = true
+        TimerStart(0.004,true)
+        {
+            if  time < 50
+                time = time + 1
+                hp = hp + 5
+                PlayerTaskUI_Back.alpha = hp
+            else
+                PlayerTaskUI_Back.alpha = 255
+                PlayerTaskUI_Back.show = true
+                endtimer    
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function ShowPlayerTaskUI(bool show)
+        if  show == true
+            OpenPlayerTaskUI()
+        else
+            ClosePlayerTaskUI()
+        endif
+    endfunction
+
+    function SetPlayerTaskUITask(string s,real time)
+        string task = s
+        TimerStart(time,false)
+        {
+            PlayerTaskUI_TaskText.SetText(task)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SetPlayerTaskUITaskOfPlayer(int id,string s,real time)
+        int pid = id
+        string task = s
+        TimerStart(time,false)
+        {
+            if  Player(pid) == GetLocalPlayer()
+                PlayerTaskUI_TaskText.SetText(task)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function ShowPlayerTaskUIChat(string s)
+        string chat = s
+        string show = ""
+        int time = 0
+        int cos = 0
+        TimerStart(0.01,true)
+        {
+            time = time + 1
+            if  time <= 100
+                show = SubString(chat,cos,cos+2)
+                if  show == "|c"
+                    show = SubString(chat,cos,cos+13)
+                    cos = cos + 13
+                elseif  show == "|r"
+                    show = SubString(chat,cos,cos+5)
+                    cos = cos + 5
+                else
+                    show = SubString(chat,cos,cos+3)
+                    cos = cos + 3
+                endif
+                PlayerTaskUI_ChatTextB.SetText(show)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+
+    function SetPlayerTaskUIChat(string s1,string s2,real time)
+        string title = s1
+        string chat = s2
+        TimerStart(time,false)
+        {
+            PlayerTaskUI_ChatTextA.SetText("|cffffcc00"+title+"：|r")
+            ShowPlayerTaskUIChat(chat)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function ShowPlayerTaskUIChatOfPlayer(int id,string s)
+        int pid = id
+        string chat = s
+        string show = ""
+        int time = 0
+        int cos = 0
+        TimerStart(0.01,true)
+        {
+            time = time + 1
+            if  time <= 100
+                show = SubString(chat,cos,cos+2)
+                if  show == "|c"
+                    show = SubString(chat,cos,cos+13)
+                    cos = cos + 13
+                elseif  show == "|r"
+                    show = SubString(chat,cos,cos+5)
+                    cos = cos + 5
+                else
+                    show = SubString(chat,cos,cos+3)
+                    cos = cos + 3
+                endif
+                if  Player(pid) == GetLocalPlayer()
+                    PlayerTaskUI_ChatTextB.SetText(show)
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SetPlayerTaskUIChatOfPlayer(int id,string s1,string s2,real time)
+        int pid = id
+        string title = s1
+        string chat = s2
+        TimerStart(time,false)
+        {
+            if  Player(pid) == GetLocalPlayer()
+                PlayerTaskUI_ChatTextA.SetText("|cffffcc00"+title+"：|r")
+            endif
+            ShowPlayerTaskUIChatOfPlayer(pid,chat)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
 
     function InitPlayerTaskUI()
         PlayerTaskUI_Back = FRAME.create() 
@@ -77,63 +253,44 @@ library PlayerTaskUI uses GameFrame
         PlayerTaskUI_TaskTitle = FRAME.create() 
         PlayerTaskUI_TaskText = FRAME.create()  
 
-        //背景设置
         PlayerTaskUI_Back.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_Back",GameUI,0)
         PlayerTaskUI_Back.SetSize(0.36,0.07)
-        PlayerTaskUI_Back.SetTexture("war3mapImported\\UI_AttackTimer.tga",0)
+        PlayerTaskUI_Back.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
         PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.127)
 
         PlayerTaskUI_TaskBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_Back.frameid,0)
-        PlayerTaskUI_TaskBack.SetSize(0.055,0.055)
-        PlayerTaskUI_TaskBack.SetTexture("a.blp",0)
+        PlayerTaskUI_TaskBack.SetSize(0.058,0.058)
+        PlayerTaskUI_TaskBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
         PlayerTaskUI_TaskBack.SetPoint(3,PlayerTaskUI_Back.frameid,3,0.005,0)
 
         PlayerTaskUI_ChatBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_TaskBack.frameid,0)
-        PlayerTaskUI_ChatBack.SetSize(0.29,0.055)
-        PlayerTaskUI_ChatBack.SetTexture("a.blp",0)
-        PlayerTaskUI_ChatBack.SetPoint(3,PlayerTaskUI_TaskBack.frameid,5,0.005,0)
+        PlayerTaskUI_ChatBack.SetSize(0.288,0.058)
+        PlayerTaskUI_ChatBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
+        PlayerTaskUI_ChatBack.SetPoint(3,PlayerTaskUI_TaskBack.frameid,5,0.004,0)
 
         PlayerTaskUI_TaskTitle.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_TaskBack.frameid,0)
-        PlayerTaskUI_TaskTitle.SetSize(0.055,0.012)
+        PlayerTaskUI_TaskTitle.SetSize(0.058,0.014)
         PlayerTaskUI_TaskTitle.SetTexture("textures\\white32.blp",0)
         PlayerTaskUI_TaskTitle.SetPoint(0,PlayerTaskUI_TaskBack.frameid,0,0,0)
 
         PlayerTaskUI_TaskText.frameid = FRAME.Tag("TEXT","PlayerTaskUI_TaskText",PlayerTaskUI_TaskTitle.frameid,0)
-        PlayerTaskUI_TaskText.SetPoint(1,PlayerTaskUI_TaskTitle.frameid,7,0,-0.003)
-        PlayerTaskUI_TaskText.SetSize(0.055,0.037)
-        PlayerTaskUI_TaskText.SetText("|cffffcc00击杀新手BOSS|r")
+        PlayerTaskUI_TaskText.SetPoint(1,PlayerTaskUI_TaskTitle.frameid,7,0.002,-0.003)
+        PlayerTaskUI_TaskText.SetSize(0.054,0.039)
+        PlayerTaskUI_TaskText.SetText("")
 
-        PlayerTaskUI_ChatTextA.frameid = FRAME.Tag("TEXT","PlayerTaskUI_ChatTextA",PlayerTaskUI_ChatBack.frameid,0)
+        PlayerTaskUI_ChatTextA.frameid = FRAME.Fdf("text012",PlayerTaskUI_ChatBack.frameid,PlayerTaskUI_ChatTextA)
+        //FRAME.Tag("TEXT","PlayerTaskUI_ChatTextA",PlayerTaskUI_ChatBack.frameid,0)
         PlayerTaskUI_ChatTextA.SetPoint(0,PlayerTaskUI_ChatBack.frameid,0,0.003,-0.002)
         PlayerTaskUI_ChatTextA.SetSize(0.282,0.012)
-        PlayerTaskUI_ChatTextA.SetText("|cffffcc00剧情：|r")
+        PlayerTaskUI_ChatTextA.SetText("")
 
-        PlayerTaskUI_ChatTextB.frameid = FRAME.Tag("TEXT","PlayerTaskUI_ChatTextB",PlayerTaskUI_ChatTextA.frameid,0)
-        PlayerTaskUI_ChatTextB.SetPoint(0,PlayerTaskUI_ChatTextA.frameid,6,0,-0.002)
-        PlayerTaskUI_ChatTextB.SetSize(0.282,0.035)
-        PlayerTaskUI_ChatTextB.SetText("|cffffcc00击杀新手BOSS|r|n|cffffcc00击杀新手BOSS|r|n|cffffcc00击杀新手BOSS|r")
+        PlayerTaskUI_ChatTextB.frameid = FRAME.Tag("TEXT","PlayerTaskUI_ChatTextB",PlayerTaskUI_ChatBack.frameid,0)
+        PlayerTaskUI_ChatTextB.SetPoint(0,PlayerTaskUI_ChatBack.frameid,0,0.003,-0.017)
+        PlayerTaskUI_ChatTextB.SetSize(0.282,0.039)
+        PlayerTaskUI_ChatTextB.SetText("")
 
-        //文本设置
-        /*AttackTimerTextUI.frameid = FRAME.Fdf("centertext015",AttackTimerUI.frameid,AttackTimerTextUI)
-        AttackTimerTextUI.SetPoint(1,AttackTimerUI.frameid,1,0,0)
-        AttackTimerTextUI.SetSize(0.117,0.03)
-        AttackTimerTextUI.SetText("|cffffcc00等待玩家选择|r")*/
-
-        //设置快捷键文本
-        /*AttackTimerTextExUI.frameid = FRAME.Fdf("centertext015",AttackTimerTextUI.frameid,AttackTimerTextExUI)
-        AttackTimerTextExUI.SetPoint(1,AttackTimerTextUI.frameid,4,0,-0.005)
-        AttackTimerTextExUI.SetSize(0.117,0.03)
-        AttackTimerTextExUI.SetText("|cffffcc00等待玩家选择|r")*/
-
-        //AttackTimerUI.show = false
-
-        /*AttackShowUI = FRAME.create() 
-        AttackShowUI.frameid = FRAME.Tag("BACKDROP","AttackShowUI",GameUI,0)
-        AttackShowUI.SetSize(0.26,0.16)
-        AttackShowUI.SetTexture("war3mapImported\\UI_AttackTimer.tga",0)
-        AttackShowUI.SetPoint(4,GameUI,4,0,0.16)*/
-
-        //PlayerTaskUI_Back.show = false
+        PlayerTaskUI_Back.alpha = 0
+        PlayerTaskUI_Back.show = false
 
     endfunction
 
