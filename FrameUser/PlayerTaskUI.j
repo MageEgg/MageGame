@@ -270,8 +270,8 @@ library PlayerTaskUI uses GameFrame
 
         PlayerTaskUI_Back.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_Back",GameUI,0)
         PlayerTaskUI_Back.SetSize(0.36,0.07)
-        PlayerTaskUI_Back.SetTexture("war3mapImported\\PlayerTaskUI_Back_new.tga",0)
-        PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.124)
+        PlayerTaskUI_Back.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
+        PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.12)
 
         PlayerTaskUI_ChatBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_Back.frameid,0)
         PlayerTaskUI_ChatBack.SetSize(0.288,0.058)

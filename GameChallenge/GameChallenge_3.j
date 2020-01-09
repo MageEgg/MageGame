@@ -54,16 +54,8 @@ library GameChallenge3 uses GameChallengeBase
         UnitAddEffectOfGameChalleng(GameChallengUnit[39])
         IssuePointOrderById(GameChallengUnit[39],851983,GetUnitX(GameChallengUnit[32]),GetUnitY(GameChallengUnit[32]))
         SetPlayerTaskUIChatOfPlayer(pid,"黄天化","弟子为什么在这里？",0)
+        SetPlayerTaskUIChatOfPlayer(pid,"道德真君","好畜生！若不是看在子牙面上，决不救你！",1)
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随黄天化|r",0)
-        TimerStart(1,true)
-        {
-            if  IsPlayerInChallenge == true
-                SetPlayerTaskUIChatOfPlayer(pid,"道德真君","好畜生！若不是看在子牙面上，决不救你！",0)
-            endif
-            endtimer
-            flush locals
-        }
-        flush locals
     endfunction
 
     function OpenGameChallenge_3(int pid,int ty)
@@ -305,7 +297,7 @@ library GameChallenge3 uses GameChallengeBase
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == GameChallengUnit[39]
                 SetUnitVertexColor(GameChallengUnit[33],255,255,255,0)
-                SetPlayerTaskUIChatOfPlayer(pid,"道德真君","你速往西岐，再会魔家四将，可成大功！",0)
+                SetPlayerTaskUIChatOfPlayer(pid,"道德真君","你速往西岐，再会魔家四将，可成大功！",2.5)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随黄天化|r",0)
                 SMJJumpTimer1(u1,-4320,7648)
             endif
