@@ -224,12 +224,15 @@ library GameChallenge2 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[20] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-6080,3072,0)
                 SetUnitVertexColor(GameChallengUnit[20],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[20],0x01)
                 
                 GameChallengUnit[21] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5536,3872,0)
                 SetUnitVertexColor(GameChallengUnit[21],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[21],0x01)
 
                 GameChallengUnit[22] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np22',-3712,2880,180)
                 SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[22],0x01)
             endif
         end
 

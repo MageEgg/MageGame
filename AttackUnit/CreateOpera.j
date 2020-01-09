@@ -199,6 +199,7 @@ library CreateOpera uses DamageCode
                     GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
                     OriginalDefendX = GetUnitX(GameDefendUnit)
                     OriginalDefendY = GetUnitY(GameDefendUnit)
+                    EXSetUnitMoveType(GameDefendUnit,0x01)
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                     ShowBossDamageUI(false)
                     ShowBossDamageString()

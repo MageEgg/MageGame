@@ -707,22 +707,29 @@ library GameChallenge4 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[40] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2342,-960,0)
                 SetUnitVertexColor(GameChallengUnit[40],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[40],0x01)
                 GameChallengUnit[41] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-2342,-960,0)
                 SetUnitVertexColor(GameChallengUnit[41],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[41],0x01)
                 GameChallengUnit[42] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np15',-2336,-832,0)
                 SetUnitVertexColor(GameChallengUnit[42],255,255,255,0)
-
+                EXSetUnitMoveType(GameChallengUnit[42],0x01)
                 GameChallengUnit[43] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np23',-32,-960,180)
                 SetUnitVertexColor(GameChallengUnit[43],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[43],0x01)
                 GameChallengUnit[44] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np24',-256,-768,270)
                 SetUnitVertexColor(GameChallengUnit[44],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[44],0x01)
                 GameChallengUnit[45] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np24',192,-768,270)
                 SetUnitVertexColor(GameChallengUnit[45],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[45],0x01)
                 GameChallengUnit[46] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np24',-32,-640,270)
                 SetUnitVertexColor(GameChallengUnit[46],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[46],0x01)
 
                 GameChallengUnit[47] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-32,-960,0)
                 SetUnitVertexColor(GameChallengUnit[47],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[47],0x01)
 
             endif
         end

@@ -457,12 +457,16 @@ library GameChallenge8 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[80] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',1728,6112,45)
                 SetUnitVertexColor(GameChallengUnit[80],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[80],0x01)
                 GameChallengUnit[81] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',1728,6112,0)
                 SetUnitVertexColor(GameChallengUnit[81],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[81],0x01)
                 GameChallengUnit[82] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',2592,7800,270)
                 SetUnitVertexColor(GameChallengUnit[82],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[82],0x01)
                 GameChallengUnit[83] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',2592,7800,0)
                 SetUnitVertexColor(GameChallengUnit[83],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[83],0x01)
             endif
         end
     endfunction

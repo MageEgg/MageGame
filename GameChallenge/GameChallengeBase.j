@@ -208,8 +208,24 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
         real life = 0
+        real de = 0
         life = GetUnitRealState(u,5)*(1.0+0.2*PlayerChallengeCosNum(flag))
         SetUnitRealState(u,5,life)
+
+        de = GetUnitRealState(u,3)
+        de = de + 8*PlayerChallengeCosNum(flag)
+        if  de > 96
+            de = 96
+        endif
+        SetUnitRealState(u,3,de)
+
+        de = GetUnitRealState(u,4)
+        de = de + 8*PlayerChallengeCosNum(flag)
+        if  de > 96
+            de = 96
+        endif
+        SetUnitRealState(u,4,de)
+
     endfunction
 
     function PlayerFinishPlotEx(int id,int f)

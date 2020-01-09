@@ -112,8 +112,9 @@ library GameChallenge0 uses GameChallengeBase
     function InitGameChallenge_0()
         trigger tig = null
         GameChalleng_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-4672,-3840,180)
+        EXSetUnitMoveType(GameChalleng_0_JZY,0x01)
         GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-4672,-3840,0)
-
+        
         GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5493.500,-3660.500,136.589)
         GameBiaoJI[2] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5715.250,-3460.750,136.589)
         GameBiaoJI[3] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5931.000,-3247.000,136.589)
@@ -124,6 +125,7 @@ library GameChallenge0 uses GameChallengeBase
         GameBiaoJI[6] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
 
         for num = 0,6
+            EXSetUnitMoveType(GameBiaoJI[num],0x01)
             SetUnitColor(GameBiaoJI[num], PLAYER_COLOR_RED )
             SetUnitVertexColor(GameBiaoJI[num],255,255,255,0)
         end
