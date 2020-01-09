@@ -1,10 +1,10 @@
 library GameChallenge7 uses GameChallengeBase
 
-    function GameChallenge_7Flush(int pid)
+    function GameChallenge_7Flush(int pid,real time)
         for num = 0,9
             SetUnitVertexColor(GameChallengUnit[70+num],255,255,255,0)
         end
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
     
     function OpenGameChallenge_7_A_Timer(int id)
@@ -27,16 +27,16 @@ library GameChallenge7 uses GameChallengeBase
                         LocAddEffectSetSize(x,y,"effect_az-leiji.mdx",2)
                         LocAddEffectSetSize(x,y,"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r多宝道人登场！！！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"剧情","多宝道人登场！！！",0)
                     endif
                 elseif  time == 2
                     SetUnitPositionOfGameChalleng(GameChallengUnit[num],x,3400)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[多宝道人]：|r哼！尔等再三欺我教门人，今我师尊摆此诛仙阵，你们一个都别想跑！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"多宝道人","哼！尔等再三欺我教门人，今我师尊摆此诛仙阵，你们一个都别想跑！",0)
                 elseif  time == 3
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败多宝道人|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败多宝道人|r",0)
                     endtimer
                 endif
             else
@@ -53,15 +53,15 @@ library GameChallenge7 uses GameChallengeBase
         int num = 0
         real x = 0
         real y = 0
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[通天教主]：|r广成子曾骂我，和羽毛禽兽相并，不择而教。想来我们都师自鸿钧，元始道兄难道与我不是一本相传？")
+        SetPlayerTaskUIChatOfPlayer(pid,"通天教主","广成子曾骂我，和羽毛禽兽相并，不择而教。想来我们都师自鸿钧，元始道兄难道与我不是一本相传？",0)
         TimerStart(1,true)
         {
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[元始天尊]：|r你也别怪广成子。你门下胡为乱作，人言兽行。如今生灵涂炭，你心忍吗？")
+                    SetPlayerTaskUIChatOfPlayer(pid,"元始天尊","你也别怪广成子。你门下胡为乱作，人言兽行。如今生灵涂炭，你心忍吗？",0)
                 elseif  time == 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[通天教主]：|r那按你说，你门人有理，连骂我也是该的？我已是摆了此阵，道兄就破吾此阵，便见高下。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"通天教主","那按你说，你门人有理，连骂我也是该的？我已是摆了此阵，道兄就破吾此阵，便见高下。",0)
                 elseif  time == 3
                     num = GetCanUsesGameChallengUnitID(pid)
                     if  num != 0
@@ -76,7 +76,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 4
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第一剑|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第一剑|r",0)
                     endtimer
                 endif
             else
@@ -121,7 +121,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第二剑|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第二剑|r",0)
                     endtimer
                 endif
             else
@@ -164,7 +164,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第三剑|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第三剑|r",0)
                     endtimer
                 endif
             else
@@ -207,7 +207,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff摘去诛仙阵第四剑|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第四剑|r",0)
                     endtimer
                 endif
             else
@@ -221,8 +221,8 @@ library GameChallenge7 uses GameChallengeBase
     function OpenGameChallenge_7(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_7Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_7Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = 2816
             y = 3168
@@ -252,38 +252,38 @@ library GameChallenge7 uses GameChallengeBase
         int uid = GetUnitTypeId(u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         if  uid == 'uf70'
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击败多宝道人！")
-            GameChallenge_7Flush(pid)
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败多宝道人！！！",0)
+            GameChallenge_7Flush(pid,2)
             IsFinshChallenge(7) = true
             //奖励
             PlayerFinishPlotEx(pid,7)
         elseif  uid == 'uf71'
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r绝仙阵已破，速去援助玉鼎真人破阵！")
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","绝仙阵已破，速去援助玉鼎真人破阵！",0)
             GameChalleng_7_Zhen_2(pid)
         elseif  uid == 'uf72'
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r陷仙阵已破，速去援助赤精子破阵！")
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","陷仙阵已破，速去援助赤精子破阵！",0)
             GameChalleng_7_Zhen_3(pid)
         elseif  uid == 'uf73'
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r戮仙阵已破，速去援助广成子破阵！")
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","戮仙阵已破，速去援助广成子破阵！",0)
             GameChalleng_7_Zhen_4(pid)
         elseif  uid == 'uf74'
             if  GameChallengOperaWay[7] == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功获取四剑！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功获取四剑！！！",0)
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[7] = 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[广成子]：|r诛仙阵已破，我等随子牙取关去罢！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"广成子","诛仙阵已破，我等随子牙取关去罢！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")                                
                 else
                     GameChallengOperaWay[7] = 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r诛仙阵已破，通天教主趁人不备，收走了广成子。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","诛仙阵已破，通天教主趁人不备，收走了广成子。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r") 
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r")  
                 endif
             endif
-            GameChallenge_7Flush(pid)
+            GameChallenge_7Flush(pid,2)
             PlayerChallengeCosNum(7) = PlayerChallengeCosNum(7) + 1
             //奖励
             PlayerFinishPlotEx(pid,7)

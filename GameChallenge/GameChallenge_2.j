@@ -1,6 +1,6 @@
 library GameChallenge2 uses GameChallengeBase
     
-    function GameChallenge_2Flush(int pid)
+    function GameChallenge_2Flush(int pid,real time)
         SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
         if  GameChallengUnit[29] != null
             FlushChildHashtable(ht,GetHandleId(GameChallengUnit[29]))
@@ -11,7 +11,7 @@ library GameChallenge2 uses GameChallengeBase
         if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
             UnitRemoveAbility(Pu[1],'AZ04')
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function GameChalleng_2_WaterDeath3(int pid,unit u2)
@@ -22,21 +22,21 @@ library GameChallenge2 uses GameChallengeBase
             if  GameChallengOperaWay[2] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[2] = 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[哪吒]：|r一人做事一人当，岂有连累父母之理！今我削肉剔骨，不累双亲。")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r后太乙真人以莲花化身复活哪吒，并化去哪吒杀性。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"哪吒","一人做事一人当，岂有连累父母之理！今我削肉剔骨，不累双亲。",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","后太乙真人以莲花化身复活哪吒，并化去哪吒杀性。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")                                   
                 else
                     GameChallengOperaWay[2] = 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[李靖]：|r住手！你这孽障！造事多端，还嫌害得我不够么？！")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[哪吒]：|r哼！你们多次无故欺压于我，不打一顿是不知道小爷厉害的！既如此待薄厌恶，小爷也不再奉陪！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"李靖","住手！你这孽障！造事多端，还嫌害得我不够么？！",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"哪吒","哼！你们多次无故欺压于我，不打一顿是不知道小爷厉害的！既如此待薄厌恶，小爷也不再奉陪！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
                 endif
             endif
-            GameChallenge_2Flush(pid)
+            GameChallenge_2Flush(pid,2)
             PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
             //奖励
             PlayerFinishPlotEx(pid,2)
@@ -68,17 +68,17 @@ library GameChallenge2 uses GameChallengeBase
                         b = num
                         x = -4320
                         y = 3424
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[敖广]：|r李靖，你生出此等恶子！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"敖广","李靖，你生出此等恶子！",0)
                     elseif  time == 3
                         c = num
                         x = -4608
                         y = 3136
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[敖广]：|r我儿乃一方正神，夜叉李艮亦御笔点差，却被你父子无故打死！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"敖广","我儿乃一方正神，夜叉李艮亦御笔点差，却被你父子无故打死！",0.5)
                     elseif  time == 4
                         d = num
                         x = -4768
                         y = 2816
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[敖广]：|r我等已奏明玉帝，捉拿你夫妇问罪！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"敖广","我等已奏明玉帝，捉拿你夫妇问罪！",0.5)
                     endif
                     ang = Atan2(GetUnitY(GameChallengUnit[19])-y,GetUnitX(GameChallengUnit[19])-x)/0.01745
                     CreateUsesGameChallengUnitExOfAng(pid,num,'uf22',x,y,ang)
@@ -96,7 +96,7 @@ library GameChallenge2 uses GameChallengeBase
                 IssuePointOrderById(GameChallengUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[d],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                 IssuePointOrderById(GameChallengUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击败四海龙王|r")
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败四海龙王|r",0)
                 endtimer
             endif
             flush locals
@@ -107,8 +107,8 @@ library GameChallenge2 uses GameChallengeBase
     function OpenGameChallenge_2(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_2Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_2Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -5664
             y = 2496
@@ -123,7 +123,7 @@ library GameChallenge2 uses GameChallengeBase
             SetUnitAbilityLevel(GameChallengUnit[29],'AZ99',pid+1)
             UnitAddEffectOfGameChalleng(GameChallengUnit[29])
             IssuePointOrderById(GameChallengUnit[29],851983,GetUnitX(GameChallengUnit[20]),GetUnitY(GameChallengUnit[20]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff跟随哪吒|r")
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随哪吒|r",0.3)
         elseif  ty == 1
             x = -4128
             y = 2912
@@ -145,13 +145,13 @@ library GameChallenge2 uses GameChallengeBase
     function GameChalleng_2_WaterDeath1(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         IssuePointOrderById(GameChallengUnit[29],851983,GetUnitX(GameChallengUnit[21]),GetUnitY(GameChallengUnit[21]))
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff跟随哪吒|r")
+        SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随哪吒|r",0)
     endfunction
 
     function GameChalleng_2_WaterDeath2(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[敖广]：|r吾儿！！！哪吒你欺人太甚！吾自去天庭讨个说法！")
-        GameChallenge_2Flush(pid)
+        SetPlayerTaskUIChatOfPlayer(pid,"敖广","吾儿！！！哪吒你欺人太甚！吾自去天庭讨个说法！",0)
+        GameChallenge_2Flush(pid,2)
         IsFinshChallenge(2) = true
         //奖励
         PlayerFinishPlotEx(pid,2)
@@ -179,8 +179,8 @@ library GameChallenge2 uses GameChallengeBase
                     UnitAddEffect(Pu[1],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     Sdofplayer(Player(pid),x,y,3)
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[巡海夜叉]：|r谁人作怪，使得龙宫摇动？！")
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀巡海夜叉|r")
+                SetPlayerTaskUIChatOfPlayer(pid,"巡海夜叉","谁人作怪，使得龙宫摇动？！",0)
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀巡海夜叉|r",0)
             endif
         endif
     endfunction
@@ -207,8 +207,8 @@ library GameChallenge2 uses GameChallengeBase
                     UnitAddEffect(Pu[1],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     Sdofplayer(Player(pid),x,y,3)
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[龙王三太子]：|r好泼贼！夜叉李艮乃天王点差，你敢大胆将他打死！")
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀龙王三太子|r")
+                SetPlayerTaskUIChatOfPlayer(pid,"龙王三太子","好泼贼！夜叉李艮乃天王点差，你敢大胆将他打死！",0.5)
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀龙王三太子|r",0)
             endif
         endif
     endfunction

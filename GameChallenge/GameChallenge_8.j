@@ -1,6 +1,6 @@
 library GameChallenge8 uses GameChallengeBase
 
-    function GameChallenge_8Flush(int pid)
+    function GameChallenge_8Flush(int pid,real time)
         for num = 0,3
             SetUnitVertexColor(GameChallengUnit[80+num],255,255,255,0)
         end
@@ -10,7 +10,7 @@ library GameChallenge8 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[89])
             GameChallengUnit[89] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function GameChallenge_8_BTimer(int id)
@@ -34,7 +34,7 @@ library GameChallenge8 uses GameChallengeBase
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r袁洪进攻！！！")
+                        SetPlayerTaskUIChatOfPlayer(pid,"剧情","袁洪进攻！！！",0)
                     endif
                 elseif  time == 2
                     ang = Atan2(GetUnitY(Pu[1])-y,GetUnitX(Pu[1])-x)
@@ -42,12 +42,12 @@ library GameChallenge8 uses GameChallengeBase
                     y = y + 300*Sin(ang)
                     SetUnitPositionOfGameChalleng(GameChallengUnit[num],x,y)
                     SetUnitFacing(GameChallengUnit[num],ang/0.01745)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r似此恶怪，害人无厌。情殊痛恨，推出斩之！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","似此恶怪，害人无厌。情殊痛恨，推出斩之！",0)
                 elseif  time == 3
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀袁洪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀袁洪|r",0)
                     endtimer
                 endif
             else
@@ -70,9 +70,9 @@ library GameChallenge8 uses GameChallengeBase
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[袁洪]：|r成汤相传数十世，尔等世受国恩，无故造反。快快下马投降，尚待你等不死。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"袁洪","成汤相传数十世，尔等世受国恩，无故造反。快快下马投降，尚待你等不死。",0)
                 elseif  time == 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r无知匹夫！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","无知匹夫！",0)
                 elseif  time == 3
                     num = GetCanUsesGameChallengUnitID(pid)
                     if  num != 0
@@ -90,7 +90,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀梅山第一怪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第一怪|r",0)
                     endtimer
                 endif
             else
@@ -130,7 +130,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀梅山第二怪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第二怪|r",0)
                     endtimer
                 endif
             else
@@ -170,7 +170,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀梅山第三怪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第三怪|r",0)
                     endtimer
                 endif
             else
@@ -210,7 +210,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀梅山第四怪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第四怪|r",0)
                     endtimer
                 endif
             else
@@ -250,7 +250,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀梅山第五怪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第五怪|r",0)
                     endtimer
                 endif
             else
@@ -290,7 +290,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀梅山第六怪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第六怪|r",0)
                     endtimer
                 endif
             else
@@ -330,7 +330,7 @@ library GameChallenge8 uses GameChallengeBase
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务目标]：|r|cff00ffff击杀袁洪|r")
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀袁洪|r",0)
                     endtimer
                 endif
             else
@@ -344,8 +344,8 @@ library GameChallenge8 uses GameChallengeBase
     function OpenGameChallenge_8(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_8Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_8Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = 2336
             y = 7488
@@ -379,66 +379,66 @@ library GameChallenge8 uses GameChallengeBase
         if  uid == 'uf80'
             if  GameChallengInt[80] == 1
                 GameChallengInt[80] = GameChallengInt[80] + 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀梅山第一怪！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀梅山第一怪！！！",0)
                 GameChallenge_8_A_2(pid)
             endif
         elseif  uid == 'uf81'
             if  GameChallengInt[80] == 2
                 GameChallengInt[80] = GameChallengInt[80] + 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀梅山第二怪！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀梅山第二怪！！！",0)
                 GameChallenge_8_A_3(pid)
             endif
         elseif  uid == 'uf82'
             if  GameChallengInt[80] == 3
                 GameChallengInt[80] = GameChallengInt[80] + 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀梅山第三怪！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀梅山第三怪！！！",0)
                 GameChallenge_8_A_4(pid)
             endif
         elseif  uid == 'uf83'
             if  GameChallengInt[80] == 4
                 GameChallengInt[80] = GameChallengInt[80] + 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀梅山第四怪！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀梅山第四怪！！！",0)
                 GameChallenge_8_A_5(pid)
             endif
         elseif  uid == 'uf84'
             if  GameChallengInt[80] == 5
                 GameChallengInt[80] = GameChallengInt[80] + 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀梅山第五怪！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀梅山第五怪！！！",0)
                 GameChallenge_8_A_6(pid)
             endif
         elseif  uid == 'uf85'
             if  GameChallengInt[80] == 6
                 GameChallengInt[80] = GameChallengInt[80] + 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r梅山六怪已除，就此入成汤营劫杀袁洪！！！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","梅山六怪已除，就此入成汤营劫杀袁洪！！！",0)
                 GameChallenge_8_A_7(pid)
             endif
         elseif  uid == 'uf86'
             if  GameChallengInt[80] == 7
                 GameChallengInt[80] = 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r袁洪已被擒获，胜利在望！！！")
-                GameChallenge_8Flush(pid)
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","袁洪已被擒获，胜利在望！！！",0)
+                GameChallenge_8Flush(pid,2)
                 IsFinshChallenge(8) = true
                 //奖励
                 PlayerFinishPlotEx(pid,8)
             endif
         elseif  uid == 'uf87'
             if  GameChallengOperaWay[8] == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r成功击杀袁洪！")
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败袁洪！！！",0)
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[8] = 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r果然如此，此怪采天地灵气，炼日月精华，故斩之不尽。幸陆压老师已将斩仙飞刀传授于我，专克元神。")
+                    SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","果然如此，此怪采天地灵气，炼日月精华，故斩之不尽。幸陆压老师已将斩仙飞刀传授于我，专克元神。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00姜子牙加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00姜子牙加入己方阵营！|r")  
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00姜子牙加入己方阵营！|r")                                 
                 else
                     GameChallengOperaWay[8] = 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r气煞我也，怎得给他逃脱了呢？！")
+                    SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","气煞我也，怎得给他逃脱了呢？！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000袁洪加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000袁洪加入敌方阵营！|r") 
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000袁洪加入敌方阵营！|r")  
                 endif
             endif
-            GameChallenge_8Flush(pid)
+            GameChallenge_8Flush(pid,2)
             PlayerChallengeCosNum(8) = PlayerChallengeCosNum(8) + 1
             //奖励
             PlayerFinishPlotEx(pid,8)
