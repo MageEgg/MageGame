@@ -13,6 +13,7 @@ library GameChallenge4 uses GameChallengeBase
         real x = 0
         real y = 0
         GameChallenge_4Flush(pid)
+        ShowPlayerTaskUIOfPlayer(pid,true,0)
         if  ty == 0
             x = -1728
             y = -896

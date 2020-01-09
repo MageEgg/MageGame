@@ -73,6 +73,7 @@ library GameChallenge6 uses GameChallengeBase
         real x = 0
         real y = 0
         GameChallenge_6Flush(pid)
+        ShowPlayerTaskUIOfPlayer(pid,true,0)
         if  ty == 0
             x = -2272
             y = 6720

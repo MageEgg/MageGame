@@ -222,6 +222,7 @@ library GameChallenge7 uses GameChallengeBase
         real x = 0
         real y = 0
         GameChallenge_7Flush(pid)
+        ShowPlayerTaskUIOfPlayer(pid,true,0)
         if  ty == 0
             x = 2816
             y = 3168

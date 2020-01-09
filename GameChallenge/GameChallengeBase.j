@@ -245,6 +245,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerInChallengeShowUnit = null
         PlayerInChallengeNumber = 0
         IsPlayerInChallenge = false
+        ShowPlayerTaskUIOfPlayer(pid,false,2)
     endfunction
 
 endlibrary
