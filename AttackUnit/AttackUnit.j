@@ -375,10 +375,12 @@ library AttackUnit uses DamageCode
     endfunction
 
     function AddUnitGoldState(unit u)
-        if  GetRandomReal(0,1) <= 0.1
+        if  GetRandomReal(1,100) <= 10
             UnitAddAbility(u,'AZ17')
-        elseif  GetRandomReal(0,1) <= 0.1
+            BJDebugMsg("AZ17")
+        elseif  GetRandomReal(1,100) <= 10
             UnitAddAbility(u,'AZ18')
+            BJDebugMsg("AZ18")
         endif
     endfunction
     
