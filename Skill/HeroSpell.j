@@ -980,7 +980,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction 
 
     function SpellS105(unit u,unit u1,real damage)   
-
+        
     endfunction
 
     
