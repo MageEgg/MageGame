@@ -130,7 +130,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
             endif 
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")
         endif
     endfunction
 
@@ -145,7 +145,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             endif 
         else
             ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
-            BJDebugMsg("经验不足")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")
         endif
     endfunction
 
