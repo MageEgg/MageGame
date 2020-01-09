@@ -197,7 +197,6 @@ library GameChallenge1 uses GameChallengeBase
                     ShowUnitOfOnlyPlayer(pid,GameChallengUnit[19],UnitAPOfPlayer)
                     UnitAddAbility(GameChallengUnit[19],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
-                    SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[19])
                     IssuePointOrderById(GameChallengUnit[19],851983,GetRectCenterX(gg_rct_ChallengeRct_1_1),GetRectCenterY(gg_rct_ChallengeRct_1_1))
                     SetPlayerTaskUIChatOfPlayer(pid,"云中子","雷震子，你义父有难，到剑冢取一适手兵器前去解救。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀40个护冢小妖|r",0)
@@ -321,7 +320,6 @@ library GameChallenge1 uses GameChallengeBase
                     UnitAddAbility(GameChallengUnit[19],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[19],851983,-3776,1472)
-                    SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[19])
                     SetPlayerTaskUIChatOfPlayer(pid,"雷震子","父王，孩儿救你来也，且待我退去追兵！",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随雷震子|r",0)
                 endif
