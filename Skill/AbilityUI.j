@@ -286,6 +286,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             SpellS104.execute(wu) //熔炉之身
         elseif  id == 'S034'
             UnitAddAbility(wu,'A034')
+        elseif  id == 'S102'
+            SpellS102.execute(wu,GetAbilityDamage(wu,'S102',1))
         endif
         
     endfunction
