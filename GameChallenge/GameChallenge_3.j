@@ -120,10 +120,11 @@ library GameChallenge3 uses GameChallengeBase
         real ang = 0
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  GameChallengUnit[39] == null and IsFinshChallenge(3) == false and IsPlayerInChallenge == true
+                if  GameChallengUnit[39] == null and GameChallengInt[30] == 0 and IsFinshChallenge(3) == false and IsPlayerInChallenge == true
                     SetUnitVertexColor(GameChallengUnit[31],255,255,255,0)
                     x = -5280
                     y = 7104
+                    GameChallengInt[30] = 1
                     num = GetCanUsesGameChallengUnitID(pid)
                     if  num != 0
                         ang = Atan2(GetUnitY(GameChallengUnit[30])-y,GetUnitX(GameChallengUnit[30])-x)/0.01745
