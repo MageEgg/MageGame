@@ -470,15 +470,6 @@ library SystemCodes uses ServerTime,Define1
         endif
         SetUnitVertexColor(wu,r,g,b,ap)
     endfunction
-
-    function SetUnitHighOfOnlyPlayer(int pid,unit wu)
-        real high = 10000
-        real value = GetUnitDefaultFlyHeight(wu)
-        if  Player(pid) == GetLocalPlayer()
-            high = value
-        endif
-        SetUnitFlyHeight(wu,high,1000000)
-    endfunction
     
     function ShowUnitOfAllPlayer(unit wu)
         int uid = GetUnitTypeId(wu)

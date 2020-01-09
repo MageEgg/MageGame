@@ -150,7 +150,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function CreateUsesGameChallengUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
@@ -160,7 +159,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
@@ -170,7 +168,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
@@ -180,7 +177,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function SetUnitPositionOfGameChalleng(unit u,real x,real y)
@@ -279,6 +275,23 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerTaskUI_ChatTextA.SetText("")
         PlayerTaskUI_ChatTextB.SetText("")
     endfunction
+
+    function SetPlayerZDLPointEx(int id,bool b,real time)
+        int pid = id
+        bool show = b
+        TimerStart(time,false)
+        {
+            if  show == true    
+                SetPlayerZDLPoint(pid,1)
+            else
+                SetPlayerZDLPoint(pid,0)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+        
 
 endlibrary
 

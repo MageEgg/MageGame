@@ -51,7 +51,6 @@ library GameChallenge3 uses GameChallengeBase
         UnitAddEffectOfGameChalleng(GameChallengUnit[39])
         UnitAddAbility(GameChallengUnit[39],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[39],'AZ99',pid+1)
-        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[39])
         UnitAddEffectOfGameChalleng(GameChallengUnit[39])
         IssuePointOrderById(GameChallengUnit[39],851983,GetUnitX(GameChallengUnit[32]),GetUnitY(GameChallengUnit[32]))
         SetPlayerTaskUIChatOfPlayer(pid,"黄天化","弟子为什么在这里？",0)
