@@ -24,11 +24,11 @@ library GameChallenge0 uses GameChallengeBase
         if  GameChallengBool[0] == true
             GameChallengInt[1] = GameChallengInt[1] + 1
             if  GameChallengBool[1] == false
-                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个妖魅|r("+I2S(GameChallengInt[1])+"/20)",0)
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[1])+"/20",0)
             endif
             if  GameChallengInt[1] < 20
                 if  GameChallengInt[1] == 1 or ModuloInteger(GameChallengInt[1],5) == 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
+                    //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 endif
             elseif  GameChallengInt[1] == 20
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
@@ -101,7 +101,7 @@ library GameChallenge0 uses GameChallengeBase
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励2000金币！\n")
                         SetPlayerTaskUIChatOfPlayer(pid,"周文王","今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。",0)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
-                        ShowPlayerTaskUIOfPlayer(pid,false,3)
+                        ShowPlayerTaskUIOfPlayer(pid,false,2.5)
                     endif
                 endif
             endif
