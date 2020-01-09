@@ -127,9 +127,10 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 if  GetLocalPlayer() == Player(pid)
                     DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
                 endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
             endif 
         else
-            BJDebugMsg("经验不足")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")
         endif
     endfunction
 
