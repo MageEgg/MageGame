@@ -2,7 +2,6 @@ library GameChallenge0 uses GameChallengeBase
     
     function GameChallenge_0_C_Death(int pid)
         if  GameChallengBool[0] == true and GameChallengBool[1] == true
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀玉石琵琶精(1/1)")
             GameChallengBool[2] = true
             for n = 4,5
                 SetUnitAPOfBool(GameBiaoJI[n],2)
@@ -24,14 +23,13 @@ library GameChallenge0 uses GameChallengeBase
         if  GameChallengBool[0] == true
             GameChallengInt[1] = GameChallengInt[1] + 1
             if  GameChallengBool[1] == false
-                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[1])+"/20",0)
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[1])+"/20",0)
             endif
             if  GameChallengInt[1] < 20
                 if  GameChallengInt[1] == 1 or ModuloInteger(GameChallengInt[1],5) == 0
                     //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 endif
             elseif  GameChallengInt[1] == 20
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 GameChallengBool[1] = true
                 for n = 1,3
                     SetUnitAPOfBool(GameBiaoJI[n],1)
@@ -56,7 +54,7 @@ library GameChallenge0 uses GameChallengeBase
     
     function GameChallenge_0Start(int id)
         int pid = id
-        TimerStart(2,false)
+        TimerStart(1.5,false)
         {
             GameChallenge_0_A(pid)
             endtimer

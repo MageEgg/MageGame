@@ -345,6 +345,7 @@ library GameChallenge8 uses GameChallengeBase
         real x = 0
         real y = 0
         GameChallenge_8Flush(pid)
+        ShowPlayerTaskUIOfPlayer(pid,true,0)
         if  ty == 0
             x = 2336
             y = 7488

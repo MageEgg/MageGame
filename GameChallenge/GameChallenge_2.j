@@ -108,6 +108,7 @@ library GameChallenge2 uses GameChallengeBase
         real x = 0
         real y = 0
         GameChallenge_2Flush(pid)
+        ShowPlayerTaskUIOfPlayer(pid,true,0)
         if  ty == 0
             x = -5664
             y = 2496

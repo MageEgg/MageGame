@@ -77,6 +77,7 @@ library GameChallenge3 uses GameChallengeBase
         real x = 0
         real y = 0
         GameChallenge_3Flush(pid)
+        ShowPlayerTaskUIOfPlayer(pid,true,0)
         if  ty == 0
             x = -6432
             y = 6752
