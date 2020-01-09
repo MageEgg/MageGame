@@ -34,6 +34,23 @@ library DamageCode uses UnitStateSet
     
     
     
+     function GetUnitfkState(unit wu)->real
+        real s = GetUnitRealState(wu,4)
+        integer b=0
+        if  GetUnitAbilityLevel(wu, 'BB01')>0
+            b=b+15
+        endif
+        if  GetUnitAbilityLevel(wu, 'BB02')>0
+            b=b+15
+        endif
+        if  GetUnitAbilityLevel(wu, 'BB03')>0
+            b=b+15
+        endif
+        if  GetUnitAbilityLevel(wu, 'BB04')>0
+            b=b+15
+        endif
+        return s-(s/100*b)
+    endfunction
     //闪避
     function GetUnitSbState(unit wu)->real
         real s = GetUnitRealState(wu,10)
