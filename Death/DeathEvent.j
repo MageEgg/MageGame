@@ -147,6 +147,11 @@ scope DeathEvent initializer InitDeathEvent
             if  uid != 'u020'
                 gold = 10
             endif
+        else
+            if  uid >= 'u0BA' and uid <= 'u0BZ'
+                //山魈妖魅 60%收益
+                gold = R2I(I2R(gold ) * GetRandomReal(0.6,1))
+            endif
         endif
         if  IsPlayerHasAbility(Pu[1],'S129') == true 
             gold = gold + 3
