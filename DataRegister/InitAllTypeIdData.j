@@ -82,6 +82,22 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IP01',"时渊碎片","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","进入时渊副本消耗时渊碎片")
         call InitTypeIdStrings('IP02',"补天石","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","消耗补天石，可重铸指定法宝")
         call InitTypeIdStrings('IP03',"鸿蒙结晶","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","消耗鸿蒙结晶，可将指定法宝锻造为高一品阶的随机法宝。")
+
+        call InitTypeIdStrings('IJ51',"炼气士","","")
+        call InitTypeIdStrings('IJ52',"筑基境","","")
+        call InitTypeIdStrings('IJ53',"金丹境","","")
+        call InitTypeIdStrings('IJ54',"元婴境","","")
+        call InitTypeIdStrings('IJ55',"虚神境","","")
+        call InitTypeIdStrings('IJ56',"凝体境","","")
+        call InitTypeIdStrings('IJ57',"乘鼎境","","")
+        call InitTypeIdStrings('IJ58',"劫变境","","")
+        call InitTypeIdStrings('IJ59',"化真境","","")
+        call InitTypeIdStrings('IJ60',"天仙境","","")
+        call InitTypeIdStrings('IJ61',"金仙境","","")
+        call InitTypeIdStrings('IJ62',"准圣境","","")
+        call InitTypeIdStrings('IJ63',"圣人境","","")
+        call InitTypeIdStrings('IJ64',"道祖境","","")
+        call InitTypeIdStrings('IJ65',"创世元神","","")
         BJDebugMsg("init1end")
     endfunction
     function InitDataString2()//注册法宝说明数据
