@@ -150,6 +150,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function CreateUsesGameChallengUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
@@ -159,6 +160,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
@@ -168,6 +170,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
@@ -177,6 +180,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[num])
     endfunction
 
     function SetUnitPositionOfGameChalleng(unit u,real x,real y)
