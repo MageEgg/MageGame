@@ -120,7 +120,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     
     function GetSkillNameColor(int color)->string
-       if  color == 0
+        if  color == 0
             return "|cffff0000"
         elseif  color == 1
             return "|cffff0033"

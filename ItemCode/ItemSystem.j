@@ -25,7 +25,7 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                 UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
-                if  next == 'E011' or next == 'E111' or next == 'E211'
+                if  next == 'E006' or next == 'E106' or next == 'E206'
                     if  Pu[24] == null
                         Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
