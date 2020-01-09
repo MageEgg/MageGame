@@ -153,7 +153,6 @@ scope AllPrizeData initializer init
             RegisterPrizePoolData(pid,3,'S106')
             RegisterPrizePoolData(pid,2,'S107')
             RegisterPrizePoolData(pid,3,'S108')
-            RegisterPrizePoolData(pid,5,'S109')
             RegisterPrizePoolData(pid,4,'S110')
             RegisterPrizePoolData(pid,4,'S111')
             RegisterPrizePoolData(pid,4,'S112')

@@ -106,7 +106,7 @@ call InitAbilityData('S105',1,1,0,0,0,0,0,0,"后发制人","闪避时对攻击�
 call InitAbilityData('S106',1,3,0,1,0,0,2,0,"未命名","闪避时对自身周围敌人造成（AD+AP）*1法术伤害","ReplaceableTextures\\CommandButtons\\BTNS106.blp")
 call InitAbilityData('S107',1,2,0,0,0,0,0,0,"未命名","增加25%闪避","ReplaceableTextures\\CommandButtons\\BTNS107.blp")
 call InitAbilityData('S108',1,3,0,0,0,0,0,0,"未命名","增加15%闪避","ReplaceableTextures\\CommandButtons\\BTNS108.blp")
-call InitAbilityData('S109',1,7,99,0.5,0,0,1,0,"基础剑术","对目标附近200码范围造成攻击和法强相关的自适应伤害。","ReplaceableTextures\\CommandButtons\\BTNS109.blp")
+
 call InitAbilityData('S110',7,4,1,2,0,0,1,10,"虚灵斩","对目标范围内怪物造成多次攻击，每次攻击造成AD*2物理伤害。攻速影响攻击次数基础3次，每30%攻速额外增加1次。","ReplaceableTextures\\CommandButtons\\BTNS110.blp")
 call InitAbilityData('S111',2,4,2,2,0,0,2,12,"寒霜符箓","在自身脚下放置1个寒霜符，敌方单位进入该区域时发生爆炸，造成AP*2法术伤害。该技能属于召唤类技能","ReplaceableTextures\\CommandButtons\\BTNS111.blp")
 call InitAbilityData('S112',3,4,1,1,0,0,1,32,"机关塔","召唤1个机关塔，每秒向360°发射8支箭，每支箭造成AD*1物理伤害。","ReplaceableTextures\\CommandButtons\\BTNS112.blp")
