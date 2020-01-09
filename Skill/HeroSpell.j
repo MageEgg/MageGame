@@ -410,6 +410,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real ang=0
         real dis=0
         integer i=0
+        integer cs=0
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
         unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
         SetUnitVertexColor( mj, 20, 20, 50, 100 )
@@ -907,10 +908,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
                 x=GetUnitX(mj)+(speed*Cos(Deg2Rad(GetUnitFacing(mj))))
                 y=GetUnitY(mj)+(speed*Sin(Deg2Rad(GetUnitFacing(mj))))
+               // if  GetUnitZ()
                 GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
                 UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                SetUnitX(mj,x)
-                SetUnitY(mj,y)
+                SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
                 flush locals
@@ -957,7 +958,16 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         endif
         }
 
-    endfunction    
+    endfunction 
+
+    function SpellS105(unit u,unit u1,real damage)   
+
+    endfunction
+
+    
+    function SpellS106(unit u,real damage)   
+    
+    endfunction
 
 
 
