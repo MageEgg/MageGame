@@ -43,7 +43,6 @@ library GameChallenge3 uses GameChallengeBase
 
     function OpenCreateOperaTextSMJ(int id)
         int pid = id
-        int time = 0
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[32],UnitAPOfPlayer)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[33],UnitAPOfPlayer) 
         UnitAddEffectOfGameChalleng(GameChallengUnit[32])
@@ -54,21 +53,14 @@ library GameChallenge3 uses GameChallengeBase
         SetUnitAbilityLevel(GameChallengUnit[39],'AZ99',pid+1)
         UnitAddEffectOfGameChalleng(GameChallengUnit[39])
         IssuePointOrderById(GameChallengUnit[39],851983,GetUnitX(GameChallengUnit[32]),GetUnitY(GameChallengUnit[32]))
+        SetPlayerTaskUIChatOfPlayer(pid,"黄天化","弟子为什么在这里？",0)
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随黄天化|r",0)
-        TimerStart(0.5,true)
+        TimerStart(1,true)
         {
-            time = time + 1
             if  IsPlayerInChallenge == true
-                if  time == 1
-                    SetPlayerTaskUIChatOfPlayer(pid,"黄天化","弟子为什么在这里？",0)
-                elseif  time == 2
-                    SetPlayerTaskUIChatOfPlayer(pid,"道德真君","好畜生！若不是看在子牙面上，决不救你！",0.5)
-                elseif  time == 3
-                    endtimer
-                endif
-            else
-                endtimer
+                SetPlayerTaskUIChatOfPlayer(pid,"道德真君","好畜生！若不是看在子牙面上，决不救你！",0)
             endif
+            endtimer
             flush locals
         }
         flush locals
