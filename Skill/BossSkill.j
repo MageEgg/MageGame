@@ -781,7 +781,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real damage = dam
         int time = 0
         PauseUnit(u1,true)
-        SetUnitInvulnerable(u1,false)
+        SetUnitInvulnerable(u1,true)
         BossFuncSpellFlyOfBird(u1,x2 + 400*Cos(18*0.01745),y2 + 400*Sin(18*0.01745))
         TimerStart(0.18,true)
         {
@@ -809,7 +809,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 GroupClear(gg)
                 DestroyGroup(gg)
                 PauseUnit(u1,false)
-                SetUnitInvulnerable(u1,true)
+                SetUnitInvulnerable(u1,false)
                 endtimer
             endif
             flush locals

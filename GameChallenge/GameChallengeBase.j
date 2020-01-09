@@ -245,7 +245,15 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerInChallengeShowUnit = null
         PlayerInChallengeNumber = 0
         IsPlayerInChallenge = false
-        ShowPlayerTaskUIOfPlayer(pid,false,time)
+        if  time == -1
+            PlayerTaskUI_Back.alpha = 0
+            PlayerTaskUI_Back.show = false
+        else
+            ShowPlayerTaskUIOfPlayer(pid,false,time)
+        endif
+        PlayerTaskUI_TaskText.SetText("")
+        PlayerTaskUI_ChatTextA.SetText("")
+        PlayerTaskUI_ChatTextB.SetText("")
     endfunction
 
 endlibrary

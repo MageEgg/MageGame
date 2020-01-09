@@ -1,15 +1,15 @@
 library PlayerTaskUI uses GameFrame
 
-    private FRAME PlayerTaskUI_Back
+    FRAME PlayerTaskUI_Back
 
-    private FRAME PlayerTaskUI_ChatBack
-    private FRAME PlayerTaskUI_ChatTitle 
-    private FRAME PlayerTaskUI_ChatTextA
-    private FRAME PlayerTaskUI_ChatTextB
+    FRAME PlayerTaskUI_ChatBack
+    FRAME PlayerTaskUI_ChatTitle 
+    FRAME PlayerTaskUI_ChatTextA
+    FRAME PlayerTaskUI_ChatTextB
 
-    private FRAME PlayerTaskUI_TaskBack
-    private FRAME PlayerTaskUI_TaskTitle
-    private FRAME PlayerTaskUI_TaskText
+    FRAME PlayerTaskUI_TaskBack
+    FRAME PlayerTaskUI_TaskTitle
+    FRAME PlayerTaskUI_TaskText
 
     function ClosePlayerTaskUI()
         int hp = 255
@@ -170,7 +170,7 @@ library PlayerTaskUI uses GameFrame
         string show = ""
         int time = 0
         int cos = 0
-        TimerStart(0.01,true)
+        TimerStart(0.014,true)
         {
             time = time + 1
             if  time <= 100 and cos < StringLength(chat)
@@ -214,7 +214,7 @@ library PlayerTaskUI uses GameFrame
         string show = ""
         int time = 0
         int cos = 0
-        TimerStart(0.01,true)
+        TimerStart(0.014,true)
         {
             time = time + 1
             if  time <= 100 and cos < StringLength(chat)
