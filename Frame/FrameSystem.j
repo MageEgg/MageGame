@@ -151,6 +151,9 @@ library GameUIInit initializer init uses OriginGameFrame
         
         ExecuteFunc("InitPlayerTaskUI")
         ExecuteFunc("BossDamageFrameInit")
+
+    
+        ExecuteFunc("BossLifeBarFrameInit")
         
         ExecuteFunc("InitAttackFrameUI")
 

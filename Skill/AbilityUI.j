@@ -266,13 +266,17 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     
     function RemAbilityState(unit wu,int id)
+        integer pid=GetPlayerId(GetOwningPlayer(wu))
         SetEquipStateOfPlayer(wu,id,-1)
-        if  id == 'S034'
-            UnitRemoveAbility(wu,'A034')
+        if      id == 'S034'
+            UnitRemoveAbility(wu,'A034'+pid)
+        elseif  id == 'S067'
+            UnitAddAbility(wu,'A067'+pid)
         endif
     endfunction
     
     function AddAbilityState(unit wu,int id)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         SetEquipStateOfPlayer(wu,id,1)
 
         if  GetTypeIdData(id,101) != 9
@@ -281,11 +285,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 SpellS517.execute(wu) //天賦 天资聪颖   
             endif
         endif
-
+        
         if  id == 'S104'
             SpellS104.execute(wu) //熔炉之身
         elseif  id == 'S034'
-            UnitAddAbility(wu,'A034')
+            UnitAddAbility(wu,'A034'+pid)
+        elseif  id == 'S067'
+            UnitAddAbility(wu,'A067'+pid)
         elseif  id == 'S102'
             SpellS102.execute(wu,GetAbilityDamage(wu,'S102',1))
         endif

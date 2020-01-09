@@ -410,6 +410,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real ang=0
         real dis=0
         integer i=0
+        integer cs=0
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
         unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
         SetUnitVertexColor( mj, 20, 20, 50, 100 )
@@ -907,10 +908,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
                 x=GetUnitX(mj)+(speed*Cos(Deg2Rad(GetUnitFacing(mj))))
                 y=GetUnitY(mj)+(speed*Sin(Deg2Rad(GetUnitFacing(mj))))
+               // if  GetUnitZ()
                 GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
                 UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                SetUnitX(mj,x)
-                SetUnitY(mj,y)
+                SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
                 flush locals
@@ -957,7 +958,16 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         endif
         }
 
-    endfunction    
+    endfunction 
+
+    function SpellS105(unit u,unit u1,real damage)   
+
+    endfunction
+
+    
+    function SpellS106(unit u,real damage)   
+    
+    endfunction
 
 
 
@@ -972,11 +982,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         GroupRemoveUnit(g.ejg,u1)
-        LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
-        if  ad >= ap
-            UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-        else
-            UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        if  FirstOfGroup(g.ejg)!=null
+            LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
+            if  ad >= ap
+                UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            else
+                UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            endif
         endif
         g.destroy()
     endif

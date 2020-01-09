@@ -209,8 +209,13 @@ scope DeathEvent initializer InitDeathEvent
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
         elseif  uid >= 'u001' and uid <= 'u004'
+            AddUnitRealState(Pu[1],41,80)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾挑战成功！金币加成+80%")
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾它老豆生气了！30秒来找你报仇！")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾家族一个不剩了......")
             endif
         elseif  uid >= 'uJ00' and uid <= 'uJzz'
             if  uid == 'uJ00'
@@ -234,8 +239,7 @@ scope DeathEvent initializer InitDeathEvent
             elseif  uid == 'uJ90'
                 AddPlayerImmortalFruit(Pu[1],'IJ10')
             endif
-        elseif  uid >= 'u001' and uid <= 'u004'
-            AddUnitRealState(Pu[1],41,80)
+        
         endif
 
 
@@ -355,6 +359,9 @@ scope DeathEvent initializer InitDeathEvent
         elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
             BJDebugMsg("闻太师！！！！")
             AttackOperaBEnding(0)
+        endif
+        if  u1 == PlayerUnit[pid2][6]
+            PlayerUnit[pid2][6] = null
         endif
         
         if  pid > 7 
