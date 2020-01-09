@@ -148,7 +148,7 @@ library HeroPowerFrame uses GameFrame
             DzFrameClearAllPoints(Button.frameid)
             if  index == 0
                 Button.SetPoint(7,GetFrameUnitDetail(),1,0,0.01)
-            else  index == 1
+            else
                 Button.SetPoint(7,GetFrameUnitDetail(),1,-0.2,0.01)
             endif
         endif
