@@ -89,19 +89,7 @@ scope DeathEvent initializer InitDeathEvent
         wt = null
     endfunction
     
-    function PlayerItemGrowFunc(int pid,item it)
-        int id = GetItemTypeId(it)
-        int num = GetItemCharges(it)
-        
-        if  num > 1
-            SetItemCharges(it,num-1)
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功炼化" + GetObjectName(id))
-            RemoveItem(it)
-            
-            
-        endif
-    endfunction
+    
 
     
     function PlayerItemWRTFunc(int pid,item it,int exp)
@@ -118,17 +106,54 @@ scope DeathEvent initializer InitDeathEvent
         endif
     endfunction
 
-    
+    function PlayerItemGrowFunc(int pid,item it,int use)->bool
+        int id = GetItemTypeId(it)
+        int num = GetItemCharges(it)
+        
+        if  num < use
+            SetItemCharges(it,num+1)
+            return false
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功炼化" + GetObjectName(id))
+            RemoveItem(it)
+            return true
+        endif
+    endfunction
+
+
+    function PlayerUseGoldBox(int pid,int itemid)
+        //使用聚宝盆
+        int gold = 0
+        int i1 = 0
+        if  itemid == 'I011'
+            gold = 5500
+            i1 = GetRandomInt(599,998)
+        elseif  itemid == 'I012'
+            gold = 31000
+            i1 = GetRandomInt(2100,3500)
+        elseif  itemid == 'I013'
+            gold = 48000
+            i1 = GetRandomInt(6000,10000)
+        elseif  itemid == 'I014'
+            gold = 81000
+            i1 = GetRandomInt(11880,19800)
+        endif
+        AddUnitRealState(Pu[1],1,i1)
+        AddUnitRealState(Pu[1],2,i1)
+        AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击及法强+"+I2S(i1))
+
+    endfunction
     function PlayerItemGrow(int pid)
         int id = 0
         int lv = 0
         for i1 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i1))
-            if  id >= 'EC01' and id <= 'EC08'
-                PlayerItemGrowFunc(pid,UnitItemInSlot(Pu[1],i1))
-                if  true
-                    exitwhen true
+            if  id >= 'I011' and id <= 'I014'
+                if  PlayerItemGrowFunc(pid,UnitItemInSlot(Pu[1],i1),600) == true
+                    PlayerUseGoldBox(pid,id)
                 endif
+                exitwhen true
             endif
         end
                     
@@ -145,12 +170,16 @@ scope DeathEvent initializer InitDeathEvent
         gold = GetTypeIdData(uid,103)
         if  gold == 0
             if  uid != 'u020'
-                gold = 10
+                if  GetUnitAbilityLevel(wu,'AZ17') > 0
+                    gold = 300
+                else
+                    gold = 10
+                endif
             endif
         else
             if  uid >= 'u0BA' and uid <= 'u0BZ'
                 //山魈妖魅 60%收益
-                gold = R2I(I2R(gold ) * GetRandomReal(0.6,1))
+                gold = gold * GetRandomReal(0.6,1)
             endif
         endif
         if  IsPlayerHasAbility(Pu[1],'S129') == true 
@@ -158,6 +187,9 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
 
+        if  GetUnitAbilityLevel(wu,'AZ18') > 0
+            wood = 40
+        endif
         
         exp = 1
         
@@ -196,7 +228,7 @@ scope DeathEvent initializer InitDeathEvent
         int uid = id2
         TimerStart(30,false)
         {
-            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,225)
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512,225)
             //LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
             flush locals
         }
