@@ -35,6 +35,8 @@ library GameChallenge2 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
                 endif
+            else
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败四海龙王！！！",0)
             endif
             GameChallenge_2Flush(pid,2)
             PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
@@ -107,7 +109,7 @@ library GameChallenge2 uses GameChallengeBase
     function OpenGameChallenge_2(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_2Flush(pid,0)
+        GameChallenge_2Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -5664
@@ -123,6 +125,7 @@ library GameChallenge2 uses GameChallengeBase
             SetUnitAbilityLevel(GameChallengUnit[29],'AZ99',pid+1)
             UnitAddEffectOfGameChalleng(GameChallengUnit[29])
             IssuePointOrderById(GameChallengUnit[29],851983,GetUnitX(GameChallengUnit[20]),GetUnitY(GameChallengUnit[20]))
+            SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随哪吒！",0.3)
             SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随哪吒|r",0.3)
         elseif  ty == 1
             x = -4128
@@ -145,6 +148,7 @@ library GameChallenge2 uses GameChallengeBase
     function GameChalleng_2_WaterDeath1(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         IssuePointOrderById(GameChallengUnit[29],851983,GetUnitX(GameChallengUnit[21]),GetUnitY(GameChallengUnit[21]))
+        SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随哪吒！",0)
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随哪吒|r",0)
     endfunction
 

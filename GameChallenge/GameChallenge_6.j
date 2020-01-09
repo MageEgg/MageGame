@@ -72,7 +72,7 @@ library GameChallenge6 uses GameChallengeBase
     function OpenGameChallenge_6(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_6Flush(pid,0)
+        GameChallenge_6Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -2272
@@ -272,6 +272,7 @@ library GameChallenge6 uses GameChallengeBase
                     ShowUnitOfOnlyPlayer(pid,GameChallengUnit[69],UnitAPOfPlayer)
                     UnitAddAbility(GameChallengUnit[69],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[69],'AZ99',pid+1)
+                    SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随姜子牙！",0.2)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随姜子牙|r",0)
                     GameChalleng_6_Jump1(pid,GameChallengUnit[69],-1184,7072,0)
                 endif
@@ -287,6 +288,7 @@ library GameChallenge6 uses GameChallengeBase
             if  GameChallengInt[60] == 1
                 GameChallengInt[60] = 2
                 GameChalleng_6_Jump1(pid,GameChallengUnit[69],-288,7296,1)
+                SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随姜子牙！",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随姜子牙|r",0)
             endif
         elseif  uid == 'uf61'
@@ -300,8 +302,8 @@ library GameChallenge6 uses GameChallengeBase
                 PlayerFinishPlotEx(pid,6)
             endif
         elseif  uid == 'uf62'
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀申公豹！",0)
             if  GameChallengOperaWay[6] == 0
-                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀申公豹！",0)
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[6] = 1
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","吾奉师尊之命，此事不可鲁莽。师尊自会给我一个答案。",1)

@@ -157,7 +157,7 @@ scope DeathEvent initializer InitDeathEvent
         exp = 1
         
         if  gold > 0
-            gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)
+            gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)+0.001
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold)),255,202,0,255,90,0.023)
         endif

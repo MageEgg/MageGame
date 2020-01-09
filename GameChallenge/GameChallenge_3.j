@@ -18,16 +18,17 @@ library GameChallenge3 uses GameChallengeBase
         GameChallengInt[30] = GameChallengInt[30] + 1
         if  GameChallengInt[30] == 4
             GameChallengInt[30] = 0
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败破魔家四将！！！",0)
             if  GameChallengOperaWay[3] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[3] = 1
-                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","自此一战，黄天化心性收敛，知进退，明时务。",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","自此一战，黄天化心性收敛，知进退，明时务。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00黄天化加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00黄天化加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00黄天化加入己方阵营！|r")                                
                 else
                     GameChallengOperaWay[3] = 2
-                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","黄天化心性草率，后于金鸡岭战败，被孔宣收服。",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","黄天化心性草率，后于金鸡岭战败，被孔宣收服。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000黄天化加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000黄天化加入敌方阵营！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000黄天化加入敌方阵营！|r")
@@ -76,7 +77,7 @@ library GameChallenge3 uses GameChallengeBase
     function OpenGameChallenge_3(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_3Flush(pid,0)
+        GameChallenge_3Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -6432

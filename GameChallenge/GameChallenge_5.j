@@ -54,7 +54,7 @@ library GameChallenge5 uses GameChallengeBase
     function OpenGameChallenge_5(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_5Flush(pid,0)
+        GameChallenge_5Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -512

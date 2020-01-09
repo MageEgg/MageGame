@@ -252,6 +252,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
                 return 12
             endif
         endif
+        BJDebugMsg("副本序号"+I2S(index))
     endfunction
 
     //给玩家副本奖励

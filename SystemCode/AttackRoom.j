@@ -1,4 +1,4 @@
-library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
+library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengeBase
     
     real array AttackRoomPostion[12][600] 
     group array diesgroup
@@ -291,12 +291,25 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     
     endfunction
     
+    
     function HeroMoveToRoom(int pid)
-        SendPlayerUnit(pid,AttackRoomPostion[pid][1],AttackRoomPostion[pid][2])
-        if  AttackRoomTimer==false
-            RefreshAttackRoom(pid,AttackRoomUid)
+        
+        if  IsCanMoveToRoom(pid) == true
+            real x = AttackRoomPostion[pid][1]
+            real y = AttackRoomPostion[pid][2]
+            real ux = GetUnitX(Pu[1])
+            real uy = GetUnitY(Pu[1])
+            if  x - 768 <= ux and ux <= x + 768 and y - 768 <= uy and uy <= y + 768
+                BJDebugMsg("在练功房内")
+            else
+                SendPlayerUnit(pid,x,y)
+                if  AttackRoomTimer==false
+                    RefreshAttackRoom(pid,AttackRoomUid)
+                endif
+            endif
         endif
     endfunction
+
     function AttackRoomInit()
         real x = 0
         real y = 0

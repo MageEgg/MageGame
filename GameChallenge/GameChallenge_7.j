@@ -76,6 +76,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 4
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第一剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第一剑|r",0)
                     endtimer
                 endif
@@ -121,6 +122,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第二剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第二剑|r",0)
                     endtimer
                 endif
@@ -164,6 +166,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第三剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第三剑|r",0)
                     endtimer
                 endif
@@ -207,6 +210,7 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第四剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第四剑|r",0)
                     endtimer
                 endif
@@ -221,7 +225,7 @@ library GameChallenge7 uses GameChallengeBase
     function OpenGameChallenge_7(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_7Flush(pid,0)
+        GameChallenge_7Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = 2816
@@ -267,8 +271,8 @@ library GameChallenge7 uses GameChallengeBase
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","戮仙阵已破，速去援助广成子破阵！",0)
             GameChalleng_7_Zhen_4(pid)
         elseif  uid == 'uf74'
+            SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功获取四剑！！！",0)
             if  GameChallengOperaWay[7] == 0
-                SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功获取四剑！！！",0)
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[7] = 1
                     SetPlayerTaskUIChatOfPlayer(pid,"广成子","诛仙阵已破，我等随子牙取关去罢！",1)
