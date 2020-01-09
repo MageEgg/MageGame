@@ -305,7 +305,7 @@ library GameChallenge3 uses GameChallengeBase
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == GameChallengUnit[39]
                 SetUnitVertexColor(GameChallengUnit[33],255,255,255,0)
-                SetPlayerTaskUIChatOfPlayer(pid,"道德真君","你速往西岐，再会魔家四将，可成大功！",0)
+                SetPlayerTaskUIChatOfPlayer(pid,"道德真君","你速往西岐，再会魔家四将，可成大功！",1.5)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随黄天化|r",0)
                 SMJJumpTimer1(u1,-4320,7648)
             endif
