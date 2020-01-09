@@ -139,7 +139,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         {
             real dis = Pdis(x1,y1,x2,y2)
             if  dis < 300
-                speed = speed * 2
+                speed = 49
             endif
             if  dis > 50 and GetUnitTypeId(Pu[27]) == 'np27'
                 x1 = x1 + speed * Cos(GetUnitFacing(u1)*0.01745)

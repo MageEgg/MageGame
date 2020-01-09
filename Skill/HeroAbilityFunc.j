@@ -422,8 +422,8 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  GetRandomInt(1,100)<= 50
                 num = GetUnitIntState(wu,'S511')
                 if  num < 75
-                    AddUnitRealState(wu,15,2)
-                    AddUnitRealState(wu,16,2)
+                    AddUnitRealState(wu,17,2)
+                    
                     SetUnitIntState(wu,'S511',num+1)
                 endif
                 BJDebugMsg("命途多舛 成功")
