@@ -179,13 +179,13 @@ library SystemCodes uses ServerTime,Define1
         elseif  color == 4
             return "|cff00FA9A"
         elseif  color == 5
+            return "|cff00FA9A"
+        elseif  color == 6
             return "|cffffffff"
         elseif  color == 7
             return "|cffffffff"
         elseif  color == 8
             return "|cffffffff"
-        elseif  color == 9
-            return "|cff00FA9A"
         endif
         return "|cffffffff"
     endfunction
@@ -633,7 +633,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         unitpool HeroPool = CreateUnitPool() 
 
         function InitHeroPoolFunc()
-            /*
+            
             for i = 1,9
                 UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
             end
@@ -643,8 +643,8 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             end
             UnitPoolAddUnitType( HeroPool, 'H030', 1 )
             UnitPoolAddUnitType( HeroPool, 'H031', 1 )
-            */
-UnitPoolAddUnitType( HeroPool, 'H028', 1 )
+            
+//UnitPoolAddUnitType( HeroPool, 'H028', 1 )
         endfunction
 
 

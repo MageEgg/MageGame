@@ -25,7 +25,7 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                 UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
-                if  next == 'E011' or next == 'E111' or next == 'E211'
+                if  next == 'E006' or next == 'E106' or next == 'E206'
                     if  Pu[24] == null
                         Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
@@ -94,12 +94,17 @@ scope ItemSystem initializer InitItemSystem
         int use = 0
         if  index == 1
             use = 50 * num
+            if  use > 150
+                use = 150
+            endif
+        elseif  index == 2
+            use = 100 * num
             if  use > 300
                 use = 300
             endif
-        elseif  index == 2
-            use = 360 * num
         elseif  index == 3
+            use = 360 * num
+        elseif  index == 4
             use = 1080 * num
         endif
         return use
@@ -193,7 +198,7 @@ scope ItemSystem initializer InitItemSystem
             AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
-        elseif  itemid >= 'IS01' and itemid <= 'IS04'
+        elseif  itemid >= 'IS01' and itemid <= 'IS05'
             PlayerAbilityDraw(pid,itemid)
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
@@ -224,7 +229,7 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
 
-        if  itemid >= 'CS01' and itemid <= 'CS04'
+        if  itemid >= 'CS01' and itemid <= 'CS05'
             PlayerUseLearnAbilityBook(pid,itemid)
         elseif  itemid >= 'E001' and itemid <= 'E024'
             IncEquipFunc(u1,GetManipulatedItem())
