@@ -94,7 +94,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         for c=1,AttackRoomUnitNum
             CreateAttackRoomUnit(uid,pid)
         end
-        DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
+        //DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
     endfunction
 //刷新一波怪物
     
