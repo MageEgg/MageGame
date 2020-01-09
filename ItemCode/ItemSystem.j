@@ -94,12 +94,17 @@ scope ItemSystem initializer InitItemSystem
         int use = 0
         if  index == 1
             use = 50 * num
+            if  use > 150
+                use = 150
+            endif
+        elseif  index == 2
+            use = 100 * num
             if  use > 300
                 use = 300
             endif
-        elseif  index == 2
-            use = 360 * num
         elseif  index == 3
+            use = 360 * num
+        elseif  index == 4
             use = 1080 * num
         endif
         return use
@@ -193,7 +198,7 @@ scope ItemSystem initializer InitItemSystem
             AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
-        elseif  itemid >= 'IS01' and itemid <= 'IS04'
+        elseif  itemid >= 'IS01' and itemid <= 'IS05'
             PlayerAbilityDraw(pid,itemid)
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
@@ -224,7 +229,7 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
 
-        if  itemid >= 'CS01' and itemid <= 'CS04'
+        if  itemid >= 'CS01' and itemid <= 'CS05'
             PlayerUseLearnAbilityBook(pid,itemid)
         elseif  itemid >= 'E001' and itemid <= 'E024'
             IncEquipFunc(u1,GetManipulatedItem())

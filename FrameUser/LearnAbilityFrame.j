@@ -323,16 +323,14 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
     function GetLearnAbilityBookId(int pid,int itemid)->int
         int index = 0
         if  itemid == 'CS01'
-            if  GetRandomInt(1,100)<=60
-                index = 5
-            else
-                index = 4
-            endif
+            index = 5
         elseif  itemid == 'CS02'
-            index = 3
+            index = 4
         elseif  itemid == 'CS03'
-            index = 2
+            index = 3
         elseif  itemid == 'CS04'
+            index = 2
+        elseif  itemid == 'CS05'
             index = 1
         endif
         return GetPrize(pid,index,true)
