@@ -350,6 +350,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
+    function SpellS048(unit u,unit u1,real damage)
+
+    endfunction
+
     function SpellS053(unit u,real damage)//概率造成双倍伤害
         real x=GetUnitX(u)
         real y=GetUnitY(u)
@@ -1335,6 +1339,9 @@ function SpellS116(unit u1,real damage1)
 
     endfunction
 
+    function SpellS128(unit u1)
+
+    endfunction
     function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
         real x1 = GetUnitX(u1)
