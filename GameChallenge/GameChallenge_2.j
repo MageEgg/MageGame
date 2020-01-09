@@ -1,6 +1,6 @@
 library GameChallenge2 uses GameChallengeBase
     
-    function GameChallenge_2Flush(int pid)
+    function GameChallenge_2Flush(int pid,real time)
         SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
         if  GameChallengUnit[29] != null
             FlushChildHashtable(ht,GetHandleId(GameChallengUnit[29]))
@@ -11,7 +11,7 @@ library GameChallenge2 uses GameChallengeBase
         if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
             UnitRemoveAbility(Pu[1],'AZ04')
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function GameChalleng_2_WaterDeath3(int pid,unit u2)
@@ -36,7 +36,7 @@ library GameChallenge2 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
                 endif
             endif
-            GameChallenge_2Flush(pid)
+            GameChallenge_2Flush(pid,2)
             PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
             //奖励
             PlayerFinishPlotEx(pid,2)
@@ -107,8 +107,8 @@ library GameChallenge2 uses GameChallengeBase
     function OpenGameChallenge_2(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_2Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_2Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -5664
             y = 2496
@@ -151,7 +151,7 @@ library GameChallenge2 uses GameChallengeBase
     function GameChalleng_2_WaterDeath2(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[敖广]：|r吾儿！！！哪吒你欺人太甚！吾自去天庭讨个说法！")
-        GameChallenge_2Flush(pid)
+        GameChallenge_2Flush(pid,2)
         IsFinshChallenge(2) = true
         //奖励
         PlayerFinishPlotEx(pid,2)

@@ -1,6 +1,6 @@
 library GameChallenge6 uses GameChallengeBase
 
-    function GameChallenge_6Flush(int pid)
+    function GameChallenge_6Flush(int pid,real time)
         for num = 0,3
             SetUnitVertexColor(GameChallengUnit[60+num],255,255,255,0)
         end
@@ -10,7 +10,7 @@ library GameChallenge6 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[69])
             GameChallengUnit[69] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function OpenGameChallenge_6_A_ChatTimer(int id)
@@ -72,8 +72,8 @@ library GameChallenge6 uses GameChallengeBase
     function OpenGameChallenge_6(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_6Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_6Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -2272
             y = 6720
@@ -294,7 +294,7 @@ library GameChallenge6 uses GameChallengeBase
                 GameChallengInt[60] = 0
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[殷洪]：|r老师，弟子愿保武王灭纣，望乞救命！")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[赤精子]：|r此时迟了！你已犯天条，自化飞灰，莫误了进封神台时辰！")
-                GameChallenge_6Flush(pid)
+                GameChallenge_6Flush(pid,2)
                 IsFinshChallenge(6) = true
                 //奖励
                 PlayerFinishPlotEx(pid,6)
@@ -316,7 +316,7 @@ library GameChallenge6 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r") 
                 endif
             endif
-            GameChallenge_6Flush(pid)
+            GameChallenge_6Flush(pid,2)
             PlayerChallengeCosNum(6) = PlayerChallengeCosNum(6) + 1
             //奖励
             PlayerFinishPlotEx(pid,6)

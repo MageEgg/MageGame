@@ -1,6 +1,6 @@
 library GameChallenge8 uses GameChallengeBase
 
-    function GameChallenge_8Flush(int pid)
+    function GameChallenge_8Flush(int pid,real time)
         for num = 0,3
             SetUnitVertexColor(GameChallengUnit[80+num],255,255,255,0)
         end
@@ -10,7 +10,7 @@ library GameChallenge8 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[89])
             GameChallengUnit[89] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function GameChallenge_8_BTimer(int id)
@@ -344,8 +344,8 @@ library GameChallenge8 uses GameChallengeBase
     function OpenGameChallenge_8(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_8Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_8Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = 2336
             y = 7488
@@ -416,7 +416,7 @@ library GameChallenge8 uses GameChallengeBase
             if  GameChallengInt[80] == 7
                 GameChallengInt[80] = 0
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[剧情]：|r袁洪已被擒获，胜利在望！！！")
-                GameChallenge_8Flush(pid)
+                GameChallenge_8Flush(pid,2)
                 IsFinshChallenge(8) = true
                 //奖励
                 PlayerFinishPlotEx(pid,8)
@@ -438,7 +438,7 @@ library GameChallenge8 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000袁洪加入敌方阵营！|r")  
                 endif
             endif
-            GameChallenge_8Flush(pid)
+            GameChallenge_8Flush(pid,2)
             PlayerChallengeCosNum(8) = PlayerChallengeCosNum(8) + 1
             //奖励
             PlayerFinishPlotEx(pid,8)

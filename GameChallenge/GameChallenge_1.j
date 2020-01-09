@@ -1,6 +1,6 @@
 library GameChallenge1 uses GameChallengeBase
 
-    function GameChallenge_1Flush(int pid)
+    function GameChallenge_1Flush(int pid,real time)
         for num = 0,5
             SetUnitVertexColor(GameChallengUnit[10+num],255,255,255,0)
         end
@@ -13,14 +13,14 @@ library GameChallenge1 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[19])
             GameChallengUnit[19] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function OpenGameChallenge_1(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_1Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_1Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = GetRectCenterX(gg_rct_ChallengeRct_1_1)
             y = GetRectCenterY(gg_rct_ChallengeRct_1_1)
@@ -138,7 +138,7 @@ library GameChallenge1 uses GameChallengeBase
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         SetPlayerTaskUIChatOfPlayer(pid,"云中子","奇哉！奇哉！福祸相依，待我传你玄妙真仙诀，炼就风雷金刚体！",0)
         SetPlayerTaskUITaskOfPlayer(pid,"",0)
-        GameChallenge_1Flush(pid)
+        GameChallenge_1Flush(pid,2)
         IsFinshChallenge(1) = true
         //奖励
         PlayerFinishPlotEx(pid,1)
@@ -298,7 +298,7 @@ library GameChallenge1 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
                 endif
             endif
-            GameChallenge_1Flush(pid)
+            GameChallenge_1Flush(pid,2)
             PlayerChallengeCosNum(1) = PlayerChallengeCosNum(1) + 1
             //奖励
             PlayerFinishPlotEx(pid,1)

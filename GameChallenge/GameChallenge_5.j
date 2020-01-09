@@ -1,6 +1,6 @@
 library GameChallenge5 uses GameChallengeBase
 
-    function GameChallenge_5Flush(int pid)
+    function GameChallenge_5Flush(int pid,real time)
         SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
         SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
         GameChallengInt[50] = 0
@@ -9,7 +9,7 @@ library GameChallenge5 uses GameChallengeBase
             RemoveUnit(GameChallengUnit[59])
             GameChallengUnit[59] = null
         endif
-        GameChallenge_GlobalFlush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
     function GameChallenge_5_BTimer(int id)
@@ -54,8 +54,8 @@ library GameChallenge5 uses GameChallengeBase
     function OpenGameChallenge_5(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_5Flush(pid)
-        ShowPlayerTaskUIOfPlayer(pid,true,0)
+        GameChallenge_5Flush(pid,0)
+        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -512
             y = 3936
@@ -161,7 +161,7 @@ library GameChallenge5 uses GameChallengeBase
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
                     endif
                 endif
-                GameChallenge_4Flush(pid)
+                GameChallenge_5Flush(pid,2)
                 PlayerChallengeCosNum(5) = PlayerChallengeCosNum(5) + 1
                 //奖励
                 PlayerFinishPlotEx(pid,5)
@@ -346,7 +346,7 @@ library GameChallenge5 uses GameChallengeBase
                     GameChallengInt[50] = 0
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[白鹤童子]：|r师叔，老爷法牒，送符印将此绳解去。")
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[姜子牙]：|r谢老师慈悯。")
-                    GameChallenge_5Flush(pid)
+                    GameChallenge_5Flush(pid,2)
                     IsFinshChallenge(5) = true
                     //奖励
                     PlayerFinishPlotEx(pid,5)
