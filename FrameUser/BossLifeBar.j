@@ -11,17 +11,23 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
         real life = 0
         real maxlife = 0
         for pid = 0,3
-            if  GetLocalPlayer() == Player(pid)
-                if  GetUnitTypeId(Pu[6]) != 0 and Pu[6] != null
-                    life = GetUnitState(Pu[6],UNIT_STATE_LIFE)
-                    maxlife = GetUnitState(Pu[6],UNIT_STATE_MAX_LIFE)
-                    Life.SetText(I2S(R2I(life))+"/"+I2S(R2I(maxlife)))
-                    Name.SetText(GetUnitName(Pu[6]))
-                    Model2.SetAnimate(0,false)
-                    Model2.offset = life /maxlife
-                    Back.show = true
+            if  GetUnitTypeId(Pu[6]) != 0 and Pu[6] != null
+                if  Udis(Pu[1],Pu[6]) < 2000
+                    if  GetLocalPlayer() == Player(pid)
+                        life = GetUnitState(Pu[6],UNIT_STATE_LIFE)
+                        maxlife = GetUnitState(Pu[6],UNIT_STATE_MAX_LIFE)
+                        Life.SetText(I2S(R2I(life))+"/"+I2S(R2I(maxlife)))
+                        Name.SetText(GetUnitName(Pu[6]))
+                        Model2.SetAnimate(0,false)
+                        Model2.offset = life /maxlife
+                        Back.show = true
+                    endif
                 else
-                    Back.show = false 
+                    Pu[6] = null
+                endif
+            else
+                if  GetLocalPlayer() == Player(pid)
+                    Back.show = false
                 endif
             endif
         end
@@ -63,7 +69,7 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
 
         Back.show = false
 
-        TimerStart(CreateTimer(),0.03,true,function BossLifeBarFrameTimer)
+        TimerStart(CreateTimer(),0.1,true,function BossLifeBarFrameTimer)
         
     endfunction
 

@@ -276,6 +276,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     
     function AddAbilityState(unit wu,int id)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         SetEquipStateOfPlayer(wu,id,1)
 
         if  GetTypeIdData(id,101) != 9
