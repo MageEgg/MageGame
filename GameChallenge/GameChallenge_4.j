@@ -12,7 +12,7 @@ library GameChallenge4 uses GameChallengeBase
     function OpenGameChallenge_4(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_4Flush(pid,0)
+        GameChallenge_4Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
             x = -1728
@@ -89,6 +89,7 @@ library GameChallenge4 uses GameChallengeBase
                 IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[b],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                 IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀陈九公和姚少司，夺回箭书。",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀陈九公和姚少司，夺回箭书|r",0)
             endif
             endtimer
@@ -142,7 +143,7 @@ library GameChallenge4 uses GameChallengeBase
         TimerStart(1,false)
         {   
             if  IsPlayerInChallenge == true
-                GameChallenge_4Flush(pid,2)
+                GameChallenge_4Flush(pid,1)
                 IsFinshChallenge(4) = true
                 //奖励
                 PlayerFinishPlotEx(pid,4)
@@ -237,6 +238,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第九阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第九阵|r",0)
                     endtimer
                 endif
@@ -281,6 +283,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第八阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第八阵|r",0)
                     endtimer
                 endif
@@ -319,6 +322,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第七阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第七阵|r",0)
                     endtimer
                 endif
@@ -363,6 +367,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第六阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第六阵|r",0)
                     endtimer
                 endif
@@ -401,6 +406,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第五阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第五阵|r",0)
                     endtimer
                 endif
@@ -445,6 +451,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第四阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第四阵|r",0)
                     endtimer
                 endif
@@ -483,6 +490,7 @@ library GameChallenge4 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第三阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第三阵|r",0)
                     endtimer
                 endif
@@ -527,6 +535,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第二阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第二阵|r",0)
                     endtimer
                 endif
@@ -571,6 +580,7 @@ library GameChallenge4 uses GameChallengeBase
                         SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
                         IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     end
+                    SetPlayerTaskUIChatOfPlayer(pid,"剧情","突破第一阵。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff突破第一阵|r",0)
                     endtimer
                 endif
