@@ -90,7 +90,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 //清空练功房内怪物
 
     function RefreshAttackRoom(int pid,int uid)
-        DBUG("即将清空刷新")
         ClearAttackRoom(pid)//先清空
         for c=1,AttackRoomUnitNum
             CreateAttackRoomUnit(uid,pid)
