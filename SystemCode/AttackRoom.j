@@ -209,7 +209,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
     endfunction
 
 
-
+    //星阵给奖励
+    function SoulTimer2FuncGivePrize(int pid)
+        int ran = GetRandomInt(1,100)
+        if  ran <= 33
+            
+        endif
+    endfunction
 
     function SoulTimer2Func(int id,real x,real y)
         int pid = id
@@ -243,6 +249,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals
                         
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                         LocAddEffect(GetUnitX(Pu[27]),GetUnitY(Pu[27]),"effect_az_bw_lina_t1-2.mdl")
+                        SoulTimer2FuncGivePrize(pid)
                     endif
                 endif
                 RemoveUnit(u1)

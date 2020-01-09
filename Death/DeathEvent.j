@@ -356,6 +356,9 @@ scope DeathEvent initializer InitDeathEvent
             BJDebugMsg("闻太师！！！！")
             AttackOperaBEnding(0)
         endif
+        if  u1 == PlayerUnit[pid2][6]
+            PlayerUnit[pid2][6] = null
+        endif
         
         if  pid > 7 
             
