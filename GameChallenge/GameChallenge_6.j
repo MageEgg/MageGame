@@ -272,6 +272,7 @@ library GameChallenge6 uses GameChallengeBase
                     ShowUnitOfOnlyPlayer(pid,GameChallengUnit[69],UnitAPOfPlayer)
                     UnitAddAbility(GameChallengUnit[69],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[69],'AZ99',pid+1)
+                    SetUnitHighOfOnlyPlayer(pid,GameChallengUnit[69])
                     SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随姜子牙！",0.2)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随姜子牙|r",0)
                     GameChalleng_6_Jump1(pid,GameChallengUnit[69],-1184,7072,0)
