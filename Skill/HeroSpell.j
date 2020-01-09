@@ -1068,27 +1068,27 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         {   
             time=time+1
             i=i+1
-                if  time<=33
-                    if i>=10-(time/(30-Numb))
-                        i=0
-                        ang=GetRandomReal(-3.14,3.14)
-                        dis=GetRandomReal(100,300)
-                        GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-                        SetUnitX(mj,x+(400*Cos(ang)))
-                        SetUnitY(mj,y+(400*Sin(ang)))
-                        SetUnitFacing(mj,Rad2Deg(ang))
-                        SetUnitAnimation( mj, "Attack")
-                        LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
-                        LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
-                        LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
-                    endif
-                else
-                    DestroyGroup(g)
-                    RemoveUnit(mj)
-                    u = null
-                    endtimer
+            if  time<=33
+                if i>=10-(time/(30-Numb))
+                    i=0
+                    ang=GetRandomReal(-3.14,3.14)
+                    dis=GetRandomReal(100,300)
+                    GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                    UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                    SetUnitX(mj,x+(400*Cos(ang)))
+                    SetUnitY(mj,y+(400*Sin(ang)))
+                    SetUnitFacing(mj,Rad2Deg(ang))
+                    SetUnitAnimation( mj, "Attack")
+                    LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
+                    LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
+                    LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
                 endif
+            else
+                DestroyGroup(g)
+                RemoveUnit(mj)
+                u = null
+                endtimer
+            endif
             flush locals
         }
         flush locals
