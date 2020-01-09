@@ -77,12 +77,12 @@ library GameChallenge1 uses GameChallengeBase
             GameChallengInt[11] = GameChallengInt[11] - 1
             SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀护冢小妖|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[10])+"/40",0)
             if  GameChallengInt[10] == 1 or ModuloInteger(GameChallengInt[10],5) == 0
-                //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
             endif
         elseif  GameChallengInt[10] == 40
             if  GameChallengBool[10] == false    
                 GameChallengBool[10] = true
-                //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
                 SetUnitVertexColor(GameChallengUnit[12],255,255,255,0)
                 GameChalleng_1_XYDeathTimer(pid)
             endif
