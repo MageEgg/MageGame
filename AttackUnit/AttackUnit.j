@@ -173,6 +173,9 @@ library AttackUnit uses DamageCode
     endfunction
     
     function InitAttackUnitOfLevelEx(int lv)
+        if  lv >= 3
+            ExecuteFunc("InitGameChallengeLeagueUnit")
+        endif
         if  lv == 2
             InitAttackUnitData(18,1,180,3,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             InitAttackUnitData(19,0,30,6,10,1,-1664,-7440,'m016','m016','m016','m016',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)

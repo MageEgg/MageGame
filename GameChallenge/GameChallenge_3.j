@@ -22,12 +22,14 @@ library GameChallenge3 uses GameChallengeBase
             if  GameChallengOperaWay[3] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[3] = 1
+                    SetLeagueUnit(3,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","自此一战，黄天化心性收敛，知进退，明时务。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00黄天化加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00黄天化加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00黄天化加入己方阵营！|r")                                
                 else
                     GameChallengOperaWay[3] = 2
+                    SetLeagueUnit(3,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","黄天化心性草率，后于金鸡岭战败，被孔宣收服。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000黄天化加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000黄天化加入敌方阵营！|r")

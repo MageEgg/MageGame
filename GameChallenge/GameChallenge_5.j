@@ -150,12 +150,14 @@ library GameChallenge5 uses GameChallengeBase
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","此时，惧留孙及时赶到。",0)
                     if  GetGameChallengOperaSelsect() == 0
                         GameChallengOperaWay[5] = 1
+                        SetLeagueUnit(5,true)
                         SetPlayerTaskUIChatOfPlayer(pid,"惧留孙","道兄请留孽徒一命，子牙后有用他之处，可助西岐一臂之力。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")  
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")                                 
                     else
                         GameChallengOperaWay[5] = 2
+                        SetLeagueUnit(5,false)
                         SetPlayerTaskUIChatOfPlayer(pid,"剧情","你失手杀死了土行孙，惧留孙后以仙丹将其复活。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 

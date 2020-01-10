@@ -287,12 +287,14 @@ library GameChallenge1 uses GameChallengeBase
             if  GameChallengOperaWay[1] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[1] = 1
+                    SetLeagueUnit(1,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"雷震子","追兵已退，我便送父王回西岐。",0)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00雷震子加入己方阵营！|r")                                   
                 else
                     GameChallengOperaWay[1] = 2
+                    SetLeagueUnit(1,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","糟糕！雷震子怒意攻心，入魔远走了！",0)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-半人祸福]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000雷震子加入敌方阵营！|r")   
