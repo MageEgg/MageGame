@@ -305,14 +305,47 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS049(unit u,real damage1)//引爆魅惑
+    function SpellS048(unit u1,unit u2,real damage)
+        real x=GetUnitX(u2)
+        real y=GetUnitY(u2)
+        unit gu=null
+        IndexGroup g = IndexGroup.create()
+        DestroyEffect(AddSpecialEffect("effect_heartburst.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+         loop
+            gu = FirstOfGroup(g.ejg)
+            exitwhen gu == null
+            if GetUnitAbilityLevel(gu,'A048')>0
+                if GetUnitAbilityLevel(gu,'A048')<8
+                    IncUnitAbilityLevel(gu,'A048')
+                endif
+            else
+                UnitAddAbility(gu,'A048')
+            endif
+            UnitDamageTarget(u1, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+            GroupRemoveUnit(g.ejg,gu)
+        endloop
+        g.destroy()
+        flush locals
+    endfunction
+
+    function SpellS049(unit u,real damage)//引爆魅惑
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        real damage=I2R(LoadInteger(ht,GetHandleId(u),'S049'))*damage1
-       IndexGroup g = IndexGroup.create()
+         unit gu=null
+        IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_senbonzakurapart.mdl","origin",0))
         DestroyEffect(AddSpecialEffect("effect_shockwave_pink2.mdl",x,y))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        loop
+            gu = FirstOfGroup(g.ejg)
+            exitwhen gu == null
+            DBUG(I2S(GetUnitAbilityLevel(gu,'A048')))
+            if  I2R(GetUnitAbilityLevel(gu,'A048'))*damage>0
+                damage=I2R(GetUnitAbilityLevel(gu,'A048'))*damage
+                UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+            endif
+            GroupRemoveUnit(g.ejg,gu)
+        endloop
         g.destroy()
         flush locals
     endfunction
@@ -348,10 +381,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         YDWESetUnitAbilityState(u,id, 1,YDWEGetUnitAbilityState(u, id, 1)-0.5)
     end
         flush locals
-    endfunction
-
-    function SpellS048(unit u,unit u1,real damage)
-
     endfunction
 
     function SpellS053(unit u,real damage)//概率造成双倍伤害
@@ -591,6 +620,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y0=GetUnitY(u)
         LocAddEffectTimer(x,y,"effect_az_axe_x.mdl",m)
     //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
+        TimerStart(t,m,false,function SpellS078func)
         TimerStart(m,false)
         {   
             EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*m,"effect_az_tormentedsoul_t1.mdl")
@@ -599,6 +629,17 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         }
         flush locals
     endfunction
+
+  /*  function SpellS079(unit u2,real x1,real y1,real damage1)
+        unit u=u1
+        IndexGroup g = IndexGroup.create()
+        AddUnitStateExTimer(u,14,15,3)
+        DestroyEffect(AddSpecialEffect("effect_zi-fazhen.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        g.destroy()
+        u = null
+    endfunction*/
 
     function SpellS080(unit u2,real x1,real y1,real damage1)
         unit u=u2
@@ -884,6 +925,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real speed=40
         group g=CreateGroup()
         group g1=CreateGroup()
+        boolean up=true
         TimerStart(0.03,true)
         {
            if   IsPlayerHasAbility(u,'S102') == true 
@@ -912,14 +954,28 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
                 x=GetUnitX(mj)+(speed*Cos(Deg2Rad(GetUnitFacing(mj))))
                 y=GetUnitY(mj)+(speed*Sin(Deg2Rad(GetUnitFacing(mj))))
-               // if  GetUnitZ()
+                if up==true
+                    if  GetUnitZ(mj)<300
+                        SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)+1,0)
+                    else
+                        up=false
+                    endif
+                else
+                    if  GetUnitZ(mj)>0
+                        SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)-1,0)
+                    else
+                        up=true
+                    endif
+
+                endif
+
                 GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
                 UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
-                flush locals
                 endtimer
+                flush locals
             endif
         }
         flush locals
@@ -938,6 +994,52 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             SpellS102_1(u,mj,damage)
         end
     endfunction  
+
+    function SpellS103Attack(unit wu,unit gui1)
+        unit u=wu
+        unit gui=gui1
+        real dis=0
+        real ang=0
+        real x=0
+        real y=0
+        integer i=0
+        TimerStart(1,true)
+        {
+        if  i<=6
+            i=i+1
+            if  Udis(u,gui)>500
+                dis=GetRandomReal(0, 200)
+                ang=GetRandomReal(-3.14, 3.14)
+                x=GetUnitX(u)+(dis*Cos(ang))
+                y=GetUnitY(u)+(dis*Sin(ang))
+                SetUnitX(gui,x)
+                SetUnitY(gui,y)
+                IssueTargetOrder( gui, "Attack", u)
+            endif
+        else
+            KillUnit(gui)
+            endtimer
+            flush locals
+        endif
+        }
+    endfunction
+
+    function SpellS103(unit u)
+        unit gui=null
+        real dis=0
+        real ang=0
+        real x=0
+        real y=0
+        for i= 1,3
+            dis=GetRandomReal(0, 200)
+            ang=GetRandomReal(-3.14, 3.14)
+            x=GetUnitX(u)+(dis*Cos(ang))
+            y=GetUnitY(u)+(dis*Sin(ang))
+            gui=CreateUnit(Player(12),'e010',x,y,GetUnitFacing(u))
+            IssueTargetOrder( gui, "Attack", u)
+            SpellS103Attack(u,gui)
+        end
+    endfunction 
 
     function SpellS104(unit u1)
         unit u=u1
@@ -965,12 +1067,24 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction 
 
     function SpellS105(unit u,unit u1,real damage)   
-
+            real x=GetUnitX(u1)
+            real y=GetUnitY(u1)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","origin",0))
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+            u = null
     endfunction
 
     
     function SpellS106(unit u,real damage)   
-    
+            real x=GetUnitX(u)
+            real y=GetUnitY(u)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","origin",0))
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+            u = null
     endfunction
 
 
@@ -985,10 +1099,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     if  GetUnitAbilityLevel(u,'AZ15') > 0
         g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        GroupRemoveUnit(g.ejg,u1)
         if  FirstOfGroup(g.ejg)!=null
             LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
             if  ad >= ap
+                GroupRemoveUnit(g.ejg,u1)
                 UnitDamageGroup(u,g.ejg,ad*0.5,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 UnitDamageGroup(u,g.ejg,ap*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -1031,27 +1145,27 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
         {   
             time=time+1
             i=i+1
-                if  time<=33
-                    if i>=10-(time/(30-Numb))
-                        i=0
-                        ang=GetRandomReal(-3.14,3.14)
-                        dis=GetRandomReal(100,300)
-                        GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-                        SetUnitX(mj,x+(400*Cos(ang)))
-                        SetUnitY(mj,y+(400*Sin(ang)))
-                        SetUnitFacing(mj,Rad2Deg(ang))
-                        SetUnitAnimation( mj, "Attack")
-                        LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
-                        LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
-                        LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
-                    endif
-                else
-                    DestroyGroup(g)
-                    RemoveUnit(mj)
-                    u = null
-                    endtimer
+            if  time<=33
+                if i>=10-(time/(30-Numb))
+                    i=0
+                    ang=GetRandomReal(-3.14,3.14)
+                    dis=GetRandomReal(100,300)
+                    GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                    UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                    SetUnitX(mj,x+(400*Cos(ang)))
+                    SetUnitY(mj,y+(400*Sin(ang)))
+                    SetUnitFacing(mj,Rad2Deg(ang))
+                    SetUnitAnimation( mj, "Attack")
+                    LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
+                    LocAddEffectSetRotate(x,y,Rad2Deg(ang),"effect_akiha claw.mdx")
+                    LocAddEffectSetRotate(x+(dis*Cos(ang-1.57)),y+(dis*Sin(ang-1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
                 endif
+            else
+                DestroyGroup(g)
+                RemoveUnit(mj)
+                u = null
+                endtimer
+            endif
             flush locals
         }
         flush locals
@@ -1268,6 +1382,7 @@ function SpellS116(unit u1,real damage1)
                 endtimer
             else
                 UnitDamageTarget(u,u1,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                DestroyEffect(AddSpecialEffect("effect_youling.mdl", GetUnitX(u1),GetUnitY(u1)))
                 SpellS124mb.execute(u,tx,u1,dam,gg,num)
                 flush locals
                 endtimer
@@ -1286,11 +1401,11 @@ function SpellS116(unit u1,real damage1)
         group g = CreateGroup()
         if  num<5
             num=num+1
-            GroupEnumUnitsInRange(g,x,y,1000,null)
+            GroupEnumUnitsInRange(g,x,y,1000,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             loop
                 u4 = FirstOfGroup(g)
-                exitwhen u4 == null
-                if  GetUnitState(u4,UNIT_STATE_LIFE)>0  and IsUnitInGroup(u4, g2) == false
+                if  IsUnitInGroup(u4, g2) == false
+                    exitwhen u4 == null
                     set dis = SquareRoot(Pow(x-GetUnitX(u4),2)+Pow(y-GetUnitY(u4),2))
                     if  dis < mdis  then
                         u3 = u4
@@ -1625,7 +1740,9 @@ endfunction
             elseif  id== 'S100'    
                 SpellS100(u1.u)
             elseif  id== 'S101'    
-                SpellS101(u1.u,sx,sy,damage)    
+                SpellS101(u1.u,sx,sy,damage) 
+            elseif  id== 'S103'    
+                SpellS103(u1.u)       
             elseif  id== 'S110'    
                 SpellS110(u1.u,sx,sy,damage)
             elseif  id== 'S111'    

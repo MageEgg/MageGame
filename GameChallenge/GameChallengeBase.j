@@ -49,58 +49,32 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function InitGameChallengeLeagueUnit()
         real ang = 0
-        ang = Atan2(OriginalDefendY+6400,OriginalDefendX+7232)/0.01745
-        GameChallengLeagueUnit(1) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np91',-7232,-6400,ang)
-        ang = Atan2(OriginalDefendY+6400,OriginalDefendX+6592)/0.01745
-        GameChallengLeagueUnit(2) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np92',-6592,-6400,ang)
-        ang = Atan2(OriginalDefendY+6592,OriginalDefendX+6368)/0.01745
-        GameChallengLeagueUnit(3) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np93',-6368,-6592,ang)
-        ang = Atan2(OriginalDefendY+7264,OriginalDefendX+6368)/0.01745
-        GameChallengLeagueUnit(4) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np94',-6368,-7264,ang)
-        ang = Atan2(OriginalDefendY+7488,OriginalDefendX+6592)/0.01745
-        GameChallengLeagueUnit(5) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np95',-6592,-7488,ang)
-        ang = Atan2(OriginalDefendY+7488,OriginalDefendX+7232)/0.01745
-        GameChallengLeagueUnit(6) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np96',-7232,-7488,ang)
+        for num = 1,9
+            RemoveUnit(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'md01',0,0,0))
+        end
         ang = Atan2(OriginalDefendY+6592,OriginalDefendX+7456)/0.01745
-        GameChallengLeagueUnit(7) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np97',-7456,-6592,ang)
+        GameChallengLeagueUnit(1) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np91',-7456,-6592,ang)
+        ang = Atan2(OriginalDefendY+6400,OriginalDefendX+7232)/0.01745
+        GameChallengLeagueUnit(2) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np92',-7232,-6400,ang)
+        ang = Atan2(OriginalDefendY+6400,OriginalDefendX+6592)/0.01745
+        GameChallengLeagueUnit(3) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np93',-6592,-6400,ang)
+        ang = Atan2(OriginalDefendY+6592,OriginalDefendX+6368)/0.01745
+        GameChallengLeagueUnit(4) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np94',-6368,-6592,ang)
+        ang = Atan2(OriginalDefendY+7264,OriginalDefendX+6368)/0.01745
+        GameChallengLeagueUnit(5) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np95',-6368,-7264,ang)
+        ang = Atan2(OriginalDefendY+7488,OriginalDefendX+6592)/0.01745
+        GameChallengLeagueUnit(6) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np96',-6592,-7488,ang)
+        ang = Atan2(OriginalDefendY+7488,OriginalDefendX+7232)/0.01745
+        GameChallengLeagueUnit(7) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np97',-7232,-7488,ang)
         ang = Atan2(OriginalDefendY+7264,OriginalDefendX+7456)/0.01745
         GameChallengLeagueUnit(8) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np98',-7456,-7264,ang)
     endfunction
 
-    function SetPlayerLeagueState(int num)
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                if  num == 1
-                    AddUnitRealState(Pu[1],3,10)
-                elseif  num == 2
-                    AddUnitRealState(Pu[1],31,30)
-                elseif  num == 3
-                    AddUnitRealState(Pu[1],32,30)
-                elseif  num == 4
-                    AddUnitRealState(Pu[1],33,30)
-                elseif  num == 5
-                    AddUnitRealState(Pu[1],19,10)
-                elseif  num == 6
-                    AddUnitRealState(Pu[1],9,100)
-                elseif  num == 7
-                    AddUnitRealState(Pu[1],28,2)
-                elseif  num == 8
-                    AddUnitRealState(Pu[1],25,15)
-                endif
-            endif
-        end
-    endfunction
-
-    function SetLeagueUnit(int num,bool flag)
+    /*
         real x = GetUnitX(GameChallengLeagueUnit(num))
         real y = GetUnitY(GameChallengLeagueUnit(num))
         real ang = GetUnitFacing(GameChallengLeagueUnit(num))
-        int uid = 'md09'
-        real value = 0
-        if  flag == true
-            UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
-            UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
-            /*EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+        EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
             for i = 1,40
                 value = GetTypeIdReal(uid,i)
                 if  value != 0
@@ -116,10 +90,47 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 endif
             end
             SetUnitRealState(GameChallengLeagueUnit(num),1,value)*/
-            SetPlayerLeagueState(num)
+
+    function SetPlayerLeagueState(int num,bool b)
+        int t = 1
+        if  b == false
+            t = -1
+        endif
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  num == 1
+                    AddUnitRealState(Pu[1],3,t*10)
+                elseif  num == 2
+                    AddUnitRealState(Pu[1],10,t*15)
+                elseif  num == 3
+                    AddUnitRealState(Pu[1],32,t*30)
+                elseif  num == 4
+                    AddUnitRealState(Pu[1],33,t*30)
+                elseif  num == 5
+                    AddUnitRealState(Pu[1],19,t*10)
+                elseif  num == 6
+                    AddUnitRealState(Pu[1],9,t*100)
+                elseif  num == 7
+                    AddUnitRealState(Pu[1],31,t*30)
+                elseif  num == 8
+                    AddUnitRealState(Pu[1],25,t*15)
+                endif
+            endif
+        end
+    endfunction
+
+    function SetLeagueUnit(int num,bool flag)
+        if  flag == true
+            SetUnitOwner(GameChallengLeagueUnit(num),Player(9),true)
+            UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
+            UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
+            UnitAddAbility(GameChallengLeagueUnit(num),'AZ7A'+num-1)
+            SetPlayerLeagueState(num,true)
         else
+            SetUnitOwner(GameChallengLeagueUnit(num),Player(11),true)
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
+            UnitAddAbility(GameChallengLeagueUnit(num),'AZ8A'+num-1)
         endif
     endfunction
 

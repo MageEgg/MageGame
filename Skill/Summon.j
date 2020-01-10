@@ -45,7 +45,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             if  GetUnitState(summon, UNIT_STATE_LIFE) > 0
                 x=GetUnitX(summon)
                 y=GetUnitY(summon)
-                GroupEnumUnitsInRange(g1,x,y,100,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                GroupEnumUnitsInRange(g1,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 if  CountUnitsInGroup(g1) > 0
                     IndexGroup g = IndexGroup.create()
                     GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
