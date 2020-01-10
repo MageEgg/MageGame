@@ -27,9 +27,10 @@ library GameChallenge0 uses GameChallengeBase
             endif
             if  GameChallengInt[1] < 20
                 if  GameChallengInt[1] == 1 or ModuloInteger(GameChallengInt[1],5) == 0
-                    //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 endif
             elseif  GameChallengInt[1] == 20
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 GameChallengBool[1] = true
                 for n = 1,3
                     SetUnitAPOfBool(GameBiaoJI[n],1)
