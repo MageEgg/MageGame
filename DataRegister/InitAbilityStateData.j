@@ -55,7 +55,7 @@ call InitAbilityData('S045',1,1,0,0,0,0,0,0,"毒仙","毒体持续时间翻倍�
 call InitAbilityData('S046',2,2,2,1,0,0,2,6,"引爆","对自身范围内敌人造成AP*中毒叠加次数法术伤害","ReplaceableTextures\\CommandButtons\\BTNS046.blp")
 call InitAbilityData('S047',2,3,2,0.25,0,0,2,16,"毒体","开启后使周围地方单位进入中毒状态，每秒损失AP*0.25生命。\n法术伤害，持续伤害可叠加，每秒叠加一次，上限8次。","ReplaceableTextures\\CommandButtons\\BTNS047.blp")
 call InitAbilityData('S048',1,3,2,3,0,0,2,0,"狐媚术","攻击12.5%概率对目标范围施加一次魅惑，造成AP*3法术伤害，持续时间内降低6%攻速及移动速度。\n持续时间内，减速效果可叠加，上限8次","ReplaceableTextures\\CommandButtons\\BTNS048.blp")
-call InitAbilityData('S049',2,3,2,0,0,0,2,8,"失心令","对自身范围内敌人造成AP*魅惑层数法术伤害","ReplaceableTextures\\CommandButtons\\BTNS049.blp")
+call InitAbilityData('S049',2,3,2,1,0,0,2,8,"失心令","对自身范围内敌人造成AP*魅惑层数法术伤害","ReplaceableTextures\\CommandButtons\\BTNS049.blp")
 call InitAbilityData('S052',3,1,2,6,0,0,2,6,"神火天降","对目标范围内敌人造成AP*6法术伤害，所有技能冷却缩减0.5秒。","ReplaceableTextures\\CommandButtons\\BTNS052.blp")
 call InitAbilityData('S053',2,2,2,2,0,0,2,2,"落魂咒","对周围单位造成AP*2法术伤害，20%几率造成双倍伤害","ReplaceableTextures\\CommandButtons\\BTNS053.blp")
 call InitAbilityData('S054',1,3,0,0,0,0,0,0,"法魂","不再享受任何冷却缩减，冷却转换为法强\n转换公式：冷却/80%","ReplaceableTextures\\CommandButtons\\BTNS054.blp")
