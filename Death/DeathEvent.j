@@ -223,18 +223,35 @@ scope DeathEvent initializer InitDeathEvent
         endif
     endfunction
 
+            
     function CreateNewForg(int id1,int id2)
         int pid = id1
         int uid = id2
         TimerStart(30,false)
         {
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512,225)
+            SetPlayerOnlyDamage(Pu[120],pid)
             //LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
             flush locals
         }
         flush locals
     endfunction
     
+
+    //星辰阵
+    function KillXCUnitFunc(unit wu,unit tu,int uid)
+        int num = AttackRoomXCUnitNum
+        AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
+        if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
+            CreateItem('IN00',GetUnitX(tu),GetUnitY(tu))
+        else
+            if  AttackRoomXCUnitNum <= 0
+                
+            endif
+        endif
+    endfunction
+
+
     function HeroKillMoster(unit wu,unit tu)
         //wu是凶手 tu是死亡单位
         int pid = GetPlayerId(GetOwningPlayer(wu))
@@ -245,6 +262,8 @@ scope DeathEvent initializer InitDeathEvent
         
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
+        elseif  uid >= 'u0DA' and uid <= 'u0DZ'
+            KillXCUnitFunc(wu,tu,uid)
         elseif  uid >= 'u001' and uid <= 'u004'
             AddUnitRealState(Pu[1],41,80)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾挑战成功！金币加成+80%")

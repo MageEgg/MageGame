@@ -63,7 +63,13 @@ scope ItemSystem initializer InitItemSystem
 
                             else
                                 HeroMoveToRoom(pid)
-                                //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r正在挑战中")
+                                if  itemid >= 'E001' and itemid <= 'E025'
+                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
+                                elseif  itemid >= 'E101' and itemid <= 'E125'
+                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
+                                elseif  itemid >= 'E201' and itemid <= 'E225'
+                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
+                                endif
                             endif
                         endif
                     else

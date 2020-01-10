@@ -175,9 +175,11 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         int ran = GetRandomInt(0,2)
-        int num = 0
+        int num = AttackRoomZXNum
         int id = 'u0AA'+ran*0x100+num
-
+        if  AttackRoomZXNum < 12
+            AttackRoomZXNum = AttackRoomZXNum + 1
+        endif
         if  ran == 0
             for i = 1,10
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
@@ -211,11 +213,30 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     endfunction
 
 
-    //星阵给奖励
+    //周天星辰阵
     function SoulTimer2FuncGivePrize(int pid)
-        int ran = GetRandomInt(1,100)
-        if  ran <= 33
-            
+        int num = AttackRoomXCNum
+        int id = 'u0DA'+num
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        if  num < 23
+            AttackRoomXCNum = AttackRoomXCNum + 1
+        endif
+        if  num == 5 or num == 11 or num == 17 or num == 23
+            AttackRoomXCUnitNum = 1
+            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+            IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+            SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+            bj_lastCreatedUnit = null
+        else
+            AttackRoomXCUnitNum = 4
+            for i = 1,4
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+                IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+                
+                bj_lastCreatedUnit = null
+            end
         endif
     endfunction
 
@@ -302,7 +323,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             real ux = GetUnitX(Pu[1])
             real uy = GetUnitY(Pu[1])
             if  x - 768 <= ux and ux <= x + 768 and y - 768 <= uy and uy <= y + 768
-                BJDebugMsg("在练功房内")
+                //BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
                 if  AttackRoomTimer==false
