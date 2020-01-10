@@ -305,14 +305,44 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS049(unit u,real damage1)//引爆魅惑
+    function SpellS048(unit u1,unit u2,real damage)
+        real x=GetUnitX(u2)
+        real y=GetUnitY(u2)
+        unit gu=null
+        IndexGroup g = IndexGroup.create()
+        DestroyEffect(AddSpecialEffect("effect_heartburst.mdl",x,y))
+        GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+         loop
+            gu = FirstOfGroup(g.ejg)
+            exitwhen gu == null
+            if GetUnitAbilityLevel(gu,'A048')>0
+                 IncUnitAbilityLevel(gu,'A048')
+            else
+                UnitAddAbility(gu,'A048')
+            endif
+            UnitDamageTarget(u1, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+            GroupRemoveUnit(g.ejg,gu)
+        endloop
+        g.destroy()
+        flush locals
+    endfunction
+
+    function SpellS049(unit u,real damage)//引爆魅惑
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        real damage=I2R(LoadInteger(ht,GetHandleId(u),'S049'))*damage1
-       IndexGroup g = IndexGroup.create()
+         unit gu=null
+        IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_senbonzakurapart.mdl","origin",0))
         DestroyEffect(AddSpecialEffect("effect_shockwave_pink2.mdl",x,y))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        loop
+            gu = FirstOfGroup(g.ejg)
+            exitwhen gu == null
+            if  I2R(GetUnitAbilityLevel(gu,'A048'))*damage>0
+                damage=I2R(GetUnitAbilityLevel(gu,'A048'))*damage
+                UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+            endif
+            GroupRemoveUnit(g.ejg,gu)
+        endloop
         g.destroy()
         flush locals
     endfunction
@@ -348,10 +378,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         YDWESetUnitAbilityState(u,id, 1,YDWEGetUnitAbilityState(u, id, 1)-0.5)
     end
         flush locals
-    endfunction
-
-    function SpellS048(unit u,unit u1,real damage)
-
     endfunction
 
     function SpellS053(unit u,real damage)//概率造成双倍伤害
@@ -1023,10 +1049,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     if  GetUnitAbilityLevel(u,'AZ15') > 0
         g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        GroupRemoveUnit(g.ejg,u1)
         if  FirstOfGroup(g.ejg)!=null
             LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
             if  ad >= ap
+                GroupRemoveUnit(g.ejg,u1)
                 UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -1305,6 +1331,7 @@ function SpellS116(unit u1,real damage1)
                 endtimer
             else
                 UnitDamageTarget(u,u1,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                DestroyEffect(AddSpecialEffect("effect_youling.mdl", GetUnitX(u1),GetUnitY(u1)))
                 SpellS124mb.execute(u,tx,u1,dam,gg,num)
                 flush locals
                 endtimer
@@ -1323,11 +1350,11 @@ function SpellS116(unit u1,real damage1)
         group g = CreateGroup()
         if  num<5
             num=num+1
-            GroupEnumUnitsInRange(g,x,y,1000,null)
+            GroupEnumUnitsInRange(g,x,y,1000,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             loop
                 u4 = FirstOfGroup(g)
-                exitwhen u4 == null
-                if  GetUnitState(u4,UNIT_STATE_LIFE)>0  and IsUnitInGroup(u4, g2) == false
+                if  IsUnitInGroup(u4, g2) == false
+                    exitwhen u4 == null
                     set dis = SquareRoot(Pow(x-GetUnitX(u4),2)+Pow(y-GetUnitY(u4),2))
                     if  dis < mdis  then
                         u3 = u4
