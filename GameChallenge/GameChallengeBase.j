@@ -92,27 +92,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 endif
             end
             SetUnitRealState(GameChallengLeagueUnit(num),1,value)
-            for pid = 0,3
-                if  IsPlaying(pid) == true
-                    if  num == 1
-                        AddUnitRealState(Pu[1],3,10)
-                    elseif  num == 2
-                        AddUnitRealState(Pu[1],31,30)
-                    elseif  num == 3
-                        AddUnitRealState(Pu[1],32,30)
-                    elseif  num == 4
-                        AddUnitRealState(Pu[1],33,30)
-                    elseif  num == 5
-                        AddUnitRealState(Pu[1],19,10)
-                    elseif  num == 6
-                        AddUnitRealState(Pu[1],9,100)
-                    elseif  num == 7
-                        AddUnitRealState(Pu[1],28,2)
-                    elseif  num == 8
-                        AddUnitRealState(Pu[1],25,15)
-                    endif
-                endif
-            end
+
         else
             GameChallengLeagueUnit(num) = CreateUnit(Player(11),'md00'+num,x,y,ang)
             UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
