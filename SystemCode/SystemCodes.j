@@ -150,14 +150,14 @@ library SystemCodes uses ServerTime,Define1
     function GetTypeIdStateTips(int id)->string
         string s = ""
         real value = 0
-        for i = 1,30
+        for i = 1,60
             value = GetTypeIdReal(id,i)
             if  value > 0
                 s = s + "\n" + StateName[i] + "+" + R2S2(value) + StateName[i+1000]
             endif
             
         end
-        return "|cff666666基础属性|r" + s
+        return  s
     endfunction
     function GetTypeIdName(int id)->string
         string s = LoadStr(ht,id,100)
@@ -690,6 +690,13 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
         function UnitAddPoolItem(unit wu,int index)
             UnitAddItem(wu,PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu)))
+        endfunction
+        function GetPoolItemId(int index)->int
+            int id = 0
+            bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],0,0)
+            id = GetItemTypeId(bj_lastCreatedItem)
+            RemoveItem(bj_lastCreatedItem)
+            return id
         endfunction
 
         function InitUnitPoolFunc()

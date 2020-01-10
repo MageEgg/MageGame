@@ -183,16 +183,23 @@ scope ItemSystem initializer InitItemSystem
 
 
 
-//获取鸿蒙结晶数量
 
-                    
+    
+                     
 
     function UnitUseSilkBag(unit wu,int itemid)//使用锦囊
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  itemid == 'IN00'
             UnitAddPoolItem(wu,1)
         else
-            if  itemid == 'IN07'
+            if  itemid == 'IN01'
+                PlayerHeorAddSkillMagic(pid,1,GetPoolItemId(2))
+            elseif  itemid == 'IN02'
+                PlayerHeorAddSkillMagic(pid,2,GetPoolItemId(2))
+            elseif  itemid == 'IN03'
+                PlayerHeorAddSkillMagic(pid,3,GetPoolItemId(2))
+            elseif  itemid == 'IN07'
+
                 AddUnitStateExTimer(Pu[1],28,30,6)
             elseif  itemid == 'IN08'
                 if  AttackUnitWN >= AttackUnitWNOver - 2
