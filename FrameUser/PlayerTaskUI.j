@@ -89,6 +89,7 @@ library PlayerTaskUI uses GameFrame
                     PlayerTaskUI_Back.alpha = 0
                     PlayerTaskUI_Back.show = false
                 endif
+                SetPlayerZDLPoint(pid,0)
                 endtimer    
             endif
             flush locals
@@ -117,6 +118,7 @@ library PlayerTaskUI uses GameFrame
                     PlayerTaskUI_Back.alpha = 255
                     PlayerTaskUI_Back.show = true
                 endif
+                SetPlayerZDLPoint(pid,1)
                 endtimer    
             endif
             flush locals
