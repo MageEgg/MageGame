@@ -193,11 +193,26 @@ scope ItemSystem initializer InitItemSystem
             UnitAddPoolItem(wu,1)
         else
             if  itemid == 'IN01'
-                PlayerHeorAddSkillMagic(pid,1,GetPoolItemId(2))
+                if  GetTypeIdData(GetHeroAbilityID(wu,1),101) == 9
+                    UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r未学习Q技能，无法附魔！")
+                else
+                    PlayerHeorAddSkillMagic(pid,1,GetPoolItemId(2))
+                endif
             elseif  itemid == 'IN02'
-                PlayerHeorAddSkillMagic(pid,2,GetPoolItemId(2))
+                if  GetTypeIdData(GetHeroAbilityID(wu,2),101) == 9
+                    UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r未学习W技能，无法附魔！")
+                else
+                    PlayerHeorAddSkillMagic(pid,2,GetPoolItemId(2))
+                endif
             elseif  itemid == 'IN03'
-                PlayerHeorAddSkillMagic(pid,3,GetPoolItemId(2))
+                if  GetTypeIdData(GetHeroAbilityID(wu,3),101) == 9
+                    UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r未学习E技能，无法附魔！")
+                else
+                    PlayerHeorAddSkillMagic(pid,3,GetPoolItemId(2))
+                endif
             elseif  itemid == 'IN07'
 
                 AddUnitStateExTimer(Pu[1],28,30,6)
