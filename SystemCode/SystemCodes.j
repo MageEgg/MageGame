@@ -584,7 +584,23 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             
         endfunction
 
+
+        //技能奖池修正
+            
+        function RecoveryPrizePoolData(int page,int pool,int id)
+            if  pool >= 4 and pool <= 5
+                pool = 4
+            elseif  pool >= 6 and pool <= 8
+                pool = 5
+            endif
+
+            AddPrizePoolMax(page,pool,1)
+            SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
+        endfunction
+
         function RegisterPrizePoolData(int page,int pool,int id)
+
+            
             AddPrizePoolMax(page,pool,1)
             SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
             

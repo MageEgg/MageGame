@@ -187,7 +187,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int rid = GetPlayerPlotPrizeId(pid,index,1)
         if  rid > 0
             //回收
-            RegisterPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
+            RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
         endif
 
         if  GetRandomInt(1,100)<10
