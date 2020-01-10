@@ -323,7 +323,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             real ux = GetUnitX(Pu[1])
             real uy = GetUnitY(Pu[1])
             if  x - 768 <= ux and ux <= x + 768 and y - 768 <= uy and uy <= y + 768
-                BJDebugMsg("在练功房内")
+                //BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
                 if  AttackRoomTimer==false
