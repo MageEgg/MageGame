@@ -611,7 +611,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     
 
     function SpellS078(unit u2,real x1,real y1,real damage1)
-        unit u=u2
+        /*unit u=u2
         real damage=damage1 
         real m=3+(GetUnitAttack(u)/30000)
         real x=x1
@@ -619,14 +619,14 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
         LocAddEffectTimer(x,y,"effect_az_axe_x.mdl",m)
-    //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
+        伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
         TimerStart(m,false)
         {   
             EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*m,"effect_az_tormentedsoul_t1.mdl")
             endtimer
             flush locals
         }
-        flush locals
+        flush locals*/
     endfunction
 
   /*  function SpellS079(unit u2,real x1,real y1,real damage1)
