@@ -33,10 +33,13 @@ library DamageCode uses UnitStateSet
     
     
     
-    
-     function GetUnitfkState(unit wu)->real
+    //法抗
+    function GetUnitfkState(unit wu)->real
         real s = GetUnitRealState(wu,4)
-        integer b=0
+        if  GetUnitAbilityLevel(wu,'BZ8D') > 0
+            s = s + 15
+        endif
+        /*real b=0
         if  GetUnitAbilityLevel(wu, 'BB01')>0
             b=b+15
         endif
@@ -48,12 +51,15 @@ library DamageCode uses UnitStateSet
         endif
         if  GetUnitAbilityLevel(wu, 'BB04')>0
             b=b+15
-        endif
-        return s-(s/100*b)
+        endif*/
+        return s
     endfunction
     //闪避
     function GetUnitSbState(unit wu)->real
         real s = GetUnitRealState(wu,10)
+        if  GetUnitAbilityLevel(wu,'BZ8B') > 0
+            s = s + 15
+        endif
         if  s > 70
             s = 70
         endif
@@ -200,6 +206,9 @@ library DamageCode uses UnitStateSet
     //暴击
     function GetUnitBjState(unit wu)->real
         real s = GetUnitRealState(wu,19)
+        if  GetUnitAbilityLevel(wu,'BZ8E') > 0
+            s = s + 10
+        endif
         if  s > 100
             s = 100
         endif
