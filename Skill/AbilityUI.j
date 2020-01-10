@@ -216,7 +216,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
                 magicid = GetUnitIntState(wu,125+index)
                 if  magicid > 0
-                    tip = tip + "\n\n附魔："+GetObjectName(magicid)+GetTypeIdStateTips(magicid)
+                    tip = tip + "\n\n附魔："+GetTypeIdStateTips(magicid)
                 endif
                 
                 YDWESetUnitAbilityDataString(wu, sid1,Type, 218, GetTypeIdString(id,102)+tip)
@@ -234,7 +234,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             SetEquipStateOfPlayer(Pu[1],now,-1)
         endif
         SetUnitIntState(Pu[1],125+index,id)
-        SetEquipStateOfPlayer(Pu[1],id,-1)
+        SetEquipStateOfPlayer(Pu[1],id,1)
         ReHeroAbilityTips(Pu[1],index)
     endfunction
     
