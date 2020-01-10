@@ -601,12 +601,14 @@ library GameChallenge4 uses GameChallengeBase
                 if  GameChallengOperaWay[4] == 0
                     if  GetGameChallengOperaSelsect() == 0
                         GameChallengOperaWay[4] = 1
+                        SetLeagueUnit(4,true)
                         SetPlayerTaskUIChatOfPlayer(pid,"杨戬","方才走神，不想被魔气趁机入体，谢道兄搭救。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r") 
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00杨戬加入己方阵营！|r")                                
                     else
                         GameChallengOperaWay[4] = 2
+                        SetLeagueUnit(4,false)
                         SetPlayerTaskUIChatOfPlayer(pid,"杨戬","你给不了我答案。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 

@@ -306,12 +306,14 @@ library GameChallenge6 uses GameChallengeBase
             if  GameChallengOperaWay[6] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[6] = 1
+                    SetLeagueUnit(6,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","吾奉师尊之命，此事不可鲁莽。师尊自会给我一个答案。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r") 
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")                                  
                 else
                     GameChallengOperaWay[6] = 2
+                    SetLeagueUnit(6,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","兄弟竟死于恶人之手，我与姜尚不共戴天！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r") 

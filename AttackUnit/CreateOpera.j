@@ -26,6 +26,20 @@ library CreateOpera uses DamageCode
     function GoonAttackUnitGroup()
         ForGroup(AttackUnitGroup,function GoonAttackUnitGroupFunc)
     endfunction
+
+    function StopAttackUnitGroupExFunc()
+        PauseUnit(GetEnumUnit(),true)
+    endfunction
+    function StopAttackUnitGroupEx()
+        ForGroup(AttackUnitGroup,function StopAttackUnitGroupExFunc)
+    endfunction
+    
+    function GoonAttackUnitGroupExFunc()
+        PauseUnit(GetEnumUnit(),false)
+    endfunction
+    function GoonAttackUnitGroupEx()
+        ForGroup(AttackUnitGroup,function GoonAttackUnitGroupExFunc)
+    endfunction
     
     function GetAttackPlayingHeroId()->int
         if  GetRandomInt(0,1) == 0
