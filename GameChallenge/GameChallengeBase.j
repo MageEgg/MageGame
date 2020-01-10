@@ -98,9 +98,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         int uid = 'md09'
         real value = 0
         if  flag == true
-            RemoveUnit(GameChallengLeagueUnit(num))
-            GameChallengLeagueUnit(num) = CreateUnit(Player(9),'md00'+num,x,y,ang)
+            UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
+            /*EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
             for i = 1,40
                 value = GetTypeIdReal(uid,i)
                 if  value != 0
@@ -115,7 +115,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     endif
                 endif
             end
-            SetUnitRealState(GameChallengLeagueUnit(num),1,value)
+            SetUnitRealState(GameChallengLeagueUnit(num),1,value)*/
             SetPlayerLeagueState(num)
         else
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
