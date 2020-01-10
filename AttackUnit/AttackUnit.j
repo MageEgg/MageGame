@@ -376,10 +376,8 @@ library AttackUnit uses DamageCode
 
     function AddUnitGoldState(unit u)
         if  GetRandomReal(1,100) <= 10
-            UnitAddAbility(u,'AZ17')
             BJDebugMsg("AZ17")
         elseif  GetRandomReal(1,100) <= 10
-            UnitAddAbility(u,'AZ18')
             BJDebugMsg("AZ18")
         endif
     endfunction
