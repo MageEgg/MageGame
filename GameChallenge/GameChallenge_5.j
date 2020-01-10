@@ -150,12 +150,14 @@ library GameChallenge5 uses GameChallengeBase
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","此时，惧留孙及时赶到。",0)
                     if  GetGameChallengOperaSelsect() == 0
                         GameChallengOperaWay[5] = 1
+                        SetLeagueUnit(5,true)
                         SetPlayerTaskUIChatOfPlayer(pid,"惧留孙","道兄请留孽徒一命，子牙后有用他之处，可助西岐一臂之力。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")  
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00土行孙加入己方阵营！|r")                                 
                     else
                         GameChallengOperaWay[5] = 2
+                        SetLeagueUnit(5,false)
                         SetPlayerTaskUIChatOfPlayer(pid,"剧情","你失手杀死了土行孙，惧留孙后以仙丹将其复活。",1)
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r")   
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
@@ -359,17 +361,22 @@ library GameChallenge5 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[50] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-64,3840,180)
                 SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[50],0x01)
                 GameChallengUnit[51] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-64,3840,0)
                 SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
-
+                EXSetUnitMoveType(GameChallengUnit[51],0x01)
                 GameChallengUnit[52] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-640,3840,0)
                 SetUnitVertexColor(GameChallengUnit[52],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[52],0x01)
                 GameChallengUnit[53] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-1216,3552,0)
                 SetUnitVertexColor(GameChallengUnit[53],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[53],0x01)
                 GameChallengUnit[54] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-1568,3200,0)
                 SetUnitVertexColor(GameChallengUnit[54],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[54],0x01)
                 GameChallengUnit[55] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-2080,2688,0)
                 SetUnitVertexColor(GameChallengUnit[55],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[55],0x01)
             endif
         end
         

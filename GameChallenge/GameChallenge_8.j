@@ -433,12 +433,14 @@ library GameChallenge8 uses GameChallengeBase
             if  GameChallengOperaWay[8] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[8] = 1
+                    SetLeagueUnit(8,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","果然如此，此怪采天地灵气，炼日月精华，故斩之不尽。幸陆压老师已将斩仙飞刀传授于我，专克元神。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00姜子牙加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00姜子牙加入己方阵营！|r")  
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00姜子牙加入己方阵营！|r")                                 
                 else
                     GameChallengOperaWay[8] = 2
+                    SetLeagueUnit(8,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","气煞我也，怎得给他逃脱了呢？！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-收梅山七怪]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000袁洪加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000袁洪加入敌方阵营！|r") 
@@ -457,12 +459,16 @@ library GameChallenge8 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[80] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',1728,6112,45)
                 SetUnitVertexColor(GameChallengUnit[80],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[80],0x01)
                 GameChallengUnit[81] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',1728,6112,0)
                 SetUnitVertexColor(GameChallengUnit[81],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[81],0x01)
                 GameChallengUnit[82] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',2592,7800,270)
                 SetUnitVertexColor(GameChallengUnit[82],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[82],0x01)
                 GameChallengUnit[83] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',2592,7800,0)
                 SetUnitVertexColor(GameChallengUnit[83],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[83],0x01)
             endif
         end
     endfunction

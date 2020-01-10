@@ -166,7 +166,6 @@ call InitAbilityData('S528',1,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是�
 call InitAbilityData('S529',1,0,0,0,0,0,0,15,"神医救世","队友或你死亡时，直接复活。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,"百发百中","攻击必定命中。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
 call InitAbilityData('S531',1,0,0,0,0,0,0,0,"料事如神","每次占星挑战成功，增加一定法强。","ReplaceableTextures\\CommandButtons\\BTNS531.blp")
-
     endfunction
 endscope
 

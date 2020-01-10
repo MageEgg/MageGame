@@ -89,6 +89,7 @@ library PlayerTaskUI uses GameFrame
                     PlayerTaskUI_Back.alpha = 0
                     PlayerTaskUI_Back.show = false
                 endif
+                SetPlayerZDLPoint(pid,0)
                 endtimer    
             endif
             flush locals
@@ -117,6 +118,7 @@ library PlayerTaskUI uses GameFrame
                     PlayerTaskUI_Back.alpha = 255
                     PlayerTaskUI_Back.show = true
                 endif
+                SetPlayerZDLPoint(pid,1)
                 endtimer    
             endif
             flush locals
@@ -271,21 +273,21 @@ library PlayerTaskUI uses GameFrame
         PlayerTaskUI_Back.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_Back",GameUI,0)
         PlayerTaskUI_Back.SetSize(0.36,0.07)
         PlayerTaskUI_Back.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
-        PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.126)
+        PlayerTaskUI_Back.SetPoint(7,GameUI,7,0,0.12)
 
         PlayerTaskUI_ChatBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_Back.frameid,0)
         PlayerTaskUI_ChatBack.SetSize(0.288,0.058)
-        PlayerTaskUI_ChatBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
+        PlayerTaskUI_ChatBack.SetTexture("war3mapImported\\PlayerTaskUI_ChatBack.tga",0)
         PlayerTaskUI_ChatBack.SetPoint(3,PlayerTaskUI_Back.frameid,3,0.005,0)
 
         PlayerTaskUI_TaskBack.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_ChatBack.frameid,0)
         PlayerTaskUI_TaskBack.SetSize(0.058,0.058)
-        PlayerTaskUI_TaskBack.SetTexture("war3mapImported\\PlayerTaskUI_Back.tga",0)
+        PlayerTaskUI_TaskBack.SetTexture("war3mapImported\\PlayerTaskUI_TaskBack.tga",0)
         PlayerTaskUI_TaskBack.SetPoint(3,PlayerTaskUI_ChatBack.frameid,5,0.004,0)
 
         PlayerTaskUI_TaskTitle.frameid = FRAME.Tag("BACKDROP","PlayerTaskUI_TaskBack",PlayerTaskUI_TaskBack.frameid,0)
         PlayerTaskUI_TaskTitle.SetSize(0.058,0.014)
-        PlayerTaskUI_TaskTitle.SetTexture("textures\\white32.blp",0)
+        PlayerTaskUI_TaskTitle.SetTexture("war3mapImported\\PlayerTaskUI_TaskTitle.tga",0)
         PlayerTaskUI_TaskTitle.SetPoint(0,PlayerTaskUI_TaskBack.frameid,0,0,0)
 
         PlayerTaskUI_TaskText.frameid = FRAME.Tag("TEXT","PlayerTaskUI_TaskText",PlayerTaskUI_TaskTitle.frameid,0)

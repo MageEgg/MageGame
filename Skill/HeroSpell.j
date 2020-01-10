@@ -1103,9 +1103,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
             if  ad >= ap
                 GroupRemoveUnit(g.ejg,u1)
-                UnitDamageGroup(u,g.ejg,ad,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u,g.ejg,ad*0.5,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
-                UnitDamageGroup(u,g.ejg,ap,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u,g.ejg,ap*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
         endif
         g.destroy()
@@ -1113,6 +1113,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     if  GetUnitAbilityLevel(u,'AZ16') > 0
         if  Chance(u,15) == true
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect2_az_goods_force staff(3).mdl")
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_attackslam.mdx")
             if  ad >= ap
                 UnitDamageTarget(u,u1,ad*3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else

@@ -27,9 +27,10 @@ library GameChallenge0 uses GameChallengeBase
             endif
             if  GameChallengInt[1] < 20
                 if  GameChallengInt[1] == 1 or ModuloInteger(GameChallengInt[1],5) == 0
-                    //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 endif
             elseif  GameChallengInt[1] == 20
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 GameChallengBool[1] = true
                 for n = 1,3
                     SetUnitAPOfBool(GameBiaoJI[n],1)
@@ -95,8 +96,8 @@ library GameChallenge0 uses GameChallengeBase
                     if  GameChallengBool[3] == false
                         GameChallengBool[3] = true
                         SetUnitAPOfBool(GameBiaoJI[6],3)
-                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励2000金币！\n")
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币！\n")
                         SetPlayerTaskUIChatOfPlayer(pid,"周文王","今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。",0)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
                         ShowPlayerTaskUIOfPlayer(pid,false,2.5)
@@ -112,8 +113,9 @@ library GameChallenge0 uses GameChallengeBase
     function InitGameChallenge_0()
         trigger tig = null
         GameChalleng_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-4672,-3840,180)
+        EXSetUnitMoveType(GameChalleng_0_JZY,0x01)
         GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-4672,-3840,0)
-
+        
         GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5493.500,-3660.500,136.589)
         GameBiaoJI[2] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5715.250,-3460.750,136.589)
         GameBiaoJI[3] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e009',-5931.000,-3247.000,136.589)
@@ -124,6 +126,7 @@ library GameChallenge0 uses GameChallengeBase
         GameBiaoJI[6] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
 
         for num = 0,6
+            EXSetUnitMoveType(GameBiaoJI[num],0x01)
             SetUnitColor(GameBiaoJI[num], PLAYER_COLOR_RED )
             SetUnitVertexColor(GameBiaoJI[num],255,255,255,0)
         end

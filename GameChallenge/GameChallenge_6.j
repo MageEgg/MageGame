@@ -51,7 +51,7 @@ library GameChallenge6 uses GameChallengeBase
                         SetUnitAnimation(GameChallengUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetPlayerTaskUIChatOfPlayer(pid,"申公豹","殷殿下，你父亲固得罪于天下，可与之为仇。但殿下弟弟殷洪，听说他下山助周，没想姜子牙欲邀功，竟用太极图把他化成灰了！",0)
+                    SetPlayerTaskUIChatOfPlayer(pid,"申公豹","殷殿下，你父亲固得罪于天下，可与之为仇。但殿下弟弟，听说他下山助周，没想姜子牙欲邀功，竟用太极图把他化成灰了！",0)
                 elseif  time == 3
                     SetPlayerTaskUIChatOfPlayer(pid,GetPlayerName(Player(pid)),"信口胡说！！！",0)
                 elseif  time == 4
@@ -306,12 +306,14 @@ library GameChallenge6 uses GameChallengeBase
             if  GameChallengOperaWay[6] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[6] = 1
+                    SetLeagueUnit(6,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","吾奉师尊之命，此事不可鲁莽。师尊自会给我一个答案。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r") 
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")                                  
                 else
                     GameChallengOperaWay[6] = 2
+                    SetLeagueUnit(6,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","兄弟竟死于恶人之手，我与姜尚不共戴天！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r") 
@@ -331,13 +333,16 @@ library GameChallenge6 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[60] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',-2048,6368,180)
                 SetUnitVertexColor(GameChallengUnit[60],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[60],0x01)
                 GameChallengUnit[61] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-2048,6368,0)
                 SetUnitVertexColor(GameChallengUnit[61],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[61],0x01)
                 GameChallengUnit[62] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2048,6560,0)
                 SetUnitVertexColor(GameChallengUnit[62],255,255,255,0)
-
+                EXSetUnitMoveType(GameChallengUnit[62],0x01)
                 GameChallengUnit[63] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np25',-1504,8352,225)
                 SetUnitVertexColor(GameChallengUnit[63],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[63],0x01)
             endif
         end
         

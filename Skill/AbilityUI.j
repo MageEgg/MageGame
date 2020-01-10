@@ -185,6 +185,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int sid1 = 'AG00'+index
         int sid2 = 'AB00'+index
         int sid3 = 'AC00'+index
+        int magicid = 0
         string tip = ""
         
         
@@ -210,7 +211,12 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 
                 real cd = GetTypeIdReal(id,100)//技能CD
                 if  cd > 0
-                    tip = tip + "|cffdddddd冷却："+R2S2(cd)+"s|r"
+                    tip = tip + "|n|cffdddddd冷却："+R2S2(cd)+"s|r"
+                endif
+
+                magicid = GetUnitIntState(wu,125+index)
+                if  magicid > 0
+                    tip = tip + "\n\n附魔："+GetTypeIdStateTips(magicid)
                 endif
                 
                 YDWESetUnitAbilityDataString(wu, sid1,Type, 218, GetTypeIdString(id,102)+tip)
@@ -219,6 +225,17 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             endif
         endif
         tip = ""
+    endfunction
+
+
+    function PlayerHeorAddSkillMagic(int pid,int index,int id)
+        int now = GetUnitIntState(Pu[1],125+index)
+        if  now != 0
+            SetEquipStateOfPlayer(Pu[1],now,-1)
+        endif
+        SetUnitIntState(Pu[1],125+index,id)
+        SetEquipStateOfPlayer(Pu[1],id,1)
+        ReHeroAbilityTips(Pu[1],index)
     endfunction
     
    
@@ -274,6 +291,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             UnitAddAbility(wu,'A067'+pid)
         endif
     endfunction
+
+
     
     function AddAbilityState(unit wu,int id)
         int pid = GetPlayerId(GetOwningPlayer(wu))

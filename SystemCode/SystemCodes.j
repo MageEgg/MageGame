@@ -48,22 +48,41 @@ library SystemCodes uses ServerTime,Define1
         SetUnitPosition(u1,x,y)
     endfunction
 
+    function SetPlayerMap(int id,int n)
+        int pid = id
+        int index = n
+        TimerStart(0.05,false)
+        {   
+            if  GetLocalPlayer() == Player(pid)
+                DzSetWar3MapMap( "war3mapMap"+I2S(index)+".blp" )
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
+            //小图
             if  GetLocalPlayer() == Player(pid)
                 SetPlayerCameraBoundsToRect(gg_rct_GameRect)
             endif
+            SetPlayerMap(pid,2)
         else
+            //大图
             if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true and IsLocInRect(gg_rct_GameRect,x,y) == false
                 if  GetLocalPlayer() == Player(pid)
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                 endif
-            endif      
+            endif
+            SetPlayerMap(pid,1)
         endif
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetPlayerUnitPostion(Pu[1],x,y)
         DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))
         PlayerSelectOneUnit(pid,Pu[1])
+
     endfunction
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
@@ -131,14 +150,14 @@ library SystemCodes uses ServerTime,Define1
     function GetTypeIdStateTips(int id)->string
         string s = ""
         real value = 0
-        for i = 1,30
+        for i = 1,60
             value = GetTypeIdReal(id,i)
             if  value > 0
                 s = s + "\n" + StateName[i] + "+" + R2S2(value) + StateName[i+1000]
             endif
             
         end
-        return "|cff666666基础属性|r" + s
+        return  s
     endfunction
     function GetTypeIdName(int id)->string
         string s = LoadStr(ht,id,100)
@@ -565,7 +584,23 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             
         endfunction
 
+
+        //技能奖池修正
+            
+        function RecoveryPrizePoolData(int page,int pool,int id)
+            if  pool >= 4 and pool <= 5
+                pool = 4
+            elseif  pool >= 6 and pool <= 8
+                pool = 5
+            endif
+
+            AddPrizePoolMax(page,pool,1)
+            SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
+        endfunction
+
         function RegisterPrizePoolData(int page,int pool,int id)
+
+            
             AddPrizePoolMax(page,pool,1)
             SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
             
@@ -650,9 +685,84 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
     endscope
 
+    scope ItemPool
+        itempool array ItemPool
+
+        function UnitAddPoolItem(unit wu,int index)
+            UnitAddItem(wu,PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu)))
+        endfunction
+        function GetPoolItemId(int index)->int
+            int id = 0
+            bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],0,0)
+            id = GetItemTypeId(bj_lastCreatedItem)
+            RemoveItem(bj_lastCreatedItem)
+            return id
+        endfunction
+
+        function InitUnitPoolFunc()
+            for i = 1,5
+                ItemPool[i] = CreateItemPool()
+            end
+
+            ItemPoolAddItemType(ItemPool[1],'IN01',4)
+            ItemPoolAddItemType(ItemPool[1],'IN02',4)
+            ItemPoolAddItemType(ItemPool[1],'IN03',4)
+            ItemPoolAddItemType(ItemPool[1],'IN04',1)
+            ItemPoolAddItemType(ItemPool[1],'IN05',1)
+            ItemPoolAddItemType(ItemPool[1],'IN06',1)
+            ItemPoolAddItemType(ItemPool[1],'IN07',2)
+            ItemPoolAddItemType(ItemPool[1],'IN08',2)
+            ItemPoolAddItemType(ItemPool[1],'IN09',3)
+            ItemPoolAddItemType(ItemPool[1],'IN10',2)
+            ItemPoolAddItemType(ItemPool[1],'IN11',2)
+            ItemPoolAddItemType(ItemPool[1],'IN12',2)
+            ItemPoolAddItemType(ItemPool[1],'IN13',4)
+            ItemPoolAddItemType(ItemPool[1],'IN14',1)
+            ItemPoolAddItemType(ItemPool[1],'IN15',1)
+            ItemPoolAddItemType(ItemPool[1],'IN16',1)
+            ItemPoolAddItemType(ItemPool[1],'IN17',2)
+            ItemPoolAddItemType(ItemPool[1],'IN18',2)
+            ItemPoolAddItemType(ItemPool[2],'IF01',3)
+            ItemPoolAddItemType(ItemPool[2],'IF02',3)
+            ItemPoolAddItemType(ItemPool[2],'IF03',1)
+            ItemPoolAddItemType(ItemPool[2],'IF04',1)
+            ItemPoolAddItemType(ItemPool[2],'IF05',1)
+            ItemPoolAddItemType(ItemPool[2],'IF06',1)
+            ItemPoolAddItemType(ItemPool[2],'IF07',3)
+            ItemPoolAddItemType(ItemPool[2],'IF08',3)
+            ItemPoolAddItemType(ItemPool[2],'IF09',1)
+            ItemPoolAddItemType(ItemPool[2],'IF10',1)
+            ItemPoolAddItemType(ItemPool[2],'IF11',2)
+            ItemPoolAddItemType(ItemPool[2],'IF12',1)
+            ItemPoolAddItemType(ItemPool[2],'IF13',3)
+            ItemPoolAddItemType(ItemPool[2],'IF14',2)
+            ItemPoolAddItemType(ItemPool[2],'IF15',1)
+            ItemPoolAddItemType(ItemPool[2],'IF16',2)
+            ItemPoolAddItemType(ItemPool[2],'IF17',1)
+            ItemPoolAddItemType(ItemPool[2],'IF18',2)
+            ItemPoolAddItemType(ItemPool[2],'IF19',1)
+            ItemPoolAddItemType(ItemPool[2],'IF20',3)
+            ItemPoolAddItemType(ItemPool[2],'IF21',1)
+            ItemPoolAddItemType(ItemPool[2],'IF22',3)
+            ItemPoolAddItemType(ItemPool[2],'IF23',1)
+            ItemPoolAddItemType(ItemPool[2],'IF24',2)
+            ItemPoolAddItemType(ItemPool[2],'IF25',2)
+            ItemPoolAddItemType(ItemPool[2],'IF26',3)
+            ItemPoolAddItemType(ItemPool[2],'IF27',3)
+
+
+
+            
+        endfunction
+
+
+    endscope
+
+
 
     function InitAllFunc()
         ExecuteFunc("InitHeroPoolFunc")
+        ExecuteFunc("InitUnitPoolFunc")
     endfunction
     
 endlibrary

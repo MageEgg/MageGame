@@ -176,6 +176,82 @@ scope ItemSystem initializer InitItemSystem
         endif
 
     endfunction
+
+
+
+
+
+
+
+
+    
+                     
+
+    function UnitUseSilkBag(unit wu,int itemid)//使用锦囊
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  itemid == 'IN00'
+            UnitAddPoolItem(wu,1)
+        else
+            if  itemid == 'IN01'
+                if  GetTypeIdData(GetHeroAbilityID(wu,1),101) == 9
+                    UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r未学习Q技能，无法附魔！")
+                else
+                    PlayerHeorAddSkillMagic(pid,1,GetPoolItemId(2))
+                endif
+            elseif  itemid == 'IN02'
+                if  GetTypeIdData(GetHeroAbilityID(wu,2),101) == 9
+                    UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r未学习W技能，无法附魔！")
+                else
+                    PlayerHeorAddSkillMagic(pid,2,GetPoolItemId(2))
+                endif
+            elseif  itemid == 'IN03'
+                if  GetTypeIdData(GetHeroAbilityID(wu,3),101) == 9
+                    UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r未学习E技能，无法附魔！")
+                else
+                    PlayerHeorAddSkillMagic(pid,3,GetPoolItemId(2))
+                endif
+            elseif  itemid == 'IN07'
+
+                AddUnitStateExTimer(Pu[1],28,30,6)
+            elseif  itemid == 'IN08'
+                if  AttackUnitWN >= AttackUnitWNOver - 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前无法使用该锦囊！")
+                else
+                    KillAttackUnitGroup()
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+"，消灭了所有的进攻怪！")
+                endif
+            elseif  itemid == 'IN09'
+                //IN09	我刷一会	暂停场上已存在的进攻怪10秒
+            elseif  itemid == 'IN10'
+                //IN10	我再刷会	暂停场上已存在的进攻怪20秒
+            elseif  itemid == 'IN11'
+                AddUnitStateExTimer(Pu[1],17,300,5)
+            elseif  itemid == 'IN12'
+                AdjustPlayerStateBJ(20000, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",金币+20000")
+            elseif  itemid == 'IN13'
+                AdjustPlayerStateBJ(2000, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",金币+2000")
+            elseif  itemid == 'IN14'
+                /*
+                IN14	精准预判	"使用后5秒内基地触发无敌，则击杀其600码范围内所有生物。
+                （不分敌我）"*/
+            elseif  itemid == 'IN15'
+                SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
+            elseif  itemid == 'IN16'
+                SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
+            elseif  itemid == 'IN17' 
+                AdjustPlayerStateBJ(3000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+3000")
+            elseif  itemid == 'IN18'
+                AdjustPlayerStateBJ(300, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+300")
+            endif
+        endif
+    endfunction
     
     
     
@@ -257,25 +333,8 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'I005'
             AddUnitStateExTimer(Pu[1],16,40,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
-        elseif  itemid >= 'I011' and itemid <= 'I014'//聚宝盆
-            if  itemid == 'I011'
-                gold = 5500
-                i1 = 1000
-            elseif  itemid == 'I012'
-                gold = 31000
-                i1 = 3500
-            elseif  itemid == 'I013'
-                gold = 48000
-                i1 = 10000
-            elseif  itemid == 'I014'
-                gold = 81000
-                i1 = 19800
-            endif
-            AddUnitRealState(Pu[1],1,i1)
-            AddUnitRealState(Pu[1],2,i1)
-            AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击及法强+"+I2S(i1))
-
+        elseif  itemid >= 'IN00' and itemid <= 'IN18'
+            UnitUseSilkBag(u1,itemid)
         endif
         
         flush locals

@@ -275,12 +275,14 @@ library GameChallenge7 uses GameChallengeBase
             if  GameChallengOperaWay[7] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[7] = 1
+                    SetLeagueUnit(7,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"广成子","诛仙阵已破，我等随子牙取关去罢！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")                                
                 else
                     GameChallengOperaWay[7] = 2
+                    SetLeagueUnit(7,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","诛仙阵已破，通天教主趁人不备，收走了广成子。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r") 
@@ -299,24 +301,34 @@ library GameChallenge7 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[70] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np17',1760,2848,225)
                 SetUnitVertexColor(GameChallengUnit[70],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[70],0x01)
                 GameChallengUnit[71] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',1888,2624,225)
                 SetUnitVertexColor(GameChallengUnit[71],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[71],0x01)
                 GameChallengUnit[72] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np18',4256,2624,225)
                 SetUnitVertexColor(GameChallengUnit[72],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[72],0x01)
                 GameChallengUnit[73] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',4256,4864,225)
                 SetUnitVertexColor(GameChallengUnit[73],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[73],0x01)
                 GameChallengUnit[74] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np19',1664,4992,225)
                 SetUnitVertexColor(GameChallengUnit[74],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[74],0x01)
                 GameChallengUnit[75] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',1760,2848,0)
                 SetUnitVertexColor(GameChallengUnit[75],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[75],0x01)
                 GameChallengUnit[76] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',1888,2624,0)
                 SetUnitVertexColor(GameChallengUnit[76],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[76],0x01)
                 GameChallengUnit[77] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',4256,2624,0)
                 SetUnitVertexColor(GameChallengUnit[77],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[77],0x01)
                 GameChallengUnit[78] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',4256,4864,0)
                 SetUnitVertexColor(GameChallengUnit[78],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[78],0x01)
                 GameChallengUnit[79] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e008',1664,4992,0)
                 SetUnitVertexColor(GameChallengUnit[79],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[79],0x01)
             endif
         end
     endfunction

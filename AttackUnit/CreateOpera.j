@@ -26,6 +26,20 @@ library CreateOpera uses DamageCode
     function GoonAttackUnitGroup()
         ForGroup(AttackUnitGroup,function GoonAttackUnitGroupFunc)
     endfunction
+
+    function StopAttackUnitGroupExFunc()
+        PauseUnit(GetEnumUnit(),true)
+    endfunction
+    function StopAttackUnitGroupEx()
+        ForGroup(AttackUnitGroup,function StopAttackUnitGroupExFunc)
+    endfunction
+    
+    function GoonAttackUnitGroupExFunc()
+        PauseUnit(GetEnumUnit(),false)
+    endfunction
+    function GoonAttackUnitGroupEx()
+        ForGroup(AttackUnitGroup,function GoonAttackUnitGroupExFunc)
+    endfunction
     
     function GetAttackPlayingHeroId()->int
         if  GetRandomInt(0,1) == 0
@@ -71,7 +85,7 @@ library CreateOpera uses DamageCode
                 AttackUnitOperaBoss = null
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                 ShowBossDamageUI(false)
-                ShowBossDamageString()
+                ShowBossDamageStringNianShou()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ02')
@@ -195,21 +209,26 @@ library CreateOpera uses DamageCode
                 if  GameLevel == 1 and GameOverBoolJu == false
                     AttackUnitWin()
                 else
-                    RemoveUnit(GameDefendUnit)
+                    /*RemoveUnit(GameDefendUnit)
                     GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
                     OriginalDefendX = GetUnitX(GameDefendUnit)
                     OriginalDefendY = GetUnitY(GameDefendUnit)
+                    EXSetUnitMoveType(GameDefendUnit,0x01)
+                    PlayerReviveX = -1664
+                    PlayerReviveY = -6960
+                    */
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                     ShowBossDamageUI(false)
                     ShowBossDamageString()
                     for pid = 0,3
                         if  IsPlaying(pid) == true
                             UnitRemoveAbility(Pu[1],'AZ02')
-                            PlayerReviveX = -1664
-                            PlayerReviveY = -6960
+                            PlayerReviveX = -6656
+                            PlayerReviveY = -6656
                             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                         endif
                     end
+                    GoonAttackUnitGroup()
                     CreateNextTimer(AttackUnitOrderNum)
                 endif
                 endtimer
@@ -265,7 +284,7 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaB()
-        KillAttackUnitGroup()
+        StopAttackUnitGroup()
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         PanCameraToTimed(2795,26,0)
         OpenAttackShowUI("UI_AttackShow_3.tga",0.5)
@@ -508,8 +527,8 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ02')
-                        PlayerReviveX = -1664
-                        PlayerReviveY = -6960
+                        PlayerReviveX = -6656
+                        PlayerReviveY = -6656
                         SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
                     endif
                 end

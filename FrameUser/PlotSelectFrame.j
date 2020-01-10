@@ -168,8 +168,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         for i = 1,8
             SetPlayerPlotPrizeId(pid,i,1,'CF01')
         end
-        SetPlayerPlotPrizeId(pid,1,2,'CS02')
-        SetPlayerPlotPrizeId(pid,2,2,'CS02')
+        SetPlayerPlotPrizeId(pid,1,2,'CS01')
+        SetPlayerPlotPrizeId(pid,2,2,'CS01')
         SetPlayerPlotPrizeId(pid,3,2,'CS02')
         SetPlayerPlotPrizeId(pid,4,2,'CS02')
         SetPlayerPlotPrizeId(pid,5,2,'CS02')
@@ -187,7 +187,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int rid = GetPlayerPlotPrizeId(pid,index,1)
         if  rid > 0
             //回收
-            RegisterPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
+            RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
         endif
 
         if  GetRandomInt(1,100)<10

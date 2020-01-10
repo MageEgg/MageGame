@@ -90,12 +90,11 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 //清空练功房内怪物
 
     function RefreshAttackRoom(int pid,int uid)
-        DBUG("即将清空刷新")
         ClearAttackRoom(pid)//先清空
         for c=1,AttackRoomUnitNum
             CreateAttackRoomUnit(uid,pid)
         end
-        DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
+        //DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
     endfunction
 //刷新一波怪物
     
@@ -117,7 +116,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
 
-            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+384,y+512,225)
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+256,y+512,225)
 
 
             Pu[28]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
@@ -139,6 +138,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         TimerStart(0.03,true)
         {
             real dis = Pdis(x1,y1,x2,y2)
+            if  dis < 300
+                speed = 49
+            endif
             if  dis > 50 and GetUnitTypeId(Pu[27]) == 'np27'
                 x1 = x1 + speed * Cos(GetUnitFacing(u1)*0.01745)
                 y1 = y1 + speed * Sin(GetUnitFacing(u1)*0.01745)

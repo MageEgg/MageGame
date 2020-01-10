@@ -22,6 +22,7 @@ library GameChallenge2 uses GameChallengeBase
             if  GameChallengOperaWay[2] == 0
                 if  GetGameChallengOperaSelsect() == 0
                     GameChallengOperaWay[2] = 1
+                    SetLeagueUnit(2,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"哪吒","一人做事一人当，岂有连累父母之理！今我削肉剔骨，不累双亲。",0)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","后太乙真人以莲花化身复活哪吒，并化去哪吒杀性。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")   
@@ -29,6 +30,7 @@ library GameChallenge2 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")                                   
                 else
                     GameChallengOperaWay[2] = 2
+                    SetLeagueUnit(2,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"李靖","住手！你这孽障！造事多端，还嫌害得我不够么？！",0)
                     SetPlayerTaskUIChatOfPlayer(pid,"哪吒","哼！你们多次无故欺压于我，不打一顿是不知道小爷厉害的！既如此待薄厌恶，小爷也不再奉陪！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000哪吒加入敌方阵营！|r")   
@@ -224,12 +226,15 @@ library GameChallenge2 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 GameChallengUnit[20] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-6080,3072,0)
                 SetUnitVertexColor(GameChallengUnit[20],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[20],0x01)
                 
                 GameChallengUnit[21] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5536,3872,0)
                 SetUnitVertexColor(GameChallengUnit[21],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[21],0x01)
 
                 GameChallengUnit[22] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np22',-3712,2880,180)
                 SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
+                EXSetUnitMoveType(GameChallengUnit[22],0x01)
             endif
         end
 

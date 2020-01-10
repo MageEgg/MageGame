@@ -173,6 +173,9 @@ library AttackUnit uses DamageCode
     endfunction
     
     function InitAttackUnitOfLevelEx(int lv)
+        if  lv >= 3
+            ExecuteFunc("InitGameChallengeLeagueUnit")
+        endif
         if  lv == 2
             InitAttackUnitData(18,1,180,3,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             InitAttackUnitData(19,0,30,6,10,1,-1664,-7440,'m016','m016','m016','m016',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
@@ -373,6 +376,14 @@ library AttackUnit uses DamageCode
         }
         flush locals
     endfunction
+
+    function AddUnitGoldState(unit u)
+        if  GetRandomReal(1,100) <= 10
+            BJDebugMsg("AZ17")
+        elseif  GetRandomReal(1,100) <= 10
+            BJDebugMsg("AZ18")
+        endif
+    endfunction
     
     function OpenCreateUnitTimer()
         timer t = GetExpiredTimer()
@@ -394,6 +405,7 @@ library AttackUnit uses DamageCode
                             SetUnitXY(u,psx[k],psy[k])
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
+                            AddUnitGoldState(u)
                         end
                     endif
                 endif
@@ -408,7 +420,7 @@ library AttackUnit uses DamageCode
         t = null
         u = null
     endfunction
-    
+
     function CreateUnitTimer(int ordernum)
         real time = AttackUnitIntervalTime(0)[ordernum]
         int FlushNum = AttackUnitFlushNum(0)[ordernum] - 1
@@ -429,6 +441,7 @@ library AttackUnit uses DamageCode
                         SetUnitXY(u,psx[k],psy[k])
                         IssuePointOrderById(u,851983,pex[k],pey[k])
                         GroupAddUnit(AttackUnitGroup,u)
+                        AddUnitGoldState(u)
                     end
                 endif
             endif

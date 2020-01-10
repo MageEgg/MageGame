@@ -143,6 +143,17 @@ library HeroPowerFrame uses GameFrame
         end
     endfunction
 
+    function SetPlayerZDLPoint(int pid,int index)
+        if  GetLocalPlayer() == Player(pid)
+            DzFrameClearAllPoints(Button.frameid)
+            if  index == 0
+                Button.SetPoint(7,GetFrameUnitDetail(),1,0,0.01)
+            else
+                Button.SetPoint(6,GetFrameUnitDetail(),1,-0.4,0.01)
+            endif
+        endif
+    endfunction
+
 
     function HeroPowerFrameInit()
         Model1 = FRAME.create()  //注册怒气条
