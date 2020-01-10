@@ -26,39 +26,40 @@ library SkillCode uses System,State,DamageCode
         endfunction
            
         function poisonBuff(unit wu,unit mb1,real damage)
-         unit u=wu
-         unit mb=mb1
-         
-         integer cs=LoadInteger(ht,GetHandleId(mb),Poison) 
-          if  cs<PoisonNumberMax(u)
+            unit u=wu
+            unit mb=mb1
+            
+            integer cs=LoadInteger(ht,GetHandleId(mb),Poison) 
+             if  cs<PoisonNumberMax(u)
                 SaveInteger(ht,GetHandleId(mb),Poison,cs+PoisonNumber(u))
                 cs=LoadInteger(ht,GetHandleId(mb),Poison)
                 UnitDamageTarget(u, mb, 10+(cs*damage), false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)      
                 TimerStart(Poisontime(u),false)
                 {
-                cs=LoadInteger(ht,GetHandleId(mb),Poison)
-                SaveInteger(ht,GetHandleId(mb),Poison,cs-PoisonNumber(u))
-                flush locals
-                endtimer
+                    cs=LoadInteger(ht,GetHandleId(mb),Poison)
+                    SaveInteger(ht,GetHandleId(mb),Poison,cs-PoisonNumber(u))
+                    endtimer
+                    flush locals
                 }
+                flush locals
             endif
+            flush locals
         endfunction
 
         function poisondamage(unit wu1,real damage1)
-        unit wu=wu1
-        integer time=0
-        real damage=damage1
-        group g = CreateGroup()
-        unit gu=null 
-        if  GetUnitIntState(wu,'FB35') > 0 
-            damage=damage*2
-        endif
-        TimerStart(1,true)
-          {
-            time=time+1
-            if time<=8
-                
-                GroupEnumUnitsInRange(g,GetUnitX(wu),GetUnitY(wu),2000,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            unit wu=wu1
+            integer time=0
+            real damage=damage1
+            group g = CreateGroup()
+            unit gu=null 
+            if  GetUnitIntState(wu,'FB35') > 0 
+                damage=damage*2
+            endif
+            TimerStart(1,true)
+            {
+                time=time+1
+                if time<=8
+                    GroupEnumUnitsInRange(g,GetUnitX(wu),GetUnitY(wu),2000,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                     loop
                         gu = FirstOfGroup(g)
                         exitwhen gu == null
@@ -72,13 +73,14 @@ library SkillCode uses System,State,DamageCode
                             endif
                         GroupRemoveUnit(g,gu)
                     endloop
-                   
-            else
+                else
                     DestroyGroup(g)
                     wu=null
                     endtimer
-            endif
-                            }
+                endif
+                flush locals
+            }
+            flush locals
          endfunction
          
     endscope
