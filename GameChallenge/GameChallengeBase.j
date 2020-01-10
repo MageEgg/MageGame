@@ -67,7 +67,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         GameChallengLeagueUnit(8) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np98',-7456,-7264,ang)
     endfunction
 
-    /*EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+    /*
+        real x = GetUnitX(GameChallengLeagueUnit(num))
+        real y = GetUnitY(GameChallengLeagueUnit(num))
+        real ang = GetUnitFacing(GameChallengLeagueUnit(num))
+        EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
             for i = 1,40
                 value = GetTypeIdReal(uid,i)
                 if  value != 0
@@ -113,17 +117,14 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function SetLeagueUnit(int num,bool flag)
-        real x = GetUnitX(GameChallengLeagueUnit(num))
-        real y = GetUnitY(GameChallengLeagueUnit(num))
-        real ang = GetUnitFacing(GameChallengLeagueUnit(num))
-        int uid = 'md09'
-        real value = 0
         if  flag == true
+            SetUnitOwner(GameChallengLeagueUnit(num),Player(9),true)
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ7A'+num-1)
             SetPlayerLeagueState(num,true)
         else
+            SetUnitOwner(GameChallengLeagueUnit(num),Player(11),true)
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ8A'+num-1)
