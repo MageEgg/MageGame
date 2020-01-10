@@ -111,7 +111,7 @@ library LearnAbilityFrame uses GameFrame
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Learn",GameUI,Button)
-        Button.SetPoint(4,GameUI,4,0,0)
+        Button.SetPoint(8,GameUI,5,-0.01,-0.1)
         Button.SetSize(0.158,0.12)
         origin = Button.frameid
 
@@ -240,7 +240,7 @@ library ReplaceAbilityFrame uses GameFrame,LearnAbilityFrame
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Replace",GameUI,Button)
-        Button.SetPoint(4,GameUI,4,0,0)
+        Button.SetPoint(8,GameUI,5,-0.01,-0.1)
         Button.SetSize(0.158,0.18)
         origin = Button.frameid
 
@@ -266,7 +266,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int max = GetPlayerAbilitySlot(pid)
         if  index <= max
             int rid = GetUnitIntState(Pu[1],110+index)
-            RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+            RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
             BJDebugMsg("替换回收"+GetTypeIdName(rid))
 
             HeroRemoveAbilityByIndex(Pu[1],index)
@@ -302,7 +302,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
                 if  rid == id
                     PlayerLearnAbilityFunc(pid,id)
                 else
-                    RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                    RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
                     BJDebugMsg("回收"+GetTypeIdName(rid))
                 endif
             endif
@@ -341,7 +341,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         for i =1,3
             rid = GetUnitIntState(Pu[1],130+i)
             if  rid > 0
-                RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+                RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
                 BJDebugMsg("回收"+GetTypeIdName(rid))
             endif
             SetUnitIntState(Pu[1],130+i,0)
@@ -350,7 +350,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
         rid = GetUnitIntState(Pu[1],120)
         if  rid > 0
-            RegisterPrizePoolData(pid,GetTypeIdData(rid,101),rid)
+            RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
             BJDebugMsg("回收"+GetTypeIdName(rid))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了学习技能！")
             SetUnitIntState(Pu[1],120,0)
