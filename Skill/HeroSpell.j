@@ -316,7 +316,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             gu = FirstOfGroup(g.ejg)
             exitwhen gu == null
             if GetUnitAbilityLevel(gu,'A048')>0
-                 IncUnitAbilityLevel(gu,'A048')
+                if GetUnitAbilityLevel(gu,'A048')<8
+                    IncUnitAbilityLevel(gu,'A048')
+                endif
             else
                 UnitAddAbility(gu,'A048')
             endif
@@ -337,6 +339,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         loop
             gu = FirstOfGroup(g.ejg)
             exitwhen gu == null
+            DBUG(I2S(GetUnitAbilityLevel(gu,'A048')))
             if  I2R(GetUnitAbilityLevel(gu,'A048'))*damage>0
                 damage=I2R(GetUnitAbilityLevel(gu,'A048'))*damage
                 UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
@@ -617,6 +620,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y0=GetUnitY(u)
         LocAddEffectTimer(x,y,"effect_az_axe_x.mdl",m)
     //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
+        TimerStart(t,m,false,function SpellS078func)
         TimerStart(m,false)
         {   
             EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*m,"effect_az_tormentedsoul_t1.mdl")
@@ -970,8 +974,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
-                flush locals
                 endtimer
+                flush locals
             endif
         }
         flush locals
@@ -990,6 +994,52 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             SpellS102_1(u,mj,damage)
         end
     endfunction  
+
+    function SpellS103Attack(unit wu,unit gui1)
+        unit u=wu
+        unit gui=gui1
+        real dis=0
+        real ang=0
+        real x=0
+        real y=0
+        integer i=0
+        TimerStart(1,true)
+        {
+        if  i<=6
+            i=i+1
+            if  Udis(u,gui)>500
+                dis=GetRandomReal(0, 200)
+                ang=GetRandomReal(-3.14, 3.14)
+                x=GetUnitX(u)+(dis*Cos(ang))
+                y=GetUnitY(u)+(dis*Sin(ang))
+                SetUnitX(gui,x)
+                SetUnitY(gui,y)
+                IssueTargetOrder( gui, "Attack", u)
+            endif
+        else
+            KillUnit(gui)
+            endtimer
+            flush locals
+        endif
+        }
+    endfunction
+
+    function SpellS103(unit u)
+        unit gui=null
+        real dis=0
+        real ang=0
+        real x=0
+        real y=0
+        for i= 1,3
+            dis=GetRandomReal(0, 200)
+            ang=GetRandomReal(-3.14, 3.14)
+            x=GetUnitX(u)+(dis*Cos(ang))
+            y=GetUnitY(u)+(dis*Sin(ang))
+            gui=CreateUnit(Player(12),'e010',x,y,GetUnitFacing(u))
+            IssueTargetOrder( gui, "Attack", u)
+            SpellS103Attack(u,gui)
+        end
+    endfunction 
 
     function SpellS104(unit u1)
         unit u=u1
@@ -1689,7 +1739,9 @@ endfunction
             elseif  id== 'S100'    
                 SpellS100(u1.u)
             elseif  id== 'S101'    
-                SpellS101(u1.u,sx,sy,damage)    
+                SpellS101(u1.u,sx,sy,damage) 
+            elseif  id== 'S103'    
+                SpellS103(u1.u)       
             elseif  id== 'S110'    
                 SpellS110(u1.u,sx,sy,damage)
             elseif  id== 'S111'    
