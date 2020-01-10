@@ -39,19 +39,20 @@ library DamageCode uses UnitStateSet
         if  GetUnitAbilityLevel(wu,'BZ8D') > 0
             s = s + 15
         endif
-        /*real b=0
+        real b=0
         if  GetUnitAbilityLevel(wu, 'BB01')>0
-            b=b+15
+            b=b+10
         endif
         if  GetUnitAbilityLevel(wu, 'BB02')>0
-            b=b+15
+            b=b+10
         endif
         if  GetUnitAbilityLevel(wu, 'BB03')>0
-            b=b+15
+            b=b+10
         endif
         if  GetUnitAbilityLevel(wu, 'BB04')>0
-            b=b+15
-        endif*/
+            b=b+10
+        endif
+        s=s-(s/100*b)
         return s
     endfunction
     //闪避
