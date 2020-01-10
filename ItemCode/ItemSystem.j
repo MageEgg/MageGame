@@ -176,6 +176,60 @@ scope ItemSystem initializer InitItemSystem
         endif
 
     endfunction
+
+
+
+
+
+
+
+//获取鸿蒙结晶数量
+
+                    
+
+    function UnitUseSilkBag(unit wu,int itemid)//使用锦囊
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  itemid == 'IN00'
+            UnitAddPoolItem(wu,1)
+        else
+            if  itemid == 'IN07'
+                AddUnitStateExTimer(Pu[1],28,30,6)
+            elseif  itemid == 'IN08'
+                if  AttackUnitWN >= AttackUnitWNOver - 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前无法使用该锦囊！")
+                else
+                    KillAttackUnitGroup()
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+"，消灭了所有的进攻怪！")
+                endif
+            elseif  itemid == 'IN09'
+                //IN09	我刷一会	暂停场上已存在的进攻怪10秒
+            elseif  itemid == 'IN10'
+                //IN10	我再刷会	暂停场上已存在的进攻怪20秒
+            elseif  itemid == 'IN11'
+                AddUnitStateExTimer(Pu[1],17,300,5)
+            elseif  itemid == 'IN12'
+                AdjustPlayerStateBJ(20000, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",金币+20000")
+            elseif  itemid == 'IN13'
+                AdjustPlayerStateBJ(2000, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",金币+2000")
+            elseif  itemid == 'IN14'
+                /*
+                IN14	精准预判	"使用后5秒内基地触发无敌，则击杀其600码范围内所有生物。
+                （不分敌我）"*/
+            elseif  itemid == 'IN15'
+                SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
+            elseif  itemid == 'IN16'
+                SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
+            elseif  itemid == 'IN17' 
+                AdjustPlayerStateBJ(3000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+3000")
+            elseif  itemid == 'IN18'
+                AdjustPlayerStateBJ(300, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+300")
+            endif
+        endif
+    endfunction
     
     
     
@@ -257,6 +311,8 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'I005'
             AddUnitStateExTimer(Pu[1],16,40,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
+        elseif  itemid >= 'IN00' and itemid <= 'IN18'
+            UnitUseSilkBag(u1,itemid)
         endif
         
         flush locals

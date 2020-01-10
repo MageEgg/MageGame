@@ -685,9 +685,77 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
     endscope
 
+    scope ItemPool
+        itempool array ItemPool
+
+        function UnitAddPoolItem(unit wu,int index)
+            UnitAddItem(wu,PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu)))
+        endfunction
+
+        function InitUnitPoolFunc()
+            for i = 1,5
+                ItemPool[i] = CreateItemPool()
+            end
+
+            ItemPoolAddItemType(ItemPool[1],'IN01',4)
+            ItemPoolAddItemType(ItemPool[1],'IN02',4)
+            ItemPoolAddItemType(ItemPool[1],'IN03',4)
+            ItemPoolAddItemType(ItemPool[1],'IN04',1)
+            ItemPoolAddItemType(ItemPool[1],'IN05',1)
+            ItemPoolAddItemType(ItemPool[1],'IN06',1)
+            ItemPoolAddItemType(ItemPool[1],'IN07',2)
+            ItemPoolAddItemType(ItemPool[1],'IN08',2)
+            ItemPoolAddItemType(ItemPool[1],'IN09',3)
+            ItemPoolAddItemType(ItemPool[1],'IN10',2)
+            ItemPoolAddItemType(ItemPool[1],'IN11',2)
+            ItemPoolAddItemType(ItemPool[1],'IN12',2)
+            ItemPoolAddItemType(ItemPool[1],'IN13',4)
+            ItemPoolAddItemType(ItemPool[1],'IN14',1)
+            ItemPoolAddItemType(ItemPool[1],'IN15',1)
+            ItemPoolAddItemType(ItemPool[1],'IN16',1)
+            ItemPoolAddItemType(ItemPool[1],'IN17',2)
+            ItemPoolAddItemType(ItemPool[1],'IN18',2)
+            ItemPoolAddItemType(ItemPool[2],'IF01',3)
+            ItemPoolAddItemType(ItemPool[2],'IF02',3)
+            ItemPoolAddItemType(ItemPool[2],'IF03',1)
+            ItemPoolAddItemType(ItemPool[2],'IF04',1)
+            ItemPoolAddItemType(ItemPool[2],'IF05',1)
+            ItemPoolAddItemType(ItemPool[2],'IF06',1)
+            ItemPoolAddItemType(ItemPool[2],'IF07',3)
+            ItemPoolAddItemType(ItemPool[2],'IF08',3)
+            ItemPoolAddItemType(ItemPool[2],'IF09',1)
+            ItemPoolAddItemType(ItemPool[2],'IF10',1)
+            ItemPoolAddItemType(ItemPool[2],'IF11',2)
+            ItemPoolAddItemType(ItemPool[2],'IF12',1)
+            ItemPoolAddItemType(ItemPool[2],'IF13',3)
+            ItemPoolAddItemType(ItemPool[2],'IF14',2)
+            ItemPoolAddItemType(ItemPool[2],'IF15',1)
+            ItemPoolAddItemType(ItemPool[2],'IF16',2)
+            ItemPoolAddItemType(ItemPool[2],'IF17',1)
+            ItemPoolAddItemType(ItemPool[2],'IF18',2)
+            ItemPoolAddItemType(ItemPool[2],'IF19',1)
+            ItemPoolAddItemType(ItemPool[2],'IF20',3)
+            ItemPoolAddItemType(ItemPool[2],'IF21',1)
+            ItemPoolAddItemType(ItemPool[2],'IF22',3)
+            ItemPoolAddItemType(ItemPool[2],'IF23',1)
+            ItemPoolAddItemType(ItemPool[2],'IF24',2)
+            ItemPoolAddItemType(ItemPool[2],'IF25',2)
+            ItemPoolAddItemType(ItemPool[2],'IF26',3)
+            ItemPoolAddItemType(ItemPool[2],'IF27',3)
+
+
+
+            
+        endfunction
+
+
+    endscope
+
+
 
     function InitAllFunc()
         ExecuteFunc("InitHeroPoolFunc")
+        ExecuteFunc("InitUnitPoolFunc")
     endfunction
     
 endlibrary
