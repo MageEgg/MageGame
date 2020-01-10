@@ -149,7 +149,7 @@ library HeroPowerFrame uses GameFrame
             if  index == 0
                 Button.SetPoint(7,GetFrameUnitDetail(),1,0,0.01)
             else
-                Button.SetPoint(7,GetFrameUnitDetail(),1,-0.2,0.01)
+                Button.SetPoint(6,GetFrameUnitDetail(),1,-0.4,0.01)
             endif
         endif
     endfunction
