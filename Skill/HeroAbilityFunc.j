@@ -539,8 +539,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 if  PlayerDeathBool == false
                     SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE))
                 endif
-                AddUnitStateExTimer(Pu[1],15,15,6)
-                AddUnitStateExTimer(Pu[1],16,15,6)
+                AddUnitStateExTimer(Pu[1],17,15,6)
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffattack.mdl")
             endif
         end
@@ -898,4 +897,3 @@ library HeroAbilityFunc uses OtherDamageTimer
     */
 
 endlibrary
-

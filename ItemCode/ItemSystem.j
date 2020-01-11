@@ -47,10 +47,11 @@ scope ItemSystem initializer InitItemSystem
         int index = 0
         
         if  next > 0
-            if  IsCanMoveToRoom(pid) == true
-                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
-                    
-                    if  uid > 0
+            
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
+                
+                if  uid > 0
+                    if  IsCanMoveToRoom(pid) == true
                         index = GetEquipIndex(id)
                         if  index != 0
                             if  GetUnitTypeId(Pu[100+index]) == 0
@@ -74,20 +75,21 @@ scope ItemSystem initializer InitItemSystem
                                 endif
                             endif
                         endif
-                    else
-                        AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                        RemoveItem(it)
-                        UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                        UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
+                    else   
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前无法升级装备")
                     endif
                 else
-                    
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
+                    AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                    RemoveItem(it)
+                    UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
+                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
                 endif
-            else   
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前无法升级装备")
+            else
+                
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
             endif
+            
         else    
             BJDebugMsg("next"+I2S(next))
         endif
