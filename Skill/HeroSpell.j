@@ -1420,7 +1420,7 @@ function SpellS116(unit u1,real damage1)
             }
         endif
         flush locals
-    endfunction
+    endfunction 
 
     function SpellS123(unit u1,real damage1)
     unit u=u1
