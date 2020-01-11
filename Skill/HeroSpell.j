@@ -619,13 +619,26 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
         LocAddEffectTimer(x,y,"effect_az_axe_x.mdl",m)
+        real time=0
+        integer aid=GetSpellAbilityId()
+        if LoadInteger(ht,GetHandleId(u),'S078')==1
+            SaveInteger(ht,GetHandleId(u),'S078',2)
+        endif
     //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
-        TimerStart(m,false)
-        {   
-            EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*m,"effect_az_tormentedsoul_t1.mdl")
-            endtimer
-            flush locals
-        }
+        if  LoadInteger(ht,GetHandleId(u),'S078')==0
+            SaveInteger(ht,GetHandleId(u),'S078',1)
+            TimerStart(0.1,true)
+            {   
+                time=time+0.1
+                if  time>m  or  LoadInteger(ht,GetHandleId(u),'S078')==2
+                    SaveInteger(ht,GetHandleId(u),'S078',0)
+                    EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*time,"effect_az_tormentedsoul_t1.mdl")
+                    SetAbilityCD_AG(u,aid,8)
+                    endtimer
+                    flush locals
+                endif
+            }
+        endif
         flush locals
     endfunction
 
