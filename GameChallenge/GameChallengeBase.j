@@ -73,26 +73,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         end
     endfunction
 
-    /*
-        real x = GetUnitX(GameChallengLeagueUnit(num))
-        real y = GetUnitY(GameChallengLeagueUnit(num))
-        real ang = GetUnitFacing(GameChallengLeagueUnit(num))
-            for i = 1,40
-                value = GetTypeIdReal(uid,i)
-                if  value != 0
-                    if  i == 9
-                        AddUnitRealState(GameChallengLeagueUnit(num),i,R2I(value))
-                    elseif  i == 3
-                        SetUnitRealState(GameChallengLeagueUnit(num),i,R2I(value)/2)
-                    elseif  i == 5
-                        SetUnitRealState(GameChallengLeagueUnit(num),i,GetTypeIdReal(uid,1)*30)
-                    else
-                        SetUnitRealState(GameChallengLeagueUnit(num),i,R2I(value))
-                    endif
-                endif
-            end
-            SetUnitRealState(GameChallengLeagueUnit(num),1,value)*/
-
     function OpenChangeGodStageA()
         for pid = 0,3
             if  IsPlaying(pid) == true
@@ -107,6 +87,20 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+    endfunction
+    
+    function SetLeagueUnitOverState(unit wu,real time)
+        unit u = wu
+        TimerStart(time,false)
+        {
+            UnitRemoveAbility(u,'Avul')
+            EXSetUnitMoveType(u,0x02)
+            UnitAddEffect(u,"effect_tx_asad (24).mdx")
+            PauseUnit(u,false)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
 
     function OpenChangeGodStageB(real r1,real r2)
@@ -151,8 +145,21 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
                     SetUnitRealState(GameChallengLeagueUnit(num),3,GetUnitRealState(GameChallengLeagueUnit(num),3)/2)
                     SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),1)*30)
+                    UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
+                    UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
+                    EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+                    PauseUnit(GameChallengLeagueUnit(num),true)
+                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),10)
                 elseif  GetUnitAbilityLevel(GameChallengLeagueUnit(num),'AZ21') > 0
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cffff0000加入敌军作战！|r")
+                    RemoveUnit(GameChallengLeagueUnit(num))
+                    GameChallengLeagueUnit(num) = CreateUnit(Player(11),'md00'+num,ex,ey,ang)
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
+                    UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
+                    UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
+                    EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+                    PauseUnit(GameChallengLeagueUnit(num),true)
+                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
                 endif
             else
                 ExecuteFunc("OpenChangeGodStageB2")

@@ -233,6 +233,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
                 elseif  gold < 16800
                     gold = 16800
                 endif
+                AddPlayerState(hat,PLAYER_STATE_RESOURCE_GOLD,gold)
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+I2S(gold)+"金币|r")
                 b = b + 1
             endif
