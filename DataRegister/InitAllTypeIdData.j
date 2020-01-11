@@ -73,15 +73,15 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IJ08',"|cffffff00仙品道果|r","war3mapImported\\ch_DG8.mdl","攻击+9000|n法强+9000|n生命值+18000")
         call InitTypeIdStrings('IJ09',"|cffff0033至圣道果|r","war3mapImported\\ch_DG9.mdl","攻击+10000|n法强+10000|n生命值+20000")
         call InitTypeIdStrings('IJ10',"|cffff0033混沌道果|r","war3mapImported\\ch_DG10.mdl","攻击+20000|n法强+20000|n生命值+40000")
-        call InitTypeIdStrings('CS01',"D级技能书","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","随机技能")
-        call InitTypeIdStrings('CS02',"|cff00FA9AC级技能书|r","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","随机技能")
-        call InitTypeIdStrings('CS03',"|cff00BFFFB级技能书|r","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","随机技能")
-        call InitTypeIdStrings('CS04',"|cffff0000A级技能书|r","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","随机技能")
-        call InitTypeIdStrings('CS05',"|cffff0033S级技能书|r","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","随机技能")
-        call InitTypeIdStrings('CF01',"随机法宝","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","随机法宝")
-        call InitTypeIdStrings('IP01',"时渊碎片","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","进入时渊副本消耗时渊碎片")
-        call InitTypeIdStrings('IP02',"补天石","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","消耗补天石，可重铸指定法宝")
-        call InitTypeIdStrings('IP03',"鸿蒙结晶","ReplaceableTextures\\CommandButtons\\BTNAlleriaFlute.blp","消耗鸿蒙结晶，可将指定法宝锻造为高一品阶的随机法宝。")
+        call InitTypeIdStrings('CS01',"D级技能书","ReplaceableTextures\\CommandButtons\\BTNCS01.blp","随机技能")
+        call InitTypeIdStrings('CS02',"|cff00FA9AC级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS02.blp","随机技能")
+        call InitTypeIdStrings('CS03',"|cff00BFFFB级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS03.blp","随机技能")
+        call InitTypeIdStrings('CS04',"|cffff0000A级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS04.blp","随机技能")
+        call InitTypeIdStrings('CS05',"|cffff0033S级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS05.blp","随机技能")
+        call InitTypeIdStrings('CF01',"随机法宝","ReplaceableTextures\\CommandButtons\\BTNCF01.blp","随机法宝")
+        call InitTypeIdStrings('IP01',"时渊碎片","ReplaceableTextures\\CommandButtons\\BTNIP01.blp","进入时渊副本消耗时渊碎片")
+        call InitTypeIdStrings('IP02',"补天石","ReplaceableTextures\\CommandButtons\\BTNIP02.blp","消耗补天石，可重铸指定法宝")
+        call InitTypeIdStrings('IP03',"鸿蒙结晶","ReplaceableTextures\\CommandButtons\\BTNIP03.blp","消耗鸿蒙结晶，可将指定法宝锻造为高一品阶的随机法宝。")
 
         call InitTypeIdStrings('IJ51',"炼气士","","")
         call InitTypeIdStrings('IJ52',"筑基境","","")
@@ -298,6 +298,32 @@ scope AllTypeIdData initializer init
         SetTypeIdData('u0BK',103,14762)
         SetTypeIdData('u0BL',103,16667)
         SetTypeIdData('u0BM',103,19048)
+
+        SetTypeIdData('INDA',103,70)
+        SetTypeIdData('INDB',103,70)
+        SetTypeIdData('INDC',103,140)
+        SetTypeIdData('INDD',103,140)
+        SetTypeIdData('INDE',103,210)
+
+        SetTypeIdData('INDG',103,210)
+        SetTypeIdData('INDH',103,280)
+        SetTypeIdData('INDI',103,280)
+        SetTypeIdData('INDJ',103,350)
+        SetTypeIdData('INDK',103,350)
+
+        SetTypeIdData('INDM',103,420)
+        SetTypeIdData('INDN',103,420)
+        SetTypeIdData('INDO',103,490)
+        SetTypeIdData('INDP',103,490)
+        SetTypeIdData('INDQ',103,560)
+
+        SetTypeIdData('INDS',103,560)
+        SetTypeIdData('INDT',103,630)
+        SetTypeIdData('INDU',103,630)
+        SetTypeIdData('INDV',103,700)
+        SetTypeIdData('INDW',103,700)
+
+
     endfunction
     function InitUnitDropData()
         //初始化单位掉落

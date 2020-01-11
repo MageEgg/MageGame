@@ -63,11 +63,11 @@ scope ItemSystem initializer InitItemSystem
 
                             else
                                 HeroMoveToRoom(pid)
-                                if  itemid >= 'E001' and itemid <= 'E025'
+                                if  id >= 'E001' and id <= 'E025'
                                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
-                                elseif  itemid >= 'E101' and itemid <= 'E125'
+                                elseif  id >= 'E101' and id <= 'E125'
                                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
-                                elseif  itemid >= 'E201' and itemid <= 'E225'
+                                elseif  id >= 'E201' and id <= 'E225'
                                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
                                 endif
                             endif
@@ -247,8 +247,10 @@ scope ItemSystem initializer InitItemSystem
                 （不分敌我）"*/
             elseif  itemid == 'IN15'
                 SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
+                ReCollectFrameResources(pid)
             elseif  itemid == 'IN16'
                 SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
+                ReCollectFrameResources(pid)
             elseif  itemid == 'IN17' 
                 AdjustPlayerStateBJ(3000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+3000")
@@ -256,6 +258,35 @@ scope ItemSystem initializer InitItemSystem
                 AdjustPlayerStateBJ(300, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+300")
             endif
+        endif
+    endfunction
+
+    function UnitUseStarSoul(unit wu,int itemid)//使用星魂
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int kill = GetTypeIdData(itemid,103)
+        int gl = 0
+        if  kill == 0
+            //必定出锦囊
+            gl = 100
+        else
+            if  itemid >= 'INDA' and itemid <= 'INDE'
+                gl = 40
+            elseif  itemid >= 'INDG' and itemid <= 'INDK'
+                gl = 50
+            elseif  itemid >= 'INDM' and itemid <= 'INDQ'
+                gl = 60
+            elseif  itemid >= 'INDS' and itemid <= 'INDW'
+                gl = 70
+            endif
+        endif
+        
+        if  GetRandomInt(1,100) <= gl
+            UnitAddItem(wu,CreateItem('IN00',GetUnitX(wu),GetUnitY(wu)))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了星宿之魂，获得锦囊x1")
+        else 
+            kill = R2I(I2R(kill) * GetRandomReal(0.6,1))
+            AdjustPlayerStateBJ(kill, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了星宿之魂，获得杀敌数x"+I2S(kill))
         endif
     endfunction
     
@@ -341,6 +372,8 @@ scope ItemSystem initializer InitItemSystem
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
         elseif  itemid >= 'IN00' and itemid <= 'IN18'
             UnitUseSilkBag(u1,itemid)
+        elseif  itemid >= 'INDA' and itemid <= 'INDX'
+            UnitUseStarSoul(u1,itemid)
         endif
         
         flush locals

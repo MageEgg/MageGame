@@ -240,13 +240,14 @@ scope DeathEvent initializer InitDeathEvent
 
     //星辰阵
     function KillXCUnitFunc(unit wu,unit tu,int uid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = AttackRoomXCUnitNum
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             CreateItem('IN00',GetUnitX(tu),GetUnitY(tu))
         else
             if  AttackRoomXCUnitNum <= 0
-                
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
             endif
         endif
     endfunction
