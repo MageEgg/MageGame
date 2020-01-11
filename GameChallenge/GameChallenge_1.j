@@ -406,37 +406,10 @@ library GameChallenge1 uses GameChallengeBase
             endif
         end
 
-        tig = CreateTrigger() //姜子牙
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[10],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_1_YZZ)
-
-        tig = CreateTrigger() //剑灵点
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[13],100,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_1_JLD)
-
-        tig = CreateTrigger() //救援点
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[14],100,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_1_JY)
-        tig = CreateTrigger() //救援点2
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[16],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_1_JY2)
-
+        CreateTrigUnitInRange(-6304,1024,150,function EnRctGameChalleng_1_YZZ)
+        CreateTrigUnitInRange(-4352,-288,100,function EnRctGameChalleng_1_JLD)
+        CreateTrigUnitInRange(-4608,640,100,function EnRctGameChalleng_1_JY)
+        CreateTrigUnitInRange(-3776,1472,100,function EnRctGameChalleng_1_JY2)
 
         tig = CreateTrigger() //
         rectRegion = CreateRegion()
@@ -461,7 +434,6 @@ library GameChallenge1 uses GameChallengeBase
         RegionAddRect(rectRegion,gg_rct_ChallengeRct_1_4)
         TriggerRegisterEnterRegion(tig,rectRegion,null)
         TriggerAddAction(tig, function FuncEnterRctChallengeRct_1_4)
-
 
         tig = null
         rectRegion = null

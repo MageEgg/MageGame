@@ -220,8 +220,6 @@ library GameChallenge2 uses GameChallengeBase
     endfunction
 
     function InitGameChallenge_2()
-        trigger tig = null
-
         for pid = 0,3
             if  IsPlaying(pid) == true
                 GameChallengUnit[20] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-6080,3072,0)
@@ -238,23 +236,9 @@ library GameChallenge2 uses GameChallengeBase
             endif
         end
 
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[20],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_2_Water1)
-
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[21],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_2_Water2)
-
-        tig = null
+        CreateTrigUnitInRange(-6080,3072,150,function EnRctGameChalleng_2_Water1)
+        CreateTrigUnitInRange(-5536,3872,150,function EnRctGameChalleng_2_Water2)
+        
     endfunction
 
 endlibrary

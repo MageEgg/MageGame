@@ -328,7 +328,6 @@ library GameChallenge6 uses GameChallengeBase
     endfunction
 
     function InitGameChallenge_6()
-        trigger tig = null
         for pid = 0,3
             if  IsPlaying(pid) == true
                 GameChallengUnit[60] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',-2048,6368,180)
@@ -345,16 +344,7 @@ library GameChallenge6 uses GameChallengeBase
                 EXSetUnitMoveType(GameChallengUnit[63],0x01)
             endif
         end
-        
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[60],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_6_Way0)
-
-        tig = null
+        CreateTrigUnitInRange(-2048,6368,150,function EnRctGameChalleng_6_Way0)
     endfunction
 
 
