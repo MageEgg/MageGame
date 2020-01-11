@@ -502,7 +502,7 @@ library AttackUnit uses DamageCode
                 AttackTimerUIText = "最终大决战"
                 if  IsChangeGodStage == false
                     IsChangeGodStage = true
-                    CreateChangeGodStage.execute(12)//AttackUnitNextTime[i])
+                    CreateChangeGodStage.execute(AttackUnitNextTime[i])
                 endif
             else
                 AttackTimerUIText = "进攻第"+I2S(AttackUnitWN+1)+"波"
