@@ -1,4 +1,4 @@
-library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengeBase
+library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengDeath
     
     real array AttackRoomPostion[12][600] 
     group array diesgroup
@@ -314,7 +314,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     endfunction
     
     
-    function HeroMoveToRoom(int pid)
+    function HeroMoveToRoom(int pid) //传送
         
         if  IsCanMoveToRoom(pid) == true
             real x = AttackRoomPostion[pid][1]
@@ -327,6 +327,12 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SendPlayerUnit(pid,x,y)
                 if  AttackRoomTimer==false
                     RefreshAttackRoom(pid,AttackRoomUid)
+                endif
+                if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
+                    GameChallengPlayerBool[pid][4] = true
+                    ShowPlayerTaskUIOfPlayer(pid,false,0)
+                    SetPlayerTaskUIChatOfPlayer(pid," "," ",0)
+                    SetPlayerTaskUITaskOfPlayer(pid," ",0)
                 endif
             endif
         endif
