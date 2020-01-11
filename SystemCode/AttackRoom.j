@@ -182,7 +182,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         endif
         if  ran == 0
             for i = 1,10
-                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
@@ -192,14 +192,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             end
         elseif  ran == 1
             for i = 1,4
-                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
-                
                 bj_lastCreatedUnit = null
             end
         else
-            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
             
@@ -224,14 +223,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         endif
         if  num == 5 or num == 11 or num == 17 or num == 23
             AttackRoomXCUnitNum = 1
-            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
             bj_lastCreatedUnit = null
         else
             AttackRoomXCUnitNum = 4
             for i = 1,4
-                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x-512,y+384,270)
+                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
                 
