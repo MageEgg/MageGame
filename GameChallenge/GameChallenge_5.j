@@ -356,7 +356,7 @@ library GameChallenge5 uses GameChallengeBase
     endfunction
 
     function InitGameChallenge_5()
-        trigger tig = null
+
         for pid = 0,3
             if  IsPlaying(pid) == true
                 GameChallengUnit[50] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-64,3840,180)
@@ -379,48 +379,13 @@ library GameChallenge5 uses GameChallengeBase
                 EXSetUnitMoveType(GameChallengUnit[55],0x01)
             endif
         end
-        
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[50],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_5_Way0)
 
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[52],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_5_Way1)
+        CreateTrigUnitInRange(-64,3840,150,function EnRctGameChalleng_5_Way0)
+        CreateTrigUnitInRange(-640,3840,150,function EnRctGameChalleng_5_Way1)
+        CreateTrigUnitInRange(-1216,3552,150,function EnRctGameChalleng_5_Way2)
+        CreateTrigUnitInRange(-1568,3200,150,function EnRctGameChalleng_5_Way3)
+        CreateTrigUnitInRange(-2080,2688,150,function EnRctGameChalleng_5_Way4)
 
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[53],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_5_Way2)
-
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[54],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_5_Way3)
-
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[55],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_5_Way4)
-
-        tig = null
     endfunction
 
 endlibrary

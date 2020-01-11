@@ -365,6 +365,19 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerTaskUI_ChatTextB.SetText("")
     endfunction
 
+    function CreateTrigUnitInRange(real x,real y,real rac,code actionFunc)
+        trigger tig = null
+        unit u = null
+        tig = CreateTrigger() //姜子牙
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',x,y,0)
+        SetUnitVertexColor(u,255,255,255,0)
+        EXSetUnitMoveType(u,0x01)
+        TriggerRegisterUnitInRange(tig,u,rac,null)
+        TriggerAddAction(tig, actionFunc)
+        tig = null
+        u = null
+    endfunction
+
 endlibrary
 
 

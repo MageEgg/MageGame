@@ -309,7 +309,6 @@ library GameChallenge3 uses GameChallengeBase
     endfunction
 
     function InitGameChallenge_3()
-        trigger tig = null
         for pid = 0,3
             if  IsPlaying(pid) == true
                 GameChallengUnit[30] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np09',-5824,6464,270)
@@ -328,23 +327,9 @@ library GameChallenge3 uses GameChallengeBase
             endif
         end
 
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[30],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_3_HTH)
+        CreateTrigUnitInRange(-5824,6464,150,function EnRctGameChalleng_3_HTH)
+        CreateTrigUnitInRange(-5952,8064,150,function EnRctGameChalleng_3_SMJ)
 
-        tig = CreateTrigger() //
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                TriggerRegisterUnitInRange(tig,GameChallengUnit[32],150,null)
-            endif
-        end
-        TriggerAddAction(tig, function EnRctGameChalleng_3_SMJ)
-
-        tig = null
     endfunction
 
 endlibrary
