@@ -298,6 +298,32 @@ scope AllTypeIdData initializer init
         SetTypeIdData('u0BK',103,14762)
         SetTypeIdData('u0BL',103,16667)
         SetTypeIdData('u0BM',103,19048)
+
+        SetTypeIdData('INDA',103,70)
+        SetTypeIdData('INDB',103,70)
+        SetTypeIdData('INDC',103,140)
+        SetTypeIdData('INDD',103,140)
+        SetTypeIdData('INDE',103,210)
+
+        SetTypeIdData('INDG',103,210)
+        SetTypeIdData('INDH',103,280)
+        SetTypeIdData('INDI',103,280)
+        SetTypeIdData('INDJ',103,350)
+        SetTypeIdData('INDK',103,350)
+
+        SetTypeIdData('INDM',103,420)
+        SetTypeIdData('INDN',103,420)
+        SetTypeIdData('INDO',103,490)
+        SetTypeIdData('INDP',103,490)
+        SetTypeIdData('INDQ',103,560)
+
+        SetTypeIdData('INDS',103,560)
+        SetTypeIdData('INDT',103,630)
+        SetTypeIdData('INDU',103,630)
+        SetTypeIdData('INDV',103,700)
+        SetTypeIdData('INDW',103,700)
+
+
     endfunction
     function InitUnitDropData()
         //初始化单位掉落
