@@ -138,7 +138,9 @@ library GameUIInit initializer init uses OriginGameFrame
         
         ExecuteFunc("LoadTimer")
         
-        
+        ExecuteFunc("BossDamageFrameInit")
+        ExecuteFunc("InitPlayerTaskUI")
+
         ExecuteFunc("HeroPowerFrameInit")
         ExecuteFunc("PassCheckUIInit")
         ExecuteFunc("InitShowSaveFrame")
@@ -149,8 +151,8 @@ library GameUIInit initializer init uses OriginGameFrame
         ExecuteFunc("LearnAbilityFrameInit")
         ExecuteFunc("ReplaceAbilityFrameInit")
         
-        ExecuteFunc("InitPlayerTaskUI")
-        ExecuteFunc("BossDamageFrameInit")
+
+        
 
     
         ExecuteFunc("BossLifeBarFrameInit")

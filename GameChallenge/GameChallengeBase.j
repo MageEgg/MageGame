@@ -96,7 +96,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             UnitRemoveAbility(u,'Avul')
             EXSetUnitMoveType(u,0x02)
             UnitAddEffect(u,"effect_tx_asad (24).mdx")
+            UnitAddEffectSetSize(u,"effect_az-leiji.mdx",2)
             PauseUnit(u,false)
+            SetUnitAnimation(u,"attack")
             endtimer
             flush locals
         }
