@@ -247,8 +247,10 @@ scope ItemSystem initializer InitItemSystem
                 （不分敌我）"*/
             elseif  itemid == 'IN15'
                 SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
+                ReCollectFrameResources(pid)
             elseif  itemid == 'IN16'
                 SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
+                ReCollectFrameResources(pid)
             elseif  itemid == 'IN17' 
                 AdjustPlayerStateBJ(3000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了锦囊"+GetObjectName(itemid)+",杀敌数+3000")
