@@ -813,7 +813,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         flush locals
     endfunction
 
-    function FB47FuncTimer(unit wu)
+    function FB43FuncTimer(unit wu)
         unit u1 = wu
         SetUnitIntState(wu,'FC43',1)
         TimerStart(15,false)
@@ -824,12 +824,12 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         }
         flush locals
     endfunction
-    function FB47Func(unit wu)->bool
+    function FB43Func(unit wu)->bool
         if  GetUnitIntState(wu,'FB43') > 0
             if  GetUnitIntState(wu,'FC43') == 0
                 ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
                 LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
-                
+                FB43FuncTimer(wu)
                 if  GetOwningPlayer(wu)==GetLocalPlayer()
                     ClearSelection()
                     SelectUnit(wu,true)

@@ -27,8 +27,10 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
                 if  next == 'E006' or next == 'E106' or next == 'E206'
                     if  Pu[24] == null
-                        Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
+                        Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2]-256,270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
+                        UnitAddAbility(Pu[1],'AG09')
+                        UnitMakeAbilityPermanent(Pu[1],true,'AG09')
                         PlayerUnLockPlot(pid,1)
                     endif
                 endif

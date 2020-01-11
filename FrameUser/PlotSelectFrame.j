@@ -172,10 +172,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         SetPlayerPlotPrizeId(pid,2,2,'CS01')
         SetPlayerPlotPrizeId(pid,3,2,'CS02')
         SetPlayerPlotPrizeId(pid,4,2,'CS02')
-        SetPlayerPlotPrizeId(pid,5,2,'CS02')
-        SetPlayerPlotPrizeId(pid,6,2,'CS02')
-        SetPlayerPlotPrizeId(pid,7,2,'CS02')
-        SetPlayerPlotPrizeId(pid,8,2,'CS03')
+        SetPlayerPlotPrizeId(pid,5,2,'CS03')
+        SetPlayerPlotPrizeId(pid,6,2,'CS03')
+        SetPlayerPlotPrizeId(pid,7,2,'CS04')
+        SetPlayerPlotPrizeId(pid,8,2,'CS04')
         
     endfunction
 

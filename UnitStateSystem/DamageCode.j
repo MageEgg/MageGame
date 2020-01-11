@@ -333,7 +333,7 @@ library DamageCode uses UnitStateSet
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  wu == Pu[1]
             if  IsPlayerHasAbility.evaluate(wu,'S071') == true
-                s = s + GetHeroAgi(wu,true)/4.4
+                s = s + GetHeroAgi(wu,false)/4.4
             endif
             if  GetUnitIntState(wu,'FB10') > 0
                 s = -90
