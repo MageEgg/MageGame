@@ -129,7 +129,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         {
             if  GameLevel < 3
                 ExecuteFunc("OpenChangeGodStageA")
-            elses
+            else
                 ExecuteFunc("OpenChangeGodStageB")
             endif
             endtimer
