@@ -276,17 +276,7 @@ library AttackUnit uses DamageCode
 
     function AddBossAttachUnitState(unit u,int id)
         int uid = 'ma11'+id-'mb01'
-        real value = 0
-        for i = 1,40
-            value = GetTypeIdReal(uid,i)
-            if  value != 0
-                if  i == 9
-                    AddUnitRealState(u,i,R2I(value))
-                else
-                    SetUnitRealState(u,i,R2I(value))
-                endif
-            endif
-        end
+        SetUnitRealStateOfOtherId(u,uid)
     endfunction
     
     function CreateBossAttachUnitFunc(unit wu,real ex,real ey)
