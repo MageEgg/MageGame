@@ -1070,7 +1070,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=0
         real y=0
         unit mj=null
-        for i=1,3
+        for i=1,1
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
             mj=CreateTmUnit(GetOwningPlayer(u),"effect_BlackworksDragonHead3.mdl",x,y,GetRandomReal(-3.14,3.14),10,1)
@@ -1400,17 +1400,26 @@ function SpellS116(unit u1,real damage1)
         flush locals
     endfunction
 
-     function SpellS120(unit u1,real damage)//憾地击
+     function SpellS120(unit u1,real damage1)//憾地击
         unit u=u1
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        IndexGroup g = IndexGroup.create()
-        AddUnitStateExTimer(u,13,15,3)
-        DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y))
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-        g.destroy()
-        u = null
+        real damage=damage1
+        group g=CreateGroup()
+        DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
+        GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        if   Chance(u,40)
+            TimerStart(0.2,false)
+            {
+                DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y))
+                GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                endtimer
+                flush locals
+            }
+        endif
+        flush locals
     endfunction
 
     function SpellS123(unit u1,real damage1)
@@ -1436,8 +1445,10 @@ function SpellS116(unit u1,real damage1)
             g.destroy()
         else
             endtimer
+            flush locals
         endif    
     }
+    flush locals
     endfunction
 
 
@@ -1840,7 +1851,8 @@ endfunction
                 SpellS115(u1.u,sx,sy,damage)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
-
+            elseif  id== 'S120'    
+                SpellS120(u1.u,damage)
             elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
             elseif  id== 'S124'    
