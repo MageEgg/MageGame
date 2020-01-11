@@ -97,7 +97,23 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 UnitRemoveAbility(Pu[1],'Avul')
                 PlayerReviveX = -1344
                 PlayerReviveY = -7136
-                SendPlayerUnit(pid,OriginalDefendX+350*Cos(45*pid*0.01745),PlayerReviveY+350*Cos(45*pid*0.01745))
+                SendPlayerUnitBarringCamera(pid,OriginalDefendX+200*Cos(45*pid*0.01745),PlayerReviveY+200*Cos(45*pid*0.01745))
+            endif
+        end
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+    endfunction
+
+    function OpenChangeGodStageB()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                UnitRemoveAbility(Pu[1],'Avul')
+                PlayerReviveX = -1344
+                PlayerReviveY = -7136
+                SendPlayerUnitBarringCamera(pid,OriginalDefendX+200*Cos(45*pid*0.01745),PlayerReviveY+200*Cos(45*pid*0.01745))
             endif
         end
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
