@@ -1,13 +1,36 @@
 library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,GameChallenge3,GameChallenge4,GameChallenge5,GameChallenge6,GameChallenge7,GameChallenge8
     
     function OpenGameChallenge(int pid,int flag,int ty)
-        if  GetPlayerPlotStateByIndex(pid,flag) > 0
-            if  GetPlayerPlotStateByIndex(pid,flag) == 2
-                DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r该副本已完成！！！")
-            else
-                if  IsPlayerInChallenge == false
-                    if  GetPlayerPlotStateByIndex(pid,flag) == 3
-                        if  GetPlayerPlotPartNum(pid) > 0
+        if  GetUnitAbilityLevel(Pu[1],'AZ02') == 0 
+            if  GetPlayerPlotStateByIndex(pid,flag) > 0
+                if  GetPlayerPlotStateByIndex(pid,flag) == 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r该副本已完成！！！")
+                else
+                    if  IsPlayerInChallenge == false
+                        if  GetPlayerPlotStateByIndex(pid,flag) == 3
+                            if  GetPlayerPlotPartNum(pid) > 0
+                                if  flag == 1
+                                    OpenGameChallenge_1(pid,ty)
+                                elseif  flag == 2
+                                    OpenGameChallenge_2(pid,ty)
+                                elseif  flag == 3
+                                    OpenGameChallenge_3(pid,ty)
+                                elseif  flag == 4
+                                    OpenGameChallenge_4(pid,ty)
+                                elseif  flag == 5
+                                    OpenGameChallenge_5(pid,ty)
+                                elseif  flag == 6
+                                    OpenGameChallenge_6(pid,ty)
+                                elseif  flag == 7
+                                    OpenGameChallenge_7(pid,ty)
+                                elseif  flag == 8
+                                    OpenGameChallenge_8(pid,ty)
+                                endif
+                                ClosePlotFrame(pid)
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r您已经没有时渊碎片了！")
+                            endif
+                        else
                             if  flag == 1
                                 OpenGameChallenge_1(pid,ty)
                             elseif  flag == 2
@@ -26,35 +49,16 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
                                 OpenGameChallenge_8(pid,ty)
                             endif
                             ClosePlotFrame(pid)
-                        else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r您已经没有时渊碎片了！")
                         endif
-                    else
-                        if  flag == 1
-                            OpenGameChallenge_1(pid,ty)
-                        elseif  flag == 2
-                            OpenGameChallenge_2(pid,ty)
-                        elseif  flag == 3
-                            OpenGameChallenge_3(pid,ty)
-                        elseif  flag == 4
-                            OpenGameChallenge_4(pid,ty)
-                        elseif  flag == 5
-                            OpenGameChallenge_5(pid,ty)
-                        elseif  flag == 6
-                            OpenGameChallenge_6(pid,ty)
-                        elseif  flag == 7
-                            OpenGameChallenge_7(pid,ty)
-                        elseif  flag == 8
-                            OpenGameChallenge_8(pid,ty)
-                        endif
-                        ClosePlotFrame(pid)
+                    else    
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r当前正在挑战副本！！！")
                     endif
-                else    
-                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r当前正在挑战副本！！！")
                 endif
+            else    
+                DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r该副本未解锁！！！")
             endif
-        else    
-            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r该副本未解锁！！！")
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[副本]：|r当前无法进行副本传送！！！")
         endif
     endfunction
 

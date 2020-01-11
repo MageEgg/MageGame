@@ -46,6 +46,7 @@ library AttackUnit uses DamageCode
     #define CrazyAttackBool             AttackUnitBool[1]       //疯狂
     #define AttackGroupNumBool          AttackUnitBool[2]       //单位组数量
     #define InfiniteAttackBool          AttackUnitBool[5]       //无尽
+    #define IsChangeGodStage            AttackUnitBool[6]       //封神台
     
     #define AttackUnitWinBool           AttackUnitBool[20]      //胜利
     
@@ -494,6 +495,10 @@ library AttackUnit uses DamageCode
         else
             if  AttackUnitWN >= AttackUnitWNOver - 3
                 AttackTimerUIText = "最终大决战"
+                if  IsChangeGodStage == false
+                    IsChangeGodStage = true
+                    CreateChangeGodStage.execute(AttackUnitNextTime[i])
+                endif
             else
                 AttackTimerUIText = "进攻第"+I2S(AttackUnitWN+1)+"波"
             endif

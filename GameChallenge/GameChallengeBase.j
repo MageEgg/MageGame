@@ -91,6 +91,68 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             end
             SetUnitRealState(GameChallengLeagueUnit(num),1,value)*/
 
+    function OpenChangeGodStageA()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                UnitRemoveAbility(Pu[1],'Avul')
+                PlayerReviveX = -1344
+                PlayerReviveY = -7136
+                SendPlayerUnit(pid,OriginalDefendX+350*Cos(45*pid*0.01745),PlayerReviveY+350*Cos(45*pid*0.01745))
+            endif
+        end
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+    endfunction
+
+    function OpenChangeGodStage()
+        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+        KillAttackUnitGroup()
+        ShowBossDamageUI(false)
+        PanCameraToTimed(-1664,-7440,0)
+        RemoveUnit(GameDefendUnit)
+        GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
+        OriginalDefendX = GetUnitX(GameDefendUnit)
+        OriginalDefendY = GetUnitY(GameDefendUnit)
+        EXSetUnitMoveType(GameDefendUnit,0x01)
+        SetUnitAnimation(GameDefendUnit,"stand 3")
+        LocAddEffectSetSize(OriginalDefendX,OriginalDefendY,"effect_shengguang.mdx",5)
+        for pid = 0,3
+            if  IsPlaying(pid) == true  
+                UnitAddAbility(Pu[1],'Avul')
+                UnitAddAbility(Pu[1],'AZ02')
+            endif
+        end
+        TimerStart(1,false)
+        {
+            if  GameLevel < 3
+                ExecuteFunc("OpenChangeGodStageA")
+            elses
+                ExecuteFunc("OpenChangeGodStageB")
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function CreateChangeGodStage(real time)
+        if  GameLevel < 3
+            time = time - 10
+        else
+            time = time - 20
+        endif
+        TimerStart(time,false)
+        {
+            ExecuteFunc("OpenChangeGodStage")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function SetPlayerLeagueState(int num,bool b)
         int t = 1
         if  b == false

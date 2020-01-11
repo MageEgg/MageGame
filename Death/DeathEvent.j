@@ -67,11 +67,7 @@ scope DeathEvent initializer InitDeathEvent
         if  GameOverBoolJu == false
             //BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
             ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
-            if  Player(pid)==GetLocalPlayer()
-                ClearSelection()
-                SelectUnit(Pu[1],true)
-                PanCameraToTimed(GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
-            endif
+            SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
             PlayerDeathBool = false
         endif
         DestroyTimerDialog(Pdia[0])

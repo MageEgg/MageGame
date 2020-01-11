@@ -80,12 +80,14 @@ library CreateOpera uses DamageCode
                 if  time < 4
                     AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
                     AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
+                    if  time == 3
+                        ShowBossDamageUI(false)
+                        ShowBossDamageStringNianShou()
+                    endif
                 endif
             else
                 AttackUnitOperaBoss = null
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-                ShowBossDamageUI(false)
-                ShowBossDamageStringNianShou()
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ02')
@@ -119,7 +121,6 @@ library CreateOpera uses DamageCode
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         PanCameraToTimed(1685,-3104,0)
         OpenAttackShowUI("UI_AttackShow_2.tga",0.5)
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_A)
         TimerStart(1,false)
         {
             ExecuteFunc("CreateOperaA2")
@@ -152,6 +153,7 @@ library CreateOpera uses DamageCode
                 UnitAddAbility(Pu[1],'AZ02')
             endif
         end
+        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_A)
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
         TimerStart(1.0,false)
@@ -209,14 +211,6 @@ library CreateOpera uses DamageCode
                 if  GameLevel == 1 and GameOverBoolJu == false
                     AttackUnitWin()
                 else
-                    /*RemoveUnit(GameDefendUnit)
-                    GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
-                    OriginalDefendX = GetUnitX(GameDefendUnit)
-                    OriginalDefendY = GetUnitY(GameDefendUnit)
-                    EXSetUnitMoveType(GameDefendUnit,0x01)
-                    PlayerReviveX = -1664
-                    PlayerReviveY = -6960
-                    */
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
                     ShowBossDamageUI(false)
                     ShowBossDamageString()
@@ -288,7 +282,6 @@ library CreateOpera uses DamageCode
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         PanCameraToTimed(2795,26,0)
         OpenAttackShowUI("UI_AttackShow_3.tga",0.5)
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_B)
         TimerStart(1,false)
         {
             ExecuteFunc("CreateOperaB2")
@@ -336,7 +329,7 @@ library CreateOpera uses DamageCode
                 UnitAddAbility(Pu[1],'AZ02')
             endif
         end
-        
+        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_B)
         AttackOperaGroup_B_1 = CreateGroup()
         
         u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np00',1800,-960,45)
@@ -557,7 +550,6 @@ library CreateOpera uses DamageCode
         RemoveUnit(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e003',-100000,-100000,0))
         PanCameraToTimed(GetRectCenterX(gg_rct_AttackOpera_C),GetRectCenterY(gg_rct_AttackOpera_C),0)
         OpenAttackShowUI("UI_AttackShow_4.tga",0.5)
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_C)
         TimerStart(1,false)
         {
             ExecuteFunc("CreateOperaC2")
@@ -594,6 +586,7 @@ library CreateOpera uses DamageCode
                 UnitAddAbility(Pu[1],'AZ02')
             endif
         end
+        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_C)
         AttackOperaGroup_C_1 = CreateGroup()
         fire = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e002',4620,-2840,0)
         GroupAddUnit(AttackOperaGroup_C_1,fire)
