@@ -47,49 +47,46 @@ scope ItemSystem initializer InitItemSystem
         int index = 0
         
         if  next > 0
-            
-            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
-                
-                if  uid > 0
-                    if  IsCanMoveToRoom(pid) == true
-                        index = GetEquipIndex(id)
-                        if  index != 0
-                            if  GetUnitTypeId(Pu[100+index]) == 0
-                                AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+            if  IsCanMoveToRoom(pid) == true
+                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
+                    if  uid > 0
+                            index = GetEquipIndex(id)
+                            if  index != 0
+                                if  GetUnitTypeId(Pu[100+index]) == 0
+                                    AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
 
-                                Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
-                                
-                                SetPlayerOnlyDamage(Pu[100+index],pid)
-                                IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
-                                HeroMoveToRoom(pid)
+                                    Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
+                                    
+                                    SetPlayerOnlyDamage(Pu[100+index],pid)
+                                    IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                                    HeroMoveToRoom(pid)
 
-                            else
-                                HeroMoveToRoom(pid)
-                                if  id >= 'E001' and id <= 'E025'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
-                                elseif  id >= 'E101' and id <= 'E125'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
-                                elseif  id >= 'E201' and id <= 'E225'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
+                                else
+                                    HeroMoveToRoom(pid)
+                                    if  id >= 'E001' and id <= 'E025'
+                                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
+                                    elseif  id >= 'E101' and id <= 'E125'
+                                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
+                                    elseif  id >= 'E201' and id <= 'E225'
+                                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
+                                    endif
                                 endif
                             endif
-                        endif
-                    else   
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前无法升级装备")
+                    else
+                        AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                        RemoveItem(it)
+                        UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
+                        UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
                     endif
                 else
-                    AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                    RemoveItem(it)
-                    UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
+                    
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
                 endif
-            else
-                
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级失败！金币不足"+I2S(gold))
+            else   
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前无法升级装备")
             endif
-            
         else    
             BJDebugMsg("next"+I2S(next))
         endif
