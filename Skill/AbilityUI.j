@@ -323,6 +323,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     
     function HeroRemoveAbilityByIndex (unit wu,int index)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         RemAbilityState(wu,GetUnitIntState(wu,110+index))
         SetUnitIntState(wu,110+index,0)
         SetUnitIntState(wu,120+index,0)
