@@ -175,6 +175,39 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
         return name
     endfunction
+    function GetSkillNameEx(int id,int index)->string
+        int color = GetTypeIdData(id,101)
+        string name = GetSkillNameColor(color)+GetTypeIdString(id,100)+StateName[300+index]
+        if  color == 0
+            name = name + "\nEx级"
+        elseif  color == 1
+            name = name + "\nS级"
+        elseif  color == 2
+            name = name + "\nA级"
+        elseif  color == 3
+            name = name + "\nB级"
+        elseif  color == 4
+            name = name + "\nC级"
+        elseif  color == 5
+            name = name + "\nC-级"
+        elseif  color == 6
+            name = name + "\nD+级"
+        elseif  color == 7
+            name = name + "\nD级"
+        elseif  color == 8
+            name = name + "\nD-级"
+        endif
+        
+        
+        if  GetTypeIdData(id,100) == 1
+            if  color != 9
+                name = name + " |r被动"
+            endif
+        else
+            name = name + " |r主动"
+        endif
+        return name
+    endfunction
     
     
     
@@ -202,9 +235,9 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 YDWESetUnitAbilityDataString(wu, sid1,1, 204, GetTypeIdString(id,101))
                 YDWESetUnitAbilityDataString(wu, sid2,1, 204, GetTypeIdString(id,101))
                 YDWESetUnitAbilityDataString(wu, sid3,1, 204, GetTypeIdString(id,101))
-                YDWESetUnitAbilityDataString(wu, sid1,Type, 215, GetSkillName(id) )
-                YDWESetUnitAbilityDataString(wu, sid2,Type, 215, GetSkillName(id) )
-                YDWESetUnitAbilityDataString(wu, sid3,Type, 215, GetSkillName(id) )
+                YDWESetUnitAbilityDataString(wu, sid1,Type, 215, GetSkillNameEx(id,index) )
+                YDWESetUnitAbilityDataString(wu, sid2,Type, 215, GetSkillNameEx(id,index) )
+                YDWESetUnitAbilityDataString(wu, sid3,Type, 215, GetSkillNameEx(id,index) )
                 
                 
                 

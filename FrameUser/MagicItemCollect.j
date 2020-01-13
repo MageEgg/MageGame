@@ -855,7 +855,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         SetUnitIntState(wu,'FC43',1)
         TimerStart(15,false)
         {
-            SetUnitIntState(u1,'FC43',1)
+            SetUnitIntState(u1,'FC43',0)
             endtimer
             flush locals
         }
