@@ -41,7 +41,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
         group g1=CreateGroup()
         TimerStart(1,true)
         {
-                 
+
             if  GetUnitState(summon, UNIT_STATE_LIFE) > 0
                 x=GetUnitX(summon)
                 y=GetUnitY(summon)

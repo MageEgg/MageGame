@@ -417,8 +417,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS065(unit u1,real x,real y,real damage)//造成伤害三秒内法穿+15%
+    function SpellS065(unit u1,real damage)//造成伤害三秒内法穿+15%
         unit u=u1
+        real x=GetUnitX(u)
+        real y=GetUnitY(u)
         IndexGroup g = IndexGroup.create()
         AddUnitStateExTimer(u,14,15,3)
         DestroyEffect(AddSpecialEffect("effect_zi-fazhen.mdl",x,y))
@@ -611,34 +613,118 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     
 
     function SpellS078(unit u2,real x1,real y1,real damage1)
-        /*unit u=u2
+        unit u=u2
         real damage=damage1 
         real m=3+(GetUnitAttack(u)/30000)
         real x=x1
         real y=y1
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
-        LocAddEffectTimer(x,y,"effect_az_axe_x.mdl",m)
-        伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
-        TimerStart(m,false)
-        {   
-            EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*m,"effect_az_tormentedsoul_t1.mdl")
-            endtimer
-            flush locals
-        }
-        flush locals*/
+        real time=0
+        integer aid=GetSpellAbilityId()
+        string tb=YDWEGetUnitAbilityDataString(u, aid,3, 204)
+        if LoadInteger(ht,GetHandleId(u),'S078')==1
+            SaveInteger(ht,GetHandleId(u),'S078',2)
+        endif
+    //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
+        if  LoadInteger(ht,GetHandleId(u),'S078')==0
+            SaveInteger(ht,GetHandleId(u),'S078',1)
+            SetUnitAbilityLevel(u,aid,2)
+            YDWESetUnitAbilityDataString(u, aid, 2, 218,"点击二段，提前让陨石坠落")
+            YDWESetUnitAbilityDataString(u, aid, 2, 204,tb)
+            YDWESetUnitAbilityDataString(u, aid, 2, 215,"彗星灭世-二段")
+            effect tx=AddSpecialEffect("effect_az_axe_x.mdl",x,y)
+            TimerStart(0.1,true)
+            {   
+                time=time+0.1
+                if  time>m  or  LoadInteger(ht,GetHandleId(u),'S078')==2
+                    SaveInteger(ht,GetHandleId(u),'S078',0)
+                    SetUnitAbilityLevel(u,aid,3)
+                    DestroyEffect(tx)
+                    EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*time,"effect_az_tormentedsoul_t1.mdl")
+                    SetAbilityCD_AG(u,aid,8)
+                    endtimer
+                    flush locals
+                endif
+            }
+        endif
+        flush locals
     endfunction
 
-  /*  function SpellS079(unit u2,real x1,real y1,real damage1)
-        unit u=u1
-        IndexGroup g = IndexGroup.create()
-        AddUnitStateExTimer(u,14,15,3)
-        DestroyEffect(AddSpecialEffect("effect_zi-fazhen.mdl",x,y))
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        g.destroy()
-        u = null
-    endfunction*/
+    function SpellS079Attack(unit u2,unit mj1,real x1,real y1,real damage1)
+        unit u=u2
+        unit mj=mj1
+        real damage=damage1 
+        real x=GetUnitX(mj)
+        real y=GetUnitY(mj)
+        real ang=Pang(x,y,x1,y1)
+        group g=CreateGroup()
+        group wg=CreateGroup()
+        real t=0
+
+        TimerStart(0.1,true)
+        {
+            t=t+1
+            if  t<=3
+                x=x+(300*Cos(ang))
+                y=y+(300*Sin(ang))
+                GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),wg,""))
+                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                DestroyEffect(AddSpecialEffect("effect_az_kaer_t1.mdl",x,y))
+            else
+                RemoveUnit(mj)
+                DestroyGroup(g)
+                DestroyGroup(wg)
+                endtimer
+                flush locals
+            endif
+        }
+        flush locals
+    endfunction
+
+    function SpellS079(unit u2,real x1,real y1,real damage1)
+        unit u=u2
+        real damage=damage1 
+        real m=3+(GetUnitAttack(u)/30000)
+        real x=x1
+        real y=y1
+        real x0=GetUnitX(u)
+        real y0=GetUnitY(u)
+        real time=0
+        integer aid=GetSpellAbilityId()
+        string tb=YDWEGetUnitAbilityDataString(u, aid,3, 204)
+        if LoadInteger(ht,GetHandleId(u),'S079')==1
+            SaveInteger(ht,GetHandleId(u),'S079',2)
+        endif
+        if  LoadInteger(ht,GetHandleId(u),'S079')==0
+            SaveInteger(ht,GetHandleId(u),'S079',1)
+            string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
+            unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),Pang(x0, y0, x,y)/0.01745,0,1)
+
+            SetUnitVertexColor( mj, 20, 20, 50, 100 )
+            SetUnitAbilityLevel(u,aid,2)
+            YDWESetUnitAbilityDataString(u, aid, 2, 218,"点击提前结束蓄力")
+            YDWESetUnitAbilityDataString(u, aid, 2, 204,tb)
+            YDWESetUnitAbilityDataString(u, aid, 2, 215,"龙神陨光-二段")
+            effect tx=AddSpecialEffect("A_yujing_boss_linegreen.mdx",x0,y0)
+            EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
+            TimerStart(0.1,true)
+            {   
+                time=time+0.1
+                if  time>m or LoadInteger(ht,GetHandleId(u),'S079')==2
+                    SaveInteger(ht,GetHandleId(u),'S079',0)
+                    SetUnitAbilityLevel(u,aid,3)
+                    DestroyEffect(tx)
+                    SpellS079Attack(u,mj,x,y,damage*(time+1))
+                    SetUnitAnimation( mj, "Attack" )
+                    SetAbilityCD_AG(u,aid,8)
+                    endtimer
+                    flush locals
+                endif
+            }
+        endif
+        flush locals
+    endfunction
 
     function SpellS080(unit u2,real x1,real y1,real damage1)
         unit u=u2
@@ -986,7 +1072,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=0
         real y=0
         unit mj=null
-        for i=1,3
+        for i=1,1
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
             mj=CreateTmUnit(GetOwningPlayer(u),"effect_BlackworksDragonHead3.mdl",x,y,GetRandomReal(-3.14,3.14),10,1)
@@ -1316,18 +1402,27 @@ function SpellS116(unit u1,real damage1)
         flush locals
     endfunction
 
-     function SpellS120(unit u1,real damage)//憾地击
+     function SpellS120(unit u1,real damage1)//憾地击
         unit u=u1
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        IndexGroup g = IndexGroup.create()
-        AddUnitStateExTimer(u,13,15,3)
-        DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y))
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-        g.destroy()
-        u = null
-    endfunction
+        real damage=damage1
+        group g=CreateGroup()
+        DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
+        GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        if   Chance(u,40)
+            TimerStart(0.2,false)
+            {
+                DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y))
+                GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                endtimer
+                flush locals
+            }
+        endif
+        flush locals
+    endfunction 
 
     function SpellS123(unit u1,real damage1)
     unit u=u1
@@ -1352,8 +1447,10 @@ function SpellS116(unit u1,real damage1)
             g.destroy()
         else
             endtimer
+            flush locals
         endif    
     }
+    flush locals
     endfunction
 
 
@@ -1709,7 +1806,7 @@ endfunction
             elseif  id== 'S053'
                 SpellS053(u1.u,damage)
             elseif  id== 'S065'
-                SpellS065(u1.u,sx,sy,damage)
+                SpellS065(u1.u,damage)
             elseif  id== 'S070'
                 SpellS070(u1.u,sx,sy,damage)
             elseif  id== 'S073'
@@ -1718,6 +1815,8 @@ endfunction
                 SpellS074(u1.u,sx,sy,damage)
             elseif  id== 'S078'
                 SpellS078(u1.u,sx,sy,damage)
+            elseif  id== 'S079'
+                SpellS079(u1.u,sx,sy,damage)
             elseif  id== 'S080'
                 SpellS080(u1.u,sx,sy,damage)
             elseif  id== 'S081'    
@@ -1754,7 +1853,8 @@ endfunction
                 SpellS115(u1.u,sx,sy,damage)
             elseif  id== 'S116'    
                 SpellS116(u1.u,damage)
-
+            elseif  id== 'S120'    
+                SpellS120(u1.u,damage)
             elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
             elseif  id== 'S124'    

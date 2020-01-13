@@ -36,6 +36,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
+    #define GameTeamChallengeInt(num)       GameChallengOperaWay[50+num]
+
     #define UnitAPOfPlayer  0
 
 
@@ -370,6 +372,44 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         end
     endfunction
 
+    function GetCanUsesGameTeamChallengUnitID()->int
+        for num = 200,300
+            if  GameTeamChallengUnit(num) == null
+                return num
+            endif
+        end
+        return 0
+    endfunction
+
+    function GameTeamChallengCanUsesUnitFlush()
+        for num = 10,20
+            if  GameTeamChallengUnit(num) != null
+                FlushChildHashtable(ht,GetHandleId(GameTeamChallengUnit(num)))
+                RemoveUnit(GameTeamChallengUnit(num))
+                GameTeamChallengUnit(num) = null
+            endif
+        end
+        for num = 200,300
+            if  GameTeamChallengUnit(num) != null
+                FlushChildHashtable(ht,GetHandleId(GameTeamChallengUnit(num)))
+                RemoveUnit(GameTeamChallengUnit(num))
+                GameTeamChallengUnit(num) = null
+            endif
+        end
+    endfunction
+
+    function UnitAddEffectOfNPC(unit u)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx")
+        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
+    endfunction
+
+    function CreateUsesGameTeamChalleng(int num,int uid,real x,real y,real ang)
+        //BJDebugMsg(I2S(num))
+        GameTeamChallengUnit(num) = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,ang)
+        SetUnitRealState(GameTeamChallengUnit(num),99,num)
+        UnitAddEffectOfNPC(GameTeamChallengUnit(num))
+    endfunction
+
     
     function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
         //BJDebugMsg(I2S(num))
@@ -515,11 +555,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         TriggerAddAction(tig, actionFunc)
         tig = null
         u = null
-    endfunction
-
-    function UnitAddEffectOfNPC(unit u)
-        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx")
-        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
     endfunction
 
 endlibrary
