@@ -417,8 +417,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS065(unit u1,real x,real y,real damage)//造成伤害三秒内法穿+15%
+    function SpellS065(unit u1,real damage)//造成伤害三秒内法穿+15%
         unit u=u1
+        real x=GetUnitX(u)
+        real y=GetUnitY(u)
         IndexGroup g = IndexGroup.create()
         AddUnitStateExTimer(u,14,15,3)
         DestroyEffect(AddSpecialEffect("effect_zi-fazhen.mdl",x,y))
@@ -1804,7 +1806,7 @@ endfunction
             elseif  id== 'S053'
                 SpellS053(u1.u,damage)
             elseif  id== 'S065'
-                SpellS065(u1.u,sx,sy,damage)
+                SpellS065(u1.u,damage)
             elseif  id== 'S070'
                 SpellS070(u1.u,sx,sy,damage)
             elseif  id== 'S073'
