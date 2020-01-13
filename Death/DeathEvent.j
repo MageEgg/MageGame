@@ -68,12 +68,17 @@ scope DeathEvent initializer InitDeathEvent
             //BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
             ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+            AddUnitStateExTimer(Pu[1],11,100,2)
             PlayerDeathBool = false
         endif
         DestroyTimerDialog(Pdia[0])
         PauseTimer(GetExpiredTimer())
         DestroyTimer(GetExpiredTimer())
     endfunction
+
+
+
+
     function RevivePlayerHero(int pid)
         timer wt = CreateTimer()
         PlayerDeathBool = true
@@ -226,7 +231,6 @@ scope DeathEvent initializer InitDeathEvent
         endif
     endfunction
 
-            
     function CreateNewForg(int id1,int id2)
         int pid = id1
         int uid = id2
@@ -234,12 +238,43 @@ scope DeathEvent initializer InitDeathEvent
         {
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512,225)
             SetPlayerOnlyDamage(Pu[120],pid)
+            UnitAddAbility(Pu[120],'Awan')
             //LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
             endtimer
             flush locals
         }
         flush locals
     endfunction
+
+    function ForgKillTimer(unit wu)
+        unit u1 = wu
+        int id = GetUnitTypeId(u1)
+        SetUnitOwner(u1,Player(PLAYER_NEUTRAL_AGGRESSIVE),false)
+        TimerStart(20,false)
+        {
+            int pid = GetUnitAbilityLevel(u1,'AZ99')
+
+            if  pid > 0
+                if  GetUnitTypeId(u1) == id
+                    if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
+                        pid = pid - 1
+                        SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
+                        SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾偷偷逃跑了！")
+                        SetUnitPosition(u1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512)
+                        if  Pu[6] == u1
+                            Pu[6] = null
+                        endif
+                    endif
+                endif
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    
     
 
     //星辰阵
@@ -249,20 +284,32 @@ scope DeathEvent initializer InitDeathEvent
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+            if  num < 23
+                AttackRoomXCNum = AttackRoomXCNum + 1
+            endif
         else
             if  AttackRoomXCUnitNum <= 0
                 CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                if  num < 23
+                    AttackRoomXCNum = AttackRoomXCNum + 1
+                endif
             endif
         endif
-    endfunction
 
+        
+    endfunction
+    
+   
+
+    
 
     function HeroKillMoster(unit wu,unit tu)
         //wu是凶手 tu是死亡单位
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = GetUnitTypeId(tu)
         int value = 0
-        
+        real x = AttackRoomPostion[pid][1] 
+        real y = AttackRoomPostion[pid][2] 
         
         
         if  uid >= 'uE01' and uid <= 'uE99'
@@ -272,6 +319,10 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u001' and uid <= 'u004'
             AddUnitRealState(Pu[1],41,80)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾挑战成功！金币加成+80%")
+            if  uid == 'u001'//占星NPC
+                Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
+                UnitAddEffectOfNPC(Pu[28])
+            endif
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾它老豆生气了！30秒来找你报仇！")

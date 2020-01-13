@@ -242,8 +242,8 @@ library GameChallenge5 uses GameChallengeBase
                         num = GetCanUsesGameChallengUnitID(pid)
                         if  num != 0
                             unitcos[k] = num
-                            x1 = x + GetRandomReal(-350,350)
-                            y1 = y + GetRandomReal(-350,350)
+                            x1 = x + GetRandomReal(-150,150)
+                            y1 = y + GetRandomReal(-150,150)
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf51',x1,y1,Atan2(GetUnitY(Pu[1])-y1,GetUnitX(Pu[1])-x1)/0.01745)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
@@ -277,8 +277,8 @@ library GameChallenge5 uses GameChallengeBase
                         num = GetCanUsesGameChallengUnitID(pid)
                         if  num != 0
                             unitcos[k] = num
-                            x1 = x + GetRandomReal(-350,350)
-                            y1 = y + GetRandomReal(-350,350)
+                            x1 = x + GetRandomReal(-150,150)
+                            y1 = y + GetRandomReal(-150,150)
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf52',x1,y1,Atan2(GetUnitY(Pu[1])-y1,GetUnitX(Pu[1])-x1)/0.01745)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
@@ -312,8 +312,8 @@ library GameChallenge5 uses GameChallengeBase
                         num = GetCanUsesGameChallengUnitID(pid)
                         if  num != 0
                             unitcos[k] = num
-                            x1 = x + GetRandomReal(-350,350)
-                            y1 = y + GetRandomReal(-350,350)
+                            x1 = x + GetRandomReal(-150,150)
+                            y1 = y + GetRandomReal(-150,150)
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf53',x1,y1,Atan2(GetUnitY(Pu[1])-y1,GetUnitX(Pu[1])-x1)/0.01745)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
@@ -323,8 +323,8 @@ library GameChallenge5 uses GameChallengeBase
                     num = GetCanUsesGameChallengUnitID(pid)
                     if  num != 0
                         unitcos[13] = num
-                        x1 = x + GetRandomReal(-350,350)
-                        y1 = y + GetRandomReal(-350,350)
+                        x1 = x + GetRandomReal(-150,150)
+                        y1 = y + GetRandomReal(-150,150)
                         CreateUsesGameChallengUnitExOfAng(pid,num,'uf54',x1,y1,Atan2(GetUnitY(Pu[1])-y1,GetUnitX(Pu[1])-x1)/0.01745)
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)

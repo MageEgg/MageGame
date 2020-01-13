@@ -1,4 +1,24 @@
 library SystemCodes uses ServerTime,Define1
+
+    //添加辅助技能 目标，id，时间
+    function UnitTimerAddSkillFunc()
+        timer t = GetExpiredTimer()
+        unit wu = LoadUnitHandle(ht,GetHandleId(t),1)
+        int i = LoadInteger(ht,GetHandleId(t),2)
+        UnitRemoveAbility(wu,i)
+        FlushChildHashtable(ht,GetHandleId(t))
+        DestroyTimer(t)
+        t = null
+        wu = null
+    endfunction
+    function UnitTimerAddSkill(unit wu,int i,real time)
+        timer t = CreateTimer()
+        UnitAddAbility(wu,i)
+        SaveUnitHandle(ht,GetHandleId(t),1,wu)
+        SaveInteger(ht,GetHandleId(t),2,i)
+        TimerStart(t,time,false,function UnitTimerAddSkillFunc)
+        t = null
+    endfunction
     
     function GetPlayerNameOfColor(int pid)->string
         return "玩家<"+PlayerColor+GetPlayerName(Player(pid))+"|r>"
@@ -63,6 +83,9 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
+        if  GetUnitAbilityLevel(Pu[1],'AZ99') == 0
+            UnitTimerAddSkill(Pu[1],'AZ99',0.1)
+        endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
             if  GetLocalPlayer() == Player(pid)
@@ -86,6 +109,9 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
+        if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
+            UnitTimerAddSkill(Pu[1],'AZ98',0.1)
+        endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
             if  GetLocalPlayer() == Player(pid)

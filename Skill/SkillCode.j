@@ -84,26 +84,6 @@ library SkillCode uses System,State,DamageCode
          endfunction
          
     endscope
-
-    //添加辅助技能 目标，id，时间
-    function UnitTimerAddSkillFunc()
-        timer t = GetExpiredTimer()
-        unit wu = LoadUnitHandle(ht,GetHandleId(t),1)
-        int i = LoadInteger(ht,GetHandleId(t),2)
-        UnitRemoveAbility(wu,i)
-        FlushChildHashtable(ht,GetHandleId(t))
-        DestroyTimer(t)
-        t = null
-        wu = null
-    endfunction
-    function UnitTimerAddSkill(unit wu,int i,real time)
-        timer t = CreateTimer()
-        UnitAddAbility(wu,i)
-        SaveUnitHandle(ht,GetHandleId(t),1,wu)
-        SaveInteger(ht,GetHandleId(t),2,i)
-        TimerStart(t,time,false,function UnitTimerAddSkillFunc)
-        t = null
-    endfunction
     
     function UnitTimerAddSkillBuffFunc()
         timer t = GetExpiredTimer()

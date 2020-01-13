@@ -116,12 +116,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
             UnitAddEffectOfNPC(Pu[27])
+            
 
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+256,y+512,225)
+            UnitAddAbility(Pu[120],'Awan')
             UnitAddEffectOfNPC(Pu[120])
+            SetPlayerOnlyDamage(Pu[120],pid)
 
-            Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
-            UnitAddEffectOfNPC(Pu[28])
+            
         endif
     endfunction
     function SoulTimerFunc(int id,real x,real y)
@@ -219,24 +221,25 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int id = 'u0DA'+num
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        if  num < 23
-            AttackRoomXCNum = AttackRoomXCNum + 1
-        endif
+        
         if  num == 5 or num == 11 or num == 17 or num == 23
             AttackRoomXCUnitNum = 1
             bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+            UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
             bj_lastCreatedUnit = null
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(id)+"来临！！")
         else
             AttackRoomXCUnitNum = 4
             for i = 1,4
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
-                
+                UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
                 bj_lastCreatedUnit = null
             end
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r第"+I2S(num+1)+"波星宿之灵来临！")
         endif
     endfunction
 
@@ -394,10 +397,10 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 //////////////////团本分割/////////////////////
                 GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np10',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
                 GameChallengPlayerUnit[pid][91] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
-                DzSetUnitModel(GameChallengPlayerUnit[pid][81],"effect2_tx-yuzhou.mdl")
+                DzSetUnitModel(GameChallengPlayerUnit[pid][91],"effect2_tx-yuzhou.mdl")
                 CreateTrigUnitInRange(GetUnitX(GameChallengPlayerUnit[pid][91]),GetUnitY(GameChallengPlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)
-                ShowUnit(GameChallengPlayerUnit[pid][90],false)
-                ShowUnit(GameChallengPlayerUnit[pid][91],false)
+                SetUnitVertexColor(GameChallengPlayerUnit[pid][90],255,255,255,0)
+                SetUnitVertexColor(GameChallengPlayerUnit[pid][91],255,255,255,0)
             endif
         end
         

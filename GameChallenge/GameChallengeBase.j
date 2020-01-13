@@ -36,6 +36,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
+    #define GameTeamChallengeInt(num)       GameChallengOperaWay[50+num]
+
     #define UnitAPOfPlayer  0
 
 
@@ -149,7 +151,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cff00ff00加入友军作战！|r")
                     RemoveUnit(GameChallengLeagueUnit(num))
                     GameChallengLeagueUnit(num) = CreateUnit(Player(9),'md00'+num,ex,ey,ang)
-                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md10'+num)
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
                     SetUnitRealState(GameChallengLeagueUnit(num),3,GetUnitRealState(GameChallengLeagueUnit(num),3)/2)
                     SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),1)*30)
                     UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
@@ -161,7 +163,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cffff0000加入敌军作战！|r")
                     RemoveUnit(GameChallengLeagueUnit(num))
                     GameChallengLeagueUnit(num) = CreateUnit(Player(11),'md00'+num,ex,ey,ang)
-                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md10'+num)
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
                     UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
                     UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
@@ -370,6 +372,48 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         end
     endfunction
 
+    function GetCanUsesGameTeamChallengUnitID()->int
+        for num = 200,300
+            if  GameTeamChallengUnit(num) == null
+                return num
+            endif
+        end
+        return 0
+    endfunction
+
+    function GameTeamChallengCanUsesUnitFlushEx()
+        for num = 10,20
+            if  GameTeamChallengUnit(num) != null
+                FlushChildHashtable(ht,GetHandleId(GameTeamChallengUnit(num)))
+                RemoveUnit(GameTeamChallengUnit(num))
+                GameTeamChallengUnit(num) = null
+            endif
+        end
+    endfunction
+
+    function GameTeamChallengCanUsesUnitFlush()
+        GameTeamChallengCanUsesUnitFlushEx()
+        for num = 200,300
+            if  GameTeamChallengUnit(num) != null
+                FlushChildHashtable(ht,GetHandleId(GameTeamChallengUnit(num)))
+                RemoveUnit(GameTeamChallengUnit(num))
+                GameTeamChallengUnit(num) = null
+            endif
+        end
+    endfunction
+
+    function UnitAddEffectOfNPC(unit u)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx")
+        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
+    endfunction
+
+    function CreateUsesGameTeamChalleng(int num,int uid,real x,real y,real ang)
+        //BJDebugMsg(I2S(num))
+        GameTeamChallengUnit(num) = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,ang)
+        SetUnitRealState(GameTeamChallengUnit(num),99,num)
+        UnitAddEffectOfNPC(GameTeamChallengUnit(num))
+    endfunction
+
     
     function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
         //BJDebugMsg(I2S(num))
@@ -515,11 +559,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         TriggerAddAction(tig, actionFunc)
         tig = null
         u = null
-    endfunction
-
-    function UnitAddEffectOfNPC(unit u)
-        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx")
-        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
     endfunction
 
 endlibrary
