@@ -216,24 +216,26 @@ library GameChallenge3 uses GameChallengeBase
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
+        unit u2 = CreateTmUnit(Player(pid),"Unit_FeiMa.mdl",x1,y1,ang/0.01745,0,1.2)
+        ShowUnitOfOnlyPlayer(pid,u2,UnitAPOfPlayer)
         SetUnitFacing(u1,ang/0.01745)
-        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
-        SetUnitVertexColor(u1,255,255,255,0)
+        UnitAddAbility(u1,'Amrf')
+        SetUnitFlyHeight(u1,60,0)
+        UnitRemoveAbility(u1,'Amrf')
+        LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdl",1)
+        SetUnitAnimation(u2,"walk")
         TimerStart(0.03,true)
         {
             time = time - 1
             if  time > 0 and IsPlayerInChallenge == true
                 x1 = x1 + xx
                 y1 = y1 + yy
-                SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
-                SetUnitAnimation(u1,"walk")
-                //if  ModuloInteger(time,2) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
-                //endif
+                SetUnitPosition(u2,x1,y1)
             else
-                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
-                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
+                LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdl",1)
+                SetUnitFlyHeight(u1,0,100000)
+                RemoveUnit(u2)
                 OpenGameChallenge_3_SMJTimer(pid)
                 endtimer
             endif
@@ -268,24 +270,26 @@ library GameChallenge3 uses GameChallengeBase
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
+        unit u2 = CreateTmUnit(Player(pid),"Unit_FeiMa.mdl",x1,y1,ang/0.01745,0,1.2)
+        ShowUnitOfOnlyPlayer(pid,u2,UnitAPOfPlayer)
         SetUnitFacing(u1,ang/0.01745)
-        LocAddEffectSetSize(x1,y1,"effect_blue-guagnzhu-special.mdx",1)
-        SetUnitVertexColor(u1,255,255,255,0)
+        UnitAddAbility(u1,'Amrf')
+        SetUnitFlyHeight(u1,60,0)
+        UnitRemoveAbility(u1,'Amrf')
+        LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdl",1)
+        SetUnitAnimation(u2,"walk")
         TimerStart(0.03,true)
         {
             time = time - 1
             if  time > 0 and IsPlayerInChallenge == true
                 x1 = x1 + xx
                 y1 = y1 + yy
-                SetUnitFacing(u1,ang/0.01745)
                 SetUnitPosition(u1,x1,y1)
-                SetUnitAnimation(u1,"walk")
-                //if  ModuloInteger(time,2) == 0
-                    LocAddEffectSetSize(x1,y1,"effect_blue-blink2.mdx",2)
-                //endif
+                SetUnitPosition(u2,x1,y1)
             else
-                LocAddEffectSetSize(x1,y1,"effect_blue-chuansong.mdx",1)
-                ShowUnitOfOnlyPlayer(pid,u1,UnitAPOfPlayer)
+                LocAddEffectSetSize(x1,y1,"effect_white-qiquan-juhuang.mdl",1)
+                SetUnitFlyHeight(u1,0,100000)
+                RemoveUnit(u2)
                 SMJJumpTimer2(pid,u1)
                 endtimer
             endif

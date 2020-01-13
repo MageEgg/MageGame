@@ -114,6 +114,7 @@ library GameChallenge5 uses GameChallengeBase
         real y = GetUnitY(u1)
         int num = 0
         IssueImmediateOrderById(u1,851993)
+        SetUnitFaceOfUnit(u1,Pu[1])
         num = GetCanUsesGameChallengUnitID(pid)
         if  num != 0
             unitcos[100] = num
