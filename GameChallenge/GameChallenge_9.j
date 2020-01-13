@@ -1,26 +1,25 @@
 library GameChallenge9 uses GameChallengeBase
 
-    bool array GameTeamChallengeBool
-    
-
-
-
-
-
-
-
-
     function EnRctGameTeamChallengA()
         unit u1 = GetTriggerUnit()
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
-            if  GameTeamChallengeBool[0] == true
+            if  GameTeamChallengeBool[0] == true and GameTeamChallengeBool[1] == true
                 GameChallengBool[90] = true
                 SendPlayerUnit(pid,6432,3104)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r您已进入团队副本，请等待挑战开始！")
             endif
         endif
         flush locals
+    endfunction
+
+    function ShowGameTeamChallengeNPC()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                ShowUnit(GameChallengUnit[90],true)
+                UnitAddEffectOfNPC(GameChallengUnit[90])
+            endif
+        end
     endfunction
 
     function FlushGameTeamChallenge(int pid)

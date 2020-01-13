@@ -12,6 +12,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     unit array      GameChallengMapUnit
 
+    bool array      GameTeamChallengeBool
+
     #define GameChallengInt                 GameChallengPlayerInt[pid]
     #define GameChallengUnit                GameChallengPlayerUnit[pid]
     #define GameChallengBool                GameChallengPlayerBool[pid]
@@ -513,6 +515,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         TriggerAddAction(tig, actionFunc)
         tig = null
         u = null
+    endfunction
+
+    function UnitAddEffectOfNPC(unit u)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx")
+        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
     endfunction
 
 endlibrary
