@@ -249,6 +249,7 @@ library GameChallenge1 uses GameChallengeBase
                 if  GameChallengInt[10] < 20
                     SetUnitPosition(u1,GetRectCenterX(gg_rct_ChallengeRct_1_3),GetRectCenterY(gg_rct_ChallengeRct_1_3))
                     IssueImmediateOrderById(u1, 851993 )
+                    SetUnitFaceOfUnit(u1,Pu[1])
                 endif
             endif
         endif
@@ -265,6 +266,7 @@ library GameChallenge1 uses GameChallengeBase
             if  u1 == GameChallengUnit[19]
                 GameChallengBool[11] = true
                 IssueImmediateOrderById(u1, 851993 )
+                SetUnitFaceOfUnit(u1,Pu[1])
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
                     x = -4096
@@ -343,6 +345,7 @@ library GameChallenge1 uses GameChallengeBase
                 SetUnitPositionOfGameChalleng(GameChallengUnit[19],x,y)
                 SetPlayerTaskUIChatOfPlayer(pid,"雷震子","纣王今既放归我父王，为何又派你俩来追袭？反复无常，实在可恨！",0)
                 IssueImmediateOrderById(GameChallengUnit[19], 851993 )
+                SetUnitFaceOfUnit(GameChallengUnit[19],Pu[1])
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
                     x = -3744

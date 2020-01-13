@@ -175,6 +175,7 @@ library GameChallenge2 uses GameChallengeBase
                 y = 3168
                 SetUnitPositionOfGameChalleng(GameChallengUnit[29],x,y)
                 IssueImmediateOrderById(u1, 851993 )
+                SetUnitFaceOfUnit(u1,Pu[1])
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
                     x = GetUnitX(GameChallengUnit[20])
@@ -203,6 +204,7 @@ library GameChallenge2 uses GameChallengeBase
                 y = 4000
                 SetUnitPositionOfGameChalleng(GameChallengUnit[29],x,y)
                 IssueImmediateOrderById(u1, 851993 )
+                SetUnitFaceOfUnit(u1,Pu[1])
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
                     x = GetUnitX(GameChallengUnit[21])
