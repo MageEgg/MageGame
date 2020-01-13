@@ -80,8 +80,7 @@ scope SelectHero
     function ReHeroPrePareFunc(int pid,int id)
         if  IsPlaying(pid) == true
             
-            PlayerReviveX = -5120
-            PlayerReviveY = -2976
+            
 
             Pu[7] = Pu[1]
 

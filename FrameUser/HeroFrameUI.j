@@ -126,7 +126,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 endif
                 if  GetLocalPlayer() == Player(pid)
                     DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
-                    ExpName.SetText(GetTypeIdName('IJ51'+num))
+                    ExpName.SetText(GetTypeIdName('IJ5A'+num))
                 endif
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
             endif 
@@ -278,34 +278,40 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         
         Button2.frameid = FRAME.Tag("BUTTON","Hero",origin,Button2)
         Button2.SetPoint(0,origin,0,-0.165,0.0)
-        Button2.SetSize(0.1,0.008)
+        Button2.SetSize(0.1,0.01)
 
 
         
-        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00攻击：|r0%")
-        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00法强：|r0%")
-        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00生命：|r0%")
-        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00物穿：|r0%")
-        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00法穿：|r0%")
-        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00暴击：|r0%")
+        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00元神力：|r0")
+        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00攻击：|r0%")
+        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00法强：|r0%")
+        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00生命：|r0%")
+        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00物理伤害：|r0%")
+        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00法术伤害：|r0%")
         CreateText(167,origin,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
         
         
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
-        Back2.SetPoint(6,Button2.frameid,0,0.0,-0.01)
-        Back2.SetSize(0.09,0.1)
+        Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
+        Back2.SetSize(0.09,0.175)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,5
+        for i = 1,11
             CreateButton(167+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
 
-        CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
-        CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00减伤：|r0%")
-        CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00吸血：|r0%")
-        CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00增伤：|r0%")
-        CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r150%")
+        CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00增伤：|r0%")
+        CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴击：|r0%")
+        CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r0%")
+        CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00物穿：|r0%")
+        CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00法穿：|r0%")
+        CreateText(173,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00吸血：|r0%")
+        CreateText(174,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00减伤：|r0%")
+        CreateText(175,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
+        CreateText(176,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00致命概率：|r0%")
+        CreateText(177,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00致命倍率：|r0%")
+        CreateText(178,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00普攻伤害：|r0%")
 
 
         FrameSetScriptByExecute( Button2.frameid, 1,160,TYPE_FUNC)

@@ -13,7 +13,7 @@ library MagicItemCollectFrame uses GameFrame
     private FRAME Button = 0
     private FRAME Back = 0
 
-    
+    private FRAME BackSmall = 0
     
     private int origin = 0
 
@@ -25,6 +25,7 @@ library MagicItemCollectFrame uses GameFrame
 
         if  GetLocalPlayer() == Player(pid)
             Button.show = show
+            BackSmall.show = show == false
         endif
     
     endfunction
@@ -35,6 +36,7 @@ library MagicItemCollectFrame uses GameFrame
     function CloseCollectFrame(int pid)
         if  GetLocalPlayer() == Player(pid)
             Button.show = false
+            BackSmall.show = true
         endif
     endfunction
 
@@ -42,8 +44,10 @@ library MagicItemCollectFrame uses GameFrame
         if  GetLocalPlayer() == Player(pid)
             if  Button.show  == true
                 Button.show = false
+                BackSmall.show = true
             else
                 Button.show = true
+                BackSmall.show = false
             endif
         endif
     endfunction
@@ -97,6 +101,20 @@ library MagicItemCollectFrame uses GameFrame
         
     endfunction
 
+    function CreateMagicItemButton4()
+        int index = 0
+        
+        for y = 0,1
+            for x = 0,3
+                index = y*4+x+ 1 + 30
+                
+                CreateButton(index,BackSmall.frameid,TYPE_BUTTON,0,BackSmall.frameid,0,0.046+x*0.02,-0.0055-y*0.02,0.018,0.018,"war3mapImported\\UI_MagicItem_Button1.tga")
+                
+            end
+        end
+    endfunction
+    
+
 
 
     function MagicItemFrameInit()
@@ -104,6 +122,16 @@ library MagicItemCollectFrame uses GameFrame
 
         Button = FRAME.create() //背景注册
         Back = FRAME.create()   //注册主背景
+
+
+
+        BackSmall.frameid = FRAME.Tag("BACKDROP","Collect",GameUI,BackSmall)
+        BackSmall.SetPoint(0,GameUI,0,0.05,-0.027)
+        BackSmall.SetSize(0.13,0.048)
+        BackSmall.SetTexture("war3mapImported\\UI_MagicItem_SmallBack.tga",0)
+        //创建small按钮
+        CreateMagicItemButton4()
+
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Collect",GameUI,Button)
@@ -136,6 +164,8 @@ library MagicItemCollectFrame uses GameFrame
         CreateText(24,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
 
 
+
+        
 
 
         Button.show = false
@@ -428,9 +458,14 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             id = GetPlayerMagicItem(pid,index)
             if  id > 0
                 DzFrameSetTexture(BUTTON_Back[index][1],GetTypeIdIcon(id),0)
+                if  index <= 8
+                    DzFrameSetTexture(BUTTON_Back[30+index][1],GetTypeIdIcon(id),0)
+                endif
             else
                 DzFrameSetTexture(BUTTON_Back[index][1],"war3mapImported\\alpha.tga",0)
-
+                if  index <= 8
+                    DzFrameSetTexture(BUTTON_Back[30+index][1],"war3mapImported\\alpha.tga",0)
+                endif
             endif
         end
     endfunction
