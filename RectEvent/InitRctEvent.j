@@ -1,9 +1,43 @@
 scope InitRctEvent initializer InitRctEvent
     
     function OutLGF_1()
-        int pid = 0
+        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
+        if  pid == 0
+            SetUnitX(GetTriggerUnit(),x)
+            SetUnitY(GetTriggerUnit(),y)
+        endif
+
+    endfunction
+    function OutLGF_2()
+        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        if  pid == 1
+            SetUnitX(GetTriggerUnit(),x)
+            SetUnitY(GetTriggerUnit(),y)
+        endif
+
+    endfunction
+    function OutLGF_3()
+        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        if  pid == 2
+            SetUnitX(GetTriggerUnit(),x)
+            SetUnitY(GetTriggerUnit(),y)
+        endif
+
+    endfunction
+    function OutLGF_4()
+        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        if  pid == 3
+            SetUnitX(GetTriggerUnit(),x)
+            SetUnitY(GetTriggerUnit(),y)
+        endif
 
     endfunction
     
@@ -46,6 +80,10 @@ scope InitRctEvent initializer InitRctEvent
         
 
         InitRctEventFunc(gg_rct_LGF_1,false,function OutLGF_1)
+        InitRctEventFunc(gg_rct_LGF_2,false,function OutLGF_2)
+        InitRctEventFunc(gg_rct_LGF_3,false,function OutLGF_3)
+        InitRctEventFunc(gg_rct_LGF_4,false,function OutLGF_4)
+
 
       
     endfunction
