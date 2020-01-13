@@ -18,10 +18,14 @@ library GameChallenge9 uses GameChallengeBase
         if  flag == 1
             SetUnitVertexColor(GameTeamChallengUnit(0),255,255,255,255)
             SetUnitVertexColor(GameTeamChallengUnit(1),255,255,255,255)
+            UnitAddAbility(GameTeamChallengUnit(0),'AZ99')
+            UnitAddAbility(GameTeamChallengUnit(1),'AZ99')
             SetGameTeamChallengTimerText(GameTeamChallengUnit(0),GameTeamChallengUnit(1),time)
         elseif  flag == 2
             SetUnitVertexColor(GameTeamChallengUnit(2),255,255,255,255)
             SetUnitVertexColor(GameTeamChallengUnit(3),255,255,255,255)
+            UnitAddAbility(GameTeamChallengUnit(2),'AZ99')
+            UnitAddAbility(GameTeamChallengUnit(3),'AZ99')
             SetGameTeamChallengTimerText(GameTeamChallengUnit(2),GameTeamChallengUnit(3),time)
         endif
         TimerStart(1,true)
@@ -29,17 +33,29 @@ library GameChallenge9 uses GameChallengeBase
             time = time - 1
             if  time > 0
                 if  flag == 1
-                    SetGameTeamChallengTimerText(GameTeamChallengUnit(0),GameTeamChallengUnit(1),time)
+                    if  GetUnitAbilityLevel(GameTeamChallengUnit(0),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(1),'AZ99') > 0
+                        SetGameTeamChallengTimerText(GameTeamChallengUnit(0),GameTeamChallengUnit(1),time)
+                    else
+                        endtimer
+                    endif
                 elseif  flag == 2
-                    SetGameTeamChallengTimerText(GameTeamChallengUnit(2),GameTeamChallengUnit(3),time)
+                    if  GetUnitAbilityLevel(GameTeamChallengUnit(2),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(3),'AZ99') > 0
+                        SetGameTeamChallengTimerText(GameTeamChallengUnit(2),GameTeamChallengUnit(3),time)
+                    else
+                        endtimer
+                    endif
                 endif
             else    
                 if  flag == 1
                     SetUnitVertexColor(GameTeamChallengUnit(0),255,255,255,0)
                     SetUnitVertexColor(GameTeamChallengUnit(1),255,255,255,0)
+                    UnitRemoveAbility(GameTeamChallengUnit(0),'AZ99')
+                    UnitRemoveAbility(GameTeamChallengUnit(1),'AZ99')
                 elseif  flag == 2
                     SetUnitVertexColor(GameTeamChallengUnit(2),255,255,255,0)
                     SetUnitVertexColor(GameTeamChallengUnit(3),255,255,255,0)
+                    UnitRemoveAbility(GameTeamChallengUnit(2),'AZ99')
+                    UnitRemoveAbility(GameTeamChallengUnit(3),'AZ99')
                 endif
                 endtimer
             endif
@@ -52,20 +68,28 @@ library GameChallenge9 uses GameChallengeBase
         unit u1 = GetTriggerUnit()
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
-            if  GameTeamChallengeBool[0] == true and GameTeamChallengeBool[1] == true and GameTeamChallengeBool[2] == false
-                GameChallengBool[90] = true
-                SendPlayerUnit(pid,6432,3104)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r您已进入团队副本，请等待挑战开始！")
+            if  u1 == Pu[1]
+                if  GameTeamChallengeBool[0] == true and GameTeamChallengeBool[1] == true and GameTeamChallengeBool[2] == false
+                    GameChallengBool[90] = true
+                    SendPlayerUnit(pid,6432,3104)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r您已进入团队副本，请等待挑战开始！")
+                endif
             endif
         endif
         flush locals
     endfunction
+
+    
 
     function GameTeamChallengDeath(unit u2)
         int uid = GetUnitTypeId(u2)
         if  uid >= 'ut01' and uid <= 'ut04'
             GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
             GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
+            if  GameTeamChallengeInt(0) == 4
+                GameTeamChallengeInt(0) = 0
+
+            endif   
         endif
     endfunction
 
@@ -99,13 +123,12 @@ library GameChallenge9 uses GameChallengeBase
             CreateUsesGameTeamChalleng(12,'ut03',5344,1952,45)
             CreateUsesGameTeamChalleng(13,'ut04',7488,1984,135)
             OpenGameTeamChallengeTimer(60,1)
-
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     if  GameChallengBool[90] == true 
                         IsPlayerInTeamChallenge = true
                         SendPlayerUnit(pid,6432,3104)
-                        ShowHeroGetTask(pid)
+                        ShowPlayerTaskUIOfPlayer(pid,true,0.01)
                         SetPlayerTaskUIChatOfPlayer(pid,"通天教主","月缺难圆。今摆此万仙阵，必定见雌雄，以定一尊之位。今日万仙统会，以完劫数。",0.3)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff破太极四象阵|r",0.3)
                     endif
@@ -189,6 +212,10 @@ library GameChallenge9 uses GameChallengeBase
     endfunction
 
     function FlushGameTeamChallenge()
+        for num = 0,3
+            SetUnitVertexColor(GameTeamChallengUnit(num),255,255,255,0)
+            UnitRemoveAbility(GameTeamChallengUnit(num),'AZ99')
+        end
         GameTeamChallengCanUsesUnitFlush()
         GameTeamChallengeInt(0) = 0
         GameTeamChallengeBool[2] = false
@@ -209,13 +236,14 @@ library GameChallenge9 uses GameChallengeBase
     endfunction
 
     function InitGameChallenge_9()
-        GameTeamChallengUnit(0) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6339.000,3097.250,270)
-        GameTeamChallengUnit(1) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6494.000,3097.000,270)
-        GameTeamChallengUnit(2) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6490.750,6330.000,270)
-        GameTeamChallengUnit(3) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6645.750,6329.750,270)
+        GameTeamChallengUnit(0) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6340,3097,270)
+        GameTeamChallengUnit(1) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6495,3097,270)
+        GameTeamChallengUnit(2) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6490,6330,270)
+        GameTeamChallengUnit(3) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6645,6330,270)
         for num = 0,3
             SetUnitScale(GameTeamChallengUnit(num),9,9,9)
             SetUnitVertexColor(GameTeamChallengUnit(num),255,255,255,0)
+            SetUnitFlyHeight(GameTeamChallengUnit(num),10,10000)
         end
     endfunction
 
