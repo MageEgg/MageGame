@@ -63,6 +63,9 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
+        if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
+            UnitTimerAddSkill(Pu[1],'AZ98',0.3)
+        endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
             if  GetLocalPlayer() == Player(pid)

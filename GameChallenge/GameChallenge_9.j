@@ -1,5 +1,29 @@
 library GameChallenge9 uses GameChallengeBase
 
+    function FlushGameTeamChallenge()
+        for num = 0,3
+            SetUnitVertexColor(GameTeamChallengUnit(num),255,255,255,0)
+            UnitRemoveAbility(GameTeamChallengUnit(num),'AZ99')
+        end
+        GameTeamChallengCanUsesUnitFlush()
+        GameTeamChallengeInt(0) = 0
+        GameTeamChallengeBool[2] = false
+    endfunction
+
+    function FlushGameTeamChallengeOfPlayer(int pid,real time)
+        GameChallengBool[90] = false
+        IsPlayerInTeamChallenge = false
+        if  time == -1
+            PlayerTaskUI_Back.alpha = 0
+            PlayerTaskUI_Back.show = false
+        else
+            ShowPlayerTaskUIOfPlayer(pid,false,time)
+        endif
+        PlayerTaskUI_TaskText.SetText("")
+        PlayerTaskUI_ChatTextA.SetText("")
+        PlayerTaskUI_ChatTextB.SetText("")
+    endfunction
+
     function SetGameTeamChallengTimerText(unit wu,unit tu,int time)
         if  time >= 10
             s1 = SubString(I2S(time),0,1)
@@ -10,6 +34,28 @@ library GameChallenge9 uses GameChallengeBase
             DzSetUnitModel(wu,"UI_zhuatuzi0.mdl")
             DzSetUnitModel(tu,"UI_zhuatuzi"+I2S(time)+".mdl")
         endif
+    endfunction
+
+    function IsHasPlayerGoToTeamChalleng()->bool
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  GameChallengBool[90] == true 
+                    return true
+                endif
+            endif
+        end
+        return false
+    endfunction
+
+    function IsHasPlayerInTeamChalleng()->bool
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  IsPlayerInTeamChallenge == true 
+                    return true
+                endif
+            endif
+        end
+        return false
     endfunction
     
     function OpenGameTeamChallengeTimer(int t,int fl)
@@ -79,49 +125,113 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
-    
-
-    function GameTeamChallengDeath(unit u2)
-        int uid = GetUnitTypeId(u2)
-        if  uid >= 'ut01' and uid <= 'ut04'
-            GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
-            GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
-            if  GameTeamChallengeInt(0) == 4
-                GameTeamChallengeInt(0) = 0
-
-            endif   
-        endif
-    endfunction
-
-    function IsHasPlayerGoToTeamChalleng()->bool
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                if  GameChallengBool[90] == true 
-                    return true
-                endif
-            endif
-        end
-        return false
-    endfunction
-
-    function IsHasPlayerInTeamChalleng()->bool
+    function GameTeamChallengA_Opera3()
+        CreateUsesGameTeamChalleng(10,'ut05',6592,6368,270)
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  IsPlayerInTeamChallenge == true 
-                    return true
+                    SendPlayerUnit(pid,6592,6368)
+                    ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+                    SetPlayerTaskUIChatOfPlayer(pid,"通天教主","哼！万仙阵虽破，但你我四人必须决一雌雄！",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败通天教主分身|r",0)
                 endif
             endif
         end
-        return false
+    endfunction
+
+    function GameTeamChallengA_Opera2()
+        int num = 0
+        int time = 0
+        GameTeamChallengCanUsesUnitFlushEx()
+        SetUnitVertexColor(GameTeamChallengUnit(0),255,255,255,0)
+        SetUnitVertexColor(GameTeamChallengUnit(1),255,255,255,0)
+        UnitRemoveAbility(GameTeamChallengUnit(0),'AZ99')
+        UnitRemoveAbility(GameTeamChallengUnit(1),'AZ99')
+        OpenGameTeamChallengeTimer(60,2)
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  IsPlayerInTeamChallenge == true 
+                    SendPlayerUnit(pid,6592,6368)
+                    ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+                    SetPlayerTaskUIChatOfPlayer(pid,"通天教主","徒儿们，今天你们都没有余地了，都一起进入阵中，以会截教万仙，不得错过。",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀九曜二十八宿|r",0)
+                endif
+            endif
+        end
+        TimerStart(1,true)
+        {   
+            time = time + 1
+            if  IsHasPlayerGoToTeamChalleng() == true
+                if  time < 3 
+                    for n = 1,2
+                        num = GetCanUsesGameTeamChallengUnitID()
+                        if  num != 0
+                            CreateUsesGameTeamChalleng(num,'ut04',5792,7104,315)
+                            IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
+                        endif
+                        num = GetCanUsesGameTeamChallengUnitID()
+                        if  num != 0
+                            CreateUsesGameTeamChalleng(num,'ut04',7328,7104,315)
+                            IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
+                        endif
+                        num = GetCanUsesGameTeamChallengUnitID()
+                        if  num != 0
+                            CreateUsesGameTeamChalleng(num,'ut04',5760,5660,315)
+                            IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
+                        endif
+                        num = GetCanUsesGameTeamChallengUnitID()
+                        if  num != 0
+                            CreateUsesGameTeamChalleng(num,'ut04',7380,5660,315)
+                            IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
+                        endif
+                    end
+                else
+                    endtimer
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function GameTeamChallengDeath(unit u2)
+        int uid = GetUnitTypeId(u2)
+        if  uid >= 'ut00' and uid <= 'ut03'
+            GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
+            GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
+            if  GameTeamChallengeInt(0) == 4
+                GameTeamChallengeInt(0) = 5
+                ExecuteFunc("GameTeamChallengA_Opera2")
+            endif   
+        elseif  uid == 'ut04'
+            GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
+            GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
+            if  GameTeamChallengeInt(0) == 29
+                GameTeamChallengeInt(0) = 0
+                ExecuteFunc("GameTeamChallengA_Opera3")
+            endif   
+        elseif  uid == 'ut05'
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    if  IsPlayerInTeamChallenge == true 
+                        FlushGameTeamChallengeOfPlayer(pid,0)
+                    endif
+                endif
+            end
+            FlushGameTeamChallenge()
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r成功通过挑战！")
+        endif
     endfunction
 
     function GameTeamChallengA_Opera1()
         if  IsHasPlayerGoToTeamChalleng() == true
             GameTeamChallengeBool[2] = true
-            CreateUsesGameTeamChalleng(10,'ut01',5440,4288,315)
-            CreateUsesGameTeamChalleng(11,'ut02',7392,4256,225)
-            CreateUsesGameTeamChalleng(12,'ut03',5344,1952,45)
-            CreateUsesGameTeamChalleng(13,'ut04',7488,1984,135)
+            CreateUsesGameTeamChalleng(10,'ut00',5440,4288,315)
+            CreateUsesGameTeamChalleng(11,'ut01',7392,4256,225)
+            CreateUsesGameTeamChalleng(12,'ut02',5344,1952,45)
+            CreateUsesGameTeamChalleng(13,'ut03',7488,1984,135)
             OpenGameTeamChallengeTimer(60,1)
             for pid = 0,3
                 if  IsPlaying(pid) == true
@@ -209,30 +319,6 @@ library GameChallenge9 uses GameChallengeBase
             endif
         end
         BJDebugMsg("ShowGameTeamChallengeNPC")
-    endfunction
-
-    function FlushGameTeamChallenge()
-        for num = 0,3
-            SetUnitVertexColor(GameTeamChallengUnit(num),255,255,255,0)
-            UnitRemoveAbility(GameTeamChallengUnit(num),'AZ99')
-        end
-        GameTeamChallengCanUsesUnitFlush()
-        GameTeamChallengeInt(0) = 0
-        GameTeamChallengeBool[2] = false
-    endfunction
-
-    function FlushGameTeamChallengeOfPlayer(int pid,real time)
-        GameChallengBool[90] = false
-        IsPlayerInTeamChallenge = false
-        if  time == -1
-            PlayerTaskUI_Back.alpha = 0
-            PlayerTaskUI_Back.show = false
-        else
-            ShowPlayerTaskUIOfPlayer(pid,false,time)
-        endif
-        PlayerTaskUI_TaskText.SetText("")
-        PlayerTaskUI_ChatTextA.SetText("")
-        PlayerTaskUI_ChatTextB.SetText("")
     endfunction
 
     function InitGameChallenge_9()
