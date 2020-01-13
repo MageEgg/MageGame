@@ -252,20 +252,17 @@ scope AllTypeIdData initializer init
 
         
 
-        InitEquipData('IT01',0,0,0,0,0,0,-8155,-3943)
-        InitEquipData('IT02',0,0,0,0,0,0,-7872,-2816)
-        InitEquipData('IT03',0,0,0,0,0,0,-8048,-1563)
+        InitEquipData('IT01',0,0,0,0,0,0,-8086,-3245)
+        InitEquipData('IT02',0,0,0,0,0,0,-7991,-2312)
+        InitEquipData('IT03',0,0,0,0,0,0,-8089,-1230)
         InitEquipData('IT04',0,0,0,0,0,0,-7794,195)
         InitEquipData('IT05',0,0,0,0,0,0,-8110,1810)
         InitEquipData('IT06',0,0,0,0,0,0,-7896,3839)
         InitEquipData('IT07',0,0,0,0,0,0,-7896,5906)
         InitEquipData('IT08',0,0,0,0,0,0,-7970,7965)
         InitEquipData('IT09',0,0,0,0,0,0,2100,-5120)
-        InitEquipData('IT10',0,0,0,0,0,0,4814,-8830)
-        InitEquipData('IT11',0,0,0,0,0,0,7429,-8773)
-        InitEquipData('IT12',0,0,0,0,0,0,1840,-5224)
-        InitEquipData('IT13',0,0,0,0,0,0,4398,-5206)
-        InitEquipData('IT14',0,0,0,0,0,0,7548,-6605)
+        InitEquipData('IT10',0,0,0,0,0,0,2268,-8065)
+
         BJDebugMsg("init4end")
     endfunction
     function InitUnitKillGold()

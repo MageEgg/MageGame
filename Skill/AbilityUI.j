@@ -231,10 +231,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function PlayerHeorAddSkillMagic(int pid,int index,int id)
         int now = GetUnitIntState(Pu[1],125+index)
         if  now != 0
+            SetUnitIntState(Pu[1],125+index,0)
             SetEquipStateOfPlayer(Pu[1],now,-1)
         endif
-        SetUnitIntState(Pu[1],125+index,id)
-        SetEquipStateOfPlayer(Pu[1],id,1)
+        if  id != 0
+            SetUnitIntState(Pu[1],125+index,id)
+            SetEquipStateOfPlayer(Pu[1],id,1)
+        endif
         ReHeroAbilityTips(Pu[1],index)
     endfunction
     
@@ -320,9 +323,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     
     function HeroRemoveAbilityByIndex (unit wu,int index)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         RemAbilityState(wu,GetUnitIntState(wu,110+index))
         SetUnitIntState(wu,110+index,0)
         SetUnitIntState(wu,120+index,0)
+        PlayerHeorAddSkillMagic(pid,index,0)
         ReHeroAbilityTips(wu,index)
         DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能删除成功！")
     endfunction
