@@ -447,14 +447,14 @@ library SystemCodes uses ServerTime,Define1
     end
     
     func IsCanFlyRcet(real x,real y)->bool
-        rect rc = Rect(x - 100, y - 100, x + 100, y + 100)
+        rect rc = Rect(x - 120, y - 120, x + 120, y + 120)
         IsCanFlyNum = 0
         EnumDestructablesInRect(rc,null,function IsCanFlyRcetFunc)
         RemoveRect(rc)
         rc = null
         return IsCanFlyNum == 0
     end
-    
+
     func IsCanFlyTerrain(real x,real y)->bool
         return IsTerrainPathable(x,y,PATHING_TYPE_WALKABILITY) == false and IsCanFlyRcet(x,y) == true
     end

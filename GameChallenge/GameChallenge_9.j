@@ -7,6 +7,7 @@ library GameChallenge9 uses GameChallengeBase
         end
         GameTeamChallengCanUsesUnitFlush()
         GameTeamChallengeInt(0) = 0
+        GameTeamChallengeInt(1) = 0
         GameTeamChallengeBool[2] = false
     endfunction
 
@@ -202,6 +203,7 @@ library GameChallenge9 uses GameChallengeBase
             GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
             GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
             if  GameTeamChallengeInt(0) == 4
+                GameTeamChallengeInt(1) = GameTeamChallengeInt(0)
                 GameTeamChallengeInt(0) = 5
                 ExecuteFunc("GameTeamChallengA_Opera2")
             endif   
@@ -225,6 +227,40 @@ library GameChallenge9 uses GameChallengeBase
         endif
     endfunction
 
+    function GameTeamChallengA_Opera1Timer(int t)
+        int time = t-1
+        TimerStart(1,true)
+        {   
+            time = time - 1
+            if  IsHasPlayerGoToTeamChalleng() == true
+                if  time == 0
+                    if  GameTeamChallengeInt(0) > 0
+                        GameTeamChallengeInt(1) = GameTeamChallengeInt(0)
+                        GameTeamChallengeInt(0) = 5
+                        ExecuteFunc("GameTeamChallengA_Opera2")
+                    else
+                        for pid = 0,3
+                            if  IsPlaying(pid) == true
+                                if  IsPlayerInTeamChallenge == true 
+                                    FlushGameTeamChallengeOfPlayer(pid,0)
+                                endif
+                            endif
+                        end
+                        FlushGameTeamChallenge()
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        endtimer
+                    endif
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function GameTeamChallengA_Opera1()
         if  IsHasPlayerGoToTeamChalleng() == true
             GameTeamChallengeBool[2] = true
@@ -244,7 +280,7 @@ library GameChallenge9 uses GameChallengeBase
                     endif
                 endif
             end
-            TimerStart()
+            GameTeamChallengA_Opera1Timer(60)
         else
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
