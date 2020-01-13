@@ -286,8 +286,8 @@ library AttackUnit uses DamageCode
         real sy = 0 
         unit u = null
         for num = 1,4
-            sx = x + 250*Cos((90*num+45)*0.01745)
-            sy = y + 250*Sin((90*num+45)*0.01745)
+            sx = x + 50*Cos((90*num+45)*0.01745)
+            sy = y + 50*Sin((90*num+45)*0.01745)
             u = CreateUnit(Player(11),'ma01'+GetRandomInt(0,8),ex,ey,GetUnitFacing(wu))
             AddBossAttachUnitState(u,GetUnitTypeId(wu))
             SetUnitXY(u,sx,sy)

@@ -90,7 +90,14 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r|cffff0000英雄死亡，挑战失败！！！|r")
         endif
         if  IsPlayerInTeamChallenge == true
+            FlushGameTeamChallengeOfPlayer(pid,0)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄死亡，挑战失败！！！|r")
+            if  IsHasPlayerInTeamChalleng() == false
+                FlushGameTeamChallenge()
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+            endif
         endif
         flush locals
     endfunction
@@ -115,8 +122,14 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
                 if  IsPlayerInTeamChallenge == true
-                    FlushGameTeamChallenge(pid)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r|cffff0000英雄离开团队副本，挑战失败！！！|r")
+                    FlushGameTeamChallengeOfPlayer(pid,2)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄离开团队副本，挑战失败！！！|r")
+                    if  IsHasPlayerInTeamChalleng() == false
+                        FlushGameTeamChallenge()
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                    endif
                 endif
             endif
         endif
@@ -198,6 +211,9 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             if  GetUnitAbilityLevel(u2,'AZ20') > 0
                 SetPlayerLeagueState(uid2-'md01'+1,false)
             endif
+        endif
+        if  uid2 >= 'ut01' and uid2 <= 'ut09'
+            GameTeamChallengDeath(u2)
         endif
         //BJDebugMsg(YDWEId2S(uid2))
         flush locals
