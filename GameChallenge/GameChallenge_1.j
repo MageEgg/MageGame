@@ -154,11 +154,11 @@ library GameChallenge1 uses GameChallengeBase
             if  GameChallengInt[10] < 20 and IsPlayerInChallenge == true
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0 and GameChallengInt[11] < 5
-                    x = GetUnitX(GameChallengUnit[19])+GetRandomReal(-180,180)
-                    y = GetUnitY(GameChallengUnit[19])+GetRandomReal(-180,180)
+                    x = GetUnitX(GameChallengUnit[19])+GetRandomReal(-150,150)
+                    y = GetUnitY(GameChallengUnit[19])+GetRandomReal(-150,150)
                     if  IsLocInRect(gg_rct_ChallengeRct_1_4,x,y) == true
-                        x = -5400+GetRandomReal(-180,180)
-                        y = -720+GetRandomReal(-180,180)
+                        x = -5400+GetRandomReal(-150,150)
+                        y = -720+GetRandomReal(-150,150)
                     endif
                     CreateUsesGameChallengUnit(pid,num,'uf10',x,y)
                     GameChallengInt[11] = GameChallengInt[11] + 1
