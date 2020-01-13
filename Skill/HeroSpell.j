@@ -1890,18 +1890,23 @@ endfunction
             elseif  id== 'S127'    
                 SpellS127(u1.u)
             
-            elseif  id== 'S230'
-                SpellS230(u1.u,sx,sy,damage)
-            elseif  id== 'S231'
-                SpellS231(u1.u,damage)
-            elseif  id== 'S232'
-                SpellS232(u1.u)
-            elseif  id== 'S233'
-                SpellS233(u1.u)
-            elseif  id== 'S234'
-                SpellS234(u1.u,u2.u,damage)
-            elseif  id== 'S235'
-                SpellS235(u1.u)
+            if   id>='S230' and id<='S235'
+                if  GetUnitIntState(u,'FB44') > 0
+
+                endif
+                if  id== 'S230'
+                    SpellS230(u1.u,sx,sy,damage)
+                elseif  id== 'S231'
+                    SpellS231(u1.u,damage)
+                elseif  id== 'S232'
+                    SpellS232(u1.u)
+                elseif  id== 'S233'
+                    SpellS233(u1.u)
+                elseif  id== 'S234'
+                    SpellS234(u1.u,u2.u,damage)
+                elseif  id== 'S235'
+                    SpellS235(u1.u)
+                endif
             endif
         elseif  id == 'S501'
             SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
