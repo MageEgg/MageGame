@@ -197,6 +197,54 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
+    function GameTeamChallengWin(int pid,int flag,int value)
+        int itid = 0
+        if  flag == 1
+            if  value == 1
+                UnitAddItemEx(Pu[1],'IP04')
+                itid = 'IP04'
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            elseif  value == 2
+                if  GetRandomReal(0,1) == 0
+                    UnitAddItemEx(Pu[1],'IP04')
+                    itid = 'IP04'
+                else
+                    UnitAddItemEx(Pu[1],'IP02')
+                    itid = 'IP02'
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            elseif  value == 3
+                if  GetRandomReal(0,100) >= 60
+                    if  GetRandomReal(0,1) == 0
+                        UnitAddItemEx(Pu[1],'IP03')
+                        itid = 'IP03'
+                    else
+                        UnitAddItemEx(Pu[1],'IP02')
+                        itid = 'IP02'
+                    endif
+                else
+                    UnitAddItemEx(Pu[1],'IP04')
+                    itid = 'IP04'
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            elseif  value == 4
+                if  GetRandomReal(0,100) >= 60
+                    if  GetRandomReal(0,1) == 0
+                        UnitAddItemEx(Pu[1],'IP03')
+                        itid = 'IP03'
+                    else
+                        UnitAddItemEx(Pu[1],'IP05')
+                        itid = 'IP05'
+                    endif
+                else
+                    UnitAddItemEx(Pu[1],'IP02')
+                    itid = 'IP02'
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            endif
+        endif
+    endfunction
+
     function GameTeamChallengDeath(unit u2)
         int uid = GetUnitTypeId(u2)
         if  uid >= 'ut00' and uid <= 'ut03'
@@ -217,13 +265,13 @@ library GameChallenge9 uses GameChallengeBase
         elseif  uid == 'ut05'
             for pid = 0,3
                 if  IsPlaying(pid) == true
+                    GameTeamChallengWin(pid,1,GameTeamChallengeInt(1))
                     if  IsPlayerInTeamChallenge == true 
                         FlushGameTeamChallengeOfPlayer(pid,0)
                     endif
                 endif
             end
             FlushGameTeamChallenge()
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r成功通过挑战！")
         endif
     endfunction
 
