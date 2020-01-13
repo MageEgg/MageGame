@@ -30,6 +30,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define GameChallengLeagueUnit(num)     GameChallengMapUnit[50+num]
 
+    #define GameTeamChallengUnit(num)       GameChallengMapUnit[100+num]
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
@@ -277,6 +278,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_6")
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
+        ExecuteFunc("InitGameChallenge_9")
+        ExecuteFunc("InitGameChallenge_10")
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
     endfunction
