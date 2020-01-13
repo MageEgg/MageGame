@@ -52,7 +52,7 @@ scope AllPrizeData initializer init
             RegisterPrizePoolData(pid,13,'FB48')
             RegisterPrizePoolData(pid,11,'FB49')
             RegisterPrizePoolData(pid,14,'FB50')
-            RegisterPrizePoolData(pid,12,'FB51')
+            //RegisterPrizePoolData(pid,12,'FB51')
             RegisterPrizePoolData(pid,13,'FB52')
         end
         //BJDebugMsg("奖池1加载完毕")

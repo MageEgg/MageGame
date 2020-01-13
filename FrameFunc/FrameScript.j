@@ -116,6 +116,9 @@
                     if  id >= 1 and id <= 20
                         BoxShowMagicItem(pid,id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                    elseif  id >= 31 and id <= 38
+                        BoxShowMagicItem(pid,id-30)
+                        DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                     elseif  id >= 51 and id <= 80
                         boxid = GetMagicFrameStateIndex(pid,id-50)
                         BJDebugMsg(I2S(boxid))

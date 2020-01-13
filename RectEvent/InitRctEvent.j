@@ -5,8 +5,7 @@ scope InitRctEvent initializer InitRctEvent
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         if  pid == 0
-            SetUnitX(GetTriggerUnit(),x)
-            SetUnitY(GetTriggerUnit(),y)
+            SetUnitPosition(GetTriggerUnit(),x,y)
         endif
 
     endfunction
@@ -15,8 +14,7 @@ scope InitRctEvent initializer InitRctEvent
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         if  pid == 1
-            SetUnitX(GetTriggerUnit(),x)
-            SetUnitY(GetTriggerUnit(),y)
+            SetUnitPosition(GetTriggerUnit(),x,y)
         endif
 
     endfunction
@@ -25,8 +23,7 @@ scope InitRctEvent initializer InitRctEvent
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         if  pid == 2
-            SetUnitX(GetTriggerUnit(),x)
-            SetUnitY(GetTriggerUnit(),y)
+            SetUnitPosition(GetTriggerUnit(),x,y)
         endif
 
     endfunction
@@ -35,8 +32,7 @@ scope InitRctEvent initializer InitRctEvent
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         if  pid == 3
-            SetUnitX(GetTriggerUnit(),x)
-            SetUnitY(GetTriggerUnit(),y)
+            SetUnitPosition(GetTriggerUnit(),x,y)
         endif
 
     endfunction
