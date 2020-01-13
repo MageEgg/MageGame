@@ -2,9 +2,24 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
     //属性加载
     
     int MosterLevel = 0
+
+    
+    function SetUnitRealStateOfOtherId(unit u,int uid)
+        real value = 0
+        for i = 1,40
+            value = GetTypeIdReal(uid,i)
+            if  value != 0
+                if  i == 9
+                    AddUnitRealState(u,i,R2I(value))
+                else
+                    SetUnitRealState(u,i,R2I(value))
+                endif
+            endif
+        end
+    endfunction
     
     
-    func SetMosterUnitStateById(unit wu,int newid)
+    function SetMosterUnitStateById(unit wu,int newid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = newid
         real value = 0
@@ -18,9 +33,9 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
                 endif
             endif
         end
-    end
+    endfunction
     
-    func SetMosterUnitState(unit wu)
+    function SetMosterUnitState(unit wu)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = GetUnitTypeId(wu)
         real value = 0
@@ -38,9 +53,9 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetUnitPointX(wu,GetUnitX(wu))
             SetUnitPointY(wu,GetUnitY(wu))
         endif
-    end
+    endfunction
     
-    func SetAttackUnitState(unit wu)
+    function SetAttackUnitState(unit wu)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = GetUnitTypeId(wu)
         real value = 0
@@ -88,10 +103,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetUnitPointX(wu,GetUnitX(wu))
             SetUnitPointY(wu,GetUnitY(wu))
         endif
-    end
+    endfunction
     
     
-    func SetHeroUnitState(unit wu)
+    function SetHeroUnitState(unit wu)
         int uid = GetUnitTypeId(wu)
         real value = 0
         
@@ -108,9 +123,9 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         end
         
 
-    end
+    endfunction
     
-    func InitUnit(unit wu)
+    function InitUnit(unit wu)
         int id = GetUnitTypeId(wu)
         if  id >= 'm000' and id <= 'mzzz'
             if  id == 'm200'
@@ -129,7 +144,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         elseif  id >= 'sp00' and id <= 'sp99'
             SetHeroUnitState(wu)
         endif
-    end
+    endfunction
     
     
     

@@ -48,10 +48,12 @@ library CreateOpera uses DamageCode
                     return pid
                 endif
             end
+            BJDebugMsg("GetAttackPlayingHeroId")
         else
+            BJDebugMsg("ELSE  GetAttackPlayingHeroId")
             for pid = 0,3
                 if  IsPlaying(3-pid) == true
-                    return pid
+                    return 3-pid
                 endif
             end
         endif
@@ -59,6 +61,7 @@ library CreateOpera uses DamageCode
     endfunction
     function AttackPlayingHero(unit u)
         int pid = GetAttackPlayingHeroId()
+        BJDebugMsg(I2S(pid))
         IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
     endfunction
     
