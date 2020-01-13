@@ -20,6 +20,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define IsPlayerInChallenge             GameChallengBool[500]
     #define IsFinshChallenge(num)           GameChallengBool[500+num]
 
+    #define IsPlayerInTeamChallenge         GameChallengBool[550]
+
     #define PlayerInChallengeNumber         GameChallengInt[500]
 
     #define PlayerChallengeCosNum(num)      GameChallengInt[501+num]
@@ -276,6 +278,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
+        ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
     endfunction
 
     function SetUnitAPOfBool(unit u,int boolid)
