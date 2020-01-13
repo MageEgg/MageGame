@@ -144,7 +144,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
 
         tig = CreateTrigger() 
         rectRegion = CreateRegion()
-        RegionAddRect(rectRegion,gg_rct_ChallengeRctConC)
+        //RegionAddRect(rectRegion,gg_rct_ChallengeRctConC)
         TriggerRegisterLeaveRegion(tig,rectRegion,null)
         TriggerAddAction(tig, function GameTeamChallengPlayerLeaveRctEvent)
 
