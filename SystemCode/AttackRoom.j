@@ -115,12 +115,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np28',x+512,y+512,270)
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+            UnitAddEffectOfNPC(Pu[27])
 
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+256,y+512,225)
-
+            UnitAddEffectOfNPC(Pu[120])
 
             Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
-            
+            UnitAddEffectOfNPC(Pu[28])
         endif
     endfunction
     function SoulTimerFunc(int id,real x,real y)
@@ -391,12 +392,12 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 RefreshAttackRoom(pid,AttackRoomUid)
 
                 //////////////////团本分割/////////////////////
-                GameChallengPlayerUnit[pid][80] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np10',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
-                GameChallengPlayerUnit[pid][81] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
+                GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np10',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
+                GameChallengPlayerUnit[pid][91] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
                 DzSetUnitModel(GameChallengPlayerUnit[pid][81],"effect2_tx-yuzhou.mdl")
-                CreateTrigUnitInRange(GetUnitX(GameChallengPlayerUnit[pid][81]),GetUnitY(GameChallengPlayerUnit[pid][81]),200,function EnRctGameTeamChallengA)
-                ShowUnit(GameChallengPlayerUnit[pid][80],false)
-                ShowUnit(GameChallengPlayerUnit[pid][81],false)
+                CreateTrigUnitInRange(GetUnitX(GameChallengPlayerUnit[pid][91]),GetUnitY(GameChallengPlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)
+                ShowUnit(GameChallengPlayerUnit[pid][90],false)
+                ShowUnit(GameChallengPlayerUnit[pid][91],false)
             endif
         end
         
