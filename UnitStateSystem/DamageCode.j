@@ -320,7 +320,19 @@ library DamageCode uses UnitStateSet
         return GetRandomReal(0, 1) <= gl+s
     endfunction
     
+    //元神
+    function GetUnitEnlState(unit wu)->real
+        real s = GetUnitRealState(wu,30)
+        return s
+    endfunction
 
+    function GetUnitEnl(unit wu)->real
+        real s = GetUnitEnlState(wu)
+        return s*0.01
+    endfunction
+
+ 
+ 
 
 
     function GetPerHPState(unit wu)->real
