@@ -1,4 +1,4 @@
-library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,GameChallenge3,GameChallenge4,GameChallenge5,GameChallenge6,GameChallenge7,GameChallenge8
+library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,GameChallenge3,GameChallenge4,GameChallenge5,GameChallenge6,GameChallenge7,GameChallenge8,GameChallenge9,GameChallenge10
     
     function OpenGameChallenge(int pid,int flag,int ty)
         if  GetUnitAbilityLevel(Pu[1],'AZ02') == 0 

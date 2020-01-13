@@ -1,0 +1,3 @@
+library GameChallenge10 uses GameChallengeBase
+
+endlibrary
