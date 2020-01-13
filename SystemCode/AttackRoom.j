@@ -369,15 +369,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 AttackRoomUid = 'g00A'
                 AttackRoomUnitNum = 10
                 
-<<<<<<< HEAD
-                Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
-                Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
-                //Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
-=======
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x,y+512,270)//境界
                 Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
                 //Pu[23]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+512,270)//占星方士
->>>>>>> cbc8ab52f6c9fe1f05961f7b54ad1483a17c6937
                 
                 Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
                 Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,90)//礼包
