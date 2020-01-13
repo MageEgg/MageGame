@@ -2,26 +2,6 @@ library OtherDamageTimer uses SystemTimer
     private constant int    S = 60  //位移默认速度
     private constant real   L = 0.02//位移默认周期
     
-    int IsCanFlyNum = 0
-    func IsCanFlyRcetFunc()
-        if  GetEnumDestructable() != null
-            IsCanFlyNum = IsCanFlyNum + 1
-        endif
-    end
-    
-    func IsCanFlyRcet(real x,real y)->bool
-        rect rc = Rect(x - 100, y - 100, x + 100, y + 100)
-        IsCanFlyNum = 0
-        EnumDestructablesInRect(rc,null,function IsCanFlyRcetFunc)
-        RemoveRect(rc)
-        rc = null
-        return IsCanFlyNum == 0
-    end
-    
-    func IsCanFlyTerrain(real x,real y)->bool
-        return IsTerrainPathable(x,y,PATHING_TYPE_WALKABILITY) == false and IsCanFlyRcet(x,y) == true
-    end
-    
     function EffectDown(unit u1,real x1,real y1,real x01,real y01,string s,real speed1,real high1,real r1,real damage1,string b1)
     //伤害来源，目标点xy，起始点xy，特效路径，速度，高度，伤害半径，伤害,落地爆炸特效
         unit u=u1

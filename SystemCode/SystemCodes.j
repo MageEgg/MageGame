@@ -83,8 +83,8 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
-        if  GetUnitAbilityLevel(Pu[1],'AZ99') == 0
-            UnitTimerAddSkill(Pu[1],'AZ99',0.1)
+        if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
+            UnitAddAbility(Pu[1],'AZ98')
         endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
@@ -110,7 +110,7 @@ library SystemCodes uses ServerTime,Define1
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
         if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
-            UnitTimerAddSkill(Pu[1],'AZ98',0.1)
+            UnitAddAbility(Pu[1],'AZ98')
         endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
@@ -438,6 +438,26 @@ library SystemCodes uses ServerTime,Define1
         ClearMapMusic()
         PlayMusic(music)
     endfunction
+
+    int IsCanFlyNum = 0
+    func IsCanFlyRcetFunc()
+        if  GetEnumDestructable() != null
+            IsCanFlyNum = IsCanFlyNum + 1
+        endif
+    end
+    
+    func IsCanFlyRcet(real x,real y)->bool
+        rect rc = Rect(x - 100, y - 100, x + 100, y + 100)
+        IsCanFlyNum = 0
+        EnumDestructablesInRect(rc,null,function IsCanFlyRcetFunc)
+        RemoveRect(rc)
+        rc = null
+        return IsCanFlyNum == 0
+    end
+    
+    func IsCanFlyTerrain(real x,real y)->bool
+        return IsTerrainPathable(x,y,PATHING_TYPE_WALKABILITY) == false and IsCanFlyRcet(x,y) == true
+    end
     
     //坐标防止溢出
     function SetUnitXEx(unit wu,real x)

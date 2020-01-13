@@ -162,7 +162,7 @@ library GameChallenge9 uses GameChallengeBase
         {   
             time = time + 1
             if  IsHasPlayerGoToTeamChalleng() == true
-                if  time < 3 
+                if  time <= 3 
                     for n = 1,2
                         num = GetCanUsesGameTeamChallengUnitID()
                         if  num != 0
@@ -244,7 +244,7 @@ library GameChallenge9 uses GameChallengeBase
                     endif
                 endif
             end
-            //TimerStart()
+            TimerStart()
         else
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
