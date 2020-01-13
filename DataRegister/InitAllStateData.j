@@ -531,3 +531,15 @@ function InitStateData6()
 InitTypeState6('FB08',200,0,0,0,0,0,0,0,0,0)
 endfunction
 function InitStateData7()
+endfunction
+function InitMapEquipState()
+ExecuteFunc("InitStateData1")
+ExecuteFunc("InitStateData2")
+ExecuteFunc("InitStateData3")
+ExecuteFunc("InitStateData4")
+ExecuteFunc("InitStateData5")
+ExecuteFunc("InitStateData6")
+ExecuteFunc("InitStateData7")
+endfunction
+endscope
+
