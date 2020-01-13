@@ -13,19 +13,58 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
+    function GameTeamChallengeDoorTimer(unit wu,real time)
+        unit u = wu
+        TimerStart(time,false)
+        {
+            ShowUnit(u,false)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenGameTeamChallengeTimer(real t,int fl)
+        int time = t
+        int flag = fl
+        ShowUnit(GameTeamChallengUnit(0),true)
+        ShowUnit(GameTeamChallengUnit(1),true)
+        //Se
+        TimerStart(1,true)
+        {
+
+                endtimer
+            //endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenGameTeamChallenge()
+        GameTeamChallengeBool[1] = true
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                ShowUnit(GameChallengUnit[91],true)
+                SetUnitAnimation(GameChallengUnit[91],"birth")
+                GameTeamChallengeDoorTimer(GameChallengUnit[91],30)
+            endif
+        end
+        OpenGameTeamChallengeTimer(30)
+    endfunction
+
+
     function ShowGameTeamChallengeNPC()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                ShowUnit(GameChallengUnit[90],true)
                 UnitAddEffectOfNPC(GameChallengUnit[90])
             endif
         end
     endfunction
 
     function FlushGameTeamChallenge(int pid)
+        GameChallengBool[90] = false
 
     endfunction
-
 
     function InitGameChallenge_9()
 
