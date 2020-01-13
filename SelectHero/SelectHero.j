@@ -45,7 +45,7 @@ scope SelectHero
             UnitAddAbility(Pu[1],'AG05')
 
             UnitAddAbility(Pu[1],'AG06')
-            UnitAddAbility(Pu[1],'AG09')//法宝
+            
             
             UnitAddAbility(Pu[1],'AG08')
 

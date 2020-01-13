@@ -371,7 +371,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
                 Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
-                Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
+                //Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
                 
                 Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
                 Pu[26]=CreateUnit(Player(pid),'np06',x,y-512,270)//礼包
@@ -383,7 +383,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
-                ShowUnit(Pu[23],false)
+                //ShowUnit(Pu[23],false)
                 
                 ShowUnit(Pu[25],false)
 
