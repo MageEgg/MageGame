@@ -12,6 +12,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     unit array      GameChallengMapUnit
 
+    bool array      GameTeamChallengeBool
+
     #define GameChallengInt                 GameChallengPlayerInt[pid]
     #define GameChallengUnit                GameChallengPlayerUnit[pid]
     #define GameChallengBool                GameChallengPlayerBool[pid]
@@ -19,6 +21,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define PlayerInChallengeShowUnit       GameChallengUnit[500]
     #define IsPlayerInChallenge             GameChallengBool[500]
     #define IsFinshChallenge(num)           GameChallengBool[500+num]
+
+    #define IsPlayerInTeamChallenge         GameChallengBool[550]
 
     #define PlayerInChallengeNumber         GameChallengInt[500]
 
@@ -28,6 +32,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define GameChallengLeagueUnit(num)     GameChallengMapUnit[50+num]
 
+    #define GameTeamChallengUnit(num)       GameChallengMapUnit[100+num]
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
 
@@ -68,28 +73,159 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         GameChallengLeagueUnit(7) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np97',-7232,-7488,ang)
         ang = Atan2(OriginalDefendY+7264,OriginalDefendX+7456)/0.01745
         GameChallengLeagueUnit(8) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np98',-7456,-7264,ang)
+        for num = 1,8
+            EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+        end
     endfunction
 
-    /*
-        real x = GetUnitX(GameChallengLeagueUnit(num))
-        real y = GetUnitY(GameChallengLeagueUnit(num))
-        real ang = GetUnitFacing(GameChallengLeagueUnit(num))
-        EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
-            for i = 1,40
-                value = GetTypeIdReal(uid,i)
-                if  value != 0
-                    if  i == 9
-                        AddUnitRealState(GameChallengLeagueUnit(num),i,R2I(value))
-                    elseif  i == 3
-                        SetUnitRealState(GameChallengLeagueUnit(num),i,R2I(value)/2)
-                    elseif  i == 5
-                        SetUnitRealState(GameChallengLeagueUnit(num),i,GetTypeIdReal(uid,1)*30)
-                    else
-                        SetUnitRealState(GameChallengLeagueUnit(num),i,R2I(value))
-                    endif
+    function OpenChangeGodStageA()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                UnitRemoveAbility(Pu[1],'Avul')
+                PlayerReviveX = -1344
+                PlayerReviveY = -7136
+                SendPlayerUnitBarringCamera(pid,OriginalDefendX+150*Cos(45*pid*0.01745),PlayerReviveY+150*Cos(45*pid*0.01745))
+            endif
+        end
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+    endfunction
+    
+    function SetLeagueUnitOverState(unit wu,real time)
+        unit u = wu
+        TimerStart(time,false)
+        {
+            UnitRemoveAbility(u,'Avul')
+            EXSetUnitMoveType(u,0x02)
+            UnitAddEffect(u,"effect_tx_asad (24).mdx")
+            UnitAddEffectSetSize(u,"effect_az-leiji.mdx",2)
+            PauseUnit(u,false)
+            SetUnitAnimation(u,"attack")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenChangeGodStageB(real r1,real r2)
+        real x = r1
+        real y = r2
+        int num = 0
+        BJDebugMsg(R2S(x)+"@@@@"+R2S(y))
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                UnitRemoveAbility(Pu[1],'Avul')
+                PlayerReviveX = -1344
+                PlayerReviveY = -7136
+                SendPlayerUnitBarringCamera(pid,OriginalDefendX+150*Cos(45*pid*0.01745),PlayerReviveY+150*Cos(45*pid*0.01745))
+            endif
+        end
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
+        TimerStart(0.2,true)
+        {   
+            real sx = 0
+            real sy = 0
+            real ex = 0
+            real ey = 0
+            real ang = 0
+            num = num + 1
+            if  num <= 8
+                sx = GetUnitX(GameChallengLeagueUnit(num))
+                sy = GetUnitY(GameChallengLeagueUnit(num))
+                ex = sx + x
+                ey = sy + y
+                ang = GetUnitFacing(GameChallengLeagueUnit(num))
+                LocAddEffect(sx,sy,"effect_az_goods_lvlup(3).mdl")
+                SetUnitXY(GameChallengLeagueUnit(num),ex,ey)
+                LocAddEffect(ex,ey,"effect_effect_az_goods_tp_target_effect(4).mdl")
+                if  GetUnitAbilityLevel(GameChallengLeagueUnit(num),'AZ20') > 0
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cff00ff00加入友军作战！|r")
+                    RemoveUnit(GameChallengLeagueUnit(num))
+                    GameChallengLeagueUnit(num) = CreateUnit(Player(9),'md00'+num,ex,ey,ang)
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md10'+num)
+                    SetUnitRealState(GameChallengLeagueUnit(num),3,GetUnitRealState(GameChallengLeagueUnit(num),3)/2)
+                    SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),1)*30)
+                    UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
+                    UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
+                    EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+                    PauseUnit(GameChallengLeagueUnit(num),true)
+                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
+                elseif  GetUnitAbilityLevel(GameChallengLeagueUnit(num),'AZ21') > 0
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cffff0000加入敌军作战！|r")
+                    RemoveUnit(GameChallengLeagueUnit(num))
+                    GameChallengLeagueUnit(num) = CreateUnit(Player(11),'md00'+num,ex,ey,ang)
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md10'+num)
+                    UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
+                    UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
+                    EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+                    PauseUnit(GameChallengLeagueUnit(num),true)
+                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
                 endif
-            end
-            SetUnitRealState(GameChallengLeagueUnit(num),1,value)*/
+            else
+                ExecuteFunc("OpenChangeGodStageB2")
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function OpenChangeGodStage()
+        real x = OriginalDefendX
+        real y = OriginalDefendY
+        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+        KillAttackUnitGroup()
+        ShowBossDamageUI(false)
+        PanCameraToTimed(-1664,-7440,0)
+        RemoveUnit(GameDefendUnit)
+        GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
+        OriginalDefendX = GetUnitX(GameDefendUnit)
+        OriginalDefendY = GetUnitY(GameDefendUnit)
+        EXSetUnitMoveType(GameDefendUnit,0x01)
+        SetUnitAnimation(GameDefendUnit,"stand 3")
+        LocAddEffectSetSize(OriginalDefendX,OriginalDefendY,"effect_shengguang.mdx",5)
+        x = OriginalDefendX - x
+        y = OriginalDefendY - y
+        for pid = 0,3
+            if  IsPlaying(pid) == true  
+                UnitAddAbility(Pu[1],'Avul')
+                UnitAddAbility(Pu[1],'AZ02')
+            endif
+        end
+        TimerStart(1,false)
+        {
+            if  GameLevel < 3
+                OpenChangeGodStageA()
+            else
+                OpenChangeGodStageB(x,y)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function CreateChangeGodStage(real time)
+        if  GameLevel < 3
+            time = time - 10
+        else
+            time = time - 20
+        endif
+        TimerStart(time,false)
+        {
+            ExecuteFunc("OpenChangeGodStage")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
 
     function SetPlayerLeagueState(int num,bool b)
         int t = 1
@@ -144,7 +280,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_6")
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
+        ExecuteFunc("InitGameChallenge_9")
+        ExecuteFunc("InitGameChallenge_10")
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
+        ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
     endfunction
 
     function SetUnitAPOfBool(unit u,int boolid)
@@ -376,6 +515,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         TriggerAddAction(tig, actionFunc)
         tig = null
         u = null
+    endfunction
+
+    function UnitAddEffectOfNPC(unit u)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx")
+        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
     endfunction
 
 endlibrary

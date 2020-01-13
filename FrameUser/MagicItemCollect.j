@@ -507,11 +507,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     function RePlayerMagicOtherState(int pid,int id,int offset)
         int value = 0
         if  id == 'FB17'
-            value = GetUnitIntState(Pu[1],'FC17')
-            AddUnitRealState(Pu[1],17,value*offset)
+            AddUnitRealState(Pu[1],17,GetUnitIntState(Pu[1],'FC17')*0.1*offset)
         elseif  id == 'FB32'
             value = GetUnitIntState(Pu[1],'FC32')
             AddUnitRealState(Pu[1],2,value*offset)
+        elseif  id == 'FB03'
+            value = GetUnitIntState(Pu[1],'FC03')
+            AddUnitRealState(Pu[1],1,value*offset)
         endif
     endfunction
 
@@ -813,7 +815,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         flush locals
     endfunction
 
-    function FB47FuncTimer(unit wu)
+    function FB43FuncTimer(unit wu)
         unit u1 = wu
         SetUnitIntState(wu,'FC43',1)
         TimerStart(15,false)
@@ -824,12 +826,12 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         }
         flush locals
     endfunction
-    function FB47Func(unit wu)->bool
+    function FB43Func(unit wu)->bool
         if  GetUnitIntState(wu,'FB43') > 0
             if  GetUnitIntState(wu,'FC43') == 0
                 ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
                 LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
-                
+                FB43FuncTimer(wu)
                 if  GetOwningPlayer(wu)==GetLocalPlayer()
                     ClearSelection()
                     SelectUnit(wu,true)

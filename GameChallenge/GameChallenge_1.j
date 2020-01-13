@@ -71,18 +71,18 @@ library GameChallenge1 uses GameChallengeBase
     endfunction
 
     function GameChalleng_1_XYDeath(int pid,unit u2)
-        if  GameChallengInt[10] < 40
+        if  GameChallengInt[10] < 20
             GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
             GameChallengInt[10] = GameChallengInt[10] + 1
             GameChallengInt[11] = GameChallengInt[11] - 1
-            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀小妖|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[10])+"/40",0)
+            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀小妖|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[10])+"/20",0)
             if  GameChallengInt[10] == 1 or ModuloInteger(GameChallengInt[10],5) == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/20)")
             endif
-        elseif  GameChallengInt[10] >= 40
+        elseif  GameChallengInt[10] >= 20
             if  GameChallengBool[10] == false    
                 GameChallengBool[10] = true
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/40)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/20)")
                 SetUnitVertexColor(GameChallengUnit[12],255,255,255,0)
                 GameChalleng_1_XYDeathTimer(pid)
             endif
@@ -151,7 +151,7 @@ library GameChallenge1 uses GameChallengeBase
             int num = 0
             real x = 0
             real y = 0
-            if  GameChallengInt[10] < 40 and IsPlayerInChallenge == true
+            if  GameChallengInt[10] < 20 and IsPlayerInChallenge == true
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0 and GameChallengInt[11] < 5
                     x = GetUnitX(GameChallengUnit[19])+GetRandomReal(-380,380)
@@ -199,7 +199,7 @@ library GameChallenge1 uses GameChallengeBase
                     SetUnitAbilityLevel(GameChallengUnit[19],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[19],851983,GetRectCenterX(gg_rct_ChallengeRct_1_1),GetRectCenterY(gg_rct_ChallengeRct_1_1))
                     SetPlayerTaskUIChatOfPlayer(pid,"云中子","雷震子，你义父有难，到剑冢取一适手兵器前去解救。",0)
-                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀40个护冢小妖|r",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个护冢小妖|r",0)
                     GameChalleng_1_XYTimer(pid)
                 endif
             endif
@@ -246,9 +246,10 @@ library GameChallenge1 uses GameChallengeBase
         int pid = GetUnitAbilityLevel(u1,'AZ99')-1
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == GameChallengUnit[19]
-                if  GameChallengInt[10] < 40
+                if  GameChallengInt[10] < 20
                     SetUnitPosition(u1,GetRectCenterX(gg_rct_ChallengeRct_1_3),GetRectCenterY(gg_rct_ChallengeRct_1_3))
                     IssueImmediateOrderById(u1, 851993 )
+                    SetUnitFaceOfUnit(u1,Pu[1])
                 endif
             endif
         endif
@@ -265,6 +266,7 @@ library GameChallenge1 uses GameChallengeBase
             if  u1 == GameChallengUnit[19]
                 GameChallengBool[11] = true
                 IssueImmediateOrderById(u1, 851993 )
+                SetUnitFaceOfUnit(u1,Pu[1])
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
                     x = -4096
@@ -343,6 +345,7 @@ library GameChallenge1 uses GameChallengeBase
                 SetUnitPositionOfGameChalleng(GameChallengUnit[19],x,y)
                 SetPlayerTaskUIChatOfPlayer(pid,"雷震子","纣王今既放归我父王，为何又派你俩来追袭？反复无常，实在可恨！",0)
                 IssueImmediateOrderById(GameChallengUnit[19], 851993 )
+                SetUnitFaceOfUnit(GameChallengUnit[19],Pu[1])
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0
                     x = -3744

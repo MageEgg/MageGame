@@ -86,6 +86,21 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
+        if  IsLocInRect(gg_rct_GameRect,x,y) == true
+            //小图
+            if  GetLocalPlayer() == Player(pid)
+                SetPlayerCameraBoundsToRect(gg_rct_GameRect)
+            endif
+            SetPlayerMap(pid,2)
+        else
+            //大图
+            if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true and IsLocInRect(gg_rct_GameRect,x,y) == false
+                if  GetLocalPlayer() == Player(pid)
+                    SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                endif
+            endif
+            SetPlayerMap(pid,1)
+        endif
         DestroyEffect(AddSpecialEffect("effect_az_goods_lvlup(3).mdl",GetUnitX(Pu[1]),GetUnitY(Pu[1])))
         SetUnitPosition(Pu[1],x,y)
         DestroyEffect(AddSpecialEffect("effect_effect_az_goods_tp_target_effect(4).mdl",x,y))

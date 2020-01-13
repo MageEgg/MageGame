@@ -27,8 +27,10 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
                 if  next == 'E006' or next == 'E106' or next == 'E206'
                     if  Pu[24] == null
-                        Pu[24] = CreateUnit(Player(pid),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2],270)//副本入口
+                        Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2]-256,270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
+                        UnitAddAbility(Pu[1],'AG09')
+                        UnitMakeAbilityPermanent(Pu[1],true,'AG09')
                         PlayerUnLockPlot(pid,1)
                     endif
                 endif
@@ -47,31 +49,30 @@ scope ItemSystem initializer InitItemSystem
         if  next > 0
             if  IsCanMoveToRoom(pid) == true
                 if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
-                    
                     if  uid > 0
-                        index = GetEquipIndex(id)
-                        if  index != 0
-                            if  GetUnitTypeId(Pu[100+index]) == 0
-                                AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                            index = GetEquipIndex(id)
+                            if  index != 0
+                                if  GetUnitTypeId(Pu[100+index]) == 0
+                                    AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
 
-                                Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
-                                
-                                SetPlayerOnlyDamage(Pu[100+index],pid)
-                                IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
-                                HeroMoveToRoom(pid)
+                                    Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
+                                    
+                                    SetPlayerOnlyDamage(Pu[100+index],pid)
+                                    IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                                    HeroMoveToRoom(pid)
 
-                            else
-                                HeroMoveToRoom(pid)
-                                if  id >= 'E001' and id <= 'E025'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
-                                elseif  id >= 'E101' and id <= 'E125'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
-                                elseif  id >= 'E201' and id <= 'E225'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
+                                else
+                                    HeroMoveToRoom(pid)
+                                    if  id >= 'E001' and id <= 'E025'
+                                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
+                                    elseif  id >= 'E101' and id <= 'E125'
+                                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
+                                    elseif  id >= 'E201' and id <= 'E225'
+                                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
+                                    endif
                                 endif
                             endif
-                        endif
                     else
                         AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                         RemoveItem(it)
@@ -103,14 +104,14 @@ scope ItemSystem initializer InitItemSystem
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
         if  index == 1
-            use = 50 * num
-            if  use > 150
-                use = 150
+            use = 100 * num
+            if  use > 200
+                use = 200
             endif
         elseif  index == 2
-            use = 100 * num
-            if  use > 300
-                use = 300
+            use = 200 * num
+            if  use > 400
+                use = 400
             endif
         elseif  index == 3
             use = 360 * num
@@ -282,11 +283,11 @@ scope ItemSystem initializer InitItemSystem
         
         if  GetRandomInt(1,100) <= gl
             UnitAddItem(wu,CreateItem('IN00',GetUnitX(wu),GetUnitY(wu)))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了星宿之魂，获得锦囊x1")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得锦囊x1")
         else 
             kill = R2I(I2R(kill) * GetRandomReal(0.6,1))
             AdjustPlayerStateBJ(kill, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了星宿之魂，获得杀敌数x"+I2S(kill))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得杀敌数x"+I2S(kill))
         endif
     endfunction
     
@@ -372,6 +373,8 @@ scope ItemSystem initializer InitItemSystem
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
         elseif  itemid >= 'IN00' and itemid <= 'IN18'
             UnitUseSilkBag(u1,itemid)
+        elseif  itemid == 'IN19'
+            UnitAddItem(u1,CreateItem('IN00'+GetRandomInt(1,3),GetUnitX(u1),GetUnitY(u1)))
         elseif  itemid >= 'INDA' and itemid <= 'INDX'
             UnitUseStarSoul(u1,itemid)
         endif

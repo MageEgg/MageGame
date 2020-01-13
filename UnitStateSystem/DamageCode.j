@@ -320,7 +320,19 @@ library DamageCode uses UnitStateSet
         return GetRandomReal(0, 1) <= gl+s
     endfunction
     
+    //元神
+    function GetUnitEnlState(unit wu)->real
+        real s = GetUnitRealState(wu,30)
+        return s
+    endfunction
 
+    function GetUnitEnl(unit wu)->real
+        real s = GetUnitEnlState(wu)
+        return s*0.01
+    endfunction
+
+ 
+ 
 
 
     function GetPerHPState(unit wu)->real
@@ -333,7 +345,7 @@ library DamageCode uses UnitStateSet
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  wu == Pu[1]
             if  IsPlayerHasAbility.evaluate(wu,'S071') == true
-                s = s + GetHeroAgi(wu,true)/4.4
+                s = s + GetHeroAgi(wu,false)/4.4
             endif
             if  GetUnitIntState(wu,'FB10') > 0
                 s = -90

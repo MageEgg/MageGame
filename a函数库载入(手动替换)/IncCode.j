@@ -71,6 +71,8 @@
 #include "MageGame\\GameChallenge\\GameChallenge_6.j"
 #include "MageGame\\GameChallenge\\GameChallenge_7.j"
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
+#include "MageGame\\GameChallenge\\GameChallenge_9.j"
+#include "MageGame\\GameChallenge\\GameChallenge_10.j"
 #include "MageGame\\GameChallenge\\GameChallengDeath.j"
 
 //选择英雄
