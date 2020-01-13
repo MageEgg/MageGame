@@ -381,7 +381,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         return 0
     endfunction
 
-    function GameTeamChallengCanUsesUnitFlush()
+    function GameTeamChallengCanUsesUnitFlushEx()
         for num = 10,20
             if  GameTeamChallengUnit(num) != null
                 FlushChildHashtable(ht,GetHandleId(GameTeamChallengUnit(num)))
@@ -389,6 +389,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 GameTeamChallengUnit(num) = null
             endif
         end
+    endfunction
+
+    function GameTeamChallengCanUsesUnitFlush()
+        GameTeamChallengCanUsesUnitFlushEx()
         for num = 200,300
             if  GameTeamChallengUnit(num) != null
                 FlushChildHashtable(ht,GetHandleId(GameTeamChallengUnit(num)))

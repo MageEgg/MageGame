@@ -212,7 +212,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
                 SetPlayerLeagueState(uid2-'md01'+1,false)
             endif
         endif
-        if  uid2 >= 'ut01' and uid2 <= 'ut09'
+        if  uid2 >= 'ut00' and uid2 <= 'ut09'
             GameTeamChallengDeath(u2)
         endif
         //BJDebugMsg(YDWEId2S(uid2))
