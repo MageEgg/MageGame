@@ -283,11 +283,11 @@ scope ItemSystem initializer InitItemSystem
         
         if  GetRandomInt(1,100) <= gl
             UnitAddItem(wu,CreateItem('IN00',GetUnitX(wu),GetUnitY(wu)))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了星宿之魂，获得锦囊x1")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得锦囊x1")
         else 
             kill = R2I(I2R(kill) * GetRandomReal(0.6,1))
             AdjustPlayerStateBJ(kill, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了星宿之魂，获得杀敌数x"+I2S(kill))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得杀敌数x"+I2S(kill))
         endif
     endfunction
     
@@ -373,6 +373,8 @@ scope ItemSystem initializer InitItemSystem
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
         elseif  itemid >= 'IN00' and itemid <= 'IN18'
             UnitUseSilkBag(u1,itemid)
+        elseif  itemid == 'IN19'
+            UnitAddItem(u1,CreateItem('IN00'+GetRandomInt(1,3),GetUnitX(u1),GetUnitY(u1)))
         elseif  itemid >= 'INDA' and itemid <= 'INDX'
             UnitUseStarSoul(u1,itemid)
         endif

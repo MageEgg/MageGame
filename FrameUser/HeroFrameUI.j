@@ -242,7 +242,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         
         ExpName.frameid = FRAME.Fdf("centertext009",origin,ExpName)
         ExpName.SetPoint(7,Exp0.frameid ,7,0,0)
-        ExpName.SetText("练气士")
+        ExpName.SetText("境界零-炼气士")
 
         FrameSetScriptByExecute( Button.frameid, 1,150,TYPE_FUNC)
 

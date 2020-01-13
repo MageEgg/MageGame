@@ -507,11 +507,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     function RePlayerMagicOtherState(int pid,int id,int offset)
         int value = 0
         if  id == 'FB17'
-            value = GetUnitIntState(Pu[1],'FC17')
-            AddUnitRealState(Pu[1],17,value*offset)
+            AddUnitRealState(Pu[1],17,GetUnitIntState(Pu[1],'FC17')*0.1*offset)
         elseif  id == 'FB32'
             value = GetUnitIntState(Pu[1],'FC32')
             AddUnitRealState(Pu[1],2,value*offset)
+        elseif  id == 'FB03'
+            value = GetUnitIntState(Pu[1],'FC03')
+            AddUnitRealState(Pu[1],1,value*offset)
         endif
     endfunction
 

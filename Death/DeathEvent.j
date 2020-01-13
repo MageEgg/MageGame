@@ -205,8 +205,8 @@ scope DeathEvent initializer InitDeathEvent
 
         if  GetUnitIntState(Pu[1],'FB17') > 0
             value = GetUnitIntState(Pu[1],'FC17')
-            if  value < 30
-                AddUnitRealState(Pu[1],17,1)
+            if  value < 400
+                AddUnitRealState(Pu[1],17,0.1)
                 AddUnitIntState(Pu[1],'FC17',1)
             endif
         endif
@@ -215,6 +215,13 @@ scope DeathEvent initializer InitDeathEvent
             if  value < 60000
                 AddUnitRealState(Pu[1],2,100)
                 AddUnitIntState(Pu[1],'FC32',100)
+            endif
+        endif
+        if  GetUnitIntState(Pu[1],'FB03') > 0
+            value = GetUnitIntState(Pu[1],'FC03')
+            if  value < 60000
+                AddUnitRealState(Pu[1],1,100)
+                AddUnitIntState(Pu[1],'FC03',100)
             endif
         endif
     endfunction
@@ -228,6 +235,7 @@ scope DeathEvent initializer InitDeathEvent
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512,225)
             SetPlayerOnlyDamage(Pu[120],pid)
             //LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")
+            endtimer
             flush locals
         }
         flush locals
@@ -240,7 +248,7 @@ scope DeathEvent initializer InitDeathEvent
         int num = AttackRoomXCUnitNum
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
-            CreateItem('IN00',GetUnitX(tu),GetUnitY(tu))
+            CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
         else
             if  AttackRoomXCUnitNum <= 0
                 CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
@@ -392,7 +400,7 @@ scope DeathEvent initializer InitDeathEvent
 
                             if  GetUnitIntState(Pu[1],'FB17') > 0
                                 //清除法宝的伤害加成
-                                AddUnitRealState(Pu[1],17,-GetUnitIntState(Pu[1],'FC17'))
+                                AddUnitRealState(Pu[1],17,-I2R(GetUnitIntState(Pu[1],'FC17'))*0.1)
                                 SetUnitIntState(Pu[1],'FC17',0)
                             endif
 
