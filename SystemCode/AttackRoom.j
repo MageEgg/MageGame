@@ -112,14 +112,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         if  GetUnitTypeId(Pu[27]) == 'np27'
             RemoveUnit(Pu[27])
             
-            Pu[27]=CreateUnit(Player(pid),'np28',x+512,y+512,270)
+            Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np28',x+512,y+512,270)
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
 
             Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+256,y+512,225)
 
 
-            Pu[28]=CreateUnit(Player(pid),'np03',x+512,y+256,270)
+            Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
             
         endif
     endfunction
@@ -369,14 +369,20 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 AttackRoomUid = 'g00A'
                 AttackRoomUnitNum = 10
                 
+<<<<<<< HEAD
                 Pu[21]=CreateUnit(Player(pid),'np01',x,y+512,270)//境界
                 Pu[22]=CreateUnit(Player(pid),'np02',x-512,y,270)//技能商店
                 //Pu[23]=CreateUnit(Player(pid),'np03',x+512,y+512,270)//占星方士
+=======
+                Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x,y+512,270)//境界
+                Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
+                //Pu[23]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+512,270)//占星方士
+>>>>>>> cbc8ab52f6c9fe1f05961f7b54ad1483a17c6937
                 
-                Pu[25]=CreateUnit(Player(pid),'np05',x-512,y-256,270)//兽魂神通
-                Pu[26]=CreateUnit(Player(pid),'np06',x,y-512,270)//礼包
+                Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
+                Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,90)//礼包
                 
-                Pu[27]=CreateUnit(Player(pid),'np27',x+256,y+512,225)//送宝金蝉
+                Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
                 SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
@@ -389,6 +395,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
 
                 RefreshAttackRoom(pid,AttackRoomUid)
+
+                //////////////////团本分割/////////////////////
+                GameChallengPlayerUnit[pid][80] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np10',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
+                GameChallengPlayerUnit[pid][81] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
+                DzSetUnitModel(GameChallengPlayerUnit[pid][81],"effect2_tx-yuzhou.mdl")
+                CreateTrigUnitInRange(GetUnitX(GameChallengPlayerUnit[pid][81]),GetUnitY(GameChallengPlayerUnit[pid][81]),200,function EnRctGameTeamChallengA)
+                ShowUnit(GameChallengPlayerUnit[pid][80],false)
+                ShowUnit(GameChallengPlayerUnit[pid][81],false)
             endif
         end
         

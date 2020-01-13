@@ -115,7 +115,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
                 if  IsPlayerInTeamChallenge == true
-                    //FlushGameChallenge(pid,PlayerInChallengeNumber)
+                    FlushGameTeamChallenge(pid)
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r|cffff0000英雄离开团队副本，挑战失败！！！|r")
                 endif
             endif
