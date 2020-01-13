@@ -24,11 +24,13 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
-    function OpenGameTeamChallengeTimer(real t,int fl)
+    function OpenGameTeamChallengeTimer(int t,int fl)
         int time = t
         int flag = fl
-        ShowUnit(GameTeamChallengUnit(0),true)
-        ShowUnit(GameTeamChallengUnit(1),true)
+        if  flag == 1
+            ShowUnit(GameTeamChallengUnit(0),true)
+            ShowUnit(GameTeamChallengUnit(1),true)
+        endif
         //Se
         TimerStart(1,true)
         {
@@ -49,7 +51,7 @@ library GameChallenge9 uses GameChallengeBase
                 GameTeamChallengeDoorTimer(GameChallengUnit[91],30)
             endif
         end
-        OpenGameTeamChallengeTimer(30)
+        OpenGameTeamChallengeTimer(30,1)
     endfunction
 
 
