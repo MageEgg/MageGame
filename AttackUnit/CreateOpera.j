@@ -85,7 +85,7 @@ library CreateOpera uses DamageCode
                     AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
                     if  time == 3
                         ShowBossDamageUI(false)
-                        ShowBossDamageStringNianShou()
+                        ShowBossDamageStringOperaA()
                     endif
                 endif
             else
@@ -209,14 +209,16 @@ library CreateOpera uses DamageCode
                 if  time < 4
                     AddEffectInArea(2795,26,1000,35,"effect_yanhua1.mdx")
                     AddEffectInArea(2795,26,1000,35,"effect_yanhua2.mdx")
+                    if  time == 3
+                        ShowBossDamageUI(false)
+                        ShowBossDamageStringOperaB()
+                    endif
                 endif
             else
                 if  GameLevel == 1 and GameOverBoolJu == false
                     AttackUnitWin()
                 else
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-                    ShowBossDamageUI(false)
-                    ShowBossDamageString()
                     for pid = 0,3
                         if  IsPlaying(pid) == true
                             UnitRemoveAbility(Pu[1],'AZ02')
@@ -410,8 +412,8 @@ library CreateOpera uses DamageCode
             x = 2816 - 260*Cos(36*(10-num)*0.01745)
             y = 960 - 260*Sin(36*(10-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',x,y,225)
-            SetUnitRealState(u,1,GetUnitRealState(AttackUnitOperaBoss,1)/100)
-            SetUnitRealState(u,5,GetUnitRealState(AttackUnitOperaBoss,5)/10000)
+            SetUnitRealStateOfOtherId(u,'m012')
+            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
@@ -419,22 +421,22 @@ library CreateOpera uses DamageCode
             x = 2816 - 150*Cos(45*(8-num)*0.01745)
             y = 960 - 150*Sin(45*(8-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e004',x,y,225)
-            SetUnitRealState(u,1,GetUnitRealState(AttackUnitOperaBoss,1)/100)
-            SetUnitRealState(u,5,GetUnitRealState(AttackUnitOperaBoss,5)/10000)
+            SetUnitRealStateOfOtherId(u,'m012')
+            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
         u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',2816,960,225)
-        SetUnitRealState(u,1,GetUnitRealState(AttackUnitOperaBoss,1)/100)
-        SetUnitRealState(u,5,GetUnitRealState(AttackUnitOperaBoss,5)/10000)
+        SetUnitRealStateOfOtherId(u,'m012')
+            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         for num = 0,9
             x = 3712 - 260*Cos(36*(10-num)*0.01745)
             y = 96 - 260*Sin(36*(10-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',x,y,225)
-            SetUnitRealState(u,1,GetUnitRealState(AttackUnitOperaBoss,1)/100)
-            SetUnitRealState(u,5,GetUnitRealState(AttackUnitOperaBoss,5)/10000)
+            SetUnitRealStateOfOtherId(u,'m012')
+            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
@@ -442,14 +444,14 @@ library CreateOpera uses DamageCode
             x = 3712 - 150*Cos(45*(8-num)*0.01745)
             y = 96 - 150*Sin(45*(8-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e004',x,y,225)
-            SetUnitRealState(u,1,GetUnitRealState(AttackUnitOperaBoss,1)/100)
-            SetUnitRealState(u,5,GetUnitRealState(AttackUnitOperaBoss,5)/10000)
+            SetUnitRealStateOfOtherId(u,'m012')
+            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
         u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',3712,96,225)
-        SetUnitRealState(u,1,GetUnitRealState(AttackUnitOperaBoss,1)/100)
-        SetUnitRealState(u,5,GetUnitRealState(AttackUnitOperaBoss,5)/10000)
+        SetUnitRealStateOfOtherId(u,'m012')
+        SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         

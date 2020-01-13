@@ -208,12 +208,12 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         end
     endfunction
     
-    function ShowBossDamageStringNianShou()
+    function ShowBossDamageStringOperaA()
         real min = 0
         int hat = 0
         real ch = 0
         int b = 1
-        int gold
+        int gold = 0
         ShowBossDamageStringEx()
         for n = 1,4
             min = 0
@@ -235,6 +235,39 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
                 endif
                 AddPlayerState(hat,PLAYER_STATE_RESOURCE_GOLD,gold)
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+I2S(gold)+"金币|r")
+                b = b + 1
+            endif
+        end
+    endfunction
+
+    function ShowBossDamageStringOperaB()
+        real min = 0
+        int hat = 0
+        real ch = 0
+        int b = 1
+        real lumber = 0
+        real allDam = GetAllDamage()
+        real pr = 0
+        ShowBossDamageStringEx()
+        for n = 1,4
+            min = 0
+            hat = -1
+            for pid = 0,3
+                ch = PlayerBossDamageEx
+                if  ch > min and ch != 0
+                    hat = pid
+                    min = ch
+                endif
+            end
+            if  hat != -1
+                PlayerReal[hat][2] = 0
+                pr = min/allDam
+                if  pr > 0.5
+                    pr = 0.5
+                endif
+                lumber = 1500*(1+pr*2)
+                AddPlayerState(hat,PLAYER_STATE_RESOURCE_LUMBER,R2I(lumber))
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+I2S(R2I(lumber))+"木材|r")
                 b = b + 1
             endif
         end
