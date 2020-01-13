@@ -229,6 +229,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
             UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
             bj_lastCreatedUnit = null
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(id)+"来临！！")
         else
             AttackRoomXCUnitNum = 4
             for i = 1,4
@@ -238,6 +239,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
                 bj_lastCreatedUnit = null
             end
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r第"+I2S(num+1)+"波星宿之灵来临！")
         endif
     endfunction
 
