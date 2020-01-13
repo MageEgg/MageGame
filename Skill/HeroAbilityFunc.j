@@ -78,7 +78,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         }
         flush locals
     endfunction
-    function SpellS501_2(unit wu,real sx,real sy,real damage)
+    function SpellS501_2(unit wu,real sx,real sy,real dam)
         unit u1 = wu
         real x2 = sx
         real y2 = sy
@@ -86,11 +86,13 @@ library HeroAbilityFunc uses OtherDamageTimer
         real y1 = GetUnitY(wu)
         real ang = Pang(x1,y1,sx,sy)
         int time = 0
+        real damage = dam
         EXSetUnitCollisionType( false,u1, 1 )
         SetUnitPathing( u1, false )
         
         SetUnitPosition(u1,x1,y1)
-        
+        group g1 = CreateGroup()
+                
         TimerStart(0.03,true)
         {
             time = time + 1
@@ -105,11 +107,16 @@ library HeroAbilityFunc uses OtherDamageTimer
                 SetUnitPosition(u1,x1,y1)
                 EXSetUnitFacing( u1, ang/0.01745 )
                 SetUnitFacing(u1,ang/0.01745)
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
                 
             else
                 EXSetUnitCollisionType( true,u1, 1 )
                 SetUnitPathing( u1, true )
                 SetUnitAnimation(u1,"stand")
+                DestroyGroup(g1)
                 endtimer
             endif
             flush locals

@@ -203,6 +203,14 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[47]=""
         StateName[51]="攻击距离"
 
+        StateName[301] = " - [|cffffcc00Q|r]"
+        StateName[302] = " - [|cffffcc00W|r]"
+        StateName[303] = " - [|cffffcc00E|r]"
+        StateName[304] = " - [|cffffcc00R|r]"
+        StateName[305] = " - [|cffffcc00F|r]"
+        StateName[306] = " - [|cffffcc00C|r]"
+        StateName[308] = " - [|cffffcc00D|r]"
+
         StateName[1001]=""
         StateName[1002]=""
         StateName[1003]=""
