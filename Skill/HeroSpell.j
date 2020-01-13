@@ -105,14 +105,23 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         u = null
     endfunction
 
-    function SpellS022(unit u1,real x,real y,real damage)//造成伤害三秒内暴击+10%
+    function SpellS022(unit u1,real x1,real y1,real damage1)//造成伤害三秒内暴击+10%
         unit u=u1
+        real x=x1 
+        real y=y1
+        real damage=damage1
+       
+        effect tx=AddSpecialEffect("effect_AZ_CJXX01_LH_1.MDX",x,y)
+        TimerStart(0.3,false)
+        {
         IndexGroup g = IndexGroup.create()
-        DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y)) 
+        DestroyEffect(tx) 
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         AddUnitStateExTimer(u,19,10,3)
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
+        endtimer
+        }
         flush locals
     endfunction
 
@@ -283,7 +292,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                         gu = FirstOfGroup(g.ejg)
                         exitwhen gu == null
                                 if  I2R(LoadInteger(ht,GetHandleId(gu),159379))>0
-                                    damage=I2R(LoadInteger(ht,GetHandleId(gu),159379))*damage1
+                                    damage=(1+I2R(LoadInteger(ht,GetHandleId(gu),159379)))*damage1
                                     UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
                                 endif
                         GroupRemoveUnit(g.ejg,gu)
@@ -341,7 +350,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             exitwhen gu == null
             DBUG(I2S(GetUnitAbilityLevel(gu,'A048')))
             if  I2R(GetUnitAbilityLevel(gu,'A048'))*damage>0
-                damage=I2R(GetUnitAbilityLevel(gu,'A048'))*damage
+                damage=(1+I2R(GetUnitAbilityLevel(gu,'A048')))*damage
                 UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
             endif
             GroupRemoveUnit(g.ejg,gu)
@@ -1088,10 +1097,26 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=0
         real y=0
         integer i=0
-        TimerStart(1,true)
+        integer a=255
+        boolean b=false
+        TimerStart(0.1,true)
         {
-        if  i<=6
+        if  i<=60
             i=i+1
+            if  b==false
+                if  a>25
+                    a=a-25
+                else
+                    b=true
+                endif
+            else
+                if  a<255
+                    a=a+25
+                else
+                    b=false
+                endif
+            endif
+            SetUnitVertexColor(gui, 255, 255, 255, a )
             if  Udis(u,gui)>500
                 dis=GetRandomReal(0, 200)
                 ang=GetRandomReal(-3.14, 3.14)
@@ -1716,6 +1741,7 @@ function SpellS236(unit u,unit u1)
         damage=GetUnitRealState(u,2)*12
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
     endif
+     LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl")
 endfunction
 
 function SpellS237(unit u)
