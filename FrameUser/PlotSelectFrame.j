@@ -64,8 +64,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function GetPlayerPlotPartNum(int pid)->int
         return Pint[309]
     endfunction
-    //获取时渊剩余刷新秒数
-    function GetPlayerPlotReTime(int pid)->int
+    //获取时渊刷新秒数
+    function GetPlayerPlotReNum(int pid)->int
         return Pint[310]
     endfunction
     //获取副本当前状态 0未解锁 1已解锁 2已通关 3时渊
@@ -107,6 +107,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         if  GetLocalPlayer() == Player(pid)
             DzFrameSetText(BUTTON_Text[309],I2S(num))
         endif
+    endfunction
+    //设置时渊刷新秒数
+    function SetPlayerPlotReNum(int pid,int num)
+        Pint[310] = num
     endfunction
     
 
@@ -224,6 +228,24 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         end
 
     endfunction
+
+
+    function RePlayerAllExPlotPrize(int pid)
+        int num = GetPlayerPlotReNum(pid)+1
+        int use = num * 500
+
+        if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
+            AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            SetPlayerPlotReNum(pid,num)
+            for i = 1,8
+                RePlayerExPlotPrizeId(pid,i)
+            end
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r时渊副本奖励刷新成功！")
+        endif
+        
+    
+    endfunction
+
     
     //解锁副本
     function PlayerUnLockPlot(int pid,int index)
@@ -354,7 +376,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         CreateButton(309,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.01,0.01,0.076,0.021,"war3mapImported\\UI_PlotSelect_Resources.tga")
         CreateText(309,Button.frameid,"righttext010",5,5,-0.005,0.0,"0")
 
-        CreateButton(310,Button.frameid,TYPE_BUTTON,5,BUTTON_Back[309][0],3,-0.005,0.0,0.075,0.021,"war3mapImported\\UI_PlotSelect_Refresh.tga")
+        CreateButton(310,Button.frameid,TYPE_FUNC,5,BUTTON_Back[309][0],3,-0.005,0.0,0.075,0.021,"war3mapImported\\UI_PlotSelect_Refresh.tga")
         DzFrameShow(BUTTON_Back[310][0],false)
         
         //CreateButton(300,Button.frameid,TYPE_NULL,7,Button.frameid,7,0.0,0.0,0.01,0.01,"war3mapImported\\alpha.tga")
