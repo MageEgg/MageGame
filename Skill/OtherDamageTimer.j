@@ -43,70 +43,7 @@ library OtherDamageTimer uses SystemTimer
 
     endfunction
     
-   //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-    function AroundSystem(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
-        unit u=u1
-        unit mj=mj1
-        real time=time1
-        real speed=speed1
-        real jvli=jvli1
-        real damage=damage1
-        real x1=GetUnitX(mj)
-        real y1=GetUnitY(mj)
-        group g1=CreateGroup()
-        real qtime=qtime1
-        real xzsd=360/(qtime/0.03)*0.01745
-        real ang=Uang(u,mj)
-        real yxtime=0
-        
-        TimerStart(0.03,true)    
-        {
-            IndexGroup g = IndexGroup.create()
-            
-            yxtime=yxtime+0.03
-            time=time-0.03
-            if  yxtime>=1
-                yxtime=0
-                GroupClear(g1)
-            endif
-            if   time>=jvli/(speed/0.03)      
-                if  Udis(u,mj)<=jvli
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
-                    y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                else
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+jvli*Cos(ang)
-                    y1 = GetUnitY(u)+jvli*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                endif
-        
-                GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
-                UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                g.destroy()
-            else
-                if  Udis(u,mj)>50
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
-                    y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
-                    UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                    g.destroy()
-                else
-                    DestroyGroup(g1)
-                    RemoveUnit(mj)
-                    endtimer
-                endif
-        endif
-        flush locals
-        }
-        flush locals
-    endfunction
+
 
     function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
         unit u=u1
