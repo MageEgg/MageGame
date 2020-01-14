@@ -140,6 +140,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                 GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
                 SetUnitRealState(summon,1,GetUnitRealState(u,1)*0.3)
+                SetUnitRealState(summon,9,GetUnitRealState(u,9))
                 UnitApplyTimedLife(summon, 'BHwe', 18 )
                 if  IsPlayerHasAbility(u,'S085') == true
                     SetUnitRealState(summon,19,20)
@@ -174,6 +175,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                 summon=CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
                 GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
+                SetUnitRealState(summon,9,GetUnitRealState(u,9))
                 UnitApplyTimedLife(summon, 'BHwe', 12 )
                  if  GetUnitIntState(u,'FB50') > 0
                     AddUnitRealState(summon,9,20)

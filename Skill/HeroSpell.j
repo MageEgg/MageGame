@@ -1405,18 +1405,20 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u=u1
         real x=GetUnitX(u)
         real y=GetUnitY(u)
-        
+        integer pid = GetPlayerId(GetOwningPlayer(u))
         effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u,"chest") 
         TimerStart(0.8,true)
         {
+        
         if  IsPlayerHasAbility(u,'S104') == true
-            x=GetUnitX(u)
-            y=GetUnitY(u)
-            IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"Environment\\LargeBuildingFire\\LargeBuildingFire2.mdl","origin",0))
-            UnitDamageGroup(u,g.ejg,GetUnitRealState(u,5)*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            g.destroy()
-           
+            if  PlayerDeathBool == false
+                x=GetUnitX(u)
+                y=GetUnitY(u)
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"Environment\\LargeBuildingFire\\LargeBuildingFire2.mdl","origin",0))
+                UnitDamageGroup(u,g.ejg,GetUnitRealState(u,5)*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+            endif
         else
             u = null
             DestroyEffect(tx)
