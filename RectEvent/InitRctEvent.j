@@ -1,5 +1,58 @@
 scope InitRctEvent initializer InitRctEvent
-    
+
+    function InLGF_1()
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+        if  pid < 4
+            if  pid != 0
+                if  GetTriggerUnit() == Pu[1]
+                    SendPlayerUnit(pid,AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                else
+                    SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+            endif
+        endif
+    endfunction
+    function InLGF_2()
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+        if  pid < 4
+            if  pid != 1
+                if  GetTriggerUnit() == Pu[1]
+                    SendPlayerUnit(pid,AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                else
+                    SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+            endif
+        endif
+    endfunction
+    function InLGF_3()
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+        if  pid < 4
+            if  pid != 2
+                if  GetTriggerUnit() == Pu[1]
+                    SendPlayerUnit(pid,AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                else
+                    SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+            endif
+        endif
+    endfunction
+    function InLGF_4()
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
+        if  pid < 4
+            if  pid != 3
+                if  GetTriggerUnit() == Pu[1]
+                    SendPlayerUnit(pid,AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                else
+                    SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+            endif
+        endif
+    endfunction
+
     function OutLGF_1()
         int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
         real x = AttackRoomPostion[pid][1]
@@ -80,7 +133,10 @@ scope InitRctEvent initializer InitRctEvent
         InitRctEventFunc(gg_rct_LGF_3,false,function OutLGF_3)
         InitRctEventFunc(gg_rct_LGF_4,false,function OutLGF_4)
 
-
+        InitRctEventFunc(gg_rct_LGF_1,true,function InLGF_1)
+        InitRctEventFunc(gg_rct_LGF_2,true,function InLGF_2)
+        InitRctEventFunc(gg_rct_LGF_3,true,function InLGF_3)
+        InitRctEventFunc(gg_rct_LGF_4,true,function InLGF_4)
       
     endfunction
     

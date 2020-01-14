@@ -381,7 +381,7 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS508(unit wu)
         int num = 0
         real damage = 0
-        if  GetUnitTypeId(wu) == 'H008'
+        if  Chance(wu,10) == true
             num = GetUnitIntState(wu,'S508')
             if  num < 7
                 AddUnitRealState(wu,9,10)
@@ -595,6 +595,12 @@ library HeroAbilityFunc uses OtherDamageTimer
             flush locals
         }
         flush locals
+    endfunction
+
+    function SpellS521(unit wu)
+        int id = GetRandomInt(1,5) + 'I000'
+        UnitAddItem(wu,CreateItem(id,GetUnitX(wu),GetUnitY(wu)))
+        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:|r恭喜您！制作出了一枚"+GetObjectName(id))
     endfunction
 
     function SpellS523(unit wu,unit tu)
