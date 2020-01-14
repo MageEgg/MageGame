@@ -47,6 +47,10 @@ scope FrameButton
                     //PlayerTestPlot(pid,id-310)
                     OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
                 endif
+            elseif  Type == TYPE_ESC
+                if  id == 410
+                    PlayerClickPrize(pid,0)
+                endif
             endif
         endif
     end
@@ -125,6 +129,9 @@ endscope
 //! runtextmacro AddFrameFunc("317")
 //! runtextmacro AddFrameFunc("318")
 
+
+//esc
+//! runtextmacro AddFrameFunc("410")
 //! runtextmacro AddFrameFunc("411")
 //! runtextmacro AddFrameFunc("412")
 //! runtextmacro AddFrameFunc("413")
