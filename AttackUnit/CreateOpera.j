@@ -5,15 +5,27 @@ library CreateOpera uses DamageCode
     group AttackOperaGroup_C_1 = null
     
     function KillAttackUnitGroupFunc()
+        bool UI = false
+        if  GetUnitAbilityLevel(GetEnumUnit(),'AZ01') > 0 and UI == false
+            UI = true
+            ShowBossDamageUI(false)
+        endif
         KillUnit(GetEnumUnit())
     endfunction
+
     function KillAttackUnitGroup()
         ForGroup(AttackUnitGroup,function KillAttackUnitGroupFunc)
     endfunction
     
     function StopAttackUnitGroupFunc()
+        bool UI = false
         UnitAddAbility(GetEnumUnit(),'Avul')
         PauseUnit(GetEnumUnit(),true)
+        if  GetUnitAbilityLevel(GetEnumUnit(),'AZ01') > 0 and UI == false
+            UnitRemoveAbility(GetEnumUnit(),'AZ01')
+            UI = true
+            ShowBossDamageUI(false)
+        endif
     endfunction
     function StopAttackUnitGroup()
         ForGroup(AttackUnitGroup,function StopAttackUnitGroupFunc)
@@ -25,20 +37,6 @@ library CreateOpera uses DamageCode
     endfunction
     function GoonAttackUnitGroup()
         ForGroup(AttackUnitGroup,function GoonAttackUnitGroupFunc)
-    endfunction
-
-    function StopAttackUnitGroupExFunc()
-        PauseUnit(GetEnumUnit(),true)
-    endfunction
-    function StopAttackUnitGroupEx()
-        ForGroup(AttackUnitGroup,function StopAttackUnitGroupExFunc)
-    endfunction
-    
-    function GoonAttackUnitGroupExFunc()
-        PauseUnit(GetEnumUnit(),false)
-    endfunction
-    function GoonAttackUnitGroupEx()
-        ForGroup(AttackUnitGroup,function GoonAttackUnitGroupExFunc)
     endfunction
     
     function GetAttackPlayingHeroId()->int
