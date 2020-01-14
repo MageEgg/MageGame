@@ -753,8 +753,12 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     scope ItemPool
         itempool array ItemPool
 
-        function UnitAddPoolItem(unit wu,int index)
-            UnitAddItem(wu,PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu)))
+        function UnitAddPoolItem(unit wu,int index)->int
+            int id = 0
+            bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu))
+            id = GetItemTypeId(bj_lastCreatedItem)
+            UnitAddItem(wu,bj_lastCreatedItem)
+            return id
         endfunction
         function GetPoolItemId(int index)->int
             int id = 0
