@@ -84,7 +84,7 @@ library SystemCodes uses ServerTime,Define1
 
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
         if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
-            UnitAddAbility(Pu[1],'AZ98')
+            UnitTimerAddSkill(Pu[1],'AZ98',0.1)
         endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
@@ -110,7 +110,7 @@ library SystemCodes uses ServerTime,Define1
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
         if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
-            UnitAddAbility(Pu[1],'AZ98')
+            UnitTimerAddSkill(Pu[1],'AZ98',0.1)
         endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
@@ -447,7 +447,7 @@ library SystemCodes uses ServerTime,Define1
     end
     
     func IsCanFlyRcet(real x,real y)->bool
-        rect rc = Rect(x - 80, y - 80, x + 80, y + 80)
+        rect rc = Rect(x - 90, y - 90, x + 90, y + 90)
         IsCanFlyNum = 0
         EnumDestructablesInRect(rc,null,function IsCanFlyRcetFunc)
         RemoveRect(rc)
