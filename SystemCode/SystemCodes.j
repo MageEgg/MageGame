@@ -447,7 +447,7 @@ library SystemCodes uses ServerTime,Define1
     end
     
     func IsCanFlyRcet(real x,real y)->bool
-        rect rc = Rect(x - 100, y - 100, x + 100, y + 100)
+        rect rc = Rect(x - 80, y - 80, x + 80, y + 80)
         IsCanFlyNum = 0
         EnumDestructablesInRect(rc,null,function IsCanFlyRcetFunc)
         RemoveRect(rc)
@@ -753,8 +753,12 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     scope ItemPool
         itempool array ItemPool
 
-        function UnitAddPoolItem(unit wu,int index)
-            UnitAddItem(wu,PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu)))
+        function UnitAddPoolItem(unit wu,int index)->int
+            int id = 0
+            bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu))
+            id = GetItemTypeId(bj_lastCreatedItem)
+            UnitAddItem(wu,bj_lastCreatedItem)
+            return id
         endfunction
         function GetPoolItemId(int index)->int
             int id = 0

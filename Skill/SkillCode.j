@@ -131,6 +131,7 @@ library SkillCode uses System,State,DamageCode
             DestroyEffect(AddSpecialEffect("effect_e_buffblue2.mdl",GetUnitX(whichunit),GetUnitY(whichunit)))
         endif
     endfunction
+
     
 endlibrary 
 

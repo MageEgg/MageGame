@@ -19,7 +19,7 @@ scope SelectHero
             
             Pu[1] = hero
             
-            //Pu[2] = CreateUnit(Player(pid),'zs00',1038,-5667,0)
+            Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
             ShowPlayerSignInLastTime(pid) //登陆刷新

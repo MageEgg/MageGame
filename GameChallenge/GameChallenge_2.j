@@ -161,6 +161,13 @@ library GameChallenge2 uses GameChallengeBase
         IsFinshChallenge(2) = true
         //奖励
         PlayerFinishPlotEx(pid,2)
+        if  AttackUnitWN <= 5
+            for num = 1,2
+                UnitAddItemEx(Pu[1],'IN19')
+            end
+            AddPlayerTechResearched(Player(pid),'KM21',1)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励2”|r成就，奖励2个"+GetObjectName('IN19')+"！") 
+        endif
     endfunction
 
     function EnRctGameChalleng_2_Water1()

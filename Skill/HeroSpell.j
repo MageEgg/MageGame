@@ -2203,6 +2203,8 @@ endfunction
                 
             elseif  id == 'S516'
                 SpellS516(u1.u)
+            elseif  id == 'S521'
+                SpellS521(u1.u)
             elseif  id == 'S523'
                 SpellS523(u1.u,u2.u)
             elseif  id == 'S524'

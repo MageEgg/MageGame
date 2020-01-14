@@ -381,23 +381,25 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS508(unit wu)
         int num = 0
         real damage = 0
-        if  GetUnitTypeId(wu) == 'H008'
-            num = GetUnitIntState(wu,'S508')
-            if  num < 7
+        
+        num = GetUnitIntState(wu,'S508')
+        if  num < 6
+            if  Chance(wu,10) == true
                 AddUnitRealState(wu,9,10)
                 SetUnitIntState(wu,'S508',num + 1)
-            else
-                damage = GetAbilityDamage(wu,'S508',1)
-                AddUnitRealState(wu,9,-60)
-                SetUnitIntState(wu,'S508',0)
-                
-                IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-                UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-                LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_earthshaker_a.mdl")
-                g.destroy()
             endif
+        else
+            damage = GetAbilityDamage(wu,'S508',1)
+            AddUnitRealState(wu,9,-60)
+            SetUnitIntState(wu,'S508',0)
+            
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_earthshaker_a.mdl")
+            g.destroy()
         endif
+        
     endfunction
 
     function SpellS510(unit wu)
@@ -595,6 +597,12 @@ library HeroAbilityFunc uses OtherDamageTimer
             flush locals
         }
         flush locals
+    endfunction
+
+    function SpellS521(unit wu)
+        int id = GetRandomInt(1,5) + 'I000'
+        UnitAddItem(wu,CreateItem(id,GetUnitX(wu),GetUnitY(wu)))
+        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:|r恭喜您！制作出了一枚"+GetObjectName(id))
     endfunction
 
     function SpellS523(unit wu,unit tu)

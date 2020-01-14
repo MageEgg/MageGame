@@ -304,6 +304,13 @@ library GameChallenge6 uses GameChallengeBase
                 IsFinshChallenge(6) = true
                 //奖励
                 PlayerFinishPlotEx(pid,6)
+                if  AttackUnitWN <= 14
+                    for num = 1,3
+                        UnitAddItemEx(Pu[1],'IN19')
+                    end
+                    AddPlayerTechResearched(Player(pid),'KM24',1)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励5”|r成就，奖励3个"+GetObjectName('IN19')+"！") 
+                endif
             endif
         elseif  uid == 'uf62'
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀申公豹！",0)
