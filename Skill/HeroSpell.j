@@ -1180,7 +1180,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             y=GetUnitY(u)
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"Environment\\LargeBuildingFire\\LargeBuildingFire2.mdl","origin",0))
-            UnitDamageGroup(u,g.ejg,GetUnitRealState(u,5)*0.3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(u,g.ejg,GetUnitRealState(u,5)*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
            
         else
@@ -1336,7 +1336,7 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
                 GroupClear(wg)
                 SetUnitPosition(u2,x,y)
                 GroupEnumUnitsInRange(gg,x0,y0,400,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,dam,false,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                UnitDamageGroup(u1,gg,GetUnitRealState(u1,2)*4,false,false,ConvertAttackType(0),ConvertDamageType(14),null)
                 DestroyGroup(wg)
                 KillUnit(u2)
                 endtimer
@@ -1606,7 +1606,7 @@ function SpellS116(unit u1,real damage1)
     endfunction
 
     function SpellS128(unit u1)
-
+        
     endfunction
     function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu

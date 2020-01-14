@@ -179,9 +179,9 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                     AddUnitRealState(summon,9,20)
                 endif
                 if  IsPlayerHasAbility(u,'S085') == true
-                    SetUnitRealState(summon,1,(GetUnitRealState(u,1)*0.5)+(GetUnitRealState(u,2)*0.5))
+                    SetUnitRealState(summon,1,(GetUnitRealState(u,1)*1)+(GetUnitRealState(u,2)*1))
                 else
-                    SetUnitRealState(summon,1,(GetUnitRealState(u,1)*0.25)+(GetUnitRealState(u,1)*0.25))
+                    SetUnitRealState(summon,1,(GetUnitRealState(u,1)*0.5)+(GetUnitRealState(u,1)*0.5))
                 endif
             endloop
         endif
