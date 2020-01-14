@@ -406,19 +406,21 @@ library HeroAbilityFunc uses OtherDamageTimer
             AddUnitRealState(wu,25,-10)
             AddUnitRealState(wu,19,10)
             SetUnitIntState(wu,'S510',1)
-            DzSetUnitModel( wu, "units\\creeps\\BronzeDragon\\BronzeDragon.mdl" )
-            
+            DzSetUnitModel( wu, "Hero_yangjian_Dragon.mdl" )
+            SetUnitScale(wu,0.3,0.3,0.3)
         elseif  index == 1
             AddUnitRealState(wu,19,-10)
             AddUnitRealState(wu,9,45)
             SetUnitIntState(wu,'S510',2)
-            DzSetUnitModel( wu, "units\\nightelf\\HeroMoonPriestess\\HeroMoonPriestess.mdl" )
+            DzSetUnitModel( wu, "Hero_yangjian_Tiger.mdl" )
+            SetUnitScale(wu,1.5,1.5,1.5)
             
         elseif  index == 2
             AddUnitRealState(wu,9,-45)
             AddUnitRealState(wu,25,10)
             SetUnitIntState(wu,'S510',0)
             DzSetUnitModel( wu, "H010.mdl" )
+            SetUnitScale(wu,1.0,1.0,1.0)
             
         endif
     endfunction
