@@ -99,7 +99,7 @@ library GameChallenge3 uses GameChallengeBase
                 UnitAddItemEx(Pu[1],'IN19')
             end
             AddPlayerTechResearched(Player(pid),'KM22',1)
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励3”|r成就，奖励2个"+GetObjectName('IN19')+"！") 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“莽夫”|r成就，奖励2个"+GetObjectName('IN19')+"！") 
         endif
     endfunction
 

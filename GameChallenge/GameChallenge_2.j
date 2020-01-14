@@ -166,7 +166,7 @@ library GameChallenge2 uses GameChallengeBase
                 UnitAddItemEx(Pu[1],'IN19')
             end
             AddPlayerTechResearched(Player(pid),'KM21',1)
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励2”|r成就，奖励2个"+GetObjectName('IN19')+"！") 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“熊孩子”|r成就，奖励2个"+GetObjectName('IN19')+"！") 
         endif
     endfunction
 

@@ -437,7 +437,7 @@ library GameChallenge8 uses GameChallengeBase
                     end
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
                     AddPlayerTechResearched(Player(pid),'KM25',1)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励6”|r成就，奖励4个"+GetObjectName('IN19')+"和40000金币！") 
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“胜利在望”|r成就，奖励4个"+GetObjectName('IN19')+"和40000金币！") 
                 endif
             endif
         elseif  uid == 'uf87'

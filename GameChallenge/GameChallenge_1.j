@@ -145,7 +145,7 @@ library GameChallenge1 uses GameChallengeBase
         if  AttackUnitWN <= 3
             UnitAddItemEx(Pu[1],'IN19')
             AddPlayerTechResearched(Player(pid),'KM20',1)
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励1”|r成就，奖励"+GetObjectName('IN19')+"！") 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“将星出世”|r成就，奖励"+GetObjectName('IN19')+"！") 
         endif
     endfunction
 
