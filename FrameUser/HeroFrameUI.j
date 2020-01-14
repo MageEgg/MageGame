@@ -200,11 +200,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         DzFrameSetSize(GetFrameHeroPanelIcon(),0.021,0.063)
         
         
-        /*
-        DzFrameClearAllPoints(DzFrameGetPortrait())
-        DzFrameSetPoint(DzFrameGetPortrait(),1,GetFrameUnitNameFrame(),7,0.0,-0.01)
-        DzFrameSetSize(DzFrameGetPortrait(),0.04,0.04)
-        */
+        
+        //DzFrameClearAllPoints(DzFrameGetPortrait())
+        //DzFrameSetPoint(DzFrameGetPortrait(),1,GetFrameUnitNameFrame(),7,0.0,-0.01)
+        DzFrameSetSize(DzFrameGetPortrait(),0.08,0.06)
+        
         /*
         DzFrameClearAllPoints(DzFrameFindByName("UnitsCheckBox",0))
         DzFrameClearAllPoints(DzFrameFindByName("UnitsCheckBox",6))
