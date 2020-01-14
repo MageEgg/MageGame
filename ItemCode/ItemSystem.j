@@ -172,6 +172,17 @@ scope ItemSystem initializer InitItemSystem
             YDWESetItemDataString(id,3,"需要"+I2S(use)+"杀敌数")
         endif
     endfunction
+    
+    function RePlayerBeastSoulDrawShop(int pid)
+        for i = 1,8
+            RemoveItemFromStock(Pu[25],'IH00'+i)
+        end
+        for i = 1,8
+            if  PlayerInt[pid][90+i] < 10
+                AddItemToStock(Pu[25],'IH00'+i,1,1)
+            endif
+        end
+    endfunction
 
     function PlayerBeastSoulDraw(int pid,int itemid)
         int index = itemid - 'IH00'
@@ -190,15 +201,18 @@ scope ItemSystem initializer InitItemSystem
                         SetUnitIntState(Pu[1],190+num + 1,index)
                         SetUnitIntState(Pu[1],190,num + 1)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
+                        PlayerInt[pid][90+index] = 10
                         if  num == 2
                             int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
                             HeroAddAbilityByIndex(Pu[1],4,id)
                         endif
                         UnitAddAbility(Pu[1],'M006'+num)
+                        RemoveUnit(Pu[25])
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
                     endif
                     RePlayerBeastSoulDrawTips(pid,index)
+                    RePlayerBeastSoulDrawShop(pid)
                 endif
             else
                 BJDebugMsg("重复的")
