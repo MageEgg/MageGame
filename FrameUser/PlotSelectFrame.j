@@ -230,6 +230,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
 
 
+    //刷新副本奖励
     function RePlayerAllExPlotPrize(int pid)
         int num = GetPlayerPlotReNum(pid)+1
         int use = num * 500
@@ -240,7 +241,12 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             for i = 1,8
                 RePlayerExPlotPrizeId(pid,i)
             end
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r时渊副本奖励刷新成功！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r时渊副本奖励重置成功！")
+            if  GetLocalPlayer() == Player(pid)
+                DzFrameShow(UI_TipsHead, true)
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r重置失败！杀敌数不足"+I2S(use))
         endif
         
     
@@ -376,7 +382,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         CreateButton(309,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.01,0.01,0.076,0.021,"war3mapImported\\UI_PlotSelect_Resources.tga")
         CreateText(309,Button.frameid,"righttext010",5,5,-0.005,0.0,"0")
 
-        CreateButton(310,Button.frameid,TYPE_FUNC,5,BUTTON_Back[309][0],3,-0.005,0.0,0.075,0.021,"war3mapImported\\UI_PlotSelect_Refresh.tga")
+        CreateButton(310,Button.frameid,TYPE_BUTTON,5,BUTTON_Back[309][0],3,-0.005,0.0,0.075,0.021,"war3mapImported\\UI_PlotSelect_Refresh.tga")
         DzFrameShow(BUTTON_Back[310][0],false)
         
         //CreateButton(300,Button.frameid,TYPE_NULL,7,Button.frameid,7,0.0,0.0,0.01,0.01,"war3mapImported\\alpha.tga")
