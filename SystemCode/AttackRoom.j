@@ -395,7 +395,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 RefreshAttackRoom(pid,AttackRoomUid)
 
                 //////////////////团本分割/////////////////////
-                GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np10',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
+                GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
                 GameChallengPlayerUnit[pid][91] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
                 DzSetUnitModel(GameChallengPlayerUnit[pid][91],"effect2_tx-yuzhou.mdl")
                 CreateTrigUnitInRange(GetUnitX(GameChallengPlayerUnit[pid][91]),GetUnitY(GameChallengPlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)

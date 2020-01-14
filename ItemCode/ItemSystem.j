@@ -324,7 +324,8 @@ scope ItemSystem initializer InitItemSystem
             AstrologyFunc(pid)
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
-
+        elseif  itemid == 'IZ01'
+            OpenGameTeamChallenge(pid,1,10)
         endif
 
 
