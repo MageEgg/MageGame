@@ -93,6 +93,11 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
         CreateButton(413,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+2*0.042,0.01,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
         CreateButton(423,Button.frameid,TYPE_BUTTON,1,BUTTON_Back[413][0],1,0.0,-0.002,0.036,0.036,"war3mapImported\\alpha.tga")
         CreateText(423,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
+
+
+        CreateButton(410,Button.frameid,TYPE_CLOSE,2,Button.frameid,2,0.0,0.0,0.03,0.016,"war3mapImported\\UI_ESC.tga")
+
+        
     endfunction
 
     function PrizeFrameInit()
