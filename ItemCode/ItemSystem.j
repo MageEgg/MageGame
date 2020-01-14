@@ -106,12 +106,12 @@ scope ItemSystem initializer InitItemSystem
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
         if  index == 1
-            use = 100 + num * 50
+            use = 50 + num * 50
             if  use > 200
                 use = 200
             endif
         elseif  index == 2
-            use = 200 + num * 50
+            use = 150 + num * 50
             if  use > 400
                 use = 400
             endif
