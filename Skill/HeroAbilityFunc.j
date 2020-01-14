@@ -406,19 +406,21 @@ library HeroAbilityFunc uses OtherDamageTimer
             AddUnitRealState(wu,25,-10)
             AddUnitRealState(wu,19,10)
             SetUnitIntState(wu,'S510',1)
-            DzSetUnitModel( wu, "units\\creeps\\BronzeDragon\\BronzeDragon.mdl" )
-            
+            DzSetUnitModel( wu, "Hero_yangjian_Dragon.mdl" )
+            SetUnitScale(wu,0.3,0.3,0.3)
         elseif  index == 1
             AddUnitRealState(wu,19,-10)
             AddUnitRealState(wu,9,45)
             SetUnitIntState(wu,'S510',2)
-            DzSetUnitModel( wu, "units\\nightelf\\HeroMoonPriestess\\HeroMoonPriestess.mdl" )
+            DzSetUnitModel( wu, "Hero_yangjian_Tiger.mdl" )
+            SetUnitScale(wu,1.5,1.5,1.5)
             
         elseif  index == 2
             AddUnitRealState(wu,9,-45)
             AddUnitRealState(wu,25,10)
             SetUnitIntState(wu,'S510',0)
             DzSetUnitModel( wu, "H010.mdl" )
+            SetUnitScale(wu,1.0,1.0,1.0)
             
         endif
     endfunction
@@ -460,7 +462,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             time = time + 1
             if  time == 1
                 IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
                 UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 //BJDebugMsg("damage"+R2S(damage))
                 g.destroy()

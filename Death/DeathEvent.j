@@ -283,10 +283,35 @@ scope DeathEvent initializer InitDeathEvent
         int num = AttackRoomXCUnitNum
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
-            CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+            
             if  num < 23
                 AttackRoomXCNum = AttackRoomXCNum + 1
             endif
+            if  uid == 'u0DF'
+                SetPlayerTechResearched(Player(pid),'AM40',1)
+                AddUnitRealState(Pu[1],9,25)
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(uid)+"挑战成功！奖励攻速+25% 炽星魔盒*1")
+            elseif  uid == 'u0DL'
+                SetPlayerTechResearched(Player(pid),'AM40',1)
+                AddUnitRealState(Pu[1],9,35)
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(uid)+"挑战成功！奖励攻速+35% 炽星魔盒*1")
+            elseif  uid == 'u0DR'
+                SetPlayerTechResearched(Player(pid),'AM40',1)
+                AddUnitRealState(Pu[1],9,45)
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(uid)+"挑战成功！奖励攻速+45% 炽星魔盒*2")
+            elseif  uid == 'u0DX'
+                SetPlayerTechResearched(Player(pid),'AM40',1)
+                AddUnitRealState(Pu[1],9,55)
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(uid)+"挑战成功！奖励攻速+55% 炽星魔盒*3")
+            endif
+            
         else
             if  AttackRoomXCUnitNum <= 0
                 CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))

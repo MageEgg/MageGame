@@ -109,7 +109,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         end
         return 0
     endfunction
-    
+        
     function IsPlayerHasAbility(unit wu,int id)->bool
         for index = 1,AbilityUIMax
             if  GetUnitIntState(wu,110+index) == id

@@ -4,6 +4,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     private FRAME Name = 0
     private int origin = 0
 
+    private real array PlayerBossDamageCos
     
     function GetPlayerDamage(int pid)->real
         real dam = GetUnitRealState(Pu[1],99)
@@ -69,9 +70,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         endif
     endfunction
     
-    
-    
-    func BossDamageUICloceEx()
+    function BossDamageUICloceEx()
         int time = 0
         Back.alpha = 255
         TimerStart(0.006,true)
@@ -89,9 +88,9 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             flush locals
         }
         flush locals
-    end
+    endfunction
     
-    func BossDamageUIClose()
+    function BossDamageUIClose()
         TimerStart(5,true)
         {
             BossDamageUICloceEx()
@@ -99,9 +98,9 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             flush locals
         }
         flush locals
-    end
+    endfunction
 
-    func BossDamageUIOpen()
+    function BossDamageUIOpen()
         int time = 0
         Back.show = true
         Back.alpha = 5
@@ -116,24 +115,21 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             flush locals
         }
         flush locals
-    end
+    endfunction
     
-    func ShowBossDamageUI(bool b)
+    function ShowBossDamageUI(bool b)
         if  b == true
             BossDamageUIOpen()
         else
             BossDamageUIClose()
         endif
-    end
+    endfunction
     
     function BossDamageFrameInit()
 
         Back = FRAME.create()   //注册主背景
         Name = FRAME.create() //经验条
-
-
         
-
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","BossDamag",GameUI,Back)
         Back.SetPoint(2,GameUI,2,-0.01,-0.16)
@@ -161,7 +157,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
     function ShowBossDamageStringEx()
         for pid = 0,3
-            PlayerBossDamageEx = GetUnitRealState(Pu[1],99)
+            PlayerBossDamageCos[pid] = GetUnitRealState(Pu[1],99)
         end
     endfunction
     
@@ -190,14 +186,14 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             min = 0
             hat = -1
             for pid = 0,3
-                ch = PlayerBossDamageEx
+                ch = PlayerBossDamageCos[pid]
                 if  ch > min and ch != 0
                     hat = pid
                     min = ch
                 endif
             end
             if  hat != -1
-                PlayerReal[hat][2] = 0
+                PlayerBossDamageCos[hat] = 0
                 if  b == 1
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
                 else
@@ -219,14 +215,14 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             min = 0
             hat = -1
             for pid = 0,3
-                ch = PlayerBossDamageEx
+                ch = PlayerBossDamageCos[pid]
                 if  ch > min and ch != 0
                     hat = pid
                     min = ch
                 endif
             end
             if  hat != -1
-                PlayerReal[hat][2] = 0
+                PlayerBossDamageCos[hat] = 0
                 gold = R2I(min)/1000000*56000
                 if  gold > 56000
                     gold = 56000
@@ -253,14 +249,14 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             min = 0
             hat = -1
             for pid = 0,3
-                ch = PlayerBossDamageEx
+                ch = PlayerBossDamageCos[pid]
                 if  ch > min and ch != 0
                     hat = pid
                     min = ch
                 endif
             end
             if  hat != -1
-                PlayerReal[hat][2] = 0
+                PlayerBossDamageCos[hat] = 0
                 pr = min/allDam
                 if  pr > 0.5
                     pr = 0.5

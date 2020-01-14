@@ -106,12 +106,12 @@ scope ItemSystem initializer InitItemSystem
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
         if  index == 1
-            use = 100 * num
+            use = 100 + num * 50
             if  use > 200
                 use = 200
             endif
         elseif  index == 2
-            use = 200 * num
+            use = 200 + num * 50
             if  use > 400
                 use = 400
             endif
@@ -142,7 +142,7 @@ scope ItemSystem initializer InitItemSystem
                 AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 PlayerUseLearnAbilityBook(pid,index + 'CS00')
                 AddPlayerDrawNum(pid,index)
-                RePlayerAbilityDrawTips(pid,index)
+                //RePlayerAbilityDrawTips(pid,index)
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
             endif
@@ -163,24 +163,61 @@ scope ItemSystem initializer InitItemSystem
         endif
         return false
     endfunction
+
+    function RePlayerBeastSoulDrawTips(int pid,int index)
+        int id = 'IH00' + index
+        int now = PlayerInt[pid][90+index]
+        int use = now * 20 + 100
+        if  GetLocalPlayer() == Player(pid)
+            YDWESetItemDataString(id,3,"需要"+I2S(use)+"杀敌数")
+        endif
+    endfunction
+
+    function RePlayerBeastSoulDrawShop(int pid)
+        for i = 1,8
+            RemoveItemFromStock(Pu[25],'IH00'+i)
+        end
+        for i = 1,8
+            if  PlayerInt[pid][90+i] < 10
+                AddItemToStock(Pu[25],'IH00'+i,1,1)
+            endif
+        end
+    endfunction
+
     function PlayerBeastSoulDraw(int pid,int itemid)
         int index = itemid - 'IH00'
         int num = GetUnitIntState(Pu[1],190)
+        int now = PlayerInt[pid][90+index]
+        int use = now * 20 + 100
         if  num < 3
-            if  true
-                if  IsHasBeastSoul(pid,index) == false
-                    SetUnitIntState(Pu[1],190+num + 1,index)
-                    SetUnitIntState(Pu[1],190,num + 1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
-                    if  num == 2
-                        int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
-                        HeroAddAbilityByIndex(Pu[1],4,id)
+            
+            if  IsHasBeastSoul(pid,index) == false
+                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
+                    AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                    PlayerInt[pid][90+index] = now + 1
+
+                    if  GetRandomInt(1,100) <= 10*now+10
+
+                        SetUnitIntState(Pu[1],190+num + 1,index)
+                        SetUnitIntState(Pu[1],190,num + 1)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
+                        PlayerInt[pid][90+index] = 10
+                        if  num == 2
+                            int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
+                            HeroAddAbilityByIndex(Pu[1],4,id)
+                        endif
+                        UnitAddAbility(Pu[1],'M006'+num)
+                        RemoveUnit(Pu[25])
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
                     endif
-                    UnitAddAbility(Pu[1],'M006'+num)
-                else
-                    BJDebugMsg("重复的")
+                    //RePlayerBeastSoulDrawTips(pid,index)
+                    RePlayerBeastSoulDrawShop(pid)
                 endif
+            else
+                BJDebugMsg("重复的")
             endif
+        
             
         endif
 

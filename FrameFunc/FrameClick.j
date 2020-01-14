@@ -22,7 +22,8 @@ scope FrameButton
                 elseif  id >= 131 and id <= 133//选择要替换的技能
                     PlayerReplaceAbility(pid,id-130)
                     
-                
+                elseif  id == 310//刷新时渊奖励
+                    RePlayerAllExPlotPrize(pid)
                     
                 elseif  id >= 411 and id <= 413//选择奖励
                     PlayerClickPrize(pid,id-410)
@@ -41,8 +42,7 @@ scope FrameButton
                 if  id >= 301 and id <= 308//选择副本按钮
                     //PlayerTestPlot(pid,id-300)
                     OpenGameChallenge(pid,id-300,GetPlayerPlotType(pid))
-                elseif  id == 310//刷新时渊奖励
-                    RePlayerAllExPlotPrize(pid)
+                
                 elseif  id >= 311 and id <= 318//选择副本按钮
                     //PlayerTestPlot(pid,id-310)
                     OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
@@ -115,6 +115,7 @@ endscope
 //! runtextmacro AddFrameFunc("307")
 //! runtextmacro AddFrameFunc("308")
 
+//! runtextmacro AddFrameFunc("310")
 //! runtextmacro AddFrameFunc("311")
 //! runtextmacro AddFrameFunc("312")
 //! runtextmacro AddFrameFunc("313")
