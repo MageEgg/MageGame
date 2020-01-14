@@ -568,6 +568,10 @@ library SystemCodes uses ServerTime,Define1
 
     //////////////////////////////////顺序调整分割///////////////////////////////////////
 
+    function HeroMoveToHome(int pid)
+        SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+    endfunction
+
     function SetPlayerOnlyDamage(unit u,int pid)
         UnitAddAbility(u,'AZ99')
         SetUnitAbilityLevel(u,'AZ99',pid+1)

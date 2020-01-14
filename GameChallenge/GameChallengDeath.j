@@ -130,6 +130,10 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
                     endif
+                else
+                    if  GameChallengBool[90] == true
+                        GameChallengBool[90] = false
+                    endif
                 endif
             endif
         endif
