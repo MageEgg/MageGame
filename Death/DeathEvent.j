@@ -257,7 +257,7 @@ scope DeathEvent initializer InitDeathEvent
         ShowUnit(u1,false)
         TimerStart(10,false)
         {
-            UnitAddAbility(u1,'Avul')
+            UnitRemoveAbility(u1,'Avul')
             ShowUnit(u1,true)
             endtimer
             flush locals
