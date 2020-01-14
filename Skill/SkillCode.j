@@ -131,6 +131,72 @@ library SkillCode uses System,State,DamageCode
             DestroyEffect(AddSpecialEffect("effect_e_buffblue2.mdl",GetUnitX(whichunit),GetUnitY(whichunit)))
         endif
     endfunction
+
+    function ItemHeroTransmit(unit u) 
+        int pid = GetPlayerId(GetOwningPlayer(u))
+        item it = null
+        if  PlayerDeathBool == false
+            it = UnitItemInSlot(u,0)
+            if  it != null
+                if  UnitCanGetItem(Pu[1]) == true
+                    UnitRemoveItem(u,it)
+                    UnitAddItem(Pu[1],it)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[系统]：|r英雄背包已满！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[系统]：|r助手第一格没有物品！")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[系统]：|r英雄已死亡！")
+        endif
+        it = null
+    endfunction
+
+    function ItemHeroRecovery(unit u) 
+        int pid = GetPlayerId(GetOwningPlayer(u))
+        item it = null
+        if  PlayerDeathBool == false
+            it = UnitItemInSlot(Pu[1],0)
+            if  it != null
+                UnitRemoveItem(Pu[1],it)
+                UnitAddItem(u,it)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[系统]：|r英雄第一格没有物品！")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[系统]：|r英雄已死亡！")
+        endif
+        it = null
+    endfunction
+    
+    function ItemAllPawnable(unit u)
+        item it = null
+        int gold = 0
+        int lumber = 0
+        for num = 0,5
+            it = UnitItemInSlot(u,num)
+            if  it != null and IsItemPawnable(it) == true
+                gold = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_ITEM, GetItemTypeId(it), "goldcost")
+                lumber = YDWEGetObjectPropertyInteger(YDWE_OBJECT_TYPE_ITEM, GetItemTypeId(it), "lumbercost")
+                if  gold != 0
+                    AddPlayerState(GetPlayerId(GetOwningPlayer(u)),PLAYER_STATE_RESOURCE_GOLD,R2I(gold*0.5))
+                endif
+                if  lumber != 0
+                    AddPlayerState(GetPlayerId(GetOwningPlayer(u)),PLAYER_STATE_RESOURCE_LUMBER,R2I(lumber*0.5))
+                endif
+                UnitRemoveItem(u,it)
+                RemoveItem(it)
+            endif
+        end
+        it = null
+    endfunction
+
+    function SpellPu2(unit wu,int id)
+
+    endfunction
+
+
     
 endlibrary 
 
