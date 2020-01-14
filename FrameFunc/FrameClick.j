@@ -47,7 +47,7 @@ scope FrameButton
                     //PlayerTestPlot(pid,id-310)
                     OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
                 endif
-            elseif  Type == TYPE_ESC
+            elseif  Type == TYPE_CLOSE
                 if  id == 410
                     PlayerClickPrize(pid,0)
                 endif

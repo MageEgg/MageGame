@@ -95,7 +95,7 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
         CreateText(423,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
 
 
-        CreateButton(410,Button.frameid,TYPE_ESC,2,Button.frameid,2,0.0,0.0,0.03,0.016,"war3mapImported\\UI_ESC.tga")
+        CreateButton(410,Button.frameid,TYPE_CLOSE,2,Button.frameid,2,0.0,0.0,0.03,0.016,"war3mapImported\\UI_ESC.tga")
 
         
     endfunction
