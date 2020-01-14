@@ -240,6 +240,9 @@ library DamageCode uses UnitStateSet
     endfunction
     function GetUnitWx(unit wu)->real
         real s = GetUnitWxState(wu)
+        if  GetUnitAbilityLevel(wu,'AZ97') > 0
+            return 0
+        endif
         return s*0.01
     endfunction
     
