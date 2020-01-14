@@ -40,6 +40,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             gg = null
             return false
         endif
+        flush locals
     endfunction
     
     function SpellS006(unit wu,real x,real y,real dam)
@@ -103,6 +104,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
         u = null
+        flush locals
     endfunction
 
     function SpellS022(unit u1,real x1,real y1,real damage1)//造成伤害三秒内暴击+10%
@@ -114,13 +116,14 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         effect tx=AddSpecialEffect("effect_AZ_CJXX01_LH_1.MDX",x,y)
         TimerStart(0.3,false)
         {
-        IndexGroup g = IndexGroup.create()
-        DestroyEffect(tx) 
-        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        AddUnitStateExTimer(u,19,10,3)
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-        g.destroy()
-        endtimer
+            IndexGroup g = IndexGroup.create()
+            DestroyEffect(tx) 
+            GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+            AddUnitStateExTimer(u,19,10,3)
+            UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            endtimer
+        flush locals
         }
         flush locals
     endfunction
@@ -382,6 +385,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             EffectDown(u,x,y,GetUnitX(u),GetUnitY(u),"effect_az_herosbfire_c.mdl",50,500,400,damage,"effect_AA_bwaxec.mdl")
              //伤害来源，目标点xy，起始点xy，特效路径，速度，高度，伤害半径，伤害,落地爆炸特效
             endtimer
+            flush locals
         endif
     }
     
@@ -437,6 +441,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         u = null
+        flush locals
     endfunction
 
     function SpellS070(unit u1,real x1,real y1,real damage1)
@@ -546,9 +551,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
                 GroupClear(gg)
                 DestroyGroup(gg)
+                flush locals
             endif
-        }
             
+        }
+        flush locals    
 
     endfunction
 
@@ -590,6 +597,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         for i= 0,2
             SpellS074_1(u,ang+(I2R(i)*0.31),damage)
         end
+        flush locals
     endfunction
 
     function SpellS076(unit wu,unit u1,real damage)//连环刺
@@ -618,6 +626,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         if IsPlayerHasAbility(u,'S076') == true
             SpellS076(u,u1,damage/8*3)
         endif
+        flush locals
     endfunction
     
 
@@ -911,6 +920,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
         endloop
         u=null
+        uu=null
+        flush locals
     endfunction
 
 
@@ -948,6 +959,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
         u = null
+        flush locals
     endfunction
 
     function SpellS097(unit u1,real damage)
@@ -965,6 +977,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             g.destroy()
             SaveInteger(ht,GetHandleId(u),'S097',0)
             u = null
+            flush locals
         endif
         
     endfunction
@@ -997,7 +1010,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         endloop
         g.destroy()
         u = null   
-        
+        flush locals
     endfunction
     
     function SpellS101(unit u,real x,real y,real damage)
@@ -1007,6 +1020,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u,g.ejg,damage+(GetUnitRealState(u,5)*1.3),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
         u = null
+        flush locals
     endfunction 
 
     function SpellS102_1(unit u1,unit mj1,real damage1)
@@ -1087,6 +1101,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             mj=CreateTmUnit(GetOwningPlayer(u),"effect_BlackworksDragonHead3.mdl",x,y,GetRandomReal(-3.14,3.14),10,1)
             SpellS102_1(u,mj,damage)
         end
+        flush locals
     endfunction  
 
     function SpellS103Attack(unit wu,unit gui1)
@@ -1132,6 +1147,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             flush locals
         endif
         }
+        flush locals
     endfunction
 
     function SpellS103(unit u)
@@ -1171,9 +1187,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             u = null
             DestroyEffect(tx)
             endtimer
+            flush locals
         endif
         }
-
+        flush locals
     endfunction 
 
     function SpellS105(unit u,unit u1,real damage)   
@@ -1184,6 +1201,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             u = null
+            flush locals
     endfunction
 
     
@@ -1195,6 +1213,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             u = null
+            flush locals
     endfunction
 
 
@@ -1343,6 +1362,7 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
                     SpellS113Attack(u1,x,y,dam)
                 else
                     endtimer
+                    flush locals
                 endif
             }
         else
@@ -1380,6 +1400,7 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
                 DestroyGroup(wg)
                 KillUnit(u2)
                 endtimer
+                flush locals
             endif
             GroupClear(gg)
             DestroyGroup(gg)
@@ -1411,8 +1432,11 @@ function SpellS116(unit u1,real damage1)
             g.destroy()
         else
             endtimer
-        endif    
+            flush locals
+        endif 
+        flush locals  
     }
+    flush locals
     endfunction
 
     function SpellS117(unit u1,unit u2,real damage)//元气破
@@ -1437,9 +1461,9 @@ function SpellS116(unit u1,real damage1)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         if   Chance(u,40)
-            TimerStart(0.2,false)
+            TimerStart(0.6,false)
             {
-                DestroyEffect(AddSpecialEffect("effect_by_wood_sand_yuekongji.mdl",x,y))
+                LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
                 GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 endtimer
@@ -1473,7 +1497,8 @@ function SpellS116(unit u1,real damage1)
         else
             endtimer
             flush locals
-        endif    
+        endif  
+        flush locals  
     }
     flush locals
     endfunction
@@ -1509,7 +1534,9 @@ function SpellS116(unit u1,real damage1)
                 endtimer
             endif
         endif
+        flush locals
         }
+        flush locals
     endfunction
 
     function SpellS124mb(unit u,effect tx,unit u2,real dam,group g2,integer num)//寻找目标
@@ -1572,7 +1599,9 @@ function SpellS116(unit u1,real damage1)
             else
                 endtimer
             endif
+            flush locals
         }
+        flush locals
 
     endfunction
 
@@ -1663,8 +1692,10 @@ function SpellS116(unit u1,real damage1)
             g.destroy()
         else
             endtimer
-        endif    
+        endif
+        flush locals    
     }
+    flush locals
     endfunction
     
 
@@ -1700,8 +1731,9 @@ function SpellS116(unit u1,real damage1)
                 UnitAddBuff(uu,'DB02',3,852095)
                 GroupRemoveUnit(g.ejg,uu)
             endloop
-            
-        }    
+            flush locals
+        }  
+        flush locals  
     endfunction
     
     function SpellS234(unit u,unit u1,real damage)
@@ -1725,6 +1757,7 @@ function SpellS116(unit u1,real damage1)
             UnitRemoveAbility(u,'A235')
             SaveReal(ht,GetHandleId(u),'A235',0)
             endtimer
+            flush locals
         }
         flush locals
     endfunction
@@ -1742,11 +1775,13 @@ function SpellS236(unit u,unit u1)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
     endif
      LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl")
+     flush locals
 endfunction
 
 function SpellS237(unit u)
     AddUnitStateExTimer(u,25,40,5)
      UnitTimerAddSkill(u,'A237',5)
+     flush locals
 endfunction
 
 
@@ -1783,6 +1818,7 @@ endfunction
                 endtimer
                 flush locals
             endif
+            flush locals
         }
         flush locals
     endfunction
@@ -1890,25 +1926,29 @@ endfunction
             elseif  id== 'S127'    
                 SpellS127(u1.u)
             
-        elseif   id>='S230' and id<='S235'
-            if  GetUnitIntState(u1.u,'FB44') > 0
-                    AddUnitStateExTimer(u1.u,31,200,10)
-                    AddUnitStateExTimer(u1.u,17,100,10)
+            elseif   id>='S230' and id<='S235'
+                if  GetUnitIntState(u1.u,'FB44') > 0
+                        AddUnitStateExTimer(u1.u,31,200,10)
+                        AddUnitStateExTimer(u1.u,17,100,10)
+                endif
+                if  id== 'S230'
+                        SpellS230(u1.u,sx,sy,damage)
+                    elseif  id== 'S231'
+                        SpellS231(u1.u,damage)
+                    elseif  id== 'S232'
+                        SpellS232(u1.u)
+                    elseif  id== 'S233'
+                        SpellS233(u1.u)
+                    elseif  id== 'S234'
+                        SpellS234(u1.u,u2.u,damage)
+                    elseif  id== 'S235'
+                        SpellS235(u1.u)
+                endif
             endif
-            if  id== 'S230'
-                SpellS230(u1.u,sx,sy,damage)
-            elseif  id== 'S231'
-                SpellS231(u1.u,damage)
-            elseif  id== 'S232'
-                SpellS232(u1.u)
-            elseif  id== 'S233'
-                SpellS233(u1.u)
-            elseif  id== 'S234'
-                SpellS234(u1.u,u2.u,damage)
-            elseif  id== 'S235'
-                SpellS235(u1.u)
-            endif
-            elseif  id == 'S501'
+         endif   
+
+         if   id >= 'S501' and id <= 'S530'  
+            if  id == 'S501'
                 SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
             elseif  id == 'S502'
                 SpellS502(u1.u,u2.u,damage)
@@ -1937,6 +1977,7 @@ endfunction
                 SpellS527(u1.u,u2.u)
             endif
         endif
+       
 
         u1.destroy()
         u2.destroy()
