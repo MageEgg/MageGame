@@ -66,8 +66,8 @@ library GameChallenge3 uses GameChallengeBase
         GameChallenge_3Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         if  ty == 0
-            x = -6432
-            y = 6752
+            x = -6176
+            y = 6944
             IsPlayerInChallenge = true
             PlayerInChallengeNumber = 3
             SendPlayerUnit(pid,x,y)
