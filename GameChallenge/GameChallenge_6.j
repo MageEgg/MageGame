@@ -309,7 +309,7 @@ library GameChallenge6 uses GameChallengeBase
                         UnitAddItemEx(Pu[1],'IN19')
                     end
                     AddPlayerTechResearched(Player(pid),'KM24',1)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励5”|r成就，奖励3个"+GetObjectName('IN19')+"！") 
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“背信弃义”|r成就，奖励3个"+GetObjectName('IN19')+"！") 
                 endif
             endif
         elseif  uid == 'uf62'

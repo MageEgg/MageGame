@@ -153,7 +153,7 @@ library GameChallenge4 uses GameChallengeBase
                     end
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,20000)
                     AddPlayerTechResearched(Player(pid),'KM23',1)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“副本奖励4”|r成就，奖励3个"+GetObjectName('IN19')+"和20000金币！") 
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“智勇双全”|r成就，奖励3个"+GetObjectName('IN19')+"和20000金币！") 
                 endif
             endif
             endtimer
