@@ -286,8 +286,8 @@ library AttackUnit uses DamageCode
         real sy = 0 
         unit u = null
         for num = 1,4
-            sx = x + 50*Cos((90*num+45)*0.01745)
-            sy = y + 50*Sin((90*num+45)*0.01745)
+            sx = x + 20*Cos((90*num+45)*0.01745)
+            sy = y + 20*Sin((90*num+45)*0.01745)
             u = CreateUnit(Player(11),'ma01'+GetRandomInt(0,8),ex,ey,GetUnitFacing(wu))
             AddBossAttachUnitState(u,GetUnitTypeId(wu))
             SetUnitXY(u,sx,sy)
@@ -334,7 +334,7 @@ library AttackUnit uses DamageCode
                             PingMinimap(psx[k],psy[k],5)
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
-                            CreateBossAttachUnit(u,pex[k],pey[k],4)
+                            CreateBossAttachUnit(u,pex[k],pey[k],0.1)
                         end
                     endif
                 endif
