@@ -462,7 +462,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             time = time + 1
             if  time == 1
                 IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
                 UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 //BJDebugMsg("damage"+R2S(damage))
                 g.destroy()
