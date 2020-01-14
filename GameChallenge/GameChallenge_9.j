@@ -140,6 +140,35 @@ library GameChallenge9 uses GameChallengeBase
         end
     endfunction
 
+    function GameTeamChallengA_Opera2Timer(int t)
+        int time = t
+        TimerStart(1,true)
+        {   
+            time = time - 1
+            if  IsHasPlayerGoToTeamChalleng() == true
+                if  time == 0
+                    for pid = 0,3
+                        if  IsPlaying(pid) == true
+                            if  IsPlayerInTeamChallenge == true 
+                                FlushGameTeamChallengeOfPlayer(pid,0)
+                            endif
+                        endif
+                    end
+                    FlushGameTeamChallenge()
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未在时间内通过挑战，团队副本挑战失败！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未在时间内通过挑战，团队副本挑战失败！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未在时间内通过挑战，团队副本挑战失败！！！|r")
+                    endtimer
+                endif
+            else
+                BJDebugMsg("结束GameTeamChallengA_Opera2Timer")
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function GameTeamChallengA_Opera2()
         int num = 0
         int time = 0
@@ -149,6 +178,7 @@ library GameChallenge9 uses GameChallengeBase
         UnitRemoveAbility(GameTeamChallengUnit(0),'AZ99')
         UnitRemoveAbility(GameTeamChallengUnit(1),'AZ99')
         OpenGameTeamChallengeTimer(60,2)
+        GameTeamChallengA_Opera2Timer(60)
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  IsPlayerInTeamChallenge == true 
@@ -259,33 +289,41 @@ library GameChallenge9 uses GameChallengeBase
             GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
             GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
             if  GameTeamChallengeInt(0) == 29
-                GameTeamChallengeInt(0) = 0
+                GameTeamChallengeInt(0) = 30
                 ExecuteFunc("GameTeamChallengA_Opera3")
             endif   
         elseif  uid == 'ut05'
-            for pid = 0,3
-                if  IsPlaying(pid) == true
-                    GameTeamChallengWin(pid,1,GameTeamChallengeInt(1))
-                    if  IsPlayerInTeamChallenge == true 
-                        FlushGameTeamChallengeOfPlayer(pid,0)
+            if  GameTeamChallengeInt(0) == 30
+                for pid = 0,3
+                    if  IsPlaying(pid) == true
+                        GameTeamChallengWin(pid,1,GameTeamChallengeInt(1))
+                        if  IsPlayerInTeamChallenge == true 
+                            FlushGameTeamChallengeOfPlayer(pid,0)
+                        endif
                     endif
-                endif
-            end
-            FlushGameTeamChallenge()
+                end
+                FlushGameTeamChallenge()
+            endif
         endif
     endfunction
 
     function GameTeamChallengA_Opera1Timer(int t)
-        int time = t-1
+        int time = t
         TimerStart(1,true)
         {   
             time = time - 1
             if  IsHasPlayerGoToTeamChalleng() == true
                 if  time == 0
                     if  GameTeamChallengeInt(0) > 0
-                        GameTeamChallengeInt(1) = GameTeamChallengeInt(0)
-                        GameTeamChallengeInt(0) = 5
-                        ExecuteFunc("GameTeamChallengA_Opera2")
+                        if  GameTeamChallengeInt(0) >= 5
+                            BJDebugMsg("GameTeamChallengeInt(0)>5")
+                            endtimer
+                        else
+                            GameTeamChallengeInt(1) = GameTeamChallengeInt(0)
+                            GameTeamChallengeInt(0) = 5
+                            ExecuteFunc("GameTeamChallengA_Opera2")
+                            endtimer
+                        endif
                     else
                         for pid = 0,3
                             if  IsPlaying(pid) == true
@@ -295,13 +333,14 @@ library GameChallenge9 uses GameChallengeBase
                             endif
                         end
                         FlushGameTeamChallenge()
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未在时间内击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未在时间内击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未在时间内击杀BOSS，团队副本挑战失败！！！|r")
                         endtimer
                     endif
                 endif
             else
+                BJDebugMsg("结束GameTeamChallengA_Opera1Timer")
                 endtimer
             endif
             flush locals
@@ -398,7 +437,7 @@ library GameChallenge9 uses GameChallengeBase
     function ShowGameTeamChallengeNPC()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                SetUnitVertexColor(GameChallengUnit[90],255,255,255,255)
+                ShowUnit(GameChallengUnit[90],true)
                 UnitAddEffectOfNPC(GameChallengUnit[90])
             endif
         end
