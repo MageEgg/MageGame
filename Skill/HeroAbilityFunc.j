@@ -363,7 +363,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         LocAddEffectSetSize(x,y,"effect_tt (5).mdl",2)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,150,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-        UnitDamageGroup(wu,g.ejg,GetAbilityDamage(wu,'S505',1),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(wu,g.ejg,GetAbilityDamage(wu,'S505',1),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
 

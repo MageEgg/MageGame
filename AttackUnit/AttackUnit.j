@@ -297,7 +297,7 @@ library AttackUnit uses DamageCode
         BJDebugMsg("CreateBossAttachUnit")
         u = null
     endfunction
-
+ 
     function CreateBossAttachUnit(unit wu,real x,real y,real time)
         unit u = wu
         real ex = x
