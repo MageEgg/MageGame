@@ -236,7 +236,7 @@ scope ItemSystem initializer InitItemSystem
     function UnitUseSilkBag(unit wu,int itemid)//使用锦囊
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  itemid == 'IN00'
-            UnitAddPoolItem(wu,1)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r玩家"+GetPlayerNameOfColor(pid)+"通过锦囊，获得 "+GetObjectName(UnitAddPoolItem(wu,1))+"x1")
         else
             if  itemid == 'IN01'
                 if  GetTypeIdData(GetHeroAbilityID(wu,1),101) == 9

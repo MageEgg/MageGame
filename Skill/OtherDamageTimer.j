@@ -45,71 +45,7 @@ library OtherDamageTimer uses SystemTimer
     
 
 
-    function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
-        unit u=u1
-        unit mj=mj1
-        unit uu=null
-        real time=time1
-        real speed=speed1
-        real jvli=jvli1
-        real damage=damage1
-        real x1=GetUnitX(mj)
-        real y1=GetUnitY(mj)
-        group g1=CreateGroup()
-        real qtime=qtime1
-        real xzsd=360/(qtime/0.03)*0.01745
-        real ang=Uang(u,mj)
-        real yxtime=0
-        
-        TimerStart(0.03,true)    
-        {
-            IndexGroup g = IndexGroup.create()
-            yxtime=yxtime+0.03
-            time=time-0.03
-            if  yxtime>=0.75
-                yxtime=0
-                GroupEnumUnitsInRange(g1,x1,y1,800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))  
-                uu = GroupPickRandomUnit(g1)
-                GroupClear(g1)
-                GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-                if uu !=null
-                    Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
-                    DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
-                endif
-                g.destroy()
-            endif
-            if  time>=jvli/(speed/0.03)      
-                if  Udis(u,mj)<=jvli
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
-                    y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                else
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+jvli*Cos(ang)
-                    y1 = GetUnitY(u)+jvli*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                endif
-            else
-                if  Udis(u,mj)>50
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
-                    y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                else
-                    DestroyGroup(g1)
-                    RemoveUnit(mj)
-                    endtimer
-                endif
-        endif
-        flush locals
-        }
-        flush locals
-    endfunction
+  
         
     function CreateTmFuncZero(unit wu,unit m,real Ang,real rac,real dis,real t,real high)
         unit u1 = wu
