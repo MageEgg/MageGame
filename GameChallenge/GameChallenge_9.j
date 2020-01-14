@@ -182,6 +182,7 @@ library GameChallenge9 uses GameChallengeBase
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  IsPlayerInTeamChallenge == true 
+                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万仙阵]：|r破阵时间已到！进入二十八宿！")
                     SendPlayerUnit(pid,6592,6368)
                     ShowPlayerTaskUIOfPlayer(pid,true,0.01)
                     SetPlayerTaskUIChatOfPlayer(pid,"通天教主","徒儿们，今天你们都没有余地了，都一起进入阵中，以会截教万仙，不得错过。",0)
@@ -355,7 +356,7 @@ library GameChallenge9 uses GameChallengeBase
             CreateUsesGameTeamChalleng(11,'ut01',7392,4256,225)
             CreateUsesGameTeamChalleng(12,'ut02',5344,1952,45)
             CreateUsesGameTeamChalleng(13,'ut03',7488,1984,135)
-            OpenGameTeamChallengeTimer(60,1)
+            OpenGameTeamChallengeTimer(30,1)
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     if  GameChallengBool[90] == true 
@@ -367,7 +368,7 @@ library GameChallenge9 uses GameChallengeBase
                     endif
                 endif
             end
-            GameTeamChallengA_Opera1Timer(60)
+            GameTeamChallengA_Opera1Timer(30)
         else
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
