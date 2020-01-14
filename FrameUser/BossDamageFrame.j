@@ -4,6 +4,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     private FRAME Name = 0
     private int origin = 0
 
+    private real PlayerBossDamageCos
     
     function GetPlayerDamage(int pid)->real
         real dam = GetUnitRealState(Pu[1],99)
@@ -161,7 +162,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
     function ShowBossDamageStringEx()
         for pid = 0,3
-            PlayerBossDamageEx = GetUnitRealState(Pu[1],99)
+            PlayerBossDamageCos = GetUnitRealState(Pu[1],99)
         end
     endfunction
     
@@ -190,7 +191,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             min = 0
             hat = -1
             for pid = 0,3
-                ch = PlayerBossDamageEx
+                ch = PlayerBossDamageCos
                 if  ch > min and ch != 0
                     hat = pid
                     min = ch
@@ -219,7 +220,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             min = 0
             hat = -1
             for pid = 0,3
-                ch = PlayerBossDamageEx
+                ch = PlayerBossDamageCos
                 if  ch > min and ch != 0
                     hat = pid
                     min = ch
@@ -253,7 +254,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             min = 0
             hat = -1
             for pid = 0,3
-                ch = PlayerBossDamageEx
+                ch = PlayerBossDamageCos
                 if  ch > min and ch != 0
                     hat = pid
                     min = ch
