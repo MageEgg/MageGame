@@ -1890,51 +1890,52 @@ endfunction
             elseif  id== 'S127'    
                 SpellS127(u1.u)
             
-            if   id>='S230' and id<='S235'
-                if  GetUnitIntState(u,'FB44') > 0
-
-                endif
-                if  id== 'S230'
-                    SpellS230(u1.u,sx,sy,damage)
-                elseif  id== 'S231'
-                    SpellS231(u1.u,damage)
-                elseif  id== 'S232'
-                    SpellS232(u1.u)
-                elseif  id== 'S233'
-                    SpellS233(u1.u)
-                elseif  id== 'S234'
-                    SpellS234(u1.u,u2.u,damage)
-                elseif  id== 'S235'
-                    SpellS235(u1.u)
-                endif
+        elseif   id>='S230' and id<='S235'
+            if  GetUnitIntState(u1.u,'FB44') > 0
+                    AddUnitStateExTimer(u1.u,31,200,10)
+                    AddUnitStateExTimer(u1.u,17,100,10)
             endif
-        elseif  id == 'S501'
-            SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
-        elseif  id == 'S502'
-            SpellS502(u1.u,u2.u,damage)
-        elseif  id == 'S504'
-            SpellS504(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
-        elseif  id == 'S505'
-            SpellS505(u1.u)
-        elseif  id == 'S510'
-            SpellS510(u1.u)
-        elseif  id == 'S512'
-            SpellS512(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
-        elseif  id == 'S513'
-            SpellS513(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7))
-        elseif  id == 'S514'
-            SpellS514(u1.u,damage)
-            
-        elseif  id == 'S516'
-            SpellS516(u1.u)
-        elseif  id == 'S523'
-            SpellS523(u1.u,u2.u)
-        elseif  id == 'S524'
-            SpellS524(u1.u,u2.u)
-        elseif  id == 'S525'
-            SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
-        elseif  id == 'S527'
-            SpellS527(u1.u,u2.u)
+            if  id== 'S230'
+                SpellS230(u1.u,sx,sy,damage)
+            elseif  id== 'S231'
+                SpellS231(u1.u,damage)
+            elseif  id== 'S232'
+                SpellS232(u1.u)
+            elseif  id== 'S233'
+                SpellS233(u1.u)
+            elseif  id== 'S234'
+                SpellS234(u1.u,u2.u,damage)
+            elseif  id== 'S235'
+                SpellS235(u1.u)
+            endif
+            elseif  id == 'S501'
+                SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+            elseif  id == 'S502'
+                SpellS502(u1.u,u2.u,damage)
+            elseif  id == 'S504'
+                SpellS504(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+            elseif  id == 'S505'
+                SpellS505(u1.u)
+            elseif  id == 'S510'
+                SpellS510(u1.u)
+            elseif  id == 'S512'
+                SpellS512(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+            elseif  id == 'S513'
+                SpellS513(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7))
+            elseif  id == 'S514'
+                SpellS514(u1.u,damage)
+                
+            elseif  id == 'S516'
+                SpellS516(u1.u)
+            elseif  id == 'S523'
+                SpellS523(u1.u,u2.u)
+            elseif  id == 'S524'
+                SpellS524(u1.u,u2.u)
+            elseif  id == 'S525'
+                SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+            elseif  id == 'S527'
+                SpellS527(u1.u,u2.u)
+            endif
         endif
 
         u1.destroy()
