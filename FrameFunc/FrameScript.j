@@ -26,6 +26,11 @@
         if  id == 309
             SetTipsData(1,"","时渊碎片x"+I2S(GetPlayerPlotPartNum(pid)))
             SetTipsData(10,"","进入时渊副本消耗时渊碎片")
+        elseif  id == 310
+            int num = GetPlayerPlotReNum(pid)+1
+            int use = num * 500
+            SetTipsData(1,"","需要 - 杀敌数x"+I2S(use))
+            SetTipsData(10,"","点击刷新时渊副本奖励")
         endif
         ShowTipsUI()
     endfunction
@@ -148,6 +153,8 @@
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                         endif
                     elseif  id == 309//时渊碎片
+                        BoxShowResources(pid,id)
+                    elseif  id == 310//刷新时渊奖励
                         BoxShowResources(pid,id)
                     elseif  id >= 321 and id <= 328
                         boxid = GetPlayerPlotPrizeId(pid,id-320,1)

@@ -41,6 +41,8 @@ scope FrameButton
                 if  id >= 301 and id <= 308//选择副本按钮
                     //PlayerTestPlot(pid,id-300)
                     OpenGameChallenge(pid,id-300,GetPlayerPlotType(pid))
+                elseif  id == 310//刷新时渊奖励
+                    RePlayerAllExPlotPrize(pid)
                 elseif  id >= 311 and id <= 318//选择副本按钮
                     //PlayerTestPlot(pid,id-310)
                     OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))

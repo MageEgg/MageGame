@@ -177,7 +177,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     function GetSkillNameEx(int id,int index)->string
         int color = GetTypeIdData(id,101)
-        string name = GetSkillNameColor(color)+GetTypeIdString(id,100)+StateName[300+index]
+        string name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
         if  color == 0
             name = name + "\nEx级"
         elseif  color == 1
