@@ -24,7 +24,8 @@ scope FrameButton
                     
                 elseif  id == 310//刷新时渊奖励
                     RePlayerAllExPlotPrize(pid)
-                    
+                elseif  id == 401 or id == 402
+                    PlayerClickPrize(pid,0)
                 elseif  id >= 411 and id <= 413//选择奖励
                     PlayerClickPrize(pid,id-410)
                 elseif  id >= 421 and id <= 423//选择奖励
@@ -130,6 +131,8 @@ endscope
 //! runtextmacro AddFrameFunc("318")
 
 
+//! runtextmacro AddFrameFunc("401")
+//! runtextmacro AddFrameFunc("402")
 //esc
 //! runtextmacro AddFrameFunc("410")
 //! runtextmacro AddFrameFunc("411")

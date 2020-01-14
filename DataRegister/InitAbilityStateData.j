@@ -50,7 +50,7 @@ call InitAbilityData('S039',1,4,2,6,0,0,2,0,"他山之石","每|Cff00bfff12|r次
 call InitAbilityData('S040',1,7,2,3,0,0,2,0,"弱水咒","攻击|Cff00bfff10%|r概率对目标范围造成|Cff00bfffAP*3|r法术伤害","ReplaceableTextures\\CommandButtons\\BTNS040.blp")
 call InitAbilityData('S041',1,7,0,0,0,0,0,0,"速攻","增加|Cffff800025%|r攻击速度","ReplaceableTextures\\CommandButtons\\BTNS041.blp")
 call InitAbilityData('S042',1,7,0,0,0,0,0,0,"若风","法术伤害|Cff00bfff-30%|r，攻击速度|Cff00bfff+40%|r","ReplaceableTextures\\CommandButtons\\BTNS042.blp")
-call InitAbilityData('S043',1,7,1,2,0,0,2,0,"气流杀","攻击|Cffff800010%|r概率对目标范围造成|Cffff8000攻击*2|r法术伤害","ReplaceableTextures\\CommandButtons\\BTNS043.blp")
+call InitAbilityData('S043',1,7,1,2,0,0,2,0,"气流杀","攻击|Cffff800010%|r概率对目标范围造成|Cffff8000攻击*2|r物理伤害","ReplaceableTextures\\CommandButtons\\BTNS043.blp")
 call InitAbilityData('S045',1,1,0,0,0,0,0,0,"毒仙","毒体|Cff00bfff持续时间|r翻倍，每秒叠加|Cff00bfff2|r次，|Cff00bfff上限翻倍|r。","ReplaceableTextures\\CommandButtons\\BTNS045.blp")
 call InitAbilityData('S046',2,2,2,1,0,0,2,6,"引爆","对自身范围内敌人造成|Cff00bfff法强*2*中毒叠加次数|r法术伤害","ReplaceableTextures\\CommandButtons\\BTNS046.blp")
 call InitAbilityData('S047',2,3,2,0.75,0,0,2,16,"毒体","开启后使周围地方单位进入|Cff00ff7f中毒状态|r，每秒造成|Cff00bfff法强*0.75|r法术伤害。\n\n|Cff00ff7f持续伤害最多可叠加8次。|r","ReplaceableTextures\\CommandButtons\\BTNS047.blp")
