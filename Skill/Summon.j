@@ -99,7 +99,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                             
                         else
                             GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                            UnitDamageGroup(summon,g.ejg,GetUnitRealState(u,2)*0.3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                            UnitDamageGroup(summon,g.ejg,GetUnitRealState(u,2)*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                             g.destroy()
                     
                         endif
