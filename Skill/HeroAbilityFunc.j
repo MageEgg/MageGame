@@ -385,18 +385,19 @@ library HeroAbilityFunc uses OtherDamageTimer
         num = GetUnitIntState(wu,'S508')
         if  num < 6
             if  Chance(wu,10) == true
-                AddUnitRealState(wu,9,10)
+                AddUnitRealState(wu,9,6)
                 SetUnitIntState(wu,'S508',num + 1)
             endif
         else
             damage = GetAbilityDamage(wu,'S508',1)
-            AddUnitRealState(wu,9,-60)
+            AddUnitRealState(wu,9,-36)
             SetUnitIntState(wu,'S508',0)
             
             IndexGroup g = IndexGroup.create()
+
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_earthshaker_a.mdl")
+            LocAddEffectTimerOrSize(GetUnitX(wu),GetUnitY(wu),0,"effect_az_axe_x.mdl",0.6,1.8)
             g.destroy()
         endif
         
