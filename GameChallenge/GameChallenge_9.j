@@ -7,6 +7,7 @@ library GameChallenge9 uses GameChallengeBase
         end
         GameTeamChallengCanUsesUnitFlush()
         GameTeamChallengeInt(0) = 0
+        GameTeamChallengeInt(1) = 0
         GameTeamChallengeBool[2] = false
     endfunction
 
@@ -162,7 +163,7 @@ library GameChallenge9 uses GameChallengeBase
         {   
             time = time + 1
             if  IsHasPlayerGoToTeamChalleng() == true
-                if  time < 3 
+                if  time <= 3 
                     for n = 1,2
                         num = GetCanUsesGameTeamChallengUnitID()
                         if  num != 0
@@ -196,12 +197,61 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
+    function GameTeamChallengWin(int pid,int flag,int value)
+        int itid = 0
+        if  flag == 1
+            if  value == 1
+                UnitAddItemEx(Pu[1],'IP04')
+                itid = 'IP04'
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            elseif  value == 2
+                if  GetRandomReal(0,1) == 0
+                    UnitAddItemEx(Pu[1],'IP04')
+                    itid = 'IP04'
+                else
+                    UnitAddItemEx(Pu[1],'IP02')
+                    itid = 'IP02'
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            elseif  value == 3
+                if  GetRandomReal(0,100) >= 60
+                    if  GetRandomReal(0,1) == 0
+                        UnitAddItemEx(Pu[1],'IP03')
+                        itid = 'IP03'
+                    else
+                        UnitAddItemEx(Pu[1],'IP02')
+                        itid = 'IP02'
+                    endif
+                else
+                    UnitAddItemEx(Pu[1],'IP04')
+                    itid = 'IP04'
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            elseif  value == 4
+                if  GetRandomReal(0,100) >= 60
+                    if  GetRandomReal(0,1) == 0
+                        UnitAddItemEx(Pu[1],'IP03')
+                        itid = 'IP03'
+                    else
+                        UnitAddItemEx(Pu[1],'IP05')
+                        itid = 'IP05'
+                    endif
+                else
+                    UnitAddItemEx(Pu[1],'IP02')
+                    itid = 'IP02'
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            endif
+        endif
+    endfunction
+
     function GameTeamChallengDeath(unit u2)
         int uid = GetUnitTypeId(u2)
         if  uid >= 'ut00' and uid <= 'ut03'
             GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
             GameTeamChallengeInt(0) = GameTeamChallengeInt(0) + 1 
             if  GameTeamChallengeInt(0) == 4
+                GameTeamChallengeInt(1) = GameTeamChallengeInt(0)
                 GameTeamChallengeInt(0) = 5
                 ExecuteFunc("GameTeamChallengA_Opera2")
             endif   
@@ -215,14 +265,48 @@ library GameChallenge9 uses GameChallengeBase
         elseif  uid == 'ut05'
             for pid = 0,3
                 if  IsPlaying(pid) == true
+                    GameTeamChallengWin(pid,1,GameTeamChallengeInt(1))
                     if  IsPlayerInTeamChallenge == true 
                         FlushGameTeamChallengeOfPlayer(pid,0)
                     endif
                 endif
             end
             FlushGameTeamChallenge()
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r成功通过挑战！")
         endif
+    endfunction
+
+    function GameTeamChallengA_Opera1Timer(int t)
+        int time = t-1
+        TimerStart(1,true)
+        {   
+            time = time - 1
+            if  IsHasPlayerGoToTeamChalleng() == true
+                if  time == 0
+                    if  GameTeamChallengeInt(0) > 0
+                        GameTeamChallengeInt(1) = GameTeamChallengeInt(0)
+                        GameTeamChallengeInt(0) = 5
+                        ExecuteFunc("GameTeamChallengA_Opera2")
+                    else
+                        for pid = 0,3
+                            if  IsPlaying(pid) == true
+                                if  IsPlayerInTeamChallenge == true 
+                                    FlushGameTeamChallengeOfPlayer(pid,0)
+                                endif
+                            endif
+                        end
+                        FlushGameTeamChallenge()
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家击杀BOSS，团队副本挑战失败！！！|r")
+                        endtimer
+                    endif
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
     endfunction
 
     function GameTeamChallengA_Opera1()
@@ -244,7 +328,7 @@ library GameChallenge9 uses GameChallengeBase
                     endif
                 endif
             end
-            //TimerStart()
+            GameTeamChallengA_Opera1Timer(60)
         else
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
