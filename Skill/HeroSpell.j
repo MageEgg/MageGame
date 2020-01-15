@@ -1966,7 +1966,7 @@ function SpellS116(unit u1,real damage1)
                 LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_by_wood_effect_tianhuo_2_1.mdl",2)
                 
                 IndexGroup gg = IndexGroup.create()
-                GroupEnumUnitsInRange(gg.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'A000',4,852095))
+                GroupEnumUnitsInRange(gg.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'ABFA',3,852095))
                 UnitDamageGroup(u1,gg.ejg,damage,true, false,ATTACK_TYPE_HERO,DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
                 DzSetUnitModel( u1,mdoelorigin)                   
                 gg.destroy()
@@ -2031,10 +2031,12 @@ function SpellS116(unit u1,real damage1)
     function SpellS233(unit u1)
         unit u=u1
         unit uu=null
+        effect tx= AddSpecialEffectTarget("effect_effect_az_hero03.mdl",u1,"origin")
         TimerStart(2,false)
         {
             IndexGroup g = IndexGroup.create()
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
+            DestroyEffect(tx)
             GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             loop
                 uu = FirstOfGroup(g.ejg)
@@ -2042,6 +2044,7 @@ function SpellS116(unit u1,real damage1)
                 UnitAddBuff(uu,'DB02',3,852095)
                 GroupRemoveUnit(g.ejg,uu)
             endloop
+             g.destroy()
             flush locals
         }  
         flush locals  
