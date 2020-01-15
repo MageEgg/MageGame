@@ -5,9 +5,10 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     private int origin = 0
 
     private real array PlayerBossDamageCos
+    real array PlayerBossDamageAdd
     
     function GetPlayerDamage(int pid)->real
-        real dam = GetUnitRealState(Pu[1],99)
+        real dam = PlayerBossDamageAdd[pid]//GetUnitRealState(Pu[1],99)
         return dam
     endfunction
     function GetAllDamage()->real
@@ -81,7 +82,8 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             else
                 Back.show = false
                 for pid = 0,3
-                    SetUnitRealState(Pu[1],99,0)
+                    //SetUnitRealState(Pu[1],99,0)
+                    PlayerBossDamageAdd[pid] = 0
                 end
                 endtimer
             endif
@@ -157,7 +159,9 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
     function ShowBossDamageStringEx()
         for pid = 0,3
-            PlayerBossDamageCos[pid] = GetUnitRealState(Pu[1],99)
+            if  IsPlaying(pid) == true
+                PlayerBossDamageCos[pid] = PlayerBossDamageAdd[pid]//GetUnitRealState(Pu[1],99)
+            endif
         end
     endfunction
     
