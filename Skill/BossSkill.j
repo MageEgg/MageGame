@@ -5,13 +5,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     private real bossy = 0
     private real bossdamage = 0
 
-    #define RAC_A_200   'e013'
+    #define RAC_A_200   'eZ13'
     #define RAC_A_300   'e00H'
     #define RAC_A_400   'e00E'
     #define RAC_A_500   'e00F'
     #define RAC_A_600   'e00G'
 
-    #define RAC_B_200   'e012'
+    #define RAC_B_200   'eZ12'
     #define RAC_B_300   'e00L'
     #define RAC_B_400   'e00I'
     #define RAC_B_500   'e00J'
@@ -563,7 +563,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell25()
         insert BossSpell
-        unit u2 = CreateUnit(GetOwningPlayer(u1),'e011',x2,y2,0)
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ11',x2,y2,0)
         int time = 0
         damage = damage / 5
         TimerStart(0.3,true)
@@ -590,12 +590,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int time = 0
         damage = damage / 2
         //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-        CreateTm(u1,'e014',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+        CreateTm(u1,'eZ14',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         TimerStart(0.3,true)
         {
             time = time + 1
             if  time <= 2
-                CreateTm(u1,'e014',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                CreateTm(u1,'eZ14',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             else
                 endtimer
             endif
@@ -616,8 +616,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             if  time <= 4
                 for num = 1,2
                     ran = GetRandomReal(0,360)
-                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'e015',x2,y2,ran),1)
-                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'e015',x2,y2,ran+90),1)
+                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'eZ15',x2,y2,ran),1)
+                    RemoveUnitTimer(CreateUnit(GetOwningPlayer(u1),'eZ15',x2,y2,ran+90),1)
                 end
                 LocAddEffectSetSize(x2,y2,"effect2_az_cocoguanyu_t2_death.mdl",1)
                 GroupEnumUnitsInRange(gg,x2,y2,250,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
@@ -835,7 +835,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell32()
         insert BossSpell
-        unit u3 = CreateUnit(GetOwningPlayer(u1),'e016',x1,y1,ang/0.01745)
+        unit u3 = CreateUnit(GetOwningPlayer(u1),'eZ16',x1,y1,ang/0.01745)
         real size = 1
         real xx = 35*Cos(ang)
         real yy = 35*Sin(ang)
@@ -1028,7 +1028,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             time = time + 1
             if  time < 10
                 for num = 1,3
-                    CreateTm(u1,'e019',GetUnitX(u1)+GetRandomReal(-160,160),GetUnitY(u1)+GetRandomReal(-160,160),ang,damage,1,0,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                    CreateTm(u1,'eZ19',GetUnitX(u1)+GetRandomReal(-160,160),GetUnitY(u1)+GetRandomReal(-160,160),ang,damage,1,0,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                 end
             else
                 endtimer
