@@ -19,7 +19,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             y1 = y1 + 50*Sin(ang)
             LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
         }
@@ -45,7 +45,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             endif
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
         }
@@ -100,7 +100,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         TimerStart(0.03,true)
         {
             time = time + 1
-            if  time <= 15
+            if  time <= 15 and GetUnitAbilityLevel(u1,'AZ98') == 0
                 if  time - (time / 4) * 4 == 0
                     real size = YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"modelScale")
                     SpellS501_3(CreateTmUnit(GetOwningPlayer(u1), YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file"),x1,y1,GetUnitFacing(u1),0,size),x1+120*Cos(ang),y1+120*Sin(ang),ang)
@@ -108,13 +108,21 @@ library HeroAbilityFunc uses OtherDamageTimer
                 endif
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
-                SetUnitPosition(u1,x1,y1)
-                EXSetUnitFacing( u1, ang/0.01745 )
-                SetUnitFacing(u1,ang/0.01745)
-                IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
-                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                g.destroy()
+                if  IsCanFlyTerrain(x1,y1) == true
+                    SetUnitPosition(u1,x1,y1)
+                    EXSetUnitFacing( u1, ang/0.01745 )
+                    SetUnitFacing(u1,ang/0.01745)
+                    IndexGroup g = IndexGroup.create()
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                    g.destroy()
+                else
+                    EXSetUnitCollisionType( true,u1, 1 )
+                    SetUnitPathing( u1, true )
+                    SetUnitAnimation(u1,"stand")
+                    DestroyGroup(g1)
+                    endtimer
+                endif
                 
             else
                 EXSetUnitCollisionType( true,u1, 1 )
@@ -224,28 +232,35 @@ library HeroAbilityFunc uses OtherDamageTimer
         SetUnitFacing(u1,ang/0.01745)
         unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_az_chongfeng.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
         SetUnitScale(u1,0.001,0.001,0.001)
-        
         TimerStart(0.03,true)
         {
             real dis = Udis(u1,u2)
             ang = Uang(u1,u2)
-            if  dis > 50
+            if  dis > 50 and GetUnitAbilityLevel(u1,'AZ98') == 0
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
-                SetUnitX(u1,x1)
-                SetUnitX(u3,x1)
-                SetUnitY(u1,y1)
-                SetUnitY(u3,y1)
-                SetUnitFacing(u1,ang/0.01745)
-                SetUnitFacing(u3,ang/0.01745)
-                IndexGroup g = IndexGroup.create()
-                if  level >= 2
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,4,0))
+                if  IsCanFlyTerrain(x1,y1) == true
+                    SetUnitX(u1,x1)
+                    SetUnitX(u3,x1)
+                    SetUnitY(u1,y1)
+                    SetUnitY(u3,y1)
+                    SetUnitFacing(u1,ang/0.01745)
+                    SetUnitFacing(u3,ang/0.01745)
+                    IndexGroup g = IndexGroup.create()
+                    if  level >= 2
+                        GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,4,0))
+                    else
+                        GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                    endif
+                    UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    g.destroy()
                 else
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                    SpellS502_2(u1,u2,damage,level)
+                    SetUnitScale(u1,size,size,size)
+                    DestroyGroup(g1)
+                    RemoveUnit(u3)
+                    endtimer
                 endif
-                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                g.destroy()
             else
                 SpellS502_2(u1,u2,damage,level)
                 SetUnitScale(u1,size,size,size)

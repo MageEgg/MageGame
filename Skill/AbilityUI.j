@@ -201,24 +201,28 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         else
             name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
         endif
-        if  color == 0
-            name = name + "\nEx级"
-        elseif  color == 1
-            name = name + "\nS级"
-        elseif  color == 2
-            name = name + "\nA级"
-        elseif  color == 3
-            name = name + "\nB级"
-        elseif  color == 4
-            name = name + "\nC级"
-        elseif  color == 5
-            name = name + "\nC-级"
-        elseif  color == 6
-            name = name + "\nD+级"
-        elseif  color == 7
-            name = name + "\nD级"
-        elseif  color == 8
-            name = name + "\nD-级"
+        if  index == 5
+            name = name + "\n天赋"
+        else
+            if  color == 0
+                name = name + "\nEx级"
+            elseif  color == 1
+                name = name + "\nS级"
+            elseif  color == 2
+                name = name + "\nA级"
+            elseif  color == 3
+                name = name + "\nB级"
+            elseif  color == 4
+                name = name + "\nC级"
+            elseif  color == 5
+                name = name + "\nC-级"
+            elseif  color == 6
+                name = name + "\nD+级"
+            elseif  color == 7
+                name = name + "\nD级"
+            elseif  color == 8
+                name = name + "\nD-级"
+            endif
         endif
         
         
@@ -267,28 +271,28 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 if  index == 5
                     
                     if  level > 1
-                        tip = tip + "\n|cff00ff00境界三：" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cff00ff00境界三：\n" +GetTypeIdString(id,111) + "|r"
                     else
-                        tip = tip + "\n|cffbbbbbb境界三：" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb境界三：\n" +GetTypeIdString(id,111) + "|r"
                     endif
 
                     if  level > 2
-                        tip = tip + "\n|cff00ff00境界五：" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cff00ff00境界五：\n" +GetTypeIdString(id,112) + "|r"
                     else
-                        tip = tip + "\n|cffbbbbbb境界五：" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb境界五：\n" +GetTypeIdString(id,112) + "|r"
                     endif
 
                     if  level > 3
-                        tip = tip + "\n|cff00ff00境界十：" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cff00ff00境界十：\n" +GetTypeIdString(id,113) + "|r"
                     else
-                        tip = tip + "\n|cffbbbbbb境界十：" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb境界十：\n" +GetTypeIdString(id,113) + "|r"
                     endif
                     
                 endif
                 
                 real cd = GetTypeIdReal(id,100)//技能CD
                 if  cd > 0
-                    tip = tip + "\n|cffdddddd冷却："+R2S2(cd)+"s|r"
+                    tip = tip + "\n\n|cffdddddd冷却："+R2S2(cd)+"s|r"
                 endif
 
                 magicid = GetUnitIntState(wu,125+index)

@@ -5,7 +5,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     group array AttackRoomGroup
     integer AttackRoomUid ='g00A'
     bool AttackRoomTimer[pid][2]
-    
+    texttag array AttackTexttag
     
 //初始化数据类
 
@@ -115,6 +115,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np28',x+512,y+512,270)
             SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+            SetTextTagText(AttackTexttag[pid],"0/600",0.03)
+            SetTextTagPos(AttackTexttag[pid],x+432,y+412,0)
             UnitAddEffectOfNPC(Pu[27])
             
 
@@ -153,10 +155,12 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             else
                 real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+2
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
+                
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
+                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/600",0.03)
                     SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
-                
+
                     if  life+0.5 >= maxlife
                         SoulToFrog(pid)
                     endif
@@ -244,8 +248,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             bj_lastCreatedUnit = null
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(id)+"来临！！")
         else
-            AttackRoomXCUnitNum = 4
-            for i = 1,4
+            AttackRoomXCUnitNum = 12
+            for i = 1,12
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
@@ -282,11 +286,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
+                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/600",0.03)
+                    
                     //SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
                 
                     if  life+0.5 >= maxlife
                         
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
+                        SetTextTagText(AttackTexttag[pid],"0/600",0.03)
                         LocAddEffect(GetUnitX(Pu[27]),GetUnitY(Pu[27]),"effect_az_bw_lina_t1-2.mdl")
                         SoulTimer2FuncGivePrize(pid)
                     endif
@@ -400,6 +407,11 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
+
+                AttackTexttag[pid] = CreateTextTag()
+                SetTextTagText(AttackTexttag[pid],"0/600",0.03)
+                SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
+
                 //ShowUnit(Pu[23],false)
                 
                 ShowUnit(Pu[25],false)
