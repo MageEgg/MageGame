@@ -363,7 +363,7 @@ library GameChallenge5 uses GameChallengeBase
                 GameChallengUnit[50] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-64,3840,180)
                 SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[50],0x01)
-                GameChallengUnit[51] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-64,3840,0)
+                GameChallengUnit[51] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-64,3840,0)
                 SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[51],0x01)
                 GameChallengUnit[52] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-640,3840,0)

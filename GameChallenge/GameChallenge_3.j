@@ -325,14 +325,14 @@ library GameChallenge3 uses GameChallengeBase
                 GameChallengUnit[30] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np09',-5824,6464,270)
                 SetUnitVertexColor(GameChallengUnit[30],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[30],0x01)
-                GameChallengUnit[31] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-5824,6464,0)
+                GameChallengUnit[31] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-5824,6464,0)
                 SetUnitVertexColor(GameChallengUnit[31],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[31],0x01)
 
                 GameChallengUnit[32] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np13',-5952,8064,0)
                 SetUnitVertexColor(GameChallengUnit[32],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[32],0x01)
-                GameChallengUnit[33] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-5952,8064,0)
+                GameChallengUnit[33] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-5952,8064,0)
                 SetUnitVertexColor(GameChallengUnit[33],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[33],0x01)
             endif

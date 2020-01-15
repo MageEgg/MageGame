@@ -718,7 +718,7 @@ library GameChallenge4 uses GameChallengeBase
                 GameChallengUnit[40] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2342,-960,0)
                 SetUnitVertexColor(GameChallengUnit[40],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[40],0x01)
-                GameChallengUnit[41] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-2342,-960,0)
+                GameChallengUnit[41] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-2342,-960,0)
                 SetUnitVertexColor(GameChallengUnit[41],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[41],0x01)
                 GameChallengUnit[42] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np15',-2336,-832,0)
@@ -737,7 +737,7 @@ library GameChallenge4 uses GameChallengeBase
                 SetUnitVertexColor(GameChallengUnit[46],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[46],0x01)
 
-                GameChallengUnit[47] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e007',-32,-960,0)
+                GameChallengUnit[47] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-32,-960,0)
                 SetUnitVertexColor(GameChallengUnit[47],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[47],0x01)
 

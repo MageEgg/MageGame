@@ -346,7 +346,7 @@ library CreateOpera uses DamageCode
         for num = 0,7
             x = 1952 - 150*Cos(45*(8-num)*0.01745)
             y = 128 - 150*Sin(45*(8-num)*0.01745)
-            u = CreateUnit(Player(9),'e004',x,y,45)
+            u = CreateUnit(Player(9),'eZ04',x,y,45)
             SetUnitState(u,UNIT_STATE_MAX_LIFE,1)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_1,u)
@@ -366,7 +366,7 @@ library CreateOpera uses DamageCode
         for num = 0,7
             x = 2848 - 150*Cos(45*(8-num)*0.01745)
             y = -832 - 150*Sin(45*(8-num)*0.01745)
-            u = CreateUnit(Player(9),'e004',x,y,45)
+            u = CreateUnit(Player(9),'eZ04',x,y,45)
             SetUnitState(u,UNIT_STATE_MAX_LIFE,1)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_1,u)
@@ -415,7 +415,7 @@ library CreateOpera uses DamageCode
         for num = 0,7
             x = 2816 - 150*Cos(45*(8-num)*0.01745)
             y = 960 - 150*Sin(45*(8-num)*0.01745)
-            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e004',x,y,225)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'eZ04',x,y,225)
             SetUnitRealStateOfOtherId(u,'m012')
             SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
@@ -438,7 +438,7 @@ library CreateOpera uses DamageCode
         for num = 0,7
             x = 3712 - 150*Cos(45*(8-num)*0.01745)
             y = 96 - 150*Sin(45*(8-num)*0.01745)
-            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e004',x,y,225)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'eZ04',x,y,225)
             SetUnitRealStateOfOtherId(u,'m012')
             SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
@@ -547,7 +547,7 @@ library CreateOpera uses DamageCode
     function CreateOperaC()
         StopAttackUnitGroup()
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-        RemoveUnit(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e003',-100000,-100000,0))
+        RemoveUnit(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ03',-100000,-100000,0))
         PanCameraToTimed(GetRectCenterX(gg_rct_AttackOpera_C),GetRectCenterY(gg_rct_AttackOpera_C),0)
         OpenAttackShowUI("UI_AttackShow_4.tga",0.5)
         TimerStart(1,false)
@@ -588,7 +588,7 @@ library CreateOpera uses DamageCode
         end
         SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_C)
         AttackOperaGroup_C_1 = CreateGroup()
-        fire = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e002',4620,-2840,0)
+        fire = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ02',4620,-2840,0)
         GroupAddUnit(AttackOperaGroup_C_1,fire)
         for pid = 0,3
             for k = 0,4
@@ -600,7 +600,7 @@ library CreateOpera uses DamageCode
                     GroupAddUnit(AttackOperaGroup_C_1,u)
                     SetUnitAnimation(u,"stand victory")
                 else
-                    u = CreateUnit(Player(9),'e005',x,y,0)
+                    u = CreateUnit(Player(9),'eZ05',x,y,0)
                     LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
                     GroupAddUnit(AttackOperaGroup_C_1,u)
                     IssueTargetOrderById(u,851983,fire)
@@ -617,7 +617,7 @@ library CreateOpera uses DamageCode
                     GroupAddUnit(AttackOperaGroup_C_1,u)
                     SetUnitAnimation(u,"stand victory")
                 else
-                    u = CreateUnit(Player(9),'e005',x,y,0)
+                    u = CreateUnit(Player(9),'eZ05',x,y,0)
                     LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
                     GroupAddUnit(AttackOperaGroup_C_1,u)
                     IssueTargetOrderById(u,851983,fire)
@@ -642,7 +642,7 @@ library CreateOpera uses DamageCode
         TimerStart(1.0,false)
         {
             unit uu = null
-            RemoveUnitTimer(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e003',3760,-2800,0),1)
+            RemoveUnitTimer(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ03',3760,-2800,0),1)
             SetUnitAnimation(AttackUnitOperaBoss,"attack")
             loop
                 uu = FirstOfGroup(AttackOperaGroup_C_1)
