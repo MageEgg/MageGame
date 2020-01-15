@@ -223,7 +223,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             end
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
-                gold = R2I(min)/1000000*56000
+                gold = R2I(min/1000000*56000)
                 if  gold > 56000
                     gold = 56000
                 elseif  gold < 16800
