@@ -244,8 +244,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             bj_lastCreatedUnit = null
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(id)+"来临！！")
         else
-            AttackRoomXCUnitNum = 4
-            for i = 1,4
+            AttackRoomXCUnitNum = 12
+            for i = 1,12
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)

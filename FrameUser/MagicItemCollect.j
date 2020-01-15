@@ -379,11 +379,15 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             
             if  id == 'FB17'
                 value = GetUnitIntState(Pu[1],'FC17')
-                SetTipsData(12,"","|cff00ff00当前加成："+I2S(value)+"%")
+                SetTipsData(12,"","|cff00ff00当前层数："+I2S(value))
                 h = 13
             elseif  id == 'FB32'
                 value = GetUnitIntState(Pu[1],'FC32')
-                SetTipsData(12,"","|cff00ff00当前加成："+I2S(value))
+                SetTipsData(12,"","|cff00ff00当前层数："+I2S(value))
+                h = 13
+            elseif  id == 'FB03'
+                value = GetUnitIntState(Pu[1],'FC03')
+                SetTipsData(12,"","|cff00ff00当前层数："+I2S(value))
                 h = 13
             else
                 h = 12
