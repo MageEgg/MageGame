@@ -378,6 +378,18 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 AddUnitRealState(wu,9,60)
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+60%|r")
             endif
+        elseif  uid == 'H028'
+            if  lv == 2
+                AddUnitRealState(wu,15,10)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:纣王尚武乏谋，物理伤害|Cffff8000+10%|r")
+                
+            elseif  lv == 3
+                AddUnitRealState(wu,15,10)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:纣王尚武乏谋，物理伤害|Cffff8000+10%|r")
+            elseif  lv == 4
+                AddUnitRealState(wu,15,20)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:纣王尚武乏谋，物理伤害|Cffff8000+20%|r")
+            endif
         elseif  uid == 'H030'
             
             if  lv == 3
