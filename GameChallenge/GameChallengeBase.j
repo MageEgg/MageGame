@@ -40,20 +40,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define UnitAPOfPlayer  0
 
-
-    /////////////////////////////////////////////////////
-    /*
-    新手 0-9
-    副本 10-20
-
-
-
-
-
-    //500之后
-    */
-    /////////////////////////////////////////////////////
-
     function InitGameChallengeLeagueUnit()
         real ang = 0
         for num = 1,9
@@ -213,6 +199,14 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         }
         flush locals
     endfunction
+    
+    function CreateChangeGodStageFunc()
+        timer t = GetExpiredTimer()
+        ExecuteFunc("OpenChangeGodStage")
+        FlushChildHashtable(ht,GetHandleId(t))
+        DestroyTimer(t)
+        t = null
+    endfunction
 
     function CreateChangeGodStage(real time)
         if  GameLevel < 3
@@ -220,13 +214,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         else
             time = time - 20
         endif
-        TimerStart(time,false)
-        {
-            ExecuteFunc("OpenChangeGodStage")
-            endtimer
-            flush locals
-        }
-        flush locals
+        TimerStart(CreateTimer(),time,false,function OpenCreateBossTimer)
     endfunction
 
     function SetPlayerLeagueState(int num,bool b)
