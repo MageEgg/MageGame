@@ -1402,7 +1402,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             ang=GetRandomReal(-3.14, 3.14)
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
-            gui=CreateUnit(Player(12),'e010',x,y,GetUnitFacing(u))
+            gui=CreateUnit(Player(12),'eZ10',x,y,GetUnitFacing(u))
             IssueTargetOrder( gui, "Attack", u)
             SpellS103Attack(u,gui)
         end
