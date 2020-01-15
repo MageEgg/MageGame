@@ -32,6 +32,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         if  u == null
             u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, AttackRoomPostion[pid][3], AttackRoomPostion[pid][4], bj_UNIT_FACING )
             SetPlayerOnlyDamage(u,pid)
+            SaveInteger(ht,GetHandleId(u),'g00A',pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
             SetUnitLifePercentBJ( u, 100 )
@@ -75,17 +76,12 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 //练功房操作类
     
     //计时器会额外出一波
-    
-    
-
+    function ClearAttackRoomFun()
+        RecoveryAttackRoomUnit(LoadInteger(ht,GetHandleId(GetEnumUnit()),'g00A'),GetEnumUnit())
+    endfunction
     
     function ClearAttackRoom(int pid)
-        loop 
-            unit u = FirstOfGroup(AttackRoomGroup[pid])
-            exitwhen u==null
-            RecoveryAttackRoomUnit(pid,u)
-        endloop
-        u = null
+        ForGroup(AttackRoomGroup[pid],function ClearAttackRoomFun)
     endfunction
 //清空练功房内怪物
 
