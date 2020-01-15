@@ -19,7 +19,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             y1 = y1 + 50*Sin(ang)
             LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
         }
@@ -45,7 +45,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             endif
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
         }
@@ -114,7 +114,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                     SetUnitFacing(u1,ang/0.01745)
                     IndexGroup g = IndexGroup.create()
                     GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
-                    UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                     g.destroy()
                 else
                     EXSetUnitCollisionType( true,u1, 1 )

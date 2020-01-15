@@ -450,6 +450,7 @@ InitTypeState2('IF15',0,0,0,0,0,0,0,0,0,300)
 InitTypeState2('IF20',0,40,0,0,0,0,0,0,0,0)
 InitTypeState2('IF21',0,80,0,0,0,0,0,0,0,0)
 InitTypeState2('IF27',0,0,0,0,0,0,0,10,0,0)
+InitTypeState2('uJ60',0,0,0,0,0,0,0,0,20,400)
 endfunction
 function InitStateData3()
 InitTypeState3('S003',0,0,15,650,0,0,0,0,0,0)

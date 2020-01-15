@@ -200,6 +200,7 @@ scope ItemSystem initializer InitItemSystem
 
                         SetUnitIntState(Pu[1],190+num + 1,index)
                         SetUnitIntState(Pu[1],190,num + 1)
+                        AddEquipState(Pu[1],itemid)
                         
                         PlayerInt[pid][90+index] = 10
                         if  num == 2
