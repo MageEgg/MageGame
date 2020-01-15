@@ -22,9 +22,11 @@ library GameChallenge9 uses GameChallengeBase
         else
             ShowPlayerTaskUIOfPlayer(pid,false,time)
         endif
-        PlayerTaskUI_TaskText.SetText("")
-        PlayerTaskUI_ChatTextA.SetText("")
-        PlayerTaskUI_ChatTextB.SetText("")
+        if  Player(pid) == GetLocalPlayer()
+            PlayerTaskUI_TaskText.SetText("")
+            PlayerTaskUI_ChatTextA.SetText("")
+            PlayerTaskUI_ChatTextB.SetText("")
+        endif
     endfunction
 
     function SetGameTeamChallengTimerText(unit wu,unit tu,int time)
