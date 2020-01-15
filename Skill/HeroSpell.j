@@ -321,7 +321,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         TimerStart(8,false)
         {
         if  GetUnitState(u,UNIT_STATE_LIFE) > 0
-            DecUnitAbilityLevel(u,'A048')
+            if  GetUnitAbilityLevel(u,'A048')>1
+                DecUnitAbilityLevel(u,'A048')
+            else
+                UnitRemoveAbility(u,'A048')
+            endif
         endif
         endtimer
          flush locals
@@ -415,10 +419,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u),"Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl","origin",0))
         if GetRandomInt(1, 2) == 1
-            DestroyEffect(AddSpecialEffect("effect_dark-shousuo.mdl",x,y))
+            DestroyEffect(AddSpecialEffect("effect3_desecrateblack.mdl",x,y))
             damage=damage*2
         else
-            DestroyEffect(AddSpecialEffect("effect_dark-shousuo.mdl",x,y))
+            DestroyEffect(AddSpecialEffect("effect3_desecrategreen.mdl",x,y))
         endif
         
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -1470,6 +1474,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 GroupRemoveUnit(g.ejg,u1)
                 UnitDamageGroup(u,g.ejg,ad*0.5,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
+                UnitDamageTarget(u,u1,ap*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 UnitDamageGroup(u,g.ejg,ap*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
         endif
@@ -1706,6 +1711,50 @@ function SpellS116(unit u1,real damage1)
     endfunction
 
      function SpellS120(unit u1,real damage1)//憾地击
+        unit u=u1
+        real x=GetUnitX(u)
+        real y=GetUnitY(u)
+        real damage=damage1
+        group g=CreateGroup()
+        DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
+        GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        if   Chance(u,40)
+            TimerStart(0.6,false)
+            {
+                LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
+                GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                endtimer
+                flush locals
+            }
+        endif
+        flush locals
+    endfunction 
+
+     function SpellS121(unit u1,real damage1)//锁魂
+        unit u=u1
+        real x=GetUnitX(u)
+        real y=GetUnitY(u)
+        real damage=damage1
+        group g=CreateGroup()
+        DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
+        GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        if   Chance(u,40)
+            TimerStart(0.6,false)
+            {
+                LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
+                GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                endtimer
+                flush locals
+            }
+        endif
+        flush locals
+    endfunction 
+
+     function SpellS122(unit u1,real damage1)//破甲
         unit u=u1
         real x=GetUnitX(u)
         real y=GetUnitY(u)
@@ -2195,6 +2244,10 @@ endfunction
                 SpellS116(u1.u,damage)
             elseif  id== 'S120'    
                 SpellS120(u1.u,damage)
+            elseif  id== 'S121'    
+                SpellS121(u1.u,damage)
+            elseif  id== 'S122'    
+                SpellS122(u1.u,damage)
             elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
             elseif  id== 'S124'    
