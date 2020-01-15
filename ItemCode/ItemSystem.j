@@ -325,8 +325,8 @@ scope ItemSystem initializer InitItemSystem
         endif
         
         if  GetRandomInt(1,100) <= gl
-            UnitAddPoolItem(wu,1)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得锦囊x1")
+            
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得"+GetObjectName(UnitAddPoolItem(wu,1))+"x1")
         else 
             kill = R2I(I2R(kill) * GetRandomReal(0.6,1))
             AdjustPlayerStateBJ(kill, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )

@@ -346,24 +346,24 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             endif
         elseif  uid == 'H017'
             if  lv == 2
-                UnitAddItem(wu,CreateItem('CS03',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItemExEx(wu,CreateItem('CS03',GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS03')+"x1")
             elseif  lv == 3
-                UnitAddItem(wu,CreateItem('CS04',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItemExEx(wu,CreateItem('CS04',GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS04')+"x1")
             elseif  lv == 4
-                UnitAddItem(wu,CreateItem('CS05',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItemExEx(wu,CreateItem('CS05',GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS05')+"x1")
             endif
         elseif  uid == 'H018'
             if  lv == 4
-                UnitAddItem(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
-                UnitAddItem(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItemExEx(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItemExEx(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，获得"+GetObjectName('IP02')+"x2")
             endif
         elseif  uid == 'H021'
             if  lv == 2
-                UnitAddItem(wu,CreateItem('IN19',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItemExEx(wu,CreateItem('IN19',GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('IN19')+"x1")
             endif
         elseif  uid == 'H022'
