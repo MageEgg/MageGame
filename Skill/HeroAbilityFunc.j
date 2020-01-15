@@ -679,12 +679,12 @@ library HeroAbilityFunc uses OtherDamageTimer
         int index = id
         real face = Pang(x1,y1,x2,y2)
         if  index == 0
-            u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_DarknessX.mdl",x1,y1,face/0.01745+90,50,1.0)
+            u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_DarknessX.mdl",x1,y1,90,0,1.0)
         else
-            u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_LightX.mdl",x1,y1,face/0.01745-90,50,1.0)
+            u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_LightX.mdl",x1,y1,90,0,1.0)
         endif
-        SetUnitPropWindow( u2, 6.26 )
-        SetUnitTurnSpeed( u2, 0.1)
+        SetUnitPropWindow( u2, 3.14 )
+        SetUnitTurnSpeed( u2, 0.05)
         SetUnitFacing(u2,face/0.01745)
         TimerStart(0.03,true)
         {
@@ -693,8 +693,8 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  dis > 50
                 real ang = GetUnitFacing(u2)*0.01745
                 face = Pang(x1,y1,x2,y2)
-                x1 = x1 + 40 * Cos(ang)
-                y1 = y1 + 40 * Sin(ang)
+                x1 = x1 + 20 * Cos(ang)
+                y1 = y1 + 20 * Sin(ang)
                 SetUnitX(u2,x1)
                 SetUnitY(u2,y1)
                 SetUnitFacing(u2,face/0.01745)
