@@ -246,6 +246,26 @@ scope DeathEvent initializer InitDeathEvent
         flush locals
     endfunction
 
+    function ForgEscapeTimer(int id,unit wu)
+        int pid = id
+        unit u1 = wu
+        SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
+        SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾逃跑啦！10秒后再来吧！")
+        SetUnitPosition(u1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512)
+        UnitAddAbility(u1,'Avul')
+        ShowUnit(u1,false)
+        TimerStart(10,false)
+        {
+            UnitRemoveAbility(u1,'Avul')
+            ShowUnit(u1,true)
+            endtimer
+            flush locals
+        }
+        flush locals
+        
+    endfunction
+
     function ForgKillTimer(unit wu)
         unit u1 = wu
         int id = GetUnitTypeId(u1)
@@ -258,10 +278,7 @@ scope DeathEvent initializer InitDeathEvent
                 if  GetUnitTypeId(u1) == id
                     if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
                         pid = pid - 1
-                        SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
-                        SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾偷偷逃跑了！")
-                        SetUnitPosition(u1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512)
+                        ForgEscapeTimer(pid,u1)
                         if  Pu[6] == u1
                             Pu[6] = null
                         endif
