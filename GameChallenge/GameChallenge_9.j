@@ -15,8 +15,10 @@ library GameChallenge9 uses GameChallengeBase
         GameChallengBool[90] = false
         IsPlayerInTeamChallenge = false
         if  time == -1
-            PlayerTaskUI_Back.alpha = 0
-            PlayerTaskUI_Back.show = false
+            if  Player(pid) == GetLocalPlayer()
+                PlayerTaskUI_Back.alpha = 0
+                PlayerTaskUI_Back.show = false
+            endif
         else
             ShowPlayerTaskUIOfPlayer(pid,false,time)
         endif

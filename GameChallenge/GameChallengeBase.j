@@ -526,8 +526,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerInChallengeNumber = 0
         IsPlayerInChallenge = false
         if  time == -1
-            PlayerTaskUI_Back.alpha = 0
-            PlayerTaskUI_Back.show = false
+            if  Player(pid) == GetLocalPlayer()
+                PlayerTaskUI_Back.alpha = 0
+                PlayerTaskUI_Back.show = false
+            endif
         else
             ShowPlayerTaskUIOfPlayer(pid,false,time)
         endif
