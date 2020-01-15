@@ -211,7 +211,7 @@ scope ItemSystem initializer InitItemSystem
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r累计抽取3个兽魂，可随机获得R技能！")
                         endif
-                        UnitAddAbility(Pu[1],'M006'+num)
+                        UnitAddAbility(Pu[1],'MF06'+num)
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
                     endif

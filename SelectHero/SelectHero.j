@@ -36,7 +36,7 @@ scope SelectHero
             SetUnitRealState(Pu[1],5,1000)
             
 
-            UnitAddAbility(Pu[1],'M001')//魔法书
+            UnitAddAbility(Pu[1],'MF01')//魔法书
 
             UnitAddAbility(Pu[1],'AG01')
             UnitAddAbility(Pu[1],'AG02')
@@ -106,7 +106,7 @@ scope SelectHero
             SetUnitRealState(Pu[1],5,1000)
             
 
-            UnitAddAbility(Pu[1],'M001')//魔法书
+            UnitAddAbility(Pu[1],'MF01')//魔法书
 
             UnitAddAbility(Pu[1],'AG01')
             UnitAddAbility(Pu[1],'AG02')
