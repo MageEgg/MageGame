@@ -378,8 +378,25 @@ library SystemCodes uses ServerTime,Define1
         return J
     endfunction
 
+
+    function UnitAddItemExEx(unit u,item it)
+        int pid = GetPlayerId(GetOwningPlayer(u))
+        if  u == Pu[1]
+            if  UnitCanGetItem(u) == true
+                UnitAddItem(u,it)
+            else
+                SetItemPosition(it,GetUnitX(Pu[2]),GetUnitY(Pu[2]))
+                UnitAddItem(Pu[2],it)
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r英雄背包已满！物品自动传送至助手！")
+            endif
+        else
+            UnitAddItem(u,it)
+        endif
+
+    endfunction
+
     function UnitAddItemEx(unit u,int itid)
-        UnitAddItem(u,CreateItem(itid,GetUnitX(u),GetUnitY(u)))
+        UnitAddItemExEx(u,CreateItem(itid,GetUnitX(u),GetUnitY(u)))
     endfunction
 
     function RemoveItemEx(unit u,int itid)//删除英雄所有可贩卖的物品
@@ -757,7 +774,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             int id = 0
             bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu))
             id = GetItemTypeId(bj_lastCreatedItem)
-            UnitAddItem(wu,bj_lastCreatedItem)
+            UnitAddItemExEx(wu,bj_lastCreatedItem)
             return id
         endfunction
         function GetPoolItemId(int index)->int

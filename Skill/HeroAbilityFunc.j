@@ -19,7 +19,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             y1 = y1 + 50*Sin(ang)
             LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
         }
@@ -45,7 +45,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             endif
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             flush locals
         }
@@ -114,7 +114,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                     SetUnitFacing(u1,ang/0.01745)
                     IndexGroup g = IndexGroup.create()
                     GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
-                    UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                     g.destroy()
                 else
                     EXSetUnitCollisionType( true,u1, 1 )
@@ -462,7 +462,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 4
                 damage = damage * 1.67
             endif
-            AddUnitRealState(wu,9,GetUnitIntState(wu,'H508'))
+            AddUnitRealState(wu,9,-GetUnitIntState(wu,'H508'))
             SetUnitIntState(wu,'S508',0)
             
             IndexGroup g = IndexGroup.create()
@@ -667,10 +667,106 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
     endfunction
 
+
+    function SpellS515_2Timer(unit wu,real sx,real sy,real dam,int id)
+        unit u1 = wu
+        unit u2 = null
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = sx
+        real y2 = sy
+        real damage = dam
+        int index = id
+        real face = Pang(x1,y1,x2,y2)
+        if  index == 0
+            u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_DarknessX.mdl",x1,y1,face/0.01745+90,50,1.0)
+        else
+            u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_LightX.mdl",x1,y1,face/0.01745-90,50,1.0)
+        endif
+        SetUnitPropWindow( u2, 6.26 )
+        SetUnitTurnSpeed( u2, 0.1)
+        SetUnitFacing(u2,face/0.01745)
+        TimerStart(0.03,true)
+        {
+            real dis = Pdis(x1,y1,x2,y2)
+            
+            if  dis > 50
+                real ang = GetUnitFacing(u2)*0.01745
+                face = Pang(x1,y1,x2,y2)
+                x1 = x1 + 40 * Cos(ang)
+                y1 = y1 + 40 * Sin(ang)
+                SetUnitX(u2,x1)
+                SetUnitY(u2,y1)
+                SetUnitFacing(u2,face/0.01745)
+            else
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,x2,y2,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,g.ejg,damage/4,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                if  index == 0
+                    LocAddEffect(x1,y1,"effect_tt (56).mdl")
+                    LocAddEffect(x1,y1,"effect3_desecrateblack.mdl")
+                else
+                    LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",3)
+                endif
+                g.destroy()
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+
+    endfunction
+    function SpellS515Timer(unit wu,real x,real y,real dam)
+        unit u1 = wu
+        real sx = x
+        real sy = y
+        real danage = dam
+        int time = 4
+        TimerStart(0.15,true)
+        {
+            time = time - 1
+            SpellS515_2Timer(u1,sx,sy,danage,ModuloInteger(time,2))
+            if  time <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS515(unit wu,real x,real y,real damage,int lv)
+        int num = GetUnitIntState(wu,'S515')
+        
+        if  num >= 4
+            if  lv >= 4
+                damage = damage * 2
+            elseif  lv >= 3
+                damage = damage * 1.5
+            elseif  lv >= 2
+                damage = damage * 1.25
+            endif
+            for i = 1,4
+                UnitRemoveAbility(wu,'AZA0'+i)
+            end
+            SetUnitIntState(wu,'S515',0)
+            SpellS515Timer(wu,x,y,damage)
+        endif
+        
+    endfunction
+    function SpellS515Spell(unit wu)
+        int num = 0
+        if  GetUnitTypeId(wu) == 'H015'
+            num = GetUnitIntState(wu,'S515') + 1
+            if  num <= 4
+                SetUnitIntState(wu,'S515',num)
+                UnitAddAbility(wu,'AZA0'+num)
+            endif
+        endif
+    endfunction
     
     function SpellS516(unit wu,int lv)
-        int num = GetUnitIntState(wu,'S511')
-        SetUnitIntState(wu,'S511',num+1)
+        int num = GetUnitIntState(wu,'S516')
+        SetUnitIntState(wu,'S516',num+1)
         if  num + 1 == 30
             AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.6)
         endif
