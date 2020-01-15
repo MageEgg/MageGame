@@ -47,7 +47,7 @@ library GameChallenge4 uses GameChallengeBase
         GameChallengInt[40] = GameChallengInt[40] + 1
         if  GameChallengInt[40] == 3
             ShowUnitOfOnlyPlayer(pid,GameChallengUnit[41],UnitAPOfPlayer)
-            UnitAddItemEx(Pu[1],'IZ00')
+            UnitAddItem(Pu[1],CreateItem('IZ00',GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功夺回箭书！！！",0)
             SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff前往姜子牙交换箭书|r",0)
         endif
