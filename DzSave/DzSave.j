@@ -322,13 +322,15 @@ library DzSave initializer InitDzData uses DzDataSetting
         {
             time = time + 1
             if  time == 1
+                BJDebugMsg("LoadingDzMapData start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzMapData(pid) //载入积分
                     endif
                 end
-                BJDebugMsg("LoadingDzMapData")
+                BJDebugMsg("LoadingDzMapData over")
             elseif  time == 2
+                BJDebugMsg("DzDataNewPlayer start ")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         if  IsDzDataNewPlayer(pid) == true
@@ -337,22 +339,25 @@ library DzSave initializer InitDzData uses DzDataSetting
                         DzDataNewPlayer(pid) //新玩家
                     endif
                 end
-                BJDebugMsg("DzDataNewPlayer")
+                BJDebugMsg("DzDataNewPlayer over")
             elseif  time == 3
+                BJDebugMsg("全局存档 start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         //DzSavePublic(pid,1) //全局存档 
                     endif
                 end
-                BJDebugMsg("全局存档 ")
+                BJDebugMsg("全局存档 over")
             elseif  time == 4
+                BJDebugMsg("LoadingDzPlayerData start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzPlayerData(pid) //加载游戏数据
                     endif
                 end
-                BJDebugMsg("LoadingDzPlayerData")
+                BJDebugMsg("LoadingDzPlayerData over")
             elseif  time == 5
+                BJDebugMsg("LoadingDzPlayerDataFlush start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzPlayerDataFlush(pid) //刷新游戏数据
@@ -361,21 +366,23 @@ library DzSave initializer InitDzData uses DzDataSetting
                         endif
                     endif
                 end
-                BJDebugMsg("LoadingDzPlayerDataFlush")
+                BJDebugMsg("LoadingDzPlayerDataFlush over")
             elseif  time == 6
+                BJDebugMsg("SaveDzServerTime start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         SaveDzServerTime(pid) //更新版本
                     endif
                 end
-                BJDebugMsg("SaveDzServerTime")
+                BJDebugMsg("SaveDzServerTime over")
             elseif  time == 7
+                BJDebugMsg("加载科技 start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         //加载科技
                     endif
                 end
-                BJDebugMsg("加载科技")
+                BJDebugMsg("加载科技 over")
             elseif  time == 8
                 BJDebugMsg("初始化存档加载完毕 结束计时器！！！")
                 ExecuteFunc("OpenSelectMode")
