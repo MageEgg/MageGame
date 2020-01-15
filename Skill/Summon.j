@@ -159,11 +159,14 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             loop
                 exitwhen LoadInteger(ht,GetHandleId(u),id)>=Number
                 summon=CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
+                GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
+                SetUnitRealState(summon,1,GetUnitRealState(u,2))
+                UnitApplyTimedLife(summon, 'BHwe', 8 )
                 if  IsPlayerHasAbility(u,'S085') == true
-                    UnitApplyTimedLife(summon, 'BHwe', 8 )
+                   
                 else
-                    UnitApplyTimedLife(summon, 'BHwe', 4 )
+                   
                 endif
             endloop
         endif

@@ -2262,6 +2262,9 @@ endfunction
                         AddUnitStateExTimer(u1.u,31,200,10)
                         AddUnitStateExTimer(u1.u,17,100,10)
                 endif
+                if  GetUnitIntState(u1.u,'FB45') > 0
+                      damage=damage*2
+                endif
                 if  id== 'S230'
                         SpellS230(u1.u,sx,sy,damage)
                     elseif  id== 'S231'
