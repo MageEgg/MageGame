@@ -419,10 +419,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u),"Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl","origin",0))
         if GetRandomInt(1, 2) == 1
-            DestroyEffect(AddSpecialEffect("effect_dark-shousuo.mdl",x,y))
+            DestroyEffect(AddSpecialEffect("effect3_desecrateblack.mdl",x,y))
             damage=damage*2
         else
-            DestroyEffect(AddSpecialEffect("effect_dark-shousuo.mdl",x,y))
+            DestroyEffect(AddSpecialEffect("effect3_desecrategreen.mdl",x,y))
         endif
         
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -1474,6 +1474,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 GroupRemoveUnit(g.ejg,u1)
                 UnitDamageGroup(u,g.ejg,ad*0.5,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
+                UnitDamageTarget(u,u1,ap*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 UnitDamageGroup(u,g.ejg,ap*0.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
         endif
