@@ -1089,10 +1089,23 @@ library HeroAbilityFunc uses OtherDamageTimer
     endfunction
 
     function SpellS529Spell(unit wu)->bool
+        int lv = 0
+        int cd = 0
         for pid = 0,3
             if  GetUnitTypeId(Pu[1]) == 'H029'
                 if  YDWEGetUnitAbilityState(Pu[1],'AC05', 1) == 0
-                    
+                    lv = GetHeroAbilityLevel(Pu[1],'S529')
+
+                    if  lv >= 4
+                        cd = 12
+                    elseif  lv >= 3
+                        cd = 16
+                    elseif  lv >= 2
+                        cd = 18
+                    else
+                        cd = 20
+                    endif
+
                     ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
                     LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
                     
@@ -1101,8 +1114,9 @@ library HeroAbilityFunc uses OtherDamageTimer
                         SelectUnit(wu,true)
                         PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
                     endif
-                    YDWESetUnitAbilityDataReal( Pu[1],'AC05', 1, 105, 15 )
-                    YDWESetUnitAbilityState( Pu[1], 'AC05', 1, 15)
+                    
+                    YDWESetUnitAbilityDataReal( Pu[1],'AC05', 1, 105, cd )
+                    YDWESetUnitAbilityState( Pu[1], 'AC05', 1, cd)
                     return true
                 endif
             endif
@@ -1111,41 +1125,16 @@ library HeroAbilityFunc uses OtherDamageTimer
     endfunction
 
     
-    
-    /*
-    function SpellS102Timer(unit wu,real dam,real face)
-        unit u1 = wu
-        real x1 = GetUnitX(u1)
-        real y1 = GetUnitY(u1)
-        real dis = GetRandomReal(200,400)
-        real x2 = x1 + dis * Cos(face*0.01745)
-        real y2 = y1 + dis * Sin(face*0.01745)
-        real damage = dam
-        real ang = (face + 180) * 0.01745
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_BlackworksDragonHead3.mdl",x2,y2,GetUnitFacing(u1),50,0.5)
-        int num = 0
-        TimerStart(0.03,true)
-        {
-            ang += 0.1745
-            num += 1
-            x1 = x2 + dis * Cos(ang)
-            y1 = y2 + dis * Sin(ang)
-            SetUnitX(u2,x1)
-            SetUnitY(u2,y1)
-            EXSetUnitFacing( u2, ang/0.01745+90)
-            SetUnitFacing(u2,ang/0.01745+90)
-            if  num >= 36
-                RemoveUnit(u2)
+    function SpellS531Spell(unit wu,unit tu)
+        int lv = GetHeroAbilityLevel(wu,'S531')
+        int jj = GetUnitIntState(wu,150)
+        real damage = GetUnitRealState(wu,2) * jj
+        if  lv >= 4
+            if  Chance(wu,10) == true
+                LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_blue-guagnzhu-special.mdl",0.5)
+                UnitDamageTarget(wu,tu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
-            flush locals
-        }
-        flush locals
+        endif
     endfunction
-    function SpellS102(unit wu,real damage)
-        for i = 0,3
-            SpellS102Timer(wu,damage,GetRandomReal(1,360))
-        end
-    endfunction
-    */
 
 endlibrary

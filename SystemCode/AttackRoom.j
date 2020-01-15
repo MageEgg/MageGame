@@ -209,8 +209,21 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         endif
 
         if  GetUnitTypeId(Pu[1]) == 'H031'
-            AddUnitRealState(Pu[1],2,1)
-            BJDebugMsg("占星加法强")
+            int lv = GetHeroAbilityLevel(Pu[1],'S531')
+            int jj = GetUnitIntState(Pu[1],150)
+            if  jj > 0
+                if  lv >= 3
+                    AddUnitRealState(Pu[1],2,jj * 500)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:姜子牙料事如神，法强|Cffff8000+"+I2S(jj*500)+"|r")
+                elseif  lv >= 2
+                    AddUnitRealState(Pu[1],2,jj * 400)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:姜子牙料事如神，法强|Cffff8000+"+I2S(jj*400)+"|r")
+                else
+                    AddUnitRealState(Pu[1],2,jj * 300)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:姜子牙料事如神，法强|Cffff8000+"+I2S(jj*300)+"|r")
+                endif
+            endif
+            
         endif
     endfunction
 

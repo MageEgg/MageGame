@@ -350,7 +350,15 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
             elseif  lv == 4
                 AddUnitRealState(wu,9,60)
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+s60%|r")
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+60%|r")
+            endif
+        elseif  uid == 'H030'
+            
+            if  lv == 3
+                AddUnitRealState(wu,24,300)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，致命倍率|Cffff8000+300%|r")
+            elseif  lv == 4
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，领悟多重射击")
             endif
         elseif  uid == 'xxxx'
             if  lv == 2
