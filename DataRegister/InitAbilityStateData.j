@@ -80,7 +80,7 @@ call InitAbilityData('S078',3,1,1,5,0,0,1,8,"彗星灭世","对目标范围造�
 call InitAbilityData('S079',3,1,2,5,0,0,2,8,"龙神陨光","对前方造成|Cff00bfff法强*5*蓄力时间|r物理伤害。\n\n|Cff00ff7f法强越高，蓄力时间越长。|r","ReplaceableTextures\\CommandButtons\\BTNS079.blp")
 call InitAbilityData('S080',3,2,1,2.5,0,0,1,8,"剑灵诛仙式","万剑出鞘，对目标范围造成|Cffff8000攻击*1.2|r物理伤害。\n\n|Cff00ff7f攻击越高，持续时间越长。|r","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
 call InitAbilityData('S081',3,2,2,2.5,0,0,2,8,"真空领域","将目标范围内的所有单位聚卷入中心，每|Cff00bfff0.5|r秒造成|Cff00bfff法强*2|r法术伤害。\n\n|Cff00ff7f法强越高，持续时间越长。|r","ReplaceableTextures\\CommandButtons\\BTNS081.blp")
-call InitAbilityData('S082',2,3,1,2.5,0,0,1,8,"雷神之子","召唤4个雷球，雷球每|Cffff80000.75|r秒对发起范围攻击造成|Cffff8000攻击*2.5|r物理伤害。\n\n|Cff00bfff攻击越高，雷球持续时间越长。|r","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
+call InitAbilityData('S082',2,3,1,2.5,0,0,1,8,"雷神之子","召唤4个雷球，每个雷球，雷球每|Cffff80000.75|r秒对800码内随机目标周围发起200码范围攻击，造成|Cffff8000攻击*2.5|r物理伤害。\n\n|Cff00bfff攻击越高，雷球持续时间越长。|r","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
 call InitAbilityData('S083',2,3,2,2.5,0,0,2,8,"十方飓风破","自身每|Cff00bfff0.75|r秒向周围逸散暴风，造成|Cff00bfff法强*2.5|r法术伤害。\n\n|Cff00ff7f法强越高，持续时间越长。|r","ReplaceableTextures\\CommandButtons\\BTNS083.blp")
 call InitAbilityData('S085',1,1,0,0,0,0,0,0,"通灵秘术","使以下召唤技能附带|Cff00ff7f额外效果|r：\n\n|Cffffcc00幻影剑阵|r：飞剑25%几率造成2倍伤害\n|Cff00bfff天神道兵|r：进化为混沌道兵\n|Cff00bfff噬魂灵魄|r：伤害提高400%\n|Cffffcc00五行道兵|r：10%概率触发一次额外攻击。","ReplaceableTextures\\CommandButtons\\BTNS085.blp")
 call InitAbilityData('S086',2,2,0,0,0,0,0,20,"幻影剑阵","召唤|Cffff80004|r把飞剑，每把飞剑|Cff00ff7f攻击9次幻化|r出额外一把飞剑，最多幻化1次。\n\n飞剑继承人物|Cffff800050%攻击|r。","ReplaceableTextures\\CommandButtons\\BTNS086.blp")
