@@ -45,11 +45,11 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             if  GetUnitState(summon, UNIT_STATE_LIFE) > 0
                 x=GetUnitX(summon)
                 y=GetUnitY(summon)
-                GroupEnumUnitsInRange(g1,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                GroupEnumUnitsInRange(g1,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 if  CountUnitsInGroup(g1) > 0
                     IndexGroup g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                    UnitDamageGroup(summon,g.ejg,GetUnitRealState(u,2)*2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    GroupEnumUnitsInRange(g.ejg,x,y,500,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                    UnitDamageGroup(summon,g.ejg,GetUnitRealState(u,2)*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     g.destroy()
                     KillUnit(summon)
                     GroupClear(g1)
@@ -140,6 +140,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                 GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
                 SetUnitRealState(summon,1,GetUnitRealState(u,1)*0.3)
+                SetUnitRealState(summon,9,GetUnitRealState(u,9))
                 UnitApplyTimedLife(summon, 'BHwe', 18 )
                 if  IsPlayerHasAbility(u,'S085') == true
                     SetUnitRealState(summon,19,20)
@@ -174,6 +175,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                 summon=CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
                 GroupAddUnit(SummonGroup[GetPlayerId(GetOwningPlayer(u))],summon)
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
+                SetUnitRealState(summon,9,GetUnitRealState(u,9))
                 UnitApplyTimedLife(summon, 'BHwe', 12 )
                  if  GetUnitIntState(u,'FB50') > 0
                     AddUnitRealState(summon,9,20)

@@ -12,6 +12,9 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             YDWESetUnitAbilityState(u, gid, 1,0)
             YDWESetUnitAbilityState(u, cid, 1,0)
         end
+        texttag p=CreateTextTagUnitBJ( "刷新冷却！", u, 0, 12.00, 50.00, 50.00, 100, 0 )
+        SetTextTagVelocityBJ( p, 64, 85.00 )
+        SetTextTagFadepoint( p, 2.00 )
         u = null
     endfunction
 
