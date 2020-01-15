@@ -186,6 +186,9 @@ scope DeathEvent initializer InitDeathEvent
         if  IsPlayerHasAbility(Pu[1],'S129') == true 
             gold = gold + 3
         endif
+        if  if  GetUnitIntState(Pu[1],'FB26') > 0
+            gold = gold + 5
+        endif
 
 
         if  GetUnitAbilityLevel(wu,'AZ18') > 0
