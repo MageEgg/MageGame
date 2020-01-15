@@ -294,7 +294,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
 
         
-        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00元神力：|r0")
+        CreateText(161,origin,"text009",3,5,0.003,0,"|CffFFC926元神力：|r0")
         CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00攻击：|r0%")
         CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00法强：|r0%")
         CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00生命：|r0%")

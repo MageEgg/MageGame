@@ -356,7 +356,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         if  Pu[1] == wu
             if  GetLocalPlayer() == Player(pid)
                 if  StateId == 30
-                    DzFrameSetText(BUTTON_Text[161],"|cffffcc00元神力：|r"+I2S(R2I(value+0.001)))
+                    DzFrameSetText(BUTTON_Text[161],"|CffFFC926元神力：|r"+I2S(R2I(value+0.001)))
                 elseif  StateId == 32
                     DzFrameSetText(BUTTON_Text[162],"|cffffcc00攻击：|r"+I2S(R2I(value+0.001))+"%")
                 elseif  StateId == 33

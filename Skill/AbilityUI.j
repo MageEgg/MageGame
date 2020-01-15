@@ -318,9 +318,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         if  id != 0
             SetUnitIntState(Pu[1],125+index,id)
             SetEquipStateOfPlayer(Pu[1],id,1)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:技能附魔成功！"+GetTypeIdStateTips(id))
         endif
         ReHeroAbilityTips(Pu[1],index)
-        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:技能附魔成功！")
+        
     endfunction
     
    
