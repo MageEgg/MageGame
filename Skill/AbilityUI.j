@@ -358,6 +358,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 AddUnitRealState(wu,24,300)
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，致命倍率|Cffff8000+300%|r")
             elseif  lv == 4
+                UnitAddAbility(wu,'AH30')
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，领悟多重射击")
             endif
         elseif  uid == 'xxxx'

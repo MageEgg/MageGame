@@ -136,6 +136,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                     ExpName.SetText(GetTypeIdName('IJ5A'+num))
                 endif
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
+
+                //境界突破提高技能等级
+                if  num == 3 or num == 5 or num == 10
+                    HeroIncAbility(wu,5)
+                endif
             endif 
         else
             //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")
