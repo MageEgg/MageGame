@@ -2140,6 +2140,7 @@ endfunction
     
         int pid = GetPlayerId(GetOwningPlayer(u1.u))
         
+        int i1 = 0
         real damage = 0
 
         if GetUnitAbilityLevel(u1.u, 'A237')>0 
@@ -2148,9 +2149,30 @@ endfunction
 
         BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
         if  wu == Pu[63]
-            damage = GetAbilityDamage(Pu[1],id,lv) * 0.5
+            i1 = GetHeroAbilityLevelByIndex(Pu[1],5)
+            if  lv >= 4
+                damage = GetAbilityDamage(Pu[1],id,lv)
+            elseif  lv >= 3
+                damage = GetAbilityDamage(Pu[1],id,lv)*0.7
+            elseif  lv >= 3
+                damage = GetAbilityDamage(Pu[1],id,lv)*0.6
+            else
+                damage = GetAbilityDamage(Pu[1],id,lv)*0.5
+            endif
         else
             damage = GetAbilityDamage(wu,id,lv)
+             if  GetUnitTypeId(wu) == 'H011'
+                i1 = GetHeroAbilityLevelByIndex(wu,5)
+                if  i1 >= 4
+                    damage = damage * 3.0
+                elseif  i1 >= 3
+                    damage = damage * 2.1
+                elseif  i1 >= 2
+                    damage = damage * 1.8
+                else
+                    damage = damage * 1.5
+                endif
+            endif
         endif
 
         if  id >= 'S000' and id <= 'S300'
@@ -2258,34 +2280,34 @@ endfunction
 
          if   id >= 'S501' and id <= 'S530'  
             if  id == 'S501'
-                SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+                SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
             elseif  id == 'S502'
-                SpellS502(u1.u,u2.u,damage)
+                SpellS502(u1.u,u2.u,damage,lv)
             elseif  id == 'S504'
-                SpellS504(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+                SpellS504(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
             elseif  id == 'S505'
-                SpellS505(u1.u)
+                SpellS505(u1.u,lv)
             elseif  id == 'S510'
-                SpellS510(u1.u)
+                SpellS510(u1.u,lv)
             elseif  id == 'S512'
-                SpellS512(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+                SpellS512(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
             elseif  id == 'S513'
                 SpellS513(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7))
             elseif  id == 'S514'
-                SpellS514(u1.u,damage)
+                SpellS514(u1.u,damage,lv)
                 
             elseif  id == 'S516'
-                SpellS516(u1.u)
+                SpellS516(u1.u,lv)
             elseif  id == 'S521'
-                SpellS521(u1.u)
+                SpellS521(u1.u,lv)
             elseif  id == 'S523'
-                SpellS523(u1.u,u2.u)
+                SpellS523(u1.u,u2.u,lv)
             elseif  id == 'S524'
-                SpellS524(u1.u,u2.u)
+                SpellS524(u1.u,u2.u,lv)
             elseif  id == 'S525'
-                SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage)
+                SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
             elseif  id == 'S527'
-                SpellS527(u1.u,u2.u)
+                SpellS527(u1.u,u2.u,lv)
             endif
         endif
        

@@ -105,12 +105,14 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     endfunction
 
     //添加道果
+
+
     function AddPlayerImmortalFruit(unit wu,int id)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
         int now = GetHeroXP(Pu[1]) 
         int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
-
+        int i1 = 0
         if  max - now == 1
             if  num < 10
                 num = num + 1
@@ -119,6 +121,10 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 //BJDebugMsg("num"+I2S(num))
                 AddEquipState(Pu[1],id)
                 HeroIncLevel(Pu[1])
+                if  GetUnitTypeId(wu) == 'H018'
+                    SpellS518.execute(Pu[1],id)//九转神功
+                endif
+
                 if  num == 7
                     ReAddAbilityByIndex(Pu[1],4,'S0R1')
                     ShowUnit(Pu[25],true)
@@ -130,6 +136,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                     ExpName.SetText(GetTypeIdName('IJ5A'+num))
                 endif
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
+
+                //境界突破提高技能等级
+                if  num == 3 or num == 5 or num == 10
+                    HeroIncAbility(wu,5)
+                endif
             endif 
         else
             //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")

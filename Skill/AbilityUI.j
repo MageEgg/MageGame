@@ -38,11 +38,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         flush locals
     end
     
-    function GetAbilityCD(unit wu,int id)->real
-        real r1 = GetTypeIdReal(id,100)
-        real r2 = GetUnitRealState(wu,25)
-        return r1 * (1-r2*0.01)
-    endfunction
+    
     
     
     func SetPlayerSkillPostion(int pid,int index,real x,real y)
@@ -76,6 +72,25 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             endif
         end
         return 0
+    endfunction
+
+    function GetAbilityCD(unit wu,int id)->real
+        real r1 = GetTypeIdReal(id,100)
+        real r2 = GetUnitRealState(wu,25)
+
+        int lv = GetHeroAbilityLevel(wu,id)
+
+        if  id == 'S521'
+            if  lv >= 4
+                return 30
+            else
+                return r1
+            endif
+        elseif  id == 'S527'
+            return r1
+        endif
+
+        return r1 * (1-r2*0.01)
     endfunction
     
     function GetHeroAbilityName(unit wu,int index)->string
@@ -178,9 +193,14 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
         return name
     endfunction
-    function GetSkillNameEx(int id,int index)->string
+    function GetSkillNameEx(int id,int index,int level)->string
         int color = GetTypeIdData(id,101)
-        string name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
+        string name = ""
+        if  index == 5
+            name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r Lv."+I2S(level)+StateName[300+index]
+        else
+            name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
+        endif
         if  color == 0
             name = name + "\nEx级"
         elseif  color == 1
@@ -238,9 +258,9 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 YDWESetUnitAbilityDataString(wu, sid1,1, 204, GetTypeIdString(id,101))
                 YDWESetUnitAbilityDataString(wu, sid2,1, 204, GetTypeIdString(id,101))
                 YDWESetUnitAbilityDataString(wu, sid3,1, 204, GetTypeIdString(id,101))
-                YDWESetUnitAbilityDataString(wu, sid1,Type, 215, GetSkillNameEx(id,index) )
-                YDWESetUnitAbilityDataString(wu, sid2,Type, 215, GetSkillNameEx(id,index) )
-                YDWESetUnitAbilityDataString(wu, sid3,Type, 215, GetSkillNameEx(id,index) )
+                YDWESetUnitAbilityDataString(wu, sid1,Type, 215, GetSkillNameEx(id,index,level) )
+                YDWESetUnitAbilityDataString(wu, sid2,Type, 215, GetSkillNameEx(id,index,level) )
+                YDWESetUnitAbilityDataString(wu, sid3,Type, 215, GetSkillNameEx(id,index,level) )
                 
                 
                 
@@ -281,10 +301,73 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
    
     
     function IncHeroAbilityLevelByIndex(unit wu,int index)
+        int uid = GetUnitTypeId(wu)
         int id = GetUnitIntState(wu,110+index)
-        AddUnitIntState(wu,120+index,1)
+        int lv = GetHeroAbilityLevelByIndex(wu,index)+1
+        SetUnitIntState(wu,120+index,lv)
         ReHeroAbilityTips(wu,index)
-        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"升级至|r"+I2S(GetUnitIntState(wu,120+index))+"级")
+        if  uid == 'H009'
+            if  lv == 2
+                AddUnitRealState(wu,12,10)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:广成子奕剑之道，普攻伤害|Cffff8000+10%|r")
+            elseif  lv == 3
+                AddUnitRealState(wu,12,10)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:广成子奕剑之道，普攻伤害|Cffff8000+10%|r")
+            elseif  lv == 4
+                BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
+                SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))-0.1)
+                BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:广成子奕剑之道，攻击间隔降低0.1秒")
+            endif
+        elseif  uid == 'H017'
+            if  lv == 2
+                UnitAddItem(wu,CreateItem('CS03',GetUnitX(wu),GetUnitY(wu)))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS03')+"x1")
+            elseif  lv == 3
+                UnitAddItem(wu,CreateItem('CS04',GetUnitX(wu),GetUnitY(wu)))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS04')+"x1")
+            elseif  lv == 4
+                UnitAddItem(wu,CreateItem('CS05',GetUnitX(wu),GetUnitY(wu)))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS05')+"x1")
+            endif
+        elseif  uid == 'H018'
+            if  lv == 4
+                UnitAddItem(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
+                UnitAddItem(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，获得"+GetObjectName('IP02')+"x2")
+            endif
+        elseif  uid == 'H021'
+            if  lv == 2
+                UnitAddItem(wu,CreateItem('IN19',GetUnitX(wu),GetUnitY(wu)))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('IN19')+"x1")
+            endif
+        elseif  uid == 'H022'
+            if  lv == 2
+                AddUnitRealState(wu,9,20)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
+            elseif  lv == 3
+                AddUnitRealState(wu,9,20)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
+            elseif  lv == 4
+                AddUnitRealState(wu,9,60)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+60%|r")
+            endif
+        elseif  uid == 'H030'
+            
+            if  lv == 3
+                AddUnitRealState(wu,24,300)
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，致命倍率|Cffff8000+300%|r")
+            elseif  lv == 4
+                UnitAddAbility(wu,'AH30')
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，领悟多重射击")
+            endif
+        elseif  uid == 'xxxx'
+            if  lv == 2
+            elseif  lv == 3
+            elseif  lv == 4
+            endif
+        endif
+        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"升级至|r"+I2S(lv)+"级")
     endfunction
     
     function IncHeroAbilityLevelById(unit wu,int id)
@@ -294,30 +377,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     
     function HeroIncAbility(unit wu,int index)
-        int lv = GetHeroAbilityLevel(wu,GetHeroAbilityID(wu,index))
         int use = 0
         if  GetHeroAbilityID(wu,index) == 0
             DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:技能升级失败！该键位无技能！|r")
         else
-            if  lv < 15
-                if  lv <= 4
-                    use = lv * 100
-                elseif  lv <= 9
-                    use = lv * 500
-                elseif  lv <= 14
-                    use = lv * 1000
-                endif
-                
-                if  GetPlayerState(GetOwningPlayer(wu),PLAYER_STATE_RESOURCE_LUMBER) >= use
-                    AdjustPlayerStateBJ(-use, GetOwningPlayer(wu), PLAYER_STATE_RESOURCE_LUMBER )
-                    IncHeroAbilityLevelByIndex(wu,index)
-                else
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:木材不足"+I2S(use)+"，无法升级！")
-                endif
-                
-            else
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:技能"+GetHeroAbilityName(wu,index)+"升级失败！该技能已经满级！|r")
-            endif
+            IncHeroAbilityLevelByIndex(wu,index)
         endif
     endfunction
     
@@ -418,16 +482,20 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
     endfunction
     
-function SetAbilityCD_AC(unit u,int id,real cd)//设置被动技能CD
-    YDWESetUnitAbilityDataReal( u,  GetHeroAbilityIndex(u,id)+'AC00', 1, 105, cd )
-    YDWESetUnitAbilityState( u, GetHeroAbilityIndex(u,id)+'AC00', 1, cd )
-endfunction
+    function SetAbilityCD_AC(unit u,int id,real cd)//设置被动技能CD
+        YDWESetUnitAbilityDataReal( u,  GetHeroAbilityIndex(u,id)+'AC00', 1, 105, cd )
+        YDWESetUnitAbilityState( u, GetHeroAbilityIndex(u,id)+'AC00', 1, cd )
+    endfunction
+    function GetAbilityCD_AC(unit u,int id)->real//获取被动技能CD
+        return YDWEGetUnitAbilityState(u, GetHeroAbilityIndex(u,id)+'AC00', 1)
+    endfunction
 
-function SetAbilityCD_AG(unit u,int id,real cd)//设置主动技能CD
-    integer lv=GetUnitAbilityLevel(u,id)
-    YDWESetUnitAbilityDataReal( u,id, lv, 105, cd )
-    YDWESetUnitAbilityState( u,id,1, cd )
-endfunction
+    function SetAbilityCD_AG(unit u,int id,real cd)//设置主动技能CD
+        integer lv=GetUnitAbilityLevel(u,id)
+        YDWESetUnitAbilityDataReal( u,id, lv, 105, cd )
+        YDWESetUnitAbilityState( u,id,1, cd )
+    endfunction
+    
     
 
 
