@@ -263,11 +263,32 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 YDWESetUnitAbilityDataString(wu, sid3,Type, 215, GetSkillNameEx(id,index,level) )
                 
                 
-                
+
+                if  index == 5
+                    
+                    if  lv > 1
+                        tip = tip + "\n|cff00ff00境界三：" +GetTypeIdString(id,111) + "|r"
+                    else
+                        tip = tip + "\n|cffbbbbbb境界三：" +GetTypeIdString(id,111) + "|r"
+                    endif
+
+                    if  lv > 2
+                        tip = tip + "\n|cff00ff00境界五：" +GetTypeIdString(id,112) + "|r"
+                    else
+                        tip = tip + "\n|cffbbbbbb境界五：" +GetTypeIdString(id,112) + "|r"
+                    endif
+
+                    if  lv > 3
+                        tip = tip + "\n|cff00ff00境界十：" +GetTypeIdString(id,113) + "|r"
+                    else
+                        tip = tip + "\n|cffbbbbbb境界十：" +GetTypeIdString(id,113) + "|r"
+                    endif
+                    
+                endif
                 
                 real cd = GetTypeIdReal(id,100)//技能CD
                 if  cd > 0
-                    tip = tip + "|n|cffdddddd冷却："+R2S2(cd)+"s|r"
+                    tip = tip + "\n|cffdddddd冷却："+R2S2(cd)+"s|r"
                 endif
 
                 magicid = GetUnitIntState(wu,125+index)
@@ -373,6 +394,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function IncHeroAbilityLevelById(unit wu,int id)
         int index = GetHeroAbilityIndex(wu,id)
         IncHeroAbilityLevelByIndex(wu,index)
+        ReHeroAbilityTips(wu,index)
     endfunction
     
     
@@ -497,7 +519,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     
     
-
+    function InitAbilityStringEx(int id,string s1,string s2,string s3,string s4,string s5)
+        SetTypeIdString(id,111,s1)
+        SetTypeIdString(id,112,s2)
+        SetTypeIdString(id,113,s3)
+        SetTypeIdString(id,114,s4)
+        SetTypeIdString(id,115,s5)
+    endfunction
 
     //InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
     function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,int Damagetype,real cd,string name,string tips,string icon)

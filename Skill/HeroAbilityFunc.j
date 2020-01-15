@@ -138,7 +138,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         SetUnitPosition(wu,GetUnitX(wu),GetUnitY(wu))
         if  index == 0
             if  lv >= 2
-                damage = damage * 1.5
+                damage = damage * 2
             endif
             SpellS501_2(wu,x1,y1,damage)
             SetUnitIntState(wu,'S501',index+1)
@@ -146,7 +146,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitAnimationByIndex(wu,3)
         elseif  index == 1
             if  lv >= 3
-                damage = damage * 1.3
+                damage = damage * 2
             endif
             SpellS501_0(wu,x1,y1,damage)
             SetUnitIntState(wu,'S501',index+1)
