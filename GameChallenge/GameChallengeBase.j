@@ -533,9 +533,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         else
             ShowPlayerTaskUIOfPlayer(pid,false,time)
         endif
-        PlayerTaskUI_TaskText.SetText("")
-        PlayerTaskUI_ChatTextA.SetText("")
-        PlayerTaskUI_ChatTextB.SetText("")
+        if  Player(pid) == GetLocalPlayer()
+            PlayerTaskUI_TaskText.SetText("")
+            PlayerTaskUI_ChatTextA.SetText("")
+            PlayerTaskUI_ChatTextB.SetText("")
+        endif
     endfunction
 
     function CreateTrigUnitInRange(real x,real y,real rac,code actionFunc)
