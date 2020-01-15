@@ -67,6 +67,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitY(u1,uy)
                     DestroyEffect(tx)
                     endtimer
+                    flush locals
                 endif
             endif
             
@@ -312,6 +313,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         {
             DestroyEffect(tx)
             endtimer
+             flush locals
         }
         flush locals
     endfunction
@@ -368,7 +370,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         loop
             gu = FirstOfGroup(g.ejg)
             exitwhen gu == null
-            DBUG(I2S(GetUnitAbilityLevel(gu,'A048')))
             if  I2R(GetUnitAbilityLevel(gu,'A048'))*damage>0
                 damage=(1+I2R(GetUnitAbilityLevel(gu,'A048')))*damage
                 UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS)
@@ -910,9 +911,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 else
                     u1 = null
                     endtimer
+                    flush locals
                 endif
-                flush locals
+                
             endif
+            flush locals
         }
         flush locals
     endfunction
@@ -1739,6 +1742,7 @@ function SpellS116(unit u1,real damage1)
         real damage=damage1
         group g=CreateGroup()
         DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
+        AddUnitStateExTimer(u,14,15,4)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         if   Chance(u,40)
@@ -1760,13 +1764,14 @@ function SpellS116(unit u1,real damage1)
         real y=GetUnitY(u)
         real damage=damage1
         group g=CreateGroup()
-        DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
+        DestroyEffect(AddSpecialEffect("effect_longzhan.mdl",x,y))
+        AddUnitStateExTimer(u,13,15,4)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         if   Chance(u,40)
             TimerStart(0.6,false)
             {
-                LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
+                LocAddEffectSetSize(x,y,"effect_daoguang-new.mdl",1.2)
                 GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 endtimer
@@ -1926,7 +1931,7 @@ function SpellS116(unit u1,real damage1)
         real time = 0
         real height = dis
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file")
-        DzSetUnitModel( u1,"effect_hero_xingxing.mdx")
+        DzSetUnitModel( u1,"shenshou_shenshou_bian.mdl")
         SetUnitAnimation( u1,"spell" )
         if  height < 500
             height = 500
@@ -2020,6 +2025,7 @@ function SpellS116(unit u1,real damage1)
         endloop
         g.destroy()
         u=null
+         flush locals
     endfunction
     
     function SpellS233(unit u1)
