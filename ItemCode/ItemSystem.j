@@ -203,15 +203,15 @@ scope ItemSystem initializer InitItemSystem
                         AddEquipState(Pu[1],itemid)
                         
                         PlayerInt[pid][90+index] = 10
-                        if  num == 2
-                            int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
+                        if  num == 9
+                            //int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
+                            int id = GetRandomInt(1,8) + 'S230'
                             HeroAddAbilityByIndex(Pu[1],4,id)
                             RemoveUnit(Pu[25])
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r累计抽取3个兽魂，可随机获得R技能！")
                         endif
-                        UnitAddAbility(Pu[1],'MF06'+num)
+                        
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
                     endif
