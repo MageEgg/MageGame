@@ -462,7 +462,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 4
                 damage = damage * 1.67
             endif
-            AddUnitRealState(wu,9,GetUnitIntState(wu,'H508'))
+            AddUnitRealState(wu,9,-GetUnitIntState(wu,'H508'))
             SetUnitIntState(wu,'S508',0)
             
             IndexGroup g = IndexGroup.create()
@@ -667,10 +667,21 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
     endfunction
 
+
+    function SpellS515Spell(unit wu)
+        int num = 0
+        if  GetUnitTypeId(wu) == 'H015'
+            num = GetUnitIntState(wu,'S515') + 1
+            if  num <= 4
+                SetUnitIntState(wu,'S515',num)
+                UnitAddAbility(wu,'AZA0'+num)
+            endif
+        endif
+    endfunction
     
     function SpellS516(unit wu,int lv)
-        int num = GetUnitIntState(wu,'S511')
-        SetUnitIntState(wu,'S511',num+1)
+        int num = GetUnitIntState(wu,'S516')
+        SetUnitIntState(wu,'S516',num+1)
         if  num + 1 == 30
             AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.6)
         endif
