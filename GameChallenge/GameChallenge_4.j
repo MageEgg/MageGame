@@ -198,7 +198,7 @@ library GameChallenge4 uses GameChallengeBase
         unit u1 = GetTriggerUnit()
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
-            if  u1 == Pu[1]
+            if  u1 == Pu[1] or u1 == Pu[2]
                 if  IsFinshChallenge(4) == false and IsPlayerInChallenge == true
                     if  GameChallengInt[40] == 0 
                         SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","我刚才正施法，只见一声响，便不见了箭书。你快去抢回来！",0)
