@@ -2259,8 +2259,8 @@ endfunction
             
             elseif   id>='S230' and id<='S235'
                 if  GetUnitIntState(u1.u,'FB44') > 0
-                        AddUnitStateExTimer(u1.u,31,200,10)
-                        AddUnitStateExTimer(u1.u,17,100,10)
+                    AddUnitStateExTimer(u1.u,31,200,10)
+                    AddUnitStateExTimer(u1.u,17,100,10)
                 endif
                 if  id== 'S230'
                         SpellS230(u1.u,sx,sy,damage)
