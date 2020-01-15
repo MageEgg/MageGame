@@ -45,11 +45,11 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             if  GetUnitState(summon, UNIT_STATE_LIFE) > 0
                 x=GetUnitX(summon)
                 y=GetUnitY(summon)
-                GroupEnumUnitsInRange(g1,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                GroupEnumUnitsInRange(g1,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 if  CountUnitsInGroup(g1) > 0
                     IndexGroup g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                    UnitDamageGroup(summon,g.ejg,GetUnitRealState(u,2)*2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    GroupEnumUnitsInRange(g.ejg,x,y,500,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+                    UnitDamageGroup(summon,g.ejg,GetUnitRealState(u,2)*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     g.destroy()
                     KillUnit(summon)
                     GroupClear(g1)
