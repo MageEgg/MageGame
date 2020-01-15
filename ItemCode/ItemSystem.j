@@ -351,6 +351,12 @@ scope ItemSystem initializer InitItemSystem
         
         if  itemid == 'IP01'
             SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
+        elseif  itemid == 'IP02'
+            SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
+            ReCollectFrameResources(pid)
+        elseif  itemid == 'IP03'
+            SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
+            ReCollectFrameResources(pid)
         elseif  itemid >= 'IJ01' and itemid <= 'IJ10'
             AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'

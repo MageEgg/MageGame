@@ -109,6 +109,11 @@ scope InitRctEvent initializer InitRctEvent
     endfunction
     
     
+    
+    function RectAlocCondition()->bool
+        return GetUnitAbilityLevel(GetTriggerUnit(),'Aloc') == 0
+    endfunction
+
     function InitRctEventFunc(rect rec,bool in,code cod)
         trigger trig = CreateTrigger()
         region rectRegion = CreateRegion()
@@ -118,6 +123,7 @@ scope InitRctEvent initializer InitRctEvent
         else
             TriggerRegisterLeaveRegion(trig, rectRegion, null)
         endif
+        TriggerAddCondition(trig,Condition(function RectAlocCondition))
         TriggerAddAction(trig, cod)
         flush locals
     endfunction
