@@ -416,6 +416,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        EXSetUnitCollisionType( false,GameChallengUnit[num], 1 )
     endfunction
 
     function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
@@ -430,6 +431,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        EXSetUnitCollisionType( false,GameChallengUnit[num], 1 )
     endfunction
 
     function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
