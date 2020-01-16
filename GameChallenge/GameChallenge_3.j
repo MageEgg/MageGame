@@ -65,6 +65,7 @@ library GameChallenge3 uses GameChallengeBase
         real y = 0
         GameChallenge_3Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+        SetPlayerAllianceVISION(pid,false)
         if  ty == 0
             x = -6176
             y = 6944
@@ -109,7 +110,7 @@ library GameChallenge3 uses GameChallengeBase
         TimerStart(1,false)
         {
             if  IsPlayerInChallenge == true
-                SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUIChatOfPlayer(pid,"黄天化","吾乃开国武成王长子，黄天化。今奉姜丞相将令，特来擒你。",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击退魔礼青|r",0)       
@@ -196,13 +197,13 @@ library GameChallenge3 uses GameChallengeBase
             else
                 SetUnitXY(GameChallengUnit[39],-3776,6880)
                 UnitAddEffectOfGameChalleng(GameChallengUnit[39])
-                SetUnitOwner(GameChallengUnit[a],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[a],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[b],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[b],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[c],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[c],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[d],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[d],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀四魔将|r",0)
                 endtimer

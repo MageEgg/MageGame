@@ -92,13 +92,13 @@ library GameChallenge2 uses GameChallengeBase
                     SetUnitAnimation(GameChallengUnit[num],"attack")
                 endif
             else
-                SetUnitOwner(GameChallengUnit[a],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[a],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[b],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[b],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[c],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[c],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[d],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[d],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败四海龙王|r",0)
                 endtimer
@@ -113,6 +113,7 @@ library GameChallenge2 uses GameChallengeBase
         real y = 0
         GameChallenge_2Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+        SetPlayerAllianceVISION(pid,false)
         if  ty == 0
             x = -5664
             y = 2496

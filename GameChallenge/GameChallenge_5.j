@@ -38,7 +38,7 @@ library GameChallenge5 uses GameChallengeBase
                     SetUnitPositionOfGameChalleng(GameChallengUnit[num],x,4300)
                     SetPlayerTaskUIChatOfPlayer(pid,"土行孙","来者何人！！！敢私探吾营，是自送死期！！！",0)
                 elseif  time == 3
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败土行孙|r",0)
                     endtimer
@@ -56,6 +56,7 @@ library GameChallenge5 uses GameChallengeBase
         real y = 0
         GameChallenge_5Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+        SetPlayerAllianceVISION(pid,false)
         if  ty == 0
             x = -512
             y = 3936
@@ -212,7 +213,7 @@ library GameChallenge5 uses GameChallengeBase
         {
             if  IsPlayerInChallenge == true
                 for k = 1,cos
-                    SetUnitOwner(GameChallengUnit[unitcos[k]],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[unitcos[k]],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[unitcos[k]],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 end
             endif
