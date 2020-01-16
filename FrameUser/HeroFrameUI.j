@@ -5,6 +5,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     161-172     附加属性
     190-193     兽魂
     */
+
+    /*
+    701-708     附加按钮
+    */
+
     private FRAME Back = 0
     private int origin = 0
 
@@ -333,9 +338,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     
         
 
-   
+        CreateButton(702,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.048,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI001.blp")
+        CreateButton(703,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.096,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI002.blp")
 
-
+        DzFrameShow(BUTTON_Back[702][0], false)
+        DzFrameShow(BUTTON_Back[703][0], false)
 
         
         Back2.show = false

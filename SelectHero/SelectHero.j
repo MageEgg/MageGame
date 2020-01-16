@@ -30,6 +30,9 @@ scope SelectHero
                 SetCameraField( CAMERA_FIELD_FARZ, 10000.00, 2.0 )
                 ClearSelection()
                 SelectUnit(Pu[1],true)
+
+                DzFrameShow(BUTTON_Back[702][0], true)
+                
             endif
             
             
@@ -100,6 +103,9 @@ scope SelectHero
                 SetCameraField( CAMERA_FIELD_FARZ, 10000.00, 2.0 )
                 ClearSelection()
                 SelectUnit(Pu[1],true)
+
+                DzFrameShow(BUTTON_Back[702][0], true)
+                DzFrameShow(BUTTON_Back[703][0], true) 
             endif
             
             

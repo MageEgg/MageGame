@@ -1,4 +1,4 @@
-library Mouse initializer MouseInit uses TipsTool
+library Mouse  uses TipsTool
     int MouseLeftState = 0
     function MouseDown()
         MouseLeftState = 1

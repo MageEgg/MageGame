@@ -362,7 +362,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 else
                     showvalue = value + 0.001
                 endif
-                if  StateId == 30
+                if  StateId == 40
                     DzFrameSetText(BUTTON_Text[161],"|CffFFC926元神力：|r"+I2S(R2I(showvalue)))
                 elseif  StateId == 32
                     DzFrameSetText(BUTTON_Text[162],"|cffffcc00攻击：|r"+I2S(R2I(showvalue))+"%")

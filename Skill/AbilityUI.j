@@ -140,21 +140,15 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function GetSkillNameColor(int color)->string
         if  color == 0
             return "|cffff0000"
-        elseif  color == 1
+        elseif  color == 5
             return "|cffff0033"
-        elseif  color == 2
+        elseif  color == 4
             return "|cffffff00"
         elseif  color == 3
             return "|cff00BFFF"
-        elseif  color == 4
+        elseif  color == 2
             return "|cff00FA9A"
-        elseif  color == 5
-            return "|cff00FA9A"
-        elseif  color == 6
-            return "|cffffffff"
-        elseif  color == 7
-            return "|cffffffff"
-        elseif  color == 8
+        elseif  color == 1
             return "|cffffffff"
         endif
         return "|cffffffff"
@@ -197,31 +191,27 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int color = GetTypeIdData(id,101)
         string name = ""
         if  index == 5
-            name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r Lv."+I2S(level)+StateName[300+index]
+            name = GetSkillNameColor(level)+GetTypeIdString(id,100)+"|r Lv."+I2S(level)+StateName[300+index]
         else
-            name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
+            name = GetSkillNameColor(level)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
         endif
         if  index == 5
             name = name + "\n天赋"
         else
             if  color == 0
-                name = name + "\nEx级"
-            elseif  color == 1
-                name = name + "\nS级"
-            elseif  color == 2
-                name = name + "\nA级"
-            elseif  color == 3
-                name = name + "\nB级"
-            elseif  color == 4
-                name = name + "\nC级"
-            elseif  color == 5
-                name = name + "\nC-级"
-            elseif  color == 6
-                name = name + "\nD+级"
-            elseif  color == 7
-                name = name + "\nD级"
-            elseif  color == 8
-                name = name + "\nD-级"
+                name = name + "\n神通"
+            else
+                if  level == 5
+                    name = name + "\nS级"
+                elseif  level == 4
+                    name = name + "\nA级"
+                elseif  level == 3
+                    name = name + "\nB级"
+                elseif  level == 2
+                    name = name + "\nC级"
+                elseif  level == 1
+                    name = name + "\nD级"
+                endif
             endif
         endif
         

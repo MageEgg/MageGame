@@ -325,7 +325,7 @@ library DamageCode uses UnitStateSet
     
     //元神
     function GetUnitEnlState(unit wu)->real
-        real s = GetUnitRealState(wu,30)
+        real s = GetUnitRealState(wu,40)
         return s
     endfunction
 
