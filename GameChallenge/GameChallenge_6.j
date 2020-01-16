@@ -333,7 +333,7 @@ library GameChallenge6 uses GameChallengeBase
                 endif
             endif
             GameChallenge_6Flush(pid,2)
-            PlayerChallengeCosNum(6) = PlayerChallengeCosNum(6) + 1
+            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,6)
         endif
