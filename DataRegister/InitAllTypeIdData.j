@@ -320,6 +320,12 @@ scope AllTypeIdData initializer init
         SetTypeIdData('INDV',103,700)
         SetTypeIdData('INDW',103,700)
 
+        SetTypeIdData('g00A',103,10)
+        SetTypeIdData('g00B',103,30)
+        SetTypeIdData('g00C',103,50)
+        SetTypeIdData('g00D',103,80)
+        SetTypeIdData('g00E',103,120)
+
 
     endfunction
     function InitUnitDropData()
