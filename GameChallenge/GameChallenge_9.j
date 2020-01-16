@@ -13,6 +13,9 @@ library GameChallenge9 uses GameChallengeBase
 
     function FlushGameTeamChallengeOfPlayer(int pid,real time)
         GameChallengBool[90] = false
+        for num = 0,7
+            SetUnitVertexColor(GameChallengUnit[100+num],255,255,255,0)
+        end
         IsPlayerInTeamChallenge = false
         if  time == -1
             if  Player(pid) == GetLocalPlayer()
@@ -369,6 +372,9 @@ library GameChallenge9 uses GameChallengeBase
                         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
                         SetPlayerTaskUIChatOfPlayer(pid,"通天教主","月缺难圆。今摆此万仙阵，必定见雌雄，以定一尊之位。今日万仙统会，以完劫数。",0.3)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff破太极四象阵|r",0.3)
+                        for num = 0,7
+                            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[100+num],UnitAPOfPlayer)
+                        end
                     endif
                 endif
             end
@@ -459,6 +465,43 @@ library GameChallenge9 uses GameChallengeBase
             SetUnitVertexColor(GameTeamChallengUnit(num),255,255,255,0)
             SetUnitFlyHeight(GameTeamChallengUnit(num),10,10000)
         end
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                GameChallengUnit[100] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',5887.250,3658.750,135.000)
+                GameChallengUnit[101] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',6084.000,3464.000,135.000)
+                GameChallengUnit[102] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',6969.500,3642.500,45.000)
+                GameChallengUnit[103] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',6771.500,3443.500,45.000)
+                GameChallengUnit[104] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',5890.250,2567.000,225.000)
+                GameChallengUnit[105] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',6082.500,2759.500,225.000)
+                GameChallengUnit[106] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',6964.500,2570.000,315.000)
+                GameChallengUnit[107] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',6768.250,2766.250,315.000)
+                SetUnitVertexColor(GameChallengUnit[100],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[101],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[102],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[103],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[104],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[105],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[106],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[107],255,255,255,0)
+                SetUnitColor(GameChallengUnit[100], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[101], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[102], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[103], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[104], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[105], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[106], PLAYER_COLOR_RED )
+                SetUnitColor(GameChallengUnit[107], PLAYER_COLOR_RED )
+                EXSetUnitMoveType(GameChallengUnit[100],0x01)
+                EXSetUnitMoveType(GameChallengUnit[101],0x01)
+                EXSetUnitMoveType(GameChallengUnit[102],0x01)
+                EXSetUnitMoveType(GameChallengUnit[103],0x01)
+                EXSetUnitMoveType(GameChallengUnit[104],0x01)
+                EXSetUnitMoveType(GameChallengUnit[105],0x01)
+                EXSetUnitMoveType(GameChallengUnit[106],0x01)
+                EXSetUnitMoveType(GameChallengUnit[107],0x01)
+            endif
+        end
+
     endfunction
 
 endlibrary
