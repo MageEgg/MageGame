@@ -417,6 +417,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
         EXSetUnitCollisionType( false,GameChallengUnit[num], 1 )
+        SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
     endfunction
 
     function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)

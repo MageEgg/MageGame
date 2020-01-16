@@ -98,6 +98,7 @@ library GameChallenge1 uses GameChallengeBase
         {
             if  IsPlayerInChallenge == true
                 SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败雷震子|r",0)
             endif
