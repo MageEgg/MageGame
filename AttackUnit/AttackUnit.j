@@ -228,14 +228,12 @@ library AttackUnit uses DamageCode
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
         AttackBOSSLastCos = 1
-        if  GameLevel <= 2
-            AttackUnitWNOver = 18  //最终波
-        elseif  GameLevel == 3
-            AttackUnitWNOver = 21  //最终波
-        elseif  GameLevel == 4
+        if  GameLevel == 1
             AttackUnitWNOver = 24  //最终波
-        elseif  GameLevel >= 5 and GameLevel <= 7
+        elseif  GameLevel == 2
             AttackUnitWNOver = 27  //最终波
+        elseif  GameLevel >= 3
+            AttackUnitWNOver = 30  //最终波
         endif
         
         //序号 进攻类型（事件） 下一波时间 创建数量 创建次数 刷新时间 进攻坐标 单位id 1-4 创建坐标1-4
