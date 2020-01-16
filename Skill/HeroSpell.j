@@ -1413,7 +1413,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=GetUnitX(u)
         real y=GetUnitY(u)
         integer pid = GetPlayerId(GetOwningPlayer(u))
-        effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u,"chest") 
+        effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u,"origin") 
         TimerStart(0.8,true)
         {
         

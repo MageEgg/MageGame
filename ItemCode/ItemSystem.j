@@ -216,14 +216,17 @@ scope ItemSystem initializer InitItemSystem
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
                     endif
                     //RePlayerBeastSoulDrawTips(pid,index)
-                    RePlayerBeastSoulDrawShop(pid)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
                 endif
+                
             else
                 BJDebugMsg("重复的")
             endif
         
             
         endif
+        RePlayerBeastSoulDrawShop(pid)
 
     endfunction
 
@@ -418,13 +421,13 @@ scope ItemSystem initializer InitItemSystem
             SetUnitState(Pu[1],UNIT_STATE_MANA,GetUnitState(Pu[1],UNIT_STATE_MANA)+GetUnitState(Pu[1],UNIT_STATE_MAX_MANA)*0.6)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffblue2.mdl")
         elseif  itemid == 'I003'
-            AddUnitStateExTimer(Pu[1],9,60,15)
+            AddUnitStateExTimer(Pu[1],9,50,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffyellow2.mdl")
         elseif  itemid == 'I004'
-            AddUnitStateExTimer(Pu[1],15,40,15)
+            AddUnitStateExTimer(Pu[1],16,30,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
         elseif  itemid == 'I005'
-            AddUnitStateExTimer(Pu[1],16,40,15)
+            AddUnitStateExTimer(Pu[1],15,30,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
         elseif  itemid >= 'IN00' and itemid <= 'IN18'
             UnitUseSilkBag(u1,itemid)
