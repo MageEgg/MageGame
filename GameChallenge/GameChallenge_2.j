@@ -93,12 +93,16 @@ library GameChallenge2 uses GameChallengeBase
                 endif
             else
                 SetUnitOwner(GameChallengUnit[a],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[a],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[b],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[b],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[c],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[c],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[d],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[d],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败四海龙王|r",0)
                 endtimer

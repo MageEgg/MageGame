@@ -111,6 +111,7 @@ library GameChallenge3 uses GameChallengeBase
         {
             if  IsPlayerInChallenge == true
                 SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUIChatOfPlayer(pid,"黄天化","吾乃开国武成王长子，黄天化。今奉姜丞相将令，特来擒你。",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击退魔礼青|r",0)       
@@ -198,12 +199,16 @@ library GameChallenge3 uses GameChallengeBase
                 SetUnitXY(GameChallengUnit[39],-3776,6880)
                 UnitAddEffectOfGameChalleng(GameChallengUnit[39])
                 SetUnitOwner(GameChallengUnit[a],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[a],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[b],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[b],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[c],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[c],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetUnitOwner(GameChallengUnit[d],Player(pid+4),true)
+                SetUnitColor(GameChallengUnit[d],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                 IssuePointOrderById(GameChallengUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀四魔将|r",0)
                 endtimer

@@ -46,6 +46,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 3
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀袁洪|r",0)
                     endtimer
@@ -89,6 +90,7 @@ library GameChallenge8 uses GameChallengeBase
                     SetUnitVertexColor(GameChallengUnit[83],255,255,255,0)
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀梅山第一怪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第一怪|r",0)
@@ -130,6 +132,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 2
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀梅山第二怪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第二怪|r",0)
@@ -171,6 +174,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 2
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀梅山第三怪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第三怪|r",0)
@@ -212,6 +216,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 2
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀梅山第四怪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第四怪|r",0)
@@ -253,6 +258,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 2
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀梅山第五怪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第五怪|r",0)
@@ -294,6 +300,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 2
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀梅山第六怪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀梅山第六怪|r",0)
@@ -335,6 +342,7 @@ library GameChallenge8 uses GameChallengeBase
                 elseif  time == 2
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","击杀袁洪。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀袁洪|r",0)

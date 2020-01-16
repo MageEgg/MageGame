@@ -57,6 +57,7 @@ library GameChallenge6 uses GameChallengeBase
                 elseif  time == 4
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败申公豹|r",0)
                     endtimer
@@ -124,6 +125,7 @@ library GameChallenge6 uses GameChallengeBase
                     SetUnitXY(GameChallengUnit[69],-1312,7264)
                     UnitAddEffectOfGameChalleng(GameChallengUnit[69])
                     SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀马元|r",0)
                     endtimer
@@ -142,6 +144,7 @@ library GameChallenge6 uses GameChallengeBase
         SetUnitFaceOfUnit(GameChallengUnit[69],GameChallengUnit[num])
         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
         SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
+        SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
         IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀殷洪|r",0)
     endfunction
