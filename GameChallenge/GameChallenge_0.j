@@ -102,6 +102,9 @@ library GameChallenge0 uses GameChallengeBase
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币！\n")
                         SetPlayerTaskUIChatOfPlayer(pid,"周文王","今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。",0)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
+                        if  GetLocalPlayer() == Player(pid)
+                            DzFrameShow(BUTTON_Back[703][0], true) 
+                        endif
                     endif
                 endif
             endif
