@@ -470,22 +470,14 @@ library AttackUnit uses DamageCode
         AttackTimer = CreateTimer()
         TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
         //TimerStart(AttackTimer,12,false,function OpenAttackUnitTimer)
-        if  i == 6
-            AttackTimerUIText = "特殊事件 年兽贺岁"
-        elseif  i == 13
-            AttackTimerUIText = "特殊事件 闻太师西征"
-        elseif  i == 17
-            AttackTimerUIText = "特殊事件 摘星楼擒妖"
-        else
-            if  AttackUnitWN >= AttackUnitWNOver - 3
-                AttackTimerUIText = "最终大决战"
-                if  IsChangeGodStage == false
-                    IsChangeGodStage = true
-                    CreateChangeGodStage.execute(AttackUnitNextTime[i])
-                endif
-            else
-                AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
+        if  AttackUnitWN >= AttackUnitWNOver - 3
+            AttackTimerUIText = "最终大决战"
+            if  IsChangeGodStage == false
+                IsChangeGodStage = true
+                CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
+        else
+            AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
         endif
     endfunction
     
