@@ -98,6 +98,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         SetPlayerUnitPostionSelectUnit(Pu[1],AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],Pu[1])
     endfunction
 
+
 //事件类
     function AttackRoomKillUnit(unit wu,unit tu)
         PlayerHeroKillUnit.execute(wu,tu)
@@ -244,8 +245,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             bj_lastCreatedUnit = null
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(id)+"来临！！")
         else
-            AttackRoomXCUnitNum = 12
-            for i = 1,12
+            AttackRoomXCUnitNum = 10
+            for i = 1,10
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
@@ -306,6 +307,10 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         SoulTimer2Func(pid,x,y)
     endfunction
     
+
+
+
+
     //任意单位死亡 触发单位，凶手单位
     function AttackRoomUnitDeath(unit wu,unit ku)
         real x = GetUnitX(ku)

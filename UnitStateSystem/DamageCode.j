@@ -33,28 +33,8 @@ library DamageCode uses UnitStateSet
     
     
     
-    //法抗
-    function GetUnitfkState(unit wu)->real
-        real s = GetUnitRealState(wu,4)
-        if  GetUnitAbilityLevel(wu,'BZ8D') > 0
-            s = s + 15
-        endif
-        real b=0
-        if  GetUnitAbilityLevel(wu, 'BB01')>0
-            b=b+10
-        endif
-        if  GetUnitAbilityLevel(wu, 'BB02')>0
-            b=b+10
-        endif
-        if  GetUnitAbilityLevel(wu, 'BB03')>0
-            b=b+10
-        endif
-        if  GetUnitAbilityLevel(wu, 'BB04')>0
-            b=b+10
-        endif
-        s=s-(s/100*b)
-        return s
-    endfunction
+    
+
     //闪避
     function GetUnitSbState(unit wu)->real
         real s = GetUnitRealState(wu,10)
@@ -200,6 +180,33 @@ library DamageCode uses UnitStateSet
     function GetUnitDk(unit wu)->real
         real s = GetUnitDkState(wu)
     
+        return s * 0.01
+    endfunction
+    //法抗
+    function GetUnitFkState(unit wu)->real
+        real s = GetUnitRealState(wu,4)
+        
+        real b=0
+        if  GetUnitAbilityLevel(wu, 'BB01')>0
+            b=b+10
+        endif
+        if  GetUnitAbilityLevel(wu, 'BB02')>0
+            b=b+10
+        endif
+        if  GetUnitAbilityLevel(wu, 'BB03')>0
+            b=b+10
+        endif
+        if  GetUnitAbilityLevel(wu, 'BB04')>0
+            b=b+10
+        endif
+        s=s-(s/100*b)
+        if  s > 90
+            s = 90
+        endif
+        return s
+    endfunction
+    function GetUnitFk(unit wu)->real
+        real s = GetUnitFkState(wu)
         return s * 0.01
     endfunction
     
