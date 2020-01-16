@@ -372,8 +372,8 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
         elseif  itemid == 'IZ01'
-            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 2000
-                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-2000)
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-2000)
                 OpenGameTeamChallenge(pid,1,20)
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r木材不足2000！")
