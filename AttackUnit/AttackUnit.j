@@ -101,7 +101,7 @@ library AttackUnit uses DamageCode
     endfunction
     
     function OpenAttackTimerUI(int time)
-        AttackTimerUIText = "进攻第1波"
+        AttackTimerUIText = "进攻波 1/"+I2S(AttackUnitWNOver)
         AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
         AttackTimerTextExUI.SetText("|cffffcc00"+I2S(time)+"秒")
         ShowAttackTimerUI(true)
@@ -506,7 +506,7 @@ library AttackUnit uses DamageCode
                     CreateChangeGodStage.execute(AttackUnitNextTime[i])
                 endif
             else
-                AttackTimerUIText = "进攻第"+I2S(AttackUnitWN+1)+"波"
+                AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
             endif
         endif
     endfunction
