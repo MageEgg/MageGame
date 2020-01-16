@@ -534,21 +534,15 @@ scope DeathEvent initializer InitDeathEvent
         if  u1 == PlayerUnit[pid2][6]
             PlayerUnit[pid2][6] = null
         endif
-        
+        //剧情任务等
+        GameChallengDeathEvent(u2,u1)
         if  pid > 7 
-            
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
-            
             if  u2 != null
                 //小怪死亡的资源类结算
                 PlayerHeroKillUnit(u2,u1)
-                
                 //小怪死亡的其他功能
                 HeroKillMoster(u2,u1)
-                
-                //剧情任务等
-                GameChallengDeathEvent(u2,u1)
-
                 if  uid >= 'mb01' and uid <= 'mb09'
                     AttackBossDeathEvent(u1)
                 endif

@@ -46,10 +46,11 @@ library AttackUnit uses DamageCode
     #define CrazyAttackBool             AttackUnitBool[1]       //疯狂
     #define AttackGroupNumBool          AttackUnitBool[2]       //单位组数量
     #define InfiniteAttackBool          AttackUnitBool[5]       //无尽
-    #define IsChangeGodStage            AttackUnitBool[6]       //封神台
     
     #define AttackUnitWinBool           AttackUnitBool[20]      //胜利
-    
+
+    #define IsChangeGodStage            AttackUnitBool[30]       //封神台
+
     #define AttackTimer                 AttackArrayTimer[0]
     #define AttackElseTimer             AttackArrayTimer[1]
     #define CreateAttackUnitTimer       AttackArrayTimer[2]

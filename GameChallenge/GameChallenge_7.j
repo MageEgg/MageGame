@@ -34,7 +34,7 @@ library GameChallenge7 uses GameChallengeBase
                     SetPlayerTaskUIChatOfPlayer(pid,"多宝道人","哼！尔等再三欺我教门人，今我师尊摆此诛仙阵，你们一个都别想跑！",0)
                 elseif  time == 3
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败多宝道人|r",0)
                     endtimer
@@ -74,7 +74,7 @@ library GameChallenge7 uses GameChallengeBase
                         SetUnitAnimation(GameChallengUnit[num],"attack")
                     endif
                 elseif  time == 4
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第一剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第一剑|r",0)
@@ -120,7 +120,7 @@ library GameChallenge7 uses GameChallengeBase
                         SetUnitAnimation(GameChallengUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第二剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第二剑|r",0)
@@ -164,7 +164,7 @@ library GameChallenge7 uses GameChallengeBase
                         SetUnitAnimation(GameChallengUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第三剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第三剑|r",0)
@@ -208,7 +208,7 @@ library GameChallenge7 uses GameChallengeBase
                         SetUnitAnimation(GameChallengUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第四剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第四剑|r",0)
@@ -227,6 +227,7 @@ library GameChallenge7 uses GameChallengeBase
         real y = 0
         GameChallenge_7Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+        SetPlayerAllianceVISION(pid,false)
         if  ty == 0
             x = 2816
             y = 3168

@@ -56,7 +56,7 @@ library GameChallenge6 uses GameChallengeBase
                     SetPlayerTaskUIChatOfPlayer(pid,GetPlayerName(Player(pid)),"信口胡说！！！",0)
                 elseif  time == 4
                     UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败申公豹|r",0)
                     endtimer
@@ -74,6 +74,7 @@ library GameChallenge6 uses GameChallengeBase
         real y = 0
         GameChallenge_6Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+        SetPlayerAllianceVISION(pid,false)
         if  ty == 0
             x = -2272
             y = 6720
@@ -122,7 +123,7 @@ library GameChallenge6 uses GameChallengeBase
                 elseif  time == 2
                     SetUnitXY(GameChallengUnit[69],-1312,7264)
                     UnitAddEffectOfGameChalleng(GameChallengUnit[69])
-                    SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀马元|r",0)
                     endtimer
@@ -140,7 +141,7 @@ library GameChallenge6 uses GameChallengeBase
         UnitAddEffectOfGameChalleng(GameChallengUnit[69])
         SetUnitFaceOfUnit(GameChallengUnit[69],GameChallengUnit[num])
         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-        SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+        SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
         IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀殷洪|r",0)
     endfunction

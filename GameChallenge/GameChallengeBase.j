@@ -276,6 +276,14 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
     endfunction
 
+    function SetPlayerAllianceVISION(int pid,bool value)
+        for n = 0,3
+            if  n != pid
+                SetPlayerAlliance(Player(pid),Player(n),ALLIANCE_SHARED_VISION,value)
+            end
+        end
+    endfunction
+
     function SetUnitAPOfBool(unit u,int boolid)
         int ap = 0
         for pid = 0,3
@@ -402,32 +410,18 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         UnitAddEffectOfNPC(GameTeamChallengUnit(num))
     endfunction
 
-    
-    function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
-        //BJDebugMsg(I2S(num))
-        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
-        SetUnitRealState(GameChallengUnit[num],99,num)
-        UnitAddAbility(GameChallengUnit[num],'AZ99')
-        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-    endfunction
-
     function CreateUsesGameChallengUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
         //BJDebugMsg(I2S(num))
-        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,ang)
+        GameChallengUnit[num] = CreateUnit(Player(pid+4),uid,x,y,ang)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
     endfunction
 
-    function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
+    function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
         //BJDebugMsg(I2S(num))
-        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid,x,y,0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
-        SetUnitRealState(GameChallengUnit[num],99,num)
-        UnitAddAbility(GameChallengUnit[num],'AZ99')
-        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+        CreateUsesGameChallengUnitOfAng(pid,num,uid,x,y,0)
     endfunction
 
     function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
@@ -437,6 +431,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
         SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
+    endfunction
+
+    function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
+        //BJDebugMsg(I2S(num))
+        CreateUsesGameChallengUnitExOfAng(pid,num,uid,x,y,0)
     endfunction
 
     function SetUnitPositionOfGameChalleng(unit u,real x,real y)
@@ -524,6 +523,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         RemoveUnit(PlayerInChallengeShowUnit)
         PlayerInChallengeShowUnit = null
         PlayerInChallengeNumber = 0
+        SetPlayerAllianceVISION(pid,true)
         IsPlayerInChallenge = false
         if  time == -1
             if  Player(pid) == GetLocalPlayer()
@@ -543,7 +543,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function CreateTrigUnitInRange(real x,real y,real rac,code actionFunc)
         trigger tig = null
         unit u = null
-        tig = CreateTrigger() //姜子牙
+        tig = CreateTrigger() 
         u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',x,y,0)
         SetUnitVertexColor(u,255,255,255,0)
         EXSetUnitMoveType(u,0x01)

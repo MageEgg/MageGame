@@ -21,6 +21,7 @@ library GameChallenge1 uses GameChallengeBase
         real y = 0
         GameChallenge_1Flush(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
+        SetPlayerAllianceVISION(pid,false)
         if  ty == 0
             x = GetRectCenterX(gg_rct_ChallengeRct_1_1)
             y = GetRectCenterY(gg_rct_ChallengeRct_1_1)
@@ -79,12 +80,13 @@ library GameChallenge1 uses GameChallengeBase
             if  GameChallengInt[10] == 1 or ModuloInteger(GameChallengInt[10],5) == 0
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/20)")
             endif
-        elseif  GameChallengInt[10] >= 20
-            if  GameChallengBool[10] == false    
+        elseif  GameChallengInt[10] == 20
+            if  GameChallengBool[10] == false
                 GameChallengBool[10] = true
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀护冢小妖("+I2S(GameChallengInt[10])+"/20)")
                 SetUnitVertexColor(GameChallengUnit[12],255,255,255,0)
                 GameChalleng_1_XYDeathTimer(pid)
+                GameChallengInt[10] = 21
             endif
         endif
     endfunction
@@ -95,7 +97,7 @@ library GameChallenge1 uses GameChallengeBase
         TimerStart(0.6,false)
         {
             if  IsPlayerInChallenge == true
-                SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+                SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
                 IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败雷震子|r",0)
             endif
@@ -156,7 +158,7 @@ library GameChallenge1 uses GameChallengeBase
             int num = 0
             real x = 0
             real y = 0
-            if  GameChallengInt[10] < 20 and IsPlayerInChallenge == true
+            if  GameChallengInt[10] <= 20 and GameChallengBool[10] == false and IsPlayerInChallenge == true
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0 and GameChallengInt[11] < 5
                     x = GetUnitX(GameChallengUnit[19])+GetRandomReal(-150,150)
