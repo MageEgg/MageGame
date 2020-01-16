@@ -167,7 +167,7 @@ library GameChallenge5 uses GameChallengeBase
                     endif
                 endif
                 GameChallenge_5Flush(pid,2)
-                PlayerChallengeCosNum(5) = PlayerChallengeCosNum(5) + 1
+                PlayerChallengeCosNum = PlayerChallengeCosNum + 1
                 //奖励
                 PlayerFinishPlotEx(pid,5)
             endif

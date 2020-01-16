@@ -41,7 +41,7 @@ library GameChallenge2 uses GameChallengeBase
                 SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败四海龙王！！！",0)
             endif
             GameChallenge_2Flush(pid,2)
-            PlayerChallengeCosNum(2) = PlayerChallengeCosNum(2) + 1
+            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,2)
         endif

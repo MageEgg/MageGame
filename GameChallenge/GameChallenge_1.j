@@ -313,7 +313,7 @@ library GameChallenge1 uses GameChallengeBase
                 SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击退殷破败和雷开！！！",0)
             endif
             GameChallenge_1Flush(pid,2)
-            PlayerChallengeCosNum(1) = PlayerChallengeCosNum(1) + 1
+            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,1)
         endif

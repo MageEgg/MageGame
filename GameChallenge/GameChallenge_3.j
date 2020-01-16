@@ -37,7 +37,7 @@ library GameChallenge3 uses GameChallengeBase
                 endif
             endif
             GameChallenge_3Flush(pid,2)
-            PlayerChallengeCosNum(3) = PlayerChallengeCosNum(3) + 1
+            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,3)
         endif
