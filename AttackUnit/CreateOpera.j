@@ -172,7 +172,7 @@ library CreateOpera uses DamageCode
     endfunction
 
     function CreateGameOperaA(real t)
-        int time = t - 60
+        real time = t - 60
         TimerStart(time,false)
         {
             ExecuteFunc("CreateOperaA")
