@@ -50,6 +50,9 @@ library AttackUnit uses DamageCode
     #define AttackUnitWinBool           AttackUnitBool[20]      //胜利
 
     #define IsChangeGodStage            AttackUnitBool[30]       //封神台
+    #define IsGameOperaA                AttackUnitBool[31]       //封神台
+    #define IsGameOperaB                AttackUnitBool[32]       //封神台
+    #define IsGameOperaC                AttackUnitBool[33]       //封神台
 
     #define AttackTimer                 AttackArrayTimer[0]
     #define AttackElseTimer             AttackArrayTimer[1]
@@ -482,6 +485,12 @@ library AttackUnit uses DamageCode
                 CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
+            if  AttackUnitWN == 6
+                if  IsGameOperaA == false
+                    IsGameOperaA = true
+                    CreateGameOperaA.execute(AttackUnitNextTime[i])
+                endif
+            endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
         endif
     endfunction
