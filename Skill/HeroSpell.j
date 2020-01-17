@@ -103,10 +103,17 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         AddUnitStateExTimer(u,13,15,3)
         DestroyEffect(AddSpecialEffect("effect_daoguang-new.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        unit uu=FirstOfGroup(g.ejg)
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        loop
+            uu=FirstOfGroup(g.ejg)
+            exitwhen uu==null
+            AddUnitStateExTimer(u,3,-20,3)
+            GroupRemoveUnit(g.ejg,uu)
+        endloop
+        
         g.destroy()
         u = null
+        uu = null
         flush locals
     endfunction
 
