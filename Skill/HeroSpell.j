@@ -1471,7 +1471,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         if  FirstOfGroup(g.ejg)!=null
-            LocAddEffectSetSize(x,y,"effect_by_wood_gongchengsipai_2.mdl",2.9)
+            LocAddEffectSetSize(x,y,"effect_red-texiao-shandian.mdl",0.8)
             GroupRemoveUnit(g.ejg,u1)
             UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         endif

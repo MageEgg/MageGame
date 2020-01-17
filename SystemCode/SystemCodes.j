@@ -194,7 +194,7 @@ library SystemCodes uses ServerTime,Define1
         for i = 1,60
             value = GetTypeIdReal(id,i)
             if  value > 0
-                s = s + "\n" + StateName[i] + "+" + R2S2(value) + StateName[i+1000]
+                s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
             endif
             
         end
