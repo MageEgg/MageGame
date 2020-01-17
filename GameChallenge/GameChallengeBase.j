@@ -671,7 +671,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
 
-    function GameChallenge_GlobalFlushBool(int id,real tiem)
+    function GameChallenge_GlobalFlushBool(int id,real time)
         int pid = id
         TimerStart(time,false)
         {
