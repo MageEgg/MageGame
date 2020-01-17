@@ -4,6 +4,8 @@ library CreateOpera uses DamageCode
     group AttackOperaGroup_B_2 = null
     group AttackOperaGroup_C_1 = null
     
+    real AttackUnitOperaBossDamage = 0
+
     function KillAttackUnitGroupFunc()
         bool UI = false
         if  GetUnitAbilityLevel(GetEnumUnit(),'AZ01') > 0 and UI == false
@@ -59,6 +61,50 @@ library CreateOpera uses DamageCode
         int pid = GetAttackPlayingHeroId()
         IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
     endfunction
+
+    function AttackOperaADamageGold()
+        real angle = 0
+        real distance = 0
+        real x = 1685
+        real y = -3104
+        real rac = 400
+        AddEffectInAreaSetSize(x,y,rac,1.5,8,"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl")
+        for num = 1,5
+            angle = GetRandomReal(0, 6.283) 
+            distance = SquareRoot(GetRandomReal(1.0, rac * rac)) 
+            CreateItem('I00A',x + Cos(angle) * distance,y + Sin(angle) * distance)
+        end
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  IsLocInRect(gg_rct_AttackOpera_A,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true
+                    DisplayTimedTextToPlayer(Player(pid),0,0,6,"|cffffcc00[新春]：|r|cffff3737运气太好了，年兽掉落了大量金币！！！|r")
+                endif
+            endif
+        end
+    endfunction
+    function AttackOperaADamage(real damage)
+        real life = GetUnitState(AttackUnitOperaBoss,UNIT_STATE_MAX_LIFE)*0.1
+        int cos = 0
+        AttackUnitOperaBossDamage = AttackUnitOperaBossDamage + damage
+        if  AttackUnitOperaBossDamage/life >= 1
+            cos = S2I(SubString(R2S(AttackUnitOperaBossDamage/life),0,1))
+            for num = 1,cos
+                AttackOperaADamageGold()
+            end
+            AttackUnitOperaBossDamage = AttackUnitOperaBossDamage - cos*life
+        endif
+    endfunction
+
+    function AttackOperaAGold()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  IsLocInRect(gg_rct_AttackOpera_A,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,300)
+                    UnitAddText(Pu[1],"年兽金币：+300",255,202,0,255,90,0.023)
+                endif
+            endif
+        end
+    endfunction
     
     function AttackOperaAEnding()
         int time = 0
@@ -67,12 +113,16 @@ library CreateOpera uses DamageCode
         OperaTimer = null
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
-        if  GetUnitState(AttackUnitOperaBoss,UNIT_STATE_MAX_LIFE) > 0.4
-            SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
-            SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
-        endif
+        SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
+        ExecuteFunc("ColserOperaATimerUnit")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
         TimerStart(1,true)
         {
             if  time < 5
@@ -102,22 +152,39 @@ library CreateOpera uses DamageCode
     
     function CreateOperaATimerFunc()
         int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
-        time = time + 1
+        time = time - 1
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        if  (ModuloInteger(time,5) == 0 or time <= 5) and time > 0 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
+        endif
         if  time == 30
-            
+            OpenGameTeamChallengeTimer.execute(30,10)
+        elseif  time == 0
             AttackOperaAEnding()
         endif
     endfunction
 
     function CreateOperaATimer()
         OperaTimer = CreateTimer()
-        int time = 0
+        int time = 35
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
         TimerStart(OperaTimer,1,true,function CreateOperaATimerFunc)
     endfunction
+
+    function CreateGameOperaA(real t)
+        real time = t - 60
+        TimerStart(time,false)
+        {
+            ExecuteFunc("CreateOperaA")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     
     function CreateOperaA()
-        OpenAttackShowUI("UI_AttackShow_2.tga",3)
+        CreateOperaATimer()
+        OpenAttackShowUI("UI_AttackShow_2.tga",4)
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
@@ -130,11 +197,16 @@ library CreateOpera uses DamageCode
                 SetUnitAbilityLevel(Pu[1],'AZ96',1)
             endif
         end
-        ExecuteFunc("CreateOperaA2")
+        TimerStart(3,false)
+        {
+            ExecuteFunc("CreateOperaA2")
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
 
     function CreateOperaA2()
-        CreateOperaATimer()
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
         TimerStart(1.0,false)
@@ -147,7 +219,8 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaA3()
-        AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc01',1685,-3104,270)
+        AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc01',1685,-3104,270)
+        SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
         UnitAddAbility(AttackUnitOperaBoss,'AZ01')
         SetUnitFlyHeight(AttackUnitOperaBoss,0,10000.00)
         TimerStart(0.1,false)
@@ -168,7 +241,6 @@ library CreateOpera uses DamageCode
         TimerStart(0.5,false)
         {
             SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
-            ExecuteFunc("CreateOperaATimer")
             endtimer
             flush locals
         }
