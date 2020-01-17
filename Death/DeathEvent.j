@@ -93,19 +93,7 @@ scope DeathEvent initializer InitDeathEvent
     
 
     
-    function PlayerItemWRTFunc(int pid,item it,int exp)
-        int id = GetItemTypeId(it)
-        int num = GetItemCharges(it)
-        
-        if  num-exp > 1
-            SetItemCharges(it,num-exp)
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(id+1))
-            RemoveItem(it)
-            UnitAddItem(Pu[1],CreateItem(id+1,0,0))
-            
-        endif
-    endfunction
+    
 
     function PlayerItemGrowFunc(int pid,item it,int use)->bool
         int id = GetItemTypeId(it)
@@ -145,6 +133,25 @@ scope DeathEvent initializer InitDeathEvent
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击及法强+"+I2S(i1))
 
     endfunction
+
+    function PlayerItemIncFunc(int pid,item it,int exp)
+        int id = GetItemTypeId(it)
+        int num = GetItemCharges(it)
+        int next = GetTypeIdData(id,106)
+        if  num-exp > 1
+            SetItemCharges(it,num-exp)
+        else
+            RemoveItem(it)
+            if  GetRandomInt(1,100)<= 50
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
+                UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：很遗憾" + GetObjectName(id) + "升级失败！")
+                UnitAddItem(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+            endif
+        endif
+    endfunction
+
     function PlayerItemGrow(int pid)
         int next = 0
         int id = 0
@@ -159,9 +166,10 @@ scope DeathEvent initializer InitDeathEvent
             endif
         end
         for i2 = 0,5
-            id = GetItemTypeId(UnitItemInSlot(Pu[1],i1))
-            if  id >= 'E101'
-            int next = GetTypeIdData(id,106)
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],i2))
+            if  id >= 'E101' and id <= 'E124'
+                PlayerItemIncFunc(pid,UnitItemInSlot(Pu[1],i2),1)
+                exitwhen true
             endif
         end
                     
@@ -170,6 +178,7 @@ scope DeathEvent initializer InitDeathEvent
     function PlayerHeroAddState(int pid,int uid,unit wu)
         int index = 0
         int value = 0
+        real ste = 0
         real gold = 0
         real wood = 1
         int exp = 0
@@ -198,21 +207,27 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
 
-        if  GetUnitAbilityLevel(wu,'AZ18') > 0
-            wood = 40
-        endif
         
-        exp = 1
         
+        
+        //杀敌金币
+        gold = gold + GetUnitRealState(Pu[1],46)
         if  gold > 0
             gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)+0.001
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold)),255,202,0,255,90,0.023)
         endif
+
+        //杀敌木材
+        if  GetUnitAbilityLevel(wu,'AZ18') > 0
+            wood = 40
+        endif
         if  wood > 0
             AdjustPlayerStateBJ( R2I(wood) ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
         endif
 
+        //杀敌经验
+        exp = 1
         if  exp > 0
             HeroAddExp( Pu[1],exp)
         endif
@@ -238,6 +253,20 @@ scope DeathEvent initializer InitDeathEvent
                 AddUnitRealState(Pu[1],1,100)
                 AddUnitIntState(Pu[1],'FC03',100)
             endif
+        endif
+
+        //杀敌属性
+        ste = GetUnitRealState(Pu[1],43)
+        if  ste > 0
+            AddUnitRealState(Pu[1],1,ste)
+        endif
+        ste = GetUnitRealState(Pu[1],44)
+        if  ste > 0
+            AddUnitRealState(Pu[1],2,ste)
+        endif
+        ste = GetUnitRealState(Pu[1],45)
+        if  ste > 0
+            AddUnitRealState(Pu[1],5,ste)
         endif
     endfunction
 
@@ -510,7 +539,7 @@ scope DeathEvent initializer InitDeathEvent
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
                     if  SpellS529Spell(u1) == false
-                        if  FB43Func(u1) == false
+                        if  FB01Func(u1) == false
                             RevivePlayerHero(pid)
                             BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
                             GameChallengPlayerDeathEvent(u1)

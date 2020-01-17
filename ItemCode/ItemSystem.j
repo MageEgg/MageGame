@@ -350,7 +350,23 @@ scope ItemSystem initializer InitItemSystem
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得杀敌数x"+I2S(kill))
         endif
     endfunction
-    
+
+    function PlayerHeorSkillMagic(unit wu,int index)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int use = 0
+        if  GetTypeIdData(GetHeroAbilityID(Pu[1],1),101) == 9
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r该位置未学习技能，无法附魔！")
+        else
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use
+                AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                PlayerHeorAddSkillMagic(pid,index, GetPoolItemId(2))
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r附魔失败！杀敌数不足"+I2S(use))
+            endif
+        endif
+
+
+    endfunction
     
     
     
@@ -386,6 +402,8 @@ scope ItemSystem initializer InitItemSystem
             PlayerAbilityDraw(pid,itemid)
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
+        elseif  itemid >= 'IS21' and itemid <= 'IS23'
+            PlayerHeorSkillMagic(u1,itemid - 'IS20')
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
         elseif  itemid == 'IZ01'
