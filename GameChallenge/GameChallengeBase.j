@@ -402,7 +402,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         GameTeamChallengUnit(14) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',3600.000,-2456,270)
         GameTeamChallengUnit(15) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',3748.000,-2456,270)
 
-        for num = 0,3
+        for num = 0,5
             SetUnitScale(GameTeamChallengUnit(num+10),9,9,9)
             SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
             SetUnitFlyHeight(GameTeamChallengUnit(num+10),10,10000)
