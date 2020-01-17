@@ -187,36 +187,17 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     function AstrologyFunc(int pid)//占星
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        int ran = GetRandomInt(0,2)
         int num = AttackRoomZXNum
-        int id = 'u0AA'+ran*0x100+num
+        int id = 'u0CA'+num
         if  AttackRoomZXNum < 12
             AttackRoomZXNum = AttackRoomZXNum + 1
         endif
-        if  ran == 0
-            for i = 1,10
-                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
-                IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
-                UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
-                SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
-                
-                
-                bj_lastCreatedUnit = null
-            end
-        elseif  ran == 1
-            for i = 1,4
-                bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
-                IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
-                SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
-                bj_lastCreatedUnit = null
-            end
-        else
-            bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
-            IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
-            SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
-            
-            bj_lastCreatedUnit = null
-        endif
+
+        bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
+        IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+        SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+        bj_lastCreatedUnit = null
+        
 
         if  GetUnitTypeId(Pu[1]) == 'H031'
             int lv = GetHeroAbilityLevel(Pu[1],'S531')
@@ -435,7 +416,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
                 GameChallengPlayerUnit[pid][91] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
                 DzSetUnitModel(GameChallengPlayerUnit[pid][91],"effect2_tx-yuzhou.mdl")
-                CreateTrigUnitInRange(GetUnitX(GameChallengPlayerUnit[pid][91]),GetUnitY(GameChallengPlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)
+                CreateTrigUnitInRangeOfGameChallenge(GetUnitX(GameChallengPlayerUnit[pid][91]),GetUnitY(GameChallengPlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)
                 ShowUnit(GameChallengPlayerUnit[pid][90],false)
                 SetUnitVertexColor(GameChallengPlayerUnit[pid][91],255,255,255,0)
             endif

@@ -309,7 +309,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","ShowSave",GameUI,Button)
-        Button.SetPoint(4,GameUI,4,0,0)
+        Button.SetPoint(8,GameUI,5,-0.01,-0.1)
         Button.SetSize(0.288,0.25)
         origin = Button.frameid
 

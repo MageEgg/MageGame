@@ -39,6 +39,88 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define UnitAPOfPlayer  0
 
+
+    function SendOperaRectRange()
+        unit u1 = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        real x = 0
+        real y = 0
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == Pu[1]
+                if  GetUnitAbilityLevel(Pu[1],'AZ96') > 0
+                    if  GetUnitAbilityLevel(Pu[1],'AZ96') == 1
+                        if  pid == 0
+                            x = 1312
+                            y = -2752
+                        elseif  pid == 1
+                            x = 2048
+                            y = -2752
+                        elseif  pid == 2
+                            x = 1344
+                            y = -3328
+                        elseif  pid == 3
+                            x = 2016
+                            y = -3328
+                        endif
+                        SendPlayerUnit(pid,x,y)
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 2
+                        if  pid == 0
+                            x = 2300
+                            y = -140
+                        elseif  pid == 1
+                            x = 2625
+                            y = -460
+                        elseif  pid == 2
+                            x = 2240
+                            y = -308
+                        elseif  pid == 3
+                            x = 2458
+                            y = -524
+                        endif
+                        SendPlayerUnit(pid,x,y)
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 2
+                        if  pid == 0
+                            x = 2976
+                            y = -2720
+                        elseif  pid == 1
+                            x = 2976
+                            y = -2880
+                        elseif  pid == 2
+                            x = 2848
+                            y = -2720
+                        elseif  pid == 3
+                            x = 2848
+                            y = -2880
+                        endif
+                        SendPlayerUnit(pid,x,y)
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') >= 3
+                        if  pid == 0
+                            PlayerReviveX = -1984
+                            PlayerReviveY = -7136
+                        elseif  pid == 1
+                            PlayerReviveX = -1344
+                            PlayerReviveY = -7136
+                        elseif  pid == 2
+                            PlayerReviveX = -1344
+                            PlayerReviveY = -7808
+                        elseif  pid == 3
+                            PlayerReviveX = -1984
+                            PlayerReviveY = -7808
+                        endif
+                        SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+                        if  GetUnitAbilityLevel(Pu[1],'AZ96') == 4
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r进入封神台！！！")
+                        else    
+                            SetUnitAbilityLevel(Pu[1],'AZ96',4)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r进入封神台！！！|cff00ff00默认回城点已改为封神台！！！|r")
+                        endif
+                    endif
+                endif
+            endif
+        endif
+        flush locals
+    endfunction
+
     function InitGameChallengeLeagueUnit()
         real ang = 0
         for num = 1,9
@@ -64,22 +146,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
         end
     endfunction
-
-    function OpenChangeGodStageA()
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                UnitRemoveAbility(Pu[1],'Avul')
-                PlayerReviveX = -1344
-                PlayerReviveY = -7136
-                SendPlayerUnitBarringCamera(pid,OriginalDefendX+150*Cos(45*pid*0.01745),PlayerReviveY+150*Cos(45*pid*0.01745))
-            endif
-        end
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-    endfunction
     
     function SetLeagueUnitOverState(unit wu,real time)
         unit u = wu
@@ -87,8 +153,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         {
             UnitRemoveAbility(u,'Avul')
             EXSetUnitMoveType(u,0x02)
-            UnitAddEffect(u,"effect_tx_asad (24).mdx")
-            UnitAddEffectSetSize(u,"effect_az-leiji.mdx",2)
+            LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx",1)
+            LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
             PauseUnit(u,false)
             SetUnitAnimation(u,"attack")
             endtimer
@@ -97,25 +163,11 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
 
-    function OpenChangeGodStageB(real r1,real r2)
+    function OpenChangeGodStageLeagueUnit(real r1,real r2)
         real x = r1
         real y = r2
         int num = 0
-        BJDebugMsg(R2S(x)+"@@@@"+R2S(y))
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                UnitRemoveAbility(Pu[1],'Avul')
-                PlayerReviveX = -1344
-                PlayerReviveY = -7136
-                SendPlayerUnitBarringCamera(pid,OriginalDefendX+150*Cos(45*pid*0.01745),PlayerReviveY+150*Cos(45*pid*0.01745))
-            endif
-        end
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，大决战无法离开封神台！！！请做好准备！！！|r")
-        TimerStart(0.2,true)
+        TimerStart(0.3,true)
         {   
             real sx = 0
             real sy = 0
@@ -143,7 +195,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
                     PauseUnit(GameChallengLeagueUnit(num),true)
-                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
+                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),10)
                 elseif  GetUnitAbilityLevel(GameChallengLeagueUnit(num),'AZ21') > 0
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cffff0000加入敌军作战！|r")
                     RemoveUnit(GameChallengLeagueUnit(num))
@@ -153,10 +205,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
                     PauseUnit(GameChallengLeagueUnit(num),true)
-                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
+                    SetLeagueUnitOverState(GameChallengLeagueUnit(num),10)
                 endif
             else
-                ExecuteFunc("OpenChangeGodStageB2")
                 endtimer
             endif
             flush locals
@@ -167,12 +218,17 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function OpenChangeGodStage()
         real x = OriginalDefendX
         real y = OriginalDefendY
-        BJDebugMsg("创建新基地")
-        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-        KillAttackUnitGroup()
-        ShowBossDamageUI(false)
-        PanCameraToTimed(-1664,-7440,0)
+        unit u = null
+        real ux = 0
+        real uy = 0
+        int time = 60
         RemoveUnit(GameDefendUnit)
+        u = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,0,0,1.8)
+        EXSetUnitMoveType(u,0x01)
+        u = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,5,1.98)
+        EXSetUnitMoveType(u,0x01)
+        CreateTrigUnitInRange(u,198,function SendOperaRectRange)
+        PingMinimap(x,y,8)
         GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
         OriginalDefendX = GetUnitX(GameDefendUnit)
         OriginalDefendY = GetUnitY(GameDefendUnit)
@@ -182,19 +238,37 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         x = OriginalDefendX - x
         y = OriginalDefendY - y
         for pid = 0,3
-            if  IsPlaying(pid) == true  
-                UnitAddAbility(Pu[1],'Avul')
-                UnitAddAbility(Pu[1],'AZ02')
+            if  IsPlaying(pid) == true 
+                RemoveUnit(GameChallengUnit[200])
+                GameChallengUnit[200] = null
+                RemoveUnit(GameChallengUnit[201])
+                GameChallengUnit[201] = null
+                PlayerReviveX = -6560
+                PlayerReviveY = -6592
+                UnitAddAbility(Pu[1],'AZ96')
+                SetUnitAbilityLevel(Pu[1],'AZ96',3)
             endif
         end
-        TimerStart(1,false)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        TimerStart(1,true)
         {
-            if  GameLevel < 3
-                OpenChangeGodStageA()
+            time = time - 1
+            if  time > 0
+                if  time > 10 and time <= 40
+                    if  ModuloInteger(time,5) == 0
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家做好战斗准备！！！|r")
+                    endif
+                elseif  time <= 10
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家前往封神台准备战斗！！！|r")
+                endif
             else
-                OpenChangeGodStageB(x,y)
+                OpenChangeGodStageLeagueUnit(x,y)
+                endtimer
             endif
-            endtimer
             flush locals
         }
         flush locals
@@ -211,11 +285,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function CreateChangeGodStage(real time)
         BJDebugMsg("CreateChangeGodStage")
-        if  GameLevel < 3
-            time = time - 10
-        else
-            time = time - 20
-        endif
+        time = time - 60
         TimerStart(CreateTimer(),time,false,function CreateChangeGodStageFunc)
     endfunction
 
@@ -262,6 +332,50 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
+    function ShowtOperaRectRange(bool value)
+        bool show = value
+        for pid = 0,3
+            if  IsPlaying(pid) == true 
+                if  show == true
+                    UnitRemoveAbility(GameChallengUnit[200],'Apiv')
+                    UnitRemoveAbility(GameChallengUnit[201],'Apiv')
+                else
+                    UnitAddAbility(GameChallengUnit[200],'Apiv')
+                    UnitAddAbility(GameChallengUnit[201],'Apiv')
+                endif
+            endif
+        end
+    endfunction
+
+    function InitOperaRectRange()
+        real x = 0
+        real y = 0
+        for pid = 0,3
+            if  IsPlaying(pid) == true 
+                if  pid == 0
+                    x = -7584
+                    y = -5312
+                elseif  pid == 1
+                    x = -5184
+                    y = -6240
+                elseif  pid == 2
+                    x = -6240
+                    y = -8512
+                elseif  pid == 3
+                    x = -8640
+                    y = -7584
+                endif 
+                GameChallengUnit[200] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,0,0,1.0)
+                EXSetUnitMoveType(GameChallengUnit[200],0x01)
+                GameChallengUnit[201] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,0,1.1)
+                EXSetUnitMoveType(GameChallengUnit[201],0x01)
+                UnitAddAbility(GameChallengUnit[200],'Apiv')
+                UnitAddAbility(GameChallengUnit[201],'Apiv')
+                CreateTrigUnitInRange(GameChallengUnit[201],120,function SendOperaRectRange)
+            endif
+        end
+    endfunction
+
     function InitGameChallengeFunc()
         ExecuteFunc("InitGameChallenge_0")
         ExecuteFunc("InitGameChallenge_1")
@@ -276,6 +390,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_10")
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
+        ExecuteFunc("InitOperaRectRange")
     endfunction
 
     function SetPlayerAllianceVISION(int pid,bool value)
@@ -545,7 +660,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
-    function CreateTrigUnitInRange(real x,real y,real rac,code actionFunc)
+    function CreateTrigUnitInRangeOfGameChallenge(real x,real y,real rac,code actionFunc)
         trigger tig = null
         unit u = null
         tig = CreateTrigger() 

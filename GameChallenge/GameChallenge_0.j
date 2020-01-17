@@ -6,14 +6,14 @@ library GameChallenge0 uses GameChallengeBase
             for n = 4,5
                 SetUnitAPOfBool(GameBiaoJI[n],2)
             end
-            UnitAddAbility(Pu[1],'AZ16')
-            SetUnitAbilityLevel(Pu[1],'AG08',3)
             SetUnitAPOfBool(GameBiaoJI[6],3)
             PlayerReviveX = -6656
             PlayerReviveY = -6656
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
             PlayerReviveX = -6752
             PlayerReviveY = -6752
+            UnitAddItemEx(Pu[1],'E101')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E101')+"！\n")
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","前日卜算，只知有一将星出世，想必就是阁下了。商汤气微，封神大典即将拉开序幕。道友可去西岐历练一番，日后可成大功！",0)
             SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff寻找周文王|r",0)
         endif
@@ -39,8 +39,6 @@ library GameChallenge0 uses GameChallengeBase
                 for n = 4,5
                     SetUnitAPOfBool(GameBiaoJI[n],2)
                 end
-                UnitAddItemEx(Pu[1],'E201')
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E201')+"！\n")
                 SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","妖魅已除，这些宝物就作为我的答谢了。唔？庄外妖气弥漫，似有妖物作祟。仁兄不若助我一臂之力，将其降伏？",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀玉石琵琶精|r",0)
             endif
@@ -74,10 +72,8 @@ library GameChallenge0 uses GameChallengeBase
                 if  GameChallengBool[0] == false
                     GameChallengBool[0] = true
                     UnitAddItemEx(Pu[1],'E001')
-                    UnitAddItemEx(Pu[1],'E101')
-                    UnitAddAbility(Pu[1],'AZ15')
-                    SetUnitAbilityLevel(Pu[1],'AG08',2)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E101')+"！\n")
+                    UnitAddItemEx(Pu[1],'E201')
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E201')+"！\n")
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看？",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个妖魅|r",0)
                     SetUnitAPOfBool(GameBiaoJI[0],0)
@@ -102,7 +98,9 @@ library GameChallenge0 uses GameChallengeBase
                         SetPlayerTaskUIChatOfPlayer(pid,"周文王","今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。",0)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
                         if  GetLocalPlayer() == Player(pid)
-                            DzFrameShow(BUTTON_Back[703][0], true) 
+                            for i = 2,6
+                                DzFrameShow(BUTTON_Back[700+i][0], true)
+                            end
                         endif
                     endif
                 endif

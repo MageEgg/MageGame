@@ -150,14 +150,14 @@ library GameChallenge4 uses GameChallengeBase
                 IsFinshChallenge(4) = true
                 //奖励
                 PlayerFinishPlotEx(pid,4)
-                if  AttackUnitWN <= 12
+                /*if  AttackUnitWN <= 12
                     for num = 1,3
                         UnitAddItemEx(Pu[1],'IN19')
                     end
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,20000)
                     AddPlayerTechResearched(Player(pid),'KM23',1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“智勇双全”|r成就，奖励3个"+GetObjectName('IN19')+"和20000金币！") 
-                endif
+                endif*/
             endif
             endtimer
             flush locals
@@ -756,8 +756,8 @@ library GameChallenge4 uses GameChallengeBase
             endif
         end
 
-        CreateTrigUnitInRange(-2342,-960,150,function EnRctGameChalleng_4_JZY)
-        CreateTrigUnitInRange(-32,-960,150,function EnRctGameChalleng_4_ZGM)
+        CreateTrigUnitInRangeOfGameChallenge(-2342,-960,150,function EnRctGameChalleng_4_JZY)
+        CreateTrigUnitInRangeOfGameChallenge(-32,-960,150,function EnRctGameChalleng_4_ZGM)
 
     endfunction
 

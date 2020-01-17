@@ -384,11 +384,11 @@ library GameChallenge5 uses GameChallengeBase
             endif
         end
 
-        CreateTrigUnitInRange(-64,3840,150,function EnRctGameChalleng_5_Way0)
-        CreateTrigUnitInRange(-640,3840,150,function EnRctGameChalleng_5_Way1)
-        CreateTrigUnitInRange(-1216,3552,150,function EnRctGameChalleng_5_Way2)
-        CreateTrigUnitInRange(-1568,3200,150,function EnRctGameChalleng_5_Way3)
-        CreateTrigUnitInRange(-2080,2688,150,function EnRctGameChalleng_5_Way4)
+        CreateTrigUnitInRangeOfGameChallenge(-64,3840,150,function EnRctGameChalleng_5_Way0)
+        CreateTrigUnitInRangeOfGameChallenge(-640,3840,150,function EnRctGameChalleng_5_Way1)
+        CreateTrigUnitInRangeOfGameChallenge(-1216,3552,150,function EnRctGameChalleng_5_Way2)
+        CreateTrigUnitInRangeOfGameChallenge(-1568,3200,150,function EnRctGameChalleng_5_Way3)
+        CreateTrigUnitInRangeOfGameChallenge(-2080,2688,150,function EnRctGameChalleng_5_Way4)
 
     endfunction
 

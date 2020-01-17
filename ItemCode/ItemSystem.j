@@ -45,7 +45,7 @@ scope ItemSystem initializer InitItemSystem
         int next = GetTypeIdData(id,106)
         int uid = GetTypeIdData(id,105)
         int index = 0
-        
+        int gl = GetTypeIdData(id,104)//概率
         if  next > 0
             
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
@@ -67,10 +67,8 @@ scope ItemSystem initializer InitItemSystem
                                 HeroMoveToRoom(pid)
                                 if  id >= 'E001' and id <= 'E025'
                                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r武器晋升正在挑战中！")
-                                elseif  id >= 'E101' and id <= 'E125'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r法杖晋升正在挑战中！")
                                 elseif  id >= 'E201' and id <= 'E225'
-                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r护甲晋升正在挑战中！")
+                                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r防具晋升正在挑战中！")
                                 endif
                             endif
                         endif
@@ -79,10 +77,15 @@ scope ItemSystem initializer InitItemSystem
                     endif
                 else
                     AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                    RemoveItem(it)
-                    UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
+                    if  GetRandomInt(1,100)<= gl
+                        RemoveItem(it)
+                        UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
+                        UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"成功升级为"+GetObjectName(next))
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级失败！")
+                    endif
+                    
                 endif
             else
                 
@@ -345,7 +348,23 @@ scope ItemSystem initializer InitItemSystem
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您使用了"+GetObjectName(itemid)+"，获得杀敌数x"+I2S(kill))
         endif
     endfunction
-    
+
+    function PlayerHeorSkillMagic(unit wu,int index)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int use = 0
+        if  GetTypeIdData(GetHeroAbilityID(Pu[1],1),101) == 9
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r该位置未学习技能，无法附魔！")
+        else
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use
+                AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                PlayerHeorAddSkillMagic(pid,index, GetPoolItemId(2))
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r附魔失败！杀敌数不足"+I2S(use))
+            endif
+        endif
+
+
+    endfunction
     
     
     
@@ -381,14 +400,20 @@ scope ItemSystem initializer InitItemSystem
             PlayerAbilityDraw(pid,itemid)
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
+        elseif  itemid >= 'IS21' and itemid <= 'IS23'
+            PlayerHeorSkillMagic(u1,itemid - 'IS20')
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
         elseif  itemid == 'IZ01'
-            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
-                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-2000)
-                OpenGameTeamChallenge(pid,1,20)
+            if  GameLevel >= 2
+                if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-2000)
+                    OpenGameTeamChallenge(pid,1,20)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r木材不足2000！")
+                endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r木材不足2000！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r难度2或以上才能激活团本哦！！！")
             endif
         endif
 
@@ -414,12 +439,21 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
 
-        if  itemid >= 'CS01' and itemid <= 'CS05'
-            BJDebugMsg("进阶石暂时无效")
-            //PlayerUseLearnAbilityBook(pid,itemid)
+        if  itemid >= 'CS01' and itemid <= 'CS03'
+            if  GetHeroAbilityLevelByIndex(Pu[1],itemid - 'CS00') < 4
+                HeroRandomSetAbilityLevel(Pu[1],itemid - 'CS00')
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r该技能为A品质无法刷新")
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+            endif
+        elseif  itemid >= 'CS11' and itemid <= 'CS13'
+            if  GetHeroAbilityLevelByIndex(Pu[1],itemid - 'CS10') == 4
+                HeroIncAbility(Pu[1],itemid - 'CS10')
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r只有品质A可以突破")
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+            endif
         elseif  itemid >= 'E001' and itemid <= 'E024'
-            IncEquipFunc(u1,GetManipulatedItem())
-        elseif  itemid >= 'E101' and itemid <= 'E124'
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid >= 'E201' and itemid <= 'E224'
             IncEquipFunc(u1,GetManipulatedItem())

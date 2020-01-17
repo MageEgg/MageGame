@@ -189,7 +189,11 @@ scope SelectHero
             if  IsPlaying(pid) == true
                 PlayerReviveX = -5120
                 PlayerReviveY = -2976
-                SelectHeroPrePareFunc(pid,PlaceRandomUnit( HeroPool, Player(pid),PlayerReviveX,PlayerReviveY,0 ))
+                if  "a"+GetPlayerName(Player(pid)) == "aarDee"
+                    SelectHeroPrePareFunc(pid,CreateUnit(Player(pid),'H011',PlayerReviveX,PlayerReviveY,0))
+                else
+                    SelectHeroPrePareFunc(pid,PlaceRandomUnit( HeroPool, Player(pid),PlayerReviveX,PlayerReviveY,0 ))
+                endif
             endif
         end
     endfunction
