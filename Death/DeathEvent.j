@@ -104,16 +104,16 @@ scope DeathEvent initializer InitDeathEvent
         int i1 = 0
         if  itemid == 'I011'
             gold = 5500
-            i1 = GetRandomInt(599,998)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         elseif  itemid == 'I012'
             gold = 31000
-            i1 = GetRandomInt(2100,3500)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         elseif  itemid == 'I013'
             gold = 48000
-            i1 = GetRandomInt(6000,10000)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         elseif  itemid == 'I014'
             gold = 81000
-            i1 = GetRandomInt(11880,19800)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         endif
         AddUnitRealState(Pu[1],1,i1)
         AddUnitRealState(Pu[1],2,i1)
