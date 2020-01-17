@@ -675,4 +675,6 @@ library CreateOpera uses DamageCode
         flush locals
     endfunction
 
+    
+
 endlibrary

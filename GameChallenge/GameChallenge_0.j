@@ -14,6 +14,8 @@ library GameChallenge0 uses GameChallengeBase
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
             PlayerReviveX = -6752
             PlayerReviveY = -6752
+            UnitAddItemEx(Pu[1],'E101')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E101')+"！\n")
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","前日卜算，只知有一将星出世，想必就是阁下了。商汤气微，封神大典即将拉开序幕。道友可去西岐历练一番，日后可成大功！",0)
             SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff寻找周文王|r",0)
         endif
@@ -39,8 +41,6 @@ library GameChallenge0 uses GameChallengeBase
                 for n = 4,5
                     SetUnitAPOfBool(GameBiaoJI[n],2)
                 end
-                UnitAddItemEx(Pu[1],'E101')
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E101')+"！\n")
                 SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","妖魅已除，这些宝物就作为我的答谢了。唔？庄外妖气弥漫，似有妖物作祟。仁兄不若助我一臂之力，将其降伏？",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀玉石琵琶精|r",0)
             endif
