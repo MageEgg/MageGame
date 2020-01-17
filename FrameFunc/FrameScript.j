@@ -58,9 +58,17 @@
             BoxShowMagicItemPublic(pid,id)
         elseif  id >= 'S001' and id <= 'S999'
             BoxShowAbility(id)
+        elseif  id >= 'IJ01' and id <= 'IJ15'
+            DzFrameShow(UI_TipsHead, true)
+            SetTipsData(1,"",GetTypeIdName(id))
+
+            SetTipsData(10,"",GetTypeIdStateTips(id))
+            ShowTipsUI()
+         
         elseif  id > 0
             DzFrameShow(UI_TipsHead, true)
             SetTipsData(1,"",GetTypeIdName(id))
+
             SetTipsData(10,"",GetTypeIdTips(id))
             ShowTipsUI()
         endif
