@@ -39,6 +39,82 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define UnitAPOfPlayer  0
 
+
+    function SendOperaRectRange()
+        unit u1 = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        real x = 0
+        real y = 0
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == Pu[1]
+                if  GetUnitAbilityLevel(Pu[1],'AZ96') > 0
+                    if  GetUnitAbilityLevel(Pu[1],'AZ96') == 1
+                        if  pid == 0
+                            x = 1312
+                            y = -2752
+                        elseif  pid == 1
+                            x = 2048
+                            y = -2752
+                        elseif  pid == 2
+                            x = 1344
+                            y = -3328
+                        elseif  pid == 3
+                            x = 2016
+                            y = -3328
+                        endif
+                        SendPlayerUnit(pid,x,y)
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 2
+                        if  pid == 0
+                            x = 2300
+                            y = -140
+                        elseif  pid == 1
+                            x = 2625
+                            y = -460
+                        elseif  pid == 2
+                            x = 2240
+                            y = -308
+                        elseif  pid == 3
+                            x = 2458
+                            y = -524
+                        endif
+                        SendPlayerUnit(pid,x,y)
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 2
+                        if  pid == 0
+                            x = 2976
+                            y = -2720
+                        elseif  pid == 1
+                            x = 2976
+                            y = -2880
+                        elseif  pid == 2
+                            x = 2848
+                            y = -2720
+                        elseif  pid == 3
+                            x = 2848
+                            y = -2880
+                        endif
+                        SendPlayerUnit(pid,x,y)
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 3
+                        if  pid == 0
+                            PlayerReviveX = -1984
+                            PlayerReviveY = -7136
+                        elseif  pid == 1
+                            PlayerReviveX = -1344
+                            PlayerReviveY = -7136
+                        elseif  pid == 2
+                            PlayerReviveX = -1344
+                            PlayerReviveY = -7808
+                        elseif  pid == 3
+                            PlayerReviveX = -1984
+                            PlayerReviveY = -7808
+                        endif
+                        SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+                    endif
+                endif
+            endif
+        endif
+        flush locals
+    endfunction
+
     function InitGameChallengeLeagueUnit()
         real ang = 0
         for num = 1,9
@@ -164,17 +240,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
 
-    function SendGodStage()
-
-    endfunction
-
     function OpenChangeGodStage()
         real x = OriginalDefendX
         real y = OriginalDefendY
         unit u = null
         real ux = 0
         real uy = 0
-        BJDebugMsg("创建新基地")
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         KillAttackUnitGroup()
         ShowBossDamageUI(false)
@@ -188,13 +259,18 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         LocAddEffectSetSize(OriginalDefendX,OriginalDefendY,"effect_shengguang.mdx",5)
         x = OriginalDefendX - x
         y = OriginalDefendY - y
-        for pid = 0,3
-            //if  IsPlaying(pid) == true 
+        u = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",ux,uy,0,0,2.0)
+        EXSetUnitMoveType(u,0x01)
+        u = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",ux,uy,0,5,2.2)
+        EXSetUnitMoveType(u,0x01)
+        CreateTrigUnitInRange(u,240,function SendOperaRectRange)
+        /*for pid = 0,3
+            if  IsPlaying(pid) == true 
                 if  pid == 0
                     ux = -7584
                     uy = -5312
                 elseif  pid == 1
-                    ux = -5152
+                    ux = -5184
                     uy = -6240
                 elseif  pid == 2
                     ux = -6240
@@ -203,22 +279,16 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     ux = -8640
                     uy = -7584
                 endif 
-                u = CreateTmUnit(Player(pid),"effect_az_goods_tp_target(3).mdl",ux,uy,0,0,1.0)
-                EXSetUnitMoveType(u,0x01)
-                u = CreateTmUnit(Player(pid),"sunwell.mdl",ux,uy,0,5,1.1)
-                EXSetUnitMoveType(u,0x01)
-                CreateTrigUnitInRange(u,125,function SendGodStage)
-                
-                //UnitAddAbility(Pu[1],'Avul')
-                //UnitAddAbility(Pu[1],'AZ02')
-            //endif
-        end
+                UnitAddAbility(Pu[1],'Avul')
+                UnitAddAbility(Pu[1],'AZ02')
+            endif
+        end*/
         TimerStart(1,false)
         {
             if  GameLevel < 3
-                OpenChangeGodStageA()
+                //OpenChangeGodStageA()
             else
-                OpenChangeGodStageB(x,y)
+                //OpenChangeGodStageB(x,y)
             endif
             endtimer
             flush locals
@@ -288,6 +358,45 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
+    function ShowtOperaRectRange(int value)
+        int show = value
+        for pid = 0,3
+            if  IsPlaying(pid) == true 
+                SetUnitVertexColor(GameChallengUnit[200],255,255,255,show)
+                SetUnitVertexColor(GameChallengUnit[201],255,255,255,show)
+            endif
+        end
+    endfunction
+
+    function InitOperaRectRange()
+        real x = 0
+        real y = 0
+        for pid = 0,3
+            if  IsPlaying(pid) == true 
+                if  pid == 0
+                    x = -7584
+                    y = -5312
+                elseif  pid == 1
+                    x = -5184
+                    y = -6240
+                elseif  pid == 2
+                    x = -6240
+                    y = -8512
+                elseif  pid == 3
+                    x = -8640
+                    y = -7584
+                endif 
+                GameChallengUnit[200] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,0,0,1.0)
+                EXSetUnitMoveType(GameChallengUnit[200],0x01)
+                GameChallengUnit[201] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,0,1.1)
+                EXSetUnitMoveType(GameChallengUnit[201],0x01)
+                SetUnitVertexColor(GameChallengUnit[200],255,255,255,0)
+                SetUnitVertexColor(GameChallengUnit[201],255,255,255,0)
+                CreateTrigUnitInRange(GameChallengUnit[201],120,function SendOperaRectRange)
+            endif
+        end
+    endfunction
+
     function InitGameChallengeFunc()
         ExecuteFunc("InitGameChallenge_0")
         ExecuteFunc("InitGameChallenge_1")
@@ -302,6 +411,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_10")
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
+        ExecuteFunc("InitOperaRectRange")
     endfunction
 
     function SetPlayerAllianceVISION(int pid,bool value)

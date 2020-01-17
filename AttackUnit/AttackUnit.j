@@ -434,6 +434,7 @@ library AttackUnit uses DamageCode
         //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffff0000开始进攻！！！|r")
         if  AttackUnitWN >= AttackUnitWNOver - 2
             OpenAttackShowUI("UI_AttackShow_1.tga",2)
+            
         else
             OpenAttackShowUI("UI_AttackShow_0.tga",2)
         endif
