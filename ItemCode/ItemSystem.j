@@ -108,12 +108,13 @@ scope ItemSystem initializer InitItemSystem
     //读取玩家抽技能需求
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
+        num = num - 1
         if  index == 1
             use = 2000 + num * 1000
         elseif  index == 2
-            use = 5000 * num * 2000
+            use = 5000 + num * 2000
         elseif  index == 3
-            use = 20000 * num * 5000
+            use = 20000 + num * 5000
         endif
         return use
     endfunction
