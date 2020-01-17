@@ -376,6 +376,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 CreateTrigUnitInRange(GameChallengUnit[201],120,function SendOperaRectRange)
             endif
         end
+        GameTeamChallengUnit(10) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1614.000,-3120,270)
+        GameTeamChallengUnit(11) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1762.000,-3120,270)
+        for num = 0,1
+            SetUnitScale(GameTeamChallengUnit(num+10),9,9,9)
+            SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
+            SetUnitFlyHeight(GameTeamChallengUnit(num+10),10,10000)
+        end
     endfunction
 
     function InitGameChallengeFunc()
