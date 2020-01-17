@@ -80,7 +80,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             y = -524
                         endif
                         SendPlayerUnit(pid,x,y)
-                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 2
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 3
                         if  pid == 0
                             x = 2976
                             y = -2720
@@ -95,7 +95,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             y = -2880
                         endif
                         SendPlayerUnit(pid,x,y)
-                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') >= 3
+                    elseif  GetUnitAbilityLevel(Pu[1],'AZ96') >= 4
                         if  pid == 0
                             PlayerReviveX = -1984
                             PlayerReviveY = -7136
@@ -110,10 +110,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             PlayerReviveY = -7808
                         endif
                         SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
-                        if  GetUnitAbilityLevel(Pu[1],'AZ96') == 4
+                        if  GetUnitAbilityLevel(Pu[1],'AZ96') == 5
                             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r进入封神台！！！")
                         else    
-                            SetUnitAbilityLevel(Pu[1],'AZ96',4)
+                            SetUnitAbilityLevel(Pu[1],'AZ96',5)
                             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r进入封神台！！！|cff00ff00默认回城点已改为封神台！！！|r")
                         endif
                     endif
@@ -248,7 +248,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 PlayerReviveX = -6560
                 PlayerReviveY = -6592
                 UnitAddAbility(Pu[1],'AZ96')
-                SetUnitAbilityLevel(Pu[1],'AZ96',3)
+                SetUnitAbilityLevel(Pu[1],'AZ96',4)
             endif
         end
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
