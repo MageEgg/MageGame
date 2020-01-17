@@ -182,6 +182,7 @@ library AttackUnit uses DamageCode
     endfunction
     
     function InitAttackUnitOfLevelEx(int lv)
+        ExecuteFunc("InitGameChallengeLeagueUnit")
         if  lv == 2
             InitAttackUnitData(21,0,120,2,20,1,-6910,-6912,'m021','m021','m021','m021',-6912,-4704,-4640,-6912,-6912,-9216,-9184,-6912)
             InitAttackUnitData(22,0,120,2,20,1,-6910,-6912,'m022','m022','m022','m022',-6912,-4704,-4640,-6912,-6912,-9216,-9184,-6912)
@@ -195,8 +196,6 @@ library AttackUnit uses DamageCode
             InitAttackUnitData(109,0,0,1,1,1,-1664,-7440,'mb09','mb09','mb09','mb09',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
             InitAttackUnitData(110,0,0,1,1,1,-1664,-7440,'mb10','mb10','mb10','mb10',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)
         elseif  lv >= 3
-            ExecuteFunc("InitGameChallengeLeagueUnit")
-
             InitAttackUnitData(21,0,120,2,20,1,-6910,-6912,'m021','m021','m021','m021',-6912,-4704,-4640,-6912,-6912,-9216,-9184,-6912)
             InitAttackUnitData(22,0,120,2,20,1,-6910,-6912,'m022','m022','m022','m022',-6912,-4704,-4640,-6912,-6912,-9216,-9184,-6912)
             InitAttackUnitData(23,0,120,2,20,1,-6910,-6912,'m023','m023','m023','m023',-6912,-4704,-4640,-6912,-6912,-9216,-9184,-6912)
@@ -434,7 +433,7 @@ library AttackUnit uses DamageCode
         //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffff0000开始进攻！！！|r")
         if  AttackUnitWN >= AttackUnitWNOver - 2
             OpenAttackShowUI("UI_AttackShow_1.tga",2)
-            
+
         else
             OpenAttackShowUI("UI_AttackShow_0.tga",2)
         endif
