@@ -55,6 +55,7 @@ library AttackUnit uses DamageCode
     #define AttackElseTimer             AttackArrayTimer[1]
     #define CreateAttackUnitTimer       AttackArrayTimer[2]
     #define CreateAttackBossTimer       AttackArrayTimer[3]
+    #define OperaTimer                  AttackArrayTimer[4]
     
     private int array puid
     private real array psx
