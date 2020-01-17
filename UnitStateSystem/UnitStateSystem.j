@@ -156,7 +156,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
 
         StateName[1]="攻击"
         StateName[2]="法强"
-        StateName[3]="护甲"
+        StateName[3]="防御"
         StateName[4]="法抗"
         StateName[5]="生命值"
         StateName[6]="魔法值"
