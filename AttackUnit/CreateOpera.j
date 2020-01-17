@@ -111,26 +111,26 @@ library CreateOpera uses DamageCode
         FlushChildHashtable(ht,GetHandleId(OperaTimer))
         DestroyTimer(OperaTimer)
         OperaTimer = null
-        AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
-        AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
         ExecuteFunc("ColserOperaATimerUnit")
         if  flag == 0
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
         elseif  flag == 1
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
         endif
+        AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
+        AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
         TimerStart(1,true)
         {
             if  time < 5
@@ -173,8 +173,8 @@ library CreateOpera uses DamageCode
     endfunction
 
     function CreateOperaATimer()
-        OperaTimer = CreateTimer()
         int time = 35
+        OperaTimer = CreateTimer()
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
         TimerStart(OperaTimer,1,true,function CreateOperaATimerFunc)
     endfunction
@@ -192,7 +192,7 @@ library CreateOpera uses DamageCode
     
     function CreateOperaA()
         CreateOperaATimer()
-        OpenAttackShowUI("UI_AttackShow_2.tga",4)
+        OpenAttackShowUI("UI_AttackShow_2.tga",5)
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
@@ -256,53 +256,9 @@ library CreateOpera uses DamageCode
     endfunction
     
     ////////////////////////////////////////分割线/////////////////////////////////////////
-    function OpenOperaB_Boss()
-        SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
-        AttackPlayingHero(AttackUnitOperaBoss)
-    endfunction
+
     function AttackOperaBEnding(int flag)
-    endfunction
-    /*function AttackOperaBEndingWin()
         int time = 0
-        AddEffectInArea(2795,26,1000,35,"effect_yanhua1.mdx")
-        AddEffectInArea(2795,26,1000,35,"effect_yanhua2.mdx")
-        TimerStart(1,true)
-        {
-            if  time < 5
-                time = time + 1
-                if  time < 4
-                    AddEffectInArea(2795,26,1000,35,"effect_yanhua1.mdx")
-                    AddEffectInArea(2795,26,1000,35,"effect_yanhua2.mdx")
-                    if  time == 3
-                        ShowBossDamageUI(false)
-                        ShowBossDamageStringOperaB()
-                    endif
-                endif
-            else
-                if  GameLevel == 1 and GameOverBoolJu == false
-                    AttackUnitWin()
-                else
-                    SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-                    for pid = 0,3
-                        if  IsPlaying(pid) == true
-                            UnitRemoveAbility(Pu[1],'AZ02')
-                            PlayerReviveX = -6656
-                            PlayerReviveY = -6656
-                            SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
-                        endif
-                    end
-                    GoonAttackUnitGroup()
-                    CreateNextTimer(AttackUnitOrderNum)
-                endif
-                endtimer
-            endif
-            flush locals
-        }
-        flush locals
-    endfunction
-    
-    
-    function AttackOperaBEnding(int flag)
         unit uu = null
         FlushChildHashtable(ht,GetHandleId(OperaTimer))
         DestroyTimer(OperaTimer)
@@ -327,31 +283,101 @@ library CreateOpera uses DamageCode
         GroupClear(AttackOperaGroup_B_2)
         DestroyGroup(AttackOperaGroup_B_2)
         AttackOperaGroup_B_2 = null
+
+        FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         AttackUnitOperaBoss = null
-        if  flag == 1
-            ExecuteFunc("GameOver")
-        elseif  flag == 0
-            AttackOperaBEndingWin()
+        ExecuteFunc("ColserOperaBTimerUnit")
+
+        if  flag == 0
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
+        elseif  flag == 1
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
         endif
+        
+        AddEffectInArea(2795,26,1000,35,"effect_yanhua1.mdx")
+        AddEffectInArea(2795,26,1000,35,"effect_yanhua2.mdx")
+        TimerStart(1,true)
+        {
+            if  time < 5
+                time = time + 1
+                if  time < 4
+                    AddEffectInArea(2795,26,1000,35,"effect_yanhua1.mdx")
+                    AddEffectInArea(2795,26,1000,35,"effect_yanhua2.mdx")
+                    if  time == 3
+                        ShowBossDamageUI(false)
+                        ShowBossDamageStringOperaB()
+                    endif
+                endif
+            else
+                AttackUnitOperaBoss = null
+                ShowtOperaRectRange.execute(false)
+                for pid = 0,3
+                    if  IsPlaying(pid) == true
+                        UnitRemoveAbility(Pu[1],'AZ96')
+                    endif
+                end
+                endtimer
+            endif
+            flush locals
+        }
         flush locals
     endfunction
     
     function CreateOperaBTimerFunc()
-        AttackOperaBEnding(1)
+        int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
+        time = time - 1
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        if  (ModuloInteger(time,5) == 0 or time <= 10) and time > 0 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff3737闻太师挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
+        endif
+        if  time == 90
+            OpenGameTeamChallengeTimer.execute(90,11)
+        elseif  time == 0
+            AttackOperaBEnding(0)
+        endif
     endfunction
-    
+
     function CreateOperaBTimer()
-        OperaTimerUIText = "击杀闻太师"
+        int time = 91
         OperaTimer = CreateTimer()
-        TimerStart(OperaTimer,100,false,function CreateOperaBTimerFunc)
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        TimerStart(OperaTimer,1,true,function CreateOperaBTimerFunc)
+    endfunction
+
+    function CreateGameOperaB(real t)
+        real time = t - 20
+        TimerStart(time,false)
+        {
+            ExecuteFunc("CreateOperaB")
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
     
     function CreateOperaB()
-        StopAttackUnitGroup()
-        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-        PanCameraToTimed(2795,26,0)
-        OpenAttackShowUI("UI_AttackShow_3.tga",0.5)
-        TimerStart(1,false)
+        OpenAttackShowUI("UI_AttackShow_3.tga",5)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[西征]：|r|cffff3737闻太师带军进攻西岐！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[西征]：|r|cffff3737闻太师带军进攻西岐！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[西征]：|r|cffff3737闻太师带军进攻西岐！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[西征]：|r|cffff3737闻太师带军进攻西岐！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[西征]：|r|cffff3737闻太师带军进攻西岐！！！速从练功房传送阵前往援助！！！|r")
+        ShowtOperaRectRange.execute(true)
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                UnitAddAbility(Pu[1],'AZ96')
+                SetUnitAbilityLevel(Pu[1],'AZ96',2)
+            endif
+        end
+        TimerStart(3,false)
         {
             ExecuteFunc("CreateOperaB2")
             endtimer
@@ -376,29 +402,6 @@ library CreateOpera uses DamageCode
         unit u = null
         real x = 0
         real y = 0
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                if  pid == 0
-                    PlayerReviveX = 2300
-                    PlayerReviveY = -140
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                elseif  pid == 1
-                    PlayerReviveX = 2625
-                    PlayerReviveY = -460
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                elseif  pid == 2
-                    PlayerReviveX = 2240
-                    PlayerReviveY = -308
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                elseif  pid == 3
-                    PlayerReviveX = 2458
-                    PlayerReviveY = -524
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                endif
-                UnitAddAbility(Pu[1],'AZ02')
-            endif
-        end
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_B)
         AttackOperaGroup_B_1 = CreateGroup()
         
         u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np00',1800,-960,45)
@@ -447,27 +450,32 @@ library CreateOpera uses DamageCode
         
         
         AttackOperaGroup_B_2 = CreateGroup()
-        AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc06',3800,1020,225)
+        AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc06',3800,1020,225)
+        SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
         UnitAddAbility(AttackUnitOperaBoss,'AZ01')
         LocAddEffect(3800,1020,"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,AttackUnitOperaBoss)
         
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc02',3136,672,225)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc02',3136,672,225)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
 
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc03',3488,672,225)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc03',3488,672,225)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
 
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc04',3136,352,225)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc04',3136,352,225)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
 
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc05',3488,352,225)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc05',3488,352,225)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         SetUnitOwnerTimer(u,PLAYER_NEUTRAL_AGGRESSIVE,3.5)
@@ -476,8 +484,8 @@ library CreateOpera uses DamageCode
             x = 2816 - 260*Cos(36*(10-num)*0.01745)
             y = 960 - 260*Sin(36*(10-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',x,y,225)
+            SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
             SetUnitRealStateOfOtherId(u,'m012')
-            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
@@ -485,22 +493,22 @@ library CreateOpera uses DamageCode
             x = 2816 - 150*Cos(45*(8-num)*0.01745)
             y = 960 - 150*Sin(45*(8-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'eZ04',x,y,225)
+            SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
             SetUnitRealStateOfOtherId(u,'m012')
-            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
         u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',2816,960,225)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         SetUnitRealStateOfOtherId(u,'m012')
-            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         for num = 0,9
             x = 3712 - 260*Cos(36*(10-num)*0.01745)
             y = 96 - 260*Sin(36*(10-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',x,y,225)
+            SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
             SetUnitRealStateOfOtherId(u,'m012')
-            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
@@ -508,14 +516,14 @@ library CreateOpera uses DamageCode
             x = 3712 - 150*Cos(45*(8-num)*0.01745)
             y = 96 - 150*Sin(45*(8-num)*0.01745)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'eZ04',x,y,225)
+            SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
             SetUnitRealStateOfOtherId(u,'m012')
-            SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
             LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
             GroupAddUnit(AttackOperaGroup_B_2,u)
         end
         u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e00B',3712,96,225)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         SetUnitRealStateOfOtherId(u,'m012')
-        SetUnitRealState(u,1,GetUnitRealState(u,1)/3)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,u)
         
@@ -539,6 +547,7 @@ library CreateOpera uses DamageCode
                 AttackPlayingHero(GetEnumUnit())
             endif
         else
+            SetUnitOwner(GetEnumUnit(),Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
             IssuePointOrderById(GetEnumUnit(),851983,GetUnitX(GetEnumUnit())-200,GetUnitY(GetEnumUnit())-200)
         endif
     endfunction
@@ -555,8 +564,19 @@ library CreateOpera uses DamageCode
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
         AttackPlayingHero(AttackUnitOperaBoss)
     endfunction
-    */
+    
     ////////////////////////////////分割线///////////////////////////////
+
+    function CreateGameOperaC(real t)
+        real time = t - 60
+        TimerStart(time,false)
+        {
+            ExecuteFunc("CreateOperaC")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     /*
     function AttackOperaCEnding()
         int time = 0

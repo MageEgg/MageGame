@@ -355,6 +355,18 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             UnitRemoveAbility(GameTeamChallengUnit(num+10),'AZ99')
         end
     endfunction
+    function ColserOperaBTimerUnit()
+        for num = 2,3
+            SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
+            UnitRemoveAbility(GameTeamChallengUnit(num+10),'AZ99')
+        end
+    endfunction
+    function ColserOperaCTimerUnit()
+        for num = 4,5
+            SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
+            UnitRemoveAbility(GameTeamChallengUnit(num+10),'AZ99')
+        end
+    endfunction
 
     function InitOperaRectRange()
         real x = 0
@@ -385,7 +397,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         end
         GameTeamChallengUnit(10) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1614.000,-3120,270)
         GameTeamChallengUnit(11) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1762.000,-3120,270)
-        for num = 0,1
+        GameTeamChallengUnit(12) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',2720.250,16.5,270)
+        GameTeamChallengUnit(13) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',2868.250,16.5,270)
+        GameTeamChallengUnit(14) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',3600.000,-2456,270)
+        GameTeamChallengUnit(15) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',3748.000,-2456,270)
+
+        for num = 0,3
             SetUnitScale(GameTeamChallengUnit(num+10),9,9,9)
             SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
             SetUnitFlyHeight(GameTeamChallengUnit(num+10),10,10000)
@@ -653,6 +670,17 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         }
         flush locals
     endfunction
+
+    function GameChallenge_GlobalFlushBool(int id,real tiem)
+        int pid = id
+        TimerStart(time,false)
+        {
+            IsPlayerInChallenge = false
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     
     function GameChallenge_GlobalFlush(int pid,real time)
         GameChallengCanUsesUnitFlush(pid)
@@ -661,7 +689,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerInChallengeShowUnit = null
         PlayerInChallengeNumber = 0
         SetPlayerAllianceVISION(pid,true)
-        IsPlayerInChallenge = false
+        GameChallenge_GlobalFlushBool(pid,1)
         if  time == -1
             if  Player(pid) == GetLocalPlayer()
                 PlayerTaskUI_Back.alpha = 0

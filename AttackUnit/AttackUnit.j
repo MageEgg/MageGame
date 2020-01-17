@@ -490,6 +490,16 @@ library AttackUnit uses DamageCode
                     IsGameOperaA = true
                     CreateGameOperaA.execute(AttackUnitNextTime[i])
                 endif
+            elseif  AttackUnitWN == 11
+                if  IsGameOperaB == false
+                    IsGameOperaB = true
+                    CreateGameOperaB.execute(AttackUnitNextTime[i])
+                endif
+            elseif  AttackUnitWN == 14
+                if  IsGameOperaC == false
+                    IsGameOperaC = true
+                    CreateGameOperaC.execute(AttackUnitNextTime[i])
+                endif
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
         endif
