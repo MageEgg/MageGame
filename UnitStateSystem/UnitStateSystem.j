@@ -195,15 +195,13 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[39]=""
         StateName[40]="元神力"
         StateName[41]="金币加成%"
-        StateName[42]=""
-        StateName[43]=""
-        StateName[44]=""
-        StateName[45]=""
+        StateName[43]="杀敌攻击"
+        StateName[44]="杀敌业力"
+        StateName[45]="杀敌生命"
         StateName[46]=""
-        StateName[47]=""
-        StateName[48]=""
-        StateName[49]=""
-        StateName[50]=""
+        StateName[47]="每秒攻击"
+        StateName[48]="每秒业力"
+        StateName[49]="每秒生命"
         StateName[51]="攻击距离"
 
         StateName[301] = " - [|cffffcc00Q|r]"
@@ -365,43 +363,45 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 else
                     showvalue = value + 0.001
                 endif
-                if  StateId == 40
-                    DzFrameSetText(BUTTON_Text[161],"|CffFFC926元神力：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 32
-                    DzFrameSetText(BUTTON_Text[162],"|cffffcc00攻击：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 33
-                    DzFrameSetText(BUTTON_Text[163],"|cffffcc00法强：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 31
-                    DzFrameSetText(BUTTON_Text[164],"|cffffcc00生命：|r"+I2S(R2I(showvalue))+"%")
+
+
+
+                if  StateId == 19
+                    DzFrameSetText(BUTTON_Text[161],"|cffffcc00暴击：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 20
+                    DzFrameSetText(BUTTON_Text[162],"|cffffcc00暴伤：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 10
+                    DzFrameSetText(BUTTON_Text[163],"|cffffcc00闪避：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 22
+                    DzFrameSetText(BUTTON_Text[164],"|cffffcc00分裂：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 15
                     DzFrameSetText(BUTTON_Text[165],"|cffffcc00物理伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 16
                     DzFrameSetText(BUTTON_Text[166],"|cffffcc00法术伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 41
                     DzFrameSetText(BUTTON_Text[167],"|cffffcc00金币加成：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 17
-                    DzFrameSetText(BUTTON_Text[168],"|cffffcc00增伤：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 19
-                    DzFrameSetText(BUTTON_Text[169],"|cffffcc00暴击：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 20
-                    DzFrameSetText(BUTTON_Text[170],"|cffffcc00暴伤：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 13
-                    DzFrameSetText(BUTTON_Text[171],"|cffffcc00物穿：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 14
-                    DzFrameSetText(BUTTON_Text[172],"|cffffcc00法穿：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 21
-                    DzFrameSetText(BUTTON_Text[173],"|cffffcc00吸血：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 18
-                    DzFrameSetText(BUTTON_Text[174],"|cffffcc00减伤：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 10
-                    DzFrameSetText(BUTTON_Text[175],"|cffffcc00闪避：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 23
-                    DzFrameSetText(BUTTON_Text[176],"|cffffcc00致命概率：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 24
-                    DzFrameSetText(BUTTON_Text[177],"|cffffcc00致命倍率：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 12
-                    DzFrameSetText(BUTTON_Text[178],"|cffffcc00普攻伤害：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 27
+                    DzFrameSetText(BUTTON_Text[168],"|cffffcc00技能概率：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 45
+                    DzFrameSetText(BUTTON_Text[169],"|cffffcc00杀敌生命：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 43
+                    DzFrameSetText(BUTTON_Text[170],"|cffffcc00杀敌攻击：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 44
+                    DzFrameSetText(BUTTON_Text[171],"|cffffcc00杀敌业力：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 49
+                    DzFrameSetText(BUTTON_Text[172],"|cffffcc00每秒生命：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 47
+                    DzFrameSetText(BUTTON_Text[173],"|cffffcc00每秒攻击：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 48
+                    DzFrameSetText(BUTTON_Text[174],"|cffffcc00每秒业力：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 46
+                    DzFrameSetText(BUTTON_Text[175],"|cffffcc00杀敌金币：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 50
+                    DzFrameSetText(BUTTON_Text[176],"|cffffcc00每秒金币：|r"+I2S(R2I(showvalue)))
                 endif
+
+
+
             endif
         endif
 
