@@ -831,22 +831,22 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
 
 
-    function FB40Func(unit wu)
+    function FB49Func(unit wu)
         unit u1 = wu
         int time = 20
-        SetUnitIntState(u1,'FC40',20)
-        UnitAddAbility(u1,'AZ40')
+        SetUnitIntState(u1,'FC49',20)
+        UnitAddAbility(u1,'AZ49')
         TimerStart(1,true)
         {
             time = time - 1
-            SetUnitIntState(u1,'FC40',time)
+            SetUnitIntState(u1,'FC49',time)
             if  time <= 13
-                if  GetUnitAbilityLevel(u1,'AZ40') > 0
-                    UnitRemoveAbility(u1,'AZ40')
+                if  GetUnitAbilityLevel(u1,'AZ49') > 0
+                    UnitRemoveAbility(u1,'AZ49')
                 endif
             endif
             if  time <= 0
-                SetUnitIntState(u1,'FC40',0)
+                SetUnitIntState(u1,'FC49',0)
                 endtimer
             endif
             flush locals
@@ -854,23 +854,23 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         flush locals
     endfunction
 
-    function FB43FuncTimer(unit wu)
+    function FB01FuncTimer(unit wu)
         unit u1 = wu
-        SetUnitIntState(wu,'FC43',1)
+        SetUnitIntState(wu,'FC01',1)
         TimerStart(15,false)
         {
-            SetUnitIntState(u1,'FC43',0)
+            SetUnitIntState(u1,'FC01',0)
             endtimer
             flush locals
         }
         flush locals
     endfunction
-    function FB43Func(unit wu)->bool
-        if  GetUnitIntState(wu,'FB43') > 0
-            if  GetUnitIntState(wu,'FC43') == 0
+    function FB01Func(unit wu)->bool
+        if  GetUnitIntState(wu,'FB01') > 0
+            if  GetUnitIntState(wu,'FC01') == 0
                 ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
                 LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
-                FB43FuncTimer(wu)
+                FB01FuncTimer(wu)
                 if  GetOwningPlayer(wu)==GetLocalPlayer()
                     ClearSelection()
                     SelectUnit(wu,true)
