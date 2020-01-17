@@ -332,8 +332,36 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         endif
         return GetPrize(pid,index,true)
     endfunction
+    
+    function PlayerUseLearnAbilityBook(int pid,int index)
+        int now = GetHeroAbilityID(Pu[1],index)
+        int new = GetPrize(pid,1,true)
+        if  GetTypeIdData(now,101) == 9//第一次抽
 
-    function PlayerUseLearnAbilityBook(int pid,int itemid)
+        else    
+            //重复抽 回收技能
+            RecoveryPrizePoolData(pid,1,now)    
+        endif
+        BJDebugMsg("新技能id"+YDWEId2S(new)+I2S(new))
+        //删除老技能
+        HeroRemoveAbilityByIndex(Pu[1],index)
+        //添加新技能
+        HeroAddAbilityByIndex(Pu[1],index,new)
+
+        //概率设置为C级
+        if  GetRandomInt(1,100) <= 20
+            HeroIncAbility(Pu[1],index)
+        endif
+    endfunction
+
+
+    function LearnAbilityInit()
+
+    endfunction
+endlibrary
+
+/*
+    function PlayerUseLearnAbilityBook(int pid,int itemid,int num)
         int rid = 0
         for i =1,3
             rid = GetUnitIntState(Pu[1],130+i)
@@ -361,10 +389,5 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
             PlayerLearnAbilityFunc(pid,GetLearnAbilityBookId(pid,itemid))
         endif
     endfunction
-
-
-    function LearnAbilityInit()
-
-    endfunction
-endlibrary
+    */
 

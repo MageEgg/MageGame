@@ -107,6 +107,7 @@ scope SelectHero
                 DzFrameShow(BUTTON_Back[702][0], true)
                 DzFrameShow(BUTTON_Back[703][0], true) 
             endif
+
             
             
             SetUnitRealState(Pu[1],5,1000)
