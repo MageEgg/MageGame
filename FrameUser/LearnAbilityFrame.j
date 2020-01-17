@@ -317,41 +317,75 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         ReLearnAbility(pid)
     endfunction
 
-    function GetLearnAbilityBookId(int pid,int itemid)->int
-        int index = 0
-        if  itemid == 'CS01'
-            index = 5
-        elseif  itemid == 'CS02'
-            index = 4
-        elseif  itemid == 'CS03'
-            index = 3
-        elseif  itemid == 'CS04'
-            index = 2
-        elseif  itemid == 'CS05'
-            index = 1
+
+
+    //获取一个期待的颜色
+    function GetExpectLevel(int pid,int index)->int
+        int nowcolor = GetUnitIntState(Pu[1],120+index)
+        int newcolor = 0
+        if  nowcolor == 1
+            if  GetRandomInt(1,100) <= 20
+                newcolor = 2
+            else
+                newcolor = 1
+            endif
+        else
+            newcolor = nowcolor
         endif
-        return GetPrize(pid,index,true)
+        return newcolor
+    endfunction
+
+    //回收
+    function RecoveryExpectAbility(int pid,int id)
+        int index = 0
+        for pool = 1,5
+            if  GetTypeIdReal(id,100+pool) > 0
+                RecoveryPrizePoolData(pid,pool,id)
+            endif
+        end
+        
+    endfunction
+    //清空其他奖池
+    function FlushExpectAbility(int pid,int id)
+        int index = 0
+        for pool = 1,5
+            index = FindPrizePool(pid,pool,id)
+            if  index != 0
+                RemPrizeData(pid,pool,index)
+            endif
+        end
+        
+    endfunction
+    //获取新技能
+    function GetNewExpectAbility(int pid,int color)->int
+        int id = GetPrize(pid,color,true)
+        
+        FlushExpectAbility(pid,id)
+
+        return id
     endfunction
     
     function PlayerUseLearnAbilityBook(int pid,int index)
         int now = GetHeroAbilityID(Pu[1],index)
+        int newcolor = GetExpectLevel(pid,index)
+
         int new = GetPrize(pid,1,true)
+
         if  GetTypeIdData(now,101) == 9//第一次抽
 
-        else    
+        else
             //重复抽 回收技能
-            RecoveryPrizePoolData(pid,1,now)    
+            RecoveryExpectAbility(pid,now)    
         endif
-        BJDebugMsg("新技能id"+YDWEId2S(new)+I2S(new))
+        
+        
         //删除老技能
         HeroRemoveAbilityByIndex(Pu[1],index)
         //添加新技能
         HeroAddAbilityByIndex(Pu[1],index,new)
 
-        //概率设置为C级
-        if  GetRandomInt(1,100) <= 20
-            HeroIncAbility(Pu[1],index)
-        endif
+        HeroSetAbilityLevelByIndex(Pu[1],index,newcolor)
+        
     endfunction
 
 

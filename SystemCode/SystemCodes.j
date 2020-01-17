@@ -660,15 +660,32 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             PrizePoolData[page*20+pool][200] = GetPrizePoolMax(page,pool)+add
         endfunction
 
+        //根据id寻找序号
+        function FindPrizePool(int page,int pool,int id)->int
+            int max = GetPrizePoolMax(page,pool)
+            for i = 1,max
+                if  GetPrizeData(page,pool,i) == id
+                    return i
+                endif
+            end
+            return 0
+        endfunction
+
+        //移除奖励
+        function RemPrizeData(int page,int pool,int index)
+            int max = GetPrizePoolMax(page,pool)
+            SetPrizeData(page,pool,index,GetPrizeData(page,pool,max))
+            SetPrizeData(page,pool,max,0)
+            AddPrizePoolMax(page,pool,-1)
+        endfunction
+
         //获取一个奖励，是否移除
         function GetPrize(int page,int pool,bool rem)->int
             int max = GetPrizePoolMax(page,pool)
             int index = GetRandomInt(1,max)
             int id = GetPrizeData(page,pool,index)
             if  rem == true
-                SetPrizeData(page,pool,index,GetPrizeData(page,pool,max))
-                SetPrizeData(page,pool,max,0)
-                AddPrizePoolMax(page,pool,-1)
+                RemPrizeData(page,pool)
             endif
             return id
         endfunction
