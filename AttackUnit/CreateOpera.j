@@ -106,7 +106,7 @@ library CreateOpera uses DamageCode
         end
     endfunction
     
-    function AttackOperaAEnding()
+    function AttackOperaAEnding(int flag)
         int time = 0
         FlushChildHashtable(ht,GetHandleId(OperaTimer))
         DestroyTimer(OperaTimer)
@@ -118,11 +118,19 @@ library CreateOpera uses DamageCode
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
         ExecuteFunc("ColserOperaATimerUnit")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        if  flag == 0
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        elseif  flag == 1
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737成功把年兽赶跑了！！！")
+        endif
         TimerStart(1,true)
         {
             if  time < 5
@@ -160,7 +168,7 @@ library CreateOpera uses DamageCode
         if  time == 30
             OpenGameTeamChallengeTimer.execute(30,10)
         elseif  time == 0
-            AttackOperaAEnding()
+            AttackOperaAEnding(0)
         endif
     endfunction
 
