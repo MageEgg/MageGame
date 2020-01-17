@@ -340,8 +340,9 @@ scope DeathEvent initializer InitDeathEvent
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
-            if  num < 23
-                AttackRoomXCNum = AttackRoomXCNum + 1
+            AttackRoomXCNum = AttackRoomXCNum + 1
+            if  AttackRoomXCNum > 24
+                AttackRoomXCNum = 1
             endif
             if  uid == 'u0DF'
                 SetPlayerTechResearched(Player(pid),'AM40',1)
@@ -371,8 +372,9 @@ scope DeathEvent initializer InitDeathEvent
         else
             if  AttackRoomXCUnitNum <= 0
                 CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
-                if  num < 23
-                    AttackRoomXCNum = AttackRoomXCNum + 1
+                AttackRoomXCNum = AttackRoomXCNum + 1
+                if  AttackRoomXCNum > 24
+                    AttackRoomXCNum = 1
                 endif
             endif
         endif
