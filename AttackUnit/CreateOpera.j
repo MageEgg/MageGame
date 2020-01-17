@@ -115,6 +115,7 @@ library CreateOpera uses DamageCode
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
+        AttackUnitOperaBoss = null
         ExecuteFunc("ColserOperaATimerUnit")
         if  flag == 0
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
@@ -144,7 +145,6 @@ library CreateOpera uses DamageCode
                     endif
                 endif
             else
-                AttackUnitOperaBoss = null
                 ShowtOperaRectRange.execute(false)
                 for pid = 0,3
                     if  IsPlaying(pid) == true
@@ -317,7 +317,6 @@ library CreateOpera uses DamageCode
                     endif
                 endif
             else
-                AttackUnitOperaBoss = null
                 ShowtOperaRectRange.execute(false)
                 for pid = 0,3
                     if  IsPlaying(pid) == true
@@ -567,18 +566,7 @@ library CreateOpera uses DamageCode
     
     ////////////////////////////////分割线///////////////////////////////
 
-    function CreateGameOperaC(real t)
-        real time = t - 60
-        TimerStart(time,false)
-        {
-            ExecuteFunc("CreateOperaC")
-            endtimer
-            flush locals
-        }
-        flush locals
-    endfunction
-    /*
-    function AttackOperaCEnding()
+    function AttackOperaCEnding(int flag)
         int time = 0
         real x = 0
         real y = 0
@@ -593,6 +581,22 @@ library CreateOpera uses DamageCode
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
+        AttackUnitOperaBoss = null
+        ExecuteFunc("ColserOperaCTimerUnit")
+
+        if  flag == 0
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
+        elseif  flag == 1
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
+        endif
         TimerStart(1,true)
         {
             if  time < 5
@@ -600,22 +604,18 @@ library CreateOpera uses DamageCode
                 if  time < 4
                     AddEffectInArea(x,y,480,18,"effect_yanhua1.mdx")
                     AddEffectInArea(x,y,480,18,"effect_yanhua2.mdx")
+                    if  time == 3
+                        ShowBossDamageUI(false)
+                        ShowBossDamageStringOperaC()
+                    endif
                 endif
             else
-                AttackUnitOperaBoss = null
-                SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
-                ShowBossDamageUI(false)
-                ShowBossDamageString()
+                ShowtOperaRectRange.execute(false)
                 for pid = 0,3
                     if  IsPlaying(pid) == true
-                        UnitRemoveAbility(Pu[1],'AZ02')
-                        PlayerReviveX = -6656
-                        PlayerReviveY = -6656
-                        SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+                        UnitRemoveAbility(Pu[1],'AZ96')
                     endif
                 end
-                GoonAttackUnitGroup()
-                CreateNextTimer(AttackUnitOrderNum)
                 endtimer
             endif
             flush locals
@@ -624,22 +624,53 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaCTimerFunc()
-        AttackOperaCEnding()
+        int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
+        time = time - 1
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        if  (ModuloInteger(time,5) == 0 or time <= 5) and time > 0 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff3737妲己挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
+        endif
+        if  time == 30
+            OpenGameTeamChallengeTimer.execute(30,12)
+        elseif  time == 0
+            AttackOperaCEnding(0)
+        endif
     endfunction
-    
+
     function CreateOperaCTimer()
-        OperaTimerUIText = "击杀妲己"
+        int time = 31
         OperaTimer = CreateTimer()
-        TimerStart(OperaTimer,60,false,function CreateOperaCTimerFunc)
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        TimerStart(OperaTimer,1,true,function CreateOperaCTimerFunc)
+    endfunction
+
+    function CreateGameOperaC(real t)
+        real time = t - 60
+        TimerStart(time,false)
+        {
+            ExecuteFunc("CreateOperaC")
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
 
     function CreateOperaC()
-        StopAttackUnitGroup()
-        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         RemoveUnit(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ03',-100000,-100000,0))
-        PanCameraToTimed(GetRectCenterX(gg_rct_AttackOpera_C),GetRectCenterY(gg_rct_AttackOpera_C),0)
-        OpenAttackShowUI("UI_AttackShow_4.tga",0.5)
-        TimerStart(1,false)
+        OpenAttackShowUI("UI_AttackShow_4.tga",5)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[擒妖]：|r|cffff3737姜子牙已带众人前往摘星楼抓拿妲己！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[擒妖]：|r|cffff3737姜子牙已带众人前往摘星楼抓拿妲己！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[擒妖]：|r|cffff3737姜子牙已带众人前往摘星楼抓拿妲己！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[擒妖]：|r|cffff3737姜子牙已带众人前往摘星楼抓拿妲己！！！速从练功房传送阵前往援助！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[擒妖]：|r|cffff3737姜子牙已带众人前往摘星楼抓拿妲己！！！速从练功房传送阵前往援助！！！|r")
+        ShowtOperaRectRange.execute(true)
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                UnitAddAbility(Pu[1],'AZ96')
+                SetUnitAbilityLevel(Pu[1],'AZ96',3)
+            endif
+        end
+        TimerStart(3,false)
         {
             ExecuteFunc("CreateOperaC2")
             endtimer
@@ -653,29 +684,6 @@ library CreateOpera uses DamageCode
         unit fire = null
         real x = 0
         real y = 0
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                if  pid == 0
-                    PlayerReviveX = 2976
-                    PlayerReviveY = -2720
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                elseif  pid == 1
-                    PlayerReviveX = 2976
-                    PlayerReviveY = -2880
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                elseif  pid == 2
-                    PlayerReviveX = 2848
-                    PlayerReviveY = -2720
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                elseif  pid == 3
-                    PlayerReviveX = 2848
-                    PlayerReviveY = -2880
-                    SendPlayerUnitBarringCamera(pid,PlayerReviveX,PlayerReviveY)
-                endif
-                UnitAddAbility(Pu[1],'AZ02')
-            endif
-        end
-        SetPlayerCameraBoundsToRect(gg_rct_AttackOpera_C)
         AttackOperaGroup_C_1 = CreateGroup()
         fire = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ02',4620,-2840,0)
         GroupAddUnit(AttackOperaGroup_C_1,fire)
@@ -763,7 +771,5 @@ library CreateOpera uses DamageCode
         }
         flush locals
     endfunction
-    */
-    
 
 endlibrary
