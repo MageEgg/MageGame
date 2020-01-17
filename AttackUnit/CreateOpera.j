@@ -119,6 +119,11 @@ library CreateOpera uses DamageCode
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
         ExecuteFunc("ColserOperaATimerUnit")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽逃走啦！！！")
         TimerStart(1,true)
         {
             if  time < 5
@@ -148,18 +153,21 @@ library CreateOpera uses DamageCode
     
     function CreateOperaATimerFunc()
         int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
-        time = time + 1
+        time = time - 1
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
-        if  time == 5
+        if  (ModuloInteger(time,5) == 0 or time <= 5) and time > 0 
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
+        endif
+        if  time == 30
             OpenGameTeamChallengeTimer.execute(30,10)
-        elseif  time == 35
+        elseif  time == 0
             AttackOperaAEnding()
         endif
     endfunction
 
     function CreateOperaATimer()
         OperaTimer = CreateTimer()
-        int time = 0
+        int time = 35
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
         TimerStart(OperaTimer,1,true,function CreateOperaATimerFunc)
     endfunction
