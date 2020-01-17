@@ -119,10 +119,7 @@ library CreateOpera uses DamageCode
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
-        for num = 0,1
-            SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
-            UnitRemoveAbility(GameTeamChallengUnit(num+10),'AZ99')
-        end
+        ExecuteFunc("ColserOperaATimerUnit")
         TimerStart(1,true)
         {
             if  time < 5
