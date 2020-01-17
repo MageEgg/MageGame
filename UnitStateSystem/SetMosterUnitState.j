@@ -190,7 +190,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
     endfunction
     
     
-    难度注册；生命、攻击、防御、暴击、暴击伤害、物伤提高、法伤提高、物上见面、法伤减免、空、空
+
 
     function InitMostetStateRatio(int level,real life,real attack,real def,real bj,real bs,real ws,real fs,real wk,real fk,real r1,real r2)
         GameReal[level][1] = life
