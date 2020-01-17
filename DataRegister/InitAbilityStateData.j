@@ -70,7 +70,7 @@ call InitAbilityData('S065',2,1,2,10,0,0,2,8,"破法阵","对周围怪物造成|
 call InitAbilityData('S066',1,2,0,0,0,0,0,0,"灭魂","增加|Cff00bfff25%|r法术穿透","ReplaceableTextures\\CommandButtons\\BTNS066.blp")
 call InitAbilityData('S067',1,2,0,0,0,0,0,0,"威慑","降低周围怪物|Cff00bfff10%|r法术抗性。\n\n|Cff00ff7f效果可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS067.blp")
 call InitAbilityData('S068',1,3,0,0,0,0,0,0,"穿魂","|Cff00BFFF法强+10000|r，增加|Cff00bfff15%|r法术穿透","ReplaceableTextures\\CommandButtons\\BTNS068.blp")
-call InitAbilityData('S070',3,1,1,3,0,0,1,20,"暴风剑雨","对目标范围内怪物造成|Cffff80004次|r攻击，每次攻击造成|Cffff8000攻击*5|r物理伤害。\n\n|Cff00ff7f每25%攻速额外攻击1次。|r","ReplaceableTextures\\CommandButtons\\BTNS070.blp")
+call InitAbilityData('S070',3,1,1,2,0,0,1,20,"暴风剑雨","对目标范围内怪物造成|Cffff800014次|r攻击，每次攻击造成|Cffff8000攻击*2|r物理伤害。\n","ReplaceableTextures\\CommandButtons\\BTNS070.blp")
 call InitAbilityData('S071',1,3,0,0,0,0,0,0,"妖之力","不再享受攻速加成。每|Cffff80003.3%攻速|r提供|Cffff80001%攻击|r加成","ReplaceableTextures\\CommandButtons\\BTNS071.blp")
 call InitAbilityData('S073',2,2,1,4,0,0,1,12,"混元珠","掷出|Cffff80004颗|r混元宝珠围绕自身旋转，每次碰撞到怪物时造成|Cffff8000攻击*4|r物理伤害，并|Cffffcc00眩晕0.5秒|r。\n对|Cff00ff7f失明状态|r的怪物造成|Cffff8000额外30%物理伤害|r。\n\n|Cff00ff7f技能结束时重置戮目珠的技能冷却。|r","ReplaceableTextures\\CommandButtons\\BTNS073.blp")
 call InitAbilityData('S074',3,3,1,4.5,0,0,1,6,"戮目珠","对目标范围掷出戮目珠，对碰撞到的怪物造成|Cffff8000攻击*4.5|r物理伤害，并使其进入|Cff00ff7f失明状态|r，攻击命中率降低30%，持续3秒。","ReplaceableTextures\\CommandButtons\\BTNS074.blp")
