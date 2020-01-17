@@ -83,7 +83,7 @@ scope ItemSystem initializer InitItemSystem
                         UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"成功升级为"+GetObjectName(next))
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:装备"+GetObjectName(id)+"升级失败！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:装备|r"+GetObjectName(id)+"|cffff0000升级失败！|r")
                     endif
                     
                 endif
