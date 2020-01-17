@@ -115,6 +115,7 @@ library CreateOpera uses DamageCode
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
+        AttackUnitOperaBoss = null
         ExecuteFunc("ColserOperaATimerUnit")
         if  flag == 0
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff0000年兽逃走啦！！！")
@@ -144,7 +145,6 @@ library CreateOpera uses DamageCode
                     endif
                 endif
             else
-                AttackUnitOperaBoss = null
                 ShowtOperaRectRange.execute(false)
                 for pid = 0,3
                     if  IsPlaying(pid) == true
@@ -317,7 +317,6 @@ library CreateOpera uses DamageCode
                     endif
                 endif
             else
-                AttackUnitOperaBoss = null
                 ShowtOperaRectRange.execute(false)
                 for pid = 0,3
                     if  IsPlaying(pid) == true
@@ -582,6 +581,9 @@ library CreateOpera uses DamageCode
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
+        AttackUnitOperaBoss = null
+        ExecuteFunc("ColserOperaCTimerUnit")
+
         if  flag == 0
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
@@ -608,7 +610,6 @@ library CreateOpera uses DamageCode
                     endif
                 endif
             else
-                AttackUnitOperaBoss = null
                 ShowtOperaRectRange.execute(false)
                 for pid = 0,3
                     if  IsPlaying(pid) == true
