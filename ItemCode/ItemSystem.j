@@ -414,9 +414,20 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
 
-        if  itemid >= 'CS01' and itemid <= 'CS05'
-            BJDebugMsg("进阶石暂时无效")
-            //PlayerUseLearnAbilityBook(pid,itemid)
+        if  itemid >= 'CS01' and itemid <= 'CS03'
+            if  GetHeroAbilityLevelByIndex(Pu[1],itemid - 'CS00') < 4
+                HeroRandomSetAbilityLevel(Pu[1],itemid - 'CS00')
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r该技能为A品质无法刷新")
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+            endif
+        elseif  itemid >= 'CS11' and itemid <= 'CS13'
+            if  GetHeroAbilityLevelByIndex(Pu[1],itemid - 'CS10') == 4
+                HeroIncAbility(Pu[1],itemid - 'CS10')
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r只有品质A可以突破")
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+            endif
         elseif  itemid >= 'E001' and itemid <= 'E024'
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid >= 'E101' and itemid <= 'E124'
