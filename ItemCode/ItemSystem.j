@@ -407,11 +407,15 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
         elseif  itemid == 'IZ01'
-            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
-                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-2000)
-                OpenGameTeamChallenge(pid,1,20)
+            if  GameLevel >= 2
+                if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-2000)
+                    OpenGameTeamChallenge(pid,1,20)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r木材不足2000！")
+                endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r木材不足2000！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r难度2或以上才能激活团本哦！！！")
             endif
         endif
 

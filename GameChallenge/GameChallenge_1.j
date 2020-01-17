@@ -145,11 +145,11 @@ library GameChallenge1 uses GameChallengeBase
         IsFinshChallenge(1) = true
         //奖励
         PlayerFinishPlotEx(pid,1)
-        if  AttackUnitWN <= 3
+        /*if  AttackUnitWN <= 3
             UnitAddItemEx(Pu[1],'IN19')
             AddPlayerTechResearched(Player(pid),'KM20',1)
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“将星出世”|r成就，奖励"+GetObjectName('IN19')+"！") 
-        endif
+        endif*/
     endfunction
 
     function GameChalleng_1_XYTimerEx(int id)
