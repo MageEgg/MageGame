@@ -46,6 +46,12 @@ scope FrameButton
                     if  PlayerDeathBool == false 
                         HeroMoveToRoom(pid)
                     endif
+                elseif  id == 704 //F4
+                    ClickCollectFrame(pid)
+                elseif  id == 705 //F5
+                    ClickShowSaveFrame(pid)
+                elseif  id == 706 //F6
+                    ClickPassFrame(pid)
                 endif
             elseif  Type == TYPE_FUNC
                 if  id >= 301 and id <= 308//选择副本按钮
