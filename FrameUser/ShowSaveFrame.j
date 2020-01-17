@@ -280,8 +280,16 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         for x = 0,6
             index = 581+x
             CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.003,-0.03-x*0.03,0.075,0.027,"war3mapImported\\alpha.tga")
-            CreateText(index,Button.frameid,"centertext009",4,4,0.0,0.0,"Button"+I2S(x))
+            
         end
+
+        CreateText(581,Button.frameid,"centertext009",4,4,0.0,0.0,"成就")
+        CreateText(582,Button.frameid,"centertext009",4,4,0.0,0.0,"称号")
+        CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"光环")
+        CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"翅膀")
+        CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"神器")
+        CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"隐藏成就")
+        CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
 
     endfunction
 
