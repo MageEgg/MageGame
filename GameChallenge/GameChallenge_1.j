@@ -417,10 +417,10 @@ library GameChallenge1 uses GameChallengeBase
             endif
         end
 
-        CreateTrigUnitInRange(-6304,1024,150,function EnRctGameChalleng_1_YZZ)
-        CreateTrigUnitInRange(-4352,-288,100,function EnRctGameChalleng_1_JLD)
-        CreateTrigUnitInRange(-4608,640,100,function EnRctGameChalleng_1_JY)
-        CreateTrigUnitInRange(-3776,1472,100,function EnRctGameChalleng_1_JY2)
+        CreateTrigUnitInRangeOfGameChallenge(-6304,1024,150,function EnRctGameChalleng_1_YZZ)
+        CreateTrigUnitInRangeOfGameChallenge(-4352,-288,100,function EnRctGameChalleng_1_JLD)
+        CreateTrigUnitInRangeOfGameChallenge(-4608,640,100,function EnRctGameChalleng_1_JY)
+        CreateTrigUnitInRangeOfGameChallenge(-3776,1472,100,function EnRctGameChalleng_1_JY2)
 
         tig = CreateTrigger() //
         rectRegion = CreateRegion()

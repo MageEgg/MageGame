@@ -344,8 +344,8 @@ library GameChallenge3 uses GameChallengeBase
             endif
         end
 
-        CreateTrigUnitInRange(-5824,6464,150,function EnRctGameChalleng_3_HTH)
-        CreateTrigUnitInRange(-5952,8064,150,function EnRctGameChalleng_3_SMJ)
+        CreateTrigUnitInRangeOfGameChallenge(-5824,6464,150,function EnRctGameChalleng_3_HTH)
+        CreateTrigUnitInRangeOfGameChallenge(-5952,8064,150,function EnRctGameChalleng_3_SMJ)
 
     endfunction
 

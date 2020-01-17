@@ -139,8 +139,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
                     SetUnitRealState(GameChallengLeagueUnit(num),3,GetUnitRealState(GameChallengLeagueUnit(num),3)/2)
                     SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),1)*30)
-                    UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
-                    UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
+                    //UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
+                    //UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
                     PauseUnit(GameChallengLeagueUnit(num),true)
                     SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
@@ -149,8 +149,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     RemoveUnit(GameChallengLeagueUnit(num))
                     GameChallengLeagueUnit(num) = CreateUnit(Player(11),'md00'+num,ex,ey,ang)
                     SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
-                    UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
-                    UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
+                    //UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
+                    //UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
                     PauseUnit(GameChallengLeagueUnit(num),true)
                     SetLeagueUnitOverState(GameChallengLeagueUnit(num),20)
@@ -164,9 +164,16 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
 
+    function SendGodStage()
+
+    endfunction
+
     function OpenChangeGodStage()
         real x = OriginalDefendX
         real y = OriginalDefendY
+        unit u = null
+        real ux = 0
+        real uy = 0
         BJDebugMsg("创建新基地")
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         KillAttackUnitGroup()
@@ -182,10 +189,29 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         x = OriginalDefendX - x
         y = OriginalDefendY - y
         for pid = 0,3
-            if  IsPlaying(pid) == true  
-                UnitAddAbility(Pu[1],'Avul')
-                UnitAddAbility(Pu[1],'AZ02')
-            endif
+            //if  IsPlaying(pid) == true 
+                if  pid == 0
+                    ux = -7584
+                    uy = -5312
+                elseif  pid == 1
+                    ux = -5152
+                    uy = -6240
+                elseif  pid == 2
+                    ux = -6240
+                    uy = -8512
+                elseif  pid == 3
+                    ux = -8640
+                    uy = -7584
+                endif 
+                u = CreateTmUnit(Player(pid),"effect_az_goods_tp_target(3).mdl",ux,uy,0,0,1.0)
+                EXSetUnitMoveType(u,0x01)
+                u = CreateTmUnit(Player(pid),"sunwell.mdl",ux,uy,0,5,1.1)
+                EXSetUnitMoveType(u,0x01)
+                CreateTrigUnitInRange(u,125,function SendGodStage)
+                
+                //UnitAddAbility(Pu[1],'Avul')
+                //UnitAddAbility(Pu[1],'AZ02')
+            //endif
         end
         TimerStart(1,false)
         {
@@ -545,7 +571,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
-    function CreateTrigUnitInRange(real x,real y,real rac,code actionFunc)
+    function CreateTrigUnitInRangeOfGameChallenge(real x,real y,real rac,code actionFunc)
         trigger tig = null
         unit u = null
         tig = CreateTrigger() 

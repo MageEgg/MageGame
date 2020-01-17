@@ -359,7 +359,7 @@ library GameChallenge6 uses GameChallengeBase
                 EXSetUnitMoveType(GameChallengUnit[63],0x01)
             endif
         end
-        CreateTrigUnitInRange(-2048,6368,150,function EnRctGameChalleng_6_Way0)
+        CreateTrigUnitInRangeOfGameChallenge(-2048,6368,150,function EnRctGameChalleng_6_Way0)
     endfunction
 
 

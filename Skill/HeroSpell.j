@@ -1855,7 +1855,7 @@ function SpellS116(unit u1,real damage1)
         unit u4 = null
         unit u3 = null
         group g = CreateGroup()
-        if  num<5
+        if  num<6
             num=num+1
             GroupEnumUnitsInRange(g,x,y,1000,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             loop
@@ -1884,13 +1884,12 @@ function SpellS116(unit u1,real damage1)
 
     endfunction
     
-    function SpellS124(unit wu,unit eu,real dam)//收到释放技能命令
+    function SpellS124(unit wu,real dam)//收到释放技能命令
         integer num = 0
         effect tx=AddSpecialEffect("effect_youling.mdl",GetUnitX(wu),GetUnitY(wu))
         EXSetEffectZ( tx, 100 )
         group gg = CreateGroup()
-        GroupAddUnit(gg,eu)
-        SpellS124Attack(wu,tx,eu,dam,gg,num)
+        SpellS124mb(wu,tx,wu,dam,gg,num)
         flush locals
     endfunction
 
@@ -2260,7 +2259,7 @@ endfunction
             elseif  id== 'S123'    
                 SpellS123(u1.u,damage)
             elseif  id== 'S124'    
-                SpellS124(u1.u,u2.u,damage)
+                SpellS124(u1.u,damage)
 
 
             elseif  id== 'S127'    
