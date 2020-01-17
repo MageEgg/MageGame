@@ -635,7 +635,14 @@ library CreateOpera uses DamageCode
             AttackOperaCEnding(0)
         endif
     endfunction
-    
+
+    function CreateOperaCTimer()
+        int time = 31
+        OperaTimer = CreateTimer()
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        TimerStart(OperaTimer,1,true,function CreateOperaCTimerFunc)
+    endfunction
+
     function CreateGameOperaC(real t)
         real time = t - 60
         TimerStart(time,false)
@@ -645,13 +652,6 @@ library CreateOpera uses DamageCode
             flush locals
         }
         flush locals
-    endfunction
-
-    function CreateOperaCTimer()
-        int time = 31
-        OperaTimer = CreateTimer()
-        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
-        TimerStart(OperaTimer,1,true,function CreateOperaCTimerFunc)
     endfunction
 
     function CreateOperaC()
