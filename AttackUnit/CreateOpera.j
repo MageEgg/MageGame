@@ -113,7 +113,6 @@ library CreateOpera uses DamageCode
         OperaTimer = null
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
-        SetUnitInvulnerable(AttackUnitOperaBoss,true)
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
@@ -170,6 +169,17 @@ library CreateOpera uses DamageCode
         int time = 35
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
         TimerStart(OperaTimer,1,true,function CreateOperaATimerFunc)
+    endfunction
+
+    function CreateGameOperaA(real t)
+        real time = t - 60
+        TimerStart(time,false)
+        {
+            ExecuteFunc("CreateOperaA")
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
     
     function CreateOperaA()
