@@ -104,21 +104,20 @@ scope DeathEvent initializer InitDeathEvent
         int i1 = 0
         if  itemid == 'I011'
             gold = 5500
-            i1 = GetRandomInt(599,998)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         elseif  itemid == 'I012'
             gold = 31000
-            i1 = GetRandomInt(2100,3500)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         elseif  itemid == 'I013'
             gold = 48000
-            i1 = GetRandomInt(6000,10000)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         elseif  itemid == 'I014'
             gold = 81000
-            i1 = GetRandomInt(11880,19800)
+            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
         endif
         AddUnitRealState(Pu[1],1,i1)
-        AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击及法强+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击+"+I2S(i1))
 
     endfunction
 
