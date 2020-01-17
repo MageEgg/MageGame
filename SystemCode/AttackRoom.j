@@ -51,6 +51,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             ShowUnit(u,true)
             PauseUnit(u,false)
             GroupAddUnit(AttackRoomGroup[pid],u)
+            SaveInteger(ht,GetHandleId(u),1,pid)
            // GroupRemoveUnit(diesgroup[uid],u)
             SetPlayerOnlyDamage(u,pid)
         endif
@@ -88,7 +89,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     endfunction
     
     function ClearAttackRoom(int pid)
-    if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == false
+    if  FirstOfGroup(AttackRoomGroup[pid]) != null
+        DBUG("检测到残留单位，干掉")
         ForGroup(AttackRoomGroup[pid],function ClearAttackRoomFun)
     endif
     endfunction
@@ -308,12 +310,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int pid=GetPlayerId(GetOwningPlayer(ku))
         AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
-        if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == true
+        if  FirstOfGroup(AttackRoomGroup[pid]) == null
             if  GetUnitTypeId(Pu[27]) == 'np27'
                 SoulTimer(pid,x,y)
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
+            DBUG("判断单位组为空准备刷怪")
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
