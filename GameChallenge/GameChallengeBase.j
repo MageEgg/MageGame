@@ -153,8 +153,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         {
             UnitRemoveAbility(u,'Avul')
             EXSetUnitMoveType(u,0x02)
-            UnitAddEffect(u,"effect_tx_asad (24).mdx")
-            UnitAddEffectSetSize(u,"effect_az-leiji.mdx",2)
+            LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx",1)
+            LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
             PauseUnit(u,false)
             SetUnitAnimation(u,"attack")
             endtimer
@@ -167,7 +167,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         real x = r1
         real y = r2
         int num = 0
-        TimerStart(0.2,true)
+        TimerStart(0.3,true)
         {   
             real sx = 0
             real sy = 0
@@ -285,11 +285,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function CreateChangeGodStage(real time)
         BJDebugMsg("CreateChangeGodStage")
-        if  GameLevel < 3
-            time = time - 10
-        else
-            time = time - 20
-        endif
+        time = time - 60
         TimerStart(CreateTimer(),time,false,function CreateChangeGodStageFunc)
     endfunction
 

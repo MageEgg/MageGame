@@ -407,7 +407,7 @@ library AttackUnit uses DamageCode
 
     function CreateUnitTimer(int ordernum)
         real time = AttackUnitIntervalTime(0)[ordernum]
-        int FlushNum = AttackUnitFlushNum(0)[ordernum] - 1
+        int FlushNum = 2//AttackUnitFlushNum(0)[ordernum] - 1
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
         int Attacknum = 0
@@ -468,13 +468,17 @@ library AttackUnit uses DamageCode
         int r1 = 0
         BJDebugMsg("CreateNextTimer"+I2S(i)+"@@"+I2S(AttackUnitWN+1))
         AttackTimer = CreateTimer()
-        TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
-        //TimerStart(AttackTimer,12,false,function OpenAttackUnitTimer)
+        //TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
+        if  AttackUnitWN == AttackUnitWNOver - 3
+            TimerStart(AttackTimer,80,false,function OpenAttackUnitTimer)
+        else
+            TimerStart(AttackTimer,5,false,function OpenAttackUnitTimer)
+        endif
         if  AttackUnitWN >= AttackUnitWNOver - 3
             AttackTimerUIText = "最终大决战"
             if  IsChangeGodStage == false
                 IsChangeGodStage = true
-                CreateChangeGodStage.execute(AttackUnitNextTime[i])
+                CreateChangeGodStage.execute(80)//(AttackUnitNextTime[i])
             endif
         else
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
