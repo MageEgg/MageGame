@@ -146,6 +146,7 @@ scope DeathEvent initializer InitDeathEvent
 
     endfunction
     function PlayerItemGrow(int pid)
+        int next = 0
         int id = 0
         int lv = 0
         for i1 = 0,5
@@ -155,6 +156,12 @@ scope DeathEvent initializer InitDeathEvent
                     PlayerUseGoldBox(pid,id)
                 endif
                 exitwhen true
+            endif
+        end
+        for i2 = 0,5
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],i1))
+            if  id >= 'E101'
+            int next = GetTypeIdData(id,106)
             endif
         end
                     
