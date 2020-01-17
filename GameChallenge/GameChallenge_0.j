@@ -57,7 +57,6 @@ library GameChallenge0 uses GameChallengeBase
     
     function GameChallenge_0Start(int id)
         int pid = id
-        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
         TimerStart(1.5,false)
         {
             GameChallenge_0_A(pid)

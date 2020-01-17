@@ -349,6 +349,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         end
     endfunction
 
+    function ColserOperaATimerUnit()
+        for num = 0,1
+            SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
+            UnitRemoveAbility(GameTeamChallengUnit(num+10),'AZ99')
+        end
+    endfunction
+
     function InitOperaRectRange()
         real x = 0
         real y = 0

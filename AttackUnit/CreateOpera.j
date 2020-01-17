@@ -68,8 +68,8 @@ library CreateOpera uses DamageCode
         real x = 1685
         real y = -3104
         real rac = 400
-        AddEffectInAreaSetSize(x,y,rac,1.5,10,"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl")
-        for num = 1,10
+        AddEffectInAreaSetSize(x,y,rac,1.5,8,"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl")
+        for num = 1,5
             angle = GetRandomReal(0, 6.283) 
             distance = SquareRoot(GetRandomReal(1.0, rac * rac)) 
             CreateItem('I00A',x + Cos(angle) * distance,y + Sin(angle) * distance)
@@ -88,7 +88,6 @@ library CreateOpera uses DamageCode
         AttackUnitOperaBossDamage = AttackUnitOperaBossDamage + damage
         if  AttackUnitOperaBossDamage/life >= 1
             cos = S2I(SubString(R2S(AttackUnitOperaBossDamage/life),0,1))
-            BJDebugMsg("年兽"+I2S(cos))
             for num = 1,cos
                 AttackOperaADamageGold()
             end
@@ -119,10 +118,7 @@ library CreateOpera uses DamageCode
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
-        for num = 0,1
-            SetUnitVertexColor(GameTeamChallengUnit(num+10),255,255,255,0)
-            UnitRemoveAbility(GameTeamChallengUnit(num+10),'AZ99')
-        end
+        ExecuteFunc("ColserOperaATimerUnit")
         TimerStart(1,true)
         {
             if  time < 5
@@ -132,7 +128,7 @@ library CreateOpera uses DamageCode
                     AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
                     if  time == 3
                         ShowBossDamageUI(false)
-                        ShowBossDamageString()
+                        ShowBossDamageStringOperaA()
                     endif
                 endif
             else
