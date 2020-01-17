@@ -109,11 +109,11 @@ scope ItemSystem initializer InitItemSystem
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
         if  index == 1
-            use = 2000 * (num + 1)
+            use = 2000 + num * 1000
         elseif  index == 2
-            use = 5000 * (num + 1)
+            use = 5000 * num * 2000
         elseif  index == 3
-            use = 20000 * (num + 1)
+            use = 20000 * num * 5000
         endif
         return use
     endfunction
@@ -121,17 +121,9 @@ scope ItemSystem initializer InitItemSystem
         int id = 'IS00' + index
         int num = GetPlayerDrawNum(pid,index)
         int use1 = GetPlayerDrawUse(pid,index,num+1)
-        int use2 = 0
-        if  num > 0
-            use2 = 1
-        endif
         if  GetLocalPlayer() == Player(pid)
             YDWESetItemDataString(id,2,GetObjectName(id)+"[ 第"+I2S(num)+"次 ]")
-            if  use2 > 0
-                YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币，"+I2S(use2)+"木材")
-            else
-                YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币")
-            endif
+            YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币")
         endif
     endfunction
     //抽技能
@@ -139,24 +131,15 @@ scope ItemSystem initializer InitItemSystem
         int index = itemid - 'IS00'
         int num = GetPlayerDrawNum(pid,index)
         int use1 = GetPlayerDrawUse(pid,index,num+1)
-        int use2 = 0
-        if  num > 0
-            use2 = 1
-        endif
         if  use1 > 0
-            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use2
 
-                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
-                    AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                    AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-                    PlayerUseLearnAbilityBook(pid,index)
-                    AddPlayerDrawNum(pid,index)
-                    RePlayerAbilityDrawTips(pid,index)
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！金币不足"+I2S(use1))
-                endif
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
+                AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                PlayerUseLearnAbilityBook(pid,index)
+                AddPlayerDrawNum(pid,index)
+                RePlayerAbilityDrawTips(pid,index)
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use2))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！金币不足"+I2S(use1))
             endif
         endif
     endfunction
