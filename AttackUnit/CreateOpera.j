@@ -110,7 +110,7 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaA()
-        OpenAttackShowUI("UI_AttackShow_2.tga",0.5)
+        OpenAttackShowUI("UI_AttackShow_2.tga",3)
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[新春]：|r|cffff3737年兽出现啦！！！可从练功房传送阵前往讨伐！！！|r")

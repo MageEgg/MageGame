@@ -63,6 +63,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             y = -3328
                         endif
                         SendPlayerUnit(pid,x,y)
+                        AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
+                        AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
                     elseif  GetUnitAbilityLevel(Pu[1],'AZ96') == 2
                         if  pid == 0
                             x = 2300
