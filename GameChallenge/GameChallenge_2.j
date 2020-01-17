@@ -250,8 +250,8 @@ library GameChallenge2 uses GameChallengeBase
             endif
         end
 
-        CreateTrigUnitInRange(-6080,3072,150,function EnRctGameChalleng_2_Water1)
-        CreateTrigUnitInRange(-5536,3872,150,function EnRctGameChalleng_2_Water2)
+        CreateTrigUnitInRangeOfGameChallenge(-6080,3072,150,function EnRctGameChalleng_2_Water1)
+        CreateTrigUnitInRangeOfGameChallenge(-5536,3872,150,function EnRctGameChalleng_2_Water2)
         
     endfunction
 

@@ -521,6 +521,16 @@ library SystemCodes uses ServerTime,Define1
     endfunction
     
     #define GetUnitScale   GetUnitScaleSize
+    
+    ///////////////////////////区域注册////////////////////////////
+    function CreateTrigUnitInRange(unit u,real rac,code actionFunc)
+        trigger tig = null
+        tig = CreateTrigger()
+        TriggerRegisterUnitInRange(tig,u,rac,null)
+        TriggerAddAction(tig, actionFunc)
+        tig = null
+        u = null
+    endfunction
 
     ///////////////////////////异步函数////////////////////////////
     function ShowUnitOfOnlyPlayerEx(unit wu)

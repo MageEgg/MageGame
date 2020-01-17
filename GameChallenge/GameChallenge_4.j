@@ -756,8 +756,8 @@ library GameChallenge4 uses GameChallengeBase
             endif
         end
 
-        CreateTrigUnitInRange(-2342,-960,150,function EnRctGameChalleng_4_JZY)
-        CreateTrigUnitInRange(-32,-960,150,function EnRctGameChalleng_4_ZGM)
+        CreateTrigUnitInRangeOfGameChallenge(-2342,-960,150,function EnRctGameChalleng_4_JZY)
+        CreateTrigUnitInRangeOfGameChallenge(-32,-960,150,function EnRctGameChalleng_4_ZGM)
 
     endfunction
 
