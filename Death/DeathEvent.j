@@ -362,6 +362,7 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u0DA' and uid <= 'u0DZ'
             KillXCUnitFunc(wu,tu,uid)
         elseif  uid >= 'u001' and uid <= 'u004'
+            AttackRoomUid[pid]='g00A'+ (uid - 'u001')
             AddUnitRealState(Pu[1],41,80)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾挑战成功！金币加成+80%")
             if  uid == 'u001'//占星NPC
