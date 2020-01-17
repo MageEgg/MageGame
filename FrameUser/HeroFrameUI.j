@@ -299,10 +299,10 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
 
         
-        CreateText(161,origin,"text009",3,5,0.003,0,"|CffFFC926元神力：|r0")
-        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00攻击：|r0%")
-        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00法强：|r0%")
-        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00生命：|r0%")
+        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00暴击：|r0%")
+        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r0%")
+        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
+        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00分裂：|r0%")
         CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00物理伤害：|r0%")
         CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00法术伤害：|r0%")
         CreateText(167,origin,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
@@ -311,24 +311,22 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.09,0.175)
+        Back2.SetSize(0.09,0.145)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,11
+        for i = 1,9
             CreateButton(167+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
 
-        CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00增伤：|r0%")
-        CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴击：|r0%")
-        CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r0%")
-        CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00物穿：|r0%")
-        CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00法穿：|r0%")
-        CreateText(173,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00吸血：|r0%")
-        CreateText(174,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00减伤：|r0%")
-        CreateText(175,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
-        CreateText(176,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00致命概率：|r0%")
-        CreateText(177,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00致命倍率：|r0%")
-        CreateText(178,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00普攻伤害：|r0%")
+        CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00技能概率：|r0%")
+        CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌生命：|r0")
+        CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌攻击：|r0")
+        CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌业力：|r0")
+        CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒生命：|r0")
+        CreateText(173,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒攻击：|r0")
+        CreateText(174,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒业力：|r0")
+        CreateText(175,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌金币：|r0")
+        CreateText(176,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒金币：|r0")
 
 
         FrameSetScriptByExecute( Button2.frameid, 1,160,TYPE_FUNC)
@@ -340,6 +338,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
         CreateButton(702,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.048,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI001.blp")
         CreateButton(703,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.096,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI002.blp")
+        CreateButton(704,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.144,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI002.blp")
+        CreateButton(705,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI003.blp")
+        CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
 
         DzFrameShow(BUTTON_Back[702][0], false)
         DzFrameShow(BUTTON_Back[703][0], false)

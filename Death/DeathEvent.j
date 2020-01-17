@@ -199,23 +199,19 @@ scope DeathEvent initializer InitDeathEvent
                 gold = gold * GetRandomReal(0.6,1)
             endif
         endif
-        if  IsPlayerHasAbility(Pu[1],'S129') == true 
-            gold = gold + 3
-        endif
-        if  GetUnitIntState(Pu[1],'FB26') > 0
-            gold = gold + 5
-        endif
-
 
         
         
         
         //杀敌金币
-        gold = gold + GetUnitRealState(Pu[1],46)
+        
         if  gold > 0
             gold = gold * (1+GetUnitRealState(Pu[1],41)*0.01)+0.001
+
+            gold = gold + GetUnitRealState(Pu[1],46)
+
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold)),255,202,0,255,90,0.023)
+            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
         endif
 
         //杀敌木材
