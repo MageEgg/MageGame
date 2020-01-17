@@ -45,7 +45,7 @@ scope ItemSystem initializer InitItemSystem
         int next = GetTypeIdData(id,106)
         int uid = GetTypeIdData(id,105)
         int index = 0
-        
+        int gl = GetTypeIdData(id,104)//概率
         if  next > 0
             
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
@@ -79,10 +79,15 @@ scope ItemSystem initializer InitItemSystem
                     endif
                 else
                     AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                    RemoveItem(it)
-                    UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
-                    UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级成功！")
+                    if  GetRandomInt(1,100)<= gl
+                        RemoveItem(it)
+                        UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
+                        UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"成功升级为"+GetObjectName(next))
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"升级失败！")
+                    endif
+                    
                 endif
             else
                 
