@@ -174,7 +174,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[18]="伤害减免"
         StateName[19]="暴击"
         StateName[20]="暴伤"
-        StateName[21]="伤害吸取"
+        StateName[21]="吸血"
         StateName[22]="分裂"
         StateName[23]="致命概率"
         StateName[24]="致命倍率"

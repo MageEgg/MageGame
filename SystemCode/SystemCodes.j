@@ -191,10 +191,17 @@ library SystemCodes uses ServerTime,Define1
     function GetTypeIdStateTips(int id)->string
         string s = ""
         real value = 0
+
+        value = GetTypeIdReal(id,5)
+        if  value > 0
+            s = s + "\n" + StateName[5] + "+" + I2S(R2I(value)) + StateName[5+1000]
+        endif
         for i = 1,60
-            value = GetTypeIdReal(id,i)
-            if  value > 0
-                s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+            if  i != 5
+                value = GetTypeIdReal(id,i)
+                if  value > 0
+                    s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+                endif
             endif
             
         end
