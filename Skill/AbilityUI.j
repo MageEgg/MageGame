@@ -227,7 +227,22 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     
     
-    
+    //获取基础属性
+    function GetAbilityStateTips(int id,real scale)->string
+        string s = ""
+        real value = 0
+        for i = 1,60
+            value = GetTypeIdReal(id,i)
+            if  value > 0
+                value = value * scale
+                s = s + "\n" + StateName[i] + "+" + R2S2(value) + StateName[i+1000]
+            endif
+            
+        end
+        return  s
+    endfunction
+
+
     function ReHeroAbilityTips(unit wu,int index)
         int id = GetUnitIntState(wu,110+index)
         int level = GetUnitIntState(wu,120+index)
@@ -278,6 +293,26 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     else
                         tip = tip + "\n\n|cffbbbbbb境界十：\n" +GetTypeIdString(id,113) + "|r"
                     endif
+                else
+                    
+                    int DamageType = GetTypeIdData(id,103)//伤害类型
+                    int chi = GetTypeIdData(id,102)//属性类型
+                    
+                    real r1 = GetTypeIdReal(id,101)
+                    real r2 = GetTypeIdReal(id,102) 
+                    real dam = r1 + r2 * level
+        
+                    if  DamageType == 1
+                        tip = tip + "\n\n|Cffff8000物理伤害："+StateName[chi]+"*"+R2S1(dam)+"|r"
+                    elseif  DamageType == 2
+                        tip = tip + "\n\n|Cff00bfff法术伤害："+StateName[chi]+"*"+R2S1(dam)+"|r"
+                    else
+                        //疑似被动技能
+                        //if  r1 > 0
+                            tip = tip + GetAbilityStateTips(id,1)
+                        //endif
+                    endif
+
                     
                 endif
                 
@@ -406,6 +441,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
     
     
+
+
     function HeroIncAbility(unit wu,int index)
         int use = 0
         if  GetHeroAbilityID(wu,index) == 0

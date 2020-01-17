@@ -106,45 +106,54 @@ scope ItemSystem initializer InitItemSystem
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
         if  index == 1
-            use = 50 + num * 50
-            if  use > 200
-                use = 200
-            endif
+            use = 2000 * (num + 1)
         elseif  index == 2
-            use = 150 + num * 50
-            if  use > 400
-                use = 400
-            endif
+            use = 5000 * (num + 1)
         elseif  index == 3
-            use = 360 * num
-        elseif  index == 4
-            use = 1080 * num
+            use = 20000 * (num + 1)
         endif
         return use
     endfunction
     function RePlayerAbilityDrawTips(int pid,int index)
         int id = 'IS00' + index
         int num = GetPlayerDrawNum(pid,index)
-        int use = GetPlayerDrawUse(pid,index,num+1)
+        int use1 = GetPlayerDrawUse(pid,index,num+1)
+        int use2 = 0
+        if  num > 0
+            use2 = 1
+        endif
         if  GetLocalPlayer() == Player(pid)
             YDWESetItemDataString(id,2,GetObjectName(id)+"[ 第"+I2S(num)+"次 ]")
-            YDWESetItemDataString(id,3,"需要"+I2S(use)+"杀敌数")
+            if  use2 > 0
+                YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币，"+I2S(use2)+"木材")
+            else
+                YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币")
+            endif
         endif
     endfunction
     //抽技能
     function PlayerAbilityDraw(int pid,int itemid)
         int index = itemid - 'IS00'
         int num = GetPlayerDrawNum(pid,index)
-        int use = GetPlayerDrawUse(pid,index,num+1)
-        if  use > 0
-            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
+        int use1 = GetPlayerDrawUse(pid,index,num+1)
+        int use2 = 0
+        if  num > 0
+            use2 = 1
+        endif
+        if  use1 > 0
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use2
 
-                AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-                PlayerUseLearnAbilityBook(pid,index + 'CS00')
-                AddPlayerDrawNum(pid,index)
-                //RePlayerAbilityDrawTips(pid,index)
+                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
+                    AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                    AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                    PlayerUseLearnAbilityBook(pid,index)
+                    AddPlayerDrawNum(pid,index)
+                    RePlayerAbilityDrawTips(pid,index)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！金币不足"+I2S(use1))
+                endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use2))
             endif
         endif
     endfunction
@@ -368,7 +377,7 @@ scope ItemSystem initializer InitItemSystem
             AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
-        elseif  itemid >= 'IS01' and itemid <= 'IS05'
+        elseif  itemid >= 'IS01' and itemid <= 'IS03'
             PlayerAbilityDraw(pid,itemid)
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
@@ -406,7 +415,8 @@ scope ItemSystem initializer InitItemSystem
         int i2 = 0
 
         if  itemid >= 'CS01' and itemid <= 'CS05'
-            PlayerUseLearnAbilityBook(pid,itemid)
+            BJDebugMsg("进阶石暂时无效")
+            //PlayerUseLearnAbilityBook(pid,itemid)
         elseif  itemid >= 'E001' and itemid <= 'E024'
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid >= 'E101' and itemid <= 'E124'

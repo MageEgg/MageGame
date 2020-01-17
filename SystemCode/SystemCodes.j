@@ -612,7 +612,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     
         scope PrizePool
 
-        int array PrizePoolData[80][101]
+        int array PrizePoolData[80][200]
         
 
 
@@ -629,18 +629,18 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
         //获取最大值
         function GetPrizePoolMax(int page,int pool)->int
-            return PrizePoolData[page*20+pool][100]
+            return PrizePoolData[page*20+pool][200]
         endfunction
 
         //设置最大值
         function SetPrizePoolMax(int page,int pool,int max)
-            PrizePoolData[page*20+pool][100] = max
+            PrizePoolData[page*20+pool][200] = max
         endfunction
 
 
         //增加最大值
         function AddPrizePoolMax(int page,int pool,int add)
-            PrizePoolData[page*20+pool][100] = GetPrizePoolMax(page,pool)+add
+            PrizePoolData[page*20+pool][200] = GetPrizePoolMax(page,pool)+add
         endfunction
 
         //获取一个奖励，是否移除
@@ -670,12 +670,6 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         //技能奖池修正
             
         function RecoveryPrizePoolData(int page,int pool,int id)
-            if  pool >= 4 and pool <= 5
-                pool = 4
-            elseif  pool >= 6 and pool <= 8
-                pool = 5
-            endif
-
             AddPrizePoolMax(page,pool,1)
             SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
         endfunction
