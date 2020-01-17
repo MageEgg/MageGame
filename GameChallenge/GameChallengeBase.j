@@ -358,12 +358,18 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
-    function ShowtOperaRectRange(int value)
-        int show = value
+    function ShowtOperaRectRange(bool value)
+        bool show = value
         for pid = 0,3
             if  IsPlaying(pid) == true 
-                SetUnitVertexColor(GameChallengUnit[200],255,255,255,show)
-                SetUnitVertexColor(GameChallengUnit[201],255,255,255,show)
+                ShowUnit(GameChallengUnit[200],show)
+                ShowUnit(GameChallengUnit[201],show)
+                if  show == false
+                    UnitRemoveAbility(GameChallengUnit[200],'Aloc')
+                    UnitAddAbility(GameChallengUnit[200],'Aloc')
+                    UnitRemoveAbility(GameChallengUnit[201],'Aloc')
+                    UnitAddAbility(GameChallengUnit[201],'Aloc')
+                endif
             endif
         end
     endfunction
@@ -390,8 +396,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 EXSetUnitMoveType(GameChallengUnit[200],0x01)
                 GameChallengUnit[201] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,0,1.1)
                 EXSetUnitMoveType(GameChallengUnit[201],0x01)
-                SetUnitVertexColor(GameChallengUnit[200],255,255,255,0)
-                SetUnitVertexColor(GameChallengUnit[201],255,255,255,0)
+                ShowUnit(GameChallengUnit[200],false)
+                ShowUnit(GameChallengUnit[201],false)
                 CreateTrigUnitInRange(GameChallengUnit[201],120,function SendOperaRectRange)
             endif
         end
