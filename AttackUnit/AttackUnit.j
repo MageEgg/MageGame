@@ -485,7 +485,7 @@ library AttackUnit uses DamageCode
                 CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
-            if  AttackUnitWN == 6
+            if  AttackUnitWN == 5
                 if  IsGameOperaA == false
                     IsGameOperaA = true
                     CreateGameOperaA.execute(AttackUnitNextTime[i])
