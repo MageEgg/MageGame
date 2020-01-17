@@ -2285,15 +2285,15 @@ endfunction
             elseif  id == 'S502'
                 SpellS502(u1.u,u2.u,damage,lv)
             elseif  id == 'S504'
-                SpellS504(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
+                SpellS504(u1.u,sx,sy,damage,lv)
             elseif  id == 'S505'
                 SpellS505(u1.u,lv)
             elseif  id == 'S510'
                 SpellS510(u1.u,lv)
             elseif  id == 'S512'
-                SpellS512(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
+                SpellS512(u1.u,sx,sy,damage,lv)
             elseif  id == 'S513'
-                SpellS513(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7))
+                SpellS513(u1.u,sx,sy)
             elseif  id == 'S514'
                 SpellS514(u1.u,damage,lv)
                 
@@ -2306,7 +2306,7 @@ endfunction
             elseif  id == 'S524'
                 SpellS524(u1.u,u2.u,lv)
             elseif  id == 'S525'
-                SpellS525(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
+                SpellS525(u1.u,sx,sy,damage,lv)
             elseif  id == 'S527'
                 SpellS527(u1.u,u2.u,lv)
             endif
