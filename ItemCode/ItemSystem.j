@@ -416,7 +416,9 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r难度2或以上才能激活团本哦！！！")
             endif
         endif
-
+        if  itemid == 'I00A'
+            AttackOperaAGold()
+        endif
 
         
        
