@@ -167,6 +167,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function OpenChangeGodStage()
         real x = OriginalDefendX
         real y = OriginalDefendY
+        BJDebugMsg("创建新基地")
         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
         KillAttackUnitGroup()
         ShowBossDamageUI(false)
@@ -201,19 +202,21 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     
     function CreateChangeGodStageFunc()
         timer t = GetExpiredTimer()
-        ExecuteFunc("OpenChangeGodStage")
+        BJDebugMsg("CreateChangeGodStageFunc")
+        OpenChangeGodStage()
         FlushChildHashtable(ht,GetHandleId(t))
         DestroyTimer(t)
         t = null
     endfunction
 
     function CreateChangeGodStage(real time)
+        BJDebugMsg("CreateChangeGodStage")
         if  GameLevel < 3
             time = time - 10
         else
             time = time - 20
         endif
-        TimerStart(CreateTimer(),time,false,function OpenCreateBossTimer)
+        TimerStart(CreateTimer(),time,false,function CreateChangeGodStageFunc)
     endfunction
 
     function SetPlayerLeagueState(int num,bool b)
