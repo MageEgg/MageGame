@@ -469,7 +469,11 @@ library AttackUnit uses DamageCode
         BJDebugMsg("CreateNextTimer"+I2S(i)+"@@"+I2S(AttackUnitWN+1))
         AttackTimer = CreateTimer()
         TimerStart(AttackTimer,AttackUnitNextTime[i],false,function OpenAttackUnitTimer)
-        //TimerStart(AttackTimer,12,false,function OpenAttackUnitTimer)
+        /*if  AttackUnitWN == AttackUnitWNOver - 3
+            TimerStart(AttackTimer,80,false,function OpenAttackUnitTimer)
+        else
+            TimerStart(AttackTimer,5,false,function OpenAttackUnitTimer)
+        endif*/
         if  AttackUnitWN >= AttackUnitWNOver - 3
             AttackTimerUIText = "最终大决战"
             if  IsChangeGodStage == false

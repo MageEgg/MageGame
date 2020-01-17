@@ -490,13 +490,21 @@ scope DeathEvent initializer InitDeathEvent
     endfunction
     
     function AttackBossDeathEvent(unit boss)
+        int bossnum = 0
+        int bossid = 0
         AttackBOSSDeathCos = AttackBOSSDeathCos + 1
         BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
         if  AttackBOSSDeathCos == PlayerNum//AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             ShowBossDamageUI(false)
             ShowBossDamageString()
-            if  GetUnitTypeId(boss) == 'mb00'+(AttackUnitWNOver/3)
+            bossnum = (AttackUnitWNOver/3)
+            if  bossnum < 10
+                bossid = 'mb00'+ bossnum
+            else
+                bossid = 'mb10'
+            endif
+            if  GetUnitTypeId(boss) == bossid
                 AttackUnitWin()
             endif
         endif
@@ -577,7 +585,7 @@ scope DeathEvent initializer InitDeathEvent
                 PlayerHeroKillUnit(u2,u1)
                 //小怪死亡的其他功能
                 HeroKillMoster(u2,u1)
-                if  uid >= 'mb01' and uid <= 'mb09'
+                if  uid >= 'mb01' and uid <= 'mb20'
                     AttackBossDeathEvent(u1)
                 endif
             else
