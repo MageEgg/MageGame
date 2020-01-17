@@ -96,12 +96,14 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS018(unit u1,real damage)//造成伤害三秒内破甲+15%
         unit u=u1
+        unit uu=null
         real x=GetUnitX(u)
         real y=GetUnitY(u)
         IndexGroup g = IndexGroup.create()
         AddUnitStateExTimer(u,13,15,3)
         DestroyEffect(AddSpecialEffect("effect_daoguang-new.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        unit uu=FirstOfGroup(g.ejg)
         UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         g.destroy()
         u = null
@@ -291,15 +293,14 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         IndexGroup g = IndexGroup.create()
         DestroyEffect(AddSpecialEffect("effect_green-texiao-shandian.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_dubao-texiao.mdl","origin",0))
-                    loop
-                        gu = FirstOfGroup(g.ejg)
-                        exitwhen gu == null
-                                if  I2R(LoadInteger(ht,GetHandleId(gu),159379))>0
-                                    damage=(1+I2R(LoadInteger(ht,GetHandleId(gu),159379)))*damage1
-                                    UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
-                                endif
-                        GroupRemoveUnit(g.ejg,gu)
-                    endloop
+        loop
+            gu = FirstOfGroup(g.ejg)
+            exitwhen gu == null
+            damage=(1+I2R(LoadInteger(ht,GetHandleId(gu),159379)))*damage1
+            UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
+
+            GroupRemoveUnit(g.ejg,gu)
+        endloop
         gu=null
         g.destroy()
         flush locals
@@ -370,10 +371,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         loop
             gu = FirstOfGroup(g.ejg)
             exitwhen gu == null
-            if  I2R(GetUnitAbilityLevel(gu,'A048'))*damage>0
-                damage=(1+I2R(GetUnitAbilityLevel(gu,'A048')))*damage
-                UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS)
-            endif
+            damage=(1+I2R(GetUnitAbilityLevel(gu,'A048')))*damage
+            UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS)
+
             GroupRemoveUnit(g.ejg,gu)
         endloop
         g.destroy()
@@ -736,7 +736,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS078(unit u2,real x1,real y1,real damage1)
         unit u=u2
         real damage=damage1 
-        real m=3+(GetUnitAttack(u)/30000)
+        real m=3
         real x=x1
         real y=y1
         real x0=GetUnitX(u)
@@ -806,7 +806,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS079(unit u2,real x1,real y1,real damage1)
         unit u=u2
         real damage=damage1 
-        real m=3+(GetUnitAttack(u)/30000)
+        real m=3
         real x=x1
         real y=y1
         real x0=GetUnitX(u)
