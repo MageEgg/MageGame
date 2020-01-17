@@ -87,6 +87,12 @@ library GameChallenge9 uses GameChallengeBase
             UnitAddAbility(GameTeamChallengUnit(10),'AZ99')
             UnitAddAbility(GameTeamChallengUnit(11),'AZ99')
             SetGameTeamChallengTimerText(GameTeamChallengUnit(10),GameTeamChallengUnit(11),time)
+        elseif  flag == 11
+            SetUnitVertexColor(GameTeamChallengUnit(12),255,255,255,255)
+            SetUnitVertexColor(GameTeamChallengUnit(13),255,255,255,255)
+            UnitAddAbility(GameTeamChallengUnit(12),'AZ99')
+            UnitAddAbility(GameTeamChallengUnit(13),'AZ99')
+            SetGameTeamChallengTimerText(GameTeamChallengUnit(12),GameTeamChallengUnit(13),time)
         endif
         TimerStart(1,true)
         {
@@ -110,6 +116,12 @@ library GameChallenge9 uses GameChallengeBase
                     else
                         endtimer
                     endif
+                elseif  flag == 11
+                    if  GetUnitAbilityLevel(GameTeamChallengUnit(12),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(13),'AZ99') > 0
+                        SetGameTeamChallengTimerText(GameTeamChallengUnit(12),GameTeamChallengUnit(13),time)
+                    else
+                        endtimer
+                    endif
                 endif
             else    
                 if  flag == 1
@@ -127,6 +139,11 @@ library GameChallenge9 uses GameChallengeBase
                     SetUnitVertexColor(GameTeamChallengUnit(11),255,255,255,0)
                     UnitRemoveAbility(GameTeamChallengUnit(10),'AZ99')
                     UnitRemoveAbility(GameTeamChallengUnit(11),'AZ99')
+                elseif  flag == 11
+                    SetUnitVertexColor(GameTeamChallengUnit(12),255,255,255,0)
+                    SetUnitVertexColor(GameTeamChallengUnit(13),255,255,255,0)
+                    UnitRemoveAbility(GameTeamChallengUnit(12),'AZ99')
+                    UnitRemoveAbility(GameTeamChallengUnit(13),'AZ99')
                 endif
                 endtimer
             endif
