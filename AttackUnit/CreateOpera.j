@@ -101,12 +101,18 @@ library CreateOpera uses DamageCode
     endfunction
     
     function CreateOperaATimerFunc()
-        AttackOperaAEnding()
+        int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
+        time = time + 1
+        if  time == 30
+            AttackOperaAEnding()
+        endif
     endfunction
 
     function CreateOperaATimer()
         OperaTimer = CreateTimer()
-        TimerStart(OperaTimer,100,false,function CreateOperaATimerFunc)
+        int time = 0
+        SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        TimerStart(OperaTimer,1,true,function CreateOperaATimerFunc)
     endfunction
     
     function CreateOperaA()
