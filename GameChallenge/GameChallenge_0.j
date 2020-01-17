@@ -39,6 +39,9 @@ library GameChallenge0 uses GameChallengeBase
                 for n = 4,5
                     SetUnitAPOfBool(GameBiaoJI[n],2)
                 end
+                UnitAddItemEx(Pu[1],'E001')
+                UnitAddItemEx(Pu[1],'E201')
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E201')+"！\n")
                 SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","妖魅已除，这些宝物就作为我的答谢了。唔？庄外妖气弥漫，似有妖物作祟。仁兄不若助我一臂之力，将其降伏？",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀玉石琵琶精|r",0)
             endif
@@ -71,9 +74,6 @@ library GameChallenge0 uses GameChallengeBase
             if  u1 == Pu[1]
                 if  GameChallengBool[0] == false
                     GameChallengBool[0] = true
-                    UnitAddItemEx(Pu[1],'E001')
-                    UnitAddItemEx(Pu[1],'E201')
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E201')+"！\n")
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看？",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀10个妖魅|r",0)
                     SetUnitAPOfBool(GameBiaoJI[0],0)

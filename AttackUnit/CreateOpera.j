@@ -104,6 +104,7 @@ library CreateOpera uses DamageCode
         int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
         time = time + 1
         if  time == 30
+            
             AttackOperaAEnding()
         endif
     endfunction
