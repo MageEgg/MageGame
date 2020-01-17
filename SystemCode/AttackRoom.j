@@ -1,10 +1,12 @@
 library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengDeath
     
     real array AttackRoomPostion[12][600] 
-    group array diesgroup
+    //group array diesgroup
     group array AttackRoomGroup
-    integer AttackRoomUid ='g00A'
-    bool AttackRoomTimer[pid][2]
+    integer array AttackRoomUid
+    boolean array AttackRoomTimer
+    unit array AttackRoomUnit
+    integer array AttackRoomUnitMax
     texttag array AttackTexttag
     
 //初始化数据类
@@ -28,13 +30,16 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     
     function CreateAttackRoomUnit(int unitid,int pid)
         int uid = unitid -'g00A'+1
-        unit u = FirstOfGroup(diesgroup[uid])
-        if  u == null
+        unit u=null
+        if  AttackRoomUnitMax[uid]==0
             u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, AttackRoomPostion[pid][3], AttackRoomPostion[pid][4], bj_UNIT_FACING )
             SetPlayerOnlyDamage(u,pid)
-            SaveInteger(ht,GetHandleId(u),'g00A',pid)
+            SaveInteger(ht,GetHandleId(u),1,pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
+            u = AttackRoomUnit[AttackRoomUnitMax[uid]]
+            AttackRoomUnit[AttackRoomUnitMax[uid]]=null
+            AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
             SetUnitLifePercentBJ( u, 100 )
             UnitRemoveAbility( u, 'Aloc' )
             UnitRemoveBuffs(u, true, true)
@@ -46,7 +51,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             ShowUnit(u,true)
             PauseUnit(u,false)
             GroupAddUnit(AttackRoomGroup[pid],u)
-            GroupRemoveUnit(diesgroup[uid],u)
+           // GroupRemoveUnit(diesgroup[uid],u)
             SetPlayerOnlyDamage(u,pid)
         endif
         u = null
@@ -61,7 +66,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int uid=GetUnitTypeId(u)-'g00A'+1
         SetUnitInvulnerable( u, true )
         SetUnitPathing( u, false )
-        GroupAddUnit(diesgroup[uid],u)
+        AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]+1
+        AttackRoomUnit[AttackRoomUnitMax[uid]]=u
+        //GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
         ShowUnit( u, false )
         PauseUnit(u,true)
@@ -77,11 +84,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     
     //计时器会额外出一波
     function ClearAttackRoomFun()
-        RecoveryAttackRoomUnit(LoadInteger(ht,GetHandleId(GetEnumUnit()),'g00A'),GetEnumUnit())
+        RecoveryAttackRoomUnit(LoadInteger(ht,GetHandleId(GetEnumUnit()),1),GetEnumUnit())
     endfunction
     
     function ClearAttackRoom(int pid)
+    if  IsUnitGroupEmptyBJ(AttackRoomGroup[pid]) == false
         ForGroup(AttackRoomGroup[pid],function ClearAttackRoomFun)
+    endif
     endfunction
 //清空练功房内怪物
 
@@ -305,12 +314,12 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            AttackRoomTimer = true
+            AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
-                RefreshAttackRoom(pid,AttackRoomUid)
+                RefreshAttackRoom(pid,AttackRoomUid[pid])
                 
-                AttackRoomTimer = false
+                AttackRoomTimer[pid] = false
                 endtimer
                 flush locals
             }
@@ -331,8 +340,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 //BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
-                if  AttackRoomTimer==false
-                    RefreshAttackRoom(pid,AttackRoomUid)
+                if  AttackRoomTimer[pid]==false
+                    RefreshAttackRoom(pid,AttackRoomUid[pid])
                 endif
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
@@ -360,8 +369,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         SetAttackRoomMovePostion(1,-5312,-5312)
         SetAttackRoomMovePostion(2,-5312,-8512)
         SetAttackRoomMovePostion(3,-8512,-8512)
-        for g = 1,1//怪物种类数量
-            diesgroup[g] = CreateGroup()
+        for g = 1,4//怪物种类数量
+            //diesgroup[g] = CreateGroup()
+            AttackRoomUnitMax[g]=0
         end
         
         
@@ -371,8 +381,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
                 
+                
                 AttackRoomGroup[pid] = CreateGroup()
-                AttackRoomUid = 'g00A'
+                AttackRoomUid[pid] = 'g00A'
                 AttackRoomUnitNum = 10
                 
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x,y+512,270)//境界
@@ -399,7 +410,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 ShowUnit(Pu[25],false)
 
 
-                RefreshAttackRoom(pid,AttackRoomUid)
+                RefreshAttackRoom(pid,AttackRoomUid[pid])
 
                 //////////////////团本分割/////////////////////
                 GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)

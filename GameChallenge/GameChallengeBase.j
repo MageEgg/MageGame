@@ -545,7 +545,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
         //BJDebugMsg(I2S(num))
-        GameChallengUnit[num] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid,x,y,ang)
+        GameChallengUnit[num] = CreateUnit(Player(pid+4),uid,x,y,ang)
+        SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_PASSIVE),true)
         ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
         SetUnitRealState(GameChallengUnit[num],99,num)
         UnitAddAbility(GameChallengUnit[num],'AZ99')
