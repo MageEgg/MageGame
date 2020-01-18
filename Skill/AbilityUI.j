@@ -18,19 +18,43 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         u = null
     endfunction
 
+    function GetHeroAbilityIndex(unit wu,int id)->int
+        for index = 1,AbilityUIMax
+            if  GetUnitIntState(wu,110+index) == id
+                return index
+            endif
+        end
+        return 0
+    endfunction
+    function GetHeroNullIndex(unit wu)->int
+        int id = 0
+        for index = 1,AbilityUIMax
+            id = GetUnitIntState(wu,110+index)
+            if  id == 0
+                return index
+            elseif GetTypeIdData(id,101) == 9
+                return index
+            endif
+        end
+        return 0
+    endfunction
 
-   func GetUnitAttack(unit wu)->real
+    func GetUnitAttack(unit wu)->real
         return GetUnitState(wu, ConvertUnitState(0x12)) + GetUnitState(wu, ConvertUnitState(0x13))
     end
     
     func GetAbilityDamage(unit wu,int id,real lv)->real
-        real r1 = GetTypeIdReal(id,101)
-        real r2 = GetTypeIdReal(id,102)
+        real r1 = 0
         int chi = GetTypeIdData(id,102)     
-        //BJDebugMsg(GetUnitName(wu))
-        if  chi == 99
-            return r1 * (GetUnitAttack(wu)+GetUnitRealState(wu,2))
-        elseif  chi == 1
+
+        int index = GetHeroAbilityIndex(wu,id)
+        
+        if  index == 5
+            r1 = GetTypeIdReal(id,101)
+        else
+            r1 = GetTypeIdReal(id,100+lv)
+        endif
+        if  chi == 1
             return  r1 * GetUnitAttack(wu)
         else
             return r1 * GetUnitRealState(wu,chi)
@@ -107,26 +131,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
 
     
-    function GetHeroAbilityIndex(unit wu,int id)->int
-        for index = 1,AbilityUIMax
-            if  GetUnitIntState(wu,110+index) == id
-                return index
-            endif
-        end
-        return 0
-    endfunction
-    function GetHeroNullIndex(unit wu)->int
-        int id = 0
-        for index = 1,AbilityUIMax
-            id = GetUnitIntState(wu,110+index)
-            if  id == 0
-                return index
-            elseif GetTypeIdData(id,101) == 9
-                return index
-            endif
-        end
-        return 0
-    endfunction
+    
         
     function IsPlayerHasAbility(unit wu,int id)->bool
         for index = 1,AbilityUIMax
@@ -369,9 +374,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     function RemAbilityState(unit wu,int id,int level)
         integer pid=GetPlayerId(GetOwningPlayer(wu))
-        real r1 = GetTypeIdReal(id,101)
-        real r2 = GetTypeIdReal(id,102) 
-        real dam = r1 + r2 * level
+        real dam = GetTypeIdReal(id,100+level)
         SetAbilityState(wu,id,dam,-1)
     endfunction
 
@@ -379,9 +382,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     function AddAbilityState(unit wu,int id,int level)
         int pid = GetPlayerId(GetOwningPlayer(wu))
-        real r1 = GetTypeIdReal(id,101)
-        real r2 = GetTypeIdReal(id,102) 
-        real dam = r1 + r2 * level
+        real dam = GetTypeIdReal(id,100+level)
         SetAbilityState(wu,id,dam,1)
     endfunction
     

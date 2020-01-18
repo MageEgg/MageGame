@@ -39,22 +39,30 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         else
 
             u = AttackRoomUnit[AttackRoomUnitMax[uid]]
-            AttackRoomUnit[AttackRoomUnitMax[uid]]=null
-            AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
-            SetUnitLifePercentBJ( u, 100 )
-            UnitRemoveAbility( u, 'Aloc' )
-            UnitRemoveBuffs(u, true, true)
-            SetUnitX(u,AttackRoomPostion[pid][3])
-            SetUnitY(u,AttackRoomPostion[pid][4])
-            SetUnitAnimation( u, "stand" )
-            SetUnitInvulnerable( u, false )
-            SetUnitPathing( u, true )
-            ShowUnit(u,true)
-            PauseUnit(u,false)
-            GroupAddUnit(AttackRoomGroup[pid],u)
-            SaveInteger(ht,GetHandleId(u),1,pid)
-           // GroupRemoveUnit(diesgroup[uid],u)
-            SetPlayerOnlyDamage(u,pid)
+            if  GetUnitTypeId(u) != 0
+                AttackRoomUnit[AttackRoomUnitMax[uid]]=null
+                AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
+                SetUnitLifePercentBJ( u, 100 )
+                UnitRemoveAbility( u, 'Aloc' )
+                UnitRemoveBuffs(u, true, true)
+                SetUnitX(u,AttackRoomPostion[pid][3])
+                SetUnitY(u,AttackRoomPostion[pid][4])
+                SetUnitAnimation( u, "stand" )
+                SetUnitInvulnerable( u, false )
+                SetUnitPathing( u, true )
+                ShowUnit(u,true)
+                PauseUnit(u,false)
+                GroupAddUnit(AttackRoomGroup[pid],u)
+                SaveInteger(ht,GetHandleId(u),1,pid)
+                // GroupRemoveUnit(diesgroup[uid],u)
+                SetPlayerOnlyDamage(u,pid)
+            else
+                BJDebugMsg("出现问题 重新取单位")
+                AttackRoomUnit[AttackRoomUnitMax[uid]] = null
+                AttackRoomUnitMax[uid] = AttackRoomUnitMax[uid] - 1
+                u = null
+                CreateAttackRoomUnit(unitid,pid)
+            endif
         endif
         u = null
     endfunction
