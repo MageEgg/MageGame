@@ -37,6 +37,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SaveInteger(ht,GetHandleId(u),1,pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
+
             u = AttackRoomUnit[AttackRoomUnitMax[uid]]
             AttackRoomUnit[AttackRoomUnitMax[uid]]=null
             AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
@@ -66,6 +67,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int pid=pid1
         int uid=GetUnitTypeId(u)-'g00A'+1
         SetUnitInvulnerable( u, true )
+
         SetUnitPathing( u, false )
         AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]+1
         AttackRoomUnit[AttackRoomUnitMax[uid]]=u
@@ -307,18 +309,17 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         integer pid=GetPlayerId(GetOwningPlayer(ku))
         AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
-        if  FirstOfGroup(AttackRoomGroup[pid]) == null
+        if  CountUnitsInGroup(AttackRoomGroup[pid]) == 0
             if  GetUnitTypeId(Pu[27]) == 'np27'
                 SoulTimer(pid,x,y)
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            //DBUG("判断单位组为空准备刷怪")
+
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
                 RefreshAttackRoom(pid,AttackRoomUid[pid])
-                
                 AttackRoomTimer[pid] = false
                 endtimer
                 flush locals
@@ -380,7 +381,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             if  IsPlaying(pid) == true
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
-                
+                RefreshAttackRoom(pid,AttackRoomUid[pid])
                 
                 AttackRoomGroup[pid] = CreateGroup()
                 AttackRoomUid[pid] = 'g00A'
@@ -395,14 +396,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,501)
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,301)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
 
                 AttackTexttag[pid] = CreateTextTag()
-                SetTextTagText(AttackTexttag[pid],"0/500",0.03)
+                SetTextTagText(AttackTexttag[pid],"0/300",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
 
                 //ShowUnit(Pu[23],false)
