@@ -5,8 +5,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     group array AttackRoomGroup
     integer array AttackRoomUid
     boolean array AttackRoomTimer
-    unit array AttackRoomUnit
-    integer array AttackRoomUnitMax
+    unit array AttackRoomUnit[4][2000]
+    integer array AttackRoomUnitMax[4][5]
     texttag array AttackTexttag
     
 //初始化数据类
@@ -31,29 +31,34 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     function CreateAttackRoomUnit(int unitid,int pid)
         int uid = unitid -'g00A'+1
         unit u=null
-        if  AttackRoomUnitMax[uid]==0
+        if  AttackRoomUnitMax[pid][uid]==0
             u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, AttackRoomPostion[pid][3], AttackRoomPostion[pid][4], bj_UNIT_FACING )
             SetPlayerOnlyDamage(u,pid)
             SaveInteger(ht,GetHandleId(u),1,pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
-
-            u = AttackRoomUnit[AttackRoomUnitMax[uid]]
-            AttackRoomUnit[AttackRoomUnitMax[uid]]=null
-            AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
-            SetUnitLifePercentBJ( u, 100 )
-            UnitRemoveAbility( u, 'Aloc' )
-            UnitRemoveBuffs(u, true, true)
-            SetUnitX(u,AttackRoomPostion[pid][3])
-            SetUnitY(u,AttackRoomPostion[pid][4])
-            SetUnitInvulnerable( u, false )
-            SetUnitPathing( u, true )
-            ShowUnit(u,true)
-            PauseUnit(u,false)
-            GroupAddUnit(AttackRoomGroup[pid],u)
-            SaveInteger(ht,GetHandleId(u),1,pid)
-           // GroupRemoveUnit(diesgroup[uid],u)
-            SetPlayerOnlyDamage(u,pid)
+             u = AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]
+            if  GetUnitTypeId(u)!=0
+                AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=null
+                AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]-1
+                SetUnitLifePercentBJ( u, 100 )
+                UnitRemoveAbility( u, 'Aloc' )
+                UnitRemoveBuffs(u, true, true)
+                SetUnitX(u,AttackRoomPostion[pid][3])
+                SetUnitY(u,AttackRoomPostion[pid][4])
+                SetUnitInvulnerable( u, false )
+                SetUnitPathing( u, true )
+                ShowUnit(u,true)
+                PauseUnit(u,false)
+                GroupAddUnit(AttackRoomGroup[pid],u)
+                SaveInteger(ht,GetHandleId(u),1,pid)
+            // GroupRemoveUnit(diesgroup[uid],u)
+                SetPlayerOnlyDamage(u,pid)
+            else
+                AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=null
+                AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]-1
+                DBUG("？？？")
+            endif
         endif
         u = null
     endfunction
@@ -66,10 +71,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int pid=pid1
         int uid=GetUnitTypeId(u)-'g00A'+1
         SetUnitInvulnerable( u, true )
-
         SetUnitPathing( u, false )
-        AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]+1
-        AttackRoomUnit[AttackRoomUnitMax[uid]]=u
+        AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]+1
+        AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=u
         //GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
         ShowUnit( u, false )
@@ -369,11 +373,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         SetAttackRoomMovePostion(1,-5312,-5312)
         SetAttackRoomMovePostion(2,-5312,-8512)
         SetAttackRoomMovePostion(3,-8512,-8512)
-        for g = 1,4//怪物种类数量
-            //diesgroup[g] = CreateGroup()
-            AttackRoomUnitMax[g]=0
-        end
-        
         
         
         for pid = 0,3//玩家数量
