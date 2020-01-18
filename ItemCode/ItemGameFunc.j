@@ -25,9 +25,10 @@ library ItemGameFunc uses DamageCode
         if  gift != null and gift != ""
             if  gift == "公众号"
                 num = 1
-                if  DzPlayerLv(Player(pid)) >= 3 
+                if  GetDzPlayerData(pid,1,21) == 0
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
+                        SaveDzPlayerData(pid,1,21,1)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
                         AddUnitRealState(Pu[1],47,2)
                         AddUnitRealState(Pu[1],48,1)
@@ -36,13 +37,17 @@ library ItemGameFunc uses DamageCode
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
+                    AddUnitRealState(Pu[1],47,2)
+                    AddUnitRealState(Pu[1],48,1)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r自动为您领取|cffffcc00【"+gift+"礼包】|r！")
                 endif
             elseif  gift == "入群"
                 num = 2
-                if  DzPlayerLv(Player(pid)) >= 3 
+                if  GetDzPlayerData(pid,1,22) == 0
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
+                        SaveDzPlayerData(pid,1,22,1)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
                         AddUnitRealState(Pu[1],47,2)
                         AddUnitRealState(Pu[1],48,1)
@@ -51,7 +56,10 @@ library ItemGameFunc uses DamageCode
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
+                    AddUnitRealState(Pu[1],47,2)
+                    AddUnitRealState(Pu[1],48,1)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r自动为您领取|cffffcc00【"+gift+"礼包】|r！")
                 endif
             elseif  gift == "评价"
                 num = 3
@@ -149,6 +157,15 @@ library ItemGameFunc uses DamageCode
                 endif
             endif
         endif
+        for num = 1,8
+            RemoveItemFromStock(Pu[26],'IB00'+num)
+            RemoveItemFromStock(Pu[26],'IB50'+num)
+            if  GameGiftBool[num] == false
+                AddItemToStock(Pu[26],'IB00'+num,1,1)
+            else
+                AddItemToStock(Pu[26],'IB50'+num,1,1)
+            endif
+        end
     endfunction
 
     function PlayerGetGameGift(int pid,int itid)
@@ -168,27 +185,17 @@ library ItemGameFunc uses DamageCode
         elseif  itid == 'IB09'
             ItemGameGift(pid,"老铁")
         endif
-        for num = 0,9
-            RemoveItemFromStock(Pu[26],'IB00'+num)
-            RemoveItemFromStock(Pu[26],'IB50'+num)
-            if  GameGiftBool[num] == false
-                AddItemToStock(Pu[26],'IB00'+num,1,1)
-            else
-                AddItemToStock(Pu[26],'IB50'+num,1,1)
-            endif
-        end
     endfunction
 
     function InitPlayerGameGift(int pid)
-        //AddItemToStock(Pu[26],'IB01',1,1)
-        //AddItemToStock(Pu[26],'IB02',1,1)
-
-        AddItemToStock(Pu[26],'IB03',1,1)
-        AddItemToStock(Pu[26],'IB04',1,1)
-        AddItemToStock(Pu[26],'IB05',1,1)
-        AddItemToStock(Pu[26],'IB06',1,1)
-        AddItemToStock(Pu[26],'IB07',1,1)
-        AddItemToStock(Pu[26],'IB08',1,1)
+        if  GetDzPlayerData(pid,1,21) == 1
+            ItemGameGift(pid,"公众号") //自动领取
+        endif
+        if  GetDzPlayerData(pid,1,22) == 1
+            ItemGameGift(pid,"入群") //自动领取
+        endif
+        ItemGameGift(pid,"公会") //自动领取
+        ItemGameGift(pid,"星耀") //自动领取
     endfunction
     
 endlibrary
