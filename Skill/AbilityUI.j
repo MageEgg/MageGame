@@ -617,7 +617,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
 
     //InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
-    function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,int Damagetype,real cd,string name,string tips,string icon)
+    function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,real r4,real r5,int Damagetype,real cd,string name,string tips,string icon)
         SetTypeIdData(id,100,Type)
         SetTypeIdData(id,101,color)
         SetTypeIdData(id,102,chi)
@@ -629,6 +629,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         SetTypeIdReal(id,101,r1)//伤害基数
         SetTypeIdReal(id,102,r2)//伤害等级参数
         SetTypeIdReal(id,103,r3)//伤害等级参数
+        SetTypeIdReal(id,104,r4)//伤害等级参数
+        SetTypeIdReal(id,105,r5)//伤害等级参数
     endfunction
     
     function AbilityUIInit()

@@ -276,6 +276,8 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         elseif  id >= 'sp00' and id <= 'sp99'
             SetHeroUnitState(wu)
         endif
+
+        AddUnitRealState(wu,20,200)
     endfunction
     
     

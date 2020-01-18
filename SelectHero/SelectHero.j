@@ -76,6 +76,7 @@ scope SelectHero
 
             LoadPlayerTechState.execute(pid)
             InitHeroAddStateAbility.execute(Pu[1])
+            PlayerLoadPassCheck.execute(pid)
             
         endif
     endfunction
@@ -126,6 +127,9 @@ scope SelectHero
             
             UnitAddAbility(Pu[1],'AG08')
 
+            UnitAddAbility(Pu[1],'AG0A')
+            UnitAddAbility(Pu[1],'AG0B')
+
             UnitAddAbility(Pu[1],'A002')
 
             HeroAddAbilityByIndex(Pu[1],1,'S0Q1')
@@ -141,6 +145,8 @@ scope SelectHero
             LoadPlayerTechState.execute(pid)
             
             InitHeroAddStateAbility.execute(Pu[1])
+
+            PlayerLoadPassCheck.execute(pid)
             
         endif
     endfunction
