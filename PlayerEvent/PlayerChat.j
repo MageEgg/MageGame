@@ -25,37 +25,34 @@ scope PlayerCaht initializer InitPlayerChat
         int i3 = 0
         int i4 = 0
         int pid = GetPlayerId(GetTriggerPlayer())
-        if  chat1 == QQqunNumber
-            PlayerChatCode(pid,3)
-        elseif  chat1 == "魔芝rpg" or chat1 == "墨汁rpg"
-            PlayerChatCode(pid,1)
-        elseif  chat1 == WXstring
-            PlayerChatCode(pid,4)
+        if  chat1 == "游戏愉快" or chat1 == "youxiyukuai"
+            ItemGameGift(pid,"入群")
+        elseif  chat1 == "魔芝rpg" or chat1 == "墨汁rpg" or chat1 == "mzrpg"
+            ItemGameGift(pid,"魔芝")
+        elseif  chat1 == "fs"
+            ItemGameGift(pid,"公众号")
         elseif  chat == "关闭特效"
             ShowEffect = false
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")
         elseif  chat == "开启特效"
             ShowEffect = true
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已开启（输入关闭特效可屏蔽）！")
+        elseif  chat3 == "-sh"
+            if  ShowEffect == false
+                ShowEffect = true
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已开启（输入关闭特效可屏蔽）！")
+            else
+                ShowEffect = false
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")
+            endif
         elseif  chat1 == "hg"
 
         elseif  chat1 == "jf"
-            DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[当前通关积分]:|r"+I2S(GetData(pid,1,1)))
-            DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[当前守家积分]:|r"+I2S(GetData(pid,1,2)))
+        
         elseif  chat1 == "hd"
 
         elseif  chat1 == "tg"
-            for i = 1,9
-                DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[难"+I2S(i)+"通关次数]:|r"+I2S(GetData(pid,3,i)))
-            end
-        elseif  chat3 == "-sh"
-            //if  TextBoll == false
-            //    TextBoll = true
-                //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r伤害显示已关闭！")
-            //else
-            //    TextBoll = false
-                //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r伤害显示已开启！")
-            //endif
+        
         elseif  chat == "++" or chat == "+"
             real h = GetCameraField(CAMERA_FIELD_TARGET_DISTANCE) + 200
             if  Player(pid)==GetLocalPlayer()
@@ -186,7 +183,7 @@ scope PlayerCaht initializer InitPlayerChat
 
     func InitPlayerChat()
         trigger trg = CreateTrigger()
-        for i = 0,3
+        for i = 0,7
             TriggerRegisterPlayerChatEvent(trg,Player(i),"",true)
         end
         TriggerAddAction(trg,function PlayerChatActions)
