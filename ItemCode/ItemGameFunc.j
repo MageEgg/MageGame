@@ -9,15 +9,6 @@ library ItemGameFunc uses DamageCode
     #define ItemGameFuncBool        ItemGameFuncArrayBool[pid]
     #define GameGiftBool            ItemGameFuncArrayBool[pid]
 
-    function IsPlayerGuildVIP(int pid)->bool
-        /*
-        AddUnitRealState(Pu[1],46,3)
-        AddUnitRealState(Pu[1],43,1)
-        AddUnitRealState(Pu[1],48,1)
-        */
-        return false
-    endfunction
-
     function ItemGameGift(int pid,string gift)  
         int num = 0 
         int gold = 0
@@ -28,20 +19,20 @@ library ItemGameFunc uses DamageCode
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
                         SaveDzPlayerData(pid,1,21,1)
-                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
-                        AddUnitRealState(Pu[1],47,2)
+                        AddUnitRealState(Pu[1],46,3)
+                        AddUnitRealState(Pu[1],43,1)
                         AddUnitRealState(Pu[1],48,1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，金币+2000、每秒攻击+2、每秒业力+1！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，杀敌金币+3、杀敌攻击+1、每秒业力+1！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
                 else
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
-                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
-                        AddUnitRealState(Pu[1],47,2)
+                        AddUnitRealState(Pu[1],46,3)
+                        AddUnitRealState(Pu[1],43,1)
                         AddUnitRealState(Pu[1],48,1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，金币+2000、每秒攻击+2、每秒业力+1！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，杀敌金币+3、杀敌攻击+1、每秒业力+1！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
@@ -113,7 +104,7 @@ library ItemGameFunc uses DamageCode
                 endif
             elseif  gift == "公会"
                 num = 6
-                if  IsPlayerGuildVIP(pid) == true
+                if  IsPlayerIn_MZRPG_Cooperate_Guild(pid) == true
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
                         AddUnitRealState(Pu[1],46,10)
@@ -128,7 +119,7 @@ library ItemGameFunc uses DamageCode
                 endif
             elseif  gift == "星耀"    
                 num = 7
-                if  GetPublicMapLevel(pid) > 0
+                if  IsPlayerIn_MZRPG_Star(pid) == true
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
                         AddUnitRealState(Pu[1],46,50)
