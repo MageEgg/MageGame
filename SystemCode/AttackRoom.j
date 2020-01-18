@@ -5,8 +5,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     group array AttackRoomGroup
     integer array AttackRoomUid
     boolean array AttackRoomTimer
-    unit array AttackRoomUnit
-    integer array AttackRoomUnitMax
+    unit array AttackRoomUnit[4][2000]
+    integer array AttackRoomUnitMax[4][5]
     texttag array AttackTexttag
     
 //初始化数据类
@@ -31,7 +31,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     function CreateAttackRoomUnit(int unitid,int pid)
         int uid = unitid -'g00A'+1
         unit u=null
-        if  AttackRoomUnitMax[uid]==0
+        if  AttackRoomUnitMax[pid][uid]==0
             u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, AttackRoomPostion[pid][3], AttackRoomPostion[pid][4], bj_UNIT_FACING )
             SetPlayerOnlyDamage(u,pid)
             SaveInteger(ht,GetHandleId(u),1,pid)
@@ -75,10 +75,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int pid=pid1
         int uid=GetUnitTypeId(u)-'g00A'+1
         SetUnitInvulnerable( u, true )
-
         SetUnitPathing( u, false )
-        AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]+1
-        AttackRoomUnit[AttackRoomUnitMax[uid]]=u
+        AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]+1
+        AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=u
         //GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
         ShowUnit( u, false )
@@ -323,7 +322,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            DBUG("全部死亡，刷新")
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
@@ -378,11 +376,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         SetAttackRoomMovePostion(1,-5312,-5312)
         SetAttackRoomMovePostion(2,-5312,-8512)
         SetAttackRoomMovePostion(3,-8512,-8512)
-        for g = 1,4//怪物种类数量
-            //diesgroup[g] = CreateGroup()
-            AttackRoomUnitMax[g]=0
-        end
-        
         
         
         for pid = 0,3//玩家数量
