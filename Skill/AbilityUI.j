@@ -43,7 +43,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         return GetUnitState(wu, ConvertUnitState(0x12)) + GetUnitState(wu, ConvertUnitState(0x13))
     end
     
-    func GetAbilityDamage(unit wu,int id,real lv)->real
+    func GetAbilityDamage(unit wu,int id,int lv)->real
         real r1 = 0
         int chi = GetTypeIdData(id,102)     
 
@@ -55,7 +55,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             r1 = GetTypeIdReal(id,100+lv)
         endif
         if  chi == 1
-            return  r1 * GetUnitAttack(wu)
+            return r1 * GetUnitAttack(wu)
         else
             return r1 * GetUnitRealState(wu,chi)
         endif
