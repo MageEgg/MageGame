@@ -26,11 +26,11 @@ scope PlayerCaht initializer InitPlayerChat
         int i4 = 0
         int pid = GetPlayerId(GetTriggerPlayer())
         if  chat1 == "游戏愉快" or chat1 == "youxiyukuai"
-            ItemGameGift(pid,"入群")
+            //ItemGameGift(pid,"入群")
         elseif  chat1 == "魔芝rpg" or chat1 == "墨汁rpg" or chat1 == "mzrpg"
-            ItemGameGift(pid,"魔芝")
+            //ItemGameGift(pid,"魔芝")
         elseif  chat1 == "fs"
-            ItemGameGift(pid,"公众号")
+            //ItemGameGift(pid,"公众号")
         elseif  chat == "关闭特效"
             ShowEffect = false
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")

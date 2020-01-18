@@ -417,7 +417,7 @@ scope ItemSystem initializer InitItemSystem
             AttackOperaAGold()
         endif
         if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
-            PlayerGetGameGift(pid,itemid)
+            //PlayerGetGameGift(pid,itemid)
         endif
         
         if  IsItemPowerup(GetManipulatedItem()) == true //清除

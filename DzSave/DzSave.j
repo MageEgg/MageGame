@@ -344,7 +344,7 @@ library DzSave initializer InitDzData uses DzDataSetting
                 BJDebugMsg("全局存档 start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        DzSavePublic(pid,1) //全局存档 
+                        //DzSavePublic(pid,1) //全局存档 
                     endif
                 end
                 BJDebugMsg("全局存档 over")
