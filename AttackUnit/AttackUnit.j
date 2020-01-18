@@ -75,7 +75,7 @@ library AttackUnit uses DamageCode
                     if  StopAttackBool == true
                         if  TimerGetRemaining(AttackElseTimer) > 0
                             AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
-                            AttackTimerTextExUI.SetText("|cffffe100暂停进攻"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
+                            AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
                         else
                             AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
                             AttackTimerTextExUI.SetText("")
@@ -98,7 +98,7 @@ library AttackUnit uses DamageCode
                     if  StopAttackBool == true
                         if  TimerGetRemaining(AttackElseTimer) > 0
                             AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
-                            AttackTimerTextExUI.SetText("|cffffe100暂停进攻"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
+                            AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
                         else
                             AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
                             AttackTimerTextExUI.SetText("")
