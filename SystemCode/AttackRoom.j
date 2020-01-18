@@ -37,6 +37,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SaveInteger(ht,GetHandleId(u),1,pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
+
             u = AttackRoomUnit[AttackRoomUnitMax[uid]]
             AttackRoomUnit[AttackRoomUnitMax[uid]]=null
             AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
@@ -66,6 +67,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int pid=pid1
         int uid=GetUnitTypeId(u)-'g00A'+1
         SetUnitInvulnerable( u, true )
+
         SetUnitPathing( u, false )
         AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]+1
         AttackRoomUnit[AttackRoomUnitMax[uid]]=u
@@ -307,18 +309,17 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         integer pid=GetPlayerId(GetOwningPlayer(ku))
         AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
-        if  FirstOfGroup(AttackRoomGroup[pid]) == null
+        if  CountUnitsInGroup(AttackRoomGroup[pid]) == 0
             if  GetUnitTypeId(Pu[27]) == 'np27'
                 SoulTimer(pid,x,y)
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            //DBUG("判断单位组为空准备刷怪")
+
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
                 RefreshAttackRoom(pid,AttackRoomUid[pid])
-                
                 AttackRoomTimer[pid] = false
                 endtimer
                 flush locals
@@ -380,7 +381,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             if  IsPlaying(pid) == true
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
-                
+                RefreshAttackRoom(pid,AttackRoomUid[pid])
                 
                 AttackRoomGroup[pid] = CreateGroup()
                 AttackRoomUid[pid] = 'g00A'
