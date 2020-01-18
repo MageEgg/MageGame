@@ -414,7 +414,11 @@ scope ItemSystem initializer InitItemSystem
             endif
         endif
         if  itemid == 'I00A'
-            AttackOperaAGold()
+            AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))
+        elseif  itemid == 'IZ0A'
+            AttackUnitItemStop(pid,10,120)
+        elseif  itemid == 'IZ0B'
+            AttackUnitItemSpeedUp(pid)
         endif
         if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
             PlayerGetGameGift(pid,itemid)
