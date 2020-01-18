@@ -1,5 +1,4 @@
 scope ItemSystem initializer InitItemSystem
-    
 
     //装备升级
     function GetEquipIndex(int id)->int
@@ -417,10 +416,10 @@ scope ItemSystem initializer InitItemSystem
         if  itemid == 'I00A'
             AttackOperaAGold()
         endif
-
+        if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
+            PlayerGetGameGift(pid,itemid)
+        endif
         
-       
-         
         if  IsItemPowerup(GetManipulatedItem()) == true //清除
             
             RemoveItem(GetManipulatedItem())

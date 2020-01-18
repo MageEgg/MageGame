@@ -66,13 +66,13 @@ scope SelectHero
             
             
             
-    
-            GameChallenge_0Start(pid)
+            InitPlayerGameGift(pid)//加载礼包
+            GameChallenge_0Start(pid)//加载新手任务
             
-            if  SubString(GetPlayerName(Player(pid)),0,9) == "星耀丶"
+            /*if  SubString(GetPlayerName(Player(pid)),0,9) == "星耀丶"
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r欢迎星耀成员"+GetPlayerColorEx(pid)+GetPN(pid)+"，奖励木材1000！")
                 AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            endif
+            endif*/
 
             LoadPlayerTechState.execute(pid)
             InitHeroAddStateAbility.execute(Pu[1])

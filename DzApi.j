@@ -38,7 +38,7 @@ library DzAPI
 	native RequestExtraStringData           takes integer dataType, player whichPlayer, string param1, string param2, boolean param3, integer param4, integer param5, integer param6 returns string
 	native RequestExtraRealData             takes integer dataType, player whichPlayer, string param1, string param2, boolean param3, integer param4, integer param5, integer param6 returns real
 	native DzAPI_Map_GetPlatformVIP         takes player whichPlayer returns integer
-
+    
 	function DzAPI_Map_IsPlatformVIP takes player whichPlayer returns boolean
 		return DzAPI_Map_GetPlatformVIP(whichPlayer) > 0
 	endfunction
@@ -160,9 +160,7 @@ library DzAPI
 		set whichPlayer=null
 		return value
 	endfunction
-    
-    
-    
+
 	function DzAPI_Map_StoreString takes player whichPlayer, string key, string value returns nothing
 		set key="S"+key
 		call DzAPI_Map_SaveServerValue(whichPlayer,key,value)
@@ -172,9 +170,7 @@ library DzAPI
 	function DzAPI_Map_GetStoredString takes player whichPlayer, string key returns string
 		return DzAPI_Map_GetServerValue(whichPlayer,"S"+key)
 	endfunction
-    
-    
-    
+
 	function DzAPI_Map_StoreStringEX takes player whichPlayer, string key, string value returns nothing
 		set key="S"+key
 		call RequestExtraBooleanData(39, whichPlayer,key,value,false,0,0,0)
@@ -202,9 +198,6 @@ library DzAPI
 		set whichPlayer=null
 		return value
 	endfunction
-
-
-
 
 	function DzAPI_Map_FlushStoredMission takes player whichPlayer, string key returns nothing
 		call DzAPI_Map_SaveServerValue(whichPlayer,key,null)
@@ -292,7 +285,32 @@ library DzAPI
 	function DzAPI_Map_CommentTotalCount takes nothing returns integer
 	    return RequestExtraIntegerData(51, null, null, null, false, 0, 0, 0)
 	endfunction
+    
+    function DzAPI_Map_Statistics takes player whichPlayer, string eventKey, string eventType, integer value returns nothing
+	    call RequestExtraBooleanData(34, whichPlayer, eventKey, "", false, value, 0, 0)
+	endfunction
+    
+    function BuryingPointData(int pid,int tp,int value,int count)
+        call DzAPI_Map_Statistics( Player(pid), "POINT"+I2S(tp)+I2S(value),"",count)
+    endfunction
+    
+    function DzAPI_Map_Returns takes player whichPlayer, integer label returns boolean
+	    return RequestExtraBooleanData(53, whichPlayer, null, null, false, label, 0, 0)
+	endfunction
+    //     DzAPI_Map_Returns(Player(pid),2) == true //当前是平台回流用户(登录后30天消失)
+    //     DzAPI_Map_Returns(Player(pid),8) == true //当前是地图回流用户(登录后7天消失)
+    //     DzAPI_Map_Returns(Player(pid),1) == true //曾经是平台回流用户(永久)
+    //     DzAPI_Map_Returns(Player(pid),4) == true //曾经是地图回流用户(永久)
+    //     DzAPI_Map_Returns(Player(pid),16) == true //是否收藏地图
+    
+	function DzAPI_Map_ContinuousCount takes player whichPlayer, integer id returns integer
+	    return RequestExtraIntegerData(54, whichPlayer, null, null, false, id, 0, 0)
+	endfunction
+	//     DzAPI_Map_ContinuousCount(Player(pid),0) == true //总签到次数
+	//     DzAPI_Map_ContinuousCount(Player(pid),1) == true //最高连续签到天数
+	//     DzAPI_Map_ContinuousCount(Player(pid),2) == true //连续签到天数
 
+    
 endlibrary
 
 #endif
