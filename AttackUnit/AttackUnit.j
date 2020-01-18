@@ -598,6 +598,7 @@ library AttackUnit uses DamageCode
     function AttackUnitWin()
         real ran = 0
         int jf = 0
+        int jfadd = 0
         GameWinBoolJu = true
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
@@ -607,6 +608,25 @@ library AttackUnit uses DamageCode
         for pid = 0,5
             if  IsPlaying(pid) == true
                 //存档
+                AddDzPlayerData(pid,3,1,1) //总通关次数
+                AddDzPlayerData(pid,3,GameLevel+1,1) //通关难度次数
+
+                jfadd = 50*GameLevel
+                jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
+                AddDzPlayerData(pid,2,1,jfadd) //通关积分
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
+
+                MissionAddNumFunc(pid,2,1) //任务
+                MissionAddNumFunc(pid,6,1) //任务
+                if  PlayerNum > 1 
+                    MissionAddNumFunc(pid,11,1) //任务
+                endif
+                if  GameLevel >= 2
+                    MissionAddNumFunc(pid,22,1) //任务
+                endif
+                if  GameLevel >= 3
+                    MissionAddNumFunc(pid,23,1) //任务
+                endif
             endif
         end
         ExecuteFunc("GameWin")

@@ -8,6 +8,20 @@ library DzConfig uses SystemCodes
     function GetDzHdToPlayer(int pid)
         int n = 0
         if  DzConA[0] == 1
+            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00战争号角活动开启中！通关积分+50%|r")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cffff0000战争号角活动关闭中！|r")
+            endif
+            n = DzConA[11]
+            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+                n = n - 1
+            endif
+            if  n > 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00通关积分活动开启中！通关积分+"+I2S(50*n)+"%|r")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cffff0000通关积分活动关闭中！|r")
+            endif  
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,60, "|cffffcc00[系统]：|r|cffff0000地图存档未开启！|r")
         endif
@@ -16,7 +30,17 @@ library DzConfig uses SystemCodes
     function GetDzHD()
         int n = 0
         if  DzConA[0] == 1
-
+            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00战争号角活动开启中！通关积分+50%|r")
+                DzConA[11] = DzConA[11] + 1
+            endif
+            n = DzConA[11]
+            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+                n = n - 1
+            endif
+            if  n > 0
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00通关积分活动开启中！通关积分+"+I2S(50*n)+"%|r")
+            endif
         endif
     endfunction
     

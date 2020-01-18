@@ -433,8 +433,8 @@ library PassCheckUI uses GameFrame,PassCheckMission
             end
 
             nowexp = GetPlayerPassExp(pid)
-            nowexp = nowexp - (nowexp /10) * 10
-            for i = 1,10
+            nowexp = nowexp - (nowexp /8) * 8
+            for i = 1,8
                 if  i <= nowexp
                     DzFrameSetTexture(BUTTON_Back[600+i][0],"war3mapImported\\UI_Pass_Exp1.tga",0)
                 else
@@ -524,7 +524,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         end
 
         //普通通行证
-        CreateButton(652,Button.frameid,TYPE_NULL,0,BUTTON_Back[651][0],6,0.0,-0.001,0.028,0.028,"")
+        CreateButton(652,Button.frameid,TYPE_NULL,0,BUTTON_Back[651][0],6,0.0,-0.001,0.028,0.028,"replaceabletextures\\commandbuttons\\BTNTXZ01.blp")
         
         last = 652
         for i = 1,10
@@ -533,7 +533,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         end
 
         //超级通行证
-        CreateButton(653,Button.frameid,TYPE_NULL,0,BUTTON_Back[652][0],6,0.0,-0.009,0.028,0.028,"")
+        CreateButton(653,Button.frameid,TYPE_NULL,0,BUTTON_Back[652][0],6,0.0,-0.009,0.028,0.028,"replaceabletextures\\commandbuttons\\BTNTXZ02.blp")
         
         last = 653
         for i = 1,10
@@ -547,7 +547,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateButton(650,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.01,0.028,0.028,"war3mapImported\\UI_Pass_LevelText.tga") 
         CreateText(650,Button.frameid,"centertext013",7,7,0.0,0.0,"|cffffcc008|r")
         last = 650
-        for i = 1,10
+        for i = 1,8
             CreateButton(600+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[last][0],5,0.002,0.0,0.028,0.0093,"war3mapImported\\UI_Pass_Exp0.tga") 
             last = 600+i
         end

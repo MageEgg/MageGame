@@ -139,11 +139,18 @@ scope DeathEvent initializer InitDeathEvent
         int id = GetItemTypeId(it)
         int num = GetItemCharges(it)
         int next = GetTypeIdData(id,106)
+        int gl = 50
+
+        if  next == 'E102' or next == 'E103'
+            gl = 100
+        elseif  next >= 'E103' and next <= 'E106'
+            gl = 80
+        endif
         if  num-exp > 1
             SetItemCharges(it,num-exp)
         else
             RemoveItem(it)
-            if  GetRandomInt(1,100)<= 50 or next == 'E102' or next == 'E103'
+            if  GetRandomInt(1,100)<= 50 
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             else

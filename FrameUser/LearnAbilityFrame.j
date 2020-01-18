@@ -471,7 +471,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
             HeroIncAbility(Pu[1],index)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:升级傻逼！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:升级失败！")
         endif
     endfunction
 

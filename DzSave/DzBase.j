@@ -17,6 +17,8 @@ library DzBase uses SystemCodes,DzAPI
     
     #define DzS DzArrayString[pid]
 
+    int DzPlayerInitTGCos = 2
+
     insert DzMatrix
 
     function GetDzDataGroupMaxValue(int Group)->int
