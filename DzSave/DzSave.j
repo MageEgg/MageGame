@@ -386,6 +386,7 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 8
                 BJDebugMsg("初始化存档加载完毕 结束计时器！！！")
                 ExecuteFunc("OpenSelectMode")
+                GetDzHD()
                 endtimer
             endif
             flush locals

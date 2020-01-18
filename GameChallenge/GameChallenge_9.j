@@ -355,6 +355,7 @@ library GameChallenge9 uses GameChallengeBase
             if  GameTeamChallengeInt(0) == 30
                 for pid = 0,3
                     if  IsPlaying(pid) == true
+                        MissionAddNumFunc(pid,25,1) //任务
                         GameTeamChallengWin(pid,1,GameTeamChallengeInt(1))
                         if  IsPlayerInTeamChallenge == true 
                             FlushGameTeamChallengeOfPlayer(pid,0)

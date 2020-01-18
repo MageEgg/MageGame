@@ -1,4 +1,32 @@
 piece DzGameFunc
+
+    function ShowPlayerDzJF(int pid) //显示积分
+        if  DzConA[0] == 1 
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关积分：|r"+I2S(GetDzPlayerData(pid,2,1)))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00守家积分：|r"+I2S(GetDzPlayerData(pid,2,2)))
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r未开启存档！")
+        endif
+    endfunction
+
+    function ShowPlayerDzTGJF(int pid)//显示通关
+        if  DzConA[0] == 1 
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00游戏局数：|r"+I2S(DzPlayerGames(Player(pid)))+"局")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00总通关次数：|r"+I2S(GetDzPlayerData(pid,3,1))+"次")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难1：|r"+I2S(GetDzPlayerData(pid,3,2))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难2：|r"+I2S(GetDzPlayerData(pid,3,3))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难3：|r"+I2S(GetDzPlayerData(pid,3,4))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难4：|r"+I2S(GetDzPlayerData(pid,3,5))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难5：|r"+I2S(GetDzPlayerData(pid,3,6))+"/"+I2S(DzPlayerInitTGCos))
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“JF”查看游戏积分|r")
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r未开启存档！")
+        endif
+    endfunction
+
     function DzPalyerSignInRefresh(int pid,int week,int mission)
         BJDebugMsg("week:"+I2S(week)+" @@ TimeWeek:"+I2S(TimeWeek))
         if  week != TimeWeek
