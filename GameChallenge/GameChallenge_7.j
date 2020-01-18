@@ -1,11 +1,4 @@
 library GameChallenge7 uses GameChallengeBase
-
-    function GameChallenge_7Flush(int pid,real time)
-        for num = 0,9
-            SetUnitVertexColor(GameChallengUnit[70+num],255,255,255,0)
-        end
-        GameChallenge_GlobalFlush(pid,time)
-    endfunction
     
     function OpenGameChallenge_7_A_Timer(int id)
         int pid = id
@@ -230,7 +223,7 @@ library GameChallenge7 uses GameChallengeBase
     function OpenGameChallenge_7(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_7Flush(pid,-1)
+        GameChallengeFluahAll(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         SetPlayerAllianceVISION(pid,false)
         if  ty == 0
@@ -263,7 +256,7 @@ library GameChallenge7 uses GameChallengeBase
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         if  uid == 'uf70'
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败多宝道人！！！",0)
-            GameChallenge_7Flush(pid,2)
+            GameChallengeFluahAll(pid,1)
             IsFinshChallenge(7) = true
             //奖励
             PlayerFinishPlotEx(pid,7)
@@ -295,7 +288,7 @@ library GameChallenge7 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r")  
                 endif
             endif
-            GameChallenge_7Flush(pid,2)
+            GameChallengeFluahAll(pid,1)
             PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,7)

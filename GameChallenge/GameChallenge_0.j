@@ -24,14 +24,14 @@ library GameChallenge0 uses GameChallengeBase
         if  GameChallengBool[0] == true
             GameChallengInt[1] = GameChallengInt[1] + 1
             if  GameChallengBool[1] == false
-                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[1])+"/10",0)
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[1])+"/20",0)
             endif
-            if  GameChallengInt[1] < 10
+            if  GameChallengInt[1] < 20
                 if  GameChallengInt[1] == 1 or ModuloInteger(GameChallengInt[1],5) == 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/10)")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 endif
-            elseif  GameChallengInt[1] == 10
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/10)")
+            elseif  GameChallengInt[1] == 20
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
                 GameChallengBool[1] = true
                 for n = 1,3
                     SetUnitAPOfBool(GameBiaoJI[n],1)
@@ -74,7 +74,7 @@ library GameChallenge0 uses GameChallengeBase
                 if  GameChallengBool[0] == false
                     GameChallengBool[0] = true
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看？",0)
-                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀10个妖魅|r",0)
+                    SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个妖魅|r",0)
                     SetUnitAPOfBool(GameBiaoJI[0],0)
                     for n = 1,3
                         SetUnitAPOfBool(GameBiaoJI[n],1)

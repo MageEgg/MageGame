@@ -1,18 +1,5 @@
 library GameChallenge3 uses GameChallengeBase
 
-    function GameChallenge_3Flush(int pid,real time)
-        for num = 0,3
-            SetUnitVertexColor(GameChallengUnit[30+num],255,255,255,0)
-        end
-        GameChallengInt[30] = 0
-        if  GameChallengUnit[39] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[39]))
-            RemoveUnit(GameChallengUnit[39])
-            GameChallengUnit[39] = null
-        endif
-        GameChallenge_GlobalFlush(pid,time)
-    endfunction
-
     function GameChalleng_3_SMJDeath(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         GameChallengInt[30] = GameChallengInt[30] + 1
@@ -36,7 +23,7 @@ library GameChallenge3 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-破魔家四将]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000黄天化加入敌方阵营！|r")
                 endif
             endif
-            GameChallenge_3Flush(pid,2)
+            GameChallengeFluahAll(pid,1)
             PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,3)
@@ -63,7 +50,7 @@ library GameChallenge3 uses GameChallengeBase
     function OpenGameChallenge_3(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_3Flush(pid,-1)
+        GameChallengeFluahAll(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         SetPlayerAllianceVISION(pid,false)
         if  ty == 0
@@ -91,7 +78,7 @@ library GameChallenge3 uses GameChallengeBase
     function GameChalleng_3_HTHDeath(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         SetPlayerTaskUIChatOfPlayer(pid,"白云童子","紫阳洞道德真君命弟子，来背师兄黄天化回山。",0)
-        GameChallenge_3Flush(pid,2)
+        GameChallengeFluahAll(pid,1)
         IsFinshChallenge(3) = true
         //奖励
         PlayerFinishPlotEx(pid,3)
