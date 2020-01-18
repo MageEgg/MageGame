@@ -9,6 +9,21 @@ library ItemGameFunc uses DamageCode
     #define ItemGameFuncBool        ItemGameFuncArrayBool[pid]
     #define GameGiftBool            ItemGameFuncArrayBool[pid]
 
+    
+    function SetGifeItemStock(int pid)
+        for num = 1,8
+            RemoveItemFromStock(Pu[26],'IB00'+num)
+            RemoveItemFromStock(Pu[26],'IB50'+num)
+        end
+        for num = 1,8
+            if  GameGiftBool[num] == false
+                AddItemToStock(Pu[26],'IB00'+num,1,1)
+            else
+                AddItemToStock(Pu[26],'IB50'+num,1,1)
+            endif
+        end
+    endfunction
+
     function ItemGameGift(int pid,string gift)  
         int num = 0 
         int gold = 0
@@ -157,11 +172,16 @@ library ItemGameFunc uses DamageCode
                 endif
             endif
         endif
+        SetGifeItemStock(pid)
     endfunction
 
     function PlayerGetGameGift(int pid,int itid)
         if  itid == 'IB01' //公众号 口令
+            SetGifeItemStock(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取！")
         elseif  itid == 'IB02' //公众号 入群
+            SetGifeItemStock(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取！")
         elseif  itid == 'IB03'
             ItemGameGift(pid,"评价")
         elseif  itid == 'IB04'
@@ -172,19 +192,15 @@ library ItemGameFunc uses DamageCode
             ItemGameGift(pid,"公会")
         elseif  itid == 'IB07'
             ItemGameGift(pid,"星耀")
-        elseif  itid == 'IB08' //魔芝RPG 口令
+        elseif  itid == 'IB08' //魔芝RPG 口令   
+            SetGifeItemStock(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取！")
         elseif  itid == 'IB09'
             ItemGameGift(pid,"老铁")
+        else
+            SetGifeItemStock(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
         endif
-        for num = 1,8
-            RemoveItemFromStock(Pu[26],'IB00'+num)
-            RemoveItemFromStock(Pu[26],'IB50'+num)
-            if  GameGiftBool[num] == false
-                AddItemToStock(Pu[26],'IB00'+num,1,1)
-            else
-                AddItemToStock(Pu[26],'IB50'+num,1,1)
-            endif
-        end
     endfunction
 
     function InitPlayerGameGift(int id)
@@ -208,7 +224,7 @@ library ItemGameFunc uses DamageCode
         AddItemToStock(Pu[26],'IB06',1,1)
         AddItemToStock(Pu[26],'IB07',1,1)
         AddItemToStock(Pu[26],'IB08',1,1)
-        TimerStart(0.2,true)
+        TimerStart(0.1,true)
         {
             time = time + 1
             if  time == 1
