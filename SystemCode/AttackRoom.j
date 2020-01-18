@@ -173,7 +173,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
-                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/500",0.03)
+                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/300",0.03)
                     SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
 
                     if  life+0.5 >= maxlife
