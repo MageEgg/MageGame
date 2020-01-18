@@ -95,12 +95,13 @@ library CreateOpera uses DamageCode
         endif
     endfunction
 
-    function AttackOperaAGold()
+    function AttackOperaAGold(real x,real y)
+        LocAddText(x,y,"年兽金币：+300",255,202,0,255,90,0.025)
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  IsLocInRect(gg_rct_AttackOpera_A,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,300)
-                    UnitAddText(Pu[1],"年兽金币：+300",255,202,0,255,90,0.023)
+                    //UnitAddText(Pu[1],"年兽金币：+300",255,202,0,255,90,0.023)
                 endif
             endif
         end
