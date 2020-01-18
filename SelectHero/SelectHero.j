@@ -51,6 +51,9 @@ scope SelectHero
             
             
             UnitAddAbility(Pu[1],'AG08')
+            
+            UnitAddAbility(Pu[1],'AG0A')
+            UnitAddAbility(Pu[1],'AG0B')
 
             UnitAddAbility(Pu[1],'A002')
 
