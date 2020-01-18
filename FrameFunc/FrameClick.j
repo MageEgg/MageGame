@@ -35,7 +35,7 @@ scope FrameButton
                 elseif  id >= 581 and id <= 590
                     SetPlayerShowSavePage(pid,id-581)
                 elseif  id == 655//签到
-                    PlayerClockIn(pid)
+                    TimerMissionAddNumFunc(pid,1,1)
                     
                 elseif  id == 661 //通行证翻页
                     PassFreamClickLast(pid)

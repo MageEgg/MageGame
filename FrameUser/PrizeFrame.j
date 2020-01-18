@@ -194,13 +194,13 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
                         RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
                     endif
                 end
-                AddPlayerMagicItem(pid,id)
+                GivePlayerMagicItem(pid,id)
             endif
 
             for n = 1,2
                 id = GetUnitIntState(Pu[1],400+n)
                 if  id >= 'FB01' and id <= 'FB99'
-                    AddPlayerMagicItem(pid,id)
+                    GivePlayerMagicItem(pid,id)
                 else
                     UnitAddItemExEx(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                 endif

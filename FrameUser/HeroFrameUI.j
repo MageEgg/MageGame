@@ -146,6 +146,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 if  num == 3 or num == 5 or num == 10
                     HeroIncAbility(wu,5)
                 endif
+                if  id == 'IJ10'
+                    MissionAddNumFunc(pid,26,1)//获得混沌道果
+                endif
             endif 
         else
             //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")

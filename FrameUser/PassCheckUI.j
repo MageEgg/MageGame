@@ -1,5 +1,5 @@
 library PassCheckMission initializer InitPassCheckMission uses DzSave
-    int MissionDay = 1
+    int MissionDay = 0
     int MaxMissionNum = 4
     
     scope RegisterMission
@@ -95,7 +95,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         RegisterPassCheckMission(15,4,16,"","通关16次任意副本")
         RegisterPassCheckMission(16,4,6,"","击杀6次送宝金蟾")
         RegisterPassCheckMission(17,4,10,"","完成10次占星")
-        RegisterPassCheckMission(18,4,1,"","19:00-22:00登陆游戏")
+        RegisterPassCheckMission(18,4,1,"","20:00-24:00登陆游戏")
 
 
         RegisterPassCheckMission(21,8,1,"","20秒内击杀闻太师")
@@ -115,6 +115,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
     endfunction
 
     function InitRegisterDay()//注册每日任务
+        RegisterPassCheckDay(0,1,4,5,31,0,0)
         RegisterPassCheckDay(1,1,4,5,31,0,0)
         RegisterPassCheckDay(2,1,6,18,30,0,0)
         RegisterPassCheckDay(3,1,8,9,32,0,0)
@@ -199,6 +200,32 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             return 0
         endfunction
 
+        function GetShowMissionTips(int pid,int index,int missionid)->string
+            int data = PlayerPassData[index]
+            int use = GetMissionUse(missionid)
+            if  use > data
+                if  data == 0
+                    return GetMissionName(missionid)+"|cffffcc00--进行中|r"
+                else
+                    return GetMissionName(missionid)+"|cffffcc00--当前数量：|r"+I2S(data)
+                endif
+            else
+                return GetMissionName(missionid)+"|cff00ff00--已完成|r"
+            endif
+        endfunction
+        function PlayerShowMission(int pid)//查询任务
+            int missionid = 0
+            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffff0000[任务]：|r|cffcc99ff任务每天凌晨五点自动刷新！|r")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffff0000[任务状态]：|r")
+            for i = 1,MaxMissionNum
+                missionid = PassCheckMissionId[MissionDay][i]
+                if  missionid > 0
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[任务]：|r"+GetShowMissionTips(pid,i,missionid))
+                endif
+            end
+        endfunction
+
+
         function PlayerMissionComplete(int pid,int missionid)//任务完成
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
@@ -220,6 +247,13 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                     PlayerMissionComplete(pid,missionid)
                 else
                     PlayerPassData[index] = PlayerPassData[index] + num
+                    if  use <= 30
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[任务]：|r"+GetShowMissionTips(pid,index,missionid))
+                    else
+                        if  ModuloInteger(PlayerPassData[index],10) == 0
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[任务]：|r"+GetShowMissionTips(pid,index,missionid))
+                        endif
+                    endif
                 endif
                 SetDzPlayerData(pid,5,index,PlayerPassData[index])
                 RePassClickFrame.execute(pid)
@@ -243,16 +277,35 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             endif
         endfunction
 
-        function PlayerClockIn(int id)
+        function TimerMissionAddNumFunc(int id,int missionid,int num)
             int pid = id
-            TimerStart(0.01,false)
+            int i1 = missionid
+            int i2 = num
+            TimerStart(0.0,false)
             {
-                MissionAddNumFunc(pid,1,1)
+                MissionAddNumFunc(pid,i1,i2)
                 endtimer
                 flush locals
             }
             flush locals
         endfunction
+
+
+        function MissionKillUnit(int pid,int uid)
+            MissionAddNumFunc(pid,3,1)
+            if  uid >= 'ma01' and uid <= 'ma0z'
+                MissionAddNumFunc(pid,7,1)//精英怪
+            elseif  uid >= 'mb01' and uid <= 'mb0z'
+                MissionAddNumFunc(pid,8,1)//进攻boss
+                MissionAddNumFunc(pid,32,1)//进攻boss
+            elseif  uid >= 'u001' and uid <= 'u009'
+                MissionAddNumFunc(pid,16,1)//送宝金蟾
+            elseif  uid >= 'u0CA' and uid <= 'u0CZ'
+                MissionAddNumFunc(pid,17,1)//占星
+            endif
+        endfunction
+
+        
 
         function PlayerAddMission(int pid)//读取当前任务进度
             for i = 1,MaxMissionNum
@@ -270,6 +323,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 
                 //通行证加载道具
 
+                
+                if  TimeHour >= 20 and TimeHour<= 24
+                    MissionAddNumFunc(pid,18,1)
+                endif
             endif
         endfunction
     endscope

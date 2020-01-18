@@ -310,7 +310,9 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         SetPlayerPlotPrizeId(pid,index,1,0)
         SetPlayerPlotPrizeId(pid,index,2,0)
 
-        
+        MissionAddNumFunc(pid,4,1)//完成副本
+        MissionAddNumFunc(pid,15,1)//完成副本
+        MissionAddNumFunc(pid,30,1)//完成副本
     endfunction
 
     //完成副本
