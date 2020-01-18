@@ -9,20 +9,19 @@ library ItemGameFunc uses DamageCode
     #define ItemGameFuncBool        ItemGameFuncArrayBool[pid]
     #define GameGiftBool            ItemGameFuncArrayBool[pid]
 
-    function DzGetPlayerGuild(int pid)
-
-    endfunction
-
-    /*
+    function IsPlayerGuildVIP(int pid)->bool
+        /*
         AddUnitRealState(Pu[1],46,3)
         AddUnitRealState(Pu[1],43,1)
         AddUnitRealState(Pu[1],48,1)
-    */
+        */
+        return false
+    endfunction
 
     function ItemGameGift(int pid,string gift)  
         int num = 0 
         int gold = 0
-        if  gift != null and gift != ""
+        if  true//gift != null and gift != ""
             if  gift == "公众号"
                 num = 1
                 if  GetDzPlayerData(pid,1,21) == 0
@@ -104,7 +103,7 @@ library ItemGameFunc uses DamageCode
                 endif
             elseif  gift == "公会"
                 num = 6
-                if  DzGetPlayerGuild(pid) > 0
+                if  IsPlayerGuildVIP(pid) == true
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
                         AddUnitRealState(Pu[1],46,10)
