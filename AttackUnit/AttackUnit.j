@@ -607,6 +607,19 @@ library AttackUnit uses DamageCode
         for pid = 0,5
             if  IsPlaying(pid) == true
                 //存档
+                AddDzPlayerData(pid,2,1,1) //总通关次数
+                AddDzPlayerData(pid,2,GameLevel+1,1) //通关难度次数
+                MissionAddNumFunc(pid,2,1) //任务
+                MissionAddNumFunc(pid,6,1) //任务
+                if  PlayerNum > 1 
+                    MissionAddNumFunc(pid,11,1) //任务
+                endif
+                if  GameLevel >= 2
+                    MissionAddNumFunc(pid,22,1) //任务
+                endif
+                if  GameLevel >= 3
+                    MissionAddNumFunc(pid,23,1) //任务
+                endif
             endif
         end
         ExecuteFunc("GameWin")
