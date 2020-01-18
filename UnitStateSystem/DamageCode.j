@@ -230,7 +230,7 @@ library DamageCode uses UnitStateSet
     
     //暴击伤害
     function GetUnitBsState(unit wu)->real
-        real s = GetUnitRealState(wu,20) + 200
+        real s = GetUnitRealState(wu,20)
         return s
     endfunction
     

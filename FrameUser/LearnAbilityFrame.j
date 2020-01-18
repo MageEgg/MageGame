@@ -350,7 +350,10 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int index = 0
         for pool = 1,5
             if  GetTypeIdReal(id,100+pool) > 0
+                BJDebugMsg(GetTypeIdString(id,100)+"回收至"+I2S(pool))
                 RecoveryPrizePoolData(pid,pool,id)
+            else
+                BJDebugMsg(GetTypeIdString(id,100)+"无法回收至"+I2S(pool))
             endif
         end
         
@@ -361,14 +364,17 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         for pool = 1,5
             index = FindPrizePool(pid,pool,id)
             if  index != 0
+                BJDebugMsg(GetTypeIdString(id,100)+"从"+I2S(pool)+"移除")
                 RemPrizeData(pid,pool,index)
+            else
+                BJDebugMsg(GetTypeIdString(id,100)+"从"+I2S(pool)+"中未找到")
             endif
         end
         
     endfunction
     //获取新技能
     function GetNewExpectAbility(int pid,int color)->int
-        int id = GetPrize(pid,color,true)
+        int id = GetPrize(pid,color,false)
         
         FlushExpectAbility(pid,id)
 
@@ -379,7 +385,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
     function PlayerUseLearnAbilityBook(int pid,int index,int newcolor)
         int now = GetHeroAbilityID(Pu[1],index)
 
-        int new = GetPrize(pid,1,true)
+        int new = GetNewExpectAbility(pid,newcolor)
 
         if  GetTypeIdData(now,101) == 9//第一次抽
 

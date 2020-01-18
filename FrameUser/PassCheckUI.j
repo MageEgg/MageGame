@@ -228,6 +228,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 BJDebugMsg(I2S(missionid)+"任务已完成")
             endif
         endfunction
+
+        
         
         function MissionAddNumFunc(int pid,int missionid,int num)//任务达成计数
             int index = 0
@@ -240,6 +242,17 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                     //BJDebugMsg(I2S(missionid)+"不是今日任务")
                 endif
             endif
+        endfunction
+
+        function PlayerClockIn(int id)
+            int pid = id
+            TimerStart(0.01,false)
+            {
+                MissionAddNumFunc(pid,1,1)
+                endtimer
+                flush locals
+            }
+            flush locals
         endfunction
 
         function PlayerAddMission(int pid)//读取当前任务进度
@@ -438,7 +451,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
     private function CreateFrameButton1()
         int last = 0
         //快速升级
-        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.008,0.056,0.02,"war3mapImported\\UI_Pass_LevelUp0.tga")
+        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.008,0.056,0.02,"war3mapImported\\UI_Pass_ClockIn.tga")
         
         
 
@@ -499,6 +512,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateText(642,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
         CreateText(643,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
         CreateText(644,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
+        
 
 
         
@@ -506,11 +520,15 @@ library PassCheckUI uses GameFrame,PassCheckMission
         for i = 1,4
             CreateButton(680+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[640+i][0],3,0.0,0.0,0.028,0.028,"war3mapImported\\UI_Pass_Text1.tga")
         end
-        CreateText(681,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
-        CreateText(682,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
-        CreateText(683,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
-        CreateText(684,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
+        CreateText(681,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
+        CreateText(682,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
+        CreateText(683,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
+        CreateText(684,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
 
+        DzFrameSetSize(BUTTON_Text[681],0.08,0.0)
+        DzFrameSetSize(BUTTON_Text[682],0.08,0.0)
+        DzFrameSetSize(BUTTON_Text[683],0.08,0.0)
+        DzFrameSetSize(BUTTON_Text[684],0.08,0.0)
 
         CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Left.tga")
         CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Right.tga")
