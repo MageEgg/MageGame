@@ -46,7 +46,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             UnitRemoveBuffs(u, true, true)
             SetUnitX(u,AttackRoomPostion[pid][3])
             SetUnitY(u,AttackRoomPostion[pid][4])
-            SetUnitAnimation( u, "stand" )
             SetUnitInvulnerable( u, false )
             SetUnitPathing( u, true )
             ShowUnit(u,true)
@@ -315,7 +314,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-
+            DBUG("全部死亡，刷新")
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
