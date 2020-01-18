@@ -37,6 +37,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             SaveInteger(ht,GetHandleId(u),1,pid)
             GroupAddUnit(AttackRoomGroup[pid],u)
         else
+
             u = AttackRoomUnit[AttackRoomUnitMax[uid]]
             AttackRoomUnit[AttackRoomUnitMax[uid]]=null
             AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]-1
@@ -66,6 +67,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int pid=pid1
         int uid=GetUnitTypeId(u)-'g00A'+1
         SetUnitInvulnerable( u, true )
+
         SetUnitPathing( u, false )
         AttackRoomUnitMax[uid]= AttackRoomUnitMax[uid]+1
         AttackRoomUnit[AttackRoomUnitMax[uid]]=u
@@ -307,13 +309,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         integer pid=GetPlayerId(GetOwningPlayer(ku))
         AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
-        if  FirstOfGroup(AttackRoomGroup[pid]) == null
+        if  CountUnitsInGroup(AttackRoomGroup[pid]) == 0
             if  GetUnitTypeId(Pu[27]) == 'np27'
                 SoulTimer(pid,x,y)
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            //DBUG("判断单位组为空准备刷怪")
+
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
@@ -339,9 +341,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 //BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
-               /* if  AttackRoomTimer[pid]==false
+                if  AttackRoomTimer[pid]==false
                     RefreshAttackRoom(pid,AttackRoomUid[pid])
-                endif*/
+                endif
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
                     ShowPlayerTaskUIOfPlayer(pid,false,0)
