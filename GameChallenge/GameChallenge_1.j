@@ -1,25 +1,9 @@
 library GameChallenge1 uses GameChallengeBase
 
-    function GameChallenge_1Flush(int pid,real time)
-        for num = 0,5
-            SetUnitVertexColor(GameChallengUnit[10+num],255,255,255,0)
-        end
-        GameChallengInt[10] = 0
-        GameChallengInt[11] = 0
-        GameChallengBool[10] = false
-        GameChallengBool[11] = false
-        if  GameChallengUnit[19] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[19]))
-            RemoveUnit(GameChallengUnit[19])
-            GameChallengUnit[19] = null
-        endif
-        GameChallenge_GlobalFlush(pid,time)
-    endfunction
-
     function OpenGameChallenge_1(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_1Flush(pid,-1)
+        GameChallengeFluahAll(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         SetPlayerAllianceVISION(pid,false)
         if  ty == 0
@@ -141,7 +125,7 @@ library GameChallenge1 uses GameChallengeBase
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         SetPlayerTaskUIChatOfPlayer(pid,"云中子","奇哉！奇哉！福祸相依，待我传你玄妙真仙诀，炼就风雷金刚体！",0)
         SetPlayerTaskUITaskOfPlayer(pid,"",0)
-        GameChallenge_1Flush(pid,2)
+        GameChallengeFluahAll(pid,1)
         IsFinshChallenge(1) = true
         //奖励
         PlayerFinishPlotEx(pid,1)
@@ -159,6 +143,11 @@ library GameChallenge1 uses GameChallengeBase
             int num = 0
             real x = 0
             real y = 0
+            /*if  GameChallengBool[10] == false
+                BJDebugMsg("GameChallengBool[10] FFF"+I2S(GameChallengInt[10]))
+            else
+                BJDebugMsg("GameChallengBool[10] TTT"+I2S(GameChallengInt[10]))
+            endif*/
             if  GameChallengInt[10] <= 20 and GameChallengBool[10] == false and IsPlayerInChallenge == true
                 num = GetCanUsesGameChallengUnitID(pid)
                 if  num != 0 and GameChallengInt[11] < 5
@@ -313,7 +302,7 @@ library GameChallenge1 uses GameChallengeBase
             else
                 SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击退殷破败和雷开！！！",0)
             endif
-            GameChallenge_1Flush(pid,2)
+            GameChallengeFluahAll(pid,1)
             PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,1)

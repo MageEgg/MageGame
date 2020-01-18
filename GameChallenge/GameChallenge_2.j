@@ -1,18 +1,4 @@
 library GameChallenge2 uses GameChallengeBase
-    
-    function GameChallenge_2Flush(int pid,real time)
-        SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
-        if  GameChallengUnit[29] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[29]))
-            RemoveUnit(GameChallengUnit[29])
-            GameChallengUnit[29] = null
-        endif
-        GameChallengInt[20] = 0
-        if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
-            UnitRemoveAbility(Pu[1],'AZ04')
-        endif
-        GameChallenge_GlobalFlush(pid,time)
-    endfunction
 
     function GameChalleng_2_WaterDeath3(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
@@ -40,7 +26,7 @@ library GameChallenge2 uses GameChallengeBase
             else
                 SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败四海龙王！！！",0)
             endif
-            GameChallenge_2Flush(pid,2)
+            GameChallengeFluahAll(pid,1)
             PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,2)
@@ -115,7 +101,7 @@ library GameChallenge2 uses GameChallengeBase
     function OpenGameChallenge_2(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_2Flush(pid,-1)
+        GameChallengeFluahAll(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         SetPlayerAllianceVISION(pid,false)
         if  ty == 0
@@ -162,7 +148,7 @@ library GameChallenge2 uses GameChallengeBase
     function GameChalleng_2_WaterDeath2(int pid,unit u2)
         GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
         SetPlayerTaskUIChatOfPlayer(pid,"敖广","吾儿！！！哪吒你欺人太甚！吾自去天庭讨个说法！",0)
-        GameChallenge_2Flush(pid,2)
+        GameChallengeFluahAll(pid,1)
         IsFinshChallenge(2) = true
         //奖励
         PlayerFinishPlotEx(pid,2)

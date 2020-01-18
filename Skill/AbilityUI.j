@@ -187,6 +187,22 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
         return name
     endfunction
+
+    function GetSkillGrade(int color)->string
+        if  color == 5
+            return "S级"
+        elseif  color == 4
+            return "A级"
+        elseif  color == 3
+            return "B级"
+        elseif  color == 2
+            return "C级"
+        elseif  color == 1
+            return "D级"
+        endif
+        return ""
+    endfunction
+
     function GetSkillNameEx(int id,int index,int level)->string
         int color = GetTypeIdData(id,101)
         string name = ""
@@ -201,17 +217,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             if  color == 0
                 name = name + "\n神通"
             else
-                if  level == 5
-                    name = name + "\nS级"
-                elseif  level == 4
-                    name = name + "\nA级"
-                elseif  level == 3
-                    name = name + "\nB级"
-                elseif  level == 2
-                    name = name + "\nC级"
-                elseif  level == 1
-                    name = name + "\nD级"
-                endif
+                name = name +"\n" +GetSkillGrade(level)
+                
             endif
         endif
         

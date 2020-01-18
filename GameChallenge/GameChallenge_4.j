@@ -1,18 +1,9 @@
 library GameChallenge4 uses GameChallengeBase
 
-    function GameChallenge_4Flush(int pid,real time)
-        for num = 0,7
-            SetUnitVertexColor(GameChallengUnit[40+num],255,255,255,0)
-        end
-        GameChallengInt[40] = 0
-        SetUnitAnimation(GameChallengUnit[43],"stand")
-        GameChallenge_GlobalFlush(pid,time)
-    endfunction
-
     function OpenGameChallenge_4(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_4Flush(pid,-1)
+        GameChallengeFluahAll(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         SetPlayerAllianceVISION(pid,false)
         if  ty == 0
@@ -146,7 +137,7 @@ library GameChallenge4 uses GameChallengeBase
         TimerStart(1,false)
         {   
             if  IsPlayerInChallenge == true
-                GameChallenge_4Flush(pid,1)
+                GameChallengeFluahAll(pid,1)
                 IsFinshChallenge(4) = true
                 //奖励
                 PlayerFinishPlotEx(pid,4)
@@ -635,7 +626,7 @@ library GameChallenge4 uses GameChallengeBase
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-九曲黄河阵]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000杨戬加入敌方阵营！|r") 
                     endif
                 endif
-                GameChallenge_4Flush(pid,2)
+                GameChallengeFluahAll(pid,1)
                 PlayerChallengeCosNum = PlayerChallengeCosNum + 1
                 //奖励
                 PlayerFinishPlotEx(pid,4)

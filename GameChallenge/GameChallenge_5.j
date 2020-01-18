@@ -1,17 +1,5 @@
 library GameChallenge5 uses GameChallengeBase
 
-    function GameChallenge_5Flush(int pid,real time)
-        SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
-        GameChallengInt[50] = 0
-        if  GameChallengUnit[59] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[59]))
-            RemoveUnit(GameChallengUnit[59])
-            GameChallengUnit[59] = null
-        endif
-        GameChallenge_GlobalFlush(pid,time)
-    endfunction
-
     function GameChallenge_5_BTimer(int id)
         int pid = id
         int time = 0
@@ -55,7 +43,7 @@ library GameChallenge5 uses GameChallengeBase
     function OpenGameChallenge_5(int pid,int ty)
         real x = 0
         real y = 0
-        GameChallenge_5Flush(pid,-1)
+        GameChallengeFluahAll(pid,-1)
         ShowPlayerTaskUIOfPlayer(pid,true,0.01)
         SetPlayerAllianceVISION(pid,false)
         if  ty == 0
@@ -167,7 +155,7 @@ library GameChallenge5 uses GameChallengeBase
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-土行孙归伏]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000土行孙加入敌方阵营！|r") 
                     endif
                 endif
-                GameChallenge_5Flush(pid,2)
+                GameChallengeFluahAll(pid,1)
                 PlayerChallengeCosNum = PlayerChallengeCosNum + 1
                 //奖励
                 PlayerFinishPlotEx(pid,5)
@@ -349,7 +337,7 @@ library GameChallenge5 uses GameChallengeBase
                     GameChallengInt[50] = 0
                     SetPlayerTaskUIChatOfPlayer(pid,"白鹤童子","师叔，老爷法牒，送符印将此绳解去。",0)
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","谢老师慈悯。",1)
-                    GameChallenge_5Flush(pid,2)
+                    GameChallengeFluahAll(pid,1)
                     IsFinshChallenge(5) = true
                     //奖励
                     PlayerFinishPlotEx(pid,5)
