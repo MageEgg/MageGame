@@ -318,7 +318,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             TimerStart(0.8,false)
             {
                 RefreshAttackRoom(pid,AttackRoomUid[pid])
-                
                 AttackRoomTimer[pid] = false
                 endtimer
                 flush locals
@@ -340,9 +339,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 //BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
-                if  AttackRoomTimer[pid]==false
+               /* if  AttackRoomTimer[pid]==false
                     RefreshAttackRoom(pid,AttackRoomUid[pid])
-                endif
+                endif*/
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
                     ShowPlayerTaskUIOfPlayer(pid,false,0)
@@ -380,7 +379,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             if  IsPlaying(pid) == true
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
-                
+                RefreshAttackRoom(pid,AttackRoomUid[pid])
                 
                 AttackRoomGroup[pid] = CreateGroup()
                 AttackRoomUid[pid] = 'g00A'
