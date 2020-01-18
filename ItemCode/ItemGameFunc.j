@@ -196,7 +196,9 @@ library ItemGameFunc uses DamageCode
         end
     endfunction
 
-    function InitPlayerGameGift(int pid)
+    function InitPlayerGameGift(int id)
+        int time = 0
+        int pid = id
         if  GetDzPlayerData(pid,1,21) == 1
             ItemGameGift(pid,"公众号") //自动领取
             AddItemToStock(Pu[26],'IB51',1,1)
@@ -215,8 +217,19 @@ library ItemGameFunc uses DamageCode
         AddItemToStock(Pu[26],'IB06',1,1)
         AddItemToStock(Pu[26],'IB07',1,1)
         AddItemToStock(Pu[26],'IB08',1,1)
-        UnitAddItemEx(Pu[1],'IB06')//自动领取
-        UnitAddItemEx(Pu[1],'IB07')//自动领取
+        TimerStart(0.2,true)
+        {
+            time = time + 1
+            if  time == 1
+                UnitAddItemEx(Pu[1],'IB06')//自动领取
+            elseif  time == 2
+                UnitAddItemEx(Pu[1],'IB07')//自动领取
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
     endfunction
     
 endlibrary
