@@ -97,7 +97,7 @@ library GameChallenge0 uses GameChallengeBase
                         SetPlayerTaskUIChatOfPlayer(pid,"周文王","今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。",0)
                         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
                         if  GetLocalPlayer() == Player(pid)
-                            for i = 2,6
+                            for i = 2,4
                                 DzFrameShow(BUTTON_Back[700+i][0], true)
                             end
                         endif
