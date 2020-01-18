@@ -252,10 +252,11 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetMosterUnitState(wu)
         elseif  id >= 'u0DA' and id <= 'u0DZ'
             //周天星辰阵
-            index = AttackUnitInt[0][2]//进攻波数
+            index = AttackUnitInt[0][2]//进攻波数d
+            
             if  index <= 0
                 index = 1
-            elseif  index >= 3
+            elseif  index >= 30
                 index = 30
             endif
             if  index < 10
@@ -263,6 +264,9 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             else
                 newid = YDWES2Id(SubString(YDWEId2S('m000'),0,2)+I2S(index))
             endif
+
+            //BJDebugMsg("进攻波数"+I2S(index)+"id"+YDWEId2S(newid))
+
             if  id == 'u0DF' or id == 'u0DL' or id == 'u0DR' or id == 'u0DX'
                 SetUnitRealStateOfStar(wu,newid,2,1,4)
             else

@@ -1,78 +1,93 @@
 scope FrameButton
+
+    
+
+
     func FrameFunc(int pid,int frame,int eventId)
         int Type = GetFrameType(frame)
         int id = Frame2Id(frame)
-        //BJDebugMsg(I2S(id))
-        if  Pu[1] != null
-            if  Type == TYPE_BUTTON
-                if  id >= 1 and id <= 17//法宝
-                    SelectPlayerMagicItem(pid,id)
-                elseif  id == 21//重铸
-                    RecastPlayerMagicItem(pid)
-                elseif  id == 22//锻造
-                    ForgePlayerMagicItem(pid)
-                    
-                elseif  id >= 101 and id <= 103//选择备选学习技能
-                    PlayerSelectLearnAbility(pid,id-100)
-                elseif  id >= 111 and id <= 113//选择备选学习技能
-                    PlayerSelectLearnAbility(pid,id-110)
-                    
-                elseif  id >= 121 and id <= 123//选择要替换的技能
-                    PlayerReplaceAbility(pid,id-120)
-                elseif  id >= 131 and id <= 133//选择要替换的技能
-                    PlayerReplaceAbility(pid,id-130)
-                    
-                elseif  id == 310//刷新时渊奖励
-                    RePlayerAllExPlotPrize(pid)
-                elseif  id == 401 or id == 402
-                    PlayerClickPrize(pid,0)
-                elseif  id >= 411 and id <= 413//选择奖励
-                    PlayerClickPrize(pid,id-410)
-                elseif  id >= 421 and id <= 423//选择奖励
-                    PlayerClickPrize(pid,id-420)
-                    
-                    
-                elseif  id >= 581 and id <= 590
-                    SetPlayerShowSavePage(pid,id-581)
-                elseif  id == 655//签到
-                    TimerMissionAddNumFunc(pid,1,1)
-                    
-                elseif  id == 661 //通行证翻页
-                    PassFreamClickLast(pid)
-                elseif  id == 662 //通行证翻页
-                    PassFreamClickNext(pid)
-                elseif  id == 702 //F2
-                    if  PlayerDeathBool == false
-                        HeroMoveToHome(pid)
+        
+        if  eventId == 1
+            if  Pu[1] != null
+                //BJDebugMsg(I2S(id))
+                if  Type == TYPE_BUTTON
+                    if  id >= 1 and id <= 17//法宝
+                        SelectPlayerMagicItem(pid,id)
+                    elseif  id == 21//重铸
+                        RecastPlayerMagicItem(pid)
+                    elseif  id == 22//锻造
+                        ForgePlayerMagicItem(pid)
+                        
+                    elseif  id >= 101 and id <= 103//选择备选学习技能
+                        PlayerSelectLearnAbility(pid,id-100)
+                    elseif  id >= 111 and id <= 113//选择备选学习技能
+                        PlayerSelectLearnAbility(pid,id-110)
+                        
+                    elseif  id >= 121 and id <= 123//选择要替换的技能
+                        PlayerReplaceAbility(pid,id-120)
+                    elseif  id >= 131 and id <= 133//选择要替换的技能
+                        PlayerReplaceAbility(pid,id-130)
+                        
+                    elseif  id == 310//刷新时渊奖励
+                        RePlayerAllExPlotPrize(pid)
+                    elseif  id == 401 or id == 402
+                        PlayerClickPrize(pid,0)
+                    elseif  id >= 411 and id <= 413//选择奖励
+                        PlayerClickPrize(pid,id-410)
+                    elseif  id >= 421 and id <= 423//选择奖励
+                        PlayerClickPrize(pid,id-420)
+                        
+                        
+                    elseif  id >= 581 and id <= 590
+                        SetPlayerShowSavePage(pid,id-581)
+                    elseif  id == 655//签到
+                        TimerMissionAddNumFunc(pid,1,1)
+                        
+                    elseif  id == 661 //通行证翻页
+                        PassFreamClickLast(pid)
+                    elseif  id == 662 //通行证翻页
+                        PassFreamClickNext(pid)
+                    elseif  id == 702 //F2
+                        if  PlayerDeathBool == false
+                            HeroMoveToHome(pid)
+                        endif
+                    elseif  id == 703 //F3
+                        if  PlayerDeathBool == false 
+                            HeroMoveToRoom(pid)
+                        endif
+                    elseif  id == 704 //F4
+                        ClickCollectFrame(pid)
+                    elseif  id == 705 //F5
+                        ClickShowSaveFrame(pid)
+                    elseif  id == 706 //F6
+                        ClickPassFrame(pid)
                     endif
-                elseif  id == 703 //F3
-                    if  PlayerDeathBool == false 
-                        HeroMoveToRoom(pid)
+                elseif  Type == TYPE_FUNC
+                    if  id >= 301 and id <= 308//选择副本按钮
+                        //PlayerTestPlot(pid,id-300)
+                        OpenGameChallenge(pid,id-300,GetPlayerPlotType(pid))
+                    
+                    elseif  id >= 311 and id <= 318//选择副本按钮
+                        //PlayerTestPlot(pid,id-310)
+                        OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
                     endif
-                elseif  id == 704 //F4
-                    ClickCollectFrame(pid)
-                elseif  id == 705 //F5
-                    ClickShowSaveFrame(pid)
-                elseif  id == 706 //F6
-                    ClickPassFrame(pid)
-                endif
-            elseif  Type == TYPE_FUNC
-                if  id >= 301 and id <= 308//选择副本按钮
-                    //PlayerTestPlot(pid,id-300)
-                    OpenGameChallenge(pid,id-300,GetPlayerPlotType(pid))
-                
-                elseif  id >= 311 and id <= 318//选择副本按钮
-                    //PlayerTestPlot(pid,id-310)
-                    OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
-                endif
-            elseif  Type == TYPE_CLOSE
-                if  id == 410
-                    PlayerClickPrize(pid,0)
+                elseif  Type == TYPE_CLOSE
+                    if  id == 410
+                        PlayerClickPrize(pid,0)
+                    endif
                 endif
             endif
+        elseif  eventId == 6
+            int whell = PlayerMouseWhell
+            BJDebugMsg("玩家"+I2S(pid)+"&"+I2S(id)+"whell"+I2S(whell))
+            if  id >= 501 and id <= 600
+                PlayerWheelShowSaveFrame(pid,whell)
+            endif
         endif
-    end
+    endfunction
 endscope
+
+
 
 
 //! textmacro AddFrameFunc takes value
@@ -81,6 +96,9 @@ endscope
     endfunction
     function FrameFuncExecute12n$value$ takes nothing returns nothing
         FrameFunc(GetPlayerId(DzGetTriggerUIEventPlayer()),Id2Frame($value$),12)
+    endfunction
+    function FrameFuncExecute6n$value$ takes nothing returns nothing
+        FrameFunc(GetPlayerId(DzGetTriggerUIEventPlayer()),Id2Frame($value$),6)
     endfunction
 //! endtextmacro
 
@@ -161,6 +179,26 @@ endscope
 //! runtextmacro AddFrameFunc("423")
 
 
+
+//! runtextmacro AddFrameFunc("501")
+//! runtextmacro AddFrameFunc("502")
+//! runtextmacro AddFrameFunc("503")
+//! runtextmacro AddFrameFunc("504")
+//! runtextmacro AddFrameFunc("505")
+//! runtextmacro AddFrameFunc("506")
+//! runtextmacro AddFrameFunc("507")
+//! runtextmacro AddFrameFunc("508")
+//! runtextmacro AddFrameFunc("509")
+//! runtextmacro AddFrameFunc("510")
+//! runtextmacro AddFrameFunc("511")
+//! runtextmacro AddFrameFunc("512")
+//! runtextmacro AddFrameFunc("513")
+//! runtextmacro AddFrameFunc("514")
+//! runtextmacro AddFrameFunc("515")
+//! runtextmacro AddFrameFunc("516")
+
+
+//! runtextmacro AddFrameFunc("580")
 //! runtextmacro AddFrameFunc("581")
 //! runtextmacro AddFrameFunc("582")
 //! runtextmacro AddFrameFunc("583")

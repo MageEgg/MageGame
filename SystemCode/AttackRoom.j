@@ -123,7 +123,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             RemoveUnit(Pu[27])
             
             Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np28',x+512,y+512,270)
-            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,601)
+            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,101)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
             SetTextTagText(AttackTexttag[pid],"0/600",0.03)
             SetTextTagPos(AttackTexttag[pid],x+432,y+412,0)

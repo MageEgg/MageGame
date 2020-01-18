@@ -18,6 +18,12 @@ scope KeyEvent initializer InitKeyBroadListener
         flush locals
     endfunction
 
+    
+    function MouseWhellFunc()
+        int pid = GetPlayerId(DzGetTriggerKeyPlayer())
+        PlayerMouseWhell = DzGetWheelDelta()
+    endfunction
+
     func KeyEventFunc()
         int pid = GetPlayerId(DzGetTriggerKeyPlayer())
         int key = DzGetTriggerKey()
@@ -188,6 +194,10 @@ scope KeyEvent initializer InitKeyBroadListener
         //trig = CreateTrigger()
         //DzTriggerRegisterKeyEventTrg(trig,0,9)
         //TriggerAddAction(trig,function KeyEventExFunc)
+
+        trig = CreateTrigger()
+        DzTriggerRegisterMouseWheelEventTrg( trig )
+        TriggerAddAction(trig, function MouseWhellFunc)
         
         trig = null
     endfunction

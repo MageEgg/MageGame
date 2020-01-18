@@ -11,8 +11,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     private FRAME Back2 = 0
     private int origin = 0
 
-    private int Page = 0
-    private int Step = 0
+    private int array Page
+    private int array Step
 
     int array ShowSaveData[10][800]
 
@@ -54,39 +54,60 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     endfunction
     //初始化函数
     function InitShowSaveFrameData()
-        for i = 1,10
-            RegisterShowSaveFrameData(0,'FB00'+i,0,0,0,0,0)
-        end
-        for i = 1,10
-            RegisterShowSaveFrameData(0,'FB10'+i,0,0,0,0,0)
-        end
-        for i = 1,9
-            RegisterShowSaveFrameData(0,'FB20'+i,0,0,0,0,0)
-        end
-        RegisterShowSaveFrameData(0,'FB30','Rhpm',0,0,0,0)
-        RegisterShowSaveFrameData(0,'FB31','Rhpm','Rhrt',0,0,0)
-        RegisterShowSaveFrameData(0,'FB32','Rhrt',0,0,0,0)
+        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)
+        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)
+        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)
+        RegisterShowSaveFrameData(2,'RY1D','RY1D',0,0,0,0)
+        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)
+        RegisterShowSaveFrameData(3,'RY2A','RY2A',0,0,0,0)
+        RegisterShowSaveFrameData(3,'RY2B','RY2B',0,0,0,0)
+        RegisterShowSaveFrameData(3,'RY2C','RY2C',0,0,0,0)
+        RegisterShowSaveFrameData(3,'RY2D','RY2D',0,0,0,0)
+        RegisterShowSaveFrameData(4,'RY3A','RY3A',0,0,0,0)
+        RegisterShowSaveFrameData(4,'RY3B','RY3B',0,0,0,0)
+        RegisterShowSaveFrameData(4,'RY3C','RY3C',0,0,0,0)
+        RegisterShowSaveFrameData(4,'RY3D','RY3D',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4D','RY4D',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)
+        RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)
 
-        for i = 1,15
-            RegisterShowSaveFrameData(1,'FB00'+i,0,0,0,0,0)
-        end
-        for i = 1,16
-            RegisterShowSaveFrameData(2,'FB10'+i,0,0,0,0,0)
-        end
-        for i = 1,17
-            RegisterShowSaveFrameData(3,'FB20'+i,0,0,0,0,0)
-        end
-        for i = 1,21
-            RegisterShowSaveFrameData(4,'FB20'+i,0,0,0,0,0)
-        end
+        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
     endfunction
 
 
     
     function GetShowSaveFrameTechTips(int pid,int index)->string
         string s = ""
-        int step = Step
-        int page = Page
+        int step = Step[pid]
+        int page = Page[pid]
         int techid = 0
         int lock = 1
         
@@ -111,12 +132,13 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     endfunction
 
     function BoxShowSaveFrame(int pid,int index)
-        int step = Step
-        int page = Page
-        int id = GetShowSaveId(Page,index+Step*4)
+        int step = Step[pid]
+        int page = Page[pid]
+        int id = GetShowSaveId(page,index+step*4)
         int h = 10
         int techid = 0
         string tech = ""
+        BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
@@ -133,7 +155,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             
             SetTipsData(h,"",GetTypeIdStateTips(id))
             h = h + 1
-            
+            SetTipsData(h,"",GetTypeIdTips(id))
 
 
             ShowTipsUI()
@@ -176,7 +198,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                         DzFrameSetTexture(BUTTON_Back[500+index][1],GetTypeIdIcon(id),0)
                         DzFrameSetText(BUTTON_Text[500+index],GetTypeIdColor(id)+GetTypeIdName(id))
                     else
+                        
                         DzFrameSetTexture(BUTTON_Back[500+index][1],"war3mapImported\\alpha.tga",0)
+                        DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\alpha.tga",0)
                         DzFrameSetText(BUTTON_Text[500+index],"")
                     endif
                 end
@@ -186,10 +210,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
     
     function SetPlayerShowSaveStep(int pid,int step)
-        int max = GetShowSaveMax(Page)
+        int max = GetShowSaveMax(Page[pid])
         int stepmax = 0
+        Step[pid] = step
         if  GetLocalPlayer() == Player(pid)
-            Step = step
             stepmax = (max - 13) / 4
             if  stepmax > 0
                 Slider.SetPoint(2,Back2.frameid ,2,-0.001,-0.005-0.197/I2R(stepmax+1)*I2R(step))
@@ -198,24 +222,27 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             else
                 Slider.SetTexture("war3mapImported\\alpha.tga",0)
             endif
-            ReShowSaveFrame(pid,Page,Step)
+            ReShowSaveFrame(pid,Page[pid],step)
         endif
     endfunction
 
     function SetPlayerShowSavePage(int pid,int page)
         if  GetLocalPlayer() == Player(pid)
-            
-            DzFrameSetTexture(BUTTON_Back[581+Page][4],"war3mapImported\\alpha.tga",0)
-            Page = page
-            DzFrameSetTexture(BUTTON_Back[581+Page][4],"war3mapImported\\UI_Save_Color1.tga",0)
-            SetPlayerShowSaveStep(pid,0)
-            ReShowSaveFrame(pid,Page,Step)
+            DzFrameSetTexture(BUTTON_Back[581+Page[pid]][4],"war3mapImported\\alpha.tga",0)
+        endif
+        Page[pid] = page
+        if  GetLocalPlayer() == Player(pid)
+            DzFrameSetTexture(BUTTON_Back[581+Page[pid]][4],"war3mapImported\\UI_Save_Color1.tga",0)
+        endif
+        SetPlayerShowSaveStep(pid,0)
+        if  GetLocalPlayer() == Player(pid)
+            ReShowSaveFrame(pid,Page[pid],Step[pid])
         endif
     endfunction
 
     function PlayerWheelShowSaveFrame(int pid,int whell)
-        int page = Page
-        int step = Step
+        int page = Page[pid]
+        int step = Step[pid]
         int max = GetShowSaveMax(page)
         int stepmax = 0
 
@@ -341,8 +368,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
         
 
+        FrameSetScriptByExecute( origin, 6,580,TYPE_NULL)
 
-        InitFrame(origin,580,TYPE_NULL)
 
         CreateShowSaveButton1()
         CreateShowSaveButton2()

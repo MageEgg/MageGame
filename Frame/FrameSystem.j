@@ -72,7 +72,7 @@ library GameUIInit initializer init uses OriginGameFrame
         DzFrameClearAllPoints( DzFrameGetTooltip() )
         DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, 0, -0.45 )
         DzTriggerRegisterMouseMoveEvent(null, false, "UI_ScriptIn")
-        DzTriggerRegisterMouseWheelEvent(null,false, "UI_ScriptWheel")
+        //DzTriggerRegisterMouseWheelEvent(null,false, "UI_ScriptWheel")
          
         for i = 0,5
             DzFrameSetSize( DzFrameGetItemBarButton(i), 0.03,0.03 )
