@@ -9,7 +9,6 @@ library ItemGameFunc uses DamageCode
     #define ItemGameFuncBool        ItemGameFuncArrayBool[pid]
     #define GameGiftBool            ItemGameFuncArrayBool[pid]
 
-    
     function SetGifeItemStock(int pid)
         for num = 1,8
             RemoveItemFromStock(Pu[26],'IB00'+num)
@@ -237,6 +236,55 @@ library ItemGameFunc uses DamageCode
             flush locals
         }
         flush locals
+    endfunction
+
+    function AttackUnitItemStop(int pid,int num,real time) //进攻怪暂停
+        if  InfiniteAttackBool == false
+            if  CrazyAttackBool == false
+                if  AttackUnitStopNum < num 
+                    if  AttackUnitWN < AttackUnitWNOver
+                        if  StopAttackBool == false
+                            AttackUnitStopNum = AttackUnitStopNum + 1
+                            FuncStopAttack(time)
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"使用了暂停刷怪"+I2S(R2I(time/60))+"分钟（"+I2S(AttackUnitStopNum)+"/"+I2S(num)+"）" )
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前已处于暂停刷怪！")
+                        endif
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r暂停刷怪次数已达"+I2S(num)+"次！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为疯狂模式无法暂停刷怪！")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为无尽模式无法暂停刷怪！")
+        endif
+    endfunction
+
+    function AttackUnitItemSpeedUp(int pid) //进攻怪加速
+        if  InfiniteAttackBool == false
+            if  CrazyAttackBool == false
+                if  StopAttackBool == false
+                    if  AttackUnitWN != 0
+                        if  AttackUnitWN < AttackUnitWNOver
+                            FlushChildHashtable(ht,GetHandleId(AttackTimer))
+                            DestroyTimer(AttackTimer)
+                            StartAttackUnit()
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"使用了进攻怪加速！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r第1波进攻怪无法加速！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前处于暂停刷怪，无法加速！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为疯狂模式无法加速！")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为无尽模式无法加速！")
+        endif
     endfunction
     
 endlibrary
