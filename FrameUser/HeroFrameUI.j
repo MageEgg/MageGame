@@ -94,12 +94,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         endif
     endfunction
     function HeroIncLevel(unit wu)
-        int now = GetHeroXP(wu)
+        //int now = GetHeroXP(wu)
         int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))
-        if  now + 1 == max
-            SetHeroXP(wu,now+1,true)
+        //if  now + 1 == max
+            SetHeroXP(wu,max,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
-        endif
+        //endif
     endfunction
 
 
@@ -110,7 +110,41 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     endfunction
 
     //添加道果
+    function AddImmortalFruit(unit wu,int id)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int num = GetUnitIntState(Pu[1],150)
+        if  num < 10
+            num = num + 1
+            SetUnitIntState(Pu[1],150+num,id)
+            SetUnitIntState(Pu[1],150,num)
+            //BJDebugMsg("num"+I2S(num))
+            AddEquipState(Pu[1],id)
+            HeroIncLevel(Pu[1])
+            if  GetUnitTypeId(wu) == 'H018'
+                SpellS518.execute(Pu[1],id)//九转神功
+            endif
 
+            if  num == 7
+                ReAddAbilityByIndex(Pu[1],4,'S0R1')
+                ShowUnit(Pu[25],true)
+                LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")
+                RePlayerBeastSoulDrawShop.execute(pid)
+            endif
+            if  GetLocalPlayer() == Player(pid)
+                DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
+                ExpName.SetText(GetTypeIdName('IJ5A'+num))
+            endif
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
+
+            //境界突破提高技能等级
+            if  num == 3 or num == 5 or num == 10
+                HeroIncAbility(wu,5)
+            endif
+            if  id == 'IJ10'
+                MissionAddNumFunc(pid,26,1)//获得混沌道果
+            endif
+        endif 
+    endfunction
 
     function AddPlayerImmortalFruit(unit wu,int id)
         int pid = GetPlayerId(GetOwningPlayer(wu))
@@ -119,39 +153,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
         int i1 = 0
         if  max - now == 1
-            if  num < 10
-                num = num + 1
-                SetUnitIntState(Pu[1],150+num,id)
-                SetUnitIntState(Pu[1],150,num)
-                //BJDebugMsg("num"+I2S(num))
-                AddEquipState(Pu[1],id)
-                HeroIncLevel(Pu[1])
-                if  GetUnitTypeId(wu) == 'H018'
-                    SpellS518.execute(Pu[1],id)//九转神功
-                endif
-
-                if  num == 7
-                    ReAddAbilityByIndex(Pu[1],4,'S0R1')
-                    ShowUnit(Pu[25],true)
-                    LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")
-                    RePlayerBeastSoulDrawShop.execute(pid)
-                endif
-                if  GetLocalPlayer() == Player(pid)
-                    DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
-                    ExpName.SetText(GetTypeIdName('IJ5A'+num))
-                endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
-
-                //境界突破提高技能等级
-                if  num == 3 or num == 5 or num == 10
-                    HeroIncAbility(wu,5)
-                endif
-                if  id == 'IJ10'
-                    MissionAddNumFunc(pid,26,1)//获得混沌道果
-                endif
-            endif 
-        else
-            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r当前经验值不足，无法挑战境界！")
+            AddImmortalFruit(wu,id)
         endif
     endfunction
 

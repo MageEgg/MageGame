@@ -471,6 +471,25 @@ scope ItemSystem initializer InitItemSystem
             UnitAddItem(u1,CreateItem('IN00'+GetRandomInt(1,3),GetUnitX(u1),GetUnitY(u1)))
         elseif  itemid >= 'INDA' and itemid <= 'INDX'
             UnitUseStarSoul(u1,itemid)
+        elseif  itemid >= 'ID01' and itemid <= 'ID10'
+            if  GetUnitIntState(Pu[1],150) < 10
+                AddImmortalFruit(Pu[1],itemid - 'ID00' + 'IJ00')
+            else
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r等级已满，无法晋升境界！")
+            endif
+        elseif  itemid >= 'ID11' and itemid <= 'ID20'
+            if  GetUnitIntState(Pu[1],150) < 10
+                if  DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]) == 1
+                    AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00')
+                else
+                    UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r境界经验不足，无法晋升境界！")
+                endif
+            else
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r等级已满，无法晋升境界！")
+            endif
         endif
         
         flush locals
