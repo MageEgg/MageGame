@@ -1,5 +1,5 @@
 library PassCheckMission initializer InitPassCheckMission uses DzSave
-    int MissionDay = 1
+    int MissionDay = 0
     int MaxMissionNum = 4
     
     scope RegisterMission
@@ -82,7 +82,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         RegisterPassCheckMission(2,4,1,"","通关难1或以上")
         RegisterPassCheckMission(3,4,10000,"","击杀10000个怪物")
         RegisterPassCheckMission(4,4,9,"","通关9个任意副本")
-        RegisterPassCheckMission(5,4,12,"","重置12次技能")
+        RegisterPassCheckMission(5,4,12,"","抽取12次技能")
         RegisterPassCheckMission(6,4,2,"","通关2次任意难度")
         RegisterPassCheckMission(7,4,50,"","击杀50个进攻精英怪")
         RegisterPassCheckMission(8,4,18,"","击杀18个进攻Boss")
@@ -92,10 +92,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         RegisterPassCheckMission(12,4,8,"","获得8次|Cff00BFFF后天仙器|r品质的法宝")
         RegisterPassCheckMission(13,4,8,"","获得8次|Cff00FF7F通天灵宝|r品质的法宝")
         RegisterPassCheckMission(14,4,30,"","死亡超过30次")
-        RegisterPassCheckMission(15,4,16,"","通关16个任意副本")
+        RegisterPassCheckMission(15,4,16,"","通关16次任意副本")
         RegisterPassCheckMission(16,4,6,"","击杀6次送宝金蟾")
         RegisterPassCheckMission(17,4,10,"","完成10次占星")
-        RegisterPassCheckMission(18,4,1,"","19:00-22:00登陆游戏")
+        RegisterPassCheckMission(18,4,1,"","20:00-24:00登陆游戏")
 
 
         RegisterPassCheckMission(21,8,1,"","20秒内击杀闻太师")
@@ -115,12 +115,12 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
     endfunction
 
     function InitRegisterDay()//注册每日任务
-        RegisterPassCheckDay(0,1,4,5,30,0,0)
-        RegisterPassCheckDay(1,1,4,5,30,0,0)
-        RegisterPassCheckDay(2,1,6,18,31,0,0)
+        RegisterPassCheckDay(0,1,4,5,31,0,0)
+        RegisterPassCheckDay(1,1,4,5,31,0,0)
+        RegisterPassCheckDay(2,1,6,18,30,0,0)
         RegisterPassCheckDay(3,1,8,9,32,0,0)
-        RegisterPassCheckDay(4,1,10,18,33,0,0)
-        RegisterPassCheckDay(5,1,12,7,34,0,0)
+        RegisterPassCheckDay(4,1,10,18,34,0,0)
+        RegisterPassCheckDay(5,1,12,7,33,0,0)
         RegisterPassCheckDay(6,1,14,18,21,0,0)
         RegisterPassCheckDay(7,1,16,17,22,0,0)
         RegisterPassCheckDay(8,1,18,2,23,0,0)
@@ -133,11 +133,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         RegisterPassCheckDay(15,1,10,18,23,0,0)
         RegisterPassCheckDay(16,1,12,7,24,0,0)
         RegisterPassCheckDay(17,1,14,18,26,0,0)
-        RegisterPassCheckDay(18,1,16,17,30,0,0)
-        RegisterPassCheckDay(19,1,18,2,31,0,0)
+        RegisterPassCheckDay(18,1,16,17,31,0,0)
+        RegisterPassCheckDay(19,1,18,2,30,0,0)
         RegisterPassCheckDay(20,1,3,13,32,0,0)
-        RegisterPassCheckDay(21,1,18,11,33,0,0)
-        RegisterPassCheckDay(22,1,10,15,34,0,0)
+        RegisterPassCheckDay(21,1,18,11,34,0,0)
+        RegisterPassCheckDay(22,1,10,15,33,0,0)
         RegisterPassCheckDay(23,1,4,5,21,0,0)
         RegisterPassCheckDay(24,1,6,18,22,0,0)
         RegisterPassCheckDay(25,1,8,9,23,0,0)
@@ -150,11 +150,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         RegisterPassCheckDay(32,1,18,11,23,0,0)
         RegisterPassCheckDay(33,1,10,15,24,0,0)
         RegisterPassCheckDay(34,1,4,5,26,0,0)
-        RegisterPassCheckDay(35,1,6,18,30,0,0)
-        RegisterPassCheckDay(36,1,8,9,31,0,0)
+        RegisterPassCheckDay(35,1,6,18,31,0,0)
+        RegisterPassCheckDay(36,1,8,9,30,0,0)
         RegisterPassCheckDay(37,1,10,18,32,0,0)
-        RegisterPassCheckDay(38,1,12,7,33,0,0)
-        RegisterPassCheckDay(39,1,14,18,34,0,0)
+        RegisterPassCheckDay(38,1,12,7,34,0,0)
+        RegisterPassCheckDay(39,1,14,18,33,0,0)
         RegisterPassCheckDay(40,1,16,17,21,0,0)
         RegisterPassCheckDay(41,1,18,2,22,0,0)
         RegisterPassCheckDay(42,1,3,13,23,0,0)
@@ -200,6 +200,32 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             return 0
         endfunction
 
+        function GetShowMissionTips(int pid,int index,int missionid)->string
+            int data = PlayerPassData[index]
+            int use = GetMissionUse(missionid)
+            if  use > data
+                if  data == 0
+                    return GetMissionName(missionid)+"|cffffcc00--进行中|r"
+                else
+                    return GetMissionName(missionid)+"|cffffcc00--当前数量：|r"+I2S(data)
+                endif
+            else
+                return GetMissionName(missionid)+"|cff00ff00--已完成|r"
+            endif
+        endfunction
+        function PlayerShowMission(int pid)//查询任务
+            int missionid = 0
+            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffff0000[任务]：|r|cffcc99ff任务每天凌晨五点自动刷新！|r")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffff0000[任务状态]：|r")
+            for i = 1,MaxMissionNum
+                missionid = PassCheckMissionId[MissionDay][i]
+                if  missionid > 0
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[任务]：|r"+GetShowMissionTips(pid,i,missionid))
+                endif
+            end
+        endfunction
+
+
         function PlayerMissionComplete(int pid,int missionid)//任务完成
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
@@ -221,6 +247,13 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                     PlayerMissionComplete(pid,missionid)
                 else
                     PlayerPassData[index] = PlayerPassData[index] + num
+                    if  use <= 30
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[任务]：|r"+GetShowMissionTips(pid,index,missionid))
+                    else
+                        if  ModuloInteger(PlayerPassData[index],10) == 0
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[任务]：|r"+GetShowMissionTips(pid,index,missionid))
+                        endif
+                    endif
                 endif
                 SetDzPlayerData(pid,5,index,PlayerPassData[index])
                 RePassClickFrame.execute(pid)
@@ -228,6 +261,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 BJDebugMsg(I2S(missionid)+"任务已完成")
             endif
         endfunction
+
+        
         
         function MissionAddNumFunc(int pid,int missionid,int num)//任务达成计数
             int index = 0
@@ -241,6 +276,36 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 endif
             endif
         endfunction
+
+        function TimerMissionAddNumFunc(int id,int missionid,int num)
+            int pid = id
+            int i1 = missionid
+            int i2 = num
+            TimerStart(0.0,false)
+            {
+                MissionAddNumFunc(pid,i1,i2)
+                endtimer
+                flush locals
+            }
+            flush locals
+        endfunction
+
+
+        function MissionKillUnit(int pid,int uid)
+            MissionAddNumFunc(pid,3,1)
+            if  uid >= 'ma01' and uid <= 'ma0z'
+                MissionAddNumFunc(pid,7,1)//精英怪
+            elseif  uid >= 'mb01' and uid <= 'mb0z'
+                MissionAddNumFunc(pid,8,1)//进攻boss
+                MissionAddNumFunc(pid,32,1)//进攻boss
+            elseif  uid >= 'u001' and uid <= 'u009'
+                MissionAddNumFunc(pid,16,1)//送宝金蟾
+            elseif  uid >= 'u0CA' and uid <= 'u0CZ'
+                MissionAddNumFunc(pid,17,1)//占星
+            endif
+        endfunction
+
+        
 
         function PlayerAddMission(int pid)//读取当前任务进度
             for i = 1,MaxMissionNum
@@ -258,6 +323,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
                 
                 //通行证加载道具
 
+                
+                if  TimeHour >= 20 and TimeHour<= 24
+                    MissionAddNumFunc(pid,18,1)
+                endif
             endif
         endfunction
     endscope
@@ -438,7 +507,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
     private function CreateFrameButton1()
         int last = 0
         //快速升级
-        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.008,0.056,0.02,"war3mapImported\\UI_Pass_LevelUp0.tga")
+        CreateButton(655,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.01,-0.008,0.056,0.02,"war3mapImported\\UI_Pass_ClockIn.tga")
         
         
 
@@ -499,6 +568,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateText(642,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
         CreateText(643,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
         CreateText(644,Button.frameid,"righttext008",5,5,-0.005,0.0,"")
+        
 
 
         
@@ -506,11 +576,15 @@ library PassCheckUI uses GameFrame,PassCheckMission
         for i = 1,4
             CreateButton(680+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[640+i][0],3,0.0,0.0,0.028,0.028,"war3mapImported\\UI_Pass_Text1.tga")
         end
-        CreateText(681,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
-        CreateText(682,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
-        CreateText(683,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
-        CreateText(684,Button.frameid,"centertext008",3,5,0.005,0.0,"|cff00ff00已完成|r")
+        CreateText(681,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
+        CreateText(682,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
+        CreateText(683,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
+        CreateText(684,Button.frameid,"text008",3,3,0.03,0.0,"|cff00ff00已完成|r")
 
+        DzFrameSetSize(BUTTON_Text[681],0.08,0.0)
+        DzFrameSetSize(BUTTON_Text[682],0.08,0.0)
+        DzFrameSetSize(BUTTON_Text[683],0.08,0.0)
+        DzFrameSetSize(BUTTON_Text[684],0.08,0.0)
 
         CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Left.tga")
         CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Right.tga")

@@ -396,14 +396,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,501)
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,301)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
 
                 AttackTexttag[pid] = CreateTextTag()
-                SetTextTagText(AttackTexttag[pid],"0/500",0.03)
+                SetTextTagText(AttackTexttag[pid],"0/300",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
 
                 //ShowUnit(Pu[23],false)

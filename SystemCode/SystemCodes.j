@@ -619,6 +619,63 @@ library SystemCodes uses ServerTime,Define1
 
     //////////////////////////////////顺序调整分割///////////////////////////////////////
 
+    function IsPlayerIn_MZRPG_Guild(int pid)->bool //魔芝所有公会
+        if  DzAPI_Map_GetGuildName(Player(pid)) == "星耀俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "星耀俱乐部②" or DzAPI_Map_GetGuildName(Player(pid)) == "星耀俱乐部③" or  DzAPI_Map_GetGuildName(Player(pid)) == "星辰俱乐部" 
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟②萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟③萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟④萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟⑤萌" 
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟⑥萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟⑦萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟⑧萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟⑨萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟⑩萌" 
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①①萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①②萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①③萌"                                                                                             
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①④萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①⑤萌" or DzAPI_Map_GetGuildName(Player(pid)) == "墨汁联盟①⑥萌"                                                                                             
+            return true
+        endif
+        return false
+    endfunction
+
+    function IsPlayerIn_MZRPG_Cooperate_Guild(int pid)->bool //魔芝合作公会
+        if  IsPlayerIn_MZRPG_Guild(pid) == true
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "星悦会员俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "星悦俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "星悦会员公会"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "天玑团" or DzAPI_Map_GetGuildName(Player(pid)) == "天权团" or DzAPI_Map_GetGuildName(Player(pid)) == "天璇团" or DzAPI_Map_GetGuildName(Player(pid)) == "天枢团"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "玉衡团" or DzAPI_Map_GetGuildName(Player(pid)) == "开阳团" or DzAPI_Map_GetGuildName(Player(pid)) == "摇光团" or DzAPI_Map_GetGuildName(Player(pid)) == "北斗七星"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "VVIP俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "VVIP丶腾龙阁"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "爱上丶锦衣卫" or DzAPI_Map_GetGuildName(Player(pid)) == "皓月灬雨花阁" or DzAPI_Map_GetGuildName(Player(pid)) == "皓月灬烟雨阁" or DzAPI_Map_GetGuildName(Player(pid)) == "Gu"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "小兵的故事Ⅱ官方公会" 
+            return true
+        endif
+        return false
+    endfunction
+
+    function IsPlayerIn_MZRPG_Star(int pid)->bool //魔芝星耀
+        if  DzAPI_Map_GetGuildName(Player(pid)) == "星耀俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "星耀俱乐部②" or DzAPI_Map_GetGuildName(Player(pid)) == "星耀俱乐部③" or  DzAPI_Map_GetGuildName(Player(pid)) == "星辰俱乐部" 
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "星悦会员俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "星悦俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "星悦会员公会"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "天玑团" or DzAPI_Map_GetGuildName(Player(pid)) == "天权团" or DzAPI_Map_GetGuildName(Player(pid)) == "天璇团" or DzAPI_Map_GetGuildName(Player(pid)) == "天枢团"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "玉衡团" or DzAPI_Map_GetGuildName(Player(pid)) == "开阳团" or DzAPI_Map_GetGuildName(Player(pid)) == "摇光团" or DzAPI_Map_GetGuildName(Player(pid)) == "北斗七星"
+            return true
+        elseif  DzAPI_Map_GetGuildName(Player(pid)) == "VVIP俱乐部" or DzAPI_Map_GetGuildName(Player(pid)) == "VVIP丶腾龙阁"
+            return true
+        endif
+        return false
+    endfunction
+
+    function IsPlayerIn_MZRPG_Admin(int pid)->bool //魔芝会长管理员
+        if  IsPlayerIn_MZRPG_Guild(pid) == true
+            if  DzAPI_Map_GetGuildRole(Player(pid)) == 30 or DzAPI_Map_GetGuildRole(Player(pid)) == 20
+                return true
+            endif
+        endif
+        return false
+    endfunction
 
 
     

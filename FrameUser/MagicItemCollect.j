@@ -724,6 +724,33 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
     endfunction
 
+
+
+
+    //获得法宝  唯一接口 任务用
+    function GivePlayerMagicItem(int pid,int value)
+        AddPlayerMagicItem(pid,value)
+
+        int color = GetTypeIdData(value,101)
+        if  color == 1
+            TimerMissionAddNumFunc(pid,24,1)//获得法宝
+        elseif  color == 2
+            TimerMissionAddNumFunc(pid,9,1)//获得法宝
+            TimerMissionAddNumFunc(pid,27,1)//获得法宝
+            TimerMissionAddNumFunc(pid,34,1)//获得法宝
+        elseif  color == 3
+            TimerMissionAddNumFunc(pid,12,1)//获得法宝
+        elseif  color == 4
+            TimerMissionAddNumFunc(pid,13,1)//获得法宝
+        endif
+
+        
+
+
+        BJDebugMsg("通关副本 获得法宝")
+    endfunction
+
+
     //移除法宝
     function RemPlayerMagicItemByIndex(int pid,int index)
         if  index > 0
