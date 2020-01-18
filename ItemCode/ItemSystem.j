@@ -116,15 +116,21 @@ scope ItemSystem initializer InitItemSystem
         elseif  index == 3
             use = 20000 + num * 5000
         endif
+        if  use > 1000000
+            use = 1000000
+        endif
         return use
     endfunction
     function RePlayerAbilityDrawTips(int pid,int index)
         int id = 'IS00' + index
         int num = GetPlayerDrawNum(pid,index)
         int use1 = GetPlayerDrawUse(pid,index,num+1)
+
         if  GetLocalPlayer() == Player(pid)
             YDWESetItemDataString(id,2,GetObjectName(id)+"[ 第"+I2S(num)+"次 ]")
-            YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币")
+            if  num > 0
+                YDWESetItemDataString(id,3,"需要"+I2S(use1)+"金币,1木材")
+            endif
         endif
     endfunction
     //抽技能
@@ -132,15 +138,24 @@ scope ItemSystem initializer InitItemSystem
         int index = itemid - 'IS00'
         int num = GetPlayerDrawNum(pid,index)
         int use1 = GetPlayerDrawUse(pid,index,num+1)
+        int use2 = 0
+        if  num > 0
+            use2 = 1
+        endif
         if  use1 > 0
+            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER) >= use2
+                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
+                    AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
-            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
-                AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                PlayerUseLearnAbilityBook(pid,index)
-                AddPlayerDrawNum(pid,index)
-                RePlayerAbilityDrawTips(pid,index)
+                    AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                    PlayerUseLearnAbilityBook(pid,index,GetExpectLevel(pid,index))
+                    AddPlayerDrawNum(pid,index)
+                    RePlayerAbilityDrawTips(pid,index)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！金币不足"+I2S(use1))
+                endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！金币不足"+I2S(use1))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！木材不足"+I2S(use2))
             endif
         endif
     endfunction
@@ -333,7 +348,7 @@ scope ItemSystem initializer InitItemSystem
         endif
     endfunction
 
-    function PlayerHeorSkillMagic(unit wu,int index)
+    function PlayerHeroSkillMagic(unit wu,int index)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int use = 0
         if  GetTypeIdData(GetHeroAbilityID(Pu[1],1),101) == 9
@@ -385,7 +400,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
-            PlayerHeorSkillMagic(u1,itemid - 'IS20')
+            PlayerHeroSkillMagic(u1,itemid - 'IS20')
         elseif  itemid >= 'IH01' and itemid <= 'IH08'
             PlayerBeastSoulDraw(pid,itemid)
         elseif  itemid == 'IZ01'
@@ -424,20 +439,9 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
 
-        if  itemid >= 'CS01' and itemid <= 'CS03'
-            if  GetHeroAbilityLevelByIndex(Pu[1],itemid - 'CS00') < 4
-                HeroRandomSetAbilityLevel(Pu[1],itemid - 'CS00')
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r该技能为A品质无法刷新")
-                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
-            endif
-        elseif  itemid >= 'CS11' and itemid <= 'CS13'
-            if  GetHeroAbilityLevelByIndex(Pu[1],itemid - 'CS10') == 4
-                HeroIncAbility(Pu[1],itemid - 'CS10')
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r只有品质A可以突破")
-                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
-            endif
+        if  itemid >= 'CS21' and itemid <= 'CS23'
+            PlayerUseIncAbilityGem(u1,itemid)
+        
         elseif  itemid >= 'E001' and itemid <= 'E024'
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid >= 'E201' and itemid <= 'E224'

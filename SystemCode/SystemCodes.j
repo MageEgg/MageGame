@@ -685,7 +685,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             int index = GetRandomInt(1,max)
             int id = GetPrizeData(page,pool,index)
             if  rem == true
-                RemPrizeData(page,pool)
+                RemPrizeData(page,pool,index)
             endif
             return id
         endfunction

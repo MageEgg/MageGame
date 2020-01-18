@@ -90,7 +90,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     
     function ClearAttackRoom(int pid)
     if  FirstOfGroup(AttackRoomGroup[pid]) != null
-        DBUG("检测到残留单位，干掉")
+        //DBUG("检测到残留单位，干掉")
         ForGroup(AttackRoomGroup[pid],function ClearAttackRoomFun)
     endif
     endfunction
@@ -316,7 +316,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            DBUG("判断单位组为空准备刷怪")
+            //DBUG("判断单位组为空准备刷怪")
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {

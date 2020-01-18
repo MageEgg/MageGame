@@ -198,10 +198,11 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[43]="杀敌攻击"
         StateName[44]="杀敌业力"
         StateName[45]="杀敌生命"
-        StateName[46]=""
+        StateName[46]="杀敌金币"
         StateName[47]="每秒攻击"
         StateName[48]="每秒业力"
         StateName[49]="每秒生命"
+        StateName[50]="每秒金币"
         StateName[51]="攻击距离"
 
         StateName[301] = " - [|cffffcc00Q|r]"

@@ -316,8 +316,18 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         ShowLearnFrame(pid,true)
         ReLearnAbility(pid)
     endfunction
+    
+
+    //新的技能学习逻辑
 
 
+    function GetIncAbilityName(int id,int color)->string
+        if  id == 0
+            return ""
+        else
+            return GetSkillNameColor(color) + GetTypeIdString(id,100) + GetSkillGrade(color)
+        endif
+    endfunction
 
     //获取一个期待的颜色
     function GetExpectLevel(int pid,int index)->int
@@ -365,9 +375,9 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         return id
     endfunction
     
-    function PlayerUseLearnAbilityBook(int pid,int index)
+    //抽技能
+    function PlayerUseLearnAbilityBook(int pid,int index,int newcolor)
         int now = GetHeroAbilityID(Pu[1],index)
-        int newcolor = GetExpectLevel(pid,index)
 
         int new = GetPrize(pid,1,true)
 
@@ -386,6 +396,107 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
         HeroSetAbilityLevelByIndex(Pu[1],index,newcolor)
         
+    endfunction
+
+
+
+    //读取可升级的技能id
+    function GetCanIncAbilityId(int pid,int index,int max)->int
+        int n = 0
+        int color = 0
+        int id = 0
+        for i = 1,3
+            id = GetHeroAbilityID(Pu[1],i)
+            if  id > 0 and GetTypeIdData(id,101) != 9
+                color = GetExpectLevel(pid,i)
+                if  max == 5
+                    if  color == 4
+                        n = n + 1
+                    endif
+                else
+                    if  color < max
+                        n = n + 1
+                    endif
+                endif
+                BJDebugMsg("color"+I2S(color))
+                if  n == index
+                    return id
+                endif
+            endif
+        end
+        return 0
+    endfunction
+
+    function IncAbilityGemFunc1()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+
+
+        int id = GetCanIncAbilityId(pid,i,4)
+        int index = GetHeroAbilityIndex(Pu[1],id)
+        HeroIncAbility(Pu[1],index)
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+    endfunction
+    function IncAbilityGemFunc2()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+
+
+        int id = GetCanIncAbilityId(pid,i,5)
+        int index = GetHeroAbilityIndex(Pu[1],id)
+        HeroIncAbility(Pu[1],index)
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+    endfunction
+
+    
+    function IncAbilityGemFunc3()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+
+        if  GetRandomInt(1,100)<= 50
+            int id = GetCanIncAbilityId(pid,i,4)
+            int index = GetHeroAbilityIndex(Pu[1],id)
+            HeroIncAbility(Pu[1],index)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:升级傻逼！")
+        endif
+    endfunction
+
+    
+
+    //洗技能品级
+    function PlayerUseIncAbilityGem(unit u1,int itemid)
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        int max = 0
+        if  itemid == 'CS22'
+            max = 5
+        else
+            max = 4
+        endif
+        int id1 = GetCanIncAbilityId(pid,1,max)
+        int id2 = GetCanIncAbilityId(pid,2,max)
+        int id3 = GetCanIncAbilityId(pid,3,max)
+        int ic1 = GetHeroAbilityLevel(Pu[1],id1)
+        int ic2 = GetHeroAbilityLevel(Pu[1],id2)
+        int ic3 = GetHeroAbilityLevel(Pu[1],id3)
+
+        if  id1 > 0
+            if  itemid == 'CS21'
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc1")
+            elseif  itemid == 'CS22'
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc2")
+            elseif  itemid == 'CS23'
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc3")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:没有可以升级的技能！")
+            UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+        endif
+
     endfunction
 
 
