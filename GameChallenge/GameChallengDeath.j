@@ -62,31 +62,11 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         endif
     endfunction
 
-    function FlushGameChallenge(int pid,int flag)
-        if  flag == 1
-            GameChallenge_1Flush(pid,0)
-        elseif  flag == 2
-            GameChallenge_2Flush(pid,0)
-        elseif  flag == 3
-            GameChallenge_3Flush(pid,0)
-        elseif  flag == 4
-            GameChallenge_4Flush(pid,0)
-        elseif  flag == 5
-            GameChallenge_5Flush(pid,0)
-        elseif  flag == 6
-            GameChallenge_6Flush(pid,0)
-        elseif  flag == 7
-            GameChallenge_7Flush(pid,0)
-        elseif  flag == 8
-            GameChallenge_8Flush(pid,0)
-        endif
-    endfunction 
-
     function GameChallengPlayerDeathEvent(unit wu)
         unit u1 = wu
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
-            FlushGameChallenge(pid,PlayerInChallengeNumber)
+            GameChallengeFluahAll(pid,0)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r|cffff0000英雄死亡，挑战失败！！！|r")
         endif
         if  IsPlayerInTeamChallenge == true
@@ -108,7 +88,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
                 if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
-                    FlushGameChallenge(pid,PlayerInChallengeNumber)
+                    GameChallengeFluahAll(pid,-1)
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r|cffff0000英雄离开副本，挑战失败！！！|r")
                 endif
             endif

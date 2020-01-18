@@ -671,7 +671,22 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         flush locals
     endfunction
 
-    function GameChallenge_GlobalFlushBool(int id,real time)
+    function CreateTrigUnitInRangeOfGameChallenge(real x,real y,real rac,code actionFunc)
+        trigger tig = null
+        unit u = null
+        tig = CreateTrigger() 
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',x,y,0)
+        SetUnitVertexColor(u,255,255,255,0)
+        EXSetUnitMoveType(u,0x01)
+        TriggerRegisterUnitInRange(tig,u,rac,null)
+        TriggerAddAction(tig, actionFunc)
+        tig = null
+        u = null
+    endfunction
+
+    /////////////////////////顺序调整///////////////////////////////////////////////
+    
+    /*function GameChallenge_GlobalFlushBool(int id,real time)
         int pid = id
         TimerStart(time,false)
         {
@@ -680,7 +695,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             flush locals
         }
         flush locals
-    endfunction
+    endfunction*/
     
     function GameChallenge_GlobalFlush(int pid,real time)
         GameChallengCanUsesUnitFlush(pid)
@@ -689,7 +704,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         PlayerInChallengeShowUnit = null
         PlayerInChallengeNumber = 0
         SetPlayerAllianceVISION(pid,true)
-        GameChallenge_GlobalFlushBool(pid,1)
+        //GameChallenge_GlobalFlushBool(pid,1)
+        IsPlayerInChallenge = false
         if  time == -1
             if  Player(pid) == GetLocalPlayer()
                 PlayerTaskUI_Back.alpha = 0
@@ -705,17 +721,105 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
-    function CreateTrigUnitInRangeOfGameChallenge(real x,real y,real rac,code actionFunc)
-        trigger tig = null
-        unit u = null
-        tig = CreateTrigger() 
-        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',x,y,0)
-        SetUnitVertexColor(u,255,255,255,0)
-        EXSetUnitMoveType(u,0x01)
-        TriggerRegisterUnitInRange(tig,u,rac,null)
-        TriggerAddAction(tig, actionFunc)
-        tig = null
-        u = null
+    function GameChallenge_1Flush(int pid)
+        for num = 0,5
+            SetUnitVertexColor(GameChallengUnit[10+num],255,255,255,0)
+        end
+        GameChallengInt[10] = 0
+        GameChallengInt[11] = 0
+        GameChallengBool[10] = false
+        GameChallengBool[11] = false
+        if  GameChallengUnit[19] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[19]))
+            RemoveUnit(GameChallengUnit[19])
+            GameChallengUnit[19] = null
+        endif
+    endfunction
+
+    function GameChallenge_2Flush(int pid)
+        SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
+        if  GameChallengUnit[29] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[29]))
+            RemoveUnit(GameChallengUnit[29])
+            GameChallengUnit[29] = null
+        endif
+        GameChallengInt[20] = 0
+        if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
+            UnitRemoveAbility(Pu[1],'AZ04')
+        endif
+    endfunction
+
+    function GameChallenge_3Flush(int pid)
+        for num = 0,3
+            SetUnitVertexColor(GameChallengUnit[30+num],255,255,255,0)
+        end
+        GameChallengInt[30] = 0
+        if  GameChallengUnit[39] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[39]))
+            RemoveUnit(GameChallengUnit[39])
+            GameChallengUnit[39] = null
+        endif
+    endfunction
+
+    function GameChallenge_4Flush(int pid)
+        for num = 0,7
+            SetUnitVertexColor(GameChallengUnit[40+num],255,255,255,0)
+        end
+        GameChallengInt[40] = 0
+        SetUnitAnimation(GameChallengUnit[43],"stand")
+    endfunction
+
+    function GameChallenge_5Flush(int pid)
+        SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
+        SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
+        GameChallengInt[50] = 0
+        if  GameChallengUnit[59] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[59]))
+            RemoveUnit(GameChallengUnit[59])
+            GameChallengUnit[59] = null
+        endif
+    endfunction
+    
+    function GameChallenge_6Flush(int pid)
+        for num = 0,3
+            SetUnitVertexColor(GameChallengUnit[60+num],255,255,255,0)
+        end
+        GameChallengInt[60] = 0
+        if  GameChallengUnit[69] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[69]))
+            RemoveUnit(GameChallengUnit[69])
+            GameChallengUnit[69] = null
+        endif
+    endfunction
+
+    function GameChallenge_7Flush(int pid)
+        for num = 0,9
+            SetUnitVertexColor(GameChallengUnit[70+num],255,255,255,0)
+        end
+    endfunction
+
+    function GameChallenge_8Flush(int pid)
+        for num = 0,3
+            SetUnitVertexColor(GameChallengUnit[80+num],255,255,255,0)
+        end
+        GameChallengInt[80] = 0
+        if  GameChallengUnit[89] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[89]))
+            RemoveUnit(GameChallengUnit[89])
+            GameChallengUnit[89] = null
+        endif
+    endfunction
+
+    function GameChallengeFluahAll(int pid,real time)
+        GameChallenge_1Flush(pid)
+        GameChallenge_2Flush(pid)
+        GameChallenge_3Flush(pid)
+        GameChallenge_4Flush(pid)
+        GameChallenge_5Flush(pid)
+        GameChallenge_6Flush(pid)
+        GameChallenge_7Flush(pid)
+        GameChallenge_8Flush(pid)
+        GameChallenge_GlobalFlush(pid,time)
     endfunction
 
 endlibrary
