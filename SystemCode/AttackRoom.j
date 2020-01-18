@@ -323,7 +323,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-
+            DBUG("全部死亡，刷新")
             AttackRoomTimer[pid] = true
             TimerStart(0.8,false)
             {
