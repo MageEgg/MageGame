@@ -89,16 +89,13 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     endfunction
     
     function ClearAttackRoom(int pid)
-    if  FirstOfGroup(AttackRoomGroup[pid]) != null
-        //DBUG("检测到残留单位，干掉")
         ForGroup(AttackRoomGroup[pid],function ClearAttackRoomFun)
-    endif
     endfunction
 //清空练功房内怪物
 
     function RefreshAttackRoom(int pid,int uid)
-        ClearAttackRoom(pid)//先清空
-        for c=1,AttackRoomUnitNum
+        integer i=CountUnitsInGroup(AttackRoomGroup[pid])
+        for c=1,AttackRoomUnitNum-i
             CreateAttackRoomUnit(uid,pid)
         end
         //DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
@@ -307,7 +304,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     function AttackRoomUnitDeath(unit wu,unit ku)
         real x = GetUnitX(ku)
         real y = GetUnitY(ku)
-        int pid=GetPlayerId(GetOwningPlayer(ku))
+        integer pid=GetPlayerId(GetOwningPlayer(ku))
         AttackRoomKillUnit(ku,wu)
         RecoveryAttackRoomUnit(pid,wu)
         if  FirstOfGroup(AttackRoomGroup[pid]) == null

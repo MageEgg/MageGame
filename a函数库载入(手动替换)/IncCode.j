@@ -56,9 +56,8 @@
 #include "MageGame\\AttackUnit\\CreateOpera.j"
 
 //物品系统
+#include "MageGame\\ItemCode\\ItemGameFunc.j"
 #include "MageGame\\ItemCode\\ItemSystem.j"
-
-#include "MageGame\\ItemCode\\GiftandPrize.j"
 
 //副本
 #include "MageGame\\GameChallenge\\GameChallengeBase.j"
