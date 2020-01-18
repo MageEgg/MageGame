@@ -402,6 +402,9 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
         HeroSetAbilityLevelByIndex(Pu[1],index,newcolor)
         
+
+        MissionAddNumFunc(pid,5,1)//抽技能
+        MissionAddNumFunc(pid,33,1)//抽技能
     endfunction
 
 
