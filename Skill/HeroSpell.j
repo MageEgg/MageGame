@@ -1325,7 +1325,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
 
                 GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
-                UnitDamageGroup(u,g,GetUnitRealState(u,5)*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u,g,GetAbilityDamage(u,'S102',GetHeroAbilityLevel(u,'S102')),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
