@@ -416,7 +416,7 @@ scope ItemSystem initializer InitItemSystem
         if  itemid == 'I00A'
             AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))
         elseif  itemid == 'IZ0A'
-            AttackUnitItemStop(pid,10,120)
+            AttackUnitItemStop(pid,3,120)
         elseif  itemid == 'IZ0B'
             AttackUnitItemSpeedUp(pid)
         endif
@@ -442,7 +442,11 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
 
-        if  itemid >= 'CS21' and itemid <= 'CS23'
+        if  itemid == 'CS01'
+            PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
+            AddPlayerDrawNum(pid,1)
+            RePlayerAbilityDrawTips(pid,1)
+        elseif  itemid >= 'CS21' and itemid <= 'CS23'
             PlayerUseIncAbilityGem(u1,itemid)
         
         elseif  itemid >= 'E001' and itemid <= 'E024'

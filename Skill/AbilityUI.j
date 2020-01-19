@@ -56,6 +56,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
         if  chi == 1
             return r1 * GetUnitAttack(wu)
+        elseif  chi == 0
+            return r1
         else
             return r1 * GetUnitRealState(wu,chi)
         endif

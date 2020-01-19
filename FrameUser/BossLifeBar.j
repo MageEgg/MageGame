@@ -14,6 +14,11 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
             if  GetUnitTypeId(Pu[6]) != 0 and Pu[6] != null
                 if  Udis(Pu[1],Pu[6]) < 2000
                     if  GetLocalPlayer() == Player(pid)
+                        if  GetUnitAbilityLevel(Pu[6],'AZ01') > 0
+                            Back.SetTexture("war3mapImported\\UI_Life_4.tga", 0)
+                        else
+                            Back.SetTexture("war3mapImported\\UI_Life_1.tga", 0)
+                        endif
                         life = GetUnitState(Pu[6],UNIT_STATE_LIFE)
                         maxlife = GetUnitState(Pu[6],UNIT_STATE_MAX_LIFE)
                         Life.SetText(I2S(R2I(life))+"/"+I2S(R2I(maxlife)))
@@ -44,7 +49,7 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
         Back.frameid = FRAME.Tag("BACKDROP","BossLife",GameUI,Back)
         Back.SetPoint(2,GameUI,1,-0.128,-0.05)
         Back.SetSize(0.036,0.036)
-        Back.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
+        Back.SetTexture("war3mapImported\\UI_Life_1.tga", 0)
         origin = Back.frameid
 
         Model1.frameid = FRAME.Tag("SPRITE","BossLife",origin,Model1)

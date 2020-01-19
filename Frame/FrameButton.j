@@ -49,6 +49,9 @@ library GameFrame uses FRAME
         
         if  FrameType != TYPE_NOT
             FrameSetScriptByExecute( BUTTON_Button[id], 1,id,FrameType)
+            if  id >= 501 and id <= 600
+                FrameSetScriptByExecute( BUTTON_Button[id], 6,id,FrameType)
+            endif
         endif
         
     endfunction

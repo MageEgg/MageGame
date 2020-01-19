@@ -222,15 +222,3 @@
     endfunction
 
 
-    function UI_ScriptWheel()
-        int frame =  DzGetMouseFocus()
-        int Type = GetFrameType(frame)
-        int id = Frame2Id(frame)
-        int pid = GetPlayerId(GetLocalPlayer())
-        int whell = DzGetWheelDelta()
-        if  Pu[1] != null
-            if  id >= 501 and id <= 600
-                PlayerWheelShowSaveFrame(pid,whell)
-            endif
-        endif
-    endfunction
