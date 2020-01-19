@@ -3,7 +3,7 @@ library PetSystem uses AbilityUI,OtherDamageTimer
     function PetTimer(int pid)
         for num = 0,5
             if  Pu[200+num] != null
-                if  Udis(Pu[1],Pu[200+num]) > 600
+                if  Udis(Pu[1],Pu[200+num]) > 800
                     SetUnitXY(Pu[200+num],GetUnitX(Pu[1])+GetRandomReal(-200,200),GetUnitY(Pu[1])+GetRandomReal(-200,200))
                     UnitAddEffect(Pu[200+num],"effect_az_pafeathermoon_b.mdl")
                     IssuePointOrderById(Pu[200+num],851983,(GetUnitX(Pu[1])+GetRandomReal(-250,250)),(GetUnitY(Pu[1])+GetRandomReal(-250,250)))
