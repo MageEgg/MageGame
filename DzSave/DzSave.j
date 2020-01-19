@@ -29,7 +29,7 @@ library DzSave initializer InitDzData uses DzDataSetting
     function DisassembleDzPlayerDataOfGroup(int pid,int Group)
         int MaxMember = 0
         MaxMember = GetDzDataGroupMaxMember(Group)
-        BJDebugMsg("MaxMember"+I2S(MaxMember))
+        //BJDebugMsg("MaxMember"+I2S(MaxMember))
         for flag = 1,MaxMember
             if  pid == 0
                 DzArrayPlayerInt0[Group][flag] = S2I(SubString(DzS[Group],DzDataGroupLength(Group)*(flag-1),DzDataGroupLength(Group)*flag))
@@ -84,7 +84,7 @@ library DzSave initializer InitDzData uses DzDataSetting
     function SaveDzPlayerDataOfGroup(int pid,int Group)
         int MaxMember = 0
         MaxMember = GetDzDataGroupMaxMember(Group)
-        BJDebugMsg("MaxMember"+I2S(MaxMember))
+        //BJDebugMsg("MaxMember"+I2S(MaxMember))
         DzS[Group] = ""
         if  pid == 0
             for flag = 1,MaxMember
@@ -308,7 +308,7 @@ library DzSave initializer InitDzData uses DzDataSetting
     endfunction
     
     function InitDzSetting()
-        BJDebugMsg("InitDzSetting")
+        //BJDebugMsg("InitDzSetting")
         DzDataBaseSetting()
         InitFlushDzDataGroupLength()
         DzDataGroupSetting()
@@ -317,20 +317,16 @@ library DzSave initializer InitDzData uses DzDataSetting
     
     function InitDzDataFunc()
         int time = 0
-        BJDebugMsg("InitDzDataFunc")
         TimerStart(0.1,true)
         {
             time = time + 1
             if  time == 1
-                BJDebugMsg("LoadingDzMapData start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzMapData(pid) //载入积分
                     endif
                 end
-                BJDebugMsg("LoadingDzMapData over")
             elseif  time == 2
-                BJDebugMsg("DzDataNewPlayer start ")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         if  IsDzDataNewPlayer(pid) == true
@@ -339,25 +335,19 @@ library DzSave initializer InitDzData uses DzDataSetting
                         DzDataNewPlayer(pid) //新玩家
                     endif
                 end
-                BJDebugMsg("DzDataNewPlayer over")
             elseif  time == 3
-                BJDebugMsg("全局存档 start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         DzSavePublic(pid,1) //全局存档 
                     endif
                 end
-                BJDebugMsg("全局存档 over")
             elseif  time == 4
-                BJDebugMsg("LoadingDzPlayerData start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzPlayerData(pid) //加载游戏数据
                     endif
                 end
-                BJDebugMsg("LoadingDzPlayerData over")
             elseif  time == 5
-                BJDebugMsg("LoadingDzPlayerDataFlush start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         LoadingDzPlayerDataFlush(pid) //刷新游戏数据
@@ -366,25 +356,19 @@ library DzSave initializer InitDzData uses DzDataSetting
                         endif
                     endif
                 end
-                BJDebugMsg("LoadingDzPlayerDataFlush over")
             elseif  time == 6
-                BJDebugMsg("SaveDzServerTime start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         SaveDzServerTime(pid) //更新版本
                     endif
                 end
-                BJDebugMsg("SaveDzServerTime over")
             elseif  time == 7
-                BJDebugMsg("加载科技 start")
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         //加载科技
                     endif
                 end
-                BJDebugMsg("加载科技 over")
             elseif  time == 8
-                BJDebugMsg("初始化存档加载完毕 结束计时器！！！")
                 ExecuteFunc("OpenSelectMode")
                 GetDzHD()
                 endtimer
