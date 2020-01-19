@@ -240,7 +240,7 @@ library ItemGameFunc uses DamageCode
 
     function InitPlayerGameGift(int id)
         int pid = id
-        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已完成新手任务，为您自动领取游戏礼包！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,6,"|cffffcc00[系统]：|r您已完成新手任务，为您自动领取游戏礼包！")
         TimerStart(0.5,false)
         {
             InitPlayerGameGiftEx(pid)
