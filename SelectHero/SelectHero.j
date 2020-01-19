@@ -67,9 +67,6 @@ scope SelectHero
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
             
-            
-            
-            InitPlayerGameGift(pid)//加载礼包
             GameChallenge_0Start(pid)//加载新手任务
             
             /*if  SubString(GetPlayerName(Player(pid)),0,9) == "星耀丶"

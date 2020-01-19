@@ -416,7 +416,7 @@ scope ItemSystem initializer InitItemSystem
         if  itemid == 'I00A'
             AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))
         elseif  itemid == 'IZ0A'
-            AttackUnitItemStop(pid,10,120)
+            AttackUnitItemStop(pid,3,120)
         elseif  itemid == 'IZ0B'
             AttackUnitItemSpeedUp(pid)
         endif

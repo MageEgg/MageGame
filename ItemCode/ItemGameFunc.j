@@ -202,7 +202,7 @@ library ItemGameFunc uses DamageCode
         endif
     endfunction
 
-    function InitPlayerGameGift(int id)
+    function InitPlayerGameGiftEx(int id)
         int time = 0
         int pid = id
         if  GetDzPlayerData(pid,1,21) == 1
@@ -238,6 +238,18 @@ library ItemGameFunc uses DamageCode
         flush locals
     endfunction
 
+    function InitPlayerGameGift(int id)
+        int pid = id
+        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已完成新手任务，为您自动领取游戏礼包！")
+        TimerStart(0.5,false)
+        {
+            InitPlayerGameGiftEx(pid)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function AttackUnitItemStop(int pid,int num,real time) //进攻怪暂停
         if  InfiniteAttackBool == false
             if  CrazyAttackBool == false
@@ -248,16 +260,20 @@ library ItemGameFunc uses DamageCode
                             FuncStopAttack(time)
                             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"使用了暂停刷怪"+I2S(R2I(time/60))+"分钟（"+I2S(AttackUnitStopNum)+"/"+I2S(num)+"）" )
                         else
+                            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
                             DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前已处于暂停刷怪！")
                         endif
                     endif
                 else
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
                     DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r暂停刷怪次数已达"+I2S(num)+"次！")
                 endif
             else
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为疯狂模式无法暂停刷怪！")
             endif
         else
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
             DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为无尽模式无法暂停刷怪！")
         endif
     endfunction
