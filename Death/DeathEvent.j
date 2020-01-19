@@ -612,44 +612,45 @@ scope DeathEvent initializer InitDeathEvent
 
         if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
-        endif
         
-        if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
-            
-            if  u2 != null
-                //小怪死亡的资源类结算
-                PlayerHeroKillUnit(u2,u1)
-                //小怪死亡的其他功能
-                HeroKillMoster(u2,u1)
-                if  uid >= 'mb01' and uid <= 'mb20'
-                    AttackBossDeathEvent(u1)
+        
+            if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
+                
+                if  u2 != null
+                    //小怪死亡的资源类结算
+                    PlayerHeroKillUnit(u2,u1)
+                    //小怪死亡的其他功能
+                    HeroKillMoster(u2,u1)
+                    if  uid >= 'mb01' and uid <= 'mb20'
+                        AttackBossDeathEvent(u1)
+                    endif
+                else
+                    KillUnitNotHasKiller(u1,uid)
+                
+                    //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
                 endif
-            else
-                KillUnitNotHasKiller(u1,uid)
-               
-                //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
-            endif
-            
-            if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
-                AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
-            endif
+                
+                if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
+                    AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
+                endif
 
-            if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
-                GroupRemoveUnit(AttackUnitGroup,u1)
-            endif
-            if  IsUnitInGroup(u1,AttackOperaGroup_B_1)==true//用于进攻怪刷新单位组
-                GroupRemoveUnit(AttackOperaGroup_B_1,u1)
-            endif
-       
-            if  IsUnitInGroup(u1,AttackOperaGroup_B_2)==true//用于进攻怪刷新单位组
-                GroupRemoveUnit(AttackOperaGroup_B_2,u1)
-                if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
-                    OpenOperaB_Boss()
+                if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
+                    GroupRemoveUnit(AttackUnitGroup,u1)
                 endif
+                if  IsUnitInGroup(u1,AttackOperaGroup_B_1)==true//用于进攻怪刷新单位组
+                    GroupRemoveUnit(AttackOperaGroup_B_1,u1)
+                endif
+        
+                if  IsUnitInGroup(u1,AttackOperaGroup_B_2)==true//用于进攻怪刷新单位组
+                    GroupRemoveUnit(AttackOperaGroup_B_2,u1)
+                    if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
+                        OpenOperaB_Boss()
+                    endif
+                endif
+                
+                FlushChildHashtable(ht,GetHandleId(u1))
+                RemoveUnitTimer(u1,2)
             endif
-            
-            FlushChildHashtable(ht,GetHandleId(u1))
-            RemoveUnitTimer(u1,2)
         endif
         flush locals
     endfunction
