@@ -35,9 +35,7 @@ scope SelectHero
                 
             endif
             
-            
             SetUnitRealState(Pu[1],5,1000)
-            
 
             UnitAddAbility(Pu[1],'MF01')//魔法书
 
@@ -48,7 +46,6 @@ scope SelectHero
             UnitAddAbility(Pu[1],'AG05')
 
             UnitAddAbility(Pu[1],'AG06')
-            
             
             UnitAddAbility(Pu[1],'AG08')
             
@@ -62,7 +59,6 @@ scope SelectHero
             HeroAddAbilityByIndex(Pu[1],3,'S0E1')
             HeroAddAbilityByIndex(Pu[1],4,'S0R0')
             
-            
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
@@ -74,6 +70,7 @@ scope SelectHero
                 AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             endif*/
 
+            InitPlayerDzShopState(pid)//商城属性
             LoadPlayerTechState.execute(pid)
             InitHeroAddStateAbility.execute(Pu[1])
             PlayerLoadPassCheck.execute(pid)
@@ -108,11 +105,8 @@ scope SelectHero
                 DzFrameShow(BUTTON_Back[702][0], true)
                 DzFrameShow(BUTTON_Back[703][0], true) 
             endif
-
-            
             
             SetUnitRealState(Pu[1],5,1000)
-            
 
             UnitAddAbility(Pu[1],'MF01')//魔法书
 
@@ -124,9 +118,8 @@ scope SelectHero
 
             UnitAddAbility(Pu[1],'AG06')
             
-            
             UnitAddAbility(Pu[1],'AG08')
-
+            
             UnitAddAbility(Pu[1],'AG0A')
             UnitAddAbility(Pu[1],'AG0B')
 
@@ -137,15 +130,13 @@ scope SelectHero
             HeroAddAbilityByIndex(Pu[1],3,'S0E1')
             HeroAddAbilityByIndex(Pu[1],4,'S0R0')
             
-            
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
-            
-            LoadPlayerTechState.execute(pid)
-            
-            InitHeroAddStateAbility.execute(Pu[1])
 
+            InitPlayerDzShopState(pid)//商城属性
+            LoadPlayerTechState.execute(pid)
+            InitHeroAddStateAbility.execute(Pu[1])
             PlayerLoadPassCheck.execute(pid)
             
         endif
