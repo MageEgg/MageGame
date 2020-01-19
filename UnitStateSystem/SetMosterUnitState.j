@@ -252,7 +252,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetMosterUnitState(wu)
         elseif  id >= 'u0DA' and id <= 'u0DZ'
             //周天星辰阵
-            index = AttackUnitInt[0][2]//进攻波数d
+            index = AttackUnitInt[0][2]+1//进攻波数d
             
             if  index <= 0
                 index = 1

@@ -19,7 +19,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     private FRAME Exp1 = 0
     private FRAME ExpName = 0
 
-    private FRAME ExpModel = 0
+    FRAME ExpModel = 0
 
     private FRAME Button2 = 0
     private FRAME Back2 = 0
@@ -186,7 +186,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         Exp0 = FRAME.create()   //经验条
         Exp1 = FRAME.create()   //经验条
         ExpName = FRAME.create()   //经验条
-        
+        ExpModel = FRAME.create()   //经验条
 
 
         Button2 = FRAME.create() //背景注册2
@@ -268,8 +268,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         ExpName.SetPoint(7,Exp0.frameid ,7,0,0)
         ExpName.SetText("境界零-炼气士")
 
-        ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",GameUI,ExpModel)
-        ExpModel.SetPoint(7,Exp0.frameid,7,0,0)
+        ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",origin,ExpModel)
+        ExpModel.SetPoint(4,Exp0.frameid,4,0,0)
         ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
         ExpModel.SetAnimate(0,true)
 
