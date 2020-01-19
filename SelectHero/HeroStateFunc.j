@@ -49,6 +49,7 @@ library HeroStateFunc uses DamageCode
             AddUnitRealState(Pu[1],46,(1*lv))
             AddUnitRealState(Pu[1],45,(5*lv))
             UnitAddItemEx(Pu[1],'CS01')
+            BJDebugMsg("光环")
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
             AddUnitRealState(Pu[1],45,100+(20*lv))
