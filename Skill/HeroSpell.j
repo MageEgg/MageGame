@@ -84,8 +84,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS009(unit u1,unit u2,real damage)//连击
-        UnitDamageTarget(u1,u2,damage, false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-        SetAbilityCD_AC(u1,'S009',2)
+        integer lv = GetHeroAbilityLevel(u1,'S009')
+        real r1 = GetTypeIdReal('S009',100+lv)
+        UnitDamageTarget(u1,u2,damage, true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+        SetAbilityCD_AC(u1,'S009',r1)
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file")
         unit mj=CreateTmUnit(GetOwningPlayer(u1),mdoelorigin,GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u1),0,1)
         SetUnitAnimation( mj, "Attack" )

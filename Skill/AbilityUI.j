@@ -316,6 +316,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                         tip = tip + "\n\n|Cffff8000物理伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
                     elseif  DamageType == 2
                         tip = tip + "\n\n|Cff00bfff法术伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
+                    elseif  id == 'S009'
+                        tip = tip + "\n\n|Cff00bfff冷却时间："+I2S(R2I(r1))+"|r"
                     endif
 
                     //结算技能额外
