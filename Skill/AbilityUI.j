@@ -308,15 +308,14 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     
                     int DamageType = GetTypeIdData(id,103)//伤害类型
                     int chi = GetTypeIdData(id,102)//属性类型
-                    
-                    real r1 = GetTypeIdReal(id,101)
-                    real r2 = GetTypeIdReal(id,102) 
-                    real dam = r1 + r2 * level
+                    integer lv = GetHeroAbilityLevel(wu,id)
+                    real r1 = GetTypeIdReal(id,100+lv)
+                    real dam = r1*100
         
                     if  DamageType == 1
-                        tip = tip + "\n\n|Cffff8000物理伤害："+StateName[chi]+"*"+I2S(R2I(dam))+"|r"
+                        tip = tip + "\n\n|Cffff8000物理伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
                     elseif  DamageType == 2
-                        tip = tip + "\n\n|Cff00bfff法术伤害："+StateName[chi]+"*"+I2S(R2I(dam))+"|r"
+                        tip = tip + "\n\n|Cff00bfff法术伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
                     endif
 
                     //结算技能额外
