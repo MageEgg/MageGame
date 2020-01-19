@@ -76,21 +76,15 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
 
     function CreatePrizeButton()
     
-        CreateButton(401,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.015,-0.043,0.036,0.036,"war3mapImported\\alpha.tga")
-        CreateText(401,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
-
-        CreateButton(402,Button.frameid,TYPE_BUTTON,2,Button.frameid,2,-0.015,-0.043,0.036,0.036,"war3mapImported\\alpha.tga")
-        CreateText(402,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
-        //
-        CreateButton(411,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+1*0.042,0.01,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
+        CreateButton(411,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+1*0.042,0.012,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
         CreateButton(421,Button.frameid,TYPE_BUTTON,1,BUTTON_Back[411][0],1,0.0,-0.002,0.036,0.036,"war3mapImported\\alpha.tga")
         CreateText(421,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
 
-        CreateButton(412,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+0*0.042,0.01,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
+        CreateButton(412,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+0*0.042,0.012,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
         CreateButton(422,Button.frameid,TYPE_BUTTON,1,BUTTON_Back[412][0],1,0.0,-0.002,0.036,0.036,"war3mapImported\\alpha.tga")
         CreateText(422,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
 
-        CreateButton(413,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+2*0.042,0.01,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
+        CreateButton(413,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+2*0.042,0.012,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack1.tga")
         CreateButton(423,Button.frameid,TYPE_BUTTON,1,BUTTON_Back[413][0],1,0.0,-0.002,0.036,0.036,"war3mapImported\\alpha.tga")
         CreateText(423,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
 
@@ -131,16 +125,7 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
         int Type = GetUnitIntState(Pu[1],400)
         int id = 0
         if  GetLocalPlayer() == Player(pid)
-            for i = 1,2
-                id = GetUnitIntState(Pu[1],400+i)
-                if  id > 0
-                    DzFrameSetTexture(BUTTON_Back[400+i][1],GetTypeIdIcon(id),0)
-                    DzFrameSetText(BUTTON_Text[400+i],GetTypeIdName(id))
-                else
-                    DzFrameSetTexture(BUTTON_Back[400+i][1],"war3mapImported\\alpha.tga",0)
-                    DzFrameSetText(BUTTON_Text[400+i],"")
-                endif
-            end
+
 
             if  Type == 0
                 for i = 0,2
@@ -233,16 +218,16 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
         SetUnitIntState(Pu[1],405,id5)
 
         if  id3 == 0
-            SetPrizeType(pid,1)
+            PlayerClickPrize(pid,0)
         else
-            SetPrizeType(pid,0)
+            if  GetLocalPlayer() == Player(pid)
+                RePrizeFrame(pid)
+                Button.show = true
+            endif
         endif
 
         
-        if  GetLocalPlayer() == Player(pid)
-            RePrizeFrame(pid)
-            Button.show = true
-        endif
+        
     endfunction
 
 

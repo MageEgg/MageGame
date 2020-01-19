@@ -165,87 +165,8 @@ scope ItemSystem initializer InitItemSystem
         endif
     endfunction
     
-    //抽兽魂
-    function IsHasBeastSoul(int pid,int index)->bool
-        int num = GetUnitIntState(Pu[1],190)
-        if  num == 0
-            return false
-        else
-            for i = 1,num
-                if  GetUnitIntState(Pu[1],190+i) == index
-                    return true
-                endif
-            end
-        endif
-        return false
-    endfunction
 
-    function RePlayerBeastSoulDrawTips(int pid,int index)
-        int id = 'IH00' + index
-        int now = PlayerInt[pid][90+index]
-        int use = now * 20 + 100
-        if  GetLocalPlayer() == Player(pid)
-            YDWESetItemDataString(id,3,"需要"+I2S(use)+"杀敌数")
-        endif
-    endfunction
-
-    function RePlayerBeastSoulDrawShop(int pid)
-        for i = 1,8
-            RemoveItemFromStock(Pu[25],'IH00'+i)
-        end
-        for i = 1,8
-            if  PlayerInt[pid][90+i] < 10
-                AddItemToStock(Pu[25],'IH00'+i,1,1)
-            endif
-        end
-    endfunction
-
-    function PlayerBeastSoulDraw(int pid,int itemid)
-        int index = itemid - 'IH00'
-        int num = GetUnitIntState(Pu[1],190)
-        int now = PlayerInt[pid][90+index]
-        int use = now * 20 + 100
-        if  num < 3
-            
-            if  IsHasBeastSoul(pid,index) == false
-                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
-                    AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-                    PlayerInt[pid][90+index] = now + 1
-
-                    if  GetRandomInt(1,100) <= 10*now+10
-
-                        SetUnitIntState(Pu[1],190+num + 1,index)
-                        SetUnitIntState(Pu[1],190,num + 1)
-                        AddEquipState(Pu[1],itemid)
-                        
-                        PlayerInt[pid][90+index] = 10
-                        if  num == 9
-                            //int id = GetUnitIntState(Pu[1],190+GetRandomInt(1,3)) + 'S230'
-                            int id = GetRandomInt(1,8) + 'S230'
-                            HeroAddAbilityByIndex(Pu[1],4,id)
-                            RemoveUnit(Pu[25])
-                        else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取成功")
-                        endif
-                        
-                    else
-                        
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
-                    endif
-                    //RePlayerBeastSoulDrawTips(pid,index)
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r抽取失败！杀敌数不足"+I2S(use))
-                endif
-                
-            else
-                BJDebugMsg("重复的")
-            endif
-        
-            
-        endif
-        RePlayerBeastSoulDrawShop(pid)
-
-    endfunction
+    
 
 
 
@@ -407,8 +328,6 @@ scope ItemSystem initializer InitItemSystem
             AstrologyFunc(pid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
             PlayerHeroSkillMagic(u1,itemid - 'IS20')
-        elseif  itemid >= 'IH01' and itemid <= 'IH08'
-            PlayerBeastSoulDraw(pid,itemid)
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000

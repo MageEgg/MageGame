@@ -106,19 +106,27 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             SetHeroXP(wu,now,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
         else
+            if  GetLocalPlayer() == Player(pid)
+                ExpModel.show =true
+            endif
             if  HeroExpMaxTips == false
                 HeroExpMaxTips = true
                 HeroExpMaxTipsTimer(pid)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|境界经验已满，请挑战任意雷劫获得道果晋级")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战任意雷劫获得道果晋级")
             endif
         endif
     endfunction
     function HeroIncLevel(unit wu)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         //int now = GetHeroXP(wu)
         int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))
         //if  now + 1 == max
             SetHeroXP(wu,max,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
+
+            if  GetLocalPlayer() == Player(pid)
+                ExpModel.show = false
+            endif
         //endif
     endfunction
 
@@ -148,7 +156,6 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 ReAddAbilityByIndex(Pu[1],4,'S0R1')
                 ShowUnit(Pu[25],true)
                 LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")
-                RePlayerBeastSoulDrawShop.execute(pid)
             endif
             if  GetLocalPlayer() == Player(pid)
                 DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
@@ -282,15 +289,16 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         Exp1.SetSize(0.0001,0.008)
         Exp1.SetPoint(0,origin,0,0.0,0.0)
         
+        
+
+        ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",origin,ExpModel)
+        ExpModel.SetPoint(6,Exp0.frameid,6,-0.005,0)
+        //ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
+        ExpModel.SetAnimate(0,true)
+        ExpModel.show = false
         ExpName.frameid = FRAME.Fdf("centertext009",origin,ExpName)
         ExpName.SetPoint(7,Exp0.frameid ,7,0,0)
         ExpName.SetText("境界零-炼气士")
-
-        ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",origin,ExpModel)
-        ExpModel.SetPoint(6,Exp0.frameid,6,0,0)
-        ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
-        ExpModel.SetAnimate(0,true)
-
 
 
 
