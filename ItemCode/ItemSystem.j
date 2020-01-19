@@ -82,7 +82,13 @@ scope ItemSystem initializer InitItemSystem
                         UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(id)+"成功升级为"+GetObjectName(next))
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:装备|r"+GetObjectName(id)+"|cffff0000升级失败！|r")
+                        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
+                            AdjustPlayerStateBJ(gold/5, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:装备|r"+GetObjectName(id)+"|cffff0000升级失败！返还"+I2S(gold/5)+"金币|r")
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:装备|r"+GetObjectName(id)+"|cffff0000升级失败！|r")
+                        endif
+                        
                     endif
                     
                 endif
@@ -223,6 +229,7 @@ scope ItemSystem initializer InitItemSystem
                         endif
                         
                     else
+                        
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(itemid)+"抽取失败！下次抽取概率"+I2S(10*now+20)+"%")
                     endif
                     //RePlayerBeastSoulDrawTips(pid,index)
