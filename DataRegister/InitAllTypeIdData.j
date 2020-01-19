@@ -189,7 +189,7 @@ scope AllTypeIdData initializer init
         InitTypeIdJbStateOnec('FJ05',"提高3%物理穿透","提高4%物理穿透","提高8%物理穿透")
         InitTypeIdJbStateOnec('FJ06',"每3秒30%几率攻速提高100%","每3秒50%几率攻速提高100%","每3秒70%几率攻速提高100%")
         InitTypeIdJbStateOnec('FJ07',"提高2%暴击，50%暴击伤害","提高3%暴击，100%暴击伤害","提高6%暴击，150%暴击伤害")
-        InitTypeIdJbStateOnec('FJ08',"提高4%法术抵抗","提高8%法术抵抗","提高12%法术抵抗)
+        InitTypeIdJbStateOnec('FJ08',"提高4%法术抵抗","提高8%法术抵抗","提高12%法术抵抗")
         InitTypeIdJbStateOnec('FJ09',"提高6%法术伤害","提高9%法术伤害","提高12%法术伤害")
 
         InitTypeIdJbState('FJ01',2,"|Cff999999武器(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f150000|r|Cff999999/300000/450000攻击力|r",3,"|Cff999999武器(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高150000/|r|Cff00ff7f300000|r|Cff999999/450000攻击力|r",4,"|Cff999999武器(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高150000/300000/|r|Cff00ff7f450000|r|Cff999999攻击力|r","|Cff999999武器|r|Cffdddddd(2/3/4)|r|Cff999999\n提高|r|Cffdddddd150000/300000/450000|r|Cff999999攻击力|r")

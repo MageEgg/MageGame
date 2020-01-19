@@ -566,7 +566,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int v2 = 0
         BJDebugMsg("index"+I2S(index)+"_now"+I2S(now)+"_off"+I2S(offset))
         if  index == 1
-            s1 = 
+            s1 = 1
             if  now >= 4
                 v1 = 450000
             elseif  now >= 3
