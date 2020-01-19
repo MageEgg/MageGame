@@ -414,7 +414,7 @@ library AttackUnit uses DamageCode
                             SetUnitXY(u,psx[k],psy[k])
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
-                            AddUnitGoldState(u)
+                            //AddUnitGoldState(u)
                         end
                     endif
                 endif
@@ -450,7 +450,7 @@ library AttackUnit uses DamageCode
                         SetUnitXY(u,psx[k],psy[k])
                         IssuePointOrderById(u,851983,pex[k],pey[k])
                         GroupAddUnit(AttackUnitGroup,u)
-                        AddUnitGoldState(u)
+                        //AddUnitGoldState(u)
                     end
                 endif
             endif
