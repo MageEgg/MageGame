@@ -431,6 +431,33 @@ library ItemGameFunc uses DamageCode
         endif
     endfunction
 
+    function SetPlayerMonsterSoulItem(int pid)
+        string s = ""
+        if  PlayerMonsterSoulNum == 0
+            s = "|cffffcc00抽取消耗：|r10金币"
+        elseif  PlayerMonsterSoulNum == 1
+            s = "|cffffcc00抽取消耗：|r300金币"
+        elseif  PlayerMonsterSoulNum == 2
+            s = "|cffffcc00抽取消耗：|r100杀敌数"
+        elseif  PlayerMonsterSoulNum == 3
+            s = "|cffffcc00抽取消耗：|r1500金币"
+        elseif  PlayerMonsterSoulNum == 4
+            s = "|cffffcc00抽取消耗：|r1玄铁"
+        elseif  PlayerMonsterSoulNum == 5
+            s = "|cffffcc00抽取消耗：|r500杀敌数"
+        elseif  PlayerMonsterSoulNum == 6
+            s = "|cffffcc00抽取消耗：|r3000金币"
+        elseif  PlayerMonsterSoulNum == 7
+            s = "|cffffcc00抽取消耗：|r1000杀敌数"
+        endif
+        s = s + "|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
+        s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))
+        s = s + "|n|n|cffffcc00可获得：|n|r|cffff0080陛犴之魂|n奎牛之魂|n墨麒麟之魂|n狻猊之魂|n青鸾之魂|n狰狞之魂|n神威黑虎之魂|n孔雀之魂|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
+        if  Player(pid) == GetLocalPlayer()
+            YDWESetItemDataString('IS12',3,s)
+        endif
+    endfunction
+
     function AddPlayerMonsterSoulSkill(int pid)
         HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
         for num = 1,3
@@ -459,6 +486,7 @@ library ItemGameFunc uses DamageCode
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r很遗憾抽取失败！")
                 endif
                 PlayerMonsterSoulLuckNum = PlayerMonsterSoulLuckNum + 1
+                SetPlayerMonsterSoulItem(pid)
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80您已觉醒所有兽魂！|r")
@@ -466,12 +494,15 @@ library ItemGameFunc uses DamageCode
     endfunction
 
     function InitPlayerMonsterSoulSkill(int pid)
-        string s = ""
-        s = "|cffffff00觉醒需求：|n|r|cff808080 - 陛犴之魂|n - 奎牛之魂|n - 墨麒麟之魂|n - 狻猊之魂|n - 青鸾之魂|n - 狰狞之魂|n - 神威黑虎之魂|n - 孔雀之魂|n - 劫变期【7】|n|n|r|cff00ff00占星商店|r抽奖中，集齐|cff00ff00所有兽魂|r，并突破至|cff00ff00劫变期【7】|r，觉醒获得随机神兽神通。"
+        string s1 = ""
+        string s2 = ""
+        s1 = "|cffffff00觉醒需求：|n|r|cff808080 - 陛犴之魂|n - 奎牛之魂|n - 墨麒麟之魂|n - 狻猊之魂|n - 青鸾之魂|n - 狰狞之魂|n - 神威黑虎之魂|n - 孔雀之魂|n - 劫变期【7】|n|n|r|cff00ff00占星商店|r抽奖中，集齐|cff00ff00所有兽魂|r，并突破至|cff00ff00劫变期【7】|r，觉醒获得随机神兽神通。"
+        s2 = "|cffffcc00抽取消耗：|r10金币|n|cffffcc00抽取次数：|r0|n|cffffcc00抽取几率：|r7%|n|n|cffffcc00可获得：|n|r|cffff0080陛犴之魂|n奎牛之魂|n墨麒麟之魂|n狻猊之魂|n青鸾之魂|n狰狞之魂|n神威黑虎之魂|n孔雀之魂|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
         if  Player(pid) == GetLocalPlayer()
             YDWESetUnitAbilityDataString(Pu[1],'AC04',1,203,"|cffff0000神兽神通|r - [|cffffcc00R|r]|n|cffff0000Ex级|r")
             YDWESetUnitAbilityDataString(Pu[1],'AC04',1,215,"|cffff0000神兽神通|r - [|cffffcc00R|r]|n|cffff0000Ex级|r")
-            YDWESetUnitAbilityDataString(Pu[1],'AC04',1,218,s)
+            YDWESetUnitAbilityDataString(Pu[1],'AC04',1,218,s1)
+            YDWESetItemDataString('IS12',3,s2)
         endif
     endfunction
 
