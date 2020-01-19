@@ -1471,7 +1471,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
  function SpellS109(unit u,unit u1)
     real x=GetUnitX(u1)
     real y=GetUnitY(u1)
-    real damage = GetHeroStr(u,true) * 15
+    real damage = GetHeroStr(u,true)
     
     IndexGroup g 
     if  GetUnitAbilityLevel(u,'AZ15') > 0 and Chance(u,6) == true
@@ -1480,10 +1480,16 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         if  FirstOfGroup(g.ejg)!=null
             LocAddEffectSetSize(x,y,"effect_red-texiao-shandian.mdl",0.8)
             GroupRemoveUnit(g.ejg,u1)
-            UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u,g.ejg,damage*15,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         endif
         g.destroy()
     endif
+    if   Chance(u,10) == true
+        LocAddEffect(x,y,"effect_az_goods_blink(3).mdl")
+        UnitDamageTarget(u,u1,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+
+    endif
+
     flush locals
 endfunction
 

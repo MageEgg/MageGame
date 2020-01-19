@@ -341,6 +341,7 @@ scope DeathEvent initializer InitDeathEvent
     function KillXCUnitFunc(unit wu,unit tu,int uid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = AttackRoomXCUnitNum
+        KillXCUnitNum = KillXCUnitNum + 1
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
@@ -348,6 +349,10 @@ scope DeathEvent initializer InitDeathEvent
             if  AttackRoomXCNum > 24
                 AttackRoomXCNum = 1
             endif
+            CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+            AdjustPlayerStateBJ( 100 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励炽星魔盒*1 木材+100")
+            /*
             if  uid == 'u0DF'
                 SetPlayerTechResearched(Player(pid),'AM40',1)
                 AddUnitRealState(Pu[1],9,25)
@@ -372,14 +377,18 @@ scope DeathEvent initializer InitDeathEvent
                 CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励攻速+55% 炽星魔盒*3")
             endif
+            */
             
         else
             if  AttackRoomXCUnitNum <= 0
-                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                
                 AttackRoomXCNum = AttackRoomXCNum + 1
                 if  AttackRoomXCNum > 24
                     AttackRoomXCNum = 1
                 endif
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                AdjustPlayerStateBJ( 100 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒*1 木材+100")
             endif
         endif
 
@@ -401,6 +410,9 @@ scope DeathEvent initializer InitDeathEvent
         
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
+        elseif  uid == 'u020'
+            //妖媚数量
+            KillYMUnitNum = KillYMUnitNum + 1
         elseif  uid >= 'u0DA' and uid <= 'u0DZ'
             KillXCUnitFunc(wu,tu,uid)
         elseif  uid >= 'u001' and uid <= 'u004'

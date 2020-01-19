@@ -68,8 +68,9 @@
         elseif  id > 0
             DzFrameShow(UI_TipsHead, true)
             SetTipsData(1,"",GetTypeIdName(id))
-
-            SetTipsData(10,"",GetTypeIdTips(id))
+            
+            SetTipsData(10,"",GetTypeIdStateTips(id))
+            SetTipsData(11,"",GetTypeIdTips(id))
             ShowTipsUI()
         endif
     endfunction
