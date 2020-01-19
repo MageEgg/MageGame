@@ -62,6 +62,7 @@ scope SelectHero
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
+            InitPlayerMonsterSoulSkill(pid)
             
             GameChallenge_0Start(pid)//加载新手任务
             
@@ -133,6 +134,7 @@ scope SelectHero
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
+            InitPlayerMonsterSoulSkill(pid)
 
             InitPlayerDzShopState(pid)//商城属性
             LoadPlayerTechState.execute(pid)
