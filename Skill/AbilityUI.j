@@ -321,7 +321,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     endif
 
                     //结算技能额外
-                    tip = tip + GetAbilityStateTips(id,dam)
+                    tip = tip + GetAbilityStateTips(id,dam/100)
                     
                 endif
                 
