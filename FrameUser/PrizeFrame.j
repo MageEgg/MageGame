@@ -59,8 +59,8 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
                     DzFrameSetText(BUTTON_Text[x+421],"")
                 end
                 Back.SetTexture("war3mapImported\\UI_Prize_Back0.tga",0)
-                Button.SetSize(0.134,0.18)
-                Back.SetSize(0.134,0.18)
+                Button.SetSize(0.134,0.12)
+                Back.SetSize(0.134,0.12)
             else
                 for x = 0,2
                     DzFrameShow(BUTTON_Back[x+411][0],false)
@@ -109,13 +109,13 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Prize",GameUI,Button)
         Button.SetPoint(4,GameUI,4,0,0)
-        Button.SetSize(0.134,0.18)
+        Button.SetSize(0.134,0.12)
         origin = Button.frameid
 
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","Prize",origin,Back)
         Back.SetPoint(4,origin,4,0,0)
-        Back.SetSize(0.134,0.18)
+        Back.SetSize(0.134,0.12)
         Back.SetTexture("war3mapImported\\UI_Prize_Back0.tga",0)
 
    

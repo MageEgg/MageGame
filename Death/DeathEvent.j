@@ -150,7 +150,7 @@ scope DeathEvent initializer InitDeathEvent
             SetItemCharges(it,num-exp)
         else
             RemoveItem(it)
-            if  GetRandomInt(1,100)<= 50 
+            if  GetRandomInt(1,100)<= gl
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             else
@@ -222,7 +222,7 @@ scope DeathEvent initializer InitDeathEvent
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
         endif
 
-        //杀敌木材
+        //杀敌玄铁
         if  GetUnitAbilityLevel(wu,'AZ18') > 0
             wood = 40
         endif
@@ -341,13 +341,17 @@ scope DeathEvent initializer InitDeathEvent
     function KillXCUnitFunc(unit wu,unit tu,int uid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = AttackRoomXCUnitNum
+        KillXCUnitNum = KillXCUnitNum + 1
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
-            AttackRoomXCNum = AttackRoomXCNum + 1
             if  AttackRoomXCNum > 24
                 AttackRoomXCNum = 1
             endif
+            CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+            AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励炽星魔盒*1 玄铁+20")
+            /*
             if  uid == 'u0DF'
                 SetPlayerTechResearched(Player(pid),'AM40',1)
                 AddUnitRealState(Pu[1],9,25)
@@ -372,14 +376,27 @@ scope DeathEvent initializer InitDeathEvent
                 CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励攻速+55% 炽星魔盒*3")
             endif
+            */
             
         else
             if  AttackRoomXCUnitNum <= 0
-                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                
                 AttackRoomXCNum = AttackRoomXCNum + 1
+                
+                if  AttackRoomXCNum == 10
+                    AttackRoomXCNum = 0
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵(10/10)")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵("+I2S(AttackRoomXCNum)+"/10)")
+                endif
+
+
                 if  AttackRoomXCNum > 24
                     AttackRoomXCNum = 1
                 endif
+                CreateItem(uid-'u0DA'+'INDA',GetUnitX(tu),GetUnitY(tu))
+                AdjustPlayerStateBJ( 10 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒*1 玄铁+10")
             endif
         endif
 
@@ -401,6 +418,9 @@ scope DeathEvent initializer InitDeathEvent
         
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
+        elseif  uid == 'u020'
+            //妖媚数量
+            KillYMUnitNum = KillYMUnitNum + 1
         elseif  uid >= 'u0DA' and uid <= 'u0DZ'
             KillXCUnitFunc(wu,tu,uid)
         elseif  uid >= 'u001' and uid <= 'u004'

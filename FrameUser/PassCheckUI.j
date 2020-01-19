@@ -64,16 +64,26 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
 
 
     function InitRegisterPrize()//注册奖励
-        for i = 0,9
-            RegisterPassCheckPrize(i+1,'FB00'+i,'FB10'+i)
-        end
-        RegisterPassCheckPrize(12,'FB01','FB11')
-        RegisterPassCheckPrize(13,0,'FB11')
-        RegisterPassCheckPrize(14,'FB01',0)
-
-        RegisterPassCheckPrize(20,'FB01','FB11')
-
-        RegisterPassCheckPrize(25,'FB01','FB11')
+        RegisterPassCheckPrize(1,'RS01','RT01')
+        RegisterPassCheckPrize(2,'RY2A','RY2B')
+        RegisterPassCheckPrize(3,'RS03','RT03')
+        RegisterPassCheckPrize(4,'RS04','RT04')
+        RegisterPassCheckPrize(5,'RS05','RT05')
+        RegisterPassCheckPrize(6,'RS06','RT06')
+        RegisterPassCheckPrize(7,'RS07','RT07')
+        RegisterPassCheckPrize(8,'RY4A','RY4B')
+        RegisterPassCheckPrize(9,'RS09','RT09')
+        RegisterPassCheckPrize(10,'RS10','RT10')
+        RegisterPassCheckPrize(11,0,'RT11')
+        RegisterPassCheckPrize(12,'RS12','RT12')
+        RegisterPassCheckPrize(13,0,'RT13')
+        RegisterPassCheckPrize(14,'RY1A','RY1B')
+        RegisterPassCheckPrize(15,0,'RT15')
+        RegisterPassCheckPrize(16,'RS16','RT16')
+        RegisterPassCheckPrize(17,0,'RT17')
+        RegisterPassCheckPrize(18,'RS18','RT18')
+        RegisterPassCheckPrize(19,0,'RT19')
+        RegisterPassCheckPrize(20,'RY3A','RY3B')
     endfunction
 
     function InitRegisterMission()//注册任务
@@ -357,7 +367,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
     private int origin = 0
 
     private int Page = 0
-    private int PageMax = 9
+    private int PageMax = 1
 
     
 
@@ -373,7 +383,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         int index = 0
         int level = GetPlayerPassLevel(pid)
         if  GetLocalPlayer() == Player(pid)
-            Key.SetText(I2S(Page+1)+"/10")
+            Key.SetText(I2S(Page+1)+"/2")
             DzFrameSetText(BUTTON_Text[650],"|cffffcc00"+I2S(level)+"|r")
             
             for i = 1,10
@@ -611,7 +621,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
         //设置快捷键文本
         Key.frameid = FRAME.Fdf("centertext010",origin,Key)
-        Key.SetText("1/10")
+        Key.SetText("1/2")
         Key.SetPoint(1,Button.frameid ,1,0.0,-0.015)
 
         CreateFrameButton1()

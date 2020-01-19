@@ -117,11 +117,6 @@ library DamageCode uses UnitStateSet
         real lv = 0
         int uid = GetUnitTypeId(wu)
 
-        if  uid == 'H009'
-            if  GetUnitPsState(wu)>= 120
-                s = s + 30
-            endif
-        endif
 
         if  s <= -100
             s = -100
