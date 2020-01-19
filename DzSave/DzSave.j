@@ -382,9 +382,7 @@ library DzSave initializer InitDzData uses DzDataSetting
         //DzFlush(0) //测试
         InitDzSetting()
         InitDzConfig()
-        if  DzConA[0] == 1
-            ExecuteFunc("InitDzDataFunc")
-        endif
+        ExecuteFunc("InitDzDataFunc")
     endfunction
     
 endlibrary
