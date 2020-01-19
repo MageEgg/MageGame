@@ -321,11 +321,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         for i = 1,10
             n = GetTypeIdData(id,110+i)
             if  n > 0
-                s = s + "  " + GetTypeIdName(GetMagicStateId(n))
+                return GetTypeIdName(GetMagicStateId(n))
             endif
             
         end
-        return GetMagicItemColorName(id) + s
+        return s
     endfunction
 
     
@@ -372,9 +372,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             DzFrameShow(UI_TipsHead, true)
             
 
-            SetTipsData(1,"GetTypeIdIcon(id)",GetTypeIdName(id))
+            SetTipsData(1,"GetTypeIdIcon(id)","["+GetMagicItemStateAllName(id)+"]"+GetTypeIdName(id))
 
-            SetTipsData(10,"",GetMagicItemStateAllName(id))
+            SetTipsData(10,"",GetMagicItemColorName(id))
             SetTipsData(11,"","|cff999999基础属性|r|n" + GetTypeIdTips(id))
             
             if  id == 'FB17'
