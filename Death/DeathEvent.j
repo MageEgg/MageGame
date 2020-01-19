@@ -82,6 +82,7 @@ scope DeathEvent initializer InitDeathEvent
     function RevivePlayerHero(int pid)
         timer wt = CreateTimer()
         PlayerDeathBool = true
+        PetDeathPosition(pid)
         SetHandleData(wt,pid)
         Pdia[0] = CreateTimerDialog(wt)
         TimerDialogSetTitle(Pdia[0],GetPN(pid)+GetUnitName(Pu[1])+"复活时间:" )
