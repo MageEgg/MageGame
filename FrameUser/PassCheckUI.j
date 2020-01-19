@@ -215,12 +215,12 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             int use = GetMissionUse(missionid)
             if  use > data
                 if  data == 0
-                    return GetMissionName(missionid)+"|cffffcc00--进行中|r"
+                    return GetMissionTips(missionid)+"|cffffcc00--进行中|r"
                 else
-                    return GetMissionName(missionid)+"|cffffcc00--当前数量：|r"+I2S(data)
+                    return GetMissionTips(missionid)+"|cffffcc00--当前数量：|r"+I2S(data)
                 endif
             else
-                return GetMissionName(missionid)+"|cff00ff00--已完成|r"
+                return GetMissionTips(missionid)+"|cff00ff00--已完成|r"
             endif
         endfunction
         function PlayerShowMission(int pid)//查询任务
