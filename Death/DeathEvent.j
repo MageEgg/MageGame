@@ -201,9 +201,7 @@ scope DeathEvent initializer InitDeathEvent
         int exp = 0
         
         //杀敌数
-        
-        
-        AddUnitRealState(Pu[1],63,1)
+        AddUnitIntState(Pu[1],102,1)
         
 
         gold = GetTypeIdData(uid,103)
