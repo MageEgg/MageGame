@@ -431,6 +431,13 @@ library ItemGameFunc uses DamageCode
         endif
     endfunction
 
+    function AddPlayerMonsterSoulSkill(int pid)
+        HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
+        for num = 1,3
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[神兽神通]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“神兽神通”|cffffff80！|r")
+        end
+    endfunction
+
     function ItemLuckOfMonsterSoul(int pid)
         int num = 0
         real ran = 0
@@ -443,12 +450,9 @@ library ItemGameFunc uses DamageCode
                     PlayerMonsterSoul(num) = 1
                     PlayerMonsterSoulNum = PlayerMonsterSoulNum + 1
                     SetPlayerMonsterSoulSkill(pid)
-                    if  PlayerMonsterSoulNum == 8
+                    if  PlayerMonsterSoulNum == 8 and GetHeroLevel(Pu[1]) >= 8
                         //觉醒
-                        if  GetHeroLevel(Pu[1]) >= 8
-                            HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[神兽神通]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“神兽神通”|cffffff80！|r")
-                        endif
+                        AddPlayerMonsterSoulSkill(pid)
                     endif
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80抽奖获得|cffff0080“"+GetMonsterSoulLuck(num)+"”|cffffff80！|r")
                 else
@@ -475,8 +479,7 @@ library ItemGameFunc uses DamageCode
         SetPlayerMonsterSoulSkill(pid)
         if  PlayerMonsterSoulNum == 8
             //觉醒
-            HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[神兽神通]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“神兽神通”|cffffff80！|r")
+            AddPlayerMonsterSoulSkill(pid)
         endif
     endfunction
     
