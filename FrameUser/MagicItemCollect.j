@@ -745,9 +745,8 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
 
         
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得法宝 "+GetTypeIdName(value)+",F4查看法宝羁绊效果")
 
-
-        BJDebugMsg("通关副本 获得法宝")
     endfunction
 
 

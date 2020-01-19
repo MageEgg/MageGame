@@ -104,21 +104,25 @@ scope DeathEvent initializer InitDeathEvent
         int gold = 0
         int i1 = 0
         if  itemid == 'I011'
-            gold = 5500
-            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
+            gold = GetRandomInt(7000,12000)
+            i1 = GetRandomInt(2000,5000)
+            
         elseif  itemid == 'I012'
-            gold = 31000
-            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
+            gold = GetRandomInt(8000,13000)
+            i1 = GetRandomInt(3000,6000)
         elseif  itemid == 'I013'
-            gold = 48000
-            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
+            gold = GetRandomInt(9000,14000)
+            i1 = GetRandomInt(4000,7000)
         elseif  itemid == 'I014'
-            gold = 81000
-            i1 = R2I(GetUnitRealState(Pu[1],1)*0.01*GetRandomReal(0.8,1.2))
+            gold = GetRandomInt(10000,15000)
+            i1 = GetRandomInt(5000,8000)
+        elseif  itemid == 'I014'
+            gold = GetRandomInt(12000,17000)
+            i1 = GetRandomInt(6000,9000)
         endif
-        AddUnitRealState(Pu[1],1,i1)
+        AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 攻击+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 业力+"+I2S(i1))
 
     endfunction
 
@@ -171,7 +175,7 @@ scope DeathEvent initializer InitDeathEvent
         int lv = 0
         for i1 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i1))
-            if  id >= 'I011' and id <= 'I014'
+            if  id >= 'I011' and id <= 'I015'
                 if  PlayerItemGrowFunc(pid,UnitItemInSlot(Pu[1],i1),1) == true
                     PlayerUseGoldBox(pid,id)
                 endif
@@ -197,7 +201,7 @@ scope DeathEvent initializer InitDeathEvent
         int exp = 0
         
         //杀敌数
-        AddUnitRealState(Pu[1],63,1)
+        AddUnitIntState(Pu[1],102,1)
 
         gold = GetTypeIdData(uid,103)
         if  gold == 0

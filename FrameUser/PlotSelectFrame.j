@@ -189,6 +189,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int id2 = 0
 
         int rid = GetPlayerPlotPrizeId(pid,index,1)
+        int ran = GetRandomInt(1,100)
         if  rid > 0
             //回收
             RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
@@ -200,9 +201,9 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             id2 = 'CS00'+GetRandomInt(2,4)
         endif
 
-        if  GetRandomInt(1,100) <= 30
+        if  ran <= 10
             id1 = GetPrize(pid,14,true)
-        elseif  GetRandomInt(1,100) <= 57
+        elseif  ran <= 90
             id1 = GetPrize(pid,13,true)
         else
             id1 = GetPrize(pid,12,true)
@@ -233,7 +234,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //刷新副本奖励
     function RePlayerAllExPlotPrize(int pid)
         int num = GetPlayerPlotReNum(pid)+1
-        int use = num * 500
+        int use = num
 
         if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
             AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
@@ -265,16 +266,17 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     //读取奖励法宝池序号
     function GetPlotPrizeMagicIndex(int index)->int
+        int ran = GetRandomInt(1,100)
         if  index >= 1 and index <= 4
-            if  GetRandomInt(1,100)<= 70
+            if  ran <= 80
                 return 14
             else
                 return 13
             endif
         else
-            if  GetRandomInt(1,100)<= 50
+            if  ran <= 10
                 return 14
-            elseif  GetRandomInt(1,100)<= 90
+            elseif  ran<= 95
                 return 13
             else
                 return 12
