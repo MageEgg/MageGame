@@ -269,9 +269,7 @@ scope DeathEvent initializer InitDeathEvent
         if  ste > 0
             AddUnitRealState(Pu[1],5,ste)
         endif
-
-        //杀敌数63
-        AddUnitIntState(Pu[1],63,1)
+        
     endfunction
 
     function CreateNewForg(int id1,int id2)
