@@ -201,7 +201,10 @@ scope DeathEvent initializer InitDeathEvent
         int exp = 0
         
         //杀敌数
-        AddUnitIntState(Pu[1],102,1)
+        
+        
+        AddUnitRealState(Pu[1],63,1)
+        
 
         gold = GetTypeIdData(uid,103)
         if  gold == 0
@@ -606,8 +609,13 @@ scope DeathEvent initializer InitDeathEvent
         endif
         //剧情任务等
         GameChallengDeathEvent(u2,u1)
-        if  pid > 7 
+
+        if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
+        endif
+        
+        if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
+            
             if  u2 != null
                 //小怪死亡的资源类结算
                 PlayerHeroKillUnit(u2,u1)
