@@ -57,20 +57,20 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)
         RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)
-        RegisterShowSaveFrameData(2,'RY1D','RY1D',0,0,0,0)
-        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RY1D','RY1D',0,0,0,0)
+        //RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)
         RegisterShowSaveFrameData(3,'RY2A','RY2A',0,0,0,0)
         RegisterShowSaveFrameData(3,'RY2B','RY2B',0,0,0,0)
         RegisterShowSaveFrameData(3,'RY2C','RY2C',0,0,0,0)
-        RegisterShowSaveFrameData(3,'RY2D','RY2D',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RY2D','RY2D',0,0,0,0)
         RegisterShowSaveFrameData(4,'RY3A','RY3A',0,0,0,0)
         RegisterShowSaveFrameData(4,'RY3B','RY3B',0,0,0,0)
         RegisterShowSaveFrameData(4,'RY3C','RY3C',0,0,0,0)
-        RegisterShowSaveFrameData(4,'RY3D','RY3D',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RY3D','RY3D',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4D','RY4D',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RY4D','RY4D',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)
@@ -78,32 +78,59 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RJ1U','RJ1U',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RJ1V','RJ1V',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RJ1W','RJ1W',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RK1A','RK1A',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1A','RC1A',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1B','RC1B',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1C','RC1C',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1D','RC1D',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1E','RC1E',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1F','RC1F',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1G','RC1G',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1H','RC1H',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1I','RC1I',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1J','RC1J',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1K','RC1K',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1L','RC1L',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1M','RC1M',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1N','RC1N',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1O','RC1O',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RC1P','RC1P',0,0,0,0)
 
-        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
     endfunction
 
 
     
+    function IsSaveFrameTechUnLock(int pid,int index)->bool
+        string s = ""
+        int step = Step[pid]
+        int page = Page[pid]
+        int techid = 0
+        int lock = 1
+        
+        for i = 1,5
+            techid = GetShowSaveTech(page,index+step*4,i)
+            if  techid > 0
+                if  GetPlayerTechCount(Player(pid),techid,true) == 0
+                    return false
+                endif
+            else
+                exitwhen true
+            endif
+        end
+        return true
+    endfunction
+
     function GetShowSaveFrameTechTips(int pid,int index)->string
         string s = ""
         int step = Step[pid]
@@ -114,11 +141,11 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         for i = 1,5
             techid = GetShowSaveTech(page,index+step*4,i)
             if  techid > 0
+                lock = 0
                 if  GetPlayerTechCount(Player(pid),techid,true) > 0
                     s = s + "\n|cff00ff00 - "+GetObjectName(techid) + "|r"
                 else
                     s = s + "\n|cff808080 - "+GetObjectName(techid) + "|r"
-                    lock = 0
                 endif
             else
                 exitwhen true
@@ -153,7 +180,11 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                 h = 11
             endif
             
-            SetTipsData(h,"",GetTypeIdStateTips(id))
+            if  IsSaveFrameTechUnLock(pid,index) == true
+                SetTipsData(h,"",GetTypeIdStateTips(id))
+            else
+                SetTipsData(h,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
+            endif
             h = h + 1
             SetTipsData(h,"",GetTypeIdTips(id))
 
