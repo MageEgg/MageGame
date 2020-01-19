@@ -81,7 +81,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     //////////////////////////模版////////////////////////////
     //////////////////////////模版////////////////////////////
 
-    //false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa
+    //true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa
 
     function BossFuncStartTemplate()
         insert BossSpell
@@ -99,12 +99,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int time = 0
         damage = damage / 2
         //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-        CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1500,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         TimerStart(0.4,true)
         {
             time = time + 1
             if  time <= 2
-                CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1500,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                CreateTm(u1,'e00P',x1,y1,ang,damage,1,0,210,1500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             else
                 endtimer
             endif
@@ -117,7 +117,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         insert BossSpell
         damage = damage / 2
         //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-        CreateTm(u1,'e00Q',x1,y1,ang,damage,3,15,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00Q',x1,y1,ang,damage,3,15,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
@@ -125,7 +125,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         insert BossSpell
         AddEffectInArea(x2,y2,370,7,"effect_tx_new (2).mdx")
         //延迟伤害 伤害来源 延迟时间 坐标x y 伤害 伤害范围 伤害类型4个 选取特效 buffId buff等级 buff命令
-        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
         flush locals
     endfunction
 
@@ -135,7 +135,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         AddEffectInArea(x2,y2,390,25,"effect2_az_nevermore_r2(1).mdl")
         LocAddEffect(x2,y2,"effect3_desecrategreen.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -158,7 +158,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 uu = CreateUnit(GetOwningPlayer(u1),'e00S',x1,y1,ang/0.01745)
                 RemoveUnitTimer(uu,1)
                 GroupEnumUnitsInRange(gg,newx,newy,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 endtimer
             endif
@@ -174,7 +174,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         group gg = CreateGroup()
         AddEffectInArea(x2,y2,380,15,"effect2_az_coco_e2.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -192,7 +192,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             if  time <= 5
                 AddEffectInArea(x2,y2,390,5,"Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 endtimer
@@ -227,7 +227,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     LocAddEffectSetSize(x1,y1,"effect_tx_asad (24).mdl",1)
                 endif
                 GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 GroupClear(wg)
@@ -246,14 +246,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell9()
         insert BossSpell
         damage = damage / 3.5
-        CreateTm(u1,'e00U',x1,y1,ang,damage,5,10,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00U',x1,y1,ang,damage,5,10,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
     function BossFuncSpell10()
         insert BossSpell
         damage = damage / 3.5
-        CreateTm(u1,'e00V',x1,y1,ang,damage,5,10,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00V',x1,y1,ang,damage,5,10,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
@@ -267,7 +267,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             time = time + 1
             if  time <= 10
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 AddEffectInArea(x2,y2,350,1,"effect_tx_asad (24).mdl")
                 LocAddEffectSetSize(x2,y2,"effect_az_pafeathermoon_b.mdx",3.6)
             else    
@@ -296,7 +296,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     newy = y2
                     LocAddEffectSetSize(newx,newy,"effect3_az_heiseguangzhu.mdl",1)
                     LocAddEffectSetSize(newx,newy,"effect2_az_FallSword_ice_Black.mdl",1.2)
-                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,150,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,150,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 elseif  time == 2 or time == 5 or time == 8
                     for num = 1,6
                         newx = x2+150*Cos(60*num*0.01745)
@@ -304,7 +304,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                         LocAddEffectSetSize(newx,newy,"effect3_az_heiseguangzhu.mdl",1)
                         LocAddEffectSetSize(newx,newy,"effect2_az_FallSword_ice_Black.mdl",1.2)
                     end
-                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 elseif  time == 3 or time == 6 or time == 9
                     for num = 1,8
                         newx = x2+300*Cos(45*num*0.01745)
@@ -312,7 +312,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                         LocAddEffectSetSize(newx,newy,"effect3_az_heiseguangzhu.mdl",1)
                         LocAddEffectSetSize(newx,newy,"effect2_az_FallSword_ice_Black.mdl",1.2)
                     end
-                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,450,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,450,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 endif
             else    
                 endtimer
@@ -345,7 +345,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",1.2)
                 endif
                 GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 GroupClear(wg)
@@ -366,7 +366,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         group gg = CreateGroup()
         AddEffectInArea(x2,y2,380,15,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -378,7 +378,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         LocAddEffectSetSize(x2,y2,"effect2_by_wood_leitingyiji.mdl",1.2)
         LocAddEffectSetSize(x2,y2,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",2)
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -408,7 +408,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 LocAddEffectSetSize(x2,y2,"effect2_zhendi-qiquan-boom.mdl",2.5)
                 LocAddEffectSetSize(x2,y2,"effect2_by_wood_gongchengsipai_6.mdl",1.8)
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 GroupClear(gg)
                 DestroyGroup(gg)
                 endtimer
@@ -420,7 +420,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell17()
         insert BossSpell
-        CreateTm(u1,'e00Z',x1,y1,ang,damage,1,0,210,1500,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00Z',x1,y1,ang,damage,1,0,210,1500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
@@ -429,12 +429,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int time = 0
         damage = damage / 6
         //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-        CreateTm(u1,'e00X',x1,y1,ang,damage,3,15,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00X',x1,y1,ang,damage,3,15,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         TimerStart(0.4,true)
         {
             time = time + 1
             if  time <= 2
-                CreateTm(u1,'e00X',x1,y1,ang,damage,3,15,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                CreateTm(u1,'e00X',x1,y1,ang,damage,3,15,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             else
                 endtimer
             endif
@@ -446,7 +446,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell19()
         insert BossSpell
         damage = damage / 8
-        CreateTm(u1,'e00X',x2,y2,ang,damage,10,36,220,500,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'e00X',x2,y2,ang,damage,10,36,220,500,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
@@ -455,7 +455,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         group gg = CreateGroup()
         LocAddEffectSetSize(x2,y2,"effect_[dz.spell]001.mdl",0.8)
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -467,7 +467,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.1)
         AddEffectInArea(x2,y2,380,10,"effect2_zhendi-qiquan-boom.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -482,7 +482,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             time = time + 1
             if  time < 10
                 for num = 1,3
-                    CreateTm(u1,'e00V',GetUnitX(u1)+GetRandomReal(-160,160),GetUnitY(u1)+GetRandomReal(-160,160),ang,damage,1,0,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                    CreateTm(u1,'e00V',GetUnitX(u1)+GetRandomReal(-160,160),GetUnitY(u1)+GetRandomReal(-160,160),ang,damage,1,0,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                 end
             else
                 endtimer
@@ -516,7 +516,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 SetUnitAnimation(u1,"attack")
                 LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
                 AddEffectInAreaSetSizeTimer(x1,y1,290,1.5,6,"effect3_impalehittarget.mdl",0.8)
-                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",0,0,0)
                 endtimer
             endif
             flush locals
@@ -545,7 +545,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     LocAddEffectTimerOrSize(x1,y1,GetRandomReal(0,360),"effect3_impalehittarget.mdl",0.8,1.5)
                 endif
                 GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 GroupClear(wg)
@@ -573,7 +573,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             if  time <= 5
                 AddEffectInArea(x2,y2,240,15,"Abilities\\Spells\\Undead\\DeathandDecay\\DeathandDecayTarget.mdl")
                 GroupEnumUnitsInRange(gg,x2,y2,250,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 endtimer
@@ -590,12 +590,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int time = 0
         damage = damage / 2
         //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-        CreateTm(u1,'eZ14',x1,y1,ang,damage,1,0,210,1000,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'eZ14',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         TimerStart(0.3,true)
         {
             time = time + 1
             if  time <= 2
-                CreateTm(u1,'eZ14',x1,y1,ang,damage,1,0,210,1000,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                CreateTm(u1,'eZ14',x1,y1,ang,damage,1,0,210,1000,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             else
                 endtimer
             endif
@@ -621,7 +621,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 end
                 LocAddEffectSetSize(x2,y2,"effect2_az_cocoguanyu_t2_death.mdl",1)
                 GroupEnumUnitsInRange(gg,x2,y2,250,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 endtimer
             endif
@@ -637,7 +637,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         group gg = CreateGroup()
         LocAddEffectSetSize(x2,y2,"effect_shengguang.mdl",3)
         GroupEnumUnitsInRange(gg,x2,y2,250,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -665,7 +665,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
                 DestroyEffect(eff)
                 GroupEnumUnitsInRange(gg,x1,y1,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u3)
                 endtimer
@@ -726,7 +726,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             LocAddEffect(newx,newy,"Objects\\Spawnmodels\\Undead\\UndeadDissipate\\UndeadDissipate.mdl")
         end
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -805,7 +805,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 LocAddEffect(x2,y2,"effect_effect_az_goods_tp_target_effect(4).mdl")
                 LocAddEffectSetSize(x2,y2,"effect2_by_wood_effect2_war3_shuangdongxinxing.mdl",1.7)
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffdj,2,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 GroupClear(gg)
                 DestroyGroup(gg)
                 PauseUnit(u1,false)
@@ -871,7 +871,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 SetUnitAnimation(u3,"attack")
                 LocAddEffectSetSize(x1,y1,"effect_az_cwdullahan_d1target.mdx",3)
                 GroupEnumUnitsInRange(gg,x1,y1,500,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 RemoveUnitTimer(u3,0.5)
                 endtimer
             endif
@@ -891,7 +891,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             time = time + 1
             if  time <= 5
                 AddEffectInArea(x2,y2,370,22,"effect2_az_FallSword_ice.mdl")
-                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffdj,1,0)
+                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffdj,1,0)
             else
                 endtimer
             endif
@@ -903,28 +903,28 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell34()
         insert BossSpell
         AddEffectInArea(x2,y2,370,22,"effect2_az_FallSword_ice_Black.mdl")
-        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffdj,2,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffdj,2,0)
         flush locals
     endfunction
 
     function BossFuncSpell35()
         insert BossSpell
         AddEffectInArea(x2,y2,370,22,"effect2_az_FallSword_ice_green.mdl")
-        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffdj,2,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffdj,2,0)
         flush locals
     endfunction
 
     function BossFuncSpell36()
         insert BossSpell
         AddEffectInArea(x2,y2,370,22,"effect2_az_FallSword_ice_yellow.mdl")
-        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffdj,2,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffdj,2,0)
         flush locals
     endfunction
 
     function BossFuncSpell37()
         insert BossSpell
         AddEffectInArea(x2,y2,370,22,"effect2_az_FallSword_ice_red.mdl")
-        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffdj,2,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffdj,2,0)
         flush locals
     endfunction
 
@@ -941,7 +941,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 LocAddEffectSetSize(x2,y2,"effect2_by_wood_gongchengsipai_6.mdl",1.6)
                 LocAddEffectSetSize(x2,y2,"effect_az_tormentedsoul_t1.mdl",1.4)
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 endtimer
             endif
@@ -963,7 +963,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             if  time <= 10
                 AddEffectInArea(x2,y2,390,3,"effect2_az_nevermoreice_x1.mdl")
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffdj,2,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 endtimer
             endif
@@ -979,7 +979,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         group gg = CreateGroup()
         AddEffectInArea(x2,y2,280,10,"effect2_az_magina[2]_v.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffcm,4,0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -991,7 +991,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         LocAddEffectSetSize(x2,y2,"effect_az_earthshaker_a.mdl",1)
         AddEffectInAreaSetSizeTimer(x2,y2,380,1.5,15,"effect3_impalemisstarget.mdl",0.8)
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -1008,7 +1008,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             if  time <= 3
                 AddEffectInAreaSetSizeTimer(x2,y2,240,3,5,"effect2_entanglingrootstarget.mdl",1)
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffcr,1,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 endtimer
             endif
@@ -1028,7 +1028,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             time = time + 1
             if  time < 10
                 for num = 1,3
-                    CreateTm(u1,'eZ19',GetUnitX(u1)+GetRandomReal(-160,160),GetUnitY(u1)+GetRandomReal(-160,160),ang,damage,1,0,220,1200,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                    CreateTm(u1,'eZ19',GetUnitX(u1)+GetRandomReal(-160,160),GetUnitY(u1)+GetRandomReal(-160,160),ang,damage,1,0,220,1200,0,50,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                 end
             else
                 endtimer
@@ -1046,7 +1046,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             uu = CreateUnit(GetOwningPlayer(u1),'e01A',x2,y2,ran+90*num)
             RemoveUnitTimer(uu,1)
         end
-        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffxy,3,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffxy,3,0)
         flush locals
     endfunction
 
@@ -1058,7 +1058,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             uu = CreateUnit(GetOwningPlayer(u1),'e01A',x2,y2,ran+90*num)
             RemoveUnitTimer(uu,1)
         end
-        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffxy,5,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffxy,5,0)
         flush locals
     endfunction
 
@@ -1074,7 +1074,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             if  time <= 10
                 LocAddEffect(x2,y2,"effect_zhendi-water.mdl")
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffjs,5,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 endtimer
@@ -1109,7 +1109,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     LocAddEffectSetSize(x1,y1,"effect_az-leiji.mdl",1.5)
                 endif
                 GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 GroupClear(wg)
@@ -1138,7 +1138,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 AddEffectInArea(x2,y2,380,6,"effect2_zhendi-qiquan-boom.mdl")
                 LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.2)
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Bufflh,4,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 endtimer
             endif
@@ -1152,14 +1152,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell49()
         insert BossSpell
         AddEffectInAreaSetSizeTimer(x2,y2,250,0.5,9,"effect2_lueshizhe.mdl",1)
-        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffxy,5,0)
+        UnitGroupAddDamageTimerAddBuff(u1,0.3,x2,y2,damage,400,true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa,"",Buffxy,5,0)
         flush locals
     endfunction
 
     function BossFuncSpell50()
         insert BossSpell
         damage = damage / 8
-        CreateEffectArea(u1,x2,y2,400,damage,9,0.3,25,0.4,"effect2_az_potm(1)_t1_impact.mdl",false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateEffectArea(u1,x2,y2,400,damage,9,0.3,25,0.4,"effect2_az_potm(1)_t1_impact.mdl",true,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
         flush locals
     endfunction
 
@@ -1170,7 +1170,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.0)
         LocAddEffectSetSize(x2,y2,"effect2_blue-blink-lizi-start.mdl",1.1)
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"effect2_az_goods_force staff(3).mdl","origin",0))
-        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals
@@ -1189,7 +1189,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             time = time + 1
             if  time <= 10
                 GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffcf,2,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             else
                 RemoveUnit(u2)
                 RemoveUnit(u3)
