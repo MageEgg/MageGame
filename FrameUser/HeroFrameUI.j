@@ -293,7 +293,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
         ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",origin,ExpModel)
         ExpModel.SetPoint(6,Exp0.frameid,6,-0.005,0)
-        ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
+        //ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
         ExpModel.SetAnimate(0,true)
         ExpModel.show = false
         ExpName.frameid = FRAME.Fdf("centertext009",origin,ExpName)
