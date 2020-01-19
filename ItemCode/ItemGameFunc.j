@@ -327,8 +327,8 @@ library ItemGameFunc uses DamageCode
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 2
-            if  GetUnitRealState(Pu[1],102) >= 100
-                AddUnitRealState(Pu[1],102,-100)
+            if  GetUnitRealState(Pu[1],110) >= 100
+                AddUnitRealState(Pu[1],110,-100)
                 return true
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足100！|r")
@@ -351,8 +351,8 @@ library ItemGameFunc uses DamageCode
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 5
-            if  GetUnitRealState(Pu[1],102) >= 500
-                AddUnitRealState(Pu[1],102,-500)
+            if  GetUnitRealState(Pu[1],110) >= 500
+                AddUnitRealState(Pu[1],110,-500)
                 return true
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足500！|r")
@@ -367,8 +367,8 @@ library ItemGameFunc uses DamageCode
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 7
-            if  GetUnitRealState(Pu[1],102) >= 1000
-                AddUnitRealState(Pu[1],102,-1000)
+            if  GetUnitRealState(Pu[1],110) >= 1000
+                AddUnitRealState(Pu[1],110,-1000)
                 return true
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足1000！|r")

@@ -201,7 +201,7 @@ scope DeathEvent initializer InitDeathEvent
         int exp = 0
         
         //杀敌数
-        AddUnitIntState(Pu[1],102,1)
+        AddUnitIntState(Pu[1],110,1)
         
 
         gold = GetTypeIdData(uid,103)
@@ -229,9 +229,6 @@ scope DeathEvent initializer InitDeathEvent
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
         endif
-
-        //杀敌玄铁
-
         //杀敌经验
         exp = 1
         if  exp > 0

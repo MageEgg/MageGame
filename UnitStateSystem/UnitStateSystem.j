@@ -282,10 +282,13 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]:错误的属性类型请检查"+I2S(StateId)+StateName[StateId]+"+"+I2S(value))
         endif
         SetUnitData(wu,StateId,value)
+        //BJDebugMsg(I2S(StateId)+"@@3333"+I2S(value))
     endfunction
     
     function AddUnitIntState(unit wu,int StateId,int value)
+        //BJDebugMsg(I2S(StateId)+"@@11111"+I2S(GetUnitIntState(wu,StateId)))
         SetUnitIntState(wu,StateId,GetUnitIntState(wu,StateId)+value)
+        //BJDebugMsg(I2S(StateId)+"@@22222"+I2S(GetUnitIntState(wu,StateId)))
     endfunction
     
     function GetUnitRealState(unit wu,int StateId)->real
