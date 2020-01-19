@@ -81,7 +81,19 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         endif
     endfunction
 
+
+    function HeroExpMaxTipsTimer(int p)
+        int pid = p
+        TimerStart(5,false)
+        {
+            HeroExpMaxTips = false
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     function HeroAddExp(unit wu,int exp)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         int last = 0
         int now = GetHeroXP(wu) + exp
         int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))-1
@@ -93,6 +105,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         if  now != GetHeroXP(wu)
             SetHeroXP(wu,now,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
+        else
+            if  HeroExpMaxTips == false
+                HeroExpMaxTips = true
+                HeroExpMaxTipsTimer(pid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|境界经验已满，请挑战任意雷劫获得道果晋级")
+            endif
         endif
     endfunction
     function HeroIncLevel(unit wu)
@@ -269,7 +287,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         ExpName.SetText("境界零-炼气士")
 
         ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",origin,ExpModel)
-        ExpModel.SetPoint(4,Exp0.frameid,4,0,0)
+        ExpModel.SetPoint(6,Exp0.frameid,6,0,0)
         ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
         ExpModel.SetAnimate(0,true)
 
