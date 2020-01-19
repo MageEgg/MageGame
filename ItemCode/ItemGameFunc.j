@@ -450,8 +450,8 @@ library ItemGameFunc uses DamageCode
         elseif  PlayerMonsterSoulNum == 7
             s = "|cffffcc00抽取消耗：|r1000杀敌数"
         endif
-        s = s + "|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
-        s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))
+        s = s + "|n|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
+        s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))+"%"
         s = s + "|n|n|cffffcc00可获得：|n|r|cffff0080陛犴之魂|n奎牛之魂|n墨麒麟之魂|n狻猊之魂|n青鸾之魂|n狰狞之魂|n神威黑虎之魂|n孔雀之魂|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
         if  Player(pid) == GetLocalPlayer()
             YDWESetItemDataString('IS12',3,s)
@@ -463,6 +463,26 @@ library ItemGameFunc uses DamageCode
         for num = 1,3
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[神兽神通]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“神兽神通”|cffffff80！|r")
         end
+    endfunction
+
+    function AddPlayerMonsterSoulState(int pid,int num)
+        if  num == 0
+            AddUnitRealState(Pu[1],32,20)
+        elseif  num == 1
+            AddUnitRealState(Pu[1],31,20)
+        elseif  num == 2
+            AddUnitRealState(Pu[1],45,16+24*GameLevel)
+        elseif  num == 3
+            AddUnitRealState(Pu[1],15,7+3*GameLevel)
+        elseif  num == 4
+            AddUnitRealState(Pu[1],16,7+3*GameLevel)
+        elseif  num == 5
+            AddUnitRealState(Pu[1],19,5)
+        elseif  num == 6
+            AddUnitRealState(Pu[1],43,4+6*GameLevel)
+        elseif  num == 7
+            AddUnitRealState(Pu[1],25,10)
+        endif
     endfunction
 
     function ItemLuckOfMonsterSoul(int pid)
@@ -477,6 +497,7 @@ library ItemGameFunc uses DamageCode
                     PlayerMonsterSoul(num) = 1
                     PlayerMonsterSoulNum = PlayerMonsterSoulNum + 1
                     SetPlayerMonsterSoulSkill(pid)
+                    AddPlayerMonsterSoulState(pid,num)
                     if  PlayerMonsterSoulNum == 8 and GetHeroLevel(Pu[1]) >= 8
                         //觉醒
                         AddPlayerMonsterSoulSkill(pid)
@@ -493,9 +514,14 @@ library ItemGameFunc uses DamageCode
         endif
     endfunction
 
+    function InitPlayerMonsterSoulSkillEx(int pid)
+        
+    endfunction
+
     function InitPlayerMonsterSoulSkill(int pid)
         string s1 = ""
         string s2 = ""
+        RemoveItem(CreateItem('IS12',0,0))
         s1 = "|cffffff00觉醒需求：|n|r|cff808080 - 陛犴之魂|n - 奎牛之魂|n - 墨麒麟之魂|n - 狻猊之魂|n - 青鸾之魂|n - 狰狞之魂|n - 神威黑虎之魂|n - 孔雀之魂|n - 劫变期【7】|n|n|r|cff00ff00占星商店|r抽奖中，集齐|cff00ff00所有兽魂|r，并突破至|cff00ff00劫变期【7】|r，觉醒获得随机神兽神通。"
         s2 = "|cffffcc00抽取消耗：|r10金币|n|cffffcc00抽取次数：|r0|n|cffffcc00抽取几率：|r7%|n|n|cffffcc00可获得：|n|r|cffff0080陛犴之魂|n奎牛之魂|n墨麒麟之魂|n狻猊之魂|n青鸾之魂|n狰狞之魂|n神威黑虎之魂|n孔雀之魂|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
         if  Player(pid) == GetLocalPlayer()
@@ -504,6 +530,7 @@ library ItemGameFunc uses DamageCode
             YDWESetUnitAbilityDataString(Pu[1],'AC04',1,218,s1)
             YDWESetItemDataString('IS12',3,s2)
         endif
+        InitPlayerMonsterSoulSkillEx(pid)
     endfunction
 
     function SetPlayerMonsterSoulSkillOfHeroLevel(int pid) //渡劫
