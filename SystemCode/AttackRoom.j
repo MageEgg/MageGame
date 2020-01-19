@@ -351,6 +351,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                     ShowPlayerTaskUIOfPlayer(pid,false,0)
                     SetPlayerTaskUIChatOfPlayer(pid," "," ",0)
                     SetPlayerTaskUITaskOfPlayer(pid," ",0)
+                    InitPlayerGameGift.execute(pid)//加载礼包
                 endif
             endif
         endif
