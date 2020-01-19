@@ -591,6 +591,9 @@ library AttackUnit uses DamageCode
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         cos = 100*AttackUnitWN
+                        if  cos > 30000
+                            cos = 30000
+                        endif
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,cos)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r敌军发起进攻，每人获得"+I2S(cos)+"金币奖励。")
                     endif
