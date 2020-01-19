@@ -142,10 +142,14 @@ scope DeathEvent initializer InitDeathEvent
         int next = GetTypeIdData(id,106)
         int gl = 50
 
-        if  next == 'E102' or next == 'E103'
+        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
             gl = 100
-        elseif  next >= 'E103' and next <= 'E106'
-            gl = 80
+        else
+            if  next == 'E102' or next == 'E103'
+                gl = 100
+            elseif  next >= 'E103' and next <= 'E106'
+                gl = 80
+            endif
         endif
         if  num-exp > 1
             SetItemCharges(it,num-exp)
@@ -189,7 +193,7 @@ scope DeathEvent initializer InitDeathEvent
         int value = 0
         real ste = 0
         real gold = 0
-        real wood = 1
+        real wood = 0
         int exp = 0
         
         //杀敌数
@@ -265,6 +269,9 @@ scope DeathEvent initializer InitDeathEvent
         if  ste > 0
             AddUnitRealState(Pu[1],5,ste)
         endif
+
+        //杀敌数63
+        AddUnitIntState(Pu[1],63,1)
     endfunction
 
     function CreateNewForg(int id1,int id2)
