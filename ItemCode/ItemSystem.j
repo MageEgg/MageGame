@@ -345,6 +345,8 @@ scope ItemSystem initializer InitItemSystem
             AttackUnitItemStop(pid,3,120)
         elseif  itemid == 'IZ0B'
             AttackUnitItemSpeedUp(pid)
+        elseif  itemid == 'IS12'
+            ItemLuckOfMonsterSoul(pid)
         endif
         if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
             PlayerGetGameGift(pid,itemid)
