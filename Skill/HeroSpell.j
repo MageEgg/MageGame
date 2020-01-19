@@ -30,7 +30,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             SetUnitX(wu,GetUnitX(uu)+70*Cos(ang))
             SetUnitY(wu,GetUnitY(uu)+70*Sin(ang))
             
-            UnitDamageTarget(wu,uu,dam,true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageTarget(wu,uu,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
 
             DestroyGroup(gg)
             gg = null
@@ -84,7 +84,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS009(unit u1,unit u2,real damage)//连击
-        UnitDamageTarget(u1,u2,damage, true, true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+        UnitDamageTarget(u1,u2,damage, false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
         SetAbilityCD_AC(u1,'S009',2)
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file")
         unit mj=CreateTmUnit(GetOwningPlayer(u1),mdoelorigin,GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u1),0,1)
@@ -103,7 +103,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         AddUnitStateExTimer(u,13,15,3)
         DestroyEffect(AddSpecialEffect("effect_daoguang-new.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         loop
             uu=FirstOfGroup(g.ejg)
             exitwhen uu==null
@@ -130,7 +130,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             DestroyEffect(tx) 
             GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             AddUnitStateExTimer(u,19,10,3)
-            UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             endtimer
         flush locals
@@ -155,7 +155,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(u1)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"effect_az-leiji.mdl","origin",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ConvertAttackType(1),ConvertDamageType(0),null)
+        UnitDamageGroup(u,g.ejg,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         flush locals
     endfunction
@@ -235,7 +235,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(u2)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         DestroyEffect(AddSpecialEffect("effect_white-qiquan-juhuang.mdl",x,y))
         g.destroy()
         SaveInteger(ht,GetHandleId(u1),'S038',0)
@@ -259,7 +259,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         {
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         endtimer
         }
@@ -285,7 +285,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         IndexGroup g = IndexGroup.create()
         DestroyEffect(AddSpecialEffect("effect_white-qiquan-special.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         flush locals
     endfunction
@@ -503,7 +503,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                         ang=GetRandomReal(-3.14,3.14)
                         dis=GetRandomReal(100,300)
                         GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                        UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         SetUnitX(mj,x+(400*Cos(ang)))
                         SetUnitY(mj,y+(400*Sin(ang)))
                         SetUnitFacing(mj,Rad2Deg(ang))
@@ -571,9 +571,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                         gu=FirstOfGroup(g.ejg)
                         exitwhen gu==null
                         if GetUnitAbilityLevel(gu, 'B003')>0
-                            UnitDamageTarget(u,gu,damage*1.3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                            UnitDamageTarget(u,gu,damage*1.3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         else
-                            UnitDamageTarget(u,gu,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                            UnitDamageTarget(u,gu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         endif
                         GroupRemoveUnit(g.ejg,gu)
                     endloop  
@@ -590,9 +590,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                         gu=FirstOfGroup(g.ejg)
                         exitwhen gu==null
                         if GetUnitAbilityLevel(gu, 'B003')>0
-                            UnitDamageTarget(u,gu,damage*1.3,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                            UnitDamageTarget(u,gu,damage*1.3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         else
-                            UnitDamageTarget(u,gu,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                            UnitDamageTarget(u,gu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         endif
                         GroupRemoveUnit(g.ejg,gu)
                     endloop  
@@ -648,12 +648,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitX(u2,GetUnitX(u2)+70*Cos(ang))
                     SetUnitY(u2,GetUnitY(u2)+70*Sin(ang))
                     GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'DB01',2,852189))
-                    UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                    UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 else
                     SetUnitX(u2,GetUnitX(u1))
                     SetUnitY(u2,GetUnitY(u1))
                     GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'DB01',2,852189))
-                    UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                    UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                    
                     RemoveUnit(u2)
                     flush locals
@@ -687,7 +687,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 y = GetUnitY(u2) + 50*Sin(ang)
                 SetUnitPosition(u2,x,y)
                 GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",'DB01',2,852189))
-                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
                 GroupClear(wg)
                 DestroyGroup(wg)
@@ -716,7 +716,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(u1)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         LocAddEffectSetSize(x,y,"effect_blue-slash-more.mdl",0.5)
         g.destroy()
         SaveInteger(ht,GetHandleId(u),'S075',LoadInteger(ht,GetHandleId(u),'S075')+10)
@@ -731,7 +731,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
 
     function SpellS075(unit u,unit u1,real damage)//夺命刺
-        UnitDamageTarget(u,u1,damage, true, true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+        UnitDamageTarget(u,u1,damage, false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
         LocAddEffectSetRotateSize(GetUnitX(u),GetUnitY(u),GetUnitFacing(u),2,"effect_zzmxcl_tuci.mdl")
         if IsPlayerHasAbility(u,'S076') == true
             SpellS076(u,u1,damage/8*3)
@@ -743,7 +743,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS078(unit u2,real x1,real y1,real damage1)
         unit u=u2
         real damage=damage1 
-        real m=3
+        real m=1.5
         real x=x1
         real y=y1
         real x0=GetUnitX(u)
@@ -797,7 +797,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 x=x+(300*Cos(ang))
                 y=y+(300*Sin(ang))
                 GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),wg,""))
-                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 DestroyEffect(AddSpecialEffect("effect_az_kaer_t1.mdl",x,y))
             else
                 RemoveUnit(mj)
@@ -879,7 +879,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 x0 = xu+jl*Cos(ang+1.57)
                 y0 = yu+jl*Sin(ang+1.57)
                 mj=CreateTmUnit(GetOwningPlayer(u),"effect_shandianzhiqiang.mdl",x0,y0,ang/0.01745,0,1)
-                CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),true,false,0,4)
+                CreateTmFunc(u,mj,ang,damage,70,1500,GetRandomReal(50,300),false,false,0,4)
                 
                  //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个
             else
@@ -954,7 +954,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 uu = GroupPickRandomUnit(g1)
                 GroupClear(g1)
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 if uu !=null
                     Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
                     DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
@@ -1177,7 +1177,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SetAbilityCD_AC(u,'S094',0.3)
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         DestroyEffect(AddSpecialEffect("effect_hero_grandmagus_n1s_z_down.mdl",x,y))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         u = null
     endfunction
@@ -1203,7 +1203,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SetAbilityCD_AC(u,'S096',0.3)
         DestroyEffect(AddSpecialEffect("effect_blue-daoguang-new.mdl",x,y))
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         u = null
         flush locals
@@ -1237,7 +1237,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SetAbilityCD_AC(u,'S098',0.3)
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         DestroyEffect(AddSpecialEffect("effect_by_wood_effect_yuanbanlin_sand2.mdl",x,y))
-        UnitDamageGroup(u,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         u = null
     endfunction
@@ -1265,7 +1265,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_az_zeusking_impact-black.mdl","origin",0))
         LocAddEffect(x,y,"effect_white-shandian-qiquan.mdl")
-        UnitDamageGroup(u,g.ejg,damage+(GetUnitRealState(u,5)*4),true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g.ejg,damage+(GetUnitRealState(u,5)*4),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         u = null
         flush locals
@@ -1520,7 +1520,7 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
                     ang=GetRandomReal(-3.14,3.14)
                     dis=GetRandomReal(100,300)
                     GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                    UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                    UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     SetUnitX(mj,x+(400*Cos(ang)))
                     SetUnitY(mj,y+(400*Sin(ang)))
                     SetUnitFacing(mj,Rad2Deg(ang))
@@ -1571,12 +1571,12 @@ function SpellS110(unit u1,real x1,real y1,real damage1)
                 y0 = GetUnitY(u2) + 50*Sin(ang)
                 SetUnitPosition(u2,x0,y0)
                 GroupEnumUnitsInRange(gg,x0,y0,200,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,dam,true,false,ConvertAttackType(0),ConvertDamageType(4),null)
+                UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
                 GroupClear(wg)
                 SetUnitPosition(u2,x,y)
                 GroupEnumUnitsInRange(gg,x0,y0,400,GroupHasUnit(GetOwningPlayer(u1),wg,""))
-                UnitDamageGroup(u1,gg,GetUnitRealState(u1,2)*4,false,false,ConvertAttackType(0),ConvertDamageType(14),null)
+                UnitDamageGroup(u1,gg,GetUnitRealState(u1,2)*4,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 DestroyGroup(wg)
                 KillUnit(u2)
                 endtimer
@@ -1717,13 +1717,13 @@ function SpellS116(unit u1,real damage1)
         group g=CreateGroup()
         DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         if   Chance(u,40)
             TimerStart(0.6,false)
             {
                 LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
                 GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endtimer
                 flush locals
             }
@@ -1740,13 +1740,13 @@ function SpellS116(unit u1,real damage1)
         DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
         AddUnitStateExTimer(u,14,15,4)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         if   Chance(u,40)
             TimerStart(0.6,false)
             {
                 LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
                 GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endtimer
                 flush locals
             }
@@ -1763,13 +1763,13 @@ function SpellS116(unit u1,real damage1)
         DestroyEffect(AddSpecialEffect("effect_longzhan.mdl",x,y))
         AddUnitStateExTimer(u,13,15,4)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         if   Chance(u,40)
             TimerStart(0.6,false)
             {
                 LocAddEffectSetSize(x,y,"effect_daoguang-new.mdl",1.2)
                 GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endtimer
                 flush locals
             }
@@ -1962,7 +1962,7 @@ function SpellS116(unit u1,real damage1)
                 
                 IndexGroup gg = IndexGroup.create()
                 GroupEnumUnitsInRange(gg.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'ABFA',3,852095))
-                UnitDamageGroup(u1,gg.ejg,damage,true, false,ATTACK_TYPE_HERO,DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
+                UnitDamageGroup(u1,gg.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )
                 DzSetUnitModel( u1,mdoelorigin)                   
                 gg.destroy()
                 
@@ -2115,9 +2115,9 @@ endfunction
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 uu = GroupPickRandomUnit(g.ejg) 
-                UnitDamageTarget(u,uu,damage*1.2,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageTarget(u,uu,damage*1.2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 LocAddEffectSetSize(GetUnitX(uu),GetUnitY(uu),"effect_misaka light.mdl",0.5)
-                UnitDamageGroup(u,g.ejg,damage*0.6,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u,g.ejg,damage*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 
                 g.destroy()
         

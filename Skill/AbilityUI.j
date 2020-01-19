@@ -12,9 +12,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             YDWESetUnitAbilityState(u, gid, 1,0)
             YDWESetUnitAbilityState(u, cid, 1,0)
         end
-        texttag p=CreateTextTagUnitBJ( "刷新冷却！", u, 0, 12.00, 50.00, 50.00, 100, 0 )
-        SetTextTagVelocityBJ( p, 64, 85.00 )
-        SetTextTagFadepoint( p, 2.00 )
+       
+
         u = null
     endfunction
 
@@ -46,9 +45,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     func GetAbilityDamage(unit wu,int id,int lv)->real
         real r1 = 0
         int chi = GetTypeIdData(id,102)     
-
+        DBUG("lv:"+I2S(lv))
         int index = GetHeroAbilityIndex(wu,id)
-        
         if  index == 5
             r1 = GetTypeIdReal(id,101)
         else
