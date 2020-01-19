@@ -381,17 +381,15 @@ scope DeathEvent initializer InitDeathEvent
             */
             
         else
-            if  AttackRoomXCUnitNum <= 0
-                
-                AttackRoomXCNum = AttackRoomXCNum + 1
-                
-                if  AttackRoomXCNum == 10
-                    AttackRoomXCNum = 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵(10/10)")
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵("+I2S(AttackRoomXCNum)+"/10)")
-                endif
+            AttackRoomXCNum = AttackRoomXCNum + 1
+            if  AttackRoomXCNum == 10
+                AttackRoomXCNum = 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵(10/10)")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵("+I2S(AttackRoomXCNum)+"/10)")
+            endif
 
+            if  AttackRoomXCUnitNum <= 0
 
                 if  AttackRoomXCNum > 24
                     AttackRoomXCNum = 1

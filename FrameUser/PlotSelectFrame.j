@@ -294,16 +294,18 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int id4 = 0
         int id5 = 0
 
+        int prizeid = GetPlotPrizeMagicIndex(index)
+
         if  Type == 3
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             id2 = GetPlayerPlotPrizeId(pid,index,2)
         else
             id1 = 'IP01'
             id2 = GetPlayerPlotPrizeId(pid,index,2)
-            id3 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
+            id3 = GetPrize(pid,prizeid,true)
+            id4 = GetPrize(pid,prizeid,true)
             if  GameLevel >= 3
-                id4 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
-                id5 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
+                id5 = GetPrize(pid,prizeid,true)
             endif
         endif
 
