@@ -2261,7 +2261,7 @@ endfunction
             elseif  id== 'S127'    
                 SpellS127(u1.u)
             
-            elseif   id>='S230' and id<='S235'
+            elseif   id>='S230' and id<='S237'
                 if  GetUnitIntState(u1.u,'FB44') > 0
                     AddUnitStateExTimer(u1.u,31,200,10)
                     AddUnitStateExTimer(u1.u,17,100,10)
@@ -2281,6 +2281,10 @@ endfunction
                         SpellS234(u1.u,u2.u,damage)
                     elseif  id== 'S235'
                         SpellS235(u1.u)
+                    elseif  id== 'S236'
+                        SpellS236(u1.u,u2.u)
+                    elseif  id== 'S237'
+                        SpellS237(u1.u)
                 endif
             endif
          endif   
