@@ -41,8 +41,11 @@ scope FrameButton
                     elseif  id >= 581 and id <= 590
                         SetPlayerShowSavePage(pid,id-581)
                     elseif  id == 655//签到
-                        TimerMissionAddNumFunc(pid,1,1)
-                        
+                        if  GameTime >= 300
+                            TimerMissionAddNumFunc(pid,1,1)
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r游戏开局5分钟后可以签到！")
+                        endif
                     elseif  id == 661 //通行证翻页
                         PassFreamClickLast(pid)
                     elseif  id == 662 //通行证翻页
