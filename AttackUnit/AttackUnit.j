@@ -385,14 +385,6 @@ library AttackUnit uses DamageCode
         }
         flush locals
     endfunction
-
-    function AddUnitGoldState(unit u)
-        if  GetRandomReal(1,100) <= 10
-            UnitAddAbility(u,'AZ17')
-        elseif  GetRandomReal(1,100) <= 10
-            UnitAddAbility(u,'AZ18')
-        endif
-    endfunction
     
     function OpenCreateUnitTimer()
         timer t = GetExpiredTimer()
@@ -414,7 +406,6 @@ library AttackUnit uses DamageCode
                             SetUnitXY(u,psx[k],psy[k])
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
-                            //AddUnitGoldState(u)
                         end
                     endif
                 endif
@@ -450,7 +441,6 @@ library AttackUnit uses DamageCode
                         SetUnitXY(u,psx[k],psy[k])
                         IssuePointOrderById(u,851983,pex[k],pey[k])
                         GroupAddUnit(AttackUnitGroup,u)
-                        //AddUnitGoldState(u)
                     end
                 endif
             endif

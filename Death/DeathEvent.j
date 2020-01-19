@@ -196,15 +196,13 @@ scope DeathEvent initializer InitDeathEvent
         real wood = 0
         int exp = 0
         
+        //杀敌数
+        AddUnitRealState(Pu[1],63,1)
 
         gold = GetTypeIdData(uid,103)
         if  gold == 0
             if  uid != 'u020'
-                if  GetUnitAbilityLevel(wu,'AZ17') > 0
-                    gold = 300
-                else
-                    gold = 10
-                endif
+                gold = 10
             endif
         else
             if  uid >= 'u0BA' and uid <= 'u0BZ'
@@ -228,12 +226,6 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
         //杀敌玄铁
-        if  GetUnitAbilityLevel(wu,'AZ18') > 0
-            wood = 40
-        endif
-        if  wood > 0
-            AdjustPlayerStateBJ( R2I(wood) ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-        endif
 
         //杀敌经验
         exp = 1
@@ -277,9 +269,7 @@ scope DeathEvent initializer InitDeathEvent
         if  ste > 0
             AddUnitRealState(Pu[1],5,ste)
         endif
-
-        //杀敌数63
-        AddUnitIntState(Pu[1],63,1)
+        
     endfunction
 
     function CreateNewForg(int id1,int id2)

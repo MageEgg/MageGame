@@ -49,6 +49,7 @@ library HeroStateFunc uses DamageCode
             AddUnitRealState(Pu[1],46,(1*lv))
             AddUnitRealState(Pu[1],45,(5*lv))
             UnitAddItemEx(Pu[1],'CS01')
+            BJDebugMsg("光环")
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
             AddUnitRealState(Pu[1],45,100+(20*lv))
@@ -68,6 +69,7 @@ library HeroStateFunc uses DamageCode
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
             AddUnitRealState(Pu[1],49,100+(20*lv))
             AddUnitRealState(Pu[1],48,50+(20*lv))
+            CreatePet.execute(pid)
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 0 //封神礼包
             AddUnitRealState(Pu[1],50,10+(3*lv))

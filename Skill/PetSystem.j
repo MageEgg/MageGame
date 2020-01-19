@@ -36,4 +36,14 @@ library PetSystem uses AbilityUI,OtherDamageTimer
         end
     endfunction
 
+    function CreatePet(int pid)
+        if  Pu[200] != null
+            FlushChildHashtable(ht,GetHandleId(Pu[200]))
+            RemoveUnit(Pu[200])
+            Pu[200] = null
+        endif
+        Pu[200] = CreateUnit(Player(pid),'hC01',GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
+        IssuePointOrderById(Pu[200],851983,(GetUnitX(Pu[1])+GetRandomReal(-250,250)),(GetUnitY(Pu[1])+GetRandomReal(-250,250)))
+    endfunction
+
 endlibrary
