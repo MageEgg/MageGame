@@ -155,7 +155,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(u1)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"effect_az-leiji.mdl","origin",0))
-        UnitDamageGroup(u,g.ejg,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
         flush locals
     endfunction
@@ -1271,10 +1271,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction 
 
-    function SpellS102_1(unit u1,unit mj1,real damage1)
+    function SpellS102_1(unit u1,unit mj1)
         unit u=u1
         unit mj=mj1
-        real damage=damage1
         real Mang=GetRandomReal(0,360)
         real x=0
         real y=0 
@@ -1326,7 +1325,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
 
                 GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
-                UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u,g,GetUnitRealState(u,5)*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
@@ -1347,7 +1346,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             x=GetUnitX(u)+(dis*Cos(ang))
             y=GetUnitY(u)+(dis*Sin(ang))
             mj=CreateTmUnit(GetOwningPlayer(u),"effect_BlackworksDragonHead3.mdl",x,y,GetRandomReal(-3.14,3.14),10,1)
-            SpellS102_1(u,mj,damage)
+            SpellS102_1(u,mj)
         end
         flush locals
     endfunction  
