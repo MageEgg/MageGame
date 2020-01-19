@@ -170,8 +170,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     function RePlayerPlotPrizeId(int pid)
         for i = 1,8
-            SetPlayerPlotPrizeId(pid,i,1,'CF01')
+            SetPlayerPlotPrizeId(pid,i,1,'IP01')
+            SetPlayerPlotPrizeId(pid,i,2,'CF01')
         end
+        /*
         SetPlayerPlotPrizeId(pid,1,2,'CS01')
         SetPlayerPlotPrizeId(pid,2,2,'CS01')
         SetPlayerPlotPrizeId(pid,3,2,'CS02')
@@ -180,7 +182,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         SetPlayerPlotPrizeId(pid,6,2,'CS03')
         SetPlayerPlotPrizeId(pid,7,2,'CS04')
         SetPlayerPlotPrizeId(pid,8,2,'CS04')
-        
+        */
     endfunction
 
     //刷新深渊模式奖励
@@ -300,8 +302,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             id2 = GetPlayerPlotPrizeId(pid,index,2)
         else
-            id1 = 'IP01'
-            id2 = GetPlayerPlotPrizeId(pid,index,2)
+            id1 = GetPlayerPlotPrizeId(pid,index,1)
+            //id2 = GetPlayerPlotPrizeId(pid,index,2)
             id3 = GetPrize(pid,prizeid,true)
             id4 = GetPrize(pid,prizeid,true)
             if  GameLevel >= 3
