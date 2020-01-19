@@ -590,7 +590,9 @@ library AttackUnit uses DamageCode
             if  InfiniteAttackBool == false
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|cff00ff00进攻怪来袭，每人奖励"+I2S(R2I(10*(1+(S2I(DzC[15])*0.5))))+"点守家积分！|r")
+                        cos = 100*AttackUnitWN
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,cos)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r敌军发起进攻，每人获得"+I2S(cos)+"金币奖励。")
                     endif
                 end
             else
