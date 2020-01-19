@@ -67,7 +67,7 @@ library HeroStateFunc uses DamageCode
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
             
         endif 
-        if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
+        if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
             AddUnitRealState(Pu[1],49,100+(20*lv))
             AddUnitRealState(Pu[1],48,50+(20*lv))
             CreatePet.execute(pid)
