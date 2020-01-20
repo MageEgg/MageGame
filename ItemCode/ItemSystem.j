@@ -11,6 +11,28 @@ scope ItemSystem initializer InitItemSystem
         endif
         return 0
     endfunction
+
+    function IsHeroEquipCanOpenPlot(unit wu)->bool
+        int id = 0
+        int e1 = 0
+        int e2 = 0
+        for n = 0,5
+            id = GetItemTypeId(UnitItemInSlot(wu,n))
+            if  id >= 'E006' and id <= 'E025'
+                e1 = 1
+                exitwhen true
+            endif
+        end
+        for n = 0,5
+            id = GetItemTypeId(UnitItemInSlot(wu,n))
+            if  id >= 'E206' and id <= 'E225'
+                e2 = 1
+                exitwhen true
+            endif
+        end
+        return e1 == 1 and e2 == 1
+    endfunction
+
     function IncEquipKillUnitFunc(unit u1,unit u2)
         int pid = GetPlayerId(GetOwningPlayer(u1))
         int uid = GetUnitTypeId(u2)
@@ -24,8 +46,11 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                 UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r装备"+GetObjectName(itemid)+"突破成功！")
-                if  next == 'E006' or next == 'E106' or next == 'E206'
-                    if  Pu[24] == null
+                
+                if  Pu[24] == null
+                    if  IsHeroEquipCanOpenPlot(Pu[1]) == true
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"装备均达到|Cff00ff7f绿色|r，解锁|Cffff0000剧情副本挑战|r|Cfff0f0f0。|r")
+                        
                         Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2]-256,270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
                         UnitAddAbility(Pu[1],'AG09')
