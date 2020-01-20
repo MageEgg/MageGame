@@ -596,7 +596,7 @@ scope DeathEvent initializer InitDeathEvent
 
                         endif
                     endif
-
+                    AttackSummonUnitGroupDeathEvent(pid,u2)
                 endif
             else
                 if  uid == 'H005'

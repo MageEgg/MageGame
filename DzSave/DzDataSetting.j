@@ -9,7 +9,8 @@ library DzDataSetting uses DzBase
     // 组3 20组 == 1总通关次数 2+通关难度次数 最高难5
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
-    // 组6 未使用
+    // 组6 20组 1经脉最大上限 1-8经脉 10+未使用
+    // 组7 未使用
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -23,8 +24,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(3) = 3
         DzDataGroupLength(4) = 5
         DzDataGroupLength(5) = 6
-        /*DzDataGroupLength(6) = 4
-        DzDataGroupLength(7) = 0
+        DzDataGroupLength(6) = 3
+        /*DzDataGroupLength(7) = 0
         DzDataGroupLength(8) = 0
         DzDataGroupLength(9) = 0
         DzDataGroupLength(10) = 0
@@ -58,7 +59,7 @@ library DzDataSetting uses DzBase
             elseif  flag == 9 //未使用
                 max = 0
             elseif  flag == 10 //经脉今日上限
-                max = 5
+                max = DzMeridiansDayNum
             elseif  flag >= 11 or flag <= 20
                 max = 0
             elseif  flag == 21 or flag == 22 //公众号礼包 入群礼包
@@ -95,6 +96,15 @@ library DzDataSetting uses DzBase
                 max = 0
             endif
         elseif  Group == 5 //不用管
+        
+        elseif  Group == 6 //不用管
+            if  flag == 1 //经脉最大上限
+                max = MeridiansDay*DzMeridiansDayNum
+            elseif  flag >= 2 and flag <= 9 //经脉等级
+                max = MeridiansMaxLv
+            elseif  flag >= 10
+                max = 0
+            endif
         else //未使用
             max = 0
         endif
