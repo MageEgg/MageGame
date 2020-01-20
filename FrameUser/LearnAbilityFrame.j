@@ -445,7 +445,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int id = GetCanIncAbilityId(pid,i,4)
         int index = GetHeroAbilityIndex(Pu[1],id)
         HeroIncAbility(Pu[1],index)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
     endfunction
     function IncAbilityGemFunc2()
         int pid = Dialog.GetPlayerid()
@@ -456,7 +456,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int id = GetCanIncAbilityId(pid,i,5)
         int index = GetHeroAbilityIndex(Pu[1],id)
         HeroIncAbility(Pu[1],index)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
     endfunction
 
     
@@ -469,9 +469,9 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
             int id = GetCanIncAbilityId(pid,i,4)
             int index = GetHeroAbilityIndex(Pu[1],id)
             HeroIncAbility(Pu[1],index)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r升级成功！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]:升级失败！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：升级失败！")
         endif
     endfunction
 
@@ -502,7 +502,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
                 Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc3")
             endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:没有可以升级的技能！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：没有可以升级的技能！")
             UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
         endif
 
@@ -531,7 +531,7 @@ endlibrary
         if  rid > 0
             RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
             BJDebugMsg("回收"+GetTypeIdName(rid))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了学习技能！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您放弃了学习技能！")
             SetUnitIntState(Pu[1],120,0)
             CloseReplaceFrame(pid)
         else

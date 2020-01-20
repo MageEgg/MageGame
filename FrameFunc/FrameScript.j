@@ -46,7 +46,7 @@
                 DzFrameShow(UI_TipsHead, true)
                 SetTipsData(10,"","|cffffcc00防御显示：|r")
                 SetTipsData(11,"","防御："+I2S(R2I(GetUnitRealState(Pu[5],3))))
-                r1 = GetUnitRealState(Pu[5],11)
+                r1 = GetUnitRealState(Pu[5],3)
                 if  r1 < 0
                     r1 = -1 * r1
                     r1 = -(r1*0.01)/(r1*0.01+1)*100
@@ -72,9 +72,11 @@
                 DzFrameShow(UI_TipsHead, true)
                 SetTipsData(10,"","|cffffcc00攻击显示：|r")
                 if  GetUnitState(Pu[5],ConvertUnitState(0x13)) > 0
-                    SetTipsData(11,"","攻击："+R2SI(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cff00ff00+"+R2SI(R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
-                else
-                    SetTipsData(11,"","攻击："+R2SI(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cff00ff00+"+GetPlayerBossDamageShow(R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
+                elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) < 0
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cffff0000-"+GetPlayerBossDamageShow(-1*R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
+                elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) == 0
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
                 endif
                 SetTipsData(12,""," ")
                 SetTipsData(13,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")

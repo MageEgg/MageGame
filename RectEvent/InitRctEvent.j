@@ -9,7 +9,7 @@ scope InitRctEvent initializer InitRctEvent
                 else
                     SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r不要进入别人的练功房！！")
             endif
         endif
     endfunction
@@ -22,7 +22,7 @@ scope InitRctEvent initializer InitRctEvent
                 else
                     SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r不要进入别人的练功房！！")
             endif
         endif
     endfunction
@@ -35,7 +35,7 @@ scope InitRctEvent initializer InitRctEvent
                 else
                     SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r不要进入别人的练功房！！")
             endif
         endif
     endfunction
@@ -48,7 +48,7 @@ scope InitRctEvent initializer InitRctEvent
                 else
                     SetUnitPosition(GetTriggerUnit(),AttackRoomPostion[pid][1], AttackRoomPostion[pid][2])
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r不要进入别人的练功房！！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r不要进入别人的练功房！！")
             endif
         endif
     endfunction

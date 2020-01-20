@@ -220,7 +220,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             SetPlayerPlotType(pid,1)
             Title.SetTexture("war3mapImported\\UI_PlotSelect_Title2.tga",0)
             DzFrameShow(BUTTON_Back[310][0],true)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r所有副本已通关！为您开启时渊模式！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r所有副本已通关！为您开启时渊模式！")
         endif
         for i = 1,8
             RePlayerExPlotPrizeId(pid,i)
@@ -240,12 +240,12 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             for i = 1,8
                 RePlayerExPlotPrizeId(pid,i)
             end
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r时渊副本奖励重置成功！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r时渊副本奖励重置成功！")
             if  GetLocalPlayer() == Player(pid)
                 DzFrameShow(UI_TipsHead, true)
             endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r重置失败！杀敌数不足"+I2S(use))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r重置失败！杀敌数不足"+I2S(use))
         endif
         
     

@@ -122,7 +122,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 业力+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用聚宝盆金币+"+I2S(gold)+" 业力+"+I2S(i1))
 
     endfunction
 
@@ -295,7 +295,7 @@ scope DeathEvent initializer InitDeathEvent
         
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
         SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾逃跑啦！10秒后再来吧！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾逃跑啦！10秒后再来吧！")
         SetUnitPosition(u1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512)
         UnitAddAbility(u1,'Avul')
         ShowUnit(u1,false)
@@ -427,16 +427,16 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u001' and uid <= 'u004'
             AttackRoomUid[pid]='g00A'+ (uid - 'u000')
             //AddUnitRealState(Pu[1],41,80)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾挑战成功！练功房内资源怪提升！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
                 UnitAddEffectOfNPC(Pu[28])
             endif
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾它老豆生气了！30秒来找你报仇！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r金蟾它老豆生气了！30秒来找你报仇！")
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾家族一个不剩了......")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r金蟾家族一个不剩了......")
             endif
         elseif  uid >= 'uJ00' and uid <= 'uJzz'
             if  uid == 'uJ00'
@@ -474,12 +474,12 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'm001' and uid <= 'm099'
             KillAttackUnitNum = KillAttackUnitNum + 1
             if  KillAttackUnitNum - (KillAttackUnitNum / 10) * 10 == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r进攻怪击杀数量：("+I2S(KillAttackUnitNum)+"50)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进攻怪击杀数量：("+I2S(KillAttackUnitNum)+"50)")
             endif
             if  KillAttackUnitNum >= 50
                 KillAttackUnitNum = 0
                 AddData(pid,1,2,2)
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r玩家"+ GetPN(pid) +"击杀进攻怪数量达到50！奖励守家积分2点。")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+ GetPN(pid) +"击杀进攻怪数量达到50！奖励守家积分2点。")
             endif
         endif
         */

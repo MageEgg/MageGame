@@ -737,7 +737,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             else    
                 BJDebugMsg("不增加属性"+GetTypeIdName(value))
             endif
-            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得法宝 "+GetTypeIdName(value))
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！获得法宝 "+GetTypeIdName(value))
         else
             if  index <= 8
                 RemPlayerMagicItemState(pid,index)
@@ -777,7 +777,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
 
         
+<<<<<<< HEAD
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得 "+GetMagicItemName(value)+" ,F4查看法宝羁绊效果")
+=======
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！获得法宝 "+GetTypeIdName(value)+",F4查看法宝羁绊效果")
+>>>>>>> f2149edf87fe2b90a11d56aca50bf9671b615cc7
 
     endfunction
 

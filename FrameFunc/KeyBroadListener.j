@@ -44,11 +44,11 @@ scope KeyEvent initializer InitKeyBroadListener
                     rid = GetUnitIntState(Pu[1],120)
                     RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
                     BJDebugMsg("回收"+GetTypeIdName(rid))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了学习技能！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您放弃了学习技能！")
                     SetUnitIntState(Pu[1],120,0)
                     CloseReplaceFrame(pid)
                 elseif  GetUnitIntState(Pu[1],131) > 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r您放弃了选择技能！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您放弃了选择技能！")
                     
                     for i =1,3
                         rid = GetUnitIntState(Pu[1],130+i)
