@@ -39,6 +39,18 @@
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffffd24d重铸法宝|r|Cfff0f0f0的材料。|r")
         elseif  id == 24
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")
+        elseif  id == 652 or id == 653
+            int exp = GetDzPlayerData(pid,4,1)
+            int lv = exp / 8
+            exp = exp - lv * 8
+            if  id == 652 //通行证
+                SetTipsData(1,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"8|r)")
+            elseif  id == 653 //商城通行证
+                SetTipsData(1,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
+            endif
+            SetTipsData(10,"","距离升级还差|cffff0000"+I2S(8-exp)+"|r经验")
+            SetTipsData(11,"","|cffcc99ff输入CX完成每日任务可以获得通行证经验|r")
+            SetTipsData(12,"","|cffcc99ff封神通行证与普通通行证等级同步|r")
         endif
         ShowTipsUI()
     endfunction
@@ -217,6 +229,8 @@
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                         endif
+                    elseif  id == 652 or id == 653
+                        BoxShowResources(pid,id)
                     else
                         //UIDebugShowIndex(id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)

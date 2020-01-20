@@ -292,6 +292,7 @@ scope DeathEvent initializer InitDeathEvent
     function ForgEscapeTimer(int id,unit wu)
         int pid = id
         unit u1 = wu
+        
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
         SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾逃跑啦！10秒后再来吧！")
@@ -313,6 +314,7 @@ scope DeathEvent initializer InitDeathEvent
         unit u1 = wu
         int id = GetUnitTypeId(u1)
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_AGGRESSIVE),false)
+        //UnitAddAbility(u1,'AZ31')
         TimerStart(20,false)
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')
@@ -321,6 +323,7 @@ scope DeathEvent initializer InitDeathEvent
                 if  GetUnitTypeId(u1) == id
                     if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
                         pid = pid - 1
+                        //UnitRemoveAbility(u1,'AZ31')
                         ForgEscapeTimer(pid,u1)
                         if  Pu[6] == u1
                             Pu[6] = null
