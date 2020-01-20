@@ -132,13 +132,14 @@
             int lv = exp / 8
             exp = exp - lv * 8
             if  id == 652 //通行证
-                SetTipsData(1,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"8|r)")
+                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"8|r)")
             elseif  id == 653 //商城通行证
-                SetTipsData(1,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
+                SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
             endif
-            SetTipsData(10,"","距离升级还差|cffff0000"+I2S(8-exp)+"|r经验")
-            SetTipsData(11,"","|cffcc99ff输入CX完成每日任务可以获得通行证经验|r")
-            SetTipsData(12,"","|cffcc99ff封神通行证与普通通行证等级同步|r")
+            SetTipsData(11,"","距离升级还差|cffff0000"+I2S(8-exp)+"|r经验")
+            SetTipsData(12,""," ")
+            SetTipsData(13,"","|cffcc99ff输入CX完成每日任务可以获得通行证经验|r")
+            SetTipsData(14,"","|cffcc99ff封神通行证与普通通行证等级同步|r")
         endif
         ShowTipsUI()
     endfunction
