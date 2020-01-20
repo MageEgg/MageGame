@@ -57,6 +57,10 @@ library DzDataSetting uses DzBase
                 max = GamePuOverDay //累积签到 
             elseif  flag == 9 //未使用
                 max = 0
+            elseif  flag == 10 //经脉今日上限
+                max = 5
+            elseif  flag >= 11 or flag <= 20
+                max = 0
             elseif  flag == 21 or flag == 22 //公众号礼包 入群礼包
                 max = 1
             elseif  flag >= 23 //未使用

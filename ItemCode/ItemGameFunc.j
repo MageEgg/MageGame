@@ -604,5 +604,15 @@ library ItemGameFunc uses DamageCode
             AddPlayerMonsterSoulSkill(pid)
         endif*/
     endfunction
+
+    //////////////////////////////////经脉分割//////////////////////////////////////
     
+    
+    function OpenMeridiansChallenge(int pid)
+        int 
+    endfunction
+
+
+
+
 endlibrary

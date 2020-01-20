@@ -381,6 +381,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         
         for pid = 0,3//玩家数量
             if  IsPlaying(pid) == true
+            
+                AttackSummonUnitGroup[pid] = CreateGroup()//练功房召唤怪单位组
+
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
                 RefreshAttackRoom(pid,AttackRoomUid[pid])

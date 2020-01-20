@@ -229,10 +229,11 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
                 if  b == 1
-                    UnitAddItemEx(PlayerUnit[hat][1],'INDA')
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('INDA')+"|r")
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN31')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN31')+"|r")
                 else
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN29')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN29')+"|r")
                 endif
                 b = b + 1
             endif
