@@ -529,13 +529,17 @@ library ItemGameFunc uses DamageCode
                     endif
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80抽奖获得|cffff0080“"+GetMonsterSoulLuck(num)+"”|cffffff80！|r")
                     UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)
+                    RemoveItemFromStock(Pu[28],'IS12')
+                    AddItemToStock(Pu[28],'IS12',0,1)
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r很遗憾抽取失败！")
+                    RemoveItemFromStock(Pu[28],'IS12')
                     AddItemToStock(Pu[28],'IS12',1,1)
                 endif
                 PlayerMonsterSoulLuckNum = PlayerMonsterSoulLuckNum + 1
                 SetPlayerMonsterSoulItem(pid)
             else
+                RemoveItemFromStock(Pu[28],'IS12')
                 AddItemToStock(Pu[28],'IS12',1,1)
             endif
         else
