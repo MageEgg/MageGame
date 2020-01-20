@@ -337,7 +337,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function ShowtOperaRectRange(bool value)
         bool show = value
         for pid = 0,3
-            //if  IsPlaying(pid) == true 
+            if  IsPlaying(pid) == true 
                 if  show == true
                     UnitRemoveAbility(GameChallengUnit[200],'Apiv')
                     UnitRemoveAbility(GameChallengUnit[201],'Apiv')
@@ -349,7 +349,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     UnitAddAbility(GameChallengUnit[202],'Apiv')
                     UnitAddAbility(GameChallengUnit[203],'Apiv')
                 endif
-            //endif
+            endif
         end
     endfunction
 
@@ -376,7 +376,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         real x = 0
         real y = 0
         for pid = 0,3
-            //if  IsPlaying(pid) == true 
+            if  IsPlaying(pid) == true 
                 if  pid == 0
                     x = -7584+30
                     y = -5312
@@ -412,7 +412,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     UnitAddAbility(GameChallengUnit[202+num],'Apiv')
                 end
 
-            //endif
+            endif
         end
         GameTeamChallengUnit(10) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1614.000,-3120,270)
         GameTeamChallengUnit(11) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1762.000,-3120,270)
