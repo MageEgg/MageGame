@@ -118,7 +118,7 @@
             SetTipsData(10,"","进入时渊副本消耗时渊碎片")
         elseif  id == 310
             int num = GetPlayerPlotReNum(pid)+1
-            int use = num
+            int use = num*5
             SetTipsData(1,"","需要 - 玄铁x"+I2S(use))
             SetTipsData(10,"","点击刷新时渊副本奖励")
         elseif  id == 21
@@ -134,7 +134,7 @@
             int lv = exp / 8
             exp = exp - lv * 8
             if  id == 652 //通行证
-                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"8|r)")
+                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
             elseif  id == 653 //商城通行证
                 SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
             endif

@@ -105,7 +105,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         if  now != GetHeroXP(wu)
             SetHeroXP(wu,now,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
-        else
+        elseif  GetHeroLevel(wu) != 12
             if  GetLocalPlayer() == Player(pid)
                 ExpModel.show =true
             endif
