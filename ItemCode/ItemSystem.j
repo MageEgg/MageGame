@@ -156,7 +156,7 @@ scope ItemSystem initializer InitItemSystem
     function RePlayerAbilityDrawTips(int pid,int index)
         int id = 'IS00' + index
         int num = GetPlayerDrawNum(pid,index)
-        int use1 = GetPlayerDrawUse(pid,index,num+1)/num
+        int use1 = GetPlayerDrawUse(pid,index,1)
         if  GetLocalPlayer() == Player(pid)
             if  num > 0
                 YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r"+I2S(use1)+"金币*次数|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
