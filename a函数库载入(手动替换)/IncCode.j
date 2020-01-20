@@ -57,6 +57,7 @@
 
 //物品系统
 #include "MageGame\\ItemCode\\ItemGameFunc.j"
+#include "MageGame\\ItemCode\\ItemMeridians.j"
 #include "MageGame\\ItemCode\\ItemSystem.j"
 
 //副本
@@ -75,6 +76,7 @@
 #include "MageGame\\GameChallenge\\GameChallengDeath.j"
 
 //选择英雄
+#include "MageGame\\SelectHero\\HeroStateFunc.j"
 #include "MageGame\\SelectHero\\SelectHero.j"
 
 //区域事件
