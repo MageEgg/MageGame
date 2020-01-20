@@ -489,6 +489,11 @@ scope DeathEvent initializer InitDeathEvent
         PlayerHeroAddState(pid,uid,tu)
 
 
+        if  GetRandomReal(1,10000)<=5
+            CreateItem('IP07',GetUnitX(tu),GetUnitY(tu))
+        endif
+
+
     end
     function KillUnitNotHasKiller(unit wu,int uid)
         if  GetUnitAbilityLevel(wu,'AZ99') > 0
