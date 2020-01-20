@@ -34,7 +34,7 @@
         if  frame == 8000 or frame == 8001 or frame == 8002
             SetOriginDzFrameTooltip()
         endif
-        BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
+        //BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
         DzFrameShow(UI_TipsHead, false)
     endfunction
 
