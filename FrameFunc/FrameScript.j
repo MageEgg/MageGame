@@ -28,9 +28,17 @@
             SetTipsData(10,"","进入时渊副本消耗时渊碎片")
         elseif  id == 310
             int num = GetPlayerPlotReNum(pid)+1
-            int use = num * 500
-            SetTipsData(1,"","需要 - 杀敌数x"+I2S(use))
+            int use = num
+            SetTipsData(1,"","需要 - 玄铁x"+I2S(use))
             SetTipsData(10,"","点击刷新时渊副本奖励")
+        elseif  id == 21
+            SetTipsData(10,"","|CffCCCCCC重铸法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffffd24d补天石|r|Cfff0f0f0，可重置为|r|Cffffd24d同品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【重铸按钮】。|r")
+        elseif  id == 22
+            SetTipsData(10,"","|CffCCCCCC锻造法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffff0000鸿蒙结晶|r|Cfff0f0f0，可重置为|r|Cffffd24d高一品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【锻造按钮】。|r")
+        elseif  id == 23
+            SetTipsData(10,"","|CffF0F0F0用来|r|Cffffd24d重铸法宝|r|Cfff0f0f0的材料。|r")
+        elseif  id == 24
+            SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")
         endif
         ShowTipsUI()
     endfunction
@@ -130,6 +138,8 @@
                     if  id >= 1 and id <= 20
                         BoxShowMagicItem(pid,id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                    elseif  id == 21 or id == 22
+                        BoxShowResources(pid, id)
                     elseif  id >= 31 and id <= 38
                         BoxShowMagicItem(pid,id-30)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)

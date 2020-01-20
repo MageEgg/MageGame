@@ -105,7 +105,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         Pint[309] = num
         //BJDebugMsg("309 is "+I2S(num))
         if  GetLocalPlayer() == Player(pid)
-            DzFrameSetText(BUTTON_Text[309],I2S(num))
+            DzFrameSetText(BUTTON_Text[309],"时渊碎片 "+I2S(num))
         endif
     endfunction
     //设置时渊刷新秒数
@@ -145,7 +145,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function RePlotSelectState3(int pid,int index)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
-        DzFrameSetTexture(BUTTON_Back[index+330][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,2)),0)
+        DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
         SetPlotButtonShow(index,true)
     endfunction
 
@@ -197,11 +197,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
         endif
 
-        if  GetRandomInt(1,100)<10
-            id2 = 'CS05'
-        else
-            id2 = 'CS00'+GetRandomInt(2,4)
-        endif
+    
 
         if  ran <= 10
             id1 = GetPrize(pid,14,true)
@@ -214,7 +210,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         
 
         SetPlayerPlotPrizeId(pid,index,1,id1)
-        SetPlayerPlotPrizeId(pid,index,2,id2)
+        SetPlayerPlotPrizeId(pid,index,2,0)
         RePlotSelectByIndex(pid,index)
     endfunction
     //玩家开启深渊模式
@@ -388,7 +384,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             end
         end
         CreateButton(309,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.01,0.01,0.076,0.021,"war3mapImported\\UI_PlotSelect_Resources.tga")
-        CreateText(309,Button.frameid,"righttext010",5,5,-0.005,0.0,"0")
+        CreateText(309,Button.frameid,"righttext010",5,5,-0.005,0.0,"时渊碎片 0")
 
         CreateButton(310,Button.frameid,TYPE_BUTTON,5,BUTTON_Back[309][0],3,-0.005,0.0,0.075,0.021,"war3mapImported\\UI_PlotSelect_Refresh.tga")
         DzFrameShow(BUTTON_Back[310][0],false)

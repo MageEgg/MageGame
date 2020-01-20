@@ -154,8 +154,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
             if  num == 7
                 ReAddAbilityByIndex(Pu[1],4,'S0R1')
+                /*
                 ShowUnit(Pu[25],true)
-                LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")
+                LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")*/
                 SetPlayerMonsterSoulSkillOfHeroLevel.execute(pid) 
             endif
             if  GetLocalPlayer() == Player(pid)
