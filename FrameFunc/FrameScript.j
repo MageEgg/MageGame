@@ -73,7 +73,9 @@
                 SetTipsData(10,"","|cffffcc00攻击显示：|r")
                 if  GetUnitState(Pu[5],ConvertUnitState(0x13)) > 0
                     SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cff00ff00+"+GetPlayerBossDamageShow(R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
-                else
+                elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) < 0
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cffff0000-"+GetPlayerBossDamageShow(-1*R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
+                elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) == 0
                     SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
                 endif
                 SetTipsData(12,""," ")
