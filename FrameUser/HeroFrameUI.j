@@ -163,7 +163,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
                 DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
             endif
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！境界突破成功！")
 
             //境界突破提高技能等级
             if  num == 3 or num == 5 or num == 10
@@ -197,7 +197,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             endif 
         else
             ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r境界经验不足，无法挑战境界！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r境界经验不足，无法挑战境界！")
         endif
     endfunction
 

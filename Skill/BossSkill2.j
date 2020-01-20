@@ -228,7 +228,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
         if  life / maxlife <= 0.4
             UnitDamageTarget(wu,tu,99999999,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
-            DisplayTimedTextToPlayer(GetOwningPlayer(tu),0,0,10,"|cffffcc00[系统]:|r你的生命低于40%，被因果律斩杀了")
+            DisplayTimedTextToPlayer(GetOwningPlayer(tu),0,0,10,"|cffffcc00[系统]：|r你的生命低于40%，被因果律斩杀了")
         endif
     endfunction
 

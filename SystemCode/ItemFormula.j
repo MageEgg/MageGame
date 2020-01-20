@@ -361,7 +361,7 @@ library StringFormula requires YDWEBase
                     endif
                     
                     //if forx.message != null then
-                        call DisplayTimedTextToPlayer(GetTriggerPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetObjectName(tmpid)+"合成成功！")
+                        call DisplayTimedTextToPlayer(GetTriggerPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetObjectName(tmpid)+"合成成功！")
                         //call DisplayTimedTextToPlayer(GetTriggerPlayer(), 0, 0, 30, forx.message)
                     //endif
                 

@@ -498,7 +498,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int use = 0
         int lv = GetUnitIntState(wu,120+index)
         if  GetHeroAbilityID(wu,index) == 0
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:技能升级失败！该键位无技能！|r")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：技能升级失败！该键位无技能！|r")
         else
             HeroSetAbilityLevelByIndex(wu,index,lv+1)
         endif
@@ -585,11 +585,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 HeroAddAbilityByIndex(wu,index,id)
                 return true
             else
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:已学习该技能，无法重复学习！|r")
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：已学习该技能，无法重复学习！|r")
                 return false
             endif
         else
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:技能已满，无法学习！|r")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：技能已满，无法学习！|r")
             return false
         endif
     endfunction

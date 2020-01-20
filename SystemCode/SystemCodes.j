@@ -394,7 +394,7 @@ library SystemCodes uses ServerTime,Define1
             else
                 SetItemPosition(it,GetUnitX(Pu[2]),GetUnitY(Pu[2]))
                 UnitAddItem(Pu[2],it)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]:|r英雄背包已满！物品自动传送至助手！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r英雄背包已满！物品自动传送至助手！")
             endif
         else
             UnitAddItem(u,it)
