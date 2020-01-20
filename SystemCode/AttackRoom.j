@@ -22,9 +22,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         //设置怪物刷新坐标
     endfunction
     
-    
-    
-    
+    function GetPlayerAttackUnitNum(integer pid)->integer
+        return R2I(GetUnitRealState(Pu[1],61))+AttackRoomUnitNum
+    endfunction
     
 //单位回收类
     
@@ -100,7 +100,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
     function RefreshAttackRoom(int pid,int uid)
         integer i=CountUnitsInGroup(AttackRoomGroup[pid])
-        for c=1,AttackRoomUnitNum-i
+        for c=1,GetPlayerAttackUnitNum(pid)-i
             CreateAttackRoomUnit(uid,pid)
         end
         //DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
