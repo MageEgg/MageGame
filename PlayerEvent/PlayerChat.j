@@ -33,17 +33,17 @@ scope PlayerCaht initializer InitPlayerChat
             //ItemGameGift(pid,"公众号")
         elseif  chat == "关闭特效"
             ShowEffect = false
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")
         elseif  chat == "开启特效"
             ShowEffect = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已开启（输入关闭特效可屏蔽）！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r特效显示已开启（输入关闭特效可屏蔽）！")
         elseif  chat3 == "-sh"
             if  ShowEffect == false
                 ShowEffect = true
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已开启（输入关闭特效可屏蔽）！")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r特效显示已开启（输入关闭特效可屏蔽）！")
             else
                 ShowEffect = false
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r特效显示已关闭（屏蔽大部分特效，输入开启特效取消屏蔽）！")
             endif
         elseif  chat1 == "hg"
 

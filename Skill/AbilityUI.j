@@ -323,7 +323,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     endif
 
                     //结算技能额外
-                    tip = tip + GetAbilityStateTips(id,dam)
+                    tip = tip + GetAbilityStateTips(id,dam/100)
                     
                 endif
                 
@@ -435,8 +435,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 endif
             elseif  uid == 'H021'
                 if  newlv == 2
-                    UnitAddItemExEx(wu,CreateItem('IN19',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('IN19')+"x1")
+                    UnitAddItemExEx(wu,CreateItem('CS21',GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('CS21')+"x1")
                 endif
             elseif  uid == 'H022'
                 if  newlv == 2
@@ -500,7 +500,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int use = 0
         int lv = GetUnitIntState(wu,120+index)
         if  GetHeroAbilityID(wu,index) == 0
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:技能升级失败！该键位无技能！|r")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：技能升级失败！该键位无技能！|r")
         else
             HeroSetAbilityLevelByIndex(wu,index,lv+1)
         endif
@@ -587,11 +587,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 HeroAddAbilityByIndex(wu,index,id)
                 return true
             else
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:已学习该技能，无法重复学习！|r")
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：已学习该技能，无法重复学习！|r")
                 return false
             endif
         else
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:技能已满，无法学习！|r")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：技能已满，无法学习！|r")
             return false
         endif
     endfunction

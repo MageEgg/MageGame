@@ -312,6 +312,21 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
         return ""
     endfunction
+    //获取法宝名称
+    function GetMagicItemName(int id)->string
+        int color = GetTypeIdData(id,101)
+        if  color == 1
+            return "|cffff0000造化至宝-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 2
+            return "|cffffcc00先天神器-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 3
+            return "|cff9cc3e6后天仙器-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 4
+            return "|cffa9d18d通天灵宝-"+ GetTypeIdName(id) + "|r"
+        endif
+        return ""
+    endfunction
+    
     
 
     //获取法宝附加名称
@@ -375,7 +390,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetTipsData(1,"GetTypeIdIcon(id)","["+GetMagicItemStateAllName(id)+"]"+GetTypeIdName(id))
 
             SetTipsData(10,"",GetMagicItemColorName(id))
-            SetTipsData(11,"","|cff999999基础属性|r|n" + GetTypeIdTips(id))
+            if  GetTypeIdTips(id) == ""
+                SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id))
+            else
+                SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id)+"\n"+GetTypeIdTips(id))
+            endif
             
             if  id == 'FB17'
                 value = GetUnitIntState(Pu[1],'FC17')
@@ -556,6 +575,8 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
     endfunction
 
+
+
     //羁绊属性
     function SetMagicItemState(int pid,int index,int now,int offset)
         int s1 = 0
@@ -564,74 +585,85 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int v2 = 0
         BJDebugMsg("index"+I2S(index)+"_now"+I2S(now)+"_off"+I2S(offset))
         if  index == 1
-            s1 = 32
-            if  now >= 6
-                v1 = 45
-            elseif  now >= 4
-                v1 = 25
+            s1 = 1
+            if  now >= 4
+                v1 = 450000
+            elseif  now >= 3
+                v1 = 300000
             elseif  now >= 2
-                v1 = 10
+                v1 = 150000
             endif
         elseif  index == 2
-            s1 = 33
-            if  now >= 6
-                v1 = 45
-            elseif  now >= 4
-                v1 = 25
+            s1 = 15
+            if  now >= 4
+                v1 = 12
+            elseif  now >= 3
+                v1 = 9
             elseif  now >= 2
-                v1 = 10
+                v1 = 6
             endif
         elseif  index == 3
             s1 = 10
             s2 = 18
-            if  now >= 6
-                v1 = 24
-                v2 = 24
+            if  now >= 4
+                v1 = 9
+                v2 = 9
             elseif  now >= 3
-                v1 = 12
-                v2 = 12
+                v1 = 6
+                v2 = 6
+            elseif  now >= 2
+                v1 = 3
+                v2 = 3
             endif
         elseif  index == 4
-            s1 = 19
-            s2 = 20
+            s1 = 14
             if  now >= 4
-                v1 = 12
-                v2 = 120
+                v1 = 8
+            elseif  now >= 3
+                v1 = 4
             elseif  now >= 2
-                v1 = 6
-                v2 = 60
+                v1 = 3
             endif
         elseif  index == 5
             s1 = 13
-            if  now >= 6
-                v1 = 25
+            if  now >= 4
+                v1 = 8
             elseif  now >= 3
-                v1 = 10
+                v1 = 4
+            elseif  now >= 2
+                v1 = 3
             endif
+
         elseif  index == 7
-            s1 = 14
-            if  now >= 6
-                v1 = 25
+            s1 = 19
+            s2 = 20
+            if  now >= 4
+                v1 = 6
+                v2 = 50
             elseif  now >= 3
-                v1 = 10
+                v1 = 3
+                v2 = 100
+            elseif  now >= 2
+                v1 = 2
+                v2 = 150
             endif
         elseif  index == 8
-            s1 = 25
-            if  now >= 6
-                v1 = 30
-            elseif  now >= 4
-                v1 = 15
+            s1 = 4
+            if  now >= 4
+                v1 = 12
+            elseif  now >= 3
+                v1 = 8
             elseif  now >= 2
-                v1 = 5
+                v1 = 4
             endif
         elseif  index == 9
-            s1 = 6
-            if  now >= 6
-                v1 = 120
-            elseif  now >= 4
-                v1 = 60
+            s1 = 16
+            if  now >= 4
+                v1 = 12
+            elseif  now >= 3
+                v1 = 9
             elseif  now >= 2
-                v1 = 20
+                v1 = 6
             endif
         endif
         if  s1 > 0 and v1 > 0
@@ -705,7 +737,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             else    
                 BJDebugMsg("不增加属性"+GetTypeIdName(value))
             endif
-            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得法宝 "+GetTypeIdName(value))
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！获得法宝 "+GetTypeIdName(value))
         else
             if  index <= 8
                 RemPlayerMagicItemState(pid,index)
@@ -745,7 +777,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
 
         
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得法宝 "+GetTypeIdName(value)+",F4查看法宝羁绊效果")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！获得 "+GetMagicItemName(value)+" ,F4查看法宝羁绊效果")
 
     endfunction
 

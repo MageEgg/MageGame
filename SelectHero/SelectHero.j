@@ -5,7 +5,7 @@ scope SelectHero
         if  IsPlayerHasTech(p,id) == true
             return true
         else
-            DisplayTimedTextToPlayer(p,0,0,5,"|cffffcc00[系统]:|r无法选择"+GetObjectName(uid)+","+GetObjectName(id))
+            DisplayTimedTextToPlayer(p,0,0,5,"|cffffcc00[系统]：|r无法选择"+GetObjectName(uid)+","+GetObjectName(id))
             return false
         endif
         
@@ -21,7 +21,7 @@ scope SelectHero
             
             Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
             ShowPlayerSignInLastTime(pid) //登陆刷新
             if  Player(pid)==GetLocalPlayer()
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
@@ -62,11 +62,12 @@ scope SelectHero
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
+            InitPlayerMonsterSoulSkill(pid)
             
             GameChallenge_0Start(pid)//加载新手任务
             
             /*if  SubString(GetPlayerName(Player(pid)),0,9) == "星耀丶"
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r欢迎星耀成员"+GetPlayerColorEx(pid)+GetPN(pid)+"，奖励木材1000！")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r欢迎星耀成员"+GetPlayerColorEx(pid)+GetPN(pid)+"，奖励木材1000！")
                 AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             endif*/
 
@@ -92,7 +93,7 @@ scope SelectHero
             RemoveUnit(Pu[7])
             //Pu[2] = CreateUnit(Player(pid),'zs00',1038,-5667,0)
             
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r重新选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r重新选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
             
             if  Player(pid)==GetLocalPlayer()
                 SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
@@ -133,6 +134,7 @@ scope SelectHero
             HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))
             
             AddPlayerTechResearched(Player(pid),'Rhrt',1)
+            InitPlayerMonsterSoulSkill(pid)
 
             InitPlayerDzShopState(pid)//商城属性
             LoadPlayerTechState.execute(pid)

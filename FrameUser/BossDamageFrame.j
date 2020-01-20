@@ -1,7 +1,7 @@
 library BossDamageFrame uses GameFrame,System,SystemCodes
 
     private FRAME Back = 0
-    private FRAME Name = 0
+    FRAME BossDamageFrameName = 0
     private int origin = 0
 
     private real array PlayerBossDamageCos
@@ -130,7 +130,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     function BossDamageFrameInit()
 
         Back = FRAME.create()   //注册主背景
-        Name = FRAME.create() //经验条
+        BossDamageFrameName = FRAME.create() //经验条
         
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","BossDamag",GameUI,Back)
@@ -141,9 +141,9 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
         origin = Back.frameid
 
-        Name.frameid = FRAME.Fdf("centertext012",origin,Name)
-        Name.SetPoint(1,origin ,1,0,-0.008)
-        Name.SetText("|cFF33FF00BOSS伤害排行|r")
+        BossDamageFrameName.frameid = FRAME.Fdf("centertext012",origin,BossDamageFrameName)
+        BossDamageFrameName.SetPoint(1,origin ,1,0,-0.008)
+        BossDamageFrameName.SetText("|cFF33FF00BOSS伤害排行|r")
 
         
         for i = 1,4
@@ -199,7 +199,8 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
                 if  b == 1
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
+                    UnitAddItemEx(PlayerUnit[hat][1],'INDA')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('INDA')+"|r")
                 else
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
                 endif
@@ -227,8 +228,12 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             end
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
-                UnitAddItemEx(PlayerUnit[hat][1],'CS21')
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('CS21')+"|r")
+                if  b == 1
+                    UnitAddItemEx(PlayerUnit[hat][1],'INDA')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('INDA')+"|r")
+                else
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
+                endif
                 b = b + 1
             endif
         end

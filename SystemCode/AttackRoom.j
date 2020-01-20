@@ -200,6 +200,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
         IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
         SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+        //UnitAddAbility(bj_lastCreatedUnit,'AZ31')
+        UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
         bj_lastCreatedUnit = null
         
 
@@ -236,6 +238,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
             UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
+            //UnitAddAbility(bj_lastCreatedUnit,'AZ31')
             bj_lastCreatedUnit = null
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(id)+"来临！！")
         else
@@ -245,6 +248,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
+                //UnitAddAbility(bj_lastCreatedUnit,'AZ31')
                 bj_lastCreatedUnit = null
             end
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r第"+I2S(num+1)+"波星宿之灵来临！")

@@ -881,13 +881,13 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS521(unit wu,int lv)
         int id = GetRandomInt(1,5) + 'I000'
         UnitAddItem(wu,CreateItem(id,GetUnitX(wu),GetUnitY(wu)))
-        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:|r恭喜您！制作出了一枚"+GetObjectName(id))
+        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：|r恭喜您！制作出了一枚"+GetObjectName(id))
 
         if  lv >= 3
             if  Chance(wu,50) == true
                 id = GetRandomInt(1,5) + 'I000'
                 UnitAddItem(wu,CreateItem(id,GetUnitX(wu),GetUnitY(wu)))
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]:|r运气太好了！额外制作出了一枚"+GetObjectName(id))
+                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：|r运气太好了！额外制作出了一枚"+GetObjectName(id))
             endif
         endif
     endfunction
@@ -1195,7 +1195,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 KillUnit(tu)
             endif
             LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
         elseif  Pu[1] == tu
             if  lv >= 4
                 r1 = GetUnitRealState(tu,1)*0.3
@@ -1212,7 +1212,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 KillUnit(tu)
             endif
             LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然斩杀了队友！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然斩杀了队友！")
         else
             BJDebugMsg("错误的目标")
             lv = GetUnitAbilityLevel(wu,'AG05')

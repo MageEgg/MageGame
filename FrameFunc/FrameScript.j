@@ -1,6 +1,20 @@
 
-    
-    
+    function ShowNewDzFrameTooltip(real high)
+        DzFrameSetSize(UI_TipsHead,0.215,high)
+        DzFrameClearAllPoints(UI_TipsHead)
+        DzFrameSetPoint(UI_TipsHead, 8, GameUI, 2, 0,-0.435 )
+
+        DzFrameSetSize(UI_TipsFoot,0.215,high)
+        DzFrameClearAllPoints(UI_TipsFoot)
+        DzFrameSetPoint(UI_TipsFoot, 8, GameUI, 2, 0,-0.435 )
+    endfunction
+
+    function SetOriginDzFrameTooltip()
+        DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, 0, -0.44 )
+        DzFrameSetSize( UI_TipsHead, TipsSize, 0.01)
+        DzFrameSetSize( UI_TipsFoot, TipsSize, 0.01)
+    endfunction
+
     function UI_ScriptOut(int frame)
         int Type = GetFrameType(frame)
         int id = Frame2Id(frame)
@@ -17,10 +31,86 @@
                 ShowHeroFrame(GetPlayerId(GetLocalPlayer()),false)
             endif
         endif
-        
+        if  frame == 8000 or frame == 8001 or frame == 8002
+            SetOriginDzFrameTooltip()
+        endif
+        //BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
         DzFrameShow(UI_TipsHead, false)
     endfunction
-    
+
+    function ShowUIUnitDefense(int pid)
+        real r1 = 0
+        if  Pu[5] != null
+            DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, -1,-1 )
+            if  GetUnitRealState(Pu[5],3) > 0 and GetUnitAbilityLevel(Pu[5],'Avul') == 0
+                DzFrameShow(UI_TipsHead, true)
+                SetTipsData(10,"","|cffffcc00防御显示：|r")
+                SetTipsData(11,"","防御："+I2S(R2I(GetUnitRealState(Pu[5],3))))
+                r1 = GetUnitRealState(Pu[5],3)
+                if  r1 < 0
+                    r1 = -1 * r1
+                    r1 = -(r1*0.01)/(r1*0.01+1)*100
+                else
+                    r1 = (r1*0.01)/(r1*0.01+1)*100
+                endif
+                SetTipsData(12,"","|cff808080伤害减少："+R2SI(r1)+"%|r")
+                SetTipsData(13,""," ")
+                SetTipsData(14,"","物理抵抗："+R2SI(GetUnitRealState(Pu[5],18))+"%|r")
+                SetTipsData(15,"","法术抵抗："+R2SI(GetUnitRealState(Pu[5],4))+"%|r")
+                SetTipsData(16,""," ")
+                ShowTipsUI()
+                ShowNewDzFrameTooltip(0.088)
+            endif
+        endif
+    endfunction
+
+    function ShowUIUnitAttack(int pid)
+        real r1 = 0
+        if  Pu[5] != null
+            DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, -1,-1 )
+            if  GetUnitState(Pu[5],ConvertUnitState(0x12)) > 0 and GetUnitAbilityLevel(Pu[5],'Avul') == 0 
+                DzFrameShow(UI_TipsHead, true)
+                SetTipsData(10,"","|cffffcc00攻击显示：|r")
+                if  GetUnitState(Pu[5],ConvertUnitState(0x13)) > 0
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cff00ff00+"+GetPlayerBossDamageShow(R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
+                elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) < 0
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cffff0000-"+GetPlayerBossDamageShow(-1*R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
+                elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) == 0
+                    SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
+                endif
+                SetTipsData(12,""," ")
+                SetTipsData(13,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
+                SetTipsData(14,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
+                SetTipsData(15,"","法术伤害："+R2SI(GetUnitRealState(Pu[5],16))+"%|r")
+                SetTipsData(16,"","法术穿透："+R2SI(GetUnitRealState(Pu[5],14))+"%|r")
+                SetTipsData(17,""," ")
+                ShowTipsUI()
+                ShowNewDzFrameTooltip(0.099)
+            endif
+        endif
+    endfunction
+
+    function ShowUIUnitOriginState(int pid)
+        if  Pu[5] != null
+            DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, -1,-1 )
+            if  GetHeroStr(Pu[5],false) > 0 or GetHeroAgi(Pu[5],false) > 0 or GetHeroInt(Pu[5],false) > 0 
+                DzFrameShow(UI_TipsHead, true)
+                SetTipsData(10,"","|cffffcc00英雄属性：|r")
+                SetTipsData(11,"","业力：")
+                SetTipsData(12,""," - 业力会增加某些技能伤害")
+                SetTipsData(13,"","攻速：")
+                SetTipsData(14,""," - 每点增加1%攻击速度")
+                SetTipsData(15,""," - 最高增加400%")
+                SetTipsData(16,"","冷却：")
+                SetTipsData(17,""," - 每点降低1%主动技能领取时间")
+                SetTipsData(18,""," - 最高降低70%")
+                SetTipsData(19,""," ")
+                ShowTipsUI()
+                ShowNewDzFrameTooltip(0.121)
+            endif
+        endif
+    endfunction
+
     function BoxShowResources(int pid,int id)
         DzFrameShow(UI_TipsHead, true)
         if  id == 309
@@ -28,9 +118,30 @@
             SetTipsData(10,"","进入时渊副本消耗时渊碎片")
         elseif  id == 310
             int num = GetPlayerPlotReNum(pid)+1
-            int use = num * 500
-            SetTipsData(1,"","需要 - 杀敌数x"+I2S(use))
+            int use = num
+            SetTipsData(1,"","需要 - 玄铁x"+I2S(use))
             SetTipsData(10,"","点击刷新时渊副本奖励")
+        elseif  id == 21
+            SetTipsData(10,"","|CffCCCCCC重铸法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffffd24d补天石|r|Cfff0f0f0，可重置为|r|Cffffd24d同品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【重铸按钮】。|r")
+        elseif  id == 22
+            SetTipsData(10,"","|CffCCCCCC锻造法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffff0000鸿蒙结晶|r|Cfff0f0f0，可重置为|r|Cffffd24d高一品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【锻造按钮】。|r")
+        elseif  id == 23
+            SetTipsData(10,"","|CffF0F0F0用来|r|Cffffd24d重铸法宝|r|Cfff0f0f0的材料。|r")
+        elseif  id == 24
+            SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")
+        elseif  id == 652 or id == 653
+            int exp = GetDzPlayerData(pid,4,1)
+            int lv = exp / 8
+            exp = exp - lv * 8
+            if  id == 652 //通行证
+                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"8|r)")
+            elseif  id == 653 //商城通行证
+                SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
+            endif
+            SetTipsData(11,"","距离升级还差|cffff0000"+I2S(8-exp)+"|r经验")
+            SetTipsData(12,""," ")
+            SetTipsData(13,"","|cffcc99ff输入CX完成每日任务可以获得通行证经验|r")
+            SetTipsData(14,"","|cffcc99ff封神通行证与普通通行证等级同步|r")
         endif
         ShowTipsUI()
     endfunction
@@ -130,6 +241,8 @@
                     if  id >= 1 and id <= 20
                         BoxShowMagicItem(pid,id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                    elseif  id == 21 or id == 22
+                        BoxShowResources(pid, id)
                     elseif  id >= 31 and id <= 38
                         BoxShowMagicItem(pid,id-30)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
@@ -207,6 +320,8 @@
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                         endif
+                    elseif  id == 652 or id == 653
+                        BoxShowResources(pid,id)
                     else
                         //UIDebugShowIndex(id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
@@ -218,6 +333,18 @@
 
             elseif  Type == TYPE_CLOSE
             endif
+        endif
+        if  GetPostionAsMouseX() > 0.362 and GetPostionAsMouseX() < 0.404 
+            if  GetPostionAsMouseY() >= 0.878 and GetPostionAsMouseY() < 0.931
+                ShowUIUnitDefense(pid)
+                frame = 8000
+            elseif  GetPostionAsMouseY() > 0.824 and GetPostionAsMouseY() < 0.878
+                ShowUIUnitAttack(pid)
+                frame = 8001
+            endif
+        elseif  GetPostionAsMouseX() > 0.504 and GetPostionAsMouseX() < 0.531 and GetPostionAsMouseY() >= 0.825 and GetPostionAsMouseY() < 0.927
+            ShowUIUnitOriginState(pid)
+            frame = 8002
         endif
         LastFrame  = frame
     endfunction

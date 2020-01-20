@@ -4,10 +4,16 @@ library ItemGameFunc uses DamageCode
 
     bool array ItemGameFuncArrayBool[12][680]
 
-    #define ItemGameFuncInt         ItemGameFuncArrayInt[pid]
+    #define ItemGameFuncInt                 ItemGameFuncArrayInt[pid]
 
-    #define ItemGameFuncBool        ItemGameFuncArrayBool[pid]
-    #define GameGiftBool            ItemGameFuncArrayBool[pid]
+    #define ItemGameFuncBool                ItemGameFuncArrayBool[pid]
+    #define GameGiftBool                    ItemGameFuncArrayBool[pid]
+
+    #define PlayerMonsterSoulNum            ItemGameFuncInt[100]
+    #define PlayerMonsterSoulLuckNum        ItemGameFuncInt[101]
+    #define PlayerMonsterSoul(num)          ItemGameFuncInt[102+num]
+
+    private int array itema
 
     function SetGifeItemStock(int pid)
         for num = 1,8
@@ -301,6 +307,281 @@ library ItemGameFunc uses DamageCode
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为无尽模式无法加速！")
         endif
+    endfunction
+
+    //////////////////////////////////兽魂///////////////////////////////
+
+    function IsCanGetMonsterSoul(int pid)->boolean
+        if  PlayerMonsterSoulNum == 0
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 10
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-10)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足10！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 1
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 300
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-300)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足300！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 2
+            if  GetUnitIntState(Pu[1],108) >= 100
+                AddUnitIntState(Pu[1],108,-100)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足100！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 3
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 1500
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-1500)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足1500！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 4
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 1
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-1)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的玄铁不足1！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 5
+            if  GetUnitIntState(Pu[1],108) >= 500
+                AddUnitIntState(Pu[1],108,-500)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足500！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 6
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 3000
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-3000)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足3000！|r")
+                return false
+            endif
+        elseif  PlayerMonsterSoulNum == 7
+            if  GetUnitIntState(Pu[1],108) >= 1000
+                AddUnitIntState(Pu[1],108,-1000)
+                return true
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足1000！|r")
+                return false
+            endif
+        endif
+        return false
+    endfunction
+
+    function GetPlayerMonsterSoulLuck(int pid)->int
+        int n = 0
+        for num = 0,7
+            if  PlayerMonsterSoul(num) == 0
+                n = n + 1
+                itema[n] = num
+            endif
+        end
+        return itema[GetRandomInt(1,n)]
+    endfunction
+
+    function GetMonsterSoulLuck(int num)->string
+        if  num == 0
+            return "陛犴之魂"
+        elseif  num == 1
+            return "奎牛之魂"
+        elseif  num == 2
+            return "麒麟之魂"
+        elseif  num == 3
+            return "狻猊之魂"
+        elseif  num == 4
+            return "青鸾之魂"
+        elseif  num == 5
+            return "狰狞之魂"
+        elseif  num == 6
+            return "黑虎之魂"
+        elseif  num == 7
+            return "孔雀之魂"
+        endif
+        return ""
+    endfunction
+
+    function GetMonsterSoulState(int num)->string
+        if  num == 0
+            return "攻击+20%"
+        elseif  num == 1
+            return "生命+20%"
+        elseif  num == 2
+            return "杀敌生命+"+I2S(16+24*GameLevel)
+        elseif  num == 3
+            return "物理伤害+"+I2S(7+3*GameLevel)+"%"
+        elseif  num == 4
+            return "魔法伤害+"+I2S(7+3*GameLevel)+"%"
+        elseif  num == 5
+            return "暴击+5%"
+        elseif  num == 6
+            return "杀敌攻击+"+I2S(4+6*GameLevel)
+        elseif  num == 7
+            return "冷却缩减+10%"
+        endif
+        return ""
+    endfunction
+    
+    function AddPlayerMonsterSoulState(int pid,int num)
+        if  num == 0
+            AddUnitRealState(Pu[1],32,20)
+        elseif  num == 1
+            AddUnitRealState(Pu[1],31,20)
+        elseif  num == 2
+            AddUnitRealState(Pu[1],45,16+24*GameLevel)
+        elseif  num == 3
+            AddUnitRealState(Pu[1],15,7+3*GameLevel)
+        elseif  num == 4
+            AddUnitRealState(Pu[1],16,7+3*GameLevel)
+        elseif  num == 5
+            AddUnitRealState(Pu[1],19,5)
+        elseif  num == 6
+            AddUnitRealState(Pu[1],43,4+6*GameLevel)
+        elseif  num == 7
+            AddUnitRealState(Pu[1],25,10)
+        endif
+    endfunction
+
+    function SetPlayerMonsterSoulSkill(int pid)
+        string s = ""
+        s = "|cffffff00觉醒需求：|r"
+        for num = 0,7
+            if  PlayerMonsterSoul(num) == 1
+                s = s + "|n|cff00ff00 - "+GetMonsterSoulLuck(num)+" "+GetMonsterSoulState(num)+"|r"
+            else
+                s = s + "|n|cff808080 - "+GetMonsterSoulLuck(num)+" "+GetMonsterSoulState(num)+"|r"
+            endif
+        end
+        s = s + "|n|n|cff00ff00占星商店|r抽奖中，集齐|cff00ff00所有兽魂|r，可觉醒随机神兽神通。"
+        if  Player(pid) == GetLocalPlayer()
+            YDWESetUnitAbilityDataString(Pu[1],'AC04',1,203,"|cffff0000神兽神通|r - [|cffffcc00R|r]|n|cffff0000Ex级|r")
+            YDWESetUnitAbilityDataString(Pu[1],'AC04',1,215,"|cffff0000神兽神通|r - [|cffffcc00R|r]|n|cffff0000Ex级|r")
+            YDWESetUnitAbilityDataString(Pu[1],'AC04',1,218,s)
+        endif
+    endfunction
+
+    function SetPlayerMonsterSoulItem(int pid)
+        string s = ""
+        if  PlayerMonsterSoulNum == 0
+            s = "|cffffcc00抽取消耗：|r10金币"
+        elseif  PlayerMonsterSoulNum == 1
+            s = "|cffffcc00抽取消耗：|r300金币"
+        elseif  PlayerMonsterSoulNum == 2
+            s = "|cffffcc00抽取消耗：|r100杀敌数"
+        elseif  PlayerMonsterSoulNum == 3
+            s = "|cffffcc00抽取消耗：|r1500金币"
+        elseif  PlayerMonsterSoulNum == 4
+            s = "|cffffcc00抽取消耗：|r1玄铁"
+        elseif  PlayerMonsterSoulNum == 5
+            s = "|cffffcc00抽取消耗：|r500杀敌数"
+        elseif  PlayerMonsterSoulNum == 6
+            s = "|cffffcc00抽取消耗：|r3000金币"
+        elseif  PlayerMonsterSoulNum == 7
+            s = "|cffffcc00抽取消耗：|r1000杀敌数"
+        endif
+        s = s + "|n|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
+        s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))+"%"
+        s = s + "|n|n|cffffcc00可获得：|r|cffff0080"
+        for num = 0,7
+            s = s + "|n"+GetMonsterSoulLuck(num)+" "+GetMonsterSoulState(num)
+        end
+        s = s + "|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
+        s = s + "|n|r|cff808080[中奖后会重置抽取几率]|r"
+        if  Player(pid) == GetLocalPlayer() 
+            YDWESetItemDataString('IS12',3,s)
+        endif
+    endfunction
+
+    function AddPlayerMonsterSoulSkill(int pid)
+        HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
+        for num = 1,3
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[神兽神通]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“神兽神通”|cffffff80！|r")
+        end
+    endfunction
+
+    function ItemLuckOfMonsterSoul(int pid)
+        int num = 0
+        real ran = 0
+        if  PlayerMonsterSoulNum < 8
+            if  IsCanGetMonsterSoul(pid) == true
+                ran = 0.01*(7+PlayerMonsterSoulLuckNum*3)
+                BJDebugMsg(R2S(ran))
+                if  GetRandomReal(0,1) <= ran
+                    num = GetPlayerMonsterSoulLuck(pid)
+                    PlayerMonsterSoul(num) = 1
+                    PlayerMonsterSoulNum = PlayerMonsterSoulNum + 1
+                    PlayerMonsterSoulLuckNum = -1
+                    SetPlayerMonsterSoulSkill(pid)
+                    AddPlayerMonsterSoulState(pid,num)
+                    AddPlayerTechResearched(Player(pid),'RM50'+num,1)
+                    if  PlayerMonsterSoulNum == 8 //and GetHeroLevel(Pu[1]) >= 8
+                        //觉醒
+                        AddPlayerMonsterSoulSkill(pid)
+                    endif
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80抽奖获得|cffff0080“"+GetMonsterSoulLuck(num)+"”|cffffff80！|r")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r很遗憾抽取失败！")
+                endif
+                PlayerMonsterSoulLuckNum = PlayerMonsterSoulLuckNum + 1
+                SetPlayerMonsterSoulItem(pid)
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80您已觉醒所有兽魂！|r")
+        endif
+    endfunction
+
+    function InitPlayerMonsterSoulSkillEx(int pid)
+        
+    endfunction
+
+    function InitPlayerMonsterSoulSkill(int pid)
+        string s = ""
+        RemoveItem(CreateItem('IS12',0,0))
+        SetPlayerMonsterSoulSkill(pid)
+        SetPlayerMonsterSoulItem(pid)
+        InitPlayerMonsterSoulSkillEx(pid)
+        for num = 0,7
+            if  num == 0
+                s = "|CffAAAAAA基础属性：|r|n攻击|Cffffd24d+20%|n|n|r|Cffaaaaaa龙生九子之一，形如猛虎，吞吃虎豹。|r"
+            elseif  num == 1
+                s = "|CffAAAAAA基础属性：|r|n生命|Cffffd24d+20%|n|n|r|Cffaaaaaa出入水必有风雨，能发出雷鸣之声，乃洪荒神兽。|r"
+            elseif  num == 2
+                s = "|CffAAAAAA基础属性：|r|n杀敌生命|Cffffd24d+"+I2S(16+24*GameLevel)+"|n|n|r|Cffaaaaaa四足风云声响亮，麟生雾彩映金光。|r"
+            elseif  num == 3
+                s = "|CffAAAAAA基础属性：|r|n物理伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa龙生九子之一，形如雄狮，生裂狮虎，据说和麒麟有仇。|r"
+            elseif  num == 4
+                s = "|CffAAAAAA基础属性：|r|n法术伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa凤生九雏之一，空中飞行，有巨爪利喙。|r"
+            elseif  num == 5
+                s = "|CffAAAAAA基础属性：|r|n暴击|Cffffd24d+5%|n|n|r|Cffaaaaaa五尾一角，类赤豹，上古凶兽，异常凶猛|r"
+            elseif  num == 6
+                s = "|CffAAAAAA基础属性：|r|n杀敌攻击|Cffffd24d+"+I2S(4+6*GameLevel)+"|n|n|r|Cffaaaaaa利爪如钩心胆壮，钢牙似剑劳凶顽。|r"
+            elseif  num == 7
+                s = "|CffAAAAAA基础属性：|r|n冷却缩减|Cffffd24d+10%|n|n|r|Cffaaaaaa孔宣所化，战力非凡|r"
+            endif
+            if  Player(pid) == GetLocalPlayer()
+                YDWESetUnitAbilityDataString(Pu[1],'AM50'+num,1,218,s)
+                YDWESetUnitAbilityDataString(Pu[1],'AM50'+num,1,204,"replaceabletextures\\commandbuttons\\BTNIH0"+I2S(num+1)+".blp")
+            endif
+        end
+    endfunction
+
+    function SetPlayerMonsterSoulSkillOfHeroLevel(int pid) //渡劫
+        /*SetPlayerMonsterSoulSkill(pid)
+        if  PlayerMonsterSoulNum == 8
+            //觉醒
+            AddPlayerMonsterSoulSkill(pid)
+        endif*/
     endfunction
     
 endlibrary

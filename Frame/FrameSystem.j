@@ -22,7 +22,79 @@ library GameUIInit initializer init uses OriginGameFrame
         return LoadInteger(uiht,frame,1)
     endfunction
 
-    
+    function GetPostionAsMouseX()->real
+        real x = DzGetMouseXRelative()
+        real x2 = I2R(DzGetWindowWidth())
+        real y = DzGetMouseYRelative()
+        real y2 = I2R(DzGetWindowHeight())
+        int ma = 0
+        if  x2 == 0
+            x2 = 0.001
+        endif
+        if  y2 == 0
+            y2 = 0.001
+        endif
+        x = x/x2
+        y = y/y2
+        if  y > 0.66
+            if  x > 0.5
+                ma = Frame_BottomRight
+            else
+                ma = Frame_BottomLeft
+            endif
+            
+        elseif  y > 0.33
+            if  x > 0.5
+                ma = Frame_Right
+            else
+                ma = Frame_Left
+            endif
+        else
+            if  x > 0.5
+                ma = Frame_TopRight
+            else
+                ma = Frame_TopLeft
+            endif
+        endif
+       return x
+    endfunction
+
+    function GetPostionAsMouseY()->real
+        real x = DzGetMouseXRelative()
+        real x2 = I2R(DzGetWindowWidth())
+        real y = DzGetMouseYRelative()
+        real y2 = I2R(DzGetWindowHeight())
+        int ma = 0
+        if  x2 == 0
+            x2 = 0.001
+        endif
+        if  y2 == 0
+            y2 = 0.001
+        endif
+        x = x/x2
+        y = y/y2
+        if  y > 0.66
+            if  x > 0.5
+                ma = Frame_BottomRight
+            else
+                ma = Frame_BottomLeft
+            endif
+            
+        elseif  y > 0.33
+            if  x > 0.5
+                ma = Frame_Right
+            else
+                ma = Frame_Left
+            endif
+        else
+            if  x > 0.5
+                ma = Frame_TopRight
+            else
+                ma = Frame_TopLeft
+            endif
+        endif
+       return y
+    endfunction
 
     function SetFramePostionAsMouse(int frameid)
         real x = DzGetMouseXRelative()
@@ -65,6 +137,7 @@ library GameUIInit initializer init uses OriginGameFrame
             DzFrameSetPoint( frameid , ma, DzGetGameUI(), 0, x*.8+0.01, -y*.6)
         endif
     endfunction
+
     function SetFramePoint takes nothing returns nothing
         GameUI = DzGetGameUI()
         WindowFix = I2R(DzGetWindowHeight()) / I2R(DzGetWindowWidth())

@@ -154,14 +154,16 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
             if  num == 7
                 ReAddAbilityByIndex(Pu[1],4,'S0R1')
+                /*
                 ShowUnit(Pu[25],true)
-                LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")
+                LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")*/
+                SetPlayerMonsterSoulSkillOfHeroLevel.execute(pid) 
             endif
             if  GetLocalPlayer() == Player(pid)
                 DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
             endif
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！境界突破成功！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！境界突破成功！")
 
             //境界突破提高技能等级
             if  num == 3 or num == 5 or num == 10
@@ -195,7 +197,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             endif 
         else
             ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r境界经验不足，无法挑战境界！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r境界经验不足，无法挑战境界！")
         endif
     endfunction
 
@@ -293,7 +295,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
 
         ExpModel.frameid = FRAME.Tag("SPRITE","HeroExp",origin,ExpModel)
         ExpModel.SetPoint(6,Exp0.frameid,6,-0.005,0)
-        //ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
+        ExpModel.SetModel("war3mapImported\\UI_Firebar.mdx",0,0)
         ExpModel.SetAnimate(0,true)
         ExpModel.show = false
         ExpName.frameid = FRAME.Fdf("centertext009",origin,ExpName)

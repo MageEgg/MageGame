@@ -122,7 +122,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r使用聚宝盆金币+"+I2S(gold)+" 业力+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用聚宝盆金币+"+I2S(gold)+" 业力+"+I2S(i1))
 
     endfunction
 
@@ -201,7 +201,8 @@ scope DeathEvent initializer InitDeathEvent
         int exp = 0
         
         //杀敌数
-        AddUnitIntState(Pu[1],102,1)
+        AddUnitIntState(Pu[1],108,1)
+        
 
         gold = GetTypeIdData(uid,103)
         if  gold == 0
@@ -228,9 +229,6 @@ scope DeathEvent initializer InitDeathEvent
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
         endif
-
-        //杀敌玄铁
-
         //杀敌经验
         exp = 1
         if  exp > 0
@@ -294,9 +292,10 @@ scope DeathEvent initializer InitDeathEvent
     function ForgEscapeTimer(int id,unit wu)
         int pid = id
         unit u1 = wu
+        
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
         SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾逃跑啦！10秒后再来吧！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾逃跑啦！10秒后再来吧！")
         SetUnitPosition(u1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512)
         UnitAddAbility(u1,'Avul')
         ShowUnit(u1,false)
@@ -315,6 +314,7 @@ scope DeathEvent initializer InitDeathEvent
         unit u1 = wu
         int id = GetUnitTypeId(u1)
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_AGGRESSIVE),false)
+        //UnitAddAbility(u1,'AZ31')
         TimerStart(20,false)
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')
@@ -323,6 +323,7 @@ scope DeathEvent initializer InitDeathEvent
                 if  GetUnitTypeId(u1) == id
                     if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
                         pid = pid - 1
+                        //UnitRemoveAbility(u1,'AZ31')
                         ForgEscapeTimer(pid,u1)
                         if  Pu[6] == u1
                             Pu[6] = null
@@ -426,16 +427,16 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u001' and uid <= 'u004'
             AttackRoomUid[pid]='g00A'+ (uid - 'u000')
             //AddUnitRealState(Pu[1],41,80)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r送宝金蟾挑战成功！练功房内资源怪提升！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
                 UnitAddEffectOfNPC(Pu[28])
             endif
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾它老豆生气了！30秒来找你报仇！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r金蟾它老豆生气了！30秒来找你报仇！")
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r金蟾家族一个不剩了......")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r金蟾家族一个不剩了......")
             endif
         elseif  uid >= 'uJ00' and uid <= 'uJzz'
             if  uid == 'uJ00'
@@ -473,12 +474,12 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'm001' and uid <= 'm099'
             KillAttackUnitNum = KillAttackUnitNum + 1
             if  KillAttackUnitNum - (KillAttackUnitNum / 10) * 10 == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r进攻怪击杀数量：("+I2S(KillAttackUnitNum)+"50)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进攻怪击杀数量：("+I2S(KillAttackUnitNum)+"50)")
             endif
             if  KillAttackUnitNum >= 50
                 KillAttackUnitNum = 0
                 AddData(pid,1,2,2)
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r玩家"+ GetPN(pid) +"击杀进攻怪数量达到50！奖励守家积分2点。")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+ GetPN(pid) +"击杀进攻怪数量达到50！奖励守家积分2点。")
             endif
         endif
         */
@@ -606,42 +607,48 @@ scope DeathEvent initializer InitDeathEvent
         endif
         //剧情任务等
         GameChallengDeathEvent(u2,u1)
-        if  pid > 7 
-            RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
-            if  u2 != null
-                //小怪死亡的资源类结算
-                PlayerHeroKillUnit(u2,u1)
-                //小怪死亡的其他功能
-                HeroKillMoster(u2,u1)
-                if  uid >= 'mb01' and uid <= 'mb20'
-                    AttackBossDeathEvent(u1)
-                endif
-            else
-                KillUnitNotHasKiller(u1,uid)
-               
-                //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
-            endif
-            
-            if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
-                AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
-            endif
 
-            if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
-                GroupRemoveUnit(AttackUnitGroup,u1)
-            endif
-            if  IsUnitInGroup(u1,AttackOperaGroup_B_1)==true//用于进攻怪刷新单位组
-                GroupRemoveUnit(AttackOperaGroup_B_1,u1)
-            endif
-       
-            if  IsUnitInGroup(u1,AttackOperaGroup_B_2)==true//用于进攻怪刷新单位组
-                GroupRemoveUnit(AttackOperaGroup_B_2,u1)
-                if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
-                    OpenOperaB_Boss()
+        if  pid > 3
+            RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
+        
+        
+            if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
+                
+                if  u2 != null
+                    //小怪死亡的资源类结算
+                    PlayerHeroKillUnit(u2,u1)
+                    //小怪死亡的其他功能
+                    HeroKillMoster(u2,u1)
+                    if  uid >= 'mb01' and uid <= 'mb20'
+                        AttackBossDeathEvent(u1)
+                    endif
+                else
+                    KillUnitNotHasKiller(u1,uid)
+                
+                    //BJDebugMsg(GetUnitName(u1)+"死亡时无来源")
                 endif
+                
+                if  GetUnitPointValueByType(uid) <= 20 and GetOwningPlayer(u1) == Player(PLAYER_NEUTRAL_AGGRESSIVE)
+                    AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
+                endif
+
+                if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
+                    GroupRemoveUnit(AttackUnitGroup,u1)
+                endif
+                if  IsUnitInGroup(u1,AttackOperaGroup_B_1)==true//用于进攻怪刷新单位组
+                    GroupRemoveUnit(AttackOperaGroup_B_1,u1)
+                endif
+        
+                if  IsUnitInGroup(u1,AttackOperaGroup_B_2)==true//用于进攻怪刷新单位组
+                    GroupRemoveUnit(AttackOperaGroup_B_2,u1)
+                    if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
+                        OpenOperaB_Boss()
+                    endif
+                endif
+                
+                FlushChildHashtable(ht,GetHandleId(u1))
+                RemoveUnitTimer(u1,2)
             endif
-            
-            FlushChildHashtable(ht,GetHandleId(u1))
-            RemoveUnitTimer(u1,2)
         endif
         flush locals
     endfunction
