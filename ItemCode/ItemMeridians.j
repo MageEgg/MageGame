@@ -29,7 +29,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         int id = 0
         for num = 1,lv
             id = 'RM1A'+(num-1)*256
-            SetPlayerTechResearchedEx(Pu[1],id+num-1)
+            SetPlayerTechResearchedEx(Player(pid),id+num-1)
         end
     endfunction
 
