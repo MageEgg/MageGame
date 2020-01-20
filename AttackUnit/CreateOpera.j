@@ -143,6 +143,7 @@ library CreateOpera uses DamageCode
                     if  time == 3
                         ShowBossDamageUI(false)
                         ShowBossDamageStringOperaA()
+                        BossDamageFrameName.SetText("|cFF33FF00BOSS伤害排行|r")
                     endif
                 endif
             else
@@ -163,6 +164,7 @@ library CreateOpera uses DamageCode
         int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
         time = time - 1
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        BossDamageFrameName.SetText("|cFF33FF00年兽伤害排行 限时"+I2S(time)+"秒|r")
         if  (ModuloInteger(time,5) == 0 or time <= 5) and time > 0 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cffff3737年兽挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
         endif
@@ -317,6 +319,7 @@ library CreateOpera uses DamageCode
                     if  time == 3
                         ShowBossDamageUI(false)
                         ShowBossDamageStringOperaB()
+                        BossDamageFrameName.SetText("|cFF33FF00BOSS伤害排行|r")
                     endif
                 endif
             else
@@ -337,6 +340,7 @@ library CreateOpera uses DamageCode
         int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
         time = time - 1
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        BossDamageFrameName.SetText("|cFF33FF00闻太师伤害排行 限时"+I2S(time)+"秒|r")
         if  (ModuloInteger(time,5) == 0 or time <= 10) and time > 0 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff3737闻太师挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
         endif
@@ -610,6 +614,7 @@ library CreateOpera uses DamageCode
                     if  time == 3
                         ShowBossDamageUI(false)
                         ShowBossDamageStringOperaC()
+                        BossDamageFrameName.SetText("|cFF33FF00BOSS伤害排行|r")
                     endif
                 endif
             else
@@ -630,6 +635,7 @@ library CreateOpera uses DamageCode
         int time = LoadInteger(ht,GetHandleId(OperaTimer),1)
         time = time - 1
         SaveInteger(ht,GetHandleId(OperaTimer),1,time)
+        BossDamageFrameName.SetText("|cFF33FF00妲己伤害排行 限时"+I2S(time)+"秒|r")
         if  (ModuloInteger(time,5) == 0 or time <= 5) and time > 0 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff3737妲己挑战时间剩余|cff00ff00"+I2S(time)+"秒|cffff3737！！！|r")
         endif

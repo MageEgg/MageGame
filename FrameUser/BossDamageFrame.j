@@ -1,7 +1,7 @@
 library BossDamageFrame uses GameFrame,System,SystemCodes
 
     private FRAME Back = 0
-    private FRAME Name = 0
+    FRAME BossDamageFrameName = 0
     private int origin = 0
 
     private real array PlayerBossDamageCos
@@ -130,7 +130,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     function BossDamageFrameInit()
 
         Back = FRAME.create()   //注册主背景
-        Name = FRAME.create() //经验条
+        BossDamageFrameName = FRAME.create() //经验条
         
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","BossDamag",GameUI,Back)
@@ -141,9 +141,9 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
 
         origin = Back.frameid
 
-        Name.frameid = FRAME.Fdf("centertext012",origin,Name)
-        Name.SetPoint(1,origin ,1,0,-0.008)
-        Name.SetText("|cFF33FF00BOSS伤害排行|r")
+        BossDamageFrameName.frameid = FRAME.Fdf("centertext012",origin,BossDamageFrameName)
+        BossDamageFrameName.SetPoint(1,origin ,1,0,-0.008)
+        BossDamageFrameName.SetText("|cFF33FF00BOSS伤害排行|r")
 
         
         for i = 1,4
