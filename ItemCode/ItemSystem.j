@@ -400,8 +400,10 @@ scope ItemSystem initializer InitItemSystem
             AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))
         elseif  itemid == 'IZ0A'
             AttackUnitItemStop(pid,3,120)
-        elseif  itemid == 'IZ0B'
+        elseif  itemid == 'IZxx'
             AttackUnitItemSpeedUp(pid)
+        elseif  itemid == 'IZ0B'
+            OpenMeridiansChallenge(pid)
         elseif  itemid == 'IS12'
             ItemLuckOfMonsterSoul(pid)
         endif
