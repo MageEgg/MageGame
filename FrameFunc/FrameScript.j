@@ -34,7 +34,7 @@
         if  frame == 8000 or frame == 8001 or frame == 8002
             SetOriginDzFrameTooltip()
         endif
-        BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
+        //BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
         DzFrameShow(UI_TipsHead, false)
     endfunction
 
@@ -72,9 +72,9 @@
                 DzFrameShow(UI_TipsHead, true)
                 SetTipsData(10,"","|cffffcc00攻击显示：|r")
                 if  GetUnitState(Pu[5],ConvertUnitState(0x13)) > 0
-                    SetTipsData(11,"","攻击："+I2S(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cff00ff00+"+I2S(R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
+                    SetTipsData(11,"","攻击："+R2SI(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12))))+" |cff00ff00+"+R2SI(R2I(GetUnitState(Pu[5],ConvertUnitState(0x13))))+"|r")
                 else
-                    SetTipsData(11,"","攻击："+I2S(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
+                    SetTipsData(11,"","攻击："+R2SI(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
                 endif
                 SetTipsData(12,""," ")
                 SetTipsData(13,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
