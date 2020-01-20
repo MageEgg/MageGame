@@ -77,6 +77,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         //GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
         ShowUnit( u, false )
+        SetUnitInvulnerable( u, true )
         PauseUnit(u,true)
         flush locals
     endfunction
