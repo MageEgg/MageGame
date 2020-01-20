@@ -1914,6 +1914,19 @@ function SpellS116(unit u1,real damage1)
         UnitAddLife(u1,GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.02)
     endfunction
 
+    function  shenshou(unit u1) 
+    unit u=u1
+    integer i=0
+        TimerStart(0.03,true)
+        {
+            i=i+1
+            if i <=33
+                SetUnitScale(u, 1+(i*0.1), 1+(i*0.1), 1+(i*0.1))
+                SetUnitVertexColor(u,255, 255, 255, 255-(i*7))
+            endif
+        }
+    endfunction  
+
     function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
         real x1 = GetUnitX(u1)
@@ -1983,6 +1996,7 @@ function SpellS116(unit u1,real damage1)
     real y=0
     real dis=0
     real ang=0
+    LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_qiuniu.mdl",1)
     TimerStart(3/(m+1),true)
     {
         Num=Num+1
@@ -2010,6 +2024,7 @@ function SpellS116(unit u1,real damage1)
         unit uu=null
         AddUnitStateExTimer(u,18,20,3)
         UnitTimerAddSkill(u,'A232',3)  //添加判断Buff
+        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_qilin.mdl",1)
         IndexGroup g = IndexGroup.create()
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-dao-mofa.mdl")
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
@@ -2023,30 +2038,38 @@ function SpellS116(unit u1,real damage1)
         u=null
          flush locals
     endfunction
-    
-    function SpellS233(unit u1)
-        unit u=u1
-        unit uu=null
-        effect tx= AddSpecialEffectTarget("effect_effect_az_hero03.mdl",u1,"origin")
-        TimerStart(2,false)
+
+    function SpellS233ice(unit u1)
+    unit uu=u1
+    UnitAddBuff(uu,'ABFE',3,852189)
+    TimerStart(2,false)
         {
-            IndexGroup g = IndexGroup.create()
-            LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
-            DestroyEffect(tx)
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-            loop
-                uu = FirstOfGroup(g.ejg)
-                exitwhen uu == null
-                UnitAddBuff(uu,'DB02',3,852095)
-                GroupRemoveUnit(g.ejg,uu)
-            endloop
-             g.destroy()
-            flush locals
+        UnitAddBuff(uu,'DB02',3,852095)
+        endtimer
+        flush locals
         }  
+
+    endfunction
+    
+    function SpellS233(unit u)
+        unit uu=null
+        IndexGroup g = IndexGroup.create()
+        LocAddEffectTimerOrSize(GetUnitX(u),GetUnitY(u),GetUnitFacing(u),"shenshou_suanni.mdl",1,1)
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
+        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+         loop
+            uu = FirstOfGroup(g.ejg)
+            exitwhen uu == null
+            SpellS233ice(uu)
+            GroupRemoveUnit(g.ejg,uu)
+        endloop
+        g.destroy()
+       
         flush locals  
     endfunction
     
     function SpellS234(unit u,unit u1,real damage)
+        LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"shenshou_qingluan.mdl",1)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
         unit UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
         UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
@@ -2060,6 +2083,7 @@ function SpellS116(unit u1,real damage1)
         real b=((100-GetUnitLifePercent(u))*0.3)+5
         AddUnitRealState(u,19,b)
         UnitAddAbility(u,'A235')
+        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_zhengning.mdl",1)
         TimerStart(5,false)
         {
             RemoveUnitStateEx(u,19,b)
@@ -2077,6 +2101,7 @@ function SpellS236(unit u,unit u1)
      SetUnitX(u,GetUnitX(u1))
      SetUnitY(u,GetUnitY(u1))
      AddUnitStateExTimer(u,9,220,3)
+    LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_heihu.mdl",1)
     if GetUnitRealState(u,1)>GetUnitRealState(u,2)
         damage=GetUnitRealState(u,1)*12
         UnitDamageTarget(u,u1,damage, true,true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )

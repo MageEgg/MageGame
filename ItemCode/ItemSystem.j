@@ -156,12 +156,10 @@ scope ItemSystem initializer InitItemSystem
     function RePlayerAbilityDrawTips(int pid,int index)
         int id = 'IS00' + index
         int num = GetPlayerDrawNum(pid,index)
-        int use1 = GetPlayerDrawUse(pid,index,num+1)
-
+        int use1 = GetPlayerDrawUse(pid,index,1)
         if  GetLocalPlayer() == Player(pid)
-            YDWESetItemDataString(id,2,GetObjectName(id)+"[ 第"+I2S(num)+"次 ]")
             if  num > 0
-                YDWESetItemDataString(id,3,"|cffffcc00抽取消耗：|r"+I2S(use1)+"金币|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n会自动替换当前[|cffffcc00"+SubString(GetObjectName(id),StringLength(GetObjectName(id))-1,StringLength(GetObjectName(id)))+"|r]技能。|n|n|cff808080[单局最多抽取10次]|r")
+                YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r"+I2S(use1)+"金币*次数|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
             endif
         endif
         BJDebugMsg("设置说明")
@@ -187,10 +185,10 @@ scope ItemSystem initializer InitItemSystem
                         RePlayerAbilityDrawTips(pid,index)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前抽取次数"+I2S(num+1)+"/10")
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1))
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！木材不足"+I2S(use2))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！木材不足"+I2S(use2)+"。")
                 endif
             endif
         else
