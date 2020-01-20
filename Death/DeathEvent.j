@@ -611,7 +611,7 @@ scope DeathEvent initializer InitDeathEvent
                         AttackBossDeathEvent(u1)
                     endif
                     if  uid == 'uJ01'
-                        MeridiansChallengeDeath(pid)
+                        MeridiansChallengeDeath(pid2)
                     endif
                 else
                     KillUnitNotHasKiller(u1,uid)
