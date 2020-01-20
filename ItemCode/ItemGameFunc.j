@@ -528,15 +528,19 @@ library ItemGameFunc uses DamageCode
                         AddPlayerMonsterSoulSkill(pid)
                     endif
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80抽奖获得|cffff0080“"+GetMonsterSoulLuck(num)+"”|cffffff80！|r")
-                    UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",2)
+                    UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r很遗憾抽取失败！")
+                    AddItemToStock(Pu[28],'IS12',1,1)
                 endif
                 PlayerMonsterSoulLuckNum = PlayerMonsterSoulLuckNum + 1
                 SetPlayerMonsterSoulItem(pid)
+            else
+                AddItemToStock(Pu[28],'IS12',1,1)
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80您已觉醒所有兽魂！|r")
+            AddItemToStock(Pu[28],'IS12',1,1)
         endif
     endfunction
 
