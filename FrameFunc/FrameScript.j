@@ -241,7 +241,7 @@
                     if  id >= 1 and id <= 20
                         BoxShowMagicItem(pid,id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
-                    elseif  id >= 21 and id == 24
+                    elseif  id >= 21 and id <= 24
                         BoxShowResources(pid, id)
                     elseif  id >= 31 and id <= 38
                         BoxShowMagicItem(pid,id-30)

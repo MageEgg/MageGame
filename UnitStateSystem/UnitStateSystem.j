@@ -350,8 +350,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 SetHeroAgi(wu,R2I(value/100+0.1)-100,true)
             endif
         elseif  StateId == 25
-            if  value > 80
-                SetHeroInt(wu,80,true)
+            if  value > 50
+                SetHeroInt(wu,50,true)
             else
                 SetHeroInt(wu,R2I(value),true)
             endif
