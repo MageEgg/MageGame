@@ -50,7 +50,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 if  GetUnitAbilityLevel(Pu[1],'AZ96') > 0
                     if  GetUnitAbilityLevel(Pu[1],'AZ96') == 1
                         if  pid == 0
-                            x = 1312
+                            x = 1342
                             y = -2752
                         elseif  pid == 1
                             x = 2048
@@ -59,7 +59,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             x = 1344
                             y = -3328
                         elseif  pid == 3
-                            x = 2016
+                            x = 2048
                             y = -3328
                         endif
                         SendPlayerUnit(pid,x,y)
@@ -341,9 +341,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 if  show == true
                     UnitRemoveAbility(GameChallengUnit[200],'Apiv')
                     UnitRemoveAbility(GameChallengUnit[201],'Apiv')
+                    UnitRemoveAbility(GameChallengUnit[202],'Apiv')
+                    UnitRemoveAbility(GameChallengUnit[203],'Apiv')
                 else
                     UnitAddAbility(GameChallengUnit[200],'Apiv')
                     UnitAddAbility(GameChallengUnit[201],'Apiv')
+                    UnitAddAbility(GameChallengUnit[202],'Apiv')
+                    UnitAddAbility(GameChallengUnit[203],'Apiv')
                 endif
             endif
         end
@@ -374,17 +378,25 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         for pid = 0,3
             if  IsPlaying(pid) == true 
                 if  pid == 0
-                    x = -7584
+                    x = -7584+30
                     y = -5312
+                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-280,y,0)
+                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-450,y,0)
                 elseif  pid == 1
                     x = -5184
-                    y = -6240
+                    y = -6240-30
+                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+280,270)
+                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+450,270)
                 elseif  pid == 2
-                    x = -6240
+                    x = -6240-30
                     y = -8512
+                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+280,y,180)
+                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+450,y,180)
                 elseif  pid == 3
                     x = -8640
-                    y = -7584
+                    y = -7584+30
+                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-280,90)
+                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-450,90)
                 endif 
                 GameChallengUnit[200] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,0,0,1.0)
                 EXSetUnitMoveType(GameChallengUnit[200],0x01)
@@ -393,6 +405,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 UnitAddAbility(GameChallengUnit[200],'Apiv')
                 UnitAddAbility(GameChallengUnit[201],'Apiv')
                 CreateTrigUnitInRange(GameChallengUnit[201],120,function SendOperaRectRange)
+
+                for num = 0,1
+                    EXSetUnitMoveType(GameChallengUnit[202+num],0x01)
+                    SetUnitColor(GameChallengUnit[202+num], PLAYER_COLOR_YELLOW )
+                    UnitAddAbility(GameChallengUnit[202+num],'Apiv')
+                end
+
             endif
         end
         GameTeamChallengUnit(10) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',1614.000,-3120,270)

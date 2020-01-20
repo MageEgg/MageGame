@@ -313,25 +313,32 @@ scope DeathEvent initializer InitDeathEvent
     function ForgKillTimer(unit wu)
         unit u1 = wu
         int id = GetUnitTypeId(u1)
+        int time = 20
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_AGGRESSIVE),false)
+        SetUnitIntState(u1,'Forg',20)
+        SetUnitIntState(u1,'Fort',20)
         //UnitAddAbility(u1,'AZ31')
-        TimerStart(20,false)
+        TimerStart(1,true)
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')
-
-            if  pid > 0
-                if  GetUnitTypeId(u1) == id
-                    if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
-                        pid = pid - 1
-                        //UnitRemoveAbility(u1,'AZ31')
-                        ForgEscapeTimer(pid,u1)
-                        if  Pu[6] == u1
-                            Pu[6] = null
+            time = time - 1
+            if  time <= 0 or GetUnitTypeId(u1) == 0
+                if  pid > 0
+                    if  GetUnitTypeId(u1) == id
+                        if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
+                            pid = pid - 1
+                            //UnitRemoveAbility(u1,'AZ31')
+                            ForgEscapeTimer(pid,u1)
+                            if  Pu[6] == u1
+                                Pu[6] = null
+                            endif
                         endif
                     endif
                 endif
+                endtimer
+            else
+                SetUnitIntState(u1,'Fort',time)
             endif
-            endtimer
             flush locals
         }
         flush locals
@@ -431,6 +438,7 @@ scope DeathEvent initializer InitDeathEvent
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
                 UnitAddEffectOfNPC(Pu[28])
+                AddItemToStock(Pu[28],'IS12',1,1)
             endif
             if  uid != 'u004'
                 CreateNewForg(pid,uid)

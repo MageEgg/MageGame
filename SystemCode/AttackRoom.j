@@ -278,7 +278,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitX(u1,x1)
                 SetUnitY(u1,y1)
             else
-                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+10
+                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+AttackRoomUnitNum
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)

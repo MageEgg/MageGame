@@ -13,6 +13,8 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
     function BossLifeBarFrameTimer()
         real life = 0
         real maxlife = 0
+        int forg = 0
+        int fort = 0
         for pid = 0,3
             if  GetUnitTypeId(Pu[6]) != 0 and Pu[6] != null
                 if  Udis(Pu[1],Pu[6]) < 2000
@@ -29,6 +31,21 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
                         Model2.SetAnimate(0,false)
                         Model2.offset = life /maxlife
                         Back.show = true
+
+
+                        forg = GetUnitIntState(Pu[6],'Forg')
+                        fort = GetUnitIntState(Pu[6],'Fort')
+                        if  forg > 0
+                            Model3.show = true
+                            Model4.show = true
+                            Model4.SetAnimate(0,false)
+                            Model4.offset = I2R(fort) /I2R(forg)
+                            Time.SetText("击杀倒计时:"+I2S(fort)+"s")
+                        else
+                            Model3.show = false
+                            Model4.show = false
+                            Time.SetText("")
+                        endif
                     endif
                 else
                     Pu[6] = null
@@ -65,7 +82,7 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
         
         Model2.frameid = FRAME.Tag("SPRITE","BossLife",origin,Model2)
         Model2.SetPoint(0,Model1.frameid,0,0.0,0.0)
-        Model2.SetModel("war3mapImported\\ui_hpbar_ black_npc_B.mdx",0,0)
+        Model2.SetModel("war3mapImported\\ui_hpbar_black_npc_B.mdx",0,0)
         Model2.SetAnimate(0,true)
 
 
@@ -79,9 +96,11 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
         Model4.SetPoint(0,Model3.frameid,0,0.0,0.0)
         Model4.SetModel("ui_expbar_black70.mdx",0,0)
         Model4.SetAnimate(0,true)
-        Model4.offset = 1
 
-        Time.frameid = FRAME.Fdf("text010",origin,Time)
+        Model3.show = false
+        Model4.show = false
+
+        Time.frameid = FRAME.Fdf("text011",origin,Time)
         Time.SetPoint(3,Model3.frameid ,3,0.197,-0.0192)
         Time.SetText("击杀倒计时:5s")
         
