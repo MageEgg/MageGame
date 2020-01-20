@@ -2023,26 +2023,32 @@ function SpellS116(unit u1,real damage1)
         u=null
          flush locals
     endfunction
-    
-    function SpellS233(unit u1)
-        unit u=u1
-        unit uu=null
-        effect tx= AddSpecialEffectTarget("effect_effect_az_hero03.mdl",u1,"origin")
-        TimerStart(2,false)
+
+    function SpellS233ice(unit u1)
+    unit uu=u1
+    UnitAddBuff(uu,'ABFE',3,852189)
+    TimerStart(2,false)
         {
-            IndexGroup g = IndexGroup.create()
-            LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
-            DestroyEffect(tx)
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-            loop
-                uu = FirstOfGroup(g.ejg)
-                exitwhen uu == null
-                UnitAddBuff(uu,'DB02',3,852095)
-                GroupRemoveUnit(g.ejg,uu)
-            endloop
-             g.destroy()
-            flush locals
+        UnitAddBuff(uu,'DB02',3,852095)
+        endtimer
+        flush locals
         }  
+
+    endfunction
+    
+    function SpellS233(unit u)
+        unit uu=null
+        IndexGroup g = IndexGroup.create()
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
+        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+         loop
+            uu = FirstOfGroup(g.ejg)
+            exitwhen uu == null
+            SpellS233ice(uu)
+            GroupRemoveUnit(g.ejg,uu)
+        endloop
+        g.destroy()
+       
         flush locals  
     endfunction
     
