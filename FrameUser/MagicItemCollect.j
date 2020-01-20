@@ -312,6 +312,21 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
         return ""
     endfunction
+    //获取法宝名称
+    function GetMagicItemName(int id)->string
+        int color = GetTypeIdData(id,101)
+        if  color == 1
+            return "|cffff0000造化至宝-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 2
+            return "|cffffcc00先天神器-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 3
+            return "|cff9cc3e6后天仙器-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 4
+            return "|cffa9d18d通天灵宝-"+ GetTypeIdName(id) + "|r"
+        endif
+        return ""
+    endfunction
+    
     
 
     //获取法宝附加名称
@@ -375,7 +390,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetTipsData(1,"GetTypeIdIcon(id)","["+GetMagicItemStateAllName(id)+"]"+GetTypeIdName(id))
 
             SetTipsData(10,"",GetMagicItemColorName(id))
-            SetTipsData(11,"","|cff999999基础属性|r|n" + GetTypeIdTips(id))
+            if  GetTypeIdTips(id) == ""
+                SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id))
+            else
+                SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id)+"\n"+GetTypeIdTips(id))
+            endif
             
             if  id == 'FB17'
                 value = GetUnitIntState(Pu[1],'FC17')
@@ -758,7 +777,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
 
         
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得法宝 "+GetTypeIdName(value)+",F4查看法宝羁绊效果")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]:|r恭喜您！获得 "+GetMagicItemName(value)+" ,F4查看法宝羁绊效果")
 
     endfunction
 

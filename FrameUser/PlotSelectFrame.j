@@ -265,7 +265,9 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //读取奖励法宝池序号
     function GetPlotPrizeMagicIndex(int index)->int
         int ran = GetRandomInt(1,100)
-        if  index >= 1 and index <= 4
+        if  index == 1
+            return 14
+        elseif  index >= 2and index <= 4
             if  ran <= 80
                 return 14
             else

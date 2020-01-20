@@ -352,9 +352,7 @@ library DamageCode uses UnitStateSet
             if  IsPlayerHasAbility.evaluate(wu,'S071') == true
                 s = s + GetHeroAgi(wu,false)/3.3
             endif
-            if  GetUnitIntState(wu,'FB10') > 0
-                s = -90
-            endif
+            
         endif
         return s
     endfunction
@@ -366,9 +364,7 @@ library DamageCode uses UnitStateSet
             if  IsPlayerHasAbility.evaluate(wu,'S054') == true
                 s = s + GetUnitLsState(wu)/0.8
             endif
-            if  GetUnitIntState(wu,'FB47') > 0
-                s = -80
-            endif
+            
         endif
         return s
     endfunction

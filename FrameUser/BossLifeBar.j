@@ -2,8 +2,11 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
     private FRAME Back = 0
     private FRAME Name = 0
     private FRAME Life = 0
+    private FRAME Time = 0
     private FRAME Model1 = 0
     private FRAME Model2 = 0
+    private FRAME Model3 = 0
+    private FRAME Model4 = 0
     private int origin = 0
 
 
@@ -42,9 +45,11 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
         Back = FRAME.create()   //注册头像
         Name = FRAME.create()   //注册名称
         Life = FRAME.create()   //注册生命文本
+        Time = FRAME.create()   //注册剩余时间
         Model1 = FRAME.create()   //条1
         Model2 = FRAME.create()   //条2
-
+        Model3 = FRAME.create()   //条3
+        Model4 = FRAME.create()   //条4
 
         Back.frameid = FRAME.Tag("BACKDROP","BossLife",GameUI,Back)
         Back.SetPoint(2,GameUI,1,-0.128,-0.05)
@@ -60,8 +65,26 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
         
         Model2.frameid = FRAME.Tag("SPRITE","BossLife",origin,Model2)
         Model2.SetPoint(0,Model1.frameid,0,0.0,0.0)
-        Model2.SetModel("war3mapImported\\ui_hpbar_black_npc_B.mdx",0,0)
+        Model2.SetModel("war3mapImported\\ui_hpbar_ black_npc_B.mdx",0,0)
         Model2.SetAnimate(0,true)
+
+
+        Model3.frameid = FRAME.Tag("SPRITE","BossLife",origin,Model3)
+        Model3.SetPoint(3,origin,5,-0.0005,-0.005)
+        Model3.SetModel("ui_expbar70.mdx",0,0)
+        Model3.SetAnimate(0,true)
+
+        
+        Model4.frameid = FRAME.Tag("SPRITE","BossLife",origin,Model4)
+        Model4.SetPoint(0,Model3.frameid,0,0.0,0.0)
+        Model4.SetModel("ui_expbar_black70.mdx",0,0)
+        Model4.SetAnimate(0,true)
+        Model4.offset = 1
+
+        Time.frameid = FRAME.Fdf("text010",origin,Time)
+        Time.SetPoint(3,Model3.frameid ,3,0.197,-0.0192)
+        Time.SetText("击杀倒计时:5s")
+        
 
         Life.frameid = FRAME.Fdf("centertext010",origin,Life)
         Life.SetPoint(4,Back.frameid ,5,0.128,-0.01)
