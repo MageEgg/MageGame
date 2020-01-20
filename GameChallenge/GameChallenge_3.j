@@ -315,7 +315,7 @@ library GameChallenge3 uses GameChallengeBase
     function InitGameChallenge_3()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                GameChallengUnit[30] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np09',-5824,6464,270)
+                GameChallengUnit[30] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np12',-5824,6464,270)
                 SetUnitVertexColor(GameChallengUnit[30],255,255,255,0)
                 EXSetUnitMoveType(GameChallengUnit[30],0x01)
                 GameChallengUnit[31] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-5824,6464,0)

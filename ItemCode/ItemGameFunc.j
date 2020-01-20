@@ -604,5 +604,19 @@ library ItemGameFunc uses DamageCode
             AddPlayerMonsterSoulSkill(pid)
         endif*/
     endfunction
+
+    //////////////////////////////////经脉分割//////////////////////////////////////
     
+    function OpenMeridiansChallenge(int pid)
+        int num = 0
+        if  GetPlayerDzData(pid,1,10) < 5
+            
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您今日挑战次数已达上限！")
+        endif
+    endfunction
+
+
+
+
 endlibrary

@@ -31,6 +31,8 @@ piece DzGameFunc
         BJDebugMsg("week:"+I2S(week)+" @@ TimeWeek:"+I2S(TimeWeek))
         if  week != TimeWeek
             SetDzPlayerData(pid,1,5,0) //今日签到
+            SetDzPlayerData(pid,1,10,0) //经脉
+
             BJDebugMsg("刷新！！！！！！！！！！")
         endif
         if  mission != DzMissionWeek
