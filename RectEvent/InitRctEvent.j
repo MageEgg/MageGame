@@ -53,39 +53,68 @@ scope InitRctEvent initializer InitRctEvent
         endif
     endfunction
 
+
     function OutLGF_1()
-        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        if  pid == 0
-            SetUnitPosition(GetTriggerUnit(),x,y)
+
+        if  Pu[1] == GetTriggerUnit()
+            FlushAttackSummonUnitGroup(pid)
+        else
+            pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+            if  pid == 0
+                SetUnitPosition(GetTriggerUnit(),x,y)
+            endif
+            
         endif
 
     endfunction
     function OutLGF_2()
-        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        if  pid == 1
-            SetUnitPosition(GetTriggerUnit(),x,y)
+        
+        if  Pu[1] == GetTriggerUnit()
+            FlushAttackSummonUnitGroup(pid)
+        else
+            pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+            if  pid == 1
+                SetUnitPosition(GetTriggerUnit(),x,y)
+            endif
+            
         endif
 
     endfunction
     function OutLGF_3()
-        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        if  pid == 2
-            SetUnitPosition(GetTriggerUnit(),x,y)
+        
+        if  Pu[1] == GetTriggerUnit()
+            FlushAttackSummonUnitGroup(pid)
+        else
+            pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+            if  pid == 2
+                SetUnitPosition(GetTriggerUnit(),x,y)
+            endif
+            
         endif
 
     endfunction
     function OutLGF_4()
-        int pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+        int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        if  pid == 3
-            SetUnitPosition(GetTriggerUnit(),x,y)
+        
+        if  Pu[1] == GetTriggerUnit()
+            FlushAttackSummonUnitGroup(pid)
+        else
+            pid = GetUnitAbilityLevel(GetTriggerUnit(),'AZ99')-1
+            if  pid == 3
+                SetUnitPosition(GetTriggerUnit(),x,y)
+            endif
+            
         endif
 
     endfunction

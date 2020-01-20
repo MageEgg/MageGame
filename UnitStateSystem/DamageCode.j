@@ -290,8 +290,8 @@ library DamageCode uses UnitStateSet
     //冷却缩减
     function GetUnitLsState(unit wu)->real
         real s = GetUnitRealState(wu,25)
-        if  s > 80
-            s = 80
+        if  s > 50
+            s = 50
         endif
         return s
     endfunction

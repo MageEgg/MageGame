@@ -55,20 +55,26 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function FlushAttackSummonUnitGroup(int pid)
-        BJDebugMsg("清空所有召唤的练功房怪")
-        ForGroup(AttackSummonUnitGroup[pid],function FlushAttackSummonUnitGroupFunc)
+        if  CountUnitsInGroup(AttackSummonUnitGroup[pid]) > 0
+            BJDebugMsg("清空所有召唤的练功房怪")
+            ForGroup(AttackSummonUnitGroup[pid],function FlushAttackSummonUnitGroupFunc)
+        endif
     endfunction
 
+
+
     function AttackSummonUnitGroupDeathEvent(int pid,unit u)
-        int uid = GetUnitTypeId(u)
+        FlushAttackSummonUnitGroup(pid)
+        /*
         if  uid == 'xxxx'
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您被"+GetUnitName(u)+"击杀了！")
             RemoveAttackSummonUnit(pid,u)
         endif
-        /*
-        FlushAttackSummonUnitGroup(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您清除练功房所有召唤BOSS！")
         */
+        
+        
+        //DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您清除练功房所有召唤BOSS！")
+        
     endfunction
 
     function SendOperaRectRange()
