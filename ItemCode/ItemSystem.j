@@ -185,10 +185,10 @@ scope ItemSystem initializer InitItemSystem
                         RePlayerAbilityDrawTips(pid,index)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前抽取次数"+I2S(num+1)+"/10")
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1))
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！木材不足"+I2S(use2))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！木材不足"+I2S(use2)+"。")
                 endif
             endif
         else
