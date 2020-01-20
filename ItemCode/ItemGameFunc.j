@@ -420,9 +420,9 @@ library ItemGameFunc uses DamageCode
         elseif  num == 2
             return "杀敌生命+"+I2S(16+24*GameLevel)
         elseif  num == 3
-            return "物理伤害+"+I2S(7+3*GameLevel)
+            return "物理伤害+"+I2S(7+3*GameLevel)+"%"
         elseif  num == 4
-            return "魔法伤害+"+I2S(7+3*GameLevel)
+            return "魔法伤害+"+I2S(7+3*GameLevel)+"%"
         elseif  num == 5
             return "暴击+5%"
         elseif  num == 6
@@ -524,6 +524,7 @@ library ItemGameFunc uses DamageCode
                     PlayerMonsterSoulLuckNum = -1
                     SetPlayerMonsterSoulSkill(pid)
                     AddPlayerMonsterSoulState(pid,num)
+                    AddPlayerTechResearched(Player(pid),'RM50'+num,1)
                     if  PlayerMonsterSoulNum == 8 //and GetHeroLevel(Pu[1]) >= 8
                         //觉醒
                         AddPlayerMonsterSoulSkill(pid)
@@ -550,6 +551,29 @@ library ItemGameFunc uses DamageCode
         SetPlayerMonsterSoulSkill(pid)
         SetPlayerMonsterSoulItem(pid)
         InitPlayerMonsterSoulSkillEx(pid)
+        for num = 0,7
+            if  num == 0
+                s = "|CffAAAAAA基础属性：|r|n攻击|Cffffd24d+20%|n|n|r|Cffaaaaaa龙生九子之一，形如猛虎，吞吃虎豹。|r"
+            elseif  num == 1
+                s = "|CffAAAAAA基础属性：|r|n生命|Cffffd24d+20%|n|n|r|Cffaaaaaa出入水必有风雨，能发出雷鸣之声，乃洪荒神兽。|r"
+            elseif  num == 2
+                s = "|CffAAAAAA基础属性：|r|n杀敌生命|Cffffd24d+"+I2S(16+24*GameLevel)+"|n|n|r|Cffaaaaaa四足风云声响亮，麟生雾彩映金光。|r"
+            elseif  num == 3
+                s = "|CffAAAAAA基础属性：|r|n物理伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa龙生九子之一，形如雄狮，生裂狮虎，据说和麒麟有仇。|r"
+            elseif  num == 4
+                s = "|CffAAAAAA基础属性：|r|n法术伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa凤生九雏之一，空中飞行，有巨爪利喙。|r"
+            elseif  num == 5
+                s = "|CffAAAAAA基础属性：|r|n暴击|Cffffd24d+5%|n|n|r|Cffaaaaaa五尾一角，类赤豹，上古凶兽，异常凶猛|r"
+            elseif  num == 6
+                s = "|CffAAAAAA基础属性：|r|n杀敌攻击|Cffffd24d+"+I2S(4+6*GameLevel)+"|n|n|r|Cffaaaaaa利爪如钩心胆壮，钢牙似剑劳凶顽。|r"
+            elseif  num == 7
+                s = "|CffAAAAAA基础属性：|r|n冷却缩减|Cffffd24d+10%|n|n|r|Cffaaaaaa孔宣所化，战力非凡|r"
+            endif
+            if  Player(pid) == GetLocalPlayer()
+                YDWESetUnitAbilityDataString(Pu[1],'AM50'+num,1,218,s)
+                YDWESetUnitAbilityDataString(Pu[1],'AM50'+num,1,204,"replaceabletextures\\commandbuttons\\BTNIH0"+I2S(num+1)+".blp")
+            endif
+        end
     endfunction
 
     function SetPlayerMonsterSoulSkillOfHeroLevel(int pid) //渡劫
