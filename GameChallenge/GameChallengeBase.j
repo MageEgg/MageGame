@@ -39,6 +39,39 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define UnitAPOfPlayer  0
 
+    group array AttackSummonUnitGroup
+
+    function AddAttackSummonUnit(int pid,unit u)
+        GroupAddUnit(AttackSummonUnitGroup[pid],u)
+    endfunction
+
+    function RemoveAttackSummonUnit(int pid,unit u)
+        GroupRemoveUnit(AttackSummonUnitGroup[pid],u)
+        FlushChildHashtable(ht,GetHandleId(u))
+        RemoveUnit(u)
+    endfunction
+
+    function FlushAttackSummonUnitGroupFunc()
+        FlushChildHashtable(ht,GetHandleId(GetEnumUnit()))
+        RemoveUnit(GetEnumUnit())
+    endfunction
+
+    function FlushAttackSummonUnitGroup(int pid)
+        BJDebugMsg("清空所有召唤的练功房怪")
+        ForGroup(AttackSummonUnitGroup[pid],function FlushAttackSummonUnitGroupFunc)
+    endfunction
+
+    function AttackSummonUnitGroupDeathEvent(int pid,unit u)
+        int uid = GetUnitTypeId(u)
+        if  uid == 'xxxx'
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您被"+GetUnitName(u)+"击杀了！")
+            RemoveAttackSummonUnit(pid,u)
+        endif
+        /*
+        FlushAttackSummonUnitGroup(pid)
+        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您清除练功房所有召唤BOSS！")
+        */
+    endfunction
 
     function SendOperaRectRange()
         unit u1 = GetTriggerUnit()
@@ -50,7 +83,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 if  GetUnitAbilityLevel(Pu[1],'AZ96') > 0
                     if  GetUnitAbilityLevel(Pu[1],'AZ96') == 1
                         if  pid == 0
-                            x = 1312
+                            x = 1342
                             y = -2752
                         elseif  pid == 1
                             x = 2048
@@ -59,7 +92,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             x = 1344
                             y = -3328
                         elseif  pid == 3
-                            x = 2016
+                            x = 2048
                             y = -3328
                         endif
                         SendPlayerUnit(pid,x,y)

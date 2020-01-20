@@ -77,6 +77,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         //GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
         ShowUnit( u, false )
+        SetUnitInvulnerable( u, true )
         PauseUnit(u,true)
         flush locals
     endfunction
@@ -163,7 +164,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitX(u1,x1)
                 SetUnitY(u1,y1)
             else
-                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+2
+                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+1
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 
                 if  maxlife > 0
@@ -183,7 +184,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         flush locals
     endfunction
     function SoulTimer(int pid,real x,real y)
-        for i = 1,5
+        for i = 1,GetPlayerAttackUnitNum(pid)
             SoulTimerFunc(pid,x,y)
         end
     endfunction
@@ -277,7 +278,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitX(u1,x1)
                 SetUnitY(u1,y1)
             else
-                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+AttackRoomUnitNum
+                real life = GetUnitState(Pu[27],UNIT_STATE_LIFE)+GetPlayerAttackUnitNum(pid)
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
@@ -381,6 +382,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         
         for pid = 0,3//玩家数量
             if  IsPlaying(pid) == true
+            
+                AttackSummonUnitGroup[pid] = CreateGroup()//练功房召唤怪单位组
+
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
                 RefreshAttackRoom(pid,AttackRoomUid[pid])
