@@ -555,7 +555,6 @@ library ItemGameFunc uses DamageCode
     function InitPlayerMonsterSoulSkill(int pid)
         string s = ""
         RemoveItem(CreateItem('IS12',0,0))
-        AddItemToStock(Pu[28],'IS12',1,1)
         SetPlayerMonsterSoulSkill(pid)
         SetPlayerMonsterSoulItem(pid)
         InitPlayerMonsterSoulSkillEx(pid)

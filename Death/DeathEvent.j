@@ -438,6 +438,7 @@ scope DeathEvent initializer InitDeathEvent
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
                 UnitAddEffectOfNPC(Pu[28])
+                AddItemToStock(Pu[28],'IS12',1,1)
             endif
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
