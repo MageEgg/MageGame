@@ -47,8 +47,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function RemoveAttackSummonUnit(int pid,unit u)
         GroupRemoveUnit(AttackSummonUnitGroup[pid],u)
-        FlushChildHashtable(ht,GetHandleId(u))
-        RemoveUnit(u)
     endfunction
 
     function FlushAttackSummonUnitGroupFunc()
