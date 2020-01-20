@@ -95,7 +95,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         flush locals
     endfunction
 
-    function MeridiansChallengeDeath(int pid,unit u)
+    function MeridiansChallengeDeath(int pid)
         int num = GetRandomInt(1,8)
         real ran = 0
         if  GetDzPlayerData(pid,1,10) < DzMeridiansDayNum
