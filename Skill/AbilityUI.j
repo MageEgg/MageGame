@@ -433,8 +433,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 endif
             elseif  uid == 'H021'
                 if  newlv == 2
-                    UnitAddItemExEx(wu,CreateItem('IN19',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('IN19')+"x1")
+                    UnitAddItemExEx(wu,CreateItem('CS21',GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('CS21')+"x1")
                 endif
             elseif  uid == 'H022'
                 if  newlv == 2

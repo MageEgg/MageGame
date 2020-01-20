@@ -197,7 +197,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
         endfunction
         function GetPlayerPassLevel(int pid)->int
             int exp = GetPlayerPassExp(pid)
-            int level = GetDzPlayerData(pid,4,2) + exp / 10
+            int level = GetDzPlayerData(pid,4,2) + exp / 8
             return level
         endfunction
 
@@ -534,7 +534,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         end
 
         //普通通行证
-        CreateButton(652,Button.frameid,TYPE_NULL,0,BUTTON_Back[651][0],6,0.0,-0.001,0.028,0.028,"replaceabletextures\\commandbuttons\\BTNTXZ01.blp")
+        CreateButton(652,Button.frameid,TYPE_BUTTON,0,BUTTON_Back[651][0],6,0.0,-0.001,0.028,0.028,"replaceabletextures\\commandbuttons\\BTNTXZ01.blp")
         
         last = 652
         for i = 1,10
@@ -543,7 +543,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         end
 
         //超级通行证
-        CreateButton(653,Button.frameid,TYPE_NULL,0,BUTTON_Back[652][0],6,0.0,-0.009,0.028,0.028,"replaceabletextures\\commandbuttons\\BTNTXZ02.blp")
+        CreateButton(653,Button.frameid,TYPE_BUTTON,0,BUTTON_Back[652][0],6,0.0,-0.009,0.028,0.028,"replaceabletextures\\commandbuttons\\BTNTXZ02.blp")
         
         last = 653
         for i = 1,10
