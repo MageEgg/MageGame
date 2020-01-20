@@ -41,7 +41,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             if  GetUnitTypeId(u)!=0
                 AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=null
                 AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]-1
-                SetUnitLifePercentBJ( u, 100 )
                 UnitRemoveAbility( u, 'Aloc' )
                 UnitRemoveBuffs(u, true, true)
                 SetUnitX(u,AttackRoomPostion[pid][3])
@@ -76,6 +75,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=u
         //GroupAddUnit(diesgroup[uid],u)
         GroupRemoveUnit(AttackRoomGroup[pid],u)
+        SetUnitLifePercentBJ( u, 100 )
         ShowUnit( u, false )
         SetUnitInvulnerable( u, true )
         PauseUnit(u,true)
