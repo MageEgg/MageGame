@@ -863,6 +863,8 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(2,'IF26',3)
             RegisterItemPool(2,'IF27',3)
 
+            
+
 
 
             
