@@ -230,6 +230,8 @@ library CreateOpera uses DamageCode
     function CreateOperaA3()
         AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc01',1685,-3104,270)
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        AddUnitRealState(AttackUnitOperaBoss,4,15*(PlayerNum-1))
+        AddUnitRealState(AttackUnitOperaBoss,18,15*(PlayerNum-1))
         UnitAddAbility(AttackUnitOperaBoss,'AZ01')
         SetUnitFlyHeight(AttackUnitOperaBoss,0,10000.00)
         TimerStart(0.1,false)
