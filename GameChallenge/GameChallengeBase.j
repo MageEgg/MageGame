@@ -62,6 +62,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function AttackSummonUnitGroupDeathEvent(int pid,unit u)
+        int uid = GetUnitTypeId(u)
         if  uid == 'xxxx'
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您被"+GetUnitName(u)+"击杀了！")
             RemoveAttackSummonUnit(pid,u)
