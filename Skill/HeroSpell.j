@@ -1917,12 +1917,15 @@ function SpellS116(unit u1,real damage1)
     function  shenshou(unit u1) 
     unit u=u1
     integer i=0
-        TimerStart(0.03,true)
+        TimerStart(0.02,true)
         {
             i=i+1
-            if i <=33
-                SetUnitScale(u, 1+(i*0.1), 1+(i*0.1), 1+(i*0.1))
-                SetUnitVertexColor(u,255, 255, 255, 255-(i*7))
+            if i <=25
+                SetUnitScale(u, 1+(i*0.2), 1+(i*0.2), 1+(i*0.2))
+                SetUnitVertexColor(u,255, 255, 255, 255-(R2I(I2R(i)*10.2)))
+            else
+                KillUnit(u)
+                endtimer
             endif
         }
     endfunction  
@@ -1996,7 +1999,8 @@ function SpellS116(unit u1,real damage1)
     real y=0
     real dis=0
     real ang=0
-    LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_qiuniu.mdl",1)
+    unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qiuniu.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+    shenshou(mj)
     TimerStart(3/(m+1),true)
     {
         Num=Num+1
@@ -2024,7 +2028,8 @@ function SpellS116(unit u1,real damage1)
         unit uu=null
         AddUnitStateExTimer(u,18,20,3)
         UnitTimerAddSkill(u,'A232',3)  //添加判断Buff
-        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_qilin.mdl",1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qilin.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        shenshou(mj)
         IndexGroup g = IndexGroup.create()
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-dao-mofa.mdl")
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
@@ -2054,8 +2059,9 @@ function SpellS116(unit u1,real damage1)
     function SpellS233(unit u)
         unit uu=null
         IndexGroup g = IndexGroup.create()
-        LocAddEffectTimerOrSize(GetUnitX(u),GetUnitY(u),GetUnitFacing(u),"shenshou_suanni.mdl",1,1)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_suanni.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        shenshou(mj)
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
          loop
             uu = FirstOfGroup(g.ejg)
@@ -2069,7 +2075,8 @@ function SpellS116(unit u1,real damage1)
     endfunction
     
     function SpellS234(unit u,unit u1,real damage)
-        LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"shenshou_qingluan.mdl",1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        shenshou(mj)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
         unit UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
         UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
@@ -2083,7 +2090,8 @@ function SpellS116(unit u1,real damage1)
         real b=((100-GetUnitLifePercent(u))*0.3)+5
         AddUnitRealState(u,19,b)
         UnitAddAbility(u,'A235')
-        LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_zhengning.mdl",1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        shenshou(mj)
         TimerStart(5,false)
         {
             RemoveUnitStateEx(u,19,b)
@@ -2101,7 +2109,8 @@ function SpellS236(unit u,unit u1)
      SetUnitX(u,GetUnitX(u1))
      SetUnitY(u,GetUnitY(u1))
      AddUnitStateExTimer(u,9,220,3)
-    LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"shenshou_heihu.mdl",1)
+    unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+    shenshou(mj)
     if GetUnitRealState(u,1)>GetUnitRealState(u,2)
         damage=GetUnitRealState(u,1)*12
         UnitDamageTarget(u,u1,damage, true,true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
