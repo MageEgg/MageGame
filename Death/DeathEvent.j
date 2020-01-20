@@ -564,7 +564,9 @@ scope DeathEvent initializer InitDeathEvent
                         if  FB01Func(u1) == false
                             RevivePlayerHero(pid)
                             BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+
                             GameChallengPlayerDeathEvent(u1)
+                            
 
                             if  GetUnitIntState(Pu[1],'FB17') > 0
                                 //清除法宝的伤害加成
@@ -631,6 +633,14 @@ scope DeathEvent initializer InitDeathEvent
                         OpenOperaB_Boss()
                     endif
                 endif
+
+                if  GetUnitAbilityLevel(u1,'AZ99') > 0
+                    if  IsUnitInGroup(u1,AttackSummonUnitGroup[GetUnitAbilityLevel(u1,'AZ99')-1])==true//用于进攻怪刷新单位组
+                        RemoveAttackSummonUnit(GetUnitAbilityLevel(u1,'AZ99')-1,u1)
+                    endif
+                endif
+
+                
                 
                 FlushChildHashtable(ht,GetHandleId(u1))
                 RemoveUnitTimer(u1,2)
