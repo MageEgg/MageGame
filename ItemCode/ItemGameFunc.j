@@ -634,7 +634,7 @@ library ItemGameFunc uses DamageCode
     function AddPlayerMeridiansState(int pid,int num)
         int lv = 0
         for num = 1,8
-
+            
         end
     endfunction
 
