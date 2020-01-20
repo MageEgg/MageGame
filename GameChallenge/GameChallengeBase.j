@@ -50,7 +50,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 if  GetUnitAbilityLevel(Pu[1],'AZ96') > 0
                     if  GetUnitAbilityLevel(Pu[1],'AZ96') == 1
                         if  pid == 0
-                            x = 1312
+                            x = 1342
                             y = -2752
                         elseif  pid == 1
                             x = 2048
@@ -59,7 +59,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             x = 1344
                             y = -3328
                         elseif  pid == 3
-                            x = 2016
+                            x = 2048
                             y = -3328
                         endif
                         SendPlayerUnit(pid,x,y)
