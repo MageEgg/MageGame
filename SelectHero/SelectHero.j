@@ -72,6 +72,7 @@ scope SelectHero
             endif*/
 
             InitPlayerDzShopState(pid)//商城属性
+            InitPlayerMeridiansState(pid)//经脉
             LoadPlayerTechState.execute(pid)
             InitHeroAddStateAbility.execute(Pu[1])
             PlayerLoadPassCheck.execute(pid)
@@ -137,6 +138,7 @@ scope SelectHero
             InitPlayerMonsterSoulSkill(pid)
 
             InitPlayerDzShopState(pid)//商城属性
+            InitPlayerMeridiansState(pid)//经脉
             LoadPlayerTechState.execute(pid)
             InitHeroAddStateAbility.execute(Pu[1])
             PlayerLoadPassCheck.execute(pid)
