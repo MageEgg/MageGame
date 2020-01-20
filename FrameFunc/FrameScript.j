@@ -17,7 +17,7 @@
                 ShowHeroFrame(GetPlayerId(GetLocalPlayer()),false)
             endif
         endif
-        
+        BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
         DzFrameShow(UI_TipsHead, false)
     endfunction
     
