@@ -355,7 +355,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         if  id != 0
             SetUnitIntState(Pu[1],125+index,id)
             SetEquipStateOfPlayer(Pu[1],id,1)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能附魔成功！"+GetTypeIdStateTips(id))
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能附魔成功！"+GetTypeIdStateTips2(id))
         endif
         ReHeroAbilityTips(Pu[1],index)
         
@@ -543,7 +544,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
         SetUnitIntState(wu,110+index,0)
         SetUnitIntState(wu,120+index,0)
-        PlayerHeorAddSkillMagic(pid,index,0)
+        //PlayerHeorAddSkillMagic(pid,index,0)//清空附魔
         ReHeroAbilityTips(wu,index)
         //DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：技能删除成功！")
     endfunction
