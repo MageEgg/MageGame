@@ -297,6 +297,7 @@ scope ItemSystem initializer InitItemSystem
         int i2 = 0
         real r1 = 0
         int level = GetItemLevel(GetManipulatedItem())
+        int attacklv = AttackUnitWN + 1
 
         
 
@@ -352,15 +353,15 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：什么也没有得到！|r")
             else
                 if  itemid == 'IC01'
-                    i1 = R2I((2.0+AttackUnitWN/2.0)*GetRandomReal(0.8,1.2))
+                    i1 = R2I((2.0+attacklv/2.0)*GetRandomReal(0.8,1.2))
                     AdjustPlayerStateBJ(i1, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 |cffffcc00玄铁x"+I2S(i1))
                 elseif  itemid == 'IC02'
-                    i1 = R2I((10.0+AttackUnitWN*5.0)*GetRandomReal(0.8,1.2))
+                    i1 = R2I((10.0+attacklv*5.0)*GetRandomReal(0.8,1.2))
                     AddUnitIntState(Pu[1],108,i1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 |cffffcc00杀敌数x"+I2S(i1))
                 else
-                    r1 = (AttackUnitWN*AttackUnitWN*3+AttackUnitWN*300.0)*GetRandomReal(0.8,1.2)
+                    r1 = (attacklv*attacklv*3+attacklv*300.0)*GetRandomReal(0.8,1.2)
                     if  itemid >= 'IC03' and itemid <= 'IC05'
                         r1 = r1 / 4
                         if  itemid == 'IC04'
@@ -428,6 +429,7 @@ scope ItemSystem initializer InitItemSystem
         int gold = 0
         int i1 = 0
         int i2 = 0
+        int attacklv = AttackUnitWN + 1
 
         if  itemid == 'CS01'
             PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
@@ -465,7 +467,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IN07'
             AddUnitStateExTimer(Pu[1],28,30,6)
         elseif  itemid == 'IN08'
-            if  AttackUnitWN >= AttackUnitWNOver - 2
+            if  attacklv >= AttackUnitWNOver - 2
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前无法使用该锦囊！")
             else
                 KillAttackUnitGroup()
@@ -504,7 +506,7 @@ scope ItemSystem initializer InitItemSystem
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+700")
     
         elseif  itemid == 'IN31'//炽星魔盒IN31注册
-            if  AttackUnitWN <= 11
+            if  attacklv <= 11
                 UnitAddPoolItem(u1,11)
             else
                 UnitAddPoolItem(u1,17)

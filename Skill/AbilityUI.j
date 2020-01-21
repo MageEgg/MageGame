@@ -288,21 +288,21 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 if  index == 5
                     
                     if  level > 1
-                        tip = tip + "\n\n|cff00ff00境界三：\n" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cff00ff00元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb境界三：\n" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
                     endif
 
                     if  level > 2
-                        tip = tip + "\n\n|cff00ff00境界五：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cff00ff00凝体镜[5]：\n" +GetTypeIdString(id,112) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb境界五：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb凝体镜[5]：\n" +GetTypeIdString(id,112) + "|r"
                     endif
 
                     if  level > 3
-                        tip = tip + "\n\n|cff00ff00境界十：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cff00ff00金仙镜[10]：\n" +GetTypeIdString(id,113) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb境界十：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb金仙镜[10]：\n" +GetTypeIdString(id,113) + "|r"
                     endif
                 else
                     
@@ -527,7 +527,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         SetUnitIntState(wu,120+index,0)
         PlayerHeorAddSkillMagic(pid,index,0)
         ReHeroAbilityTips(wu,index)
-        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能删除成功！")
+        //DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能删除成功！")
     endfunction
     
     function HeroRemoveAbility(unit wu,int id)

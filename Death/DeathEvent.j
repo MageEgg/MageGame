@@ -319,7 +319,7 @@ scope DeathEvent initializer InitDeathEvent
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')
             time = time - 1
-            if  time <= 0 or GetUnitTypeId(u1) == 0
+            if  time <= 0 or GetUnitTypeId(u1) == 0 or PlayerDeathBool == true
                 if  pid > 0
                     if  GetUnitTypeId(u1) == id
                         if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
