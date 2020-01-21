@@ -213,6 +213,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             real ex = 0
             real ey = 0
             real ang = 0
+            int bossnum = 0
+            int bossid = 0
             num = num + 1
             if  num <= 8
                 sx = GetUnitX(GameChallengLeagueUnit(num))
@@ -227,9 +229,18 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cff00ff00加入友军作战！|r")
                     RemoveUnit(GameChallengLeagueUnit(num))
                     GameChallengLeagueUnit(num) = CreateUnit(Player(9),'md00'+num,ex,ey,ang)
-                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
-                    SetUnitRealState(GameChallengLeagueUnit(num),3,GetUnitRealState(GameChallengLeagueUnit(num),3)/2)
-                    SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),1)*30)
+
+                    bossnum = (AttackUnitWNOver/3)
+                    if  bossnum < 10
+                        bossid = 'mb00'+ bossnum
+                    else
+                        bossid = 'mb10'
+                    endif
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),bossid)
+                    SetUnitRealState(GameChallengLeagueUnit(num),1,GetUnitRealState(GameChallengLeagueUnit(num),1)*0.1)
+                    SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),5)*0.1)
+
+
                     UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
                     UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
@@ -239,7 +250,17 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[最终决战]：|r"+GetObjectName('md00'+num)+"|cffff0000加入敌军作战！|r")
                     RemoveUnit(GameChallengLeagueUnit(num))
                     GameChallengLeagueUnit(num) = CreateUnit(Player(11),'md00'+num,ex,ey,ang)
-                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),'md09')
+                    
+                    bossnum = (AttackUnitWNOver/3)
+                    if  bossnum < 10
+                        bossid = 'mb00'+ bossnum
+                    else
+                        bossid = 'mb10'
+                    endif
+                    SetUnitRealStateOfOtherId(GameChallengLeagueUnit(num),bossid)
+                    SetUnitRealState(GameChallengLeagueUnit(num),1,GetUnitRealState(GameChallengLeagueUnit(num),1)*0.3)
+                    SetUnitRealState(GameChallengLeagueUnit(num),5,GetUnitRealState(GameChallengLeagueUnit(num),5)*0.3)
+
                     UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
                     UnitAddAbility(GameChallengLeagueUnit(num),'Avul')
                     EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
@@ -336,13 +357,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  num == 1
-                    AddUnitRealState(Pu[1],3,t*10)
+                    AddUnitRealState(Pu[1],18,t*10)
                 elseif  num == 2
                     AddUnitRealState(Pu[1],10,t*15)
                 elseif  num == 3
                     AddUnitRealState(Pu[1],32,t*30)
                 elseif  num == 4
-                    AddUnitRealState(Pu[1],33,t*30)
+                    AddUnitRealState(Pu[1],4,t*15)
                 elseif  num == 5
                     AddUnitRealState(Pu[1],19,t*10)
                 elseif  num == 6
@@ -660,7 +681,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function GetGameChallengOperaSelsect()->int
-        int cosa = 0
+        /*int cosa = 0
         int cosb = 0
         for num = 1,8
             if  GameChallengOperaWay[num] == 1
@@ -671,7 +692,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         end
         if  cosb > 4
             return 0
-        endif
+        endif*/
         return GetRandomInt(0,1)
     endfunction
 

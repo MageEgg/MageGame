@@ -167,6 +167,12 @@ library DamageCode uses UnitStateSet
     //获取抵抗加成结算
     function GetUnitDkState(unit wu)->real
         real s = GetUnitRealState(wu,18)
+        if  GetUnitAbilityLevel(wu, 'BZ8A')>0
+            s = s + 10
+        endif
+        if  GetUnitAbilityLevel(wu, 'BZ8H')>0
+            s = s + -15
+        endif
         if  s > 90
             s = 90
         endif
@@ -180,21 +186,9 @@ library DamageCode uses UnitStateSet
     //法抗
     function GetUnitFkState(unit wu)->real
         real s = GetUnitRealState(wu,4)
-        
-        real b=0
-        if  GetUnitAbilityLevel(wu, 'BB01')>0
-            b=b+10
+        if  GetUnitAbilityLevel(wu, 'BZ8D')>0
+            s = s + 15
         endif
-        if  GetUnitAbilityLevel(wu, 'BB02')>0
-            b=b+10
-        endif
-        if  GetUnitAbilityLevel(wu, 'BB03')>0
-            b=b+10
-        endif
-        if  GetUnitAbilityLevel(wu, 'BB04')>0
-            b=b+10
-        endif
-        s=s-(s/100*b)
         if  s > 90
             s = 90
         endif
@@ -242,9 +236,6 @@ library DamageCode uses UnitStateSet
     endfunction
     function GetUnitWx(unit wu)->real
         real s = GetUnitWxState(wu)
-        if  GetUnitAbilityLevel(wu,'AZ97') > 0
-            return 0
-        endif
         return s*0.01
     endfunction
     
@@ -259,33 +250,6 @@ library DamageCode uses UnitStateSet
         return s*0.01
     endfunction
     
-    
-    //致命概率
-    function GetUnitZmState(unit wu)->real
-        real s = GetUnitRealState(wu,23)
-
-        
-        if  s > 100
-            s = 100
-        endif
-        return s
-    endfunction
-    function GetUnitZm(unit wu)->real
-        real s = GetUnitZmState(wu)
-        return s*0.01
-    endfunction
-    //致命伤害
-    function GetUnitZsState(unit wu)->real
-        real s = GetUnitRealState(wu,24)
-        
-        return s
-    endfunction
-    function GetUnitZs(unit wu)->real
-        real s = GetUnitZsState(wu)
-        return s*0.01
-    endfunction
-    
-
     
     //冷却缩减
     function GetUnitLsState(unit wu)->real
@@ -348,24 +312,12 @@ library DamageCode uses UnitStateSet
     function GetPerAPState(unit wu)->real
         real s = GetUnitRealState(wu,32)
         int pid = GetPlayerId(GetOwningPlayer(wu))
-        if  wu == Pu[1]
-            if  IsPlayerHasAbility.evaluate(wu,'S071') == true
-                s = s + GetHeroAgi(wu,false)/3.3
-            endif
-            
-        endif
         return s
     endfunction
 
     function GetPerSPState(unit wu)->real
         real s = GetUnitRealState(wu,33)
         int pid = GetPlayerId(GetOwningPlayer(wu))
-        if  wu == Pu[1]
-            if  IsPlayerHasAbility.evaluate(wu,'S054') == true
-                s = s + GetUnitLsState(wu)/0.8
-            endif
-            
-        endif
         return s
     endfunction
 
@@ -382,22 +334,12 @@ library DamageCode uses UnitStateSet
     function GetPerASState(unit wu)->real
         real s = GetUnitRealState(wu,34)
         int pid = GetPlayerId(GetOwningPlayer(wu))
-        if  wu == Pu[1]
-            if  PerIsPlayerHasAbility(wu,'S071') == true
-                s = -100
-            endif
-        endif
         return s
     endfunction
 
     function GetPerSSState(unit wu)->real
         real s = GetUnitRealState(wu,35)
         int pid = GetPlayerId(GetOwningPlayer(wu))
-        if  wu == Pu[1]
-            if  PerIsPlayerHasAbility(wu,'S054') == true
-                s = -100
-            endif
-        endif
         return s
     endfunction
 
