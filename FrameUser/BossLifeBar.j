@@ -21,6 +21,10 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
                     if  GetLocalPlayer() == Player(pid)
                         if  GetUnitAbilityLevel(Pu[6],'AZ01') > 0
                             Back.SetTexture("war3mapImported\\UI_Life_4.tga", 0)
+                        elseif  GetUnitAbilityLevel(Pu[6],'AZ92') > 0
+                            Back.SetTexture("war3mapImported\\UI_Life_3.tga", 0)
+                        elseif  GetUnitAbilityLevel(Pu[6],'AZ91') > 0
+                            Back.SetTexture("war3mapImported\\UI_Life_2.tga", 0)
                         else
                             Back.SetTexture("war3mapImported\\UI_Life_1.tga", 0)
                         endif
