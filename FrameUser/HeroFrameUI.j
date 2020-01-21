@@ -3,7 +3,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     /*
     150-160     道果
     161-172     附加属性
-    190-193     兽魂
+    190-200     道果标识
     */
 
     /*
@@ -159,7 +159,16 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             endif
 */
             if  GetLocalPlayer() == Player(pid)
+            
                 DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
+
+                if  id == 'IJ10'
+                    DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber10.tga",0)
+                else
+                    DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
+                endif
+                
+
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
             endif
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！境界突破成功！")
@@ -329,6 +338,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         for i = 1,MaxHeroLevel
             CreateButton(150+i,Button.frameid,TYPE_BUTTON,0,Button.frameid,6,0.005+0.0215*(i-1),-0.003,0.018,0.018,"war3mapImported\\UI_Level_Button.tga")
             CreateModel(150+i,Button.frameid,TYPE_BUTTON,6,6,-0.005,-0.002,"")
+
+            CreateButton(190+i,Button.frameid,TYPE_NULL,0,BUTTON_Back[150+i][0],8,-0.005,0.005,0.01,0.01,"war3mapImported\\alpha.tga")
         end
         
         for i = 1,7
