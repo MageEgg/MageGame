@@ -504,6 +504,7 @@ scope DeathEvent initializer InitDeathEvent
     function AttackBossDeathEvent(unit boss)
         int bossnum = 0
         int bossid = 0
+        int ran = 0
         AttackBOSSDeathCos = AttackBOSSDeathCos + 1
         BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
         if  AttackBOSSDeathCos == PlayerNum//AttackBOSSLastCos
@@ -520,6 +521,16 @@ scope DeathEvent initializer InitDeathEvent
                 AttackUnitWin()
             endif
         endif
+        ran = GetRandomInt(1,2)
+        for num = 1,ran
+            CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
+        end
+        LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
+        LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
+        PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了大量道具！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了大量道具！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了大量道具！|r")
     endfunction
 
     function GameOver()
