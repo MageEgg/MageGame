@@ -335,11 +335,11 @@ library ItemGameFunc uses DamageCode
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 3
-            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 1500
-                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-1500)
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 1000
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-1000)
                 return true
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足1500！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足1000！|r")
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 4
@@ -351,27 +351,27 @@ library ItemGameFunc uses DamageCode
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 5
-            if  GetUnitIntState(Pu[1],108) >= 350
-                AddUnitIntState(Pu[1],108,-350)
+            if  GetUnitIntState(Pu[1],108) >= 300
+                AddUnitIntState(Pu[1],108,-300)
                 return true
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足350！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足300！|r")
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 6
-            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 3000
-                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-3000)
+            if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 2000
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-2000)
                 return true
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足3000！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的金币不足2000！|r")
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 7
-            if  GetUnitIntState(Pu[1],108) >= 1000
-                AddUnitIntState(Pu[1],108,-1000)
+            if  GetUnitIntState(Pu[1],108) >= 600
+                AddUnitIntState(Pu[1],108,-600)
                 return true
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足1000！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足600！|r")
                 return false
             endif
         endif
@@ -478,15 +478,15 @@ library ItemGameFunc uses DamageCode
         elseif  PlayerMonsterSoulNum == 2
             s = "|cffffcc00抽取消耗：|r100杀敌数"
         elseif  PlayerMonsterSoulNum == 3
-            s = "|cffffcc00抽取消耗：|r1500金币"
+            s = "|cffffcc00抽取消耗：|r1000金币"
         elseif  PlayerMonsterSoulNum == 4
             s = "|cffffcc00抽取消耗：|r1玄铁"
         elseif  PlayerMonsterSoulNum == 5
-            s = "|cffffcc00抽取消耗：|r350杀敌数"
+            s = "|cffffcc00抽取消耗：|r300杀敌数"
         elseif  PlayerMonsterSoulNum == 6
-            s = "|cffffcc00抽取消耗：|r3000金币"
+            s = "|cffffcc00抽取消耗：|r2000金币"
         elseif  PlayerMonsterSoulNum == 7
-            s = "|cffffcc00抽取消耗：|r1000杀敌数"
+            s = "|cffffcc00抽取消耗：|r600杀敌数"
         endif
         s = s + "|n|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
         s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))+"%"
