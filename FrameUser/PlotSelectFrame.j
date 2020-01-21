@@ -145,7 +145,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function RePlotSelectState3(int pid,int index)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
-        //DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
+        DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
         SetPlotButtonShow(index,true)
     endfunction
 
@@ -170,11 +170,11 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     function RePlayerPlotPrizeId(int pid)
         for i = 1,8
-            SetPlayerPlotPrizeId(pid,i,1,'IP01')
-            SetPlayerPlotPrizeId(pid,i,2,'CF01')
-
-            SetPlayerPlotPrizeId(pid,i,2,'IN32')
+            SetPlayerPlotPrizeId(pid,i,1,'CF01')
+            SetPlayerPlotPrizeId(pid,i,2,'IN31')
         end
+
+        
     endfunction
 
     //刷新深渊模式奖励
@@ -296,7 +296,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             id2 = GetPlayerPlotPrizeId(pid,index,2)
         else
             id1 = GetPlayerPlotPrizeId(pid,index,1)
-            //id2 = GetPlayerPlotPrizeId(pid,index,2)
+            id2 = GetPlayerPlotPrizeId(pid,index,2)
             id3 = GetPrize(pid,prizeid,true)
             id4 = GetPrize(pid,prizeid,true)
             if  GameLevel >= 3

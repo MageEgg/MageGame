@@ -188,7 +188,7 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
                     if  id >= 'FB01' and id <= 'FB99'
                         GivePlayerMagicItem(pid,id)
                     else
-                        UnitAddItemExEx(Pu[2],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+                        UnitAddItemExEx(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
                     endif
                 endif
             end

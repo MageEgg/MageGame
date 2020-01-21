@@ -141,11 +141,11 @@ scope ItemSystem initializer InitItemSystem
         int use = 0
         num = num - 1
         if  index == 1
-            use = 2000 + num * 2000
+            use = 1000 + num * 1000
         elseif  index == 2
             use = 5000 + num * 5000
         elseif  index == 3
-            use = 20000 + num * 20000
+            use = 15000 + num * 15000
         endif
         if  use > 1000000
             use = 1000000
