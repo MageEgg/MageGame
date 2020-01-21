@@ -498,6 +498,7 @@ library ItemGameFunc uses DamageCode
         s = s + "|n|r|cff808080[中奖后会重置抽取几率]|r"
         if  Player(pid) == GetLocalPlayer() 
             YDWESetItemDataString('IS12',3,s)
+            YDWESetItemDataString('IZ0C',3,s)
         endif
     endfunction
 
@@ -513,7 +514,6 @@ library ItemGameFunc uses DamageCode
         int flag = t
         TimerStart(0.001,false)
         {
-            BJDebugMsg("1111111111111")
             if  flag == 0
                 AddItemToStock(Pu[28],'IS12',1,1)
             elseif  flag == 1
@@ -533,7 +533,7 @@ library ItemGameFunc uses DamageCode
         if  PlayerMonsterSoulNum < 8
             if  IsCanGetMonsterSoul(pid) == true
                 ran = 0.01*(7+PlayerMonsterSoulLuckNum*3)
-                BJDebugMsg(R2S(ran))
+                //BJDebugMsg(R2S(ran))
                 if  GetRandomReal(0,1) <= ran
                     num = GetPlayerMonsterSoulLuck(pid)
                     PlayerMonsterSoul(num) = 1
@@ -574,6 +574,7 @@ library ItemGameFunc uses DamageCode
     function InitPlayerMonsterSoulSkill(int pid)
         string s = ""
         RemoveItem(CreateItem('IS12',0,0))
+        RemoveItem(CreateItem('IZ0C',0,0))
         SetPlayerMonsterSoulSkill(pid)
         SetPlayerMonsterSoulItem(pid)
         InitPlayerMonsterSoulSkillEx(pid)
