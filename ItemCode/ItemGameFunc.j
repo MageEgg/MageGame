@@ -110,7 +110,7 @@ library ItemGameFunc uses DamageCode
                 if  DzAPI_Map_IsBuyReforged(Player(pid)) == true
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
-                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
                         AddUnitRealState(Pu[1],47,2)
                         AddUnitRealState(Pu[1],48,1)
                         DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，金币+2000、每秒攻击+2、每秒业力+1！") 
