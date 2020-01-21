@@ -362,7 +362,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             else
                 UnitAddAbility(gu,'A048')
             endif
-
+            SpellS048_1(gu)
             UnitDamageTarget(u1, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
             GroupRemoveUnit(g.ejg,gu)
         endloop
