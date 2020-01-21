@@ -458,6 +458,8 @@ library CreateOpera uses DamageCode
         AttackOperaGroup_B_2 = CreateGroup()
         AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc06',3800,1020,225)
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        AddUnitRealState(AttackUnitOperaBoss,4,15*(PlayerNum-1))
+        AddUnitRealState(AttackUnitOperaBoss,18,15*(PlayerNum-1))
         UnitAddAbility(AttackUnitOperaBoss,'AZ01')
         LocAddEffect(3800,1020,"effect_blue-chuansong.mdx")
         GroupAddUnit(AttackOperaGroup_B_2,AttackUnitOperaBoss)
@@ -740,7 +742,10 @@ library CreateOpera uses DamageCode
     endfunction
      
     function CreateOperaC3()
-        AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'mc07',3760,-2800,180)
+        AttackUnitOperaBoss = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mc07',3760,-2800,180)
+        SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        AddUnitRealState(AttackUnitOperaBoss,4,15*(PlayerNum-1))
+        AddUnitRealState(AttackUnitOperaBoss,18,15*(PlayerNum-1))
         UnitAddAbility(AttackUnitOperaBoss,'AZ01')
         SetUnitFlyHeight(AttackUnitOperaBoss,0,1900)
         SetUnitAnimation(AttackUnitOperaBoss,"attack slam")
