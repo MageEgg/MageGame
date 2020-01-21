@@ -697,29 +697,15 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
-        real life = 0
-        real de = 0
-        if  PlayerChallengeCosNum > 0
-            life = GetUnitRealState(u,5)
-            for num = 1,PlayerChallengeCosNum
-                life = life * 1.2
-            end
-            SetUnitRealState(u,5,life)
-
-            de = GetUnitRealState(u,3)
-            de = de + 8*PlayerChallengeCosNum
-            if  de > 96
-                de = 96
-            endif
-            SetUnitRealState(u,3,de)
-
-            de = GetUnitRealState(u,4)
-            de = de + 8*PlayerChallengeCosNum
-            if  de > 96
-                de = 96
-            endif
-            SetUnitRealState(u,4,de)
+        real value = 0
+        value = 1.1+(PlayerChallengeCosNum*0.1)
+        if  flag == 0 //小怪
+            value = value * 0.2
+        elseif  flag == 1 //1精英
+            value = value * 0.7
+        // 2 BOSS
         endif
+        SetUnitRealStateOfOtherIdAddValue(u,'uf86',value)
     endfunction
 
     function PlayerFinishPlotEx(int id,int f)

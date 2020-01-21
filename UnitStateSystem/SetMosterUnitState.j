@@ -3,6 +3,46 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
     
     int MosterLevel = 0
 
+    function SetUnitRealStateOfOtherIdAddValue(unit u,int uid,real valv)
+        int pid = GetPlayerId(GetOwningPlayer(u))
+        real value = 0
+        for i = 1,40
+            value = GetTypeIdReal(uid,i)
+            value = value * valv
+            if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
+            
+                if  i == 5
+                    value = value * GameReal[GameLevel][1]
+                elseif  i == 1
+                    value = value * GameReal[GameLevel][2]
+                elseif  i == 3
+                    value = value * GameReal[GameLevel][3]
+                elseif  i == 19
+                    value = value * GameReal[GameLevel][4]
+                elseif  i == 20
+                    value = value + GameReal[GameLevel][5]
+                elseif  i == 15
+                    value = value + GameReal[GameLevel][6]
+                elseif  i == 16
+                    value = value + GameReal[GameLevel][7]
+                elseif  i == 18
+                    value = value + GameReal[GameLevel][8]
+                elseif  i == 4
+                    value = value + GameReal[GameLevel][9]
+                endif
+            endif
+
+            if  value != 0
+                
+                if  i == 9
+                    AddUnitRealState(u,i,R2I(value))
+                else
+                    SetUnitRealState(u,i,R2I(value))
+                endif
+            endif
+        end
+    endfunction
+
     
     function SetUnitRealStateOfOtherId(unit u,int uid)
         int pid = GetPlayerId(GetOwningPlayer(u))
