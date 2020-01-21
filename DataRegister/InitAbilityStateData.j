@@ -50,14 +50,14 @@ call InitAbilityData('S127',2,1,0,0.2,0.28,0.36,0.42,0.5,0,10,"回春术","|CffF
 call InitAbilityData('S129',1,1,0,0.1,0.25,0.5,0.75,1,0,0,"贪婪","杀敌|Cffffc926金币|r奖励增加。","ReplaceableTextures\\CommandButtons\\BTNS129.blp")
 
 
-call InitAbilityData('S230',3,0,1,12,0,0,0,0,2,30,"血之裂痕","化身狴犴扑杀目标范围，造成|Cffffd24d攻击*1200%|r伤害并|Cffffd24d眩晕|r3秒。","ReplaceableTextures\\CommandButtons\\BTNBTNIH00.blp")
-call InitAbilityData('S231',2,0,1,1.4,0,0,0,0,2,30,"十绝阵","天降龙柱，十绝阵现。\n每根龙柱造成|Cffffd24d攻击*140%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNBTNIH01.blp")
-call InitAbilityData('S232',2,0,5,2,0,0,0,0,2,30,"八荒斗神","强制|Cffffd24d800|r范围内所有敌方单位攻击自己，物理抵抗|Cffffbf00+|r|Cffffd24d20%|r|Cfff0f0f0\n|r每次被攻击，对目标造成|Cffffbf00生命值*200%|r法术伤害","ReplaceableTextures\\CommandButtons\\BTNBTNIH02.blp")
-call InitAbilityData('S233',2,0,0,0,0,0,0,0,0,30,"冰封之域","|CffFFD24D6|r秒内降低周围单位50%攻速和移动速度，受影响的单位3s后进入|Cffffd24d极冻状态|r，|Cffffd24d承受物理伤害+60%|r|Cfff0f0f0，|r|Cffaaaaaa承受法术伤害-30%|r。","ReplaceableTextures\\CommandButtons\\BTNBTNIH03.blp")
-call InitAbilityData('S234',5,0,1,10,0,0,0,0,2,30,"离魂秘术","对目标造成|Cffffd24d攻击*1000%|r伤害，随后使目标周围单位无法攻击，|Cffffd24d承受法术伤害+40%|r|Cfff0f0f0，|r|Cffaaaaaa承受物理伤害-30%|r|Cfff0f0f0。|r","ReplaceableTextures\\CommandButtons\\BTNBTNIH04.blp")
-call InitAbilityData('S235',2,0,0,0,0,0,0,0,0,30,"修罗之怒","释放后根据|Cffffd24d当前血量|r增加自身|Cffffd24d2%~22%|r暴击概率，持续时间内，每次|Cffffd24d暴击|r增加自身|Cffffbf0020%|r暴击伤害。","ReplaceableTextures\\CommandButtons\\BTNBTNIH05.blp")
-call InitAbilityData('S236',5,0,0,10,0,0,0,0,2,30,"神威一击","突刺至目标身后，造成|Cffffd24d攻击*1000%|r伤害。随后|Cffffd24d4|r秒内|Cfff0f0f0攻击速度|r|Cffffd24d+220%|r|Cfff0f0f0。|r","ReplaceableTextures\\CommandButtons\\BTNBTNIH06.blp")
-call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,"道法自然","持续时间|Cfff0f0f0内，|r|Cffffd24d冷却缩减+20%|r|Cfff0f0f0，|r每次释放技能增加自身|Cffffd24d5%|r攻击力。","ReplaceableTextures\\CommandButtons\\BTNBTNIH07.blp")
+call InitAbilityData('S230',3,0,1,12,0,0,0,0,2,30,"血之裂痕","化身狴犴扑杀目标范围，造成|Cffffd24d攻击*1200%|r伤害并|Cffffd24d眩晕|r3秒。","ReplaceableTextures\\CommandButtons\\BTNIH01.blp")
+call InitAbilityData('S231',2,0,1,1.4,0,0,0,0,2,30,"十绝阵","天降龙柱，十绝阵现。\n每根龙柱造成|Cffffd24d攻击*140%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNIH02.blp")
+call InitAbilityData('S232',2,0,5,2,0,0,0,0,2,30,"八荒斗神","强制|Cffffd24d800|r范围内所有敌方单位攻击自己，物理抵抗|Cffffbf00+|r|Cffffd24d20%|r|Cfff0f0f0\n|r每次被攻击，对目标造成|Cffffbf00生命值*200%|r法术伤害","ReplaceableTextures\\CommandButtons\\BTNIH03.blp")
+call InitAbilityData('S233',2,0,0,0,0,0,0,0,0,30,"冰封之域","|CffFFD24D6|r秒内降低周围单位50%攻速和移动速度，受影响的单位3s后进入|Cffffd24d极冻状态|r，|Cffffd24d承受物理伤害+60%|r|Cfff0f0f0，|r|Cffaaaaaa承受法术伤害-30%|r。","ReplaceableTextures\\CommandButtons\\BTNIH04.blp")
+call InitAbilityData('S234',5,0,1,10,0,0,0,0,2,30,"离魂秘术","对目标造成|Cffffd24d攻击*1000%|r伤害，随后使目标周围单位无法攻击，|Cffffd24d承受法术伤害+40%|r|Cfff0f0f0，|r|Cffaaaaaa承受物理伤害-30%|r|Cfff0f0f0。|r","ReplaceableTextures\\CommandButtons\\BTNIH05.blp")
+call InitAbilityData('S235',2,0,0,0,0,0,0,0,0,30,"修罗之怒","释放后根据|Cffffd24d当前血量|r增加自身|Cffffd24d2%~22%|r暴击概率，持续时间内，每次|Cffffd24d暴击|r增加自身|Cffffbf0020%|r暴击伤害。","ReplaceableTextures\\CommandButtons\\BTNIH06.blp")
+call InitAbilityData('S236',5,0,0,10,0,0,0,0,2,30,"神威一击","突刺至目标身后，造成|Cffffd24d攻击*1000%|r伤害。随后|Cffffd24d4|r秒内|Cfff0f0f0攻击速度|r|Cffffd24d+220%|r|Cfff0f0f0。|r","ReplaceableTextures\\CommandButtons\\BTNIH07.blp")
+call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,"道法自然","持续时间|Cfff0f0f0内，|r|Cffffd24d冷却缩减+20%|r|Cfff0f0f0，|r每次释放技能增加自身|Cffffd24d5%|r攻击力。","ReplaceableTextures\\CommandButtons\\BTNIH08.blp")
 
 call InitAbilityData('S501',2,0,1,1.5,0,0,0,0,1,12,"天罚连击","突刺至目标区域并挥砍|Cffffc9263|r次，每次造成|Cffffc926攻击*150%|r物理伤害。","ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
 call InitAbilityData('S502',5,0,1,1,0,0,0,0,1,10,"土遁袭杀","钻入地底突进至目标身后进行|Cffffc9262次|r爪击，每次造成|Cffffc926攻击*100%|r伤害。|n|n|Cff00ff7f每100%攻速增加一次爪击。|r","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
