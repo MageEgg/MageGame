@@ -497,7 +497,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             endif
             DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：技能"+GetTypeIdString(id,100)+"升级至|r"+I2S(newlv)+"级")
         else
-
+            
+            if  lv == 5
+                GivePlayerMissionPrize(pid,'RR0F')
+            endif
         endif
         
     endfunction

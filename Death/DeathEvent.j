@@ -417,7 +417,9 @@ scope DeathEvent initializer InitDeathEvent
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
             AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
-            
+            if  uid == 'u004'
+                GivePlayerMissionPrize(pid,'RR0C')
+            endif
 
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)

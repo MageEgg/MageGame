@@ -15,6 +15,17 @@ library ItemGameFunc uses DamageCode
 
     private int array itema
 
+
+    //完成任务 奖励时渊
+    function GivePlayerMissionPrize(int pid,int techid)
+        if  GetPlayerTechCount(Player(pid),techid,true) == 0
+            AddPlayerTechResearched(pid,techid,0)
+            UnitAddItem(Pu[2],CreateItem('IP01',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜您完成任务["+GetObjectName(techid)+"]，奖励时渊碎片x1") 
+        endif
+    endfunction
+
+
     function SetGifeItemStock(int pid)
         for num = 1,8
             RemoveItemFromStock(Pu[26],'IB00'+num)
