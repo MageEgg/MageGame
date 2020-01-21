@@ -187,6 +187,27 @@ library SystemCodes uses ServerTime,Define1
         return SubString(R2S(r),0,l-2)
     end
 
+
+    //获取属性 横向拼接
+    function GetTypeIdStateTips2(int id)->string
+        string s = ""
+        real value = 0
+
+        value = GetTypeIdReal(id,5)
+        if  value > 0
+            s = s + "," + StateName[5] + "+" + I2S(R2I(value)) + StateName[5+1000]
+        endif
+        for i = 1,60
+            if  i != 5
+                value = GetTypeIdReal(id,i)
+                if  value > 0
+                    s = s + "," + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+                endif
+            endif
+            
+        end
+        return  s
+    endfunction
     //获取基础属性
     function GetTypeIdStateTips(int id)->string
         string s = ""
@@ -389,7 +410,7 @@ library SystemCodes uses ServerTime,Define1
     function UnitAddItemExEx(unit u,item it)
         int pid = GetPlayerId(GetOwningPlayer(u))
         if  u == Pu[1]
-            if  UnitCanGetItem(u) == true
+            if  UnitCanGetItem(u) == true or IsItemPowerup(it) == true 
                 UnitAddItem(u,it)
             else
                 SetItemPosition(it,GetUnitX(Pu[2]),GetUnitY(Pu[2]))
@@ -616,6 +637,15 @@ library SystemCodes uses ServerTime,Define1
             UnitRemoveAbility(u,'AZ99')
         endif
     endfunction
+
+    //完成任务 奖励时渊
+    function GivePlayerMissionPrize(int pid,int techid)
+        if  GetPlayerTechCount(Player(pid),techid,true) == 0
+            AddPlayerTechResearched(Player(pid),techid,1)
+            UnitAddItem(Pu[2],CreateItem('IP01',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜您完成任务["+GetObjectName(techid)+"]，奖励时渊碎片x1") 
+        endif
+    endfunction
     
 endlibrary
 
@@ -775,17 +805,39 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
         function InitHeroPoolFunc()
             
-            for i = 1,9
-                UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
-            end
-            for i2 = 0,9
-                UnitPoolAddUnitType( HeroPool, 'H010'+i2, 1 )
-                UnitPoolAddUnitType( HeroPool, 'H020'+i2, 1 )
-            end
-            UnitPoolAddUnitType( HeroPool, 'H030', 1 )
-            UnitPoolAddUnitType( HeroPool, 'H031', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H001', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H002', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H003', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H004', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H005', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H006', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H007', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H008', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H009', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H010', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H011', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H012', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H013', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H014', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H015', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H016', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H017', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H018', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H019', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H020', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H021', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H022', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H023', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H024', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H025', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H026', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H027', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H028', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H029', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H030', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H031', 1 )
+
             
-//UnitPoolAddUnitType( HeroPool, 'H028', 1 )
         endfunction
 
 
@@ -793,6 +845,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
     scope ItemPool
         itempool array ItemPool
+
 
         function UnitAddPoolItem(unit wu,int index)->int
             int id = 0
@@ -813,12 +866,22 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         endfunction
 
         function InitUnitPoolFunc()
-            for i = 1,20
+            for i = 1,31
                 ItemPool[i] = CreateItemPool()
             end
 
 
-
+RegisterItemPool(31,'I014',1)
+RegisterItemPool(31,'I015',1)
+RegisterItemPool(31,'IN00',1)
+RegisterItemPool(31,'IS24',1)
+RegisterItemPool(31,'IS25',1)
+RegisterItemPool(31,'IS26',1)
+RegisterItemPool(31,'IP04',1)
+RegisterItemPool(31,'CS22',1)
+RegisterItemPool(31,'IP02',1)
+RegisterItemPool(31,'IP03',1)
+RegisterItemPool(31,'IP01',1)
 
 //炽星魔盒IN31注册
 RegisterItemPool(11,'I011',10)
@@ -837,7 +900,7 @@ RegisterItemPool(11,'IP01',5)
 RegisterItemPool(11,'IP06',3)
 RegisterItemPool(11,'IP08',3)
 RegisterItemPool(11,'IP09',3)
-RegisterItemPool(11,'INDA',2)
+RegisterItemPool(11,'IN30',2)
 RegisterItemPool(11,'IN19',1)
 RegisterItemPool(11,'IC00',40)
 
@@ -846,25 +909,49 @@ RegisterItemPool(11,'IC00',40)
 
 //炽星魔盒12-30波注册
 RegisterItemPool(17,'IP04',1)
-RegisterItemPool(17,'IP02',3)
+RegisterItemPool(17,'IP02',5)
 RegisterItemPool(17,'IP03',1)
-RegisterItemPool(17,'IC04',10)
-RegisterItemPool(17,'IC05',5)
-RegisterItemPool(17,'IC07',10)
-RegisterItemPool(17,'IC08',5)
-RegisterItemPool(17,'IC10',10)
-RegisterItemPool(17,'IC11',5)
-RegisterItemPool(17,'IN26',5)
+RegisterItemPool(17,'IC04',30)
+RegisterItemPool(17,'IC05',6)
+RegisterItemPool(17,'IC07',30)
+RegisterItemPool(17,'IC08',6)
+RegisterItemPool(17,'IC10',30)
+RegisterItemPool(17,'IC11',6)
+RegisterItemPool(17,'IN26',8)
 RegisterItemPool(17,'IN27',1)
-RegisterItemPool(17,'I013',3)
+RegisterItemPool(17,'I013',5)
 RegisterItemPool(17,'I015',1)
 RegisterItemPool(17,'IN28',2)
-RegisterItemPool(17,'INDA',2)
-RegisterItemPool(17,'IN19',1)
-RegisterItemPool(17,'IP01',2)
-RegisterItemPool(17,'IP06',3)
+RegisterItemPool(17,'IN30',15)
+RegisterItemPool(17,'IN19',2)
+RegisterItemPool(17,'IP01',3)
+RegisterItemPool(17,'IP06',5)
 RegisterItemPool(17,'IP08',1)
 RegisterItemPool(17,'IC00',32)
+
+
+//入门道果箱IN25注册
+RegisterItemPool(12,'ID12',10)
+RegisterItemPool(12,'ID13',2)
+RegisterItemPool(12,'ID02',5)
+RegisterItemPool(12,'ID03',1)
+
+
+
+
+//后天道果箱IN26注册
+RegisterItemPool(13,'ID14',15)
+RegisterItemPool(13,'ID15',3)
+RegisterItemPool(13,'ID16',1)
+RegisterItemPool(13,'ID04',8)
+RegisterItemPool(13,'ID05',2)
+RegisterItemPool(13,'ID06',1)
+RegisterItemPool(13,'IP08',3)
+RegisterItemPool(13,'IP09',3)
+
+
+
+
 //先天道果箱IN27注册
 RegisterItemPool(14,'ID07',100)
 RegisterItemPool(14,'ID08',20)
@@ -896,21 +983,16 @@ RegisterItemPool(15,'IC00',30)
 //锦囊IN00注册
 RegisterItemPool(16,'IN07',1)
 RegisterItemPool(16,'IN08',1)
-RegisterItemPool(16,'IN09',1)
 RegisterItemPool(16,'IN10',1)
 RegisterItemPool(16,'IN11',1)
 RegisterItemPool(16,'IN12',1)
 RegisterItemPool(16,'IN13',1)
 RegisterItemPool(16,'IN14',1)
 RegisterItemPool(16,'IN15',1)
-RegisterItemPool(16,'IN16',1)
 RegisterItemPool(16,'IN17',1)
 RegisterItemPool(16,'IN18',1)
 RegisterItemPool(16,'IN20',1)
 RegisterItemPool(16,'IN21',1)
-RegisterItemPool(16,'IN22',1)
-RegisterItemPool(16,'IN23',1)
-RegisterItemPool(16,'IN24',1)
 RegisterItemPool(16,'IC03',2)
 RegisterItemPool(16,'IC06',2)
 RegisterItemPool(16,'IC09',2)
@@ -929,9 +1011,9 @@ RegisterItemPool(21,'CS21',5)
 RegisterItemPool(21,'CS22',1)
 RegisterItemPool(21,'CS24',2)
 
-
-
-
+//技能宝箱IN32注册
+RegisterItemPool(25,'CS23',10)
+RegisterItemPool(25,'CS21',5)
 
 //1附魔宝箱IN29注册
 RegisterItemPool(22,'IS21',3)
@@ -972,6 +1054,7 @@ RegisterItemPool(2,'IF29',1)
 RegisterItemPool(2,'IF30',1)
 RegisterItemPool(2,'IF31',1)
 RegisterItemPool(2,'IF32',1)
+
 
             
         endfunction

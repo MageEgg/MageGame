@@ -401,21 +401,6 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id)+"\n"+GetTypeIdTips(id))
             endif
             
-            if  id == 'FB17'
-                value = GetUnitIntState(Pu[1],'FC17')
-                SetTipsData(12,"","|cff00ff00当前层数："+I2S(value))
-                h = 13
-            elseif  id == 'FB32'
-                value = GetUnitIntState(Pu[1],'FC32')
-                SetTipsData(12,"","|cff00ff00当前层数："+I2S(value))
-                h = 13
-            elseif  id == 'FB03'
-                value = GetUnitIntState(Pu[1],'FC03')
-                SetTipsData(12,"","|cff00ff00当前层数："+I2S(value))
-                h = 13
-            else
-                h = 12
-            endif
             
 
             SetTipsData(h,"",GetMagicItemCollectTips(pid,id))
@@ -569,15 +554,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
     function RePlayerMagicOtherState(int pid,int id,int offset)
         int value = 0
-        if  id == 'FB17'
-            AddUnitRealState(Pu[1],17,GetUnitIntState(Pu[1],'FC17')*0.1*offset)
-        elseif  id == 'FB32'
-            value = GetUnitIntState(Pu[1],'FC32')
-            AddUnitRealState(Pu[1],2,value*offset)
-        elseif  id == 'FB03'
-            value = GetUnitIntState(Pu[1],'FC03')
-            AddUnitRealState(Pu[1],1,value*offset)
-        endif
+ 
     endfunction
 
 
@@ -601,9 +578,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         elseif  index == 2
             s1 = 15
             if  now >= 4
-                v1 = 12
+                v1 = 24
             elseif  now >= 3
-                v1 = 9
+                v1 = 12
             elseif  now >= 2
                 v1 = 6
             endif
@@ -644,13 +621,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             s2 = 20
             if  now >= 4
                 v1 = 6
-                v2 = 50
+                v2 = 150
             elseif  now >= 3
                 v1 = 3
                 v2 = 100
             elseif  now >= 2
                 v1 = 2
-                v2 = 150
+                v2 = 50
             endif
         elseif  index == 8
             s1 = 4
@@ -664,9 +641,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         elseif  index == 9
             s1 = 16
             if  now >= 4
-                v1 = 12
+                v1 = 24
             elseif  now >= 3
-                v1 = 9
+                v1 = 12
             elseif  now >= 2
                 v1 = 6
             endif
@@ -938,7 +915,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
     function FB01FuncTimer(unit wu)
         unit u1 = wu
-        SetUnitIntState(wu,'FC01',1)
+        SetUnitIntState(wu,'FB01',1)
         TimerStart(15,false)
         {
             SetUnitIntState(u1,'FC01',0)

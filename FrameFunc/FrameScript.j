@@ -78,14 +78,15 @@
                 elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) == 0
                     SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
                 endif
-                SetTipsData(12,""," ")
-                SetTipsData(13,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
-                SetTipsData(14,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
-                SetTipsData(15,"","法术伤害："+R2SI(GetUnitRealState(Pu[5],16))+"%|r")
-                SetTipsData(16,"","法术穿透："+R2SI(GetUnitRealState(Pu[5],14))+"%|r")
-                SetTipsData(17,""," ")
+                SetTipsData(12,"","|cff808080攻击距离："+I2S(R2I(GetUnitState(Pu[5],ConvertUnitState(0x16))))+"%|r")
+                SetTipsData(13,""," ")
+                SetTipsData(14,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
+                SetTipsData(15,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
+                SetTipsData(16,"","法术伤害："+R2SI(GetUnitRealState(Pu[5],16))+"%|r")
+                SetTipsData(17,"","法术穿透："+R2SI(GetUnitRealState(Pu[5],14))+"%|r")
+                SetTipsData(18,""," ")
                 ShowTipsUI()
-                ShowNewDzFrameTooltip(0.099)
+                ShowNewDzFrameTooltip(0.11)
             endif
         endif
     endfunction
@@ -209,10 +210,12 @@
             last = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])-1)
         endif
         
+        int lv = GetHeroLevel(Pu[1])
         int now = GetHeroXP(Pu[1])-last
-        int use = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))-last
+        int use = DzGetUnitNeededXP(Pu[1],lv)-last
         DzFrameShow(UI_TipsHead, true)
-        SetTipsData(10,"","|cffffcc00境界经验：|r"+I2S(now)+"/"+I2S(use))
+        SetTipsData(10,"","|cffffcc00当前境界：|r"+I2S(lv-1))
+        SetTipsData(11,"","|cffffcc00境界经验：|r"+I2S(now+1)+"/"+I2S(use))
         ShowTipsUI()
     endfunction
     
@@ -339,14 +342,14 @@
             endif
         endif
         if  GetPostionAsMouseX() > 0.362 and GetPostionAsMouseX() < 0.404 
-            if  GetPostionAsMouseY() >= 0.878 and GetPostionAsMouseY() < 0.931
+            if  GetPostionAsMouseY() >= 0.878 and GetPostionAsMouseY() < 0.94
                 ShowUIUnitDefense(pid)
                 frame = 8000
             elseif  GetPostionAsMouseY() > 0.824 and GetPostionAsMouseY() < 0.878
                 ShowUIUnitAttack(pid)
                 frame = 8001
             endif
-        elseif  GetPostionAsMouseX() > 0.504 and GetPostionAsMouseX() < 0.531 and GetPostionAsMouseY() >= 0.825 and GetPostionAsMouseY() < 0.927
+        elseif  GetPostionAsMouseX() > 0.504 and GetPostionAsMouseX() < 0.531 and GetPostionAsMouseY() >= 0.825 and GetPostionAsMouseY() < 0.94
             ShowUIUnitOriginState(pid)
             frame = 8002
         endif

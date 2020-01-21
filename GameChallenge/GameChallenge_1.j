@@ -348,7 +348,7 @@ library GameChallenge1 uses GameChallengeBase
                     x = -3744
                     y = 1664
                     CreateUsesGameChallengUnit(pid,num,'uf13',x,y)
-                    SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],1)
+                    SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     Sdofplayer(Player(pid),x,y,3)
                     UnitAddEffect(GameChallengUnit[num],"effect_red-yumao-zhendi-paoxiao.mdx")
@@ -360,7 +360,7 @@ library GameChallenge1 uses GameChallengeBase
                     x = -3584
                     y = 1440
                     CreateUsesGameChallengUnit(pid,num,'uf14',x,y)
-                    SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],1)
+                    SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
                     IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     Sdofplayer(Player(pid),x,y,3)
                     UnitAddEffect(GameChallengUnit[num],"effect_red-yumao-zhendi-paoxiao.mdx")

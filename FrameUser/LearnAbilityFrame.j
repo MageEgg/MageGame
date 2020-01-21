@@ -445,7 +445,9 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int id = GetCanIncAbilityId(pid,i,4)
         int index = GetHeroAbilityIndex(Pu[1],id)
         HeroIncAbility(Pu[1],index)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
+
+        int lv = GetHeroAbilityLevel(Pu[1],id)
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
     endfunction
     function IncAbilityGemFunc2()
         int pid = Dialog.GetPlayerid()
@@ -456,7 +458,8 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int id = GetCanIncAbilityId(pid,i,5)
         int index = GetHeroAbilityIndex(Pu[1],id)
         HeroIncAbility(Pu[1],index)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
+        int lv = GetHeroAbilityLevel(Pu[1],id)
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
     endfunction
 
     
@@ -469,9 +472,10 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
             int id = GetCanIncAbilityId(pid,i,4)
             int index = GetHeroAbilityIndex(Pu[1],id)
             HeroIncAbility(Pu[1],index)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
+            int lv = GetHeroAbilityLevel(Pu[1],id)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：升级失败！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：很遺憾！技能进阶失败！")
         endif
     endfunction
 

@@ -181,8 +181,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[25]="冷却缩减"
         StateName[26]="冷却降低"
         StateName[27]="触发概率"
-        StateName[28]="生命回复"
-        StateName[29]="魔法恢复"
+        StateName[28]="每秒回血"
+        StateName[29]="每秒回蓝"
         StateName[30]=""
         StateName[31]="生命%"
         StateName[32]="攻击%"
@@ -194,7 +194,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[38]=""
         StateName[39]=""
         StateName[40]="元神力"
-        StateName[41]="金币加成%"
+        StateName[41]="金币加成"
         StateName[43]="杀敌攻击"
         StateName[44]="杀敌业力"
         StateName[45]="杀敌生命"
@@ -311,6 +311,16 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         return value
     endfunction
     
+    function GetUnitLqMax(unit wu)->int
+        int max = 50
+        if  GetUnitIntState(wu,'FB10')>0
+            max = max + 9
+        endif
+        if  GetUnitIntState(wu,'FB20')>0
+            max = max + 6
+        endif
+        return max
+    endfunction
     
 
     function SetUnitRealState(unit wu,int StateId,real value)
@@ -350,8 +360,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 SetHeroAgi(wu,R2I(value/100+0.1)-100,true)
             endif
         elseif  StateId == 25
-            if  value > 50
-                SetHeroInt(wu,50,true)
+            if  value > GetUnitLqMax(wu)
+                SetHeroInt(wu,GetUnitLqMax(wu),true)
             else
                 SetHeroInt(wu,R2I(value),true)
             endif

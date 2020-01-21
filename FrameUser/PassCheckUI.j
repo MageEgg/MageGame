@@ -215,12 +215,12 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             int use = GetMissionUse(missionid)
             if  use > data
                 if  data == 0
-                    return GetMissionTips(missionid)+"|cffffcc00--进行中|r"
+                    return GetMissionTips(missionid)+"|cffffcc00 -- 进行中|r"
                 else
-                    return GetMissionTips(missionid)+"|cffffcc00--当前数量：|r"+I2S(data)
+                    return GetMissionTips(missionid)+"|cffffcc00 -- 当前数量：|r"+I2S(data)
                 endif
             else
-                return GetMissionTips(missionid)+"|cff00ff00--已完成|r"
+                return GetMissionTips(missionid)+"|cff00ff00 -- 已完成|r"
             endif
         endfunction
         function PlayerShowMission(int pid)//查询任务
@@ -391,9 +391,20 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 if  level >= index
                     DzFrameSetText(BUTTON_Text[610+i],"|cff000000"+I2S(index)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\UI_Pass_LevelBack.tga",0)
+
+                    DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
                 else
                     DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(index)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\alpha.tga",0)
+
+                    DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\alpha.tga",0)
+
+                    if  DzShop(Player(pid),"RWK") == false
+                        DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    else
+                        DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\alpha.tga",0)
+                    endif
                 endif
 
 

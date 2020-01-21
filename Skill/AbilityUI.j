@@ -288,21 +288,21 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 if  index == 5
                     
                     if  level > 1
-                        tip = tip + "\n\n|cff00ff00境界三：\n" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cff00ff00元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb境界三：\n" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
                     endif
 
                     if  level > 2
-                        tip = tip + "\n\n|cff00ff00境界五：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cff00ff00凝体镜[5]：\n" +GetTypeIdString(id,112) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb境界五：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb凝体镜[5]：\n" +GetTypeIdString(id,112) + "|r"
                     endif
 
                     if  level > 3
-                        tip = tip + "\n\n|cff00ff00境界十：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cff00ff00金仙镜[10]：\n" +GetTypeIdString(id,113) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb境界十：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb金仙镜[10]：\n" +GetTypeIdString(id,113) + "|r"
                     endif
                 else
                     
@@ -355,7 +355,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         if  id != 0
             SetUnitIntState(Pu[1],125+index,id)
             SetEquipStateOfPlayer(Pu[1],id,1)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:技能附魔成功！"+GetTypeIdStateTips(id))
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能附魔成功！"+GetTypeIdStateTips2(id))
         endif
         ReHeroAbilityTips(Pu[1],index)
         
@@ -391,6 +392,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
    
     
     function HeroSetAbilityLevelByIndex(unit wu,int index,int newlv)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = GetUnitTypeId(wu)
         int id = GetUnitIntState(wu,110+index)
         int nowlv = GetHeroAbilityLevelByIndex(wu,index)
@@ -406,69 +408,87 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             if  uid == 'H009'
                 if  newlv == 2
                     AddUnitRealState(wu,12,10)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:广成子奕剑之道，普攻伤害|Cffff8000+10%|r")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：广成子奕剑之道，普攻伤害|Cffff8000+10%|r")
                 elseif  newlv == 3
                     AddUnitRealState(wu,12,10)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:广成子奕剑之道，普攻伤害|Cffff8000+10%|r")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：广成子奕剑之道，普攻伤害|Cffff8000+10%|r")
                 elseif  newlv == 4
                     BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
                     SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))-0.1)
                     BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:广成子奕剑之道，攻击间隔降低0.1秒")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：广成子奕剑之道，攻击间隔降低0.1秒")
+                endif
+            elseif  uid == 'H010'
+                if  newlv == 2
+                    if  GetUnitIntState(wu,'S510') == 1
+                        AddUnitRealState(wu,18,10)
+                    endif
+                elseif  newlv == 3
+                    if  GetUnitIntState(wu,'S510') == 2
+                        AddUnitRealState(wu,10,10)
+                    endif
+                elseif  newlv == 4
+                    if  GetUnitIntState(wu,'S510') == 0
+                        AddUnitRealState(wu,16,20)
+                    endif
                 endif
             elseif  uid == 'H017'
                 if  newlv == 2
                     UnitAddItemExEx(wu,CreateItem('CS03',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS03')+"x1")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：小哪吒天资聪颖，获得"+GetObjectName('CS03')+"x1")
                 elseif  newlv == 3
                     UnitAddItemExEx(wu,CreateItem('CS04',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS04')+"x1")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：小哪吒天资聪颖，获得"+GetObjectName('CS04')+"x1")
                 elseif  newlv == 4
                     UnitAddItemExEx(wu,CreateItem('CS05',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，获得"+GetObjectName('CS05')+"x1")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：小哪吒天资聪颖，获得"+GetObjectName('CS05')+"x1")
                 endif
             elseif  uid == 'H018'
                 if  newlv == 4
                     UnitAddItemExEx(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
                     UnitAddItemExEx(wu,CreateItem('IP02',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，获得"+GetObjectName('IP02')+"x2")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：太乙真人运行九转神功，获得"+GetObjectName('IP02')+"x2")
+                endif
+            elseif  uid == 'H021'
+                if  newlv == 2
+                    AddUnitRealState(wu,4,12)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：哪吒莲花化身，魔法抗性|Cffff8000+12%|r")
                 endif
             elseif  uid == 'H021'
                 if  newlv == 2
                     UnitAddItemExEx(wu,CreateItem('CS21',GetUnitX(wu),GetUnitY(wu)))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:嫦娥突破境界，额外获得"+GetObjectName('CS21')+"x1")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：嫦娥突破境界，额外获得"+GetObjectName('CS21')+"x1")
                 endif
             elseif  uid == 'H022'
                 if  newlv == 2
                     AddUnitRealState(wu,9,20)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
                 elseif  newlv == 3
                     AddUnitRealState(wu,9,20)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：雷震子获得风雷咒术加持，攻速|Cffff8000+20%|r")
                 elseif  newlv == 4
                     AddUnitRealState(wu,9,60)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:雷震子获得风雷咒术加持，攻速|Cffff8000+60%|r")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：雷震子获得风雷咒术加持，攻速|Cffff8000+60%|r")
                 endif
             elseif  uid == 'H028'
                 if  newlv == 2
-                    AddUnitRealState(wu,15,10)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:纣王尚武乏谋，物理伤害|Cffff8000+10%|r")
-                    
+                    AddUnitRealState(wu,15,6)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+6%|r")
                 elseif  newlv == 3
-                    AddUnitRealState(wu,15,10)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:纣王尚武乏谋，物理伤害|Cffff8000+10%|r")
+                    AddUnitRealState(wu,15,6)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+6%|r")
                 elseif  newlv == 4
-                    AddUnitRealState(wu,15,20)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:纣王尚武乏谋，物理伤害|Cffff8000+20%|r")
+                    AddUnitRealState(wu,15,12)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+12%|r")
                 endif
             elseif  uid == 'H030'
                 
                 if  newlv == 3
                     AddUnitRealState(wu,24,300)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，致命倍率|Cffff8000+300%|r")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：后羿获得百发百中加持，致命倍率|Cffff8000+300%|r")
                 elseif  newlv == 4
                     UnitAddAbility(wu,'AH30')
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:后羿获得百发百中加持，领悟多重射击")
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：后羿获得百发百中加持，领悟多重射击")
                 endif
             elseif  uid == 'xxxx'
                 if  newlv == 2
@@ -476,9 +496,12 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 elseif  newlv == 4
                 endif
             endif
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"升级至|r"+I2S(newlv)+"级")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：技能"+GetTypeIdString(id,100)+"升级至|r"+I2S(newlv)+"级")
         else
-
+            
+            if  newlv == 5
+                GivePlayerMissionPrize(pid,'RR0F')
+            endif
         endif
         
     endfunction
@@ -525,9 +548,9 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
         SetUnitIntState(wu,110+index,0)
         SetUnitIntState(wu,120+index,0)
-        PlayerHeorAddSkillMagic(pid,index,0)
+        //PlayerHeorAddSkillMagic(pid,index,0)//清空附魔
         ReHeroAbilityTips(wu,index)
-        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能删除成功！")
+        //DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：技能删除成功！")
     endfunction
     
     function HeroRemoveAbility(unit wu,int id)
@@ -541,7 +564,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             if  GetHeroAbilityID(Pu[1],id)>0
                 HeroRemoveAbilityByIndex(Pu[1],id)
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:技能删除失败！该位置无技能")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能删除失败！该位置无技能")
             endif
         endif
     endfunction
@@ -560,7 +583,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         AddAbilityState(wu,id,1)
 
         if  GetTypeIdData(id,101) != 9
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:技能"+GetTypeIdString(id,100)+"学习成功！")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：技能"+GetTypeIdString(id,100)+"学习成功！")
             
             if  GetUnitTypeId(wu) == 'H017' and id != 'S517'
                 SpellS517.execute(wu) //天賦 天资聪颖   

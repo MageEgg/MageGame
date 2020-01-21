@@ -1,5 +1,15 @@
 
 scope ItemSystem initializer InitItemSystem
+    function UnitAddPoolItemShow(unit wu,int prizeid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int id = UnitAddPoolItem(wu,prizeid)
+        if  id >= 'IC00' and id <= 'IC99'
+            //不显示
+        else
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 "+GetObjectName(id)+"x1")
+        endif
+    endfunction
+    
 
     //装备升级
     function GetEquipIndex(int id)->int
@@ -141,11 +151,11 @@ scope ItemSystem initializer InitItemSystem
         int use = 0
         num = num - 1
         if  index == 1
-            use = 2000 + num * 2000
+            use = 1500 + num * 1500
         elseif  index == 2
             use = 5000 + num * 5000
         elseif  index == 3
-            use = 20000 + num * 20000
+            use = 15000 + num * 15000
         endif
         if  use > 1000000
             use = 1000000
@@ -162,7 +172,6 @@ scope ItemSystem initializer InitItemSystem
                 YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r"+I2S(use1)+"金币*次数|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
             endif
         endif
-        BJDebugMsg("设置说明")
     endfunction
     //抽技能
     function PlayerAbilityDraw(int pid,int itemid)
@@ -272,6 +281,8 @@ scope ItemSystem initializer InitItemSystem
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！杀敌数不足"+I2S(use))
             endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！该技能已经满级！")
         endif
     endfunction
     
@@ -297,6 +308,7 @@ scope ItemSystem initializer InitItemSystem
         int i2 = 0
         real r1 = 0
         int level = GetItemLevel(GetManipulatedItem())
+        int attacklv = AttackUnitWN + 1
 
         
 
@@ -337,6 +349,22 @@ scope ItemSystem initializer InitItemSystem
             IncOrnaments(pid,u1)
         elseif  itemid == 'IS14'
             IncHeroAddLifeAbility(pid)
+        elseif  itemid == 'IZ10'
+            if  attacklv <= 11
+                UnitAddPoolItemShow(u1,11)
+            else
+                UnitAddPoolItemShow(u1,17)
+            endif
+        elseif  itemid == 'IZ11'
+            if  attacklv <= 11
+                for i = 1,10
+                    UnitAddPoolItemShow(u1,11)
+                end
+            else
+                for i = 1,10
+                    UnitAddPoolItemShow(u1,17)
+                end
+            endif
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
@@ -349,18 +377,18 @@ scope ItemSystem initializer InitItemSystem
             endif
         elseif  itemid >= 'IC00' and itemid <= 'IC11'
             if  itemid == 'IC00'
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：什么也没有得到！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾！什么也没有得到！|r")
             else
                 if  itemid == 'IC01'
-                    i1 = R2I((2.0+AttackUnitWN/2.0)*GetRandomReal(0.8,1.2))
+                    i1 = R2I((2.0+attacklv/2.0)*GetRandomReal(0.8,1.2))
                     AdjustPlayerStateBJ(i1, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 |cffffcc00玄铁x"+I2S(i1))
                 elseif  itemid == 'IC02'
-                    i1 = R2I((10.0+AttackUnitWN*5.0)*GetRandomReal(0.8,1.2))
+                    i1 = R2I((10.0+attacklv*5.0)*GetRandomReal(0.8,1.2))
                     AddUnitIntState(Pu[1],108,i1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 |cffffcc00杀敌数x"+I2S(i1))
                 else
-                    r1 = (AttackUnitWN*AttackUnitWN*3+AttackUnitWN*300.0)*GetRandomReal(0.8,1.2)
+                    r1 = (attacklv*attacklv*3+attacklv*300.0)*GetRandomReal(0.8,1.2)
                     if  itemid >= 'IC03' and itemid <= 'IC05'
                         r1 = r1 / 4
                         if  itemid == 'IC04'
@@ -394,7 +422,9 @@ scope ItemSystem initializer InitItemSystem
         endif
 
 
-
+        if  itemid >= 'IN07' and itemid <= 'IN24'
+            PlayerUsesstrangeItem(pid,itemid)
+        endif
 
         if  itemid == 'I00A'
             AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))
@@ -418,6 +448,8 @@ scope ItemSystem initializer InitItemSystem
         
         flush locals
     endfunction
+
+    
     
 
     
@@ -428,6 +460,7 @@ scope ItemSystem initializer InitItemSystem
         int gold = 0
         int i1 = 0
         int i2 = 0
+        int attacklv = AttackUnitWN + 1
 
         if  itemid == 'CS01'
             PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
@@ -462,17 +495,38 @@ scope ItemSystem initializer InitItemSystem
             AddUnitStateExTimer(Pu[1],15,30,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
 
-        elseif  itemid == 'IN07'
-            AddUnitStateExTimer(Pu[1],28,30,6)
-        elseif  itemid == 'IN08'
-            if  AttackUnitWN >= AttackUnitWNOver - 2
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前无法使用该锦囊！")
+        elseif  itemid == 'IN31'//炽星魔盒IN31注册
+            if  attacklv <= 11
+                UnitAddPoolItemShow(u1,11)
             else
-                KillAttackUnitGroup()
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了锦囊"+GetObjectName(itemid)+"，消灭了所有的进攻怪！")
+                UnitAddPoolItemShow(u1,17)
             endif
-        elseif  itemid == 'IN11'
-            AddUnitStateExTimer(Pu[1],17,300,5)
+        elseif  itemid == 'IN25'//入门道果箱IN25注册
+            UnitAddPoolItemShow(u1,12)
+        elseif  itemid == 'IN26'//后天道果箱IN26注册
+            UnitAddPoolItemShow(u1,13)
+        elseif  itemid == 'IN27'//先天道果箱IN27注册
+            UnitAddPoolItemShow(u1,14)
+        elseif  itemid == 'IN30'//幸运星盒IN30注册
+            UnitAddPoolItemShow(u1,15)
+        elseif  itemid == 'IN00'//锦囊IN00注册
+            UnitAddPoolItemShow(u1,16)
+        elseif  itemid == 'IN19'//附魔宝箱IN19注册
+            UnitAddPoolItemShow(u1,20)
+            if  GetRandomInt(1,100) <= 50
+                UnitAddPoolItemShow(u1,20)
+            endif
+        elseif  itemid == 'IN28'////技能宝箱IN28注册
+            UnitAddPoolItemShow(u1,21)
+        elseif  itemid == 'IN29'//1附魔宝箱IN29注册
+            UnitAddPoolItemShow(u1,22)
+            if  GetRandomInt(1,100) <= 50
+                UnitAddPoolItemShow(u1,22)
+            endif
+            
+        elseif  itemid == 'IN32'//技能宝箱IN32注册
+            UnitAddPoolItemShow(u1,25)
+
 
         elseif  itemid >= 'ID01' and itemid <= 'ID10'//道果
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
@@ -494,41 +548,20 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
             endif
         elseif  itemid == 'IP06'
+            HeroAddExp( Pu[1], 100)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+100")
+        elseif  itemid == 'IP07'
+            if  attacklv <= 11
+                UnitAddPoolItemShow(u1,11)
+            else
+                UnitAddPoolItemShow(u1,17)
+            endif
+        elseif  itemid == 'IP08'
             HeroAddExp( Pu[1], 300)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+300")
-        elseif  itemid == 'IP08'
+        elseif  itemid == 'IP09'
             HeroAddExp( Pu[1], 500)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+500")
-        elseif  itemid == 'IP09'
-            HeroAddExp( Pu[1], 700)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+700")
-    
-        elseif  itemid == 'IN31'//炽星魔盒IN31注册
-            if  AttackUnitWN <= 11
-                UnitAddPoolItem(u1,11)
-            else
-                UnitAddPoolItem(u1,17)
-            endif
-        elseif  itemid == 'IN25'//入门道果箱IN25注册
-            UnitAddPoolItem(u1,12)
-        elseif  itemid == 'IN26'//后天道果箱IN26注册
-            UnitAddPoolItem(u1,13)
-        elseif  itemid == 'IN27'//先天道果箱IN27注册
-            UnitAddPoolItem(u1,14)
-        elseif  itemid == 'IN30'//幸运星盒IN30注册
-            UnitAddPoolItem(u1,15)
-        elseif  itemid == 'IN00'//锦囊IN00注册
-            UnitAddPoolItem(u1,16)
-        elseif  itemid == 'IN19'//附魔宝箱IN19注册
-            for i = 1,3
-                UnitAddPoolItem(u1,20)
-            end
-        elseif  itemid == 'IN18'//1附魔宝箱IN28注册
-            UnitAddPoolItem(u1,21)
-        elseif  itemid == 'IN29'//1附魔宝箱IN29注册
-            for i = 1,3
-                UnitAddPoolItem(u1,22)
-            end
         endif
         
         flush locals

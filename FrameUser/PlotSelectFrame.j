@@ -70,11 +70,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
     //获取副本当前状态 0未解锁 1已解锁 2已通关 3时渊
     function GetPlayerPlotStateByIndex(int pid,int index)->int
+        return Pint[300+index]
+        /*
         if  GetPlayerPlotType(pid) == 1
-            return 3
+        return 3
         else
-            return Pint[300+index]
         endif
+        */
     endfunction
 
 
@@ -170,19 +172,11 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     function RePlayerPlotPrizeId(int pid)
         for i = 1,8
-            SetPlayerPlotPrizeId(pid,i,1,'IP01')
-            SetPlayerPlotPrizeId(pid,i,2,'CF01')
+            SetPlayerPlotPrizeId(pid,i,1,'CF01')
+            SetPlayerPlotPrizeId(pid,i,2,'IN32')
         end
-        /*
-        SetPlayerPlotPrizeId(pid,1,2,'CS01')
-        SetPlayerPlotPrizeId(pid,2,2,'CS01')
-        SetPlayerPlotPrizeId(pid,3,2,'CS02')
-        SetPlayerPlotPrizeId(pid,4,2,'CS02')
-        SetPlayerPlotPrizeId(pid,5,2,'CS03')
-        SetPlayerPlotPrizeId(pid,6,2,'CS03')
-        SetPlayerPlotPrizeId(pid,7,2,'CS04')
-        SetPlayerPlotPrizeId(pid,8,2,'CS04')
-        */
+
+        
     endfunction
 
     //刷新深渊模式奖励
@@ -198,16 +192,15 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
 
     
-
-        if  ran <= 10
-            id1 = GetPrize(pid,14,true)
-        elseif  ran <= 90
+        
+        if  ran <= 85
             id1 = GetPrize(pid,13,true)
         else
             id1 = GetPrize(pid,12,true)
         endif
 
         
+        SetPlayerPlotStateByIndex(pid,index,1)
 
         SetPlayerPlotPrizeId(pid,index,1,id1)
         SetPlayerPlotPrizeId(pid,index,2,0)
@@ -267,10 +260,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int ran = GetRandomInt(1,100)
         if  index == 1
             return 14
-        elseif  index >= 2and index <= 4
+        elseif  index >= 2 and index <= 4
+            BJDebugMsg("副本2-4概率"+I2S(ran))
             if  ran <= 80
+                BJDebugMsg(I2S(index)+"副本概率"+I2S(ran)+"头顶带绿")
                 return 14
             else
+                BJDebugMsg(I2S(index)+"副本概率"+I2S(ran)+"出了个蓝")
                 return 13
             endif
         else
@@ -301,7 +297,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             id2 = GetPlayerPlotPrizeId(pid,index,2)
         else
             id1 = GetPlayerPlotPrizeId(pid,index,1)
-            //id2 = GetPlayerPlotPrizeId(pid,index,2)
+            id2 = GetPlayerPlotPrizeId(pid,index,2)
             id3 = GetPrize(pid,prizeid,true)
             id4 = GetPrize(pid,prizeid,true)
             if  GameLevel >= 3
@@ -322,9 +318,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //完成副本
     function PlayerFinishPlot(int pid,int index)
         int Type = GetPlayerPlotStateByIndex(pid,index)
+        SetPlayerPlotStateByIndex(pid,index,2)            
         if  Type == 1
-            SetPlayerPlotStateByIndex(pid,index,2)
-
+            
+            
             //发奖励
             GivePlayerFinishPlotPrize(pid,index)
             RePlotSelectByIndex(pid,index)
@@ -338,8 +335,11 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         elseif  Type  == 3
             if  GetPlayerPlotPartNum(pid) > 0
                 SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                
                 GivePlayerFinishPlotPrize(pid,index)
-                RePlayerExPlotPrizeId(pid,index)
+                
+                //RePlayerExPlotPrizeId(pid,index)
+
                 RePlotSelectByIndex(pid,index)
             endif
         endif

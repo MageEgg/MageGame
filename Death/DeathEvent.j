@@ -100,7 +100,7 @@ scope DeathEvent initializer InitDeathEvent
 
 
     function PlayerUseGoldBox(int pid,int itemid)
-        //使用聚宝盆
+        //使用招魂幡
         int gold = 0
         int i1 = 0
         if  itemid == 'I011'
@@ -122,7 +122,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用聚宝盆金币+"+I2S(gold)+" 业力+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" 金币+"+I2S(gold)+" 业力+"+I2S(i1))
 
     endfunction
 
@@ -130,11 +130,12 @@ scope DeathEvent initializer InitDeathEvent
         int id = GetItemTypeId(it)
         int num = GetItemCharges(it)
         
-        if  num - exp > 1
-            SetItemCharges(it,num+-exp)
+        if  num - exp >= 1
+            SetItemCharges(it,num-exp)
             return false
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功炼化" + GetObjectName(id))
+            UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
             return true
         endif
@@ -152,9 +153,10 @@ scope DeathEvent initializer InitDeathEvent
             gl = 80
         endif
             
-        if  num-exp > 1
+        if  num-exp >= 1
             SetItemCharges(it,num-exp)
         else
+            UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
             if  GetRandomInt(1,100)<= gl
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
@@ -179,6 +181,8 @@ scope DeathEvent initializer InitDeathEvent
                 exitwhen true
             endif
         end
+
+
         for i2 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i2))
             if  id >= 'E101' and id <= 'E124'
@@ -233,27 +237,6 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
 
-        if  GetUnitIntState(Pu[1],'FB17') > 0
-            value = GetUnitIntState(Pu[1],'FC17')
-            if  value < 400
-                AddUnitRealState(Pu[1],17,0.1)
-                AddUnitIntState(Pu[1],'FC17',1)
-            endif
-        endif
-        if  GetUnitIntState(Pu[1],'FB32') > 0
-            value = GetUnitIntState(Pu[1],'FC32')
-            if  value < 60000
-                AddUnitRealState(Pu[1],2,100)
-                AddUnitIntState(Pu[1],'FC32',100)
-            endif
-        endif
-        if  GetUnitIntState(Pu[1],'FB03') > 0
-            value = GetUnitIntState(Pu[1],'FC03')
-            if  value < 60000
-                AddUnitRealState(Pu[1],1,100)
-                AddUnitIntState(Pu[1],'FC03',100)
-            endif
-        endif
 
         //杀敌属性
         ste = GetUnitRealState(Pu[1],43)
@@ -319,7 +302,7 @@ scope DeathEvent initializer InitDeathEvent
         {
             int pid = GetUnitAbilityLevel(u1,'AZ99')
             time = time - 1
-            if  time <= 0 or GetUnitTypeId(u1) == 0
+            if  time <= 0 or GetUnitTypeId(u1) == 0 or PlayerDeathBool == true
                 if  pid > 0
                     if  GetUnitTypeId(u1) == id
                         if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
@@ -356,8 +339,8 @@ scope DeathEvent initializer InitDeathEvent
                 AttackRoomXCNum = 1
             endif
             CreateItem('I030',GetUnitX(tu),GetUnitY(tu))
-            AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励炽星魔盒x1 玄铁+20")
+            AdjustPlayerStateBJ( 50 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+50")
         
         else
             /*
@@ -410,9 +393,18 @@ scope DeathEvent initializer InitDeathEvent
             AttackRoomUid[pid]='g00A'+ (uid - 'u000')
             //AddUnitRealState(Pu[1],41,80)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
+            AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+
+            if  uid == 'u004'
+                GivePlayerMissionPrize(pid,'RR0C')
+            endif
+
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
+                Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y+256,270)//兽魂神通
                 UnitAddEffectOfNPC(Pu[28])
+                UnitAddEffectOfNPC(Pu[25])
                 AddItemToStock(Pu[28],'IS12',1,1)
             endif
             if  uid != 'u004'
@@ -486,8 +478,10 @@ scope DeathEvent initializer InitDeathEvent
         PlayerHeroAddState(pid,uid,tu)
 
 
-        if  GetRandomReal(1,10000)<=5
-            CreateItem('IP07',GetUnitX(tu),GetUnitY(tu))
+        if  uid >= 'g00A' and uid <= 'g00Z'
+            if  GetRandomReal(1,10000)<=5
+                CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
+            endif
         endif
 
 
@@ -570,11 +564,7 @@ scope DeathEvent initializer InitDeathEvent
                             GameChallengPlayerDeathEvent(u1)
                             
 
-                            if  GetUnitIntState(Pu[1],'FB17') > 0
-                                //清除法宝的伤害加成
-                                AddUnitRealState(Pu[1],17,-I2R(GetUnitIntState(Pu[1],'FC17'))*0.1)
-                                SetUnitIntState(Pu[1],'FC17',0)
-                            endif
+
 
                         endif
                     endif

@@ -184,11 +184,14 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
 
             for n = 1,2
                 id = GetUnitIntState(Pu[1],400+n)
-                if  id > 0
+                
+                if  id > 0 and id != 'CF01'
                     if  id >= 'FB01' and id <= 'FB99'
                         GivePlayerMagicItem(pid,id)
                     else
-                        UnitAddItemExEx(Pu[2],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+
+                        UnitAddItemExEx(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜您通关副本！奖励"+GetObjectName(id)+"x1")
                     endif
                 endif
             end

@@ -169,7 +169,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
-                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/300",0.03)
+                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/350",0.03)
                     SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
 
                     if  life+0.5 >= maxlife
@@ -353,6 +353,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 endif
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币！")
                     ShowPlayerTaskUIOfPlayer(pid,false,0)
                     SetPlayerTaskUIChatOfPlayer(pid," "," ",0)
                     SetPlayerTaskUITaskOfPlayer(pid," ",0)
@@ -397,24 +399,24 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
                 //Pu[23]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+512,270)//占星方士
                 
-                Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
+                //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
                 Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,90)//礼包
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,301)
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,351)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
 
                 AttackTexttag[pid] = CreateTextTag()
-                SetTextTagText(AttackTexttag[pid],"0/300",0.03)
+                SetTextTagText(AttackTexttag[pid],"0/350",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
 
                 //ShowUnit(Pu[23],false)
                 
-                ShowUnit(Pu[25],false)
+                //ShowUnit(Pu[25],false)
 
 
                 RefreshAttackRoom(pid,AttackRoomUid[pid])
