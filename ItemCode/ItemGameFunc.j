@@ -471,31 +471,35 @@ library ItemGameFunc uses DamageCode
 
     function SetPlayerMonsterSoulItem(int pid)
         string s = ""
-        if  PlayerMonsterSoulNum == 0
-            s = "|cffffcc00抽取消耗：|r10金币"
-        elseif  PlayerMonsterSoulNum == 1
-            s = "|cffffcc00抽取消耗：|r300金币"
-        elseif  PlayerMonsterSoulNum == 2
-            s = "|cffffcc00抽取消耗：|r100杀敌数"
-        elseif  PlayerMonsterSoulNum == 3
-            s = "|cffffcc00抽取消耗：|r1000金币"
-        elseif  PlayerMonsterSoulNum == 4
-            s = "|cffffcc00抽取消耗：|r1玄铁"
-        elseif  PlayerMonsterSoulNum == 5
-            s = "|cffffcc00抽取消耗：|r300杀敌数"
-        elseif  PlayerMonsterSoulNum == 6
-            s = "|cffffcc00抽取消耗：|r2000金币"
-        elseif  PlayerMonsterSoulNum == 7
-            s = "|cffffcc00抽取消耗：|r600杀敌数"
+        if  PlayerMonsterSoulNum < 8
+            if  PlayerMonsterSoulNum == 0
+                s = "|cffffcc00抽取消耗：|r10金币"
+            elseif  PlayerMonsterSoulNum == 1
+                s = "|cffffcc00抽取消耗：|r300金币"
+            elseif  PlayerMonsterSoulNum == 2
+                s = "|cffffcc00抽取消耗：|r100杀敌数"
+            elseif  PlayerMonsterSoulNum == 3
+                s = "|cffffcc00抽取消耗：|r1000金币"
+            elseif  PlayerMonsterSoulNum == 4
+                s = "|cffffcc00抽取消耗：|r1玄铁"
+            elseif  PlayerMonsterSoulNum == 5
+                s = "|cffffcc00抽取消耗：|r300杀敌数"
+            elseif  PlayerMonsterSoulNum == 6
+                s = "|cffffcc00抽取消耗：|r2000金币"
+            elseif  PlayerMonsterSoulNum == 7
+                s = "|cffffcc00抽取消耗：|r600杀敌数"
+            endif
+            s = s + "|n|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
+            s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))+"%"
+            s = s + "|n|n|cffffcc00可获得：|r|cffff0080"
+            for num = 0,7
+                s = s + "|n"+GetMonsterSoulLuck(num)+" "+GetMonsterSoulState(num)
+            end
+            s = s + "|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
+            s = s + "|n|r|cff808080[中奖后会重置抽取几率]|r"
+        else
+            s = "|cffffcc00您已集齐所有兽魂！！！|r"
         endif
-        s = s + "|n|cffffcc00抽取次数：|r"+I2S(PlayerMonsterSoulLuckNum)
-        s = s + "|n|cffffcc00抽取几率：|r"+I2S((7+PlayerMonsterSoulLuckNum*3))+"%"
-        s = s + "|n|n|cffffcc00可获得：|r|cffff0080"
-        for num = 0,7
-            s = s + "|n"+GetMonsterSoulLuck(num)+" "+GetMonsterSoulState(num)
-        end
-        s = s + "|n|n|r|cff808080[抽取不会获得相同兽魂]|r"
-        s = s + "|n|r|cff808080[中奖后会重置抽取几率]|r"
         if  Player(pid) == GetLocalPlayer() 
             YDWESetItemDataString('IS12',3,s)
             YDWESetItemDataString('IZ0C',3,s)
