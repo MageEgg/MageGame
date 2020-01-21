@@ -779,4 +779,45 @@ library ItemGameFunc uses DamageCode
         endif
     endfunction
 
+    ///////////////////////////////拾取函数///////////////////////////////////////////
+
+    function PickUpItemOfIP07Func()
+        int num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IP07')
+        if  GetItemTypeId(GetEnumItem()) == 'IP07'
+            RemoveItem(GetEnumItem())
+            SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
+        endif
+    endfunction
+
+    function PickUpItemOfIP07(unit u,real x,real y)
+        rect rc = Rect( x - 550, y - 550, x + 550, y + 550 )
+        PickUpItemUnit = u
+        LocAddEffectSetSize(x,y,"effect_az_goods_tp_target(3).mdx",1)
+        EnumItemsInRect(rc, null, function PickUpItemOfIP07Func)
+        RemoveRect(rc)
+        PickUpItemUnit = null
+        rc = null
+    endfunction
+
+    function PickUpItemOfIN30Func()
+        int num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IN30')
+        if  GetItemTypeId(GetEnumItem()) == 'IN30'
+            RemoveItem(GetEnumItem())
+            SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
+        endif
+    endfunction
+
+    function PickUpItemOfIN30(unit u,real x,real y)
+        rect rc = Rect( x - 550, y - 550, x + 550, y + 550 )
+        PickUpItemUnit = u
+        LocAddEffectSetSize(x,y,"effect_az_goods_tp_target(3).mdx",1)
+        EnumItemsInRect(rc, null, function PickUpItemOfIN30Func)
+        RemoveRect(rc)
+        PickUpItemUnit = null
+        rc = null
+    endfunction
+
+
+
+
 endlibrary

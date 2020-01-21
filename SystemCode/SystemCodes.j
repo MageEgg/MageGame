@@ -656,9 +656,6 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         scope PrizePool
 
         int array PrizePoolData[80][200]
-        
-
-
 
         //获取奖励id
         function GetPrizeData(int page,int pool,int index)->int

@@ -443,6 +443,10 @@ scope ItemSystem initializer InitItemSystem
         if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
             PlayerGetGameGift(pid,itemid)
         endif
+
+        if  itemid == 'IP07'
+            PickUpItemOfIP07(u1,GetUnitX(u1),GetUnitY(u1))
+        endif
         
         if  IsItemPowerup(GetManipulatedItem()) == true //清除
             
@@ -520,6 +524,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IN27'//先天道果箱IN27注册
             UnitAddPoolItemShow(u1,14)
         elseif  itemid == 'IN30'//幸运星盒IN30注册
+            PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
             UnitAddPoolItemShow(u1,15)
         elseif  itemid == 'IN00'//锦囊IN00注册
             UnitAddPoolItemShow(u1,16)
