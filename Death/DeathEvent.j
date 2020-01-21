@@ -332,10 +332,11 @@ scope DeathEvent initializer InitDeathEvent
     function KillXCUnitFunc(unit wu,unit tu,int uid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = AttackRoomXCUnitNum
-        KillXCUnitNum = KillXCUnitNum + 1
+        
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
+            AttackRoomXCNum = AttackRoomXCNum + 1
             if  AttackRoomXCNum > 24
                 AttackRoomXCNum = 1
             endif
@@ -355,7 +356,7 @@ scope DeathEvent initializer InitDeathEvent
             */
 
             if  AttackRoomXCUnitNum <= 0
-
+                AttackRoomXCNum = AttackRoomXCNum + 1
                 if  AttackRoomXCNum > 24
                     AttackRoomXCNum = 1
                 endif
