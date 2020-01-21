@@ -23,6 +23,11 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         endif
         return ""
     endfunction
+
+    function AddPlayerMeridiansStateOfLevel(int pid,int num,int lv)
+        int id = 'RM1A'+(num-1)*256
+        SetPlayerTechResearchedEx(Player(pid),id+num-1)
+    endfunction
     
     function AddPlayerMeridiansState(int pid,int num)
         int lv = GetDzPlayerData(pid,6,num+1)
@@ -106,6 +111,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
                     AddDzPlayerData(pid,1,10,1)
                     AddDzPlayerData(pid,6,num+1,1)
                     AddDzPlayerData(pid,6,1,1)
+                    AddPlayerMeridiansStateOfLevel(pid,num,GetDzPlayerData(pid,6,num+1))
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r恭喜你成功突破|cffffff00“"+GetMeridiansName(num)+"”|r！|r[今日成功突破经脉 |cffffcc00"+I2S(GetDzPlayerData(pid,1,10))+"/"+I2S(DzMeridiansDayNum)+"|r]")
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")

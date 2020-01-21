@@ -317,18 +317,18 @@ library AttackUnit uses DamageCode
     function AddBossAnger(unit wu)
         unit u = wu
         int time = 0
+        int nuqi = 0
         TimerStart(1,true)
         {
-            int nuqi = 0
             time = time + 1
             if  time <= 90 and GetUnitTypeId(u) != 0 and u != null
                 if  ModuloInteger(time,10) == 0
                     nuqi = nuqi + 1
                     if  GetUnitAbilityLevel(u,'AZ80'+nuqi-1) > 0
-                        UnitAddAbility(u,'AZ80'+nuqi-1)
-                        AddUnitRealState(u,9,10)
-                        AddUnitRealState(u,9,1.7)
+                        UnitRemoveAbility(u,'AZ80'+nuqi-1)
                     endif
+                    AddUnitRealState(u,9,10)
+                    AddUnitRealState(u,9,1.7)
                     UnitAddAbility(u,'AZ80'+nuqi)
                 endif
                 if  time == 90
