@@ -2200,19 +2200,26 @@ endfunction
             endif
         else
             damage = GetAbilityDamage(wu,id,lv)
-             if  GetUnitTypeId(wu) == 'H011'
-                i1 = GetHeroAbilityLevelByIndex(wu,5)
-                if  i1 >= 4
-                    damage = damage * 3.0
-                elseif  i1 >= 3
-                    damage = damage * 2.1
-                elseif  i1 >= 2
-                    damage = damage * 1.8
+
+            if  GetUnitTypeId(wu) == 'H011'
+                if  SpellS511Spell(u1.u) == true
+                    i1 = GetHeroAbilityLevelByIndex(wu,5)
+                    if  i1 >= 4
+                        damage = damage * 3.0
+                    elseif  i1 >= 3
+                        damage = damage * 2.1
+                    elseif  i1 >= 2
+                        damage = damage * 1.8
+                    else
+                        damage = damage * 1.5
+                    endif
                 else
-                    damage = damage * 1.5
+                    damage = damage * 0.5
                 endif
             endif
+
         endif
+
 
         if  id >= 'S000' and id <= 'S300'
             if  id== 'S006'

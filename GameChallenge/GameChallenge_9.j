@@ -514,7 +514,7 @@ library GameChallenge9 uses GameChallengeBase
         GameTeamChallengUnit(2) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6490,6330,270)
         GameTeamChallengUnit(3) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',6645,6330,270)
         for num = 0,3
-            SetUnitScale(GameTeamChallengUnit(num),9,9,9)
+            SetUnitScale(GameTeamChallengUnit(num),10.5,10.5,10.5)
             SetUnitVertexColor(GameTeamChallengUnit(num),255,255,255,0)
             SetUnitFlyHeight(GameTeamChallengUnit(num),10,10000)
         end
