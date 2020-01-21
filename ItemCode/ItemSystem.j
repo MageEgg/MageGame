@@ -141,7 +141,7 @@ scope ItemSystem initializer InitItemSystem
         int use = 0
         num = num - 1
         if  index == 1
-            use = 1000 + num * 1000
+            use = 1500 + num * 1500
         elseif  index == 2
             use = 5000 + num * 5000
         elseif  index == 3
@@ -162,7 +162,6 @@ scope ItemSystem initializer InitItemSystem
                 YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r"+I2S(use1)+"金币*次数|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
             endif
         endif
-        BJDebugMsg("设置说明")
     endfunction
     //抽技能
     function PlayerAbilityDraw(int pid,int itemid)
