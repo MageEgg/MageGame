@@ -275,7 +275,7 @@ library GameChallenge4 uses GameChallengeBase
                             x = -1088
                             y = 1632
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf49',x,y,270)
-                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],0)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                             SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -318,7 +318,7 @@ library GameChallenge4 uses GameChallengeBase
                         x = -2016
                         y = 1632
                         CreateUsesGameChallengUnitExOfAng(pid,num,'uf48',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],1)
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -361,7 +361,7 @@ library GameChallenge4 uses GameChallengeBase
                             x = -256
                             y = 800
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf47',x,y,270)
-                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],0)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                             SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -404,7 +404,7 @@ library GameChallenge4 uses GameChallengeBase
                         x = -1088
                         y = 800
                         CreateUsesGameChallengUnitExOfAng(pid,num,'uf46',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],1)
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -447,7 +447,7 @@ library GameChallenge4 uses GameChallengeBase
                             x = -2016
                             y = 800
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf45',x,y,270)
-                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],0)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                             SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -490,7 +490,7 @@ library GameChallenge4 uses GameChallengeBase
                         x = -256
                         y = 32
                         CreateUsesGameChallengUnitExOfAng(pid,num,'uf44',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],1)
                         UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                         UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                         SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -533,7 +533,7 @@ library GameChallenge4 uses GameChallengeBase
                             x = -1088
                             y = 32
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf43',x,y,270)
-                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],0)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                             SetUnitAnimation(GameChallengUnit[num],"attack")
@@ -579,7 +579,7 @@ library GameChallenge4 uses GameChallengeBase
                             x = -2016
                             y = 32
                             CreateUsesGameChallengUnitExOfAng(pid,num,'uf42',x,y,270)
-                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
+                            SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],0)
                             UnitAddEffectOfGameChalleng(GameChallengUnit[num])
                             UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
                             SetUnitAnimation(GameChallengUnit[num],"attack")
