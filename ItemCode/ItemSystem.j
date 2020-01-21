@@ -1,6 +1,14 @@
 
 scope ItemSystem initializer InitItemSystem
-
+    function UnitAddPoolItemShow(unit wu,int prizeid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int id = UnitAddPoolItem(wu,prizeid)
+        if  id >= 'IC00' and id <= 'IC99'
+            //不显示
+        else
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 "+GetObjectName(id)+"x1")
+        endif
+    endfunction
     
 
     //装备升级
@@ -441,15 +449,7 @@ scope ItemSystem initializer InitItemSystem
         flush locals
     endfunction
 
-    function UnitAddPoolItemShow(unit wu,int prizeid)
-        int pid = GetPlayerId(GetOwningPlayer(wu))
-        int id = UnitAddPoolItem(wu,prizeid)
-        if  id >= 'IC00' and id <= 'IC99'
-            //不显示
-        else
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 "+GetObjectName(id)+"x1")
-        endif
-    endfunction
+    
     
 
     
