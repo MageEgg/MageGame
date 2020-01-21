@@ -7,6 +7,7 @@ library MagicItemCollectFrame uses GameFrame
     22      锻造
     23      补天石  ui\\widgets\\escmenu\\human\\alliance-gold.blp
     24      鸿蒙结晶ui\\widgets\\escmenu\\human\\alliance-lumber.blp
+    25      出售
     51-75   羁绊按钮
     */
 
@@ -163,6 +164,8 @@ library MagicItemCollectFrame uses GameFrame
         CreateText(23,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
         CreateText(24,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
 
+        CreateButton(25,Button.frameid,TYPE_BUTTON,2,Back.frameid,2,-0.01,-0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Sale0.tga")
+
 
 
         
@@ -226,11 +229,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     //设置最后点击的按钮
     function SetPlayerMagicItemLast(int pid,int index)
         int last = GetPlayerMagicItemLast(pid)
-        if  last > 0
-            DzFrameSetTexture(BUTTON_Back[last][3],"war3mapImported\\alpha.tga",0)
-        endif
-        if  index > 0
-            DzFrameSetTexture(BUTTON_Back[index][3],"war3mapImported\\UI_ButtonSelect.tga",0)
+        if  GetLocalPlayer() == Player(pid)
+            if  last > 0
+                DzFrameSetTexture(BUTTON_Back[last][3],"war3mapImported\\alpha.tga",0)
+            endif
+            if  index > 0
+                DzFrameSetTexture(BUTTON_Back[index][3],"war3mapImported\\UI_ButtonSelect.tga",0)
+            endif
         endif
         SetUnitIntState(Pu[1],250,index)
     endfunction
@@ -789,6 +794,22 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
     endfunction
 
+    //出售法宝
+    function SalePlayerMagicItem(int pid)
+        int last = GetPlayerMagicItemLast(pid)
+        int id = GetPlayerMagicItem(pid,last)
+        int color = GetTypeIdData(id,101)
+        int give = (5-color) * 10
+        if  id > 0
+            RemPlayerMagicItemByIndex(pid,last)
+            SetPlayerMagicItemLast(pid,0)
+            AdjustPlayerStateBJ(give, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r"+GetMagicItemName(id)+"出售成功！奖励 玄铁x"+I2S(give))
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
+        endif
+    endfunction
+
     //重置法宝
     function RecastPlayerMagicItem(int pid)
         int last = GetPlayerMagicItemLast(pid)
@@ -812,10 +833,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 //重置玩家选择
                 SetPlayerMagicItemLast(pid,0)
             else
-                BJDebugMsg("补天石不足")
+                SetPlayerMagicItemLast(pid,0)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")
             endif
         else
-            BJDebugMsg("未选中法宝")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
         endif
     endfunction
 
@@ -844,14 +866,16 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     //重置玩家选择
                     SetPlayerMagicItemLast(pid,0)
                 else
-                    BJDebugMsg("鸿蒙结晶不足")
+                    SetPlayerMagicItemLast(pid,0)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r鸿蒙结晶不足！无法锻造法宝")
                 endif
             else
                 //重置玩家选择
-                BJDebugMsg("法宝品级太高")
+                SetPlayerMagicItemLast(pid,0)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝品级太高，无法锻造！")
             endif
         else
-            BJDebugMsg("未选中法宝")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
         endif
     endfunction
 

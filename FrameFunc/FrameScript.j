@@ -129,6 +129,10 @@
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffffd24d重铸法宝|r|Cfff0f0f0的材料。|r")
         elseif  id == 24
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")
+        elseif  id == 25
+            SetTipsData(10,"","|CffF0F0F0出售法宝，获得|r|Cffffd24d法宝品质*10|r|Cfff0f0f0玄铁。|n|n|r|Cff00ff7f操作提示：点击指定法宝，再点击出售按钮。|r")
+            DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_MagicItem_Sale0.tga",0)
+            
         elseif  id == 652 or id == 653
             int exp = GetDzPlayerData(pid,4,1)
             int lv = exp / 8
@@ -208,7 +212,7 @@
         int now = GetHeroXP(Pu[1])-last
         int use = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))-last
         DzFrameShow(UI_TipsHead, true)
-        SetTipsData(1,"",I2S(now)+"/"+I2S(use))
+        SetTipsData(10,"","|cffffcc00境界经验：|r"+I2S(now)+"/"+I2S(use))
         ShowTipsUI()
     endfunction
     
@@ -241,7 +245,7 @@
                     if  id >= 1 and id <= 20
                         BoxShowMagicItem(pid,id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
-                    elseif  id >= 21 and id <= 24
+                    elseif  id >= 21 and id <= 25
                         BoxShowResources(pid, id)
                     elseif  id >= 31 and id <= 38
                         BoxShowMagicItem(pid,id-30)
