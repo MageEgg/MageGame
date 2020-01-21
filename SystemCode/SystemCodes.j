@@ -794,6 +794,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     scope ItemPool
         itempool array ItemPool
 
+
         function UnitAddPoolItem(unit wu,int index)->int
             int id = 0
             bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu))
@@ -813,11 +814,9 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         endfunction
 
         function InitUnitPoolFunc()
-            for i = 1,20
+            for i = 1,30
                 ItemPool[i] = CreateItemPool()
             end
-
-
 
 
 //炽星魔盒IN31注册
@@ -837,7 +836,7 @@ RegisterItemPool(11,'IP01',5)
 RegisterItemPool(11,'IP06',3)
 RegisterItemPool(11,'IP08',3)
 RegisterItemPool(11,'IP09',3)
-RegisterItemPool(11,'INDA',2)
+RegisterItemPool(11,'IN30',2)
 RegisterItemPool(11,'IN19',1)
 RegisterItemPool(11,'IC00',40)
 
@@ -859,12 +858,34 @@ RegisterItemPool(17,'IN27',1)
 RegisterItemPool(17,'I013',3)
 RegisterItemPool(17,'I015',1)
 RegisterItemPool(17,'IN28',2)
-RegisterItemPool(17,'INDA',2)
+RegisterItemPool(17,'IN30',2)
 RegisterItemPool(17,'IN19',1)
 RegisterItemPool(17,'IP01',2)
 RegisterItemPool(17,'IP06',3)
 RegisterItemPool(17,'IP08',1)
 RegisterItemPool(17,'IC00',32)
+//入门道果箱IN25注册
+RegisterItemPool(12,'ID12',10)
+RegisterItemPool(12,'ID13',2)
+RegisterItemPool(12,'ID02',5)
+RegisterItemPool(12,'ID03',1)
+
+
+
+
+//后天道果箱IN26注册
+RegisterItemPool(13,'ID14',15)
+RegisterItemPool(13,'ID15',3)
+RegisterItemPool(13,'ID16',1)
+RegisterItemPool(13,'ID04',8)
+RegisterItemPool(13,'ID05',2)
+RegisterItemPool(13,'ID06',1)
+RegisterItemPool(13,'IP08',3)
+RegisterItemPool(13,'IP09',3)
+
+
+
+
 //先天道果箱IN27注册
 RegisterItemPool(14,'ID07',100)
 RegisterItemPool(14,'ID08',20)
@@ -929,9 +950,9 @@ RegisterItemPool(21,'CS21',5)
 RegisterItemPool(21,'CS22',1)
 RegisterItemPool(21,'CS24',2)
 
-
-
-
+//技能宝箱IN32注册
+RegisterItemPool(25,'CS23',10)
+RegisterItemPool(25,'CS21',5)
 
 //1附魔宝箱IN29注册
 RegisterItemPool(22,'IS21',3)
@@ -972,6 +993,7 @@ RegisterItemPool(2,'IF29',1)
 RegisterItemPool(2,'IF30',1)
 RegisterItemPool(2,'IF31',1)
 RegisterItemPool(2,'IF32',1)
+
 
             
         endfunction
