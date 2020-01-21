@@ -174,7 +174,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             if  MeridiansDay < 0
                 MeridiansDay = 0
             endif
-
+            BJDebugMsg.execute("初始化天数 经脉日：："+I2S(MeridiansDay))
             BJDebugMsg.execute("初始化天数 已发布：："+I2S(GamePuOverDay))
             BJDebugMsg.execute("初始化天数 通行证：："+I2S(MissionDay))
             

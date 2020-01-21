@@ -98,6 +98,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     function MeridiansChallengeDeath(int pid)
         int num = GetRandomInt(1,8)
         real ran = 0
+        BJDebugMsg(I2S(GetDzPlayerData(pid,1,10)))
         if  GetDzPlayerData(pid,1,10) < DzMeridiansDayNum
             if  GetDzPlayerData(pid,6,num+1) < MeridiansMaxLv
                 ran = 0.01*(40+3*GameLevel)
