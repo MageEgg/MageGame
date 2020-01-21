@@ -60,7 +60,7 @@ library DzDataSetting uses DzBase
                 max = 0
             elseif  flag == 10 //经脉今日上限
                 max = DzMeridiansDayNum
-            elseif  flag >= 11 or flag <= 20
+            elseif  flag >= 11 and flag <= 20
                 max = 0
             elseif  flag == 21 or flag == 22 //公众号礼包 入群礼包
                 max = 1
