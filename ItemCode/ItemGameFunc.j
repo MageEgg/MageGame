@@ -597,12 +597,27 @@ library ItemGameFunc uses DamageCode
         end
     endfunction
 
-    function SetPlayerMonsterSoulSkillOfHeroLevel(int pid) //渡劫
-        /*SetPlayerMonsterSoulSkill(pid)
-        if  PlayerMonsterSoulNum == 8
-            //觉醒
-            AddPlayerMonsterSoulSkill(pid)
-        endif*/
+    //////////////////////////////使用类//////////////////////////////////
+    function PlayerUsesstrangeItem(int pid,int itid)
+        if  itid == 'IN07'
+            
+        elseif  itid == 'IN08'
+        elseif  itid == 'IN09'
+        elseif  itid == 'IN10'
+        elseif  itid == 'IN11'
+        elseif  itid == 'IN12'
+        elseif  itid == 'IN13'
+        elseif  itid == 'IN14'
+        elseif  itid == 'IN15'
+        elseif  itid == 'IN16'
+        elseif  itid == 'IN17'
+        elseif  itid == 'IN18'
+        elseif  itid == 'IN20'
+        elseif  itid == 'IN21'
+        elseif  itid == 'IN22'
+        elseif  itid == 'IN23'
+        elseif  itid == 'IN24'
+        endif
     endfunction
 
 endlibrary

@@ -423,10 +423,10 @@ library GameChallenge8 uses GameChallengeBase
                 IsFinshChallenge(8) = true
                 //奖励
                 PlayerFinishPlotEx(pid,8)
-                if  GameTeamChallengeBool[0] == false
+                /*if  GameTeamChallengeBool[0] == false
                     GameTeamChallengeBool[0] = true
                     ExecuteFunc("ShowGameTeamChallengeNPC")
-                endif
+                endif*/
                 /*if  AttackUnitWN <= 16
                     for num = 1,4
                         UnitAddItemEx(Pu[1],'IN19')
