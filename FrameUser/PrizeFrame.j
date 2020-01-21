@@ -184,11 +184,8 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
 
             for n = 1,2
                 id = GetUnitIntState(Pu[1],400+n)
-                if  id == 'CF01'
-                    id = 'IP01'
-                endif
                 
-                if  id > 0
+                if  id > 0 and id != 'CF01'
                     if  id >= 'FB01' and id <= 'FB99'
                         GivePlayerMagicItem(pid,id)
                     else

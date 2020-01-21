@@ -836,10 +836,22 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         endfunction
 
         function InitUnitPoolFunc()
-            for i = 1,30
+            for i = 1,31
                 ItemPool[i] = CreateItemPool()
             end
 
+
+RegisterItemPool(31,'I014',1)
+RegisterItemPool(31,'I015',1)
+RegisterItemPool(31,'IN00',1)
+RegisterItemPool(31,'IS24',1)
+RegisterItemPool(31,'IS25',1)
+RegisterItemPool(31,'IS26',1)
+RegisterItemPool(31,'IP04',1)
+RegisterItemPool(31,'CS22',1)
+RegisterItemPool(31,'IP02',1)
+RegisterItemPool(31,'IP03',1)
+RegisterItemPool(31,'IP01',1)
 
 //炽星魔盒IN31注册
 RegisterItemPool(11,'I011',10)

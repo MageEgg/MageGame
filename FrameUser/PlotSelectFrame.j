@@ -191,9 +191,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     
 
-        if  ran <= 10
-            id1 = GetPrize(pid,14,true)
-        elseif  ran <= 90
+        if  ran <= 85
             id1 = GetPrize(pid,13,true)
         else
             id1 = GetPrize(pid,12,true)
