@@ -75,6 +75,7 @@ library HeroStateFunc uses DamageCode
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
             AddUnitRealState(Pu[1],50,10+(3*lv))
             AddUnitRealState(Pu[1],49,50+(20*lv))
+            UnitAddItemEx(Pu[1],'IN25')
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1V',true) == 1 //金币礼包
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)

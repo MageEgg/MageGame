@@ -288,21 +288,21 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 SetUnitAbilityLevel(Pu[1],'AZ96',4)
             endif
         end
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
         TimerStart(1,true)
         {
             time = time - 1
             if  time > 0
                 if  time > 10 and time <= 40
                     if  ModuloInteger(time,5) == 0
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家做好战斗准备！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台做好战斗准备！！！|r")
                     endif
                 elseif  time <= 10
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家前往封神台准备战斗！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台准备战斗！！！|r")
                 endif
             else
                 OpenChangeGodStageLeagueUnit(x,y)
