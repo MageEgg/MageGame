@@ -783,7 +783,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitPoolAddUnitType(HeroPool, 'H006', 1 )
             UnitPoolAddUnitType(HeroPool, 'H007', 1 )
             UnitPoolAddUnitType(HeroPool, 'H008', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H009', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H009', 1 )
             UnitPoolAddUnitType(HeroPool, 'H010', 1 )
             UnitPoolAddUnitType(HeroPool, 'H011', 1 )
             UnitPoolAddUnitType(HeroPool, 'H012', 1 )
@@ -791,7 +791,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitPoolAddUnitType(HeroPool, 'H014', 1 )
             UnitPoolAddUnitType(HeroPool, 'H015', 1 )
             UnitPoolAddUnitType(HeroPool, 'H016', 1 )
-
+            //UnitPoolAddUnitType(HeroPool, 'H017', 1 )
             UnitPoolAddUnitType(HeroPool, 'H018', 1 )
             UnitPoolAddUnitType(HeroPool, 'H019', 1 )
             UnitPoolAddUnitType(HeroPool, 'H020', 1 )
@@ -805,6 +805,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitPoolAddUnitType(HeroPool, 'H028', 1 )
             UnitPoolAddUnitType(HeroPool, 'H029', 1 )
             UnitPoolAddUnitType(HeroPool, 'H030', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H031', 1 )
 
             
         endfunction
