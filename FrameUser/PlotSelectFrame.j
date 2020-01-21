@@ -145,7 +145,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function RePlotSelectState3(int pid,int index)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
-        DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
+        //DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
         SetPlotButtonShow(index,true)
     endfunction
 
@@ -172,17 +172,9 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         for i = 1,8
             SetPlayerPlotPrizeId(pid,i,1,'IP01')
             SetPlayerPlotPrizeId(pid,i,2,'CF01')
+
+            SetPlayerPlotPrizeId(pid,i,2,'IN32')
         end
-        /*
-        SetPlayerPlotPrizeId(pid,1,2,'CS01')
-        SetPlayerPlotPrizeId(pid,2,2,'CS01')
-        SetPlayerPlotPrizeId(pid,3,2,'CS02')
-        SetPlayerPlotPrizeId(pid,4,2,'CS02')
-        SetPlayerPlotPrizeId(pid,5,2,'CS03')
-        SetPlayerPlotPrizeId(pid,6,2,'CS03')
-        SetPlayerPlotPrizeId(pid,7,2,'CS04')
-        SetPlayerPlotPrizeId(pid,8,2,'CS04')
-        */
     endfunction
 
     //刷新深渊模式奖励
@@ -267,10 +259,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int ran = GetRandomInt(1,100)
         if  index == 1
             return 14
-        elseif  index >= 2and index <= 4
+        elseif  index >= 2 and index <= 4
+            BJDebugMsg("副本2-4概率"+I2S(ran))
             if  ran <= 80
+                BJDebugMsg(I2S(index)+"副本概率"+I2S(ran)+"头顶带绿")
                 return 14
             else
+                BJDebugMsg(I2S(index)+"副本概率"+I2S(ran)+"出了个蓝")
                 return 13
             endif
         else

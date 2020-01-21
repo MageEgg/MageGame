@@ -389,7 +389,7 @@ library SystemCodes uses ServerTime,Define1
     function UnitAddItemExEx(unit u,item it)
         int pid = GetPlayerId(GetOwningPlayer(u))
         if  u == Pu[1]
-            if  UnitCanGetItem(u) == true
+            if  UnitCanGetItem(u) == true or IsItemPowerup(it) == true 
                 UnitAddItem(u,it)
             else
                 SetItemPosition(it,GetUnitX(Pu[2]),GetUnitY(Pu[2]))

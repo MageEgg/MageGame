@@ -63,7 +63,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FJ07',"秘宝","ReplaceableTextures\\CommandButtons\\BTNFJ07.BLP","")
         call InitTypeIdStrings('FJ08',"坐骑","ReplaceableTextures\\CommandButtons\\BTNFJ08.BLP","")
         call InitTypeIdStrings('FJ09',"法器","ReplaceableTextures\\CommandButtons\\BTNFJ09.BLP","")
-        
+
         call InitTypeIdStrings('IJ01',"低级道果[1]","war3mapImported\\ch_DG1.mdl","")
         call InitTypeIdStrings('IJ02',"中级道果[2]","war3mapImported\\ch_DG2.mdl","")
         call InitTypeIdStrings('IJ03',"|cff00FA9A高级道果[3]|r","war3mapImported\\ch_DG3.mdl","")
@@ -413,11 +413,11 @@ InitEquipData('E224',0,0,35000,50,0,'E225',0,0)
 
         
 
-        SetTypeIdData('g00A',103,10)
-        SetTypeIdData('g00B',103,30)
-        SetTypeIdData('g00C',103,55)
-        SetTypeIdData('g00D',103,90)
-        SetTypeIdData('g00E',103,150)
+        SetTypeIdData('g00A',103,15)
+        SetTypeIdData('g00B',103,35)
+        SetTypeIdData('g00C',103,60)
+        SetTypeIdData('g00D',103,100)
+        SetTypeIdData('g00E',103,160)
 
         SetTypeIdData('u020',103,5)
         SetTypeIdData('u021',103,100)
