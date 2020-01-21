@@ -47,8 +47,6 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function RemoveAttackSummonUnit(int pid,unit u)
         GroupRemoveUnit(AttackSummonUnitGroup[pid],u)
-        FlushChildHashtable(ht,GetHandleId(u))
-        RemoveUnit(u)
     endfunction
 
     function FlushAttackSummonUnitGroupFunc()
@@ -57,20 +55,26 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function FlushAttackSummonUnitGroup(int pid)
-        BJDebugMsg("清空所有召唤的练功房怪")
-        ForGroup(AttackSummonUnitGroup[pid],function FlushAttackSummonUnitGroupFunc)
+        if  CountUnitsInGroup(AttackSummonUnitGroup[pid]) > 0
+            BJDebugMsg("清空所有召唤的练功房怪")
+            ForGroup(AttackSummonUnitGroup[pid],function FlushAttackSummonUnitGroupFunc)
+        endif
     endfunction
 
+
+
     function AttackSummonUnitGroupDeathEvent(int pid,unit u)
-        int uid = GetUnitTypeId(u)
+        FlushAttackSummonUnitGroup(pid)
+        /*
         if  uid == 'xxxx'
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您被"+GetUnitName(u)+"击杀了！")
             RemoveAttackSummonUnit(pid,u)
         endif
-        /*
-        FlushAttackSummonUnitGroup(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您清除练功房所有召唤BOSS！")
         */
+        
+        
+        //DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您清除练功房所有召唤BOSS！")
+        
     endfunction
 
     function SendOperaRectRange()
@@ -284,21 +288,21 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 SetUnitAbilityLevel(Pu[1],'AZ96',4)
             endif
         end
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内从主城处前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神]：|r|cffff0000即将进入最终大决战，封神台传送阵已激活！！！请所有玩家在倒计时内F2前往封神台战斗！！！|r")
         TimerStart(1,true)
         {
             time = time - 1
             if  time > 0
                 if  time > 10 and time <= 40
                     if  ModuloInteger(time,5) == 0
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家做好战斗准备！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台做好战斗准备！！！|r")
                     endif
                 elseif  time <= 10
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家前往封神台准备战斗！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台准备战斗！！！|r")
                 endif
             else
                 OpenChangeGodStageLeagueUnit(x,y)

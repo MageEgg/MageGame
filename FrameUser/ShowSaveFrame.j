@@ -57,20 +57,20 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)
         RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RY1D','RY1D',0,0,0,0)
+        
         //RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)
         RegisterShowSaveFrameData(3,'RY2A','RY2A',0,0,0,0)
         RegisterShowSaveFrameData(3,'RY2B','RY2B',0,0,0,0)
         RegisterShowSaveFrameData(3,'RY2C','RY2C',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RY2D','RY2D',0,0,0,0)
+
         RegisterShowSaveFrameData(4,'RY3A','RY3A',0,0,0,0)
         RegisterShowSaveFrameData(4,'RY3B','RY3B',0,0,0,0)
         RegisterShowSaveFrameData(4,'RY3C','RY3C',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RY3D','RY3D',0,0,0,0)
+        
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RY4D','RY4D',0,0,0,0)
+        
         RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)
@@ -85,11 +85,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RJ1U','RJ1U',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RJ1V','RJ1V',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RJ1W','RJ1W',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RK1A','RK1A',0,0,0,0)
+        //RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
+
+        
         RegisterShowSaveFrameData(5,'RC1A','RC1A',0,0,0,0)
         RegisterShowSaveFrameData(5,'RC1B','RC1B',0,0,0,0)
         RegisterShowSaveFrameData(5,'RC1C','RC1C',0,0,0,0)
@@ -107,6 +105,18 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(5,'RC1O','RC1O',0,0,0,0)
         RegisterShowSaveFrameData(5,'RC1P','RC1P',0,0,0,0)
 
+
+
+        
+        RegisterShowSaveFrameData(6,'RJ1V','RJ1V',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RJ1W','RJ1W',0,0,0,0)
+        RegisterShowSaveFrameData(6,'RY1D','RY1D',0,0,0,0)//6
+        RegisterShowSaveFrameData(6,'RJ1U','RJ1U',0,0,0,0)//38
+        RegisterShowSaveFrameData(6,'RK1A','RK1A',0,0,0,0)//88
+        RegisterShowSaveFrameData(6,'RY2D','RY2D',0,0,0,0)//168
+        //RegisterShowSaveFrameData(6,'RY4D','RY4D',0,0,0,0)//238
+        RegisterShowSaveFrameData(6,'RY3D','RY3D',0,0,0,0)//298
+        
     endfunction
 
 
@@ -164,6 +174,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         int id = GetShowSaveId(page,index+step*4)
         int h = 10
         int techid = 0
+        int unlock = 0
         string tech = ""
         BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
@@ -181,13 +192,29 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             endif
             
             if  IsSaveFrameTechUnLock(pid,index) == true
+                unlock = 1
+            else
+                unlock = 0
+            endif
+            
+            if  unlock == 1
                 SetTipsData(h,"",GetTypeIdStateTips(id))
             else
                 SetTipsData(h,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
             endif
+
             h = h + 1
+
             SetTipsData(h,"",GetTypeIdTips(id))
 
+            h = h + 1
+            if  page >= 1 and page <= 4
+                if  unlock == 1
+                    SetTipsData(h,"","|cffffcc00所有内容属性均叠加|r\n|cff00ff00（点击激活/隐藏外观）|r")
+                else
+                    SetTipsData(h,"","|cff808080（解锁后可激活/隐藏外观）|r")
+                endif
+            endif
 
             ShowTipsUI()
         endif

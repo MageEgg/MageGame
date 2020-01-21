@@ -146,15 +146,12 @@ scope DeathEvent initializer InitDeathEvent
         int next = GetTypeIdData(id,106)
         int gl = 50
 
-        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
+        if  next == 'E102' or next == 'E103'
             gl = 100
-        else
-            if  next == 'E102' or next == 'E103'
-                gl = 100
-            elseif  next >= 'E103' and next <= 'E106'
-                gl = 80
-            endif
+        elseif  next >= 'E103' and next <= 'E106'
+            gl = 80
         endif
+            
         if  num-exp > 1
             SetItemCharges(it,num-exp)
         else
@@ -489,6 +486,11 @@ scope DeathEvent initializer InitDeathEvent
         PlayerHeroAddState(pid,uid,tu)
 
 
+        if  GetRandomReal(1,10000)<=5
+            CreateItem('IP07',GetUnitX(tu),GetUnitY(tu))
+        endif
+
+
     end
     function KillUnitNotHasKiller(unit wu,int uid)
         if  GetUnitAbilityLevel(wu,'AZ99') > 0
@@ -564,7 +566,9 @@ scope DeathEvent initializer InitDeathEvent
                         if  FB01Func(u1) == false
                             RevivePlayerHero(pid)
                             BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+
                             GameChallengPlayerDeathEvent(u1)
+                            
 
                             if  GetUnitIntState(Pu[1],'FB17') > 0
                                 //清除法宝的伤害加成
@@ -608,6 +612,9 @@ scope DeathEvent initializer InitDeathEvent
                     if  uid >= 'mb01' and uid <= 'mb20'
                         AttackBossDeathEvent(u1)
                     endif
+                    if  uid == 'uJ01'
+                        MeridiansChallengeDeath(pid2)
+                    endif
                 else
                     KillUnitNotHasKiller(u1,uid)
                 
@@ -631,6 +638,14 @@ scope DeathEvent initializer InitDeathEvent
                         OpenOperaB_Boss()
                     endif
                 endif
+
+                if  GetUnitAbilityLevel(u1,'AZ99') > 0
+                    if  IsUnitInGroup(u1,AttackSummonUnitGroup[GetUnitAbilityLevel(u1,'AZ99')-1])==true//用于进攻怪刷新单位组
+                        RemoveAttackSummonUnit(GetUnitAbilityLevel(u1,'AZ99')-1,u1)
+                    endif
+                endif
+
+                
                 
                 FlushChildHashtable(ht,GetHandleId(u1))
                 RemoveUnitTimer(u1,2)

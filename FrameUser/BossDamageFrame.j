@@ -199,8 +199,8 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
                 if  b == 1
-                    UnitAddItemEx(PlayerUnit[hat][1],'INDA')
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('INDA')+"|r")
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN31')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN31')+"|r")
                 else
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
                 endif
@@ -245,9 +245,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         int hat = 0
         real ch = 0
         int b = 1
-        real lumber = 0
-        real allDam = GetAllDamage()
-        real pr = 0
+        int gold = 0
         ShowBossDamageStringEx()
         for n = 1,4
             min = 0
@@ -261,13 +259,13 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             end
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
-                pr = min/allDam
-                if  pr > 0.5
-                    pr = 0.5
+                if  b == 1
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN31')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN31')+"|r")
+                else
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN29')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN29')+"|r")
                 endif
-                lumber = 1500*(1+pr*2)
-                AddPlayerState(hat,PLAYER_STATE_RESOURCE_LUMBER,R2I(lumber))
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+I2S(R2I(lumber))+"木材|r")
                 b = b + 1
             endif
         end
@@ -278,9 +276,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         int hat = 0
         real ch = 0
         int b = 1
-        real lumber = 0
-        real allDam = GetAllDamage()
-        real pr = 0
+        int gold = 0
         ShowBossDamageStringEx()
         for n = 1,4
             min = 0
@@ -294,13 +290,13 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
             end
             if  hat != -1
                 PlayerBossDamageCos[hat] = 0
-                pr = min/allDam
-                if  pr > 0.5
-                    pr = 0.5
+                if  b == 1
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN31')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN31')+"|r")
+                else
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN29')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN29')+"|r")
                 endif
-                lumber = 1500*(1+pr*2)
-                AddPlayerState(hat,PLAYER_STATE_RESOURCE_LUMBER,R2I(lumber))
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+I2S(R2I(lumber))+"木材|r")
                 b = b + 1
             endif
         end

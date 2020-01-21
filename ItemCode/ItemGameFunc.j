@@ -15,9 +15,6 @@ library ItemGameFunc uses DamageCode
 
     private int array itema
 
-    int DzMeridiansDayNum = 5
-    int MeridiansMaxLv = 5
-
     function SetGifeItemStock(int pid)
         for num = 1,8
             RemoveItemFromStock(Pu[26],'IB00'+num)
@@ -158,7 +155,7 @@ library ItemGameFunc uses DamageCode
                 num = 8
                 if  GameGiftBool[num] == false
                     GameGiftBool[num] = true
-                    AddUnitRealState(Pu[1],108,1)
+                    AddUnitRealState(Pu[1],61,1)
                     DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，练功房怪物数量+1！") 
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
@@ -354,11 +351,11 @@ library ItemGameFunc uses DamageCode
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 5
-            if  GetUnitIntState(Pu[1],108) >= 500
-                AddUnitIntState(Pu[1],108,-500)
+            if  GetUnitIntState(Pu[1],108) >= 350
+                AddUnitIntState(Pu[1],108,-350)
                 return true
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足500！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r|cffff0000您的杀敌数不足350！|r")
                 return false
             endif
         elseif  PlayerMonsterSoulNum == 6
@@ -485,7 +482,7 @@ library ItemGameFunc uses DamageCode
         elseif  PlayerMonsterSoulNum == 4
             s = "|cffffcc00抽取消耗：|r1玄铁"
         elseif  PlayerMonsterSoulNum == 5
-            s = "|cffffcc00抽取消耗：|r500杀敌数"
+            s = "|cffffcc00抽取消耗：|r350杀敌数"
         elseif  PlayerMonsterSoulNum == 6
             s = "|cffffcc00抽取消耗：|r3000金币"
         elseif  PlayerMonsterSoulNum == 7
@@ -606,120 +603,6 @@ library ItemGameFunc uses DamageCode
             //觉醒
             AddPlayerMonsterSoulSkill(pid)
         endif*/
-    endfunction
-
-    //////////////////////////////////经脉分割//////////////////////////////////////
-
-    function GetMeridiansName(int num)->string
-        if  num == 1
-            return "任脉"
-        elseif  num == 2
-            return "督脉"
-        elseif  num == 3
-            return "冲脉"
-        elseif  num == 4
-            return "带脉"
-        elseif  num == 5
-            return "阴跷脉"
-        elseif  num == 6
-            return "阳跷脉"
-        elseif  num == 7
-            return "阴维脉"
-        elseif  num == 8
-            return "阳维脉"
-        endif
-        return ""
-    endfunction
-    
-    function AddPlayerMeridiansState(int pid,int num)
-        int lv = 0
-        for num = 1,8
-
-        end
-    endfunction
-
-    function InitPlayerMeridiansState(int pid)
-        int max = GetDzPlayerData(pid,6,1)
-        int cos = 0
-        for num = 1,8
-            cos = cos + GetDzPlayerData(pid,6,num+1)
-        end
-        if  cos > max
-            for num = 1,8
-                if  max > 0
-                    if  max >= MeridiansMaxLv
-                        max = max - MeridiansMaxLv
-                        SetDzPlayerData(pid,6,num+1,MeridiansMaxLv)
-                    else
-                        SetDzPlayerData(pid,6,num+1,max)
-                        max = 0
-                    endif
-                else
-                    SetDzPlayerData(pid,6,num+1,0)
-                endif
-            end
-        endif
-        for num = 1,8
-            AddPlayerMeridiansState(pid,num)
-        end
-    endfunction
-
-    function OpenMeridiansChallenge(int pid)
-        int num = 0
-        unit u = null
-        real x = AttackRoomPostion[pid][1]
-        real y = AttackRoomPostion[pid][2]
-        int uid = 0
-        int n = AttackUnitWN+1
-        num = GetDzPlayerData(pid,1,10)
-        if  GameLevel >= 2
-            if  num < DzMeridiansDayNum
-                u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uJ01',x,y,270)
-                UnitAddAbility(u,'AZ99')
-                SetUnitAbilityLevel(u,'AZ99',pid+1)
-                AddAttackSummonUnit.execute(pid,u)
-                if  n >= 30
-                    n = 30
-                endif
-                if  n >= 10
-                    uid = YDWES2Id("m0"+I2S(n))
-                else
-                    uid = 'm001'+n
-                endif
-                SetUnitRealStateOfOtherId(u,uid)
-                SetUnitRealState(u,1,GetUnitRealState(u,1)*5)
-                SetUnitRealState(u,3,GetUnitRealState(u,3)*1.5)
-                SetUnitRealState(u,5,GetUnitRealState(u,5)*10)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r|cffff0000为您召唤"+GetUnitName(u)+"！|r[今日成功突破经脉 |cffffcc00"+I2S(num)+"/"+I2S(DzMeridiansDayNum)+"|r]")
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r您今日突破经脉次数已达上限！")
-            endif
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r该挑战难度2或以上才开放哦！")
-        endif
-        flush locals
-    endfunction
-
-    function MeridiansChallengeDeath(int pid,unit u)
-        int num = GetRandomInt(1,8)
-        real ran = 0
-        if  GetDzPlayerData(pid,1,10) < DzMeridiansDayNum
-            if  GetDzPlayerData(pid,6,num+1) < MeridiansMaxLv
-                ran = 0.01*(40+3*GameLevel)
-                if  GetRandomReal(0,1) <= ran
-                    AddDzPlayerData(pid,1,10,1)
-                    AddDzPlayerData(pid,6,num+1,1)
-                    AddDzPlayerData(pid,6,1,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r恭喜你成功突破|cffffff00“"+GetMeridiansName(num)+"”|r！|r[今日成功突破经脉 |cffffcc00"+I2S(GetDzPlayerData(pid,6,num+1))+"/"+I2S(DzMeridiansDayNum)+"|r]")
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")
-                endif
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")
-            endif
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r您今日突破经脉次数已达上限！")
-        endif
     endfunction
 
 endlibrary
