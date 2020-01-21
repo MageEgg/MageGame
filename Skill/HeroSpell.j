@@ -2003,7 +2003,7 @@ function SpellS116(unit u1,real damage1)
 
     function SpellS233ice(unit u1)
     unit uu=u1
-    UnitAddBuff(uu,'ABFE',3,852189)
+    UnitAddBuff(uu,'DB01',3,852189)
     TimerStart(2,false)
         {
         UnitAddBuff(uu,'DB02',3,852095)
