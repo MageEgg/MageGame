@@ -334,7 +334,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
                 magicid = GetUnitIntState(wu,125+index)
                 if  magicid > 0
-                    tip = tip + "\n\n附魔："+GetTypeIdStateTips(magicid)
+                    tip = tip + "\n\n|Cff00FF7F附魔：|r"+GetTypeIdStateTips(magicid)
                 endif
                 
                 YDWESetUnitAbilityDataString(wu, sid1,Type, 218, GetTypeIdString(id,102)+tip)
