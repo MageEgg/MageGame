@@ -153,14 +153,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             if  GetUnitTypeId(wu) == 'H018'
                 SpellS518.execute(Pu[1],id)//九转神功
             endif
-
+/*
             if  num == 7
-                ReAddAbilityByIndex(Pu[1],4,'S0R1')
-                /*
-                ShowUnit(Pu[25],true)
-                LocAddEffect(GetUnitX(Pu[25]),GetUnitY(Pu[25]),"effect_az-blue-lizi-shangsheng.mdl")*/
                 SetPlayerMonsterSoulSkillOfHeroLevel.execute(pid) 
             endif
+*/
             if  GetLocalPlayer() == Player(pid)
                 DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))

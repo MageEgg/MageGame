@@ -17,6 +17,8 @@ scope FrameButton
                         RecastPlayerMagicItem(pid)
                     elseif  id == 22//锻造
                         ForgePlayerMagicItem(pid)
+                    elseif  id == 25//出售
+                        SalePlayerMagicItem(pid)
                         
                     elseif  id >= 101 and id <= 103//选择备选学习技能
                         PlayerSelectLearnAbility(pid,id-100)
@@ -129,6 +131,7 @@ endscope
 
 //! runtextmacro AddFrameFunc("21")
 //! runtextmacro AddFrameFunc("22")
+//! runtextmacro AddFrameFunc("25")
 
 
 //! runtextmacro AddFrameFunc("101")
