@@ -399,7 +399,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
                 //Pu[23]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+512,270)//占星方士
                 
-                Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
+                //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
                 Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,90)//礼包
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
@@ -416,7 +416,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
                 //ShowUnit(Pu[23],false)
                 
-                ShowUnit(Pu[25],false)
+                //ShowUnit(Pu[25],false)
 
 
                 RefreshAttackRoom(pid,AttackRoomUid[pid])

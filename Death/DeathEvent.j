@@ -130,11 +130,12 @@ scope DeathEvent initializer InitDeathEvent
         int id = GetItemTypeId(it)
         int num = GetItemCharges(it)
         
-        if  num - exp > 1
-            SetItemCharges(it,num+-exp)
+        if  num - exp >= 1
+            SetItemCharges(it,num-exp)
             return false
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功炼化" + GetObjectName(id))
+            UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
             return true
         endif
@@ -152,9 +153,10 @@ scope DeathEvent initializer InitDeathEvent
             gl = 80
         endif
             
-        if  num-exp > 1
+        if  num-exp >= 1
             SetItemCharges(it,num-exp)
         else
+            UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
             if  GetRandomInt(1,100)<= gl
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
@@ -179,6 +181,8 @@ scope DeathEvent initializer InitDeathEvent
                 exitwhen true
             endif
         end
+
+
         for i2 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i2))
             if  id >= 'E101' and id <= 'E124'
@@ -412,9 +416,14 @@ scope DeathEvent initializer InitDeathEvent
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
             AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+
+            
+
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
+                Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y+256,270)//兽魂神通
                 UnitAddEffectOfNPC(Pu[28])
+                UnitAddEffectOfNPC(Pu[25])
                 AddItemToStock(Pu[28],'IS12',1,1)
             endif
             if  uid != 'u004'

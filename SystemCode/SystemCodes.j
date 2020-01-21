@@ -187,6 +187,27 @@ library SystemCodes uses ServerTime,Define1
         return SubString(R2S(r),0,l-2)
     end
 
+
+    //获取属性 横向拼接
+    function GetTypeIdStateTips2(int id)->string
+        string s = ""
+        real value = 0
+
+        value = GetTypeIdReal(id,5)
+        if  value > 0
+            s = s + "," + StateName[5] + "+" + I2S(R2I(value)) + StateName[5+1000]
+        endif
+        for i = 1,60
+            if  i != 5
+                value = GetTypeIdReal(id,i)
+                if  value > 0
+                    s = s + "," + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+                endif
+            endif
+            
+        end
+        return  s
+    endfunction
     //获取基础属性
     function GetTypeIdStateTips(int id)->string
         string s = ""
@@ -879,25 +900,26 @@ RegisterItemPool(11,'IC00',40)
 
 //炽星魔盒12-30波注册
 RegisterItemPool(17,'IP04',1)
-RegisterItemPool(17,'IP02',3)
+RegisterItemPool(17,'IP02',5)
 RegisterItemPool(17,'IP03',1)
-RegisterItemPool(17,'IC04',10)
-RegisterItemPool(17,'IC05',5)
-RegisterItemPool(17,'IC07',10)
-RegisterItemPool(17,'IC08',5)
-RegisterItemPool(17,'IC10',10)
-RegisterItemPool(17,'IC11',5)
-RegisterItemPool(17,'IN26',5)
+RegisterItemPool(17,'IC04',30)
+RegisterItemPool(17,'IC05',6)
+RegisterItemPool(17,'IC07',30)
+RegisterItemPool(17,'IC08',6)
+RegisterItemPool(17,'IC10',30)
+RegisterItemPool(17,'IC11',6)
+RegisterItemPool(17,'IN26',8)
 RegisterItemPool(17,'IN27',1)
-RegisterItemPool(17,'I013',3)
+RegisterItemPool(17,'I013',5)
 RegisterItemPool(17,'I015',1)
 RegisterItemPool(17,'IN28',2)
-RegisterItemPool(17,'IN30',2)
-RegisterItemPool(17,'IN19',1)
-RegisterItemPool(17,'IP01',2)
-RegisterItemPool(17,'IP06',3)
+RegisterItemPool(17,'IN30',15)
+RegisterItemPool(17,'IN19',2)
+RegisterItemPool(17,'IP01',3)
+RegisterItemPool(17,'IP06',5)
 RegisterItemPool(17,'IP08',1)
 RegisterItemPool(17,'IC00',32)
+
 //入门道果箱IN25注册
 RegisterItemPool(12,'ID12',10)
 RegisterItemPool(12,'ID13',2)

@@ -1,6 +1,8 @@
 
 scope ItemSystem initializer InitItemSystem
 
+    
+
     //装备升级
     function GetEquipIndex(int id)->int
         if  id >= 'E001' and id <= 'E025'
@@ -339,6 +341,22 @@ scope ItemSystem initializer InitItemSystem
             IncOrnaments(pid,u1)
         elseif  itemid == 'IS14'
             IncHeroAddLifeAbility(pid)
+        elseif  itemid == 'IZ10'
+            if  attacklv <= 11
+                UnitAddPoolItemShow(u1,11)
+            else
+                UnitAddPoolItemShow(u1,17)
+            endif
+        elseif  itemid == 'IZ11'
+            if  attacklv <= 11
+                for i = 1,10
+                    UnitAddPoolItemShow(u1,11)
+                end
+            else
+                for i = 1,10
+                    UnitAddPoolItemShow(u1,17)
+                end
+            endif
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
@@ -532,6 +550,12 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IP06'
             HeroAddExp( Pu[1], 100)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+100")
+        elseif  itemid == 'IP07'
+            if  attacklv <= 11
+                UnitAddPoolItemShow(u1,11)
+            else
+                UnitAddPoolItemShow(u1,17)
+            endif
         elseif  itemid == 'IP08'
             HeroAddExp( Pu[1], 300)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+300")
