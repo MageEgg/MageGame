@@ -78,7 +78,7 @@
                 elseif  GetUnitState(Pu[5],ConvertUnitState(0x13)) == 0
                     SetTipsData(11,"","攻击："+GetPlayerBossDamageShow(1+R2I(GetUnitState(Pu[5],ConvertUnitState(0x12)))))
                 endif
-                SetTipsData(12,"","|cff808080攻击距离："+I2S(R2I(GetUnitState(Pu[5],ConvertUnitState(0x16))))+"%|r")
+                SetTipsData(12,"","|cff808080攻击距离："+R2SI(GetUnitState(Pu[5],ConvertUnitState(0x16))))
                 SetTipsData(13,""," ")
                 SetTipsData(14,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
                 SetTipsData(15,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
