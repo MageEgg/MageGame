@@ -24,6 +24,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     private FRAME Button2 = 0
     private FRAME Back2 = 0
 
+    int MaxHeroLevel = 9
+
     //通用函数
     function HeroExpFrame(int pid,bool show)
 
@@ -105,7 +107,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         if  now != GetHeroXP(wu)
             SetHeroXP(wu,now,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
-        elseif  GetHeroLevel(wu) != 12
+        elseif  GetHeroLevel(wu) != MaxHeroLevel+1
             if  GetLocalPlayer() == Player(pid)
                 ExpModel.show =true
             endif
@@ -141,7 +143,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     function AddImmortalFruit(unit wu,int id)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
-        if  num < 10
+        if  num < MaxHeroLevel
             num = num + 1
             SetUnitIntState(Pu[1],150+num,id)
             SetUnitIntState(Pu[1],150,num)
@@ -192,8 +194,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         int now = GetHeroXP(Pu[1]) 
         int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
         if  max - now == 1
-            if  num < 10
+            if  num < MaxHeroLevel
                 SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+            else
+                ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前境界已满，无法挑战境界！")
             endif 
         else
             ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
@@ -324,7 +329,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         
         
         
-        for i = 1,10
+        for i = 1,MaxHeroLevel
             CreateButton(150+i,Button.frameid,TYPE_BUTTON,0,Button.frameid,6,0.005+0.0215*(i-1),-0.003,0.018,0.018,"war3mapImported\\UI_Level_Button.tga")
             CreateModel(150+i,Button.frameid,TYPE_BUTTON,6,6,-0.005,-0.002,"")
         end
