@@ -168,6 +168,16 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         endif
     endfunction
 
+    //判断是否有外观显示
+    function IsSaveIdCanShow(int id,int page)->bool
+        if  page >= 1 and page <= 4
+            return true
+        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D'
+            return true
+        endif
+        return false
+    endfunction
+
     function BoxShowSaveFrame(int pid,int index)
         int step = Step[pid]
         int page = Page[pid]
@@ -205,10 +215,14 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
             h = h + 1
 
-            SetTipsData(h,"",GetTypeIdTips(id))
+            if  page == 6 and  unlock == 0//商城分页
+                SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
+            else
+                SetTipsData(h,"",GetTypeIdTips(id))
+            endif
 
             h = h + 1
-            if  page >= 1 and page <= 4
+            if  IsSaveIdCanShow(id,page) == true
                 if  unlock == 1
                     SetTipsData(h,"","|cffffcc00所有内容属性均叠加|r\n|cff00ff00（点击激活/隐藏外观）|r")
                 else
