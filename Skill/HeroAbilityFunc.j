@@ -787,8 +787,8 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS516(unit wu,int lv)
         int num = GetUnitIntState(wu,'S516')
         SetUnitIntState(wu,'S516',num+1)
-        if  num + 1 == 30
-            AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.6)
+        if  num + 1 == 10
+            AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.3)
         endif
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az-leiji.mdl")
         KillUnit(wu)
@@ -803,11 +803,11 @@ library HeroAbilityFunc uses OtherDamageTimer
                     endif
                 endif
                 if  lv >= 4
-                    AddUnitStateExTimer(Pu[1],17,40,4.5)
+                    AddUnitStateExTimer(Pu[1],16,40,4.5)
                 elseif  lv >= 3
-                    AddUnitStateExTimer(Pu[1],17,40,3)
+                    AddUnitStateExTimer(Pu[1],16,40,3)
                 else
-                    AddUnitStateExTimer(Pu[1],17,20,3)
+                    AddUnitStateExTimer(Pu[1],16,20,3)
                 endif
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffattack.mdl")
             endif
@@ -902,13 +902,10 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
         if  lv >= 4
             AddUnitStateExTimer(tu,32,30,4)
-            AddUnitStateExTimer(tu,33,30,4)
         elseif  lv >= 3
             AddUnitStateExTimer(tu,32,20,4)
-            AddUnitStateExTimer(tu,33,20,4)
         else
             AddUnitStateExTimer(tu,32,10,4)
-            AddUnitStateExTimer(tu,33,10,4)
         endif
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffgreen2a.mdl")
     endfunction
@@ -1162,15 +1159,15 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 3
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 2)
-                BJDebugMsg("CD2")
+           //     BJDebugMsg("CD2")
             elseif  lv >= 2
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 4)
-                BJDebugMsg("CD4")
+          //      BJDebugMsg("CD4")
             else
-                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
-                BJDebugMsg("CD6")
+                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 8 )
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 8)
+             //   BJDebugMsg("CD6")
             endif
             SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage,lv)
         //DAMAGE_TYPE_ENHANCED
