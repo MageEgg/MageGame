@@ -70,11 +70,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
     //获取副本当前状态 0未解锁 1已解锁 2已通关 3时渊
     function GetPlayerPlotStateByIndex(int pid,int index)->int
+        return Pint[300+index]
+        /*
         if  GetPlayerPlotType(pid) == 1
-            return 3
+        return 3
         else
-            return Pint[300+index]
         endif
+        */
     endfunction
 
 
@@ -190,7 +192,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
 
     
-
+        
         if  ran <= 85
             id1 = GetPrize(pid,13,true)
         else
@@ -198,6 +200,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
 
         
+        SetPlayerPlotStateByIndex(pid,index,1)
 
         SetPlayerPlotPrizeId(pid,index,1,id1)
         SetPlayerPlotPrizeId(pid,index,2,0)
@@ -315,9 +318,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //完成副本
     function PlayerFinishPlot(int pid,int index)
         int Type = GetPlayerPlotStateByIndex(pid,index)
+        SetPlayerPlotStateByIndex(pid,index,2)            
         if  Type == 1
-            SetPlayerPlotStateByIndex(pid,index,2)
-
+            
+            
             //发奖励
             GivePlayerFinishPlotPrize(pid,index)
             RePlotSelectByIndex(pid,index)
@@ -331,8 +335,11 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         elseif  Type  == 3
             if  GetPlayerPlotPartNum(pid) > 0
                 SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                
                 GivePlayerFinishPlotPrize(pid,index)
-                RePlayerExPlotPrizeId(pid,index)
+                
+                //RePlayerExPlotPrizeId(pid,index)
+
                 RePlotSelectByIndex(pid,index)
             endif
         endif

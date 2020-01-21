@@ -601,9 +601,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         elseif  index == 2
             s1 = 15
             if  now >= 4
-                v1 = 12
+                v1 = 24
             elseif  now >= 3
-                v1 = 9
+                v1 = 12
             elseif  now >= 2
                 v1 = 6
             endif
@@ -664,9 +664,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         elseif  index == 9
             s1 = 16
             if  now >= 4
-                v1 = 12
+                v1 = 24
             elseif  now >= 3
-                v1 = 9
+                v1 = 12
             elseif  now >= 2
                 v1 = 6
             endif

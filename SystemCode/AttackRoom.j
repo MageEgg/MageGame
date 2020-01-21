@@ -169,7 +169,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
-                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/300",0.03)
+                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life-1+0.001))+"/350",0.03)
                     SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
 
                     if  life+0.5 >= maxlife
@@ -404,14 +404,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
                 UnitAddAbility(Pu[27],'Avul')
-                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,301)
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,351)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
 
                 AttackTexttag[pid] = CreateTextTag()
-                SetTextTagText(AttackTexttag[pid],"0/300",0.03)
+                SetTextTagText(AttackTexttag[pid],"0/350",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
 
                 //ShowUnit(Pu[23],false)

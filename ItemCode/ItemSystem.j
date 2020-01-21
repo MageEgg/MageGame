@@ -530,14 +530,14 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
             endif
         elseif  itemid == 'IP06'
+            HeroAddExp( Pu[1], 100)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+100")
+        elseif  itemid == 'IP08'
             HeroAddExp( Pu[1], 300)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+300")
-        elseif  itemid == 'IP08'
+        elseif  itemid == 'IP09'
             HeroAddExp( Pu[1], 500)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+500")
-        elseif  itemid == 'IP09'
-            HeroAddExp( Pu[1], 700)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+700")
         endif
         
         flush locals
