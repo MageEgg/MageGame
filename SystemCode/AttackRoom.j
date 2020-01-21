@@ -238,6 +238,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
             IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
             SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+            AddAttackSummonUnit(pid,bj_lastCreatedUnit)
             UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
             //UnitAddAbility(bj_lastCreatedUnit,'AZ31')
             bj_lastCreatedUnit = null
@@ -248,6 +249,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
                 IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                 SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
+                AddAttackSummonUnit(pid,bj_lastCreatedUnit)
                 UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
                 //UnitAddAbility(bj_lastCreatedUnit,'AZ31')
                 bj_lastCreatedUnit = null
