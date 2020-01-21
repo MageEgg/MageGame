@@ -479,7 +479,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         else
             damage = GetAbilityDamage(wu,'S508',1)
             if  lv >= 4
-                damage = damage * 1.67
+                damage = damage * 2
             endif
             AddUnitRealState(wu,9,-GetUnitIntState(wu,'H508'))
             SetUnitIntState(wu,'S508',0)
@@ -502,7 +502,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
             AddUnitRealState(wu,25,-10)
             if  lv >= 4
-                AddUnitRealState(wu,21,-5)
+                AddUnitRealState(wu,16,-20)
             endif
             
 
@@ -541,7 +541,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
             AddUnitRealState(wu,25,10)
             if  lv >= 4
-                AddUnitRealState(wu,21,5)
+                AddUnitRealState(wu,16,20)
             endif
             SetUnitIntState(wu,'S510',0)
             DzSetUnitModel( wu, "H010.mdl" )
@@ -583,9 +583,9 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  lv >= 4
             damage = damage * 3
         elseif  lv >= 3
-            damage = damage * 2.33
+            damage = damage * 2
         elseif  lv >= 2
-            damage = damage * 1.67
+            damage = damage * 1.5
         endif
         if  GetUnitBjState(u1)>=30
             damage = damage * 2
@@ -660,11 +660,11 @@ library HeroAbilityFunc uses OtherDamageTimer
         
         IndexGroup g = IndexGroup.create()
         if  lv >= 2
-            LocAddEffectSetSize(x,y,"effect_az_fenghuang.mdl",1.2)
-            AddEffectInAreaSetSize(x,y,400,1.0,10,"effect_hero_lich_n1s_bingdong2.mdl")
-        else
             LocAddEffectSetSize(x,y,"effect_az_fenghuang.mdl",2)
             AddEffectInAreaSetSize(x,y,700,1.0,15,"effect_hero_lich_n1s_bingdong2.mdl")
+        else
+            LocAddEffectSetSize(x,y,"effect_az_fenghuang.mdl",1.2)
+            AddEffectInAreaSetSize(x,y,400,1.0,10,"effect_hero_lich_n1s_bingdong2.mdl")
         endif
         
         if  lv >= 4
@@ -672,7 +672,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             UnitDamageGroup(wu,g.ejg,damage*2.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         elseif  lv >= 3
             GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,damage*1.33,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,damage*1.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         elseif  lv >= 2
             GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -759,11 +759,11 @@ library HeroAbilityFunc uses OtherDamageTimer
         
         if  num >= 4
             if  lv >= 4
-                damage = damage * 2
+                damage = damage * 4
             elseif  lv >= 3
-                damage = damage * 1.5
+                damage = damage * 2.333
             elseif  lv >= 2
-                damage = damage * 1.25
+                damage = damage * 1.66
             endif
             for i = 1,4
                 UnitRemoveAbility(wu,'AZA0'+i)
@@ -787,8 +787,9 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS516(unit wu,int lv)
         int num = GetUnitIntState(wu,'S516')
         SetUnitIntState(wu,'S516',num+1)
-        if  num + 1 == 30
-            AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.6)
+        if  num + 1 == 10
+            AddUnitRealState(wu,1,GetUnitRealState(wu,1)*0.3)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r玩家"+GetPlayerNameOfColor(GetPlayerId(GetOwningPlayer(wu)))+"累计悔悟10次，|Cfff0f0f0永久增加|r|Cffffd24d当前攻击30%|r")
         endif
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az-leiji.mdl")
         KillUnit(wu)
@@ -803,11 +804,11 @@ library HeroAbilityFunc uses OtherDamageTimer
                     endif
                 endif
                 if  lv >= 4
-                    AddUnitStateExTimer(Pu[1],17,40,4.5)
+                    AddUnitStateExTimer(Pu[1],16,40,4.5)
                 elseif  lv >= 3
-                    AddUnitStateExTimer(Pu[1],17,40,3)
+                    AddUnitStateExTimer(Pu[1],16,40,3)
                 else
-                    AddUnitStateExTimer(Pu[1],17,20,3)
+                    AddUnitStateExTimer(Pu[1],16,20,3)
                 endif
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffattack.mdl")
             endif
@@ -921,10 +922,10 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  Pu[1] == tu and wu != tu
             if  ran <= 30
                 if  lv >= 4
-                    AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.3,180)
-                    AddUnitStateExTimer(wu,2,GetUnitRealState(wu,2)*0.3,180)
-                    AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.3,180)
-                    AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.3,180)
+                    AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.35,180)
+                    AddUnitStateExTimer(wu,2,GetUnitRealState(wu,2)*0.35,180)
+                    AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.35,180)
+                    AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.35,180)
                 else
                     AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.1,180)
                     AddUnitStateExTimer(wu,2,GetUnitRealState(wu,2)*0.1,180)
@@ -933,8 +934,8 @@ library HeroAbilityFunc uses OtherDamageTimer
                 endif
                 BJDebugMsg("成功")
             elseif  ran <= 70
-                r1 = GetUnitRealState(tu,1)*0.3
-                r2 = GetUnitRealState(tu,2)*0.3
+                r1 = GetUnitRealState(tu,1)*0.25
+                r2 = GetUnitRealState(tu,2)*0.25
                 if  lv >= 3
                     AddUnitStateExTimer(tu,1,-r1,180)
                     AddUnitStateExTimer(tu,2,-r2,180)
@@ -943,8 +944,8 @@ library HeroAbilityFunc uses OtherDamageTimer
                 AddUnitStateExTimer(wu,2,r2,180)
                 BJDebugMsg("暴力")
             else
-                r1 = GetUnitRealState(wu,1)*0.3
-                r2 = GetUnitRealState(wu,2)*0.3
+                r1 = GetUnitRealState(wu,1)*0.25
+                r2 = GetUnitRealState(wu,2)*0.25
                 if  lv >= 2
                     AddUnitStateExTimer(wu,1,-r1,180)
                     AddUnitStateExTimer(wu,2,-r2,180)
@@ -1059,7 +1060,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 SetUnitX(u2,mx)
                 SetUnitY(u2,my)
                 g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
                 UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 g.destroy()
                 
@@ -1073,7 +1074,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                     SetUnitX(u2,mx)
                     SetUnitY(u2,my)
                     g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
                     UnitDamageGroup(u1,g.ejg,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                     g.destroy()
                 else
@@ -1101,6 +1102,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         elseif  lv >= 2
             time = time + 1
         endif
+        AddUnitRealState(wu,13,10)
         SpellS525_1(u1,x2,y2,damage,dis)
         TimerStart(0.1,true)
         {
@@ -1161,16 +1163,16 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitAnimationByIndex(wu,4)
             if  lv >= 3
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 2)
-                BJDebugMsg("CD2")
-            elseif  lv >= 2
-                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 4)
-                BJDebugMsg("CD4")
-            else
-                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
                 BJDebugMsg("CD6")
+            elseif  lv >= 2
+                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 7)
+                BJDebugMsg("CD7")
+            else
+                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 8)
+                BJDebugMsg("CD8")
             endif
             SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage,lv)
         //DAMAGE_TYPE_ENHANCED
@@ -1181,15 +1183,15 @@ library HeroAbilityFunc uses OtherDamageTimer
         real r1 = 0
         if  wu == tu
             if  lv >= 4
-                r1 = GetUnitRealState(tu,1)*0.3
+                r1 = GetUnitRealState(tu,1)*0.1
             else
-                r1 = GetUnitRealState(tu,1)*0.15
+                r1 = GetUnitRealState(tu,1)*0.06
             endif
-            AddUnitStateExTimer(wu,1,r1,8)
+            AddUnitStateExTimer(wu,1,r1,4)
             if  lv >= 2
                 SetUnitState(tu,UNIT_STATE_LIFE,GetUnitState(tu,UNIT_STATE_MAX_LIFE))
                 if  lv >= 3
-                    AddUnitStateExTimer(tu,32,20,8)
+                    AddUnitStateExTimer(tu,32,8,8)
                 endif
             else
                 KillUnit(tu)
@@ -1198,15 +1200,15 @@ library HeroAbilityFunc uses OtherDamageTimer
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
         elseif  Pu[1] == tu
             if  lv >= 4
-                r1 = GetUnitRealState(tu,1)*0.3
+                r1 = GetUnitRealState(tu,1)*0.2
             else
-                r1 = GetUnitRealState(tu,1)*0.15
+                r1 = GetUnitRealState(tu,1)*0.12
             endif
             AddUnitStateExTimer(wu,1,r1,8)
             if  lv >= 2
                 SetUnitState(tu,UNIT_STATE_LIFE,GetUnitState(tu,UNIT_STATE_MAX_LIFE))
                 if  lv >= 3
-                    AddUnitStateExTimer(tu,32,20,8)
+                    AddUnitStateExTimer(tu,32,16,8)
                 endif
             else
                 KillUnit(tu)

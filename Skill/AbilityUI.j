@@ -416,6 +416,20 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
                     DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：广成子奕剑之道，攻击间隔降低0.1秒")
                 endif
+            elseif  uid == 'H010'
+                if  newlv == 2
+                    if  GetUnitIntState(wu,'S510') == 1
+                        AddUnitRealState(wu,18,10)
+                    endif
+                elseif  newlv == 3
+                    if  GetUnitIntState(wu,'S510') == 2
+                        AddUnitRealState(wu,10,10)
+                    endif
+                elseif  newlv == 4
+                    if  GetUnitIntState(wu,'S510') == 0
+                        AddUnitRealState(wu,16,20)
+                    endif
+                endif
             elseif  uid == 'H017'
                 if  newlv == 2
                     UnitAddItemExEx(wu,CreateItem('CS03',GetUnitX(wu),GetUnitY(wu)))
@@ -435,6 +449,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 endif
             elseif  uid == 'H021'
                 if  newlv == 2
+                    AddUnitRealState(wu,4,12)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：哪吒莲花化身，魔法抗性|Cffff8000+12%|r")
+                endif
+            elseif  uid == 'H021'
+                if  newlv == 2
                     UnitAddItemExEx(wu,CreateItem('CS21',GetUnitX(wu),GetUnitY(wu)))
                     DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：嫦娥突破境界，额外获得"+GetObjectName('CS21')+"x1")
                 endif
@@ -451,15 +470,14 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 endif
             elseif  uid == 'H028'
                 if  newlv == 2
-                    AddUnitRealState(wu,15,10)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+10%|r")
-                    
+                    AddUnitRealState(wu,15,6)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+6%|r")
                 elseif  newlv == 3
-                    AddUnitRealState(wu,15,10)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+10%|r")
+                    AddUnitRealState(wu,15,6)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+6%|r")
                 elseif  newlv == 4
-                    AddUnitRealState(wu,15,20)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+20%|r")
+                    AddUnitRealState(wu,15,12)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，物理伤害|Cffff8000+12%|r")
                 endif
             elseif  uid == 'H030'
                 
