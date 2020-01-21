@@ -475,17 +475,6 @@ scope ItemSystem initializer InitItemSystem
             AddUnitStateExTimer(Pu[1],15,30,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
 
-        elseif  itemid == 'IN07'
-            AddUnitStateExTimer(Pu[1],28,30,6)
-        elseif  itemid == 'IN08'
-            if  attacklv >= AttackUnitWNOver - 2
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前无法使用该锦囊！")
-            else
-                KillAttackUnitGroup()
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了锦囊"+GetObjectName(itemid)+"，消灭了所有的进攻怪！")
-            endif
-        elseif  itemid == 'IN11'
-            AddUnitStateExTimer(Pu[1],17,300,5)
         elseif  itemid == 'IN31'//炽星魔盒IN31注册
             if  attacklv <= 11
                 UnitAddPoolItemShow(u1,11)

@@ -775,17 +775,38 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
         function InitHeroPoolFunc()
             
-            for i = 1,9
-                UnitPoolAddUnitType( HeroPool, 'H000'+i, 1 )
-            end
-            for i2 = 0,9
-                UnitPoolAddUnitType( HeroPool, 'H010'+i2, 1 )
-                UnitPoolAddUnitType( HeroPool, 'H020'+i2, 1 )
-            end
-            UnitPoolAddUnitType( HeroPool, 'H030', 1 )
-            UnitPoolAddUnitType( HeroPool, 'H031', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H001', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H002', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H003', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H004', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H005', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H006', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H007', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H008', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H009', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H010', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H011', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H012', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H013', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H014', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H015', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H016', 1 )
+
+            UnitPoolAddUnitType(HeroPool, 'H018', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H019', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H020', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H021', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H022', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H023', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H024', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H025', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H026', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H027', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H028', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H029', 1 )
+            UnitPoolAddUnitType(HeroPool, 'H030', 1 )
+
             
-//UnitPoolAddUnitType( HeroPool, 'H028', 1 )
         endfunction
 
 
