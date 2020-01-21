@@ -2032,14 +2032,15 @@ function SpellS116(unit u1,real damage1)
     endfunction
     
     function SpellS234(unit u,unit u1,real damage)
-        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),-50,1)
         shenshou(mj)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-        unit UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
+        unit UnitAddBuffUnit=null
+        UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
         UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
         UnitAddAbility(UnitAddBuffUnit,'DB03')
         SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
-        IssuePointOrderById( UnitAddBuffUnit, 852668,GetUnitX(u1),GetUnitY(u1) )
+        IssuePointOrderById(UnitAddBuffUnit, 852592,GetUnitX(u1),GetUnitY(u1))
     endfunction
     
     function SpellS235(unit u1)
