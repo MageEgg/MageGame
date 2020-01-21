@@ -311,6 +311,16 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         return value
     endfunction
     
+    function GetUnitLqMax(unit wu)->int
+        int max = 50
+        if  GetUnitIntState(wu,'FB10')>0
+            max = max + 9
+        endif
+        if  GetUnitIntState(wu,'FB20')>0
+            max = max + 6
+        endif
+        return max
+    endfunction
     
 
     function SetUnitRealState(unit wu,int StateId,real value)
@@ -350,8 +360,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 SetHeroAgi(wu,R2I(value/100+0.1)-100,true)
             endif
         elseif  StateId == 25
-            if  value > 50
-                SetHeroInt(wu,50,true)
+            if  value > GetUnitLqMax(wu)
+                SetHeroInt(wu,GetUnitLqMax(wu),true)
             else
                 SetHeroInt(wu,R2I(value),true)
             endif
