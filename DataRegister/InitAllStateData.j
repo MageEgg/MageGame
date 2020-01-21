@@ -703,7 +703,7 @@ InitTypeState4('S099',30,0,0,0,0,0,0,0,0,0)
 InitTypeState4('RM2C',0,3,0,0,0,0,0,0,0,0)
 endfunction
 function InitStateData5()
-InitTypeState5('S129',0,20,0,0,0,0,0,0,0,0)
+InitTypeState5('S129',0,0,0,0,0,20,0,0,0,0)
 InitTypeState5('E101',0,0,0,0,0,0,0,1,0,0)
 InitTypeState5('E102',0,0,0,0,0,0,0,2,0,0)
 InitTypeState5('E103',0,0,0,0,0,0,0,3,0,0)

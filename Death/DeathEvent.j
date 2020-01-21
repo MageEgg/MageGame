@@ -146,15 +146,12 @@ scope DeathEvent initializer InitDeathEvent
         int next = GetTypeIdData(id,106)
         int gl = 50
 
-        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
+        if  next == 'E102' or next == 'E103'
             gl = 100
-        else
-            if  next == 'E102' or next == 'E103'
-                gl = 100
-            elseif  next >= 'E103' and next <= 'E106'
-                gl = 80
-            endif
+        elseif  next >= 'E103' and next <= 'E106'
+            gl = 80
         endif
+            
         if  num-exp > 1
             SetItemCharges(it,num-exp)
         else
