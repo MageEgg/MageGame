@@ -751,33 +751,19 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
         real time=0
-        integer aid=GetSpellAbilityId()
-        string tb=YDWEGetUnitAbilityDataString(u, aid,3, 204)
-        if LoadInteger(ht,GetHandleId(u),'S078')==1
-            SaveInteger(ht,GetHandleId(u),'S078',2)
-        endif
     //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
-        if  LoadInteger(ht,GetHandleId(u),'S078')==0
-            SaveInteger(ht,GetHandleId(u),'S078',1)
-            SetUnitAbilityLevel(u,aid,2)
-            YDWESetUnitAbilityDataString(u, aid, 2, 218,"点击二段，提前让陨石坠落")
-            YDWESetUnitAbilityDataString(u, aid, 2, 204,tb)
-            YDWESetUnitAbilityDataString(u, aid, 2, 215,"彗星灭世-二段")
-            effect tx=AddSpecialEffect("effect_az_axe_x.mdl",x,y)
+        effect tx=AddSpecialEffect("effect_az_axe_x.mdl",x,y)
             TimerStart(0.1,true)
             {   
                 time=time+0.1
-                if  time>m  or  LoadInteger(ht,GetHandleId(u),'S078')==2
-                    SaveInteger(ht,GetHandleId(u),'S078',0)
-                    SetUnitAbilityLevel(u,aid,3)
+                if  time>m 
                     DestroyEffect(tx)
                     EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*time,"effect_az_tormentedsoul_t1.mdl")
-                    SetAbilityCD_AG(u,aid,8)
                     endtimer
                     flush locals
                 endif
             }
-        endif
+
         flush locals
     endfunction
 
@@ -821,38 +807,22 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
         real time=0
-        integer aid=GetSpellAbilityId()
-        string tb=YDWEGetUnitAbilityDataString(u, aid,3, 204)
-        if LoadInteger(ht,GetHandleId(u),'S079')==1
-            SaveInteger(ht,GetHandleId(u),'S079',2)
-        endif
-        if  LoadInteger(ht,GetHandleId(u),'S079')==0
-            SaveInteger(ht,GetHandleId(u),'S079',1)
-            string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
-            unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),Pang(x0, y0, x,y)/0.01745,0,1)
-
-            SetUnitVertexColor( mj, 20, 20, 50, 100 )
-            SetUnitAbilityLevel(u,aid,2)
-            YDWESetUnitAbilityDataString(u, aid, 2, 218,"点击提前结束蓄力")
-            YDWESetUnitAbilityDataString(u, aid, 2, 204,tb)
-            YDWESetUnitAbilityDataString(u, aid, 2, 215,"龙神陨光-二段")
-            effect tx=AddSpecialEffect("A_yujing_boss_linegreen.mdx",x0,y0)
-            EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
+        string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
+        unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),Pang(x0, y0, x,y)/0.01745,0,1)
+        effect tx=AddSpecialEffect("A_yujing_boss_linegreen.mdx",x0,y0)
+        EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
+        SetUnitVertexColor( mj, 20, 20, 50, 100 )
             TimerStart(0.1,true)
             {   
                 time=time+0.1
-                if  time>m or LoadInteger(ht,GetHandleId(u),'S079')==2
-                    SaveInteger(ht,GetHandleId(u),'S079',0)
-                    SetUnitAbilityLevel(u,aid,3)
-                    DestroyEffect(tx)
+                if  time>m 
                     SpellS079Attack(u,mj,x,y,damage*(time+1))
                     SetUnitAnimation( mj, "Attack" )
-                    SetAbilityCD_AG(u,aid,8)
+                    DestroyEffect(tx)
                     endtimer
                     flush locals
                 endif
             }
-        endif
         flush locals
     endfunction
 
