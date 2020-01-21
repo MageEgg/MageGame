@@ -523,7 +523,7 @@ library ItemGameFunc uses DamageCode
             elseif  flag == 1
                 AddItemToStock(Pu[28],'IS12',0,1)
             elseif  flag == 2
-                AddItemToStock(Pu[28],'IZ0C',1,1)
+                AddItemToStock(Pu[28],'IZ0C',0,1)
             endif
             endtimer
             flush locals
