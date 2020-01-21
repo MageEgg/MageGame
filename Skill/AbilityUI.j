@@ -392,6 +392,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
    
     
     function HeroSetAbilityLevelByIndex(unit wu,int index,int newlv)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = GetUnitTypeId(wu)
         int id = GetUnitIntState(wu,110+index)
         int nowlv = GetHeroAbilityLevelByIndex(wu,index)
@@ -498,7 +499,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：技能"+GetTypeIdString(id,100)+"升级至|r"+I2S(newlv)+"级")
         else
             
-            if  lv == 5
+            if  newlv == 5
                 GivePlayerMissionPrize(pid,'RR0F')
             endif
         endif
