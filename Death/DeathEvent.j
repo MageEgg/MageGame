@@ -356,8 +356,8 @@ scope DeathEvent initializer InitDeathEvent
                 AttackRoomXCNum = 1
             endif
             CreateItem('I030',GetUnitX(tu),GetUnitY(tu))
-            AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励炽星魔盒x1 玄铁+20")
+            AdjustPlayerStateBJ( 50 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励炽星魔盒x1 玄铁+50")
         
         else
             /*
@@ -410,6 +410,8 @@ scope DeathEvent initializer InitDeathEvent
             AttackRoomUid[pid]='g00A'+ (uid - 'u000')
             //AddUnitRealState(Pu[1],41,80)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
+            AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)
                 UnitAddEffectOfNPC(Pu[28])
