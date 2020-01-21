@@ -271,6 +271,8 @@ scope ItemSystem initializer InitItemSystem
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！杀敌数不足"+I2S(use))
             endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！该技能已经满级！")
         endif
     endfunction
     
@@ -349,7 +351,7 @@ scope ItemSystem initializer InitItemSystem
             endif
         elseif  itemid >= 'IC00' and itemid <= 'IC11'
             if  itemid == 'IC00'
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：什么也没有得到！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾！什么也没有得到！|r")
             else
                 if  itemid == 'IC01'
                     i1 = R2I((2.0+attacklv/2.0)*GetRandomReal(0.8,1.2))
@@ -418,6 +420,16 @@ scope ItemSystem initializer InitItemSystem
         
         flush locals
     endfunction
+
+    function UnitAddPoolItemShow(unit wu,int prizeid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int id = UnitAddPoolItem(wu,prizeid)
+        if  id >= 'IC00' and id <= 'IC99'
+            //不显示
+        else
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 "+GetObjectName(id)+"x1")
+        endif
+    endfunction
     
 
     
@@ -474,6 +486,38 @@ scope ItemSystem initializer InitItemSystem
             endif
         elseif  itemid == 'IN11'
             AddUnitStateExTimer(Pu[1],17,300,5)
+        elseif  itemid == 'IN31'//炽星魔盒IN31注册
+            if  attacklv <= 11
+                UnitAddPoolItemShow(u1,11)
+            else
+                UnitAddPoolItemShow(u1,17)
+            endif
+        elseif  itemid == 'IN25'//入门道果箱IN25注册
+            UnitAddPoolItemShow(u1,12)
+        elseif  itemid == 'IN26'//后天道果箱IN26注册
+            UnitAddPoolItemShow(u1,13)
+        elseif  itemid == 'IN27'//先天道果箱IN27注册
+            UnitAddPoolItemShow(u1,14)
+        elseif  itemid == 'IN30'//幸运星盒IN30注册
+            UnitAddPoolItemShow(u1,15)
+        elseif  itemid == 'IN00'//锦囊IN00注册
+            UnitAddPoolItemShow(u1,16)
+        elseif  itemid == 'IN19'//附魔宝箱IN19注册
+            UnitAddPoolItemShow(u1,20)
+            if  GetRandomInt(1,100) <= 50
+                UnitAddPoolItemShow(u1,20)
+            endif
+        elseif  itemid == 'IN28'////技能宝箱IN28注册
+            UnitAddPoolItemShow(u1,21)
+        elseif  itemid == 'IN29'//1附魔宝箱IN29注册
+            UnitAddPoolItemShow(u1,22)
+            if  GetRandomInt(1,100) <= 50
+                UnitAddPoolItemShow(u1,22)
+            endif
+            
+        elseif  itemid == 'IN32'//技能宝箱IN32注册
+            UnitAddPoolItemShow(u1,25)
+
 
         elseif  itemid >= 'ID01' and itemid <= 'ID10'//道果
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
@@ -503,33 +547,6 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IP09'
             HeroAddExp( Pu[1], 700)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+700")
-    
-        elseif  itemid == 'IN31'//炽星魔盒IN31注册
-            if  attacklv <= 11
-                UnitAddPoolItem(u1,11)
-            else
-                UnitAddPoolItem(u1,17)
-            endif
-        elseif  itemid == 'IN25'//入门道果箱IN25注册
-            UnitAddPoolItem(u1,12)
-        elseif  itemid == 'IN26'//后天道果箱IN26注册
-            UnitAddPoolItem(u1,13)
-        elseif  itemid == 'IN27'//先天道果箱IN27注册
-            UnitAddPoolItem(u1,14)
-        elseif  itemid == 'IN30'//幸运星盒IN30注册
-            UnitAddPoolItem(u1,15)
-        elseif  itemid == 'IN00'//锦囊IN00注册
-            UnitAddPoolItem(u1,16)
-        elseif  itemid == 'IN19'//附魔宝箱IN19注册
-            for i = 1,3
-                UnitAddPoolItem(u1,20)
-            end
-        elseif  itemid == 'IN18'//1附魔宝箱IN28注册
-            UnitAddPoolItem(u1,21)
-        elseif  itemid == 'IN29'//1附魔宝箱IN29注册
-            for i = 1,3
-                UnitAddPoolItem(u1,22)
-            end
         endif
         
         flush locals

@@ -171,7 +171,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function RePlayerPlotPrizeId(int pid)
         for i = 1,8
             SetPlayerPlotPrizeId(pid,i,1,'CF01')
-            SetPlayerPlotPrizeId(pid,i,2,'IN31')
+            SetPlayerPlotPrizeId(pid,i,2,'IN32')
         end
 
         
