@@ -51,9 +51,9 @@ library AttackUnit uses DamageCode
     #define AttackUnitWinBool           AttackUnitBool[20]      //胜利
 
     #define IsChangeGodStage            AttackUnitBool[30]       //封神台
-    #define IsGameOperaA                AttackUnitBool[31]       //封神台
-    #define IsGameOperaB                AttackUnitBool[32]       //封神台
-    #define IsGameOperaC                AttackUnitBool[33]       //封神台
+    #define IsGameOperaA                AttackUnitBool[31]       //剧情bool
+    #define IsGameOperaB                AttackUnitBool[32]       //剧情bool
+    #define IsGameOperaC                AttackUnitBool[33]       //剧情bool
 
     #define AttackTimer                 AttackArrayTimer[0]
     #define AttackElseTimer             AttackArrayTimer[1]

@@ -396,7 +396,9 @@ scope ItemSystem initializer InitItemSystem
         endif
 
 
-
+        if  itemid >= 'IN07' and itemid <= 'IN24'
+            PlayerUsesstrangeItem(pid,itemid)
+        endif
 
         if  itemid == 'I00A'
             AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))

@@ -518,6 +518,8 @@ library ItemGameFunc uses DamageCode
                 AddItemToStock(Pu[28],'IS12',1,1)
             elseif  flag == 1
                 AddItemToStock(Pu[28],'IS12',0,1)
+            elseif  flag == 2
+                AddItemToStock(Pu[28],'IZ0C',1,1)
             endif
             endtimer
             flush locals
@@ -543,10 +545,12 @@ library ItemGameFunc uses DamageCode
                     if  PlayerMonsterSoulNum == 8 //and GetHeroLevel(Pu[1]) >= 8
                         //觉醒
                         AddPlayerMonsterSoulSkill(pid)
+                        SetMonsterSoulToStock(pid,2)
+                    else
+                        SetMonsterSoulToStock(pid,1)
                     endif
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[兽魂]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80抽奖获得|cffff0080“"+GetMonsterSoulLuck(num)+"”|cffffff80！|r")
                     UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)
-                    SetMonsterSoulToStock(pid,1)
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[兽魂]：|r很遗憾抽取失败！")
                     SetMonsterSoulToStock(pid,0)
@@ -598,25 +602,174 @@ library ItemGameFunc uses DamageCode
     endfunction
 
     //////////////////////////////使用类//////////////////////////////////
+    
+    function UnitItemIN07(int id)
+        int pid = id
+        int time = 0
+        if  GetUnitState(Pu[1],UNIT_STATE_LIFE) < GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)
+            SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_LIFE)+GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.1)
+        endif
+        LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffgreen2a.mdl")
+        TimerStart(1,true)
+        {
+            time = time + 1
+            if  time < 9
+                if  GetUnitState(Pu[1],UNIT_STATE_LIFE) < GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)
+                    SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_LIFE)+GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.1)
+                endif
+                LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffgreen2a.mdl")
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    
+    function UnitItemIN08(int pid,int itid)
+        if  IsChangeGodStage == false
+            KillAttackUnitGroup()
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家清除了所有进攻怪！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家清除了所有进攻怪！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家清除了所有进攻怪！！！|r")
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000已进入最终大决战阶段，无法使用该道具！|r")
+        endif
+    endfunction
+
+    function UnitItemIN10(unit u1,unit u2)
+        int gold = 0
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        if  GetUnitTypeId(u2) >= 'g00A' and GetUnitTypeId(u2) <= 'g00F'
+            gold = GetTypeIdData(GetUnitTypeId(u2),103)*100
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
+            LocAddText(GetUnitX(u2),GetUnitY(u2),"+"+I2S(gold),255,202,0,255,90,0.023)
+            LocAddEffectSetSize(GetUnitX(u2),GetUnitY(u2),"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl",1.5)
+            for i = 0,5
+                if  GetItemTypeId(UnitItemInSlot(u1,i)) == 'IN10'
+                    RemoveItem(UnitItemInSlot(u1,i))
+                    exitwhen true
+                endif
+            end
+            SetUnitState(u2,UNIT_STATE_LIFE,1)
+            ShowUnit(u2,false)
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r无法对此单位使用该道具！")
+        endif
+    endfunction
+
+    function UnitItemIN12(int pid,int itid)
+        unit u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-5984,-6656,270)
+        PingMinimap(-5984,-6656,8)
+        RemoveUnitTimer(u,30)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家召唤了黑市商店，快回城看看！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家召唤了黑市商店，快回城看看！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家召唤了黑市商店，快回城看看！！！|r")
+        u = null
+    endfunction
+
+    function UnitItemIN13(int n,int itid)
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  PlayerDeathBool == false
+                    AddUnitStateExTimer(Pu[1],16,30,10)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加30%法术伤害！|r")
+                endif
+            endif
+        end
+    endfunction
+
+    function UnitItemIN14(int pid,int itid)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得5秒无敌！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得5秒无敌！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得5秒无敌！！！|r")
+        UnitTimerAddSkill(GameDefendUnit,'AZ08',5)
+        UnitTimerAddSkill(GameDefendUnit,'Avul',5)
+    endfunction
+
+    function UnitItemIN15(int n,int itid)
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  PlayerDeathBool == false
+                    AddUnitStateExTimer(Pu[1],18,20,10)
+                    AddUnitStateExTimer(Pu[1],4,20,10)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加20%伤害抵抗！|r")
+                endif
+            endif
+        end
+    endfunction
+
+    function UnitItemIN21(int n,int itid)
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  PlayerDeathBool == false
+                    AddUnitStateExTimer(Pu[1],28,30,10)
+                    AddUnitStateExTimer(Pu[1],15,50,10)
+                    AddUnitStateExTimer(Pu[1],16,50,10)
+                    UnitAddAbility(Pu[1],'AZA0')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加30%每秒回血和50%双伤害，但结束后生命会变为20%（负面效果）！|r")
+                endif
+            endif
+        end
+        TimerStart(10,false)
+        {
+            for pid = 0,3
+                if  GetUnitAbilityLevel(Pu[1],'AZA0') > 0
+                    UnitRemoveAbility(Pu[1],'AZA0')
+                    if  GetUnitState(Pu[1],UNIT_STATE_LIFE) > GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.2
+                        SetUnitState(Pu[1],UNIT_STATE_LIFE,GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.2)
+                        LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl")
+                    endif
+                endif
+            end
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function PlayerUsesstrangeItem(int pid,int itid)
+        int ran = 0
         if  itid == 'IN07'
-            
+            UnitItemIN07(pid)
         elseif  itid == 'IN08'
+            UnitItemIN08(pid,itid)
         elseif  itid == 'IN09'
-        elseif  itid == 'IN10'
+            //死亡复活
+        elseif  itid == 'IN10' //写在释放技能
         elseif  itid == 'IN11'
+            AddUnitStateExTimer(Pu[1],15,100,5)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在5秒内增加100%物理伤害！")
         elseif  itid == 'IN12'
+            UnitItemIN12(pid,itid)
         elseif  itid == 'IN13'
+            UnitItemIN13(pid,itid)
         elseif  itid == 'IN14'
+            UnitItemIN14(pid,itid) //没有爪子
         elseif  itid == 'IN15'
+            UnitItemIN15(pid,itid)
         elseif  itid == 'IN16'
+            //境界
         elseif  itid == 'IN17'
+            ran = GetRandomInt(5,50)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,ran)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你获得玄铁x"+I2S(ran)+"！")
         elseif  itid == 'IN18'
+            AddUnitStateExTimer(Pu[1],41,30,30)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加30%金币加成！")
+        //没有 'IN19'
         elseif  itid == 'IN20'
+            AddUnitStateExTimer(Pu[1],46,10,30)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加10点杀敌金币！")
         elseif  itid == 'IN21'
+            UnitItemIN21(pid,itid)
         elseif  itid == 'IN22'
+
         elseif  itid == 'IN23'
+
         elseif  itid == 'IN24'
+
         endif
     endfunction
 
