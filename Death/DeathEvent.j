@@ -237,27 +237,6 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
 
-        if  GetUnitIntState(Pu[1],'FB17') > 0
-            value = GetUnitIntState(Pu[1],'FC17')
-            if  value < 400
-                AddUnitRealState(Pu[1],17,0.1)
-                AddUnitIntState(Pu[1],'FC17',1)
-            endif
-        endif
-        if  GetUnitIntState(Pu[1],'FB32') > 0
-            value = GetUnitIntState(Pu[1],'FC32')
-            if  value < 60000
-                AddUnitRealState(Pu[1],2,100)
-                AddUnitIntState(Pu[1],'FC32',100)
-            endif
-        endif
-        if  GetUnitIntState(Pu[1],'FB03') > 0
-            value = GetUnitIntState(Pu[1],'FC03')
-            if  value < 60000
-                AddUnitRealState(Pu[1],1,100)
-                AddUnitIntState(Pu[1],'FC03',100)
-            endif
-        endif
 
         //杀敌属性
         ste = GetUnitRealState(Pu[1],43)
@@ -585,11 +564,7 @@ scope DeathEvent initializer InitDeathEvent
                             GameChallengPlayerDeathEvent(u1)
                             
 
-                            if  GetUnitIntState(Pu[1],'FB17') > 0
-                                //清除法宝的伤害加成
-                                AddUnitRealState(Pu[1],17,-I2R(GetUnitIntState(Pu[1],'FC17'))*0.1)
-                                SetUnitIntState(Pu[1],'FC17',0)
-                            endif
+
 
                         endif
                     endif
