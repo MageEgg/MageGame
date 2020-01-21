@@ -441,7 +441,7 @@ scope ItemSystem initializer InitItemSystem
         int i1 = 0
         int i2 = 0
         int attacklv = AttackUnitWN + 1
-        
+
         if  itemid == 'CS01'
             PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
             AddPlayerDrawNum(pid,1)
@@ -507,7 +507,7 @@ scope ItemSystem initializer InitItemSystem
             if  GetRandomInt(1,100) <= 50
                 UnitAddPoolItemShow(u1,20)
             endif
-        elseif  itemid == 'IN18'//1附魔宝箱IN28注册
+        elseif  itemid == 'IN28'////技能宝箱IN28注册
             UnitAddPoolItemShow(u1,21)
         elseif  itemid == 'IN29'//1附魔宝箱IN29注册
             UnitAddPoolItemShow(u1,22)

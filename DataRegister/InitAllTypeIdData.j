@@ -99,7 +99,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('CS01',"Q技能随机卷","ReplaceableTextures\\CommandButtons\\BTN001.blp","随机获得|Cffffd24d1|r个|Cffffd24dQ技能|r")
         call InitTypeIdStrings('CS21',"|Cff00BFFF技能进阶石【完美】|r","ReplaceableTextures\\CommandButtons\\BTNIN05.blp","指定技能|Cffffd24d品质提升一级|r|Cfff0f0f0。|n|n|r|Cff00ff7f最多可提升至A级。|r")
         call InitTypeIdStrings('CS22',"|CffFF0000技能进化石【完美】|r","ReplaceableTextures\\CommandButtons\\BTNIN04.blp","使|Cffffd24dA级技能|r|Cfff0f0f0品质提升|r|Cffff0000S级|r|Cfff0f0f0。|r")
-        call InitTypeIdStrings('CS23',"|Cff00FF7F技能进阶石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN03.blp","|CffFFD24D50%|r几率使指定技能|Cffffd24d品质提升一级|r|Cfff0f0f0。|n|n|r|Cff00ff7f最多可提升至A级。|r")
+        call InitTypeIdStrings('CS23',"|Cff00FF7F技能进阶石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN06.blp","|CffFFD24D50%|r几率使指定技能|Cffffd24d品质提升一级|r|Cfff0f0f0。|n|n|r|Cff00ff7f最多可提升至A级。|r")
         call InitTypeIdStrings('CS24',"|CffFFD24D技能进化石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN04.blp","|CffFFD24D50%|r几率使指定|Cffffd24dA级技能|r|Cfff0f0f0品质提升|r|Cffff0000S级|r|Cfff0f0f0。|r")
         call InitTypeIdStrings('IJ5A',"炼气士[0]","","")
         call InitTypeIdStrings('IJ5B',"筑基境[1]","","")
