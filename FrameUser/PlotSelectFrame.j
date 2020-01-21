@@ -3,7 +3,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     /*按钮序号
     300         时渊时间
     301-308     副本按钮
-    309         时渊碎片
+    309         时渊入场券
     310         刷新时渊
     311-318     副本图片
     321-328     奖励1
@@ -60,7 +60,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function GetPlayerPlotType(int pid)->int
         return Pint[300]
     endfunction
-    //获取时渊碎片
+    //获取时渊入场券
     function GetPlayerPlotPartNum(int pid)->int
         return Pint[309]
     endfunction
@@ -102,12 +102,12 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function SetPlayerPlotType(int pid,int Type)
         Pint[300] = Type
     endfunction
-    //设置时渊碎片
+    //设置时渊入场券
     function SetPlayerPlotPartNum(int pid,int num)
         Pint[309] = num
         //BJDebugMsg("309 is "+I2S(num))
         if  GetLocalPlayer() == Player(pid)
-            DzFrameSetText(BUTTON_Text[309],"时渊碎片 "+I2S(num))
+            DzFrameSetText(BUTTON_Text[309],"时渊入场券 "+I2S(num))
         endif
     endfunction
     //设置时渊刷新秒数
@@ -200,7 +200,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
 
         
-        SetPlayerPlotStateByIndex(pid,index,1)
+        SetPlayerPlotStateByIndex(pid,index,3)
 
         SetPlayerPlotPrizeId(pid,index,1,id1)
         SetPlayerPlotPrizeId(pid,index,2,0)
@@ -318,7 +318,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //完成副本
     function PlayerFinishPlot(int pid,int index)
         int Type = GetPlayerPlotStateByIndex(pid,index)
-        SetPlayerPlotStateByIndex(pid,index,2)            
+        SetPlayerPlotStateByIndex(pid,index,2)
         if  Type == 1
             
             
@@ -333,15 +333,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             endif
 
         elseif  Type  == 3
-            if  GetPlayerPlotPartNum(pid) > 0
-                SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
-                
-                GivePlayerFinishPlotPrize(pid,index)
-                
-                //RePlayerExPlotPrizeId(pid,index)
+            
+            GivePlayerFinishPlotPrize(pid,index)
+            
+            //RePlayerExPlotPrizeId(pid,index)
 
-                RePlotSelectByIndex(pid,index)
-            endif
+            RePlotSelectByIndex(pid,index)
+        
         endif
         if  GetLocalPlayer() == Player(pid)
             Button.show = false
@@ -386,7 +384,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             end
         end
         CreateButton(309,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.01,0.01,0.076,0.021,"war3mapImported\\UI_PlotSelect_Resources.tga")
-        CreateText(309,Button.frameid,"righttext010",5,5,-0.005,0.0,"时渊碎片 0")
+        CreateText(309,Button.frameid,"righttext010",5,5,-0.005,0.0,"时渊入场券 0")
 
         CreateButton(310,Button.frameid,TYPE_BUTTON,5,BUTTON_Back[309][0],3,-0.005,0.0,0.075,0.021,"war3mapImported\\UI_PlotSelect_Refresh.tga")
         DzFrameShow(BUTTON_Back[310][0],false)

@@ -366,7 +366,7 @@ InitTypeState1('RM8D',0,0,0,1,0,0,0,0,0,0)
 endfunction
 function InitStateData2()
 InitTypeState2('S014',0,0,0,0,0,-30,0,0,0,0)
-InitTypeState2('S019',0,0,25,0,0,0,0,0,0,0)
+InitTypeState2('S019',0,0,0,0,15,0,0,0,0,0)
 InitTypeState2('S020',0,0,15,0,0,0,0,0,0,0)
 InitTypeState2('S024',0,0,0,0,0,0,0,0,15,100)
 InitTypeState2('S025',0,0,0,0,0,0,0,0,5,200)

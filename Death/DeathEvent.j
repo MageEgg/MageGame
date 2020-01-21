@@ -290,31 +290,32 @@ scope DeathEvent initializer InitDeathEvent
         
     endfunction
 
-    function ForgKillTimer(unit wu)
+    function ForgKillTimer(unit wu,int ppid)
         unit u1 = wu
         int id = GetUnitTypeId(u1)
         int time = 20
+        int pid = ppid
+        
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_AGGRESSIVE),false)
         SetUnitIntState(u1,'Forg',20)
         SetUnitIntState(u1,'Fort',20)
         //UnitAddAbility(u1,'AZ31')
         TimerStart(1,true)
         {
-            int pid = GetUnitAbilityLevel(u1,'AZ99')
+            
             time = time - 1
-            if  time <= 0 or GetUnitTypeId(u1) == 0 or PlayerDeathBool == true
-                if  pid > 0
-                    if  GetUnitTypeId(u1) == id
-                        if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
-                            pid = pid - 1
-                            //UnitRemoveAbility(u1,'AZ31')
-                            ForgEscapeTimer(pid,u1)
-                            if  Pu[6] == u1
-                                Pu[6] = null
-                            endif
+            if  time <= 0 or GetUnitTypeId(u1) == 0 or PlayerDeathBool == true  or IsLocInRect(PlayerAttackRoomRect[pid],GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
+                
+                if  GetUnitTypeId(u1) == id
+                    if  GetUnitState(u1,UNIT_STATE_LIFE) > 0
+                        //UnitRemoveAbility(u1,'AZ31')
+                        ForgEscapeTimer(pid,u1)
+                        if  Pu[6] == u1
+                            Pu[6] = null
                         endif
                     endif
                 endif
+                
                 endtimer
             else
                 SetUnitIntState(u1,'Fort',time)
@@ -331,10 +332,11 @@ scope DeathEvent initializer InitDeathEvent
     function KillXCUnitFunc(unit wu,unit tu,int uid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = AttackRoomXCUnitNum
-        KillXCUnitNum = KillXCUnitNum + 1
+        
         AttackRoomXCUnitNum = AttackRoomXCUnitNum - 1
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
+            AttackRoomXCNum = AttackRoomXCNum + 1
             if  AttackRoomXCNum > 24
                 AttackRoomXCNum = 1
             endif
@@ -354,7 +356,7 @@ scope DeathEvent initializer InitDeathEvent
             */
 
             if  AttackRoomXCUnitNum <= 0
-
+                AttackRoomXCNum = AttackRoomXCNum + 1
                 if  AttackRoomXCNum > 24
                     AttackRoomXCNum = 1
                 endif
