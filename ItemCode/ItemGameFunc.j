@@ -546,6 +546,8 @@ library ItemGameFunc uses DamageCode
                         //觉醒
                         AddPlayerMonsterSoulSkill(pid)
                         SetMonsterSoulToStock(pid,2)
+                        AddPlayerTechResearched(Player(pid),'RR0A',1) //任务
+                        UnitAddItemEx(Pu[1],'IP01') //任务
                     else
                         SetMonsterSoulToStock(pid,1)
                     endif
