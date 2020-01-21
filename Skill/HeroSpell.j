@@ -198,7 +198,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS031(unit u)          //魔茧
         if  GetUnitAbilityLevel(u,'A031')==0
-            AddUnitStateExTimer(u,9,110,4)
+            AddUnitStateExTimer(u,9,20,4)
             UnitTimerAddSkill(u,'A031',4)
         endif
         flush locals
@@ -362,7 +362,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             else
                 UnitAddAbility(gu,'A048')
             endif
-
+            SpellS048_1(gu)
             UnitDamageTarget(u1, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
             GroupRemoveUnit(g.ejg,gu)
         endloop
@@ -751,33 +751,19 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
         real time=0
-        integer aid=GetSpellAbilityId()
-        string tb=YDWEGetUnitAbilityDataString(u, aid,3, 204)
-        if LoadInteger(ht,GetHandleId(u),'S078')==1
-            SaveInteger(ht,GetHandleId(u),'S078',2)
-        endif
     //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
-        if  LoadInteger(ht,GetHandleId(u),'S078')==0
-            SaveInteger(ht,GetHandleId(u),'S078',1)
-            SetUnitAbilityLevel(u,aid,2)
-            YDWESetUnitAbilityDataString(u, aid, 2, 218,"点击二段，提前让陨石坠落")
-            YDWESetUnitAbilityDataString(u, aid, 2, 204,tb)
-            YDWESetUnitAbilityDataString(u, aid, 2, 215,"彗星灭世-二段")
-            effect tx=AddSpecialEffect("effect_az_axe_x.mdl",x,y)
+        effect tx=AddSpecialEffect("effect_az_axe_x.mdl",x,y)
             TimerStart(0.1,true)
             {   
                 time=time+0.1
-                if  time>m  or  LoadInteger(ht,GetHandleId(u),'S078')==2
-                    SaveInteger(ht,GetHandleId(u),'S078',0)
-                    SetUnitAbilityLevel(u,aid,3)
+                if  time>m 
                     DestroyEffect(tx)
                     EffectDown(u,x,y,x0,y0,"effect_txab0a (3).mdl",35,1000,600,damage*time,"effect_az_tormentedsoul_t1.mdl")
-                    SetAbilityCD_AG(u,aid,8)
                     endtimer
                     flush locals
                 endif
             }
-        endif
+
         flush locals
     endfunction
 
@@ -821,38 +807,22 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x0=GetUnitX(u)
         real y0=GetUnitY(u)
         real time=0
-        integer aid=GetSpellAbilityId()
-        string tb=YDWEGetUnitAbilityDataString(u, aid,3, 204)
-        if LoadInteger(ht,GetHandleId(u),'S079')==1
-            SaveInteger(ht,GetHandleId(u),'S079',2)
-        endif
-        if  LoadInteger(ht,GetHandleId(u),'S079')==0
-            SaveInteger(ht,GetHandleId(u),'S079',1)
-            string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
-            unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),Pang(x0, y0, x,y)/0.01745,0,1)
-
-            SetUnitVertexColor( mj, 20, 20, 50, 100 )
-            SetUnitAbilityLevel(u,aid,2)
-            YDWESetUnitAbilityDataString(u, aid, 2, 218,"点击提前结束蓄力")
-            YDWESetUnitAbilityDataString(u, aid, 2, 204,tb)
-            YDWESetUnitAbilityDataString(u, aid, 2, 215,"龙神陨光-二段")
-            effect tx=AddSpecialEffect("A_yujing_boss_linegreen.mdx",x0,y0)
-            EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
+        string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
+        unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),Pang(x0, y0, x,y)/0.01745,0,1)
+        effect tx=AddSpecialEffect("A_yujing_boss_linegreen.mdx",x0,y0)
+        EXEffectMatRotateZ( tx, Pang(x0, y0, x,y)/0.01745 )
+        SetUnitVertexColor( mj, 20, 20, 50, 100 )
             TimerStart(0.1,true)
             {   
                 time=time+0.1
-                if  time>m or LoadInteger(ht,GetHandleId(u),'S079')==2
-                    SaveInteger(ht,GetHandleId(u),'S079',0)
-                    SetUnitAbilityLevel(u,aid,3)
-                    DestroyEffect(tx)
+                if  time>m 
                     SpellS079Attack(u,mj,x,y,damage*(time+1))
                     SetUnitAnimation( mj, "Attack" )
-                    SetAbilityCD_AG(u,aid,8)
+                    DestroyEffect(tx)
                     endtimer
                     flush locals
                 endif
             }
-        endif
         flush locals
     endfunction
 
@@ -1282,7 +1252,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real speed=40
         group g=CreateGroup()
         group g1=CreateGroup()
-        boolean up=true
         TimerStart(0.03,true)
         {
            if   IsPlayerHasAbility(u,'S102') == true 
@@ -1311,23 +1280,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
                 x=GetUnitX(mj)+(speed*Cos(Deg2Rad(GetUnitFacing(mj))))
                 y=GetUnitY(mj)+(speed*Sin(Deg2Rad(GetUnitFacing(mj))))
-                if up==true
-                    if  GetUnitZ(mj)<300
-                        SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)+1,0)
-                    else
-                        up=false
-                    endif
-                else
-                    if  GetUnitZ(mj)>0
-                        SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)-1,0)
-                    else
-                        up=true
-                    endif
 
+                if  Udis(mj,u)<3000
+                    GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
+                    UnitDamageGroup(u,g,GetAbilityDamage(u,'S102',GetHeroAbilityLevel(u,'S102')),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endif
-
-                GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
-                UnitDamageGroup(u,g,GetAbilityDamage(u,'S102',GetHeroAbilityLevel(u,'S102')),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)
@@ -2046,7 +2003,7 @@ function SpellS116(unit u1,real damage1)
 
     function SpellS233ice(unit u1)
     unit uu=u1
-    UnitAddBuff(uu,'ABFE',3,852189)
+    UnitAddBuff(uu,'DB01',3,852189)
     TimerStart(2,false)
         {
         UnitAddBuff(uu,'DB02',3,852095)
@@ -2075,14 +2032,15 @@ function SpellS116(unit u1,real damage1)
     endfunction
     
     function SpellS234(unit u,unit u1,real damage)
-        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),-50,1)
         shenshou(mj)
         UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-        unit UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
+        unit UnitAddBuffUnit=null
+        UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
         UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
         UnitAddAbility(UnitAddBuffUnit,'DB03')
         SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
-        IssuePointOrderById( UnitAddBuffUnit, 852668,GetUnitX(u1),GetUnitY(u1) )
+        IssuePointOrderById(UnitAddBuffUnit, 852592,GetUnitX(u1),GetUnitY(u1))
     endfunction
     
     function SpellS235(unit u1)
