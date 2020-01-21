@@ -926,39 +926,22 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  Pu[1] == tu and wu != tu
             if  ran <= 30
                 if  lv >= 4
-<<<<<<< HEAD
                     AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.3,180)
                     AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.3,180)
-=======
-                    AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.35,180)
-                    AddUnitStateExTimer(wu,2,GetUnitRealState(wu,2)*0.35,180)
-                    AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.35,180)
-                    AddUnitStateExTimer(tu,2,GetUnitRealState(tu,2)*0.35,180)
->>>>>>> 3363093eb7e63bf7d43fc00746482ac906776055
                 else
                     AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.1,180)
                     AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.1,180)
                 endif
                 BJDebugMsg("成功")
             elseif  ran <= 70
-<<<<<<< HEAD
                 r1 = GetUnitRealState(tu,1)*0.1
-=======
-                r1 = GetUnitRealState(tu,1)*0.25
-                r2 = GetUnitRealState(tu,2)*0.25
->>>>>>> 3363093eb7e63bf7d43fc00746482ac906776055
                 if  lv >= 3
                     AddUnitStateExTimer(tu,1,-r1,180)
                 endif
                 AddUnitStateExTimer(wu,1,r1,180)
                 BJDebugMsg("暴力")
             else
-<<<<<<< HEAD
                 r1 = GetUnitRealState(wu,1)*0.3
-=======
-                r1 = GetUnitRealState(wu,1)*0.25
-                r2 = GetUnitRealState(wu,2)*0.25
->>>>>>> 3363093eb7e63bf7d43fc00746482ac906776055
                 if  lv >= 2
                     AddUnitStateExTimer(wu,1,-r1,180)
                 endif
