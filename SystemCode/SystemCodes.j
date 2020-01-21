@@ -637,6 +637,15 @@ library SystemCodes uses ServerTime,Define1
             UnitRemoveAbility(u,'AZ99')
         endif
     endfunction
+
+    //完成任务 奖励时渊
+    function GivePlayerMissionPrize(int pid,int techid)
+        if  GetPlayerTechCount(Player(pid),techid,true) == 0
+            AddPlayerTechResearched(Player(pid),techid,1)
+            UnitAddItem(Pu[2],CreateItem('IP01',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜您完成任务["+GetObjectName(techid)+"]，奖励时渊碎片x1") 
+        endif
+    endfunction
     
 endlibrary
 

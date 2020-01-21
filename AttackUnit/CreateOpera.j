@@ -300,13 +300,17 @@ library CreateOpera uses DamageCode
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cffff0000闻太师讨伐失败！！！")
         elseif  flag == 1
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r|cff00ff00闻太师讨伐成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    UnitAddItemEx(Pu[1],'I015')
+                endif
+            end
         endif
-        
         AddEffectInArea(2795,26,1000,35,"effect_yanhua1.mdx")
         AddEffectInArea(2795,26,1000,35,"effect_yanhua2.mdx")
         TimerStart(1,true)
@@ -601,11 +605,16 @@ library CreateOpera uses DamageCode
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cffff0000妲己抓拿失败！！！")
         elseif  flag == 1
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[擒妖]：|r|cff00ff00妲己抓拿成功！！！所有玩家奖励"+GetObjectName('I015')+"|cff00ff00！！！|r")
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    UnitAddItemEx(Pu[1],'I015')
+                endif
+            end
         endif
         TimerStart(1,true)
         {
