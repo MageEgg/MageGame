@@ -1157,18 +1157,6 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitAnimationByIndex(wu,4)
             if  lv >= 3
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
-<<<<<<< HEAD
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 2)
-           //     BJDebugMsg("CD2")
-            elseif  lv >= 2
-                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 4)
-          //      BJDebugMsg("CD4")
-            else
-                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 8 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 8)
-             //   BJDebugMsg("CD6")
-=======
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
                 BJDebugMsg("CD6")
             elseif  lv >= 2
@@ -1179,7 +1167,6 @@ library HeroAbilityFunc uses OtherDamageTimer
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 8)
                 BJDebugMsg("CD8")
->>>>>>> 3363093eb7e63bf7d43fc00746482ac906776055
             endif
             SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage,lv)
         //DAMAGE_TYPE_ENHANCED
@@ -1190,11 +1177,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         real r1 = 0
         if  wu == tu
             if  lv >= 4
-<<<<<<< HEAD
-                r1 = GetUnitRealState(tu,1)*0.15
-=======
                 r1 = GetUnitRealState(tu,1)*0.1
->>>>>>> 3363093eb7e63bf7d43fc00746482ac906776055
             else
                 r1 = GetUnitRealState(tu,1)*0.06
             endif
