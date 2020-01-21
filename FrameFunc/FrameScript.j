@@ -342,7 +342,7 @@
             endif
         endif
         if  GetPostionAsMouseX() > 0.362 and GetPostionAsMouseX() < 0.404 
-            if  GetPostionAsMouseY() >= 0.878 and GetPostionAsMouseY() < 0.928
+            if  GetPostionAsMouseY() >= 0.878 and GetPostionAsMouseY() < 0.935
                 ShowUIUnitDefense(pid)
                 frame = 8000
             elseif  GetPostionAsMouseY() > 0.824 and GetPostionAsMouseY() < 0.878
