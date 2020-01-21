@@ -198,7 +198,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS031(unit u)          //魔茧
         if  GetUnitAbilityLevel(u,'A031')==0
-            AddUnitStateExTimer(u,9,110,4)
+            AddUnitStateExTimer(u,9,20,4)
             UnitTimerAddSkill(u,'A031',4)
         endif
         flush locals
@@ -1282,7 +1282,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real speed=40
         group g=CreateGroup()
         group g1=CreateGroup()
-        boolean up=true
         TimerStart(0.03,true)
         {
            if   IsPlayerHasAbility(u,'S102') == true 
@@ -1311,23 +1310,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endif
                 x=GetUnitX(mj)+(speed*Cos(Deg2Rad(GetUnitFacing(mj))))
                 y=GetUnitY(mj)+(speed*Sin(Deg2Rad(GetUnitFacing(mj))))
-                if up==true
-                    if  GetUnitZ(mj)<300
-                        SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)+1,0)
-                    else
-                        up=false
-                    endif
-                else
-                    if  GetUnitZ(mj)>0
-                        SetUnitFlyHeight(mj,GetUnitFlyHeight(mj)-1,0)
-                    else
-                        up=true
-                    endif
 
+                if  Udis(mj,u)<3000
+                    GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
+                    UnitDamageGroup(u,g,GetAbilityDamage(u,'S102',GetHeroAbilityLevel(u,'S102')),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endif
-
-                GroupEnumUnitsInRange(g,x,y,300,GroupHasUnit(GetOwningPlayer(u),g1,""))
-                UnitDamageGroup(u,g,GetAbilityDamage(u,'S102',GetHeroAbilityLevel(u,'S102')),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 SetUnitXY(mj,x,y)
             else
                 KillUnit(mj)

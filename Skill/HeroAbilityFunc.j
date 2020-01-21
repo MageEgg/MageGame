@@ -495,6 +495,14 @@ library HeroAbilityFunc uses OtherDamageTimer
         
     endfunction
 
+     function SpellS509(unit u)          
+        if  GetUnitAbilityLevel(u,'A031')==0
+            AddUnitStateExTimer(u,9,20,4)
+            UnitTimerAddSkill(u,'A031',4)
+        endif
+        flush locals
+    endfunction
+
     function SpellS510(unit wu,int lv)
         int index = GetUnitIntState(wu,'S510')
 
