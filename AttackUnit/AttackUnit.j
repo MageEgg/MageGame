@@ -314,6 +314,36 @@ library AttackUnit uses DamageCode
         flush locals
     endfunction
 
+    function AddBossAnger(unit wu)
+        unit u = wu
+        int time = 0
+        TimerStart(1,true)
+        {
+            int nuqi = 0
+            time = time + 1
+            if  time <= 90 and GetUnitTypeId(u) != 0 and u != null
+                if  ModuloInteger(time,10) == 0
+                    nuqi = nuqi + 1
+                    if  GetUnitAbilityLevel(u,'AZ80'+nuqi-1) > 0
+                        UnitAddAbility(u,'AZ80'+nuqi-1)
+                        AddUnitRealState(u,9,10)
+                        AddUnitRealState(u,9,1.7)
+                    endif
+                    UnitAddAbility(u,'AZ80'+nuqi)
+                endif
+                if  time == 90
+                    UnitAddAbility(u,'AZ80')
+                    AddUnitRealState(u,1,GetUnitRealState(u,1))
+                endif
+            else
+                BJDebugMsg("end计时器")
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function OpenCreateBossTimer()
         timer t = GetExpiredTimer()
         int FlushNum = LoadInteger(ht,GetHandleId(t),1)
@@ -321,6 +351,14 @@ library AttackUnit uses DamageCode
         int num = LoadInteger(ht,GetHandleId(t),3)
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
+        int bossnum = 0
+        int bossid = 0
+        bossnum = (AttackUnitWNOver/3)
+        if  bossnum < 10
+            bossid = 'mb00'+ bossnum
+        else
+            bossid = 'mb10'
+        endif
         if  FlushNum > 0
             for k = 0,3
                 if  IsPlaying(k) == true
@@ -338,6 +376,9 @@ library AttackUnit uses DamageCode
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
                             CreateBossAttachUnit(u,pex[k],pey[k],0.1)
+                            if  puid[k] == bossid
+                                AddBossAnger(u)
+                            endif
                         end
                     endif
                 endif
