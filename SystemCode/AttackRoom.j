@@ -100,10 +100,10 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 //清空练功房内怪物
 
     function RefreshAttackRoom(int pid,int uid)
-        integer i=CountUnitsInGroup(AttackRoomGroup[pid])
-        for c=1,GetPlayerAttackUnitNum(pid)-i
+        loop
+            exitwhen CountUnitsInGroup(AttackRoomGroup[pid])==GetPlayerAttackUnitNum(pid)
             CreateAttackRoomUnit(uid,pid)
-        end
+        endloop
         //DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
     endfunction
 //刷新一波怪物
