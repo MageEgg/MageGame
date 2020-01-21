@@ -327,6 +327,7 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ96')
+                        GivePlayerMissionPrize(pid,'RR0D')
                     endif
                 end
                 endtimer
@@ -624,6 +625,7 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ96')
+                        GivePlayerMissionPrize(pid,'RR0E')
                     endif
                 end
                 endtimer
