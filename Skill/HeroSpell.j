@@ -134,7 +134,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             endtimer
-        flush locals
+            flush locals
         }
         flush locals
     endfunction
@@ -173,6 +173,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         TimerStart(0.426,false)
         {
             UnitDamageGroup(u,g,damage,false,false,ConvertAttackType(1),ConvertDamageType(0),null)
+            DestroyGroup(g)
             g=null
             endtimer
             flush locals
@@ -240,9 +241,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         DestroyEffect(AddSpecialEffect("effect_white-qiquan-juhuang.mdl",x,y))
         g.destroy()
-        SaveInteger(ht,GetHandleId(u1),'S038',0)
-        flush locals
+        SaveInteger(ht,GetHandleId(u1),'S038',0)  
     endif
+    flush locals
     endfunction
 
     function SpellS039(unit u11,unit u21,real damage1)//他山之石
@@ -259,11 +260,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SaveInteger(ht,GetHandleId(u1),'S039',0)
         TimerStart(0.5,false)
         {
-        IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        g.destroy()
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
         endtimer
+        flush locals
         }
         
         flush locals
@@ -307,7 +309,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             exitwhen gu == null
             damage=(1+I2R(LoadInteger(ht,GetHandleId(gu),159379)))*damage1
             UnitDamageTarget(u, gu, damage, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_POISON, WEAPON_TYPE_WHOKNOWS)
-
             GroupRemoveUnit(g.ejg,gu)
         endloop
         gu=null
@@ -2041,6 +2042,7 @@ function SpellS116(unit u1,real damage1)
         UnitAddAbility(UnitAddBuffUnit,'DB03')
         SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
         IssuePointOrderById(UnitAddBuffUnit, 852592,GetUnitX(u1),GetUnitY(u1))
+        flush locals
     endfunction
     
     function SpellS235(unit u1)
@@ -2048,7 +2050,7 @@ function SpellS116(unit u1,real damage1)
         real b=((100-GetUnitLifePercent(u))*0.3)+5
         AddUnitRealState(u,19,b)
         UnitAddAbility(u,'A235')
-        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-100,1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-200,1)
         shenshou(mj)
         TimerStart(5,false)
         {
