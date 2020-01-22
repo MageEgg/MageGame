@@ -306,6 +306,23 @@ library SystemCodes uses ServerTime,Define1
         t = null
     endfunction
 
+    function  hyred(unit u1) 
+    unit u=u1
+    integer i=0
+        TimerStart(0.02,true)
+        {
+            i=i+1
+            if i <=10
+                SetUnitScale(u, 1+(i*0.1), 1+(i*0.1), 1+(i*0.1))
+                SetUnitVertexColor(u,255, 0, 0, 255-(R2I(I2R(i)*25.5)))
+            else
+                RemoveUnit(u)
+                u=null
+                endtimer
+            endif
+        }
+    endfunction  
+
     
     function Udis(unit u,unit u2)->real //单位间距离
         return Pow((GetUnitX(u)-GetUnitX(u2))*(GetUnitX(u)-GetUnitX(u2))+(GetUnitY(u)-GetUnitY(u2))*(GetUnitY(u)-GetUnitY(u2)),0.5)
