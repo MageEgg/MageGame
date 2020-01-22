@@ -62,7 +62,7 @@ scope ItemSystem initializer InitItemSystem
                     if  IsHeroEquipCanOpenPlot(Pu[1]) == true
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备均达到|Cff00ff7f绿色|r，解锁|Cffff0000剧情副本挑战|r|Cfff0f0f0。|r")
 
-                        Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2]-256,270)//副本入口
+                        Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]+512,270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
                         UnitAddAbility(Pu[1],'AG09')
                         UnitMakeAbilityPermanent(Pu[1],true,'AG09')
@@ -132,7 +132,7 @@ scope ItemSystem initializer InitItemSystem
                 endif
             else
                 
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！金币不足"+I2S(gold))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！金币不足"+I2S(gold))
             endif
             
         else    
@@ -181,25 +181,27 @@ scope ItemSystem initializer InitItemSystem
         int num = GetPlayerDrawNum(pid,index)
         int use1 = GetPlayerDrawUse(pid,index,num+1)
         int use2 = 0
+        /*
         if  num > 0
             use2 = 1
         endif
+        */
         if  num < 10
             if  use1 > 0
                 if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER) >= use2
                     if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
                         AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
-                        AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                        //AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                         PlayerUseLearnAbilityBook(pid,index,GetExpectLevel(pid,index))
                         AddPlayerDrawNum(pid,index)
                         RePlayerAbilityDrawTips(pid,index)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前抽取次数"+I2S(num+1)+"/10")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r|Cff00FF7FQ技能|r抽取次数"+I2S(num+1)+"/10")
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！木材不足"+I2S(use2)+"。")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！玄铁不足"+I2S(use2)+"。")
                 endif
             endif
         else
@@ -261,7 +263,7 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(wu,CreateItem(next,GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
             else    
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r附魔失败！金币不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r附魔失败！金币不足"+I2S(use))
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包内没有可升级的饰品！")
@@ -282,10 +284,10 @@ scope ItemSystem initializer InitItemSystem
                 LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffyellow2.mdl")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！杀敌数不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！杀敌数不足"+I2S(use))
             endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！该技能已经满级！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff000[系统]：|r升级失败！该技能已经满级！")
         endif
     endfunction
     
@@ -341,7 +343,7 @@ scope ItemSystem initializer InitItemSystem
             SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
             ReCollectFrameResources(pid)
         elseif  itemid >= 'IJ01' and itemid <= 'IJ10'
-            AddPlayerImmortalFruit(u1,itemid)
+            //AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS03'
@@ -373,7 +375,7 @@ scope ItemSystem initializer InitItemSystem
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
                     OpenGameTeamChallenge(pid,1,20)
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r木材不足2000！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r玄铁不足2000！")
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
@@ -547,7 +549,7 @@ scope ItemSystem initializer InitItemSystem
 
         elseif  itemid >= 'ID01' and itemid <= 'ID10'//道果
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
-                AddImmortalFruit(Pu[1],itemid - 'ID00' + 'IJ00')
+                AddImmortalFruit(Pu[1],itemid - 'ID00' + 'IJ00',0)
             else
                 UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
@@ -555,7 +557,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid >= 'ID11' and itemid <= 'ID20'//道果
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
                 if  DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]) == 1
-                    AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00')
+                    AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00',0)
                 else
                     UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r境界经验不足，无法晋升境界！")
@@ -614,7 +616,7 @@ scope ItemSystem initializer InitItemSystem
         for i = 0,15
             TriggerRegisterPlayerUnitEvent(trig, Player(i), EVENT_PLAYER_UNIT_PICKUP_ITEM, null) //获得物品
         end
-        TriggerAddCondition(trig, Condition(function PickupItemActions))
+        TriggerAddCondition(trig, Condition(function PickupItemActions))    
         trig = CreateTrigger()
         for i = 0,15
             TriggerRegisterPlayerUnitEvent(trig, Player(i), EVENT_PLAYER_UNIT_USE_ITEM, null) //使用物品

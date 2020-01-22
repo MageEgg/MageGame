@@ -114,10 +114,10 @@ library ItemMeridians uses DamageCode,ItemGameFunc
                     AddPlayerMeridiansStateOfLevel(pid,num,GetDzPlayerData(pid,6,num+1))
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r恭喜你成功突破|cffffff00“"+GetMeridiansName(num)+"”|r！|r[今日成功突破经脉 |cffffcc00"+I2S(GetDzPlayerData(pid,1,10))+"/"+I2S(DzMeridiansDayNum)+"|r]")
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")
                 endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[存档挑战-经脉]：|r很遗憾突破经脉失败，继续加油哦！")
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r您今日突破经脉次数已达上限！")

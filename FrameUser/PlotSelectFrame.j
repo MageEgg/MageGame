@@ -238,7 +238,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
                 DzFrameShow(UI_TipsHead, true)
             endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r重置失败！杀敌数不足"+I2S(use))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r重置失败！玄铁不足"+I2S(use)+"|r")
         endif
         
     

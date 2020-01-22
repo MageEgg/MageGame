@@ -103,10 +103,13 @@ scope DeathEvent initializer InitDeathEvent
         //使用招魂幡
         int gold = 0
         int i1 = 0
-        if  itemid == 'I011'
+
+        if  itemid == 'I010'
+            gold = GetRandomInt(3000,6000)
+            i1 = GetRandomInt(1000,2000)
+        elseif  itemid == 'I011'
             gold = GetRandomInt(7000,12000)
-            i1 = GetRandomInt(2000,5000)
-            
+            i1 = GetRandomInt(2000,5000)    
         elseif  itemid == 'I012'
             gold = GetRandomInt(8000,13000)
             i1 = GetRandomInt(3000,6000)
@@ -116,13 +119,13 @@ scope DeathEvent initializer InitDeathEvent
         elseif  itemid == 'I014'
             gold = GetRandomInt(10000,15000)
             i1 = GetRandomInt(5000,8000)
-        elseif  itemid == 'I014'
+        elseif  itemid == 'I015'
             gold = GetRandomInt(12000,17000)
             i1 = GetRandomInt(6000,9000)
         endif
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" 金币+"+I2S(gold)+" 业力+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold)+"|r |CffCC99FF业力+"+I2S(i1)+"|r")
 
     endfunction
 
@@ -162,7 +165,7 @@ scope DeathEvent initializer InitDeathEvent
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾" + GetObjectName(id) + "升级失败！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾" + GetObjectName(id) + "|cffff0000升级失败！")
                 UnitAddItem(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             endif
         endif
@@ -174,7 +177,7 @@ scope DeathEvent initializer InitDeathEvent
         int lv = 0
         for i1 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i1))
-            if  id >= 'I011' and id <= 'I015'
+            if  id >= 'I010' and id <= 'I015'
                 if  PlayerItemGrowFunc(pid,UnitItemInSlot(Pu[1],i1),1) == true
                     PlayerUseGoldBox(pid,id)
                 endif
@@ -417,25 +420,25 @@ scope DeathEvent initializer InitDeathEvent
             endif
         elseif  uid >= 'uJ00' and uid <= 'uJzz'
             if  uid == 'uJ00'
-                AddPlayerImmortalFruit(Pu[1],'IJ01')
+                AddPlayerImmortalFruit(Pu[1],'IJ01',1)
             elseif  uid == 'uJ10'
-                AddPlayerImmortalFruit(Pu[1],'IJ02')
+                AddPlayerImmortalFruit(Pu[1],'IJ02',1)
             elseif  uid == 'uJ20'
-                AddPlayerImmortalFruit(Pu[1],'IJ03')
+                AddPlayerImmortalFruit(Pu[1],'IJ03',1)
             elseif  uid == 'uJ30'
-                AddPlayerImmortalFruit(Pu[1],'IJ04')
+                AddPlayerImmortalFruit(Pu[1],'IJ04',1)
             elseif  uid == 'uJ40'
-                AddPlayerImmortalFruit(Pu[1],'IJ05')
+                AddPlayerImmortalFruit(Pu[1],'IJ05',1)
             elseif  uid == 'uJ50'
-                AddPlayerImmortalFruit(Pu[1],'IJ06')
+                AddPlayerImmortalFruit(Pu[1],'IJ06',1)
             elseif  uid == 'uJ60'
-                AddPlayerImmortalFruit(Pu[1],'IJ07')
+                AddPlayerImmortalFruit(Pu[1],'IJ07',1)
             elseif  uid == 'uJ70'
-                AddPlayerImmortalFruit(Pu[1],'IJ08')
+                AddPlayerImmortalFruit(Pu[1],'IJ08',1)
             elseif  uid == 'uJ80'
-                AddPlayerImmortalFruit(Pu[1],'IJ09')
+                AddPlayerImmortalFruit(Pu[1],'IJ09',1)
             elseif  uid == 'uJ90'
-                AddPlayerImmortalFruit(Pu[1],'IJ10')
+                AddPlayerImmortalFruit(Pu[1],'IJ10',1)
             endif
         
         endif

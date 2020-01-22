@@ -10,7 +10,15 @@ library DzDataSetting uses DzBase
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
     // 组6 20组 1经脉最大上限 1-8经脉 10+未使用
-    // 组7 未使用
+    // 组7 未使用 12组
+    // 组8 未使用 12组
+    // 组9 未使用 12组
+    //组10 成就	30组							
+    //组11 光环	30组
+    //组12 翅膀	30组
+    //组13 神器	30组
+    //组14 称号	30组
+    //组15 彩蛋 30组
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -25,16 +33,16 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(4) = 5
         DzDataGroupLength(5) = 6
         DzDataGroupLength(6) = 3
-        /*DzDataGroupLength(7) = 0
-        DzDataGroupLength(8) = 0
-        DzDataGroupLength(9) = 0
-        DzDataGroupLength(10) = 0
-        DzDataGroupLength(11) = 0
-        DzDataGroupLength(12) = 0
-        DzDataGroupLength(13) = 0
-        DzDataGroupLength(14) = 0
-        DzDataGroupLength(15) = 0
-        DzDataGroupLength(16) = 0
+        DzDataGroupLength(7) = 5
+        DzDataGroupLength(8) = 5
+        DzDataGroupLength(9) = 5
+        DzDataGroupLength(10) = 2
+        DzDataGroupLength(11) = 2
+        DzDataGroupLength(12) = 2
+        DzDataGroupLength(13) = 2
+        DzDataGroupLength(14) = 2
+        DzDataGroupLength(15) = 2
+        /*DzDataGroupLength(16) = 0
         DzDataGroupLength(17) = 0
         DzDataGroupLength(18) = 0
         DzDataGroupLength(19) = 0
@@ -95,8 +103,7 @@ library DzDataSetting uses DzBase
             elseif  flag >= 2 //未使用
                 max = 0
             endif
-        elseif  Group == 5 //不用管
-        
+        //elseif  Group == 5 //不用管
         elseif  Group == 6 //不用管
             if  flag == 1 //经脉最大上限
                 max = MeridiansDay*DzMeridiansDayNum
@@ -105,6 +112,13 @@ library DzDataSetting uses DzBase
             elseif  flag >= 10
                 max = 0
             endif
+        elseif  Group == 7
+            max = 0
+        elseif  Group == 8
+            max = 0
+        elseif  Group == 9
+            max = 0
+        //elseif  Group == 10-15 //不用管
         else //未使用
             max = 0
         endif

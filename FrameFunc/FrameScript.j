@@ -167,6 +167,9 @@
             ShowTipsUI()
         endif
     endfunction
+    function BoxShowPassCheck(int pid,int id)
+        
+    endfunction
     
     function BoxShowTips(int pid,int id)
         //BJDebugMsg("show"+YDWEId2S(id))
