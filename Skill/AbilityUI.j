@@ -334,7 +334,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
                 magicid = GetUnitIntState(wu,125+index)
                 if  magicid > 0
-                    tip = tip + "\n\n附魔："+GetTypeIdStateTips(magicid)
+                    tip = tip + "\n\n|Cff00FF7F附魔：|r"+GetTypeIdStateTips(magicid)
                 endif
                 
                 YDWESetUnitAbilityDataString(wu, sid1,Type, 218, GetTypeIdString(id,102)+tip)
@@ -356,7 +356,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             SetUnitIntState(Pu[1],125+index,id)
             SetEquipStateOfPlayer(Pu[1],id,1)
 
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能附魔成功！"+GetTypeIdStateTips2(id))
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能附魔成功"+GetTypeIdStateTips2(id)+"!")
         endif
         ReHeroAbilityTips(Pu[1],index)
         

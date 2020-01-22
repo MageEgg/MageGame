@@ -82,13 +82,6 @@ library GameChallenge3 uses GameChallengeBase
         IsFinshChallenge(3) = true
         //奖励
         PlayerFinishPlotEx(pid,3)
-        /*if  AttackUnitWN <= 7
-            for num = 1,2
-                UnitAddItemEx(Pu[1],'IN19')
-            end
-            AddPlayerTechResearched(Player(pid),'KM22',1)
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"达成|cffffcc00“莽夫”|r成就，奖励2个"+GetObjectName('IN19')+"！") 
-        endif*/
     endfunction
 
     function EnRctGameChalleng_3_HTHTimer(int id,int n)

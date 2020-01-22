@@ -155,7 +155,7 @@ library MagicItemCollectFrame uses GameFrame
         CreateMagicItemButton2()
         //创建羁绊按钮
         CreateMagicItemButton3()
-
+        
         CreateButton(21,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.061,0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Recast.tga")
         CreateButton(22,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.01,0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Forge.tga")
 
@@ -397,8 +397,10 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetTipsData(10,"",GetMagicItemColorName(id))
             if  GetTypeIdTips(id) == ""
                 SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id))
+                h = 12
             else
                 SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id)+"\n"+GetTypeIdTips(id))
+                h = 12
             endif
             
             

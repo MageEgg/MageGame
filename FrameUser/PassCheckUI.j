@@ -385,19 +385,14 @@ library PassCheckUI uses GameFrame,PassCheckMission
         if  GetLocalPlayer() == Player(pid)
             Key.SetText(I2S(Page+1)+"/2")
             DzFrameSetText(BUTTON_Text[650],"|cffffcc00"+I2S(level)+"|r")
-            
+            BJDebugMsg("level"+I2S(level))
             for i = 1,10
                 index = Page*10+i
                 if  level >= index
                     DzFrameSetText(BUTTON_Text[610+i],"|cff000000"+I2S(index)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\UI_Pass_LevelBack.tga",0)
 
-                    DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\UI_DisBack.tga",0)
-                    DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
-                else
-                    DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(index)+"|r")
-                    DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\alpha.tga",0)
-
+                    
                     DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\alpha.tga",0)
 
                     if  DzShop(Player(pid),"RWK") == false
@@ -405,6 +400,13 @@ library PassCheckUI uses GameFrame,PassCheckMission
                     else
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\alpha.tga",0)
                     endif
+                else
+                    DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(index)+"|r")
+                    DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\alpha.tga",0)
+
+                    DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    
                 endif
 
 

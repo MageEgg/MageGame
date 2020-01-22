@@ -94,6 +94,8 @@ scope ItemSystem initializer InitItemSystem
 
                                 Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
                                 
+                                AddAttackSummonUnit(pid,Pu[100+index])
+
                                 SetPlayerOnlyDamage(Pu[100+index],pid)
                                 IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
                                 HeroMoveToRoom(pid)
@@ -212,11 +214,12 @@ scope ItemSystem initializer InitItemSystem
 
     
 
-    function PlayerHeroSkillMagic(unit wu,int index,int prizeid)
+    function PlayerHeroSkillMagic(unit wu,int index,int prizeid,int itemid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         
-        if  GetTypeIdData(GetHeroAbilityID(Pu[1],1),101) == 9
+        if  GetTypeIdData(GetHeroAbilityID(Pu[1],index),101) == 9
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该位置未学习技能，无法附魔！")
+            UnitAddItem(wu,CreateItem(itemid,GetUnitX(wu),GetUnitY(wu)))
         else
              PlayerHeorAddSkillMagic(pid,index, GetPoolItemId(prizeid))
         endif
@@ -440,6 +443,10 @@ scope ItemSystem initializer InitItemSystem
         if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
             PlayerGetGameGift(pid,itemid)
         endif
+
+        if  itemid == 'IP07'
+            PickUpItemOfIP07(u1,GetUnitX(u1),GetUnitY(u1))
+        endif
         
         if  IsItemPowerup(GetManipulatedItem()) == true //清除
             
@@ -466,12 +473,12 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
             AddPlayerDrawNum(pid,1)
             RePlayerAbilityDrawTips(pid,1)
-        elseif  itemid >= 'CS21' and itemid <= 'CS23'
+        elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
-            PlayerHeroSkillMagic(u1,itemid - 'IS20',1)
+            PlayerHeroSkillMagic(u1,itemid - 'IS20',1,itemid)
         elseif  itemid >= 'IS24' and itemid <= 'IS26'
-            PlayerHeroSkillMagic(u1,itemid - 'IS23',2)
+            PlayerHeroSkillMagic(u1,itemid - 'IS23',2,itemid)
 
 
         elseif  itemid >= 'E001' and itemid <= 'E024'
@@ -494,6 +501,15 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'I005'
             AddUnitStateExTimer(Pu[1],15,30,15)
             LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_e_buffattack.mdl")
+        elseif  itemid == 'IP04'
+            i1 = GetHeroAbilityID(Pu[1],4)
+            if  i1 >= 'S230' and i1 <= 'S237'
+                HeroRemoveAbilityByIndex (Pu[1],4)
+                HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
+            else
+                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r未获得R技能！无法洗练！")
+            endif
 
         elseif  itemid == 'IN31'//炽星魔盒IN31注册
             if  attacklv <= 11
@@ -508,6 +524,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IN27'//先天道果箱IN27注册
             UnitAddPoolItemShow(u1,14)
         elseif  itemid == 'IN30'//幸运星盒IN30注册
+            PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
             UnitAddPoolItemShow(u1,15)
         elseif  itemid == 'IN00'//锦囊IN00注册
             UnitAddPoolItemShow(u1,16)

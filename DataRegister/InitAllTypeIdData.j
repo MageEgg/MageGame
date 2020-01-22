@@ -1,7 +1,6 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
- //输出代码
-        //输出代码
+    //输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","死亡时，立即复活，CD15秒")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","")
@@ -15,7 +14,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB11',"|Cff00BFFF火尖枪|r","ReplaceableTextures\\CommandButtons\\BTNFB11.BLP","")
         call InitTypeIdStrings('FB12',"|Cff00BFFF乾坤圈|r","ReplaceableTextures\\CommandButtons\\BTNFB12.BLP","")
         call InitTypeIdStrings('FB13',"|Cff00FF7F阴阳剑|r","ReplaceableTextures\\CommandButtons\\BTNFB13.BLP","")
-        call InitTypeIdStrings('FB14',"|Cff00BFFF混天绫|r","ReplaceableTextures\\CommandButtons\\BTNFB14.BLP","每10秒获得一层等同于自身20%最大生命值的护盾。持续10秒，不可叠加")
+        call InitTypeIdStrings('FB14',"|Cff00BFFF混天绫|r","ReplaceableTextures\\CommandButtons\\BTNFB14.BLP","每30秒获得一层等同于自身25%最大生命值的护盾。不可叠加")
         call InitTypeIdStrings('FB15',"|CffFFD24D九龙神火罩|r","ReplaceableTextures\\CommandButtons\\BTNFB15.BLP","")
         call InitTypeIdStrings('FB16',"|CffFFD24D风火轮|r","ReplaceableTextures\\CommandButtons\\BTNFB16.BLP","")
         call InitTypeIdStrings('FB17',"|Cff00BFFF八棱双银锤|r","ReplaceableTextures\\CommandButtons\\BTNFB17.BLP","")
@@ -78,7 +77,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('CS03',"|cff00BFFFB级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS03.blp","随机技能")
         call InitTypeIdStrings('CS04',"|cffff0000A级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS04.blp","随机技能")
         call InitTypeIdStrings('CS05',"|cffff0033S级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS05.blp","随机技能")
-        call InitTypeIdStrings('CF01',"随机法宝","ReplaceableTextures\\CommandButtons\\BTNCF01.blp","获得一个随机品质的法宝，并奖励一枚时渊碎片。|n|n|Cff00ff7f副本难度影响法宝品质稀有度。|r")
+        call InitTypeIdStrings('CF01',"随机法宝","ReplaceableTextures\\CommandButtons\\BTNCF01.blp","获得一个随机品质的法宝，并奖励一枚时渊入场券。|n|n|Cff00ff7f副本难度影响法宝品质稀有度。|r")
         call InitTypeIdStrings('IN25',"|Cff00BFFF入门道果箱|r","ReplaceableTextures\\CommandButtons\\BTNAM20.blp","打开后有几率获得以下奖励：|n【随机品质】中级道果|n|Cff00ff7f【随机品质】高级道果|r")
         call InitTypeIdStrings('IN26',"|CffFFD24D后天道果箱|r","ReplaceableTextures\\CommandButtons\\BTNAM21.blp","打开后有几率获得以下奖励：|n|Cff00ff7f【随机品质】黄级道果|r|n|Cff00bfff【随机品质】玄级道果|n【随机品质】地级道果|r")
         call InitTypeIdStrings('IN27',"|CffFF0000先天道果箱|r","ReplaceableTextures\\CommandButtons\\BTNAM22.blp","打开后有几率获得以下奖励：|n|Cffffd24d【随机品质】天级道果|n【随机品质】仙品道果|n|r|Cffff0000【随机品质】至圣道果|n【随机品质】混沌道果|r")
@@ -87,7 +86,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IN30',"幸运星盒","ReplaceableTextures\\CommandButtons\\BTNI013.blp","开启后获得|Cff00bfff随机奖励|r。")
         call InitTypeIdStrings('IN31',"炽星魔盒","ReplaceableTextures\\CommandButtons\\BTNI014.blp","开启后获得|Cffffd24d随机奖励|r。")
         call InitTypeIdStrings('IN32',"|CffFFD24D技能宝箱|r","ReplaceableTextures\\CommandButtons\\BTNAM23.blp","使用后获得|Cffffc926随机类型技能升阶石|r")
-        call InitTypeIdStrings('IP01',"时渊碎片","ReplaceableTextures\\CommandButtons\\BTNIP01.blp","每次|Cffffd24d完成|r时渊副本将消耗|Cffffd24d1|r个|Cffffd24d时渊碎片|r")
+        call InitTypeIdStrings('IP01',"时渊入场券","ReplaceableTextures\\CommandButtons\\BTNIP01.blp","每次|Cffffd24d进入|r时渊副本将消耗|Cffffd24d1|r个|Cffffd24d时渊入场券|r")
         call InitTypeIdStrings('IP02',"补天石","ReplaceableTextures\\CommandButtons\\BTNIP02.blp","点击|Cffffc926选中指定法宝|r后，再点击|Cffffc926重铸|r，可|Cffffc926重置|r指定法宝，|Cffffc926品质不变|r。|n|n|Cff00ff7f每次重铸消耗1个补天石|r")
         call InitTypeIdStrings('IP03',"鸿蒙结晶","ReplaceableTextures\\CommandButtons\\BTNIP03.blp","点击|Cffffc926选中指定法宝|r后，再点击|Cffffc926锻造|r，可|Cffffc926重置|r指定法宝，|Cffffc926品质提升一级|r。|n|n|Cff00ff7f每次重铸消耗1个鸿蒙结晶|r")
         call InitTypeIdStrings('IP04',"神兽洗灵石","ReplaceableTextures\\CommandButtons\\BTNIP04.blp","使用后|Cffffd24d重置|r当前|Cffff0000神兽神通【R】|r|Cfff0f0f0。|r")
