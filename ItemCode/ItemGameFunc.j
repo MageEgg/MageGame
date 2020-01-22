@@ -17,14 +17,18 @@ library ItemGameFunc uses DamageCode
 
     function SetGifeItemStock(int pid)
         for num = 1,8
-            RemoveItemFromStock(Pu[26],'IB00'+num)
-            RemoveItemFromStock(Pu[26],'IB50'+num)
+            if  num != 3
+                RemoveItemFromStock(Pu[26],'IB00'+num)
+                RemoveItemFromStock(Pu[26],'IB50'+num)
+            endif
         end
         for num = 1,8
-            if  GameGiftBool[num] == false
-                AddItemToStock(Pu[26],'IB00'+num,1,1)
-            else
-                AddItemToStock(Pu[26],'IB50'+num,1,1)
+            if  num != 3
+                if  GameGiftBool[num] == false
+                    AddItemToStock(Pu[26],'IB00'+num,1,1)
+                else
+                    AddItemToStock(Pu[26],'IB50'+num,1,1)
+                endif
             endif
         end
     endfunction
@@ -113,7 +117,7 @@ library ItemGameFunc uses DamageCode
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
                         AddUnitRealState(Pu[1],47,2)
                         AddUnitRealState(Pu[1],48,1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，金币+2000、每秒攻击+2、每秒业力+1！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，金币+1000、每秒攻击+2、每秒业力+1！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif

@@ -1,6 +1,7 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
     //输出代码
+        //输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","死亡时，立即复活，CD15秒")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","")
@@ -29,8 +30,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB26',"|Cff00BFFF雾露乾坤网|r","ReplaceableTextures\\CommandButtons\\BTNFB26.BLP","")
         call InitTypeIdStrings('FB27',"|CffFFD24D四海瓶|r","ReplaceableTextures\\CommandButtons\\BTNFB27.BLP","")
         call InitTypeIdStrings('FB28',"|Cff00FF7F乾坤针|r","ReplaceableTextures\\CommandButtons\\BTNFB28.BLP","")
-        call InitTypeIdStrings('FB29',"|CffFF0000斩仙飞刀|r","ReplaceableTextures\\CommandButtons\\BTNFB29.BLP","对生命值低于40%的单位额外造成50%伤害")
-        call InitTypeIdStrings('FB30',"|Cff00FF7F万鸦壶|r","ReplaceableTextures\\CommandButtons\\BTNFB30.BLP","")
+        call InitTypeIdStrings('FB29',"|CffFF0000斩仙飞刀|r","ReplaceableTextures\\CommandButtons\\BTNFB29.BLP","对生命值低于40%的单位额外造成50%伤害
+        call InitTypeIdStrings('FB30',"|Cff00FF7F万鸦壶|r","ReplaceableTextures\\CommandButtons\\BTNFB30.BLP","
         call InitTypeIdStrings('FB31',"|Cff00BFFF万里起云烟|r","ReplaceableTextures\\CommandButtons\\BTNFB31.BLP","")
         call InitTypeIdStrings('FB32',"|CffFFD24D照天印|r","ReplaceableTextures\\CommandButtons\\BTNFB32.BLP","")
         call InitTypeIdStrings('FB33',"|Cff00BFFF青云剑|r","ReplaceableTextures\\CommandButtons\\BTNFB33.BLP","")
@@ -77,7 +78,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('CS03',"|cff00BFFFB级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS03.blp","随机技能")
         call InitTypeIdStrings('CS04',"|cffff0000A级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS04.blp","随机技能")
         call InitTypeIdStrings('CS05',"|cffff0033S级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS05.blp","随机技能")
-        call InitTypeIdStrings('CF01',"随机法宝","ReplaceableTextures\\CommandButtons\\BTNCF01.blp","获得一个随机品质的法宝，并奖励一枚时渊入场券。|n|n|Cff00ff7f副本难度影响法宝品质稀有度。|r")
+        call InitTypeIdStrings('CF01',"随机法宝","ReplaceableTextures\\CommandButtons\\BTNCF01.blp","获得一个随机品质的法宝。|n|n|Cff00ff7f副本难度影响法宝品质稀有度。|r")
         call InitTypeIdStrings('IN25',"|Cff00BFFF入门道果箱|r","ReplaceableTextures\\CommandButtons\\BTNAM20.blp","打开后有几率获得以下奖励：|n【随机品质】中级道果|n|Cff00ff7f【随机品质】高级道果|r")
         call InitTypeIdStrings('IN26',"|CffFFD24D后天道果箱|r","ReplaceableTextures\\CommandButtons\\BTNAM21.blp","打开后有几率获得以下奖励：|n|Cff00ff7f【随机品质】黄级道果|r|n|Cff00bfff【随机品质】玄级道果|n【随机品质】地级道果|r")
         call InitTypeIdStrings('IN27',"|CffFF0000先天道果箱|r","ReplaceableTextures\\CommandButtons\\BTNAM22.blp","打开后有几率获得以下奖励：|n|Cffffd24d【随机品质】天级道果|n【随机品质】仙品道果|n|r|Cffff0000【随机品质】至圣道果|n【随机品质】混沌道果|r")
@@ -191,6 +192,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RT16',"封神通行证16级","war3mapImported\\UI_State43.tga","")
         call InitTypeIdStrings('RT17',"封神通行证17级","war3mapImported\\UI_State49.tga","")
         call InitTypeIdStrings('RT19',"封神通行证19级","war3mapImported\\UI_State48.tga","")
+        
         BJDebugMsg("init1end")
     endfunction
     function InitDataString2()//注册法宝说明数据
