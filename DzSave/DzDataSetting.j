@@ -12,6 +12,13 @@ library DzDataSetting uses DzBase
     // 组6 20组 1经脉最大上限 1-8经脉 10+未使用
     // 组7 未使用
 
+    //组10 成就								
+    //组11 光环
+    //组12 翅膀
+    //组13 神器
+    //组14 称号
+    //组15 隐藏成就(彩蛋)
+
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
     endfunction
