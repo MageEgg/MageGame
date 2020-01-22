@@ -174,6 +174,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         {
             UnitDamageGroup(u,g,damage,false,false,ConvertAttackType(1),ConvertDamageType(0),null)
             g=null
+            endtimer
             flush locals
         }
         flush locals
@@ -2002,7 +2003,6 @@ function SpellS116(unit u1,real damage1)
 
     function SpellS233ice(unit u1)
     unit uu=u1
-    UnitAddBuff(uu,'DB01',3,852189)
     TimerStart(3,false)
         {
         UnitAddBuff(uu,'DB02',3,852095)
@@ -2018,6 +2018,7 @@ function SpellS116(unit u1,real damage1)
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
         unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_suanni.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
         shenshou(mj)
+        UnitTimerAddSkill(u,'A233',3)
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
          loop
             uu = FirstOfGroup(g.ejg)
@@ -2047,7 +2048,7 @@ function SpellS116(unit u1,real damage1)
         real b=((100-GetUnitLifePercent(u))*0.3)+5
         AddUnitRealState(u,19,b)
         UnitAddAbility(u,'A235')
-        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+        unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-100,1)
         shenshou(mj)
         TimerStart(5,false)
         {
@@ -2062,10 +2063,11 @@ function SpellS116(unit u1,real damage1)
     endfunction
     
 function SpellS236(unit u,unit u1)
-     real damage=0
-     SetUnitX(u,GetUnitX(u1))
-     SetUnitY(u,GetUnitY(u1))
-     AddUnitStateExTimer(u,9,220,3)
+    real damage=0
+    SetUnitX(u,GetUnitX(u1))
+    SetUnitY(u,GetUnitY(u1))
+    AddUnitStateExTimer(u,9,220,3)
+    UnitAddEffectTimer(u,"Abilities\\Spells\\Orc\\CommandAura\\CommandAura.mdl",3)
     unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),0,1)
     shenshou(mj)
     if GetUnitRealState(u,1)>GetUnitRealState(u,2)
@@ -2080,9 +2082,11 @@ function SpellS236(unit u,unit u1)
 endfunction
 
 function SpellS237(unit u)
+    unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_kongque.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+    shenshou(mj)
     AddUnitStateExTimer(u,25,20,5)
-     UnitTimerAddSkill(u,'A237',5)
-     flush locals
+    UnitTimerAddSkill(u,'A237',5)
+    flush locals
 endfunction
 
 
@@ -2140,7 +2144,10 @@ endfunction
         real damage = 0
 
         if GetUnitAbilityLevel(u1.u, 'A237')>0 
-            AddUnitStateExTimer(u1.u,17,10,5)
+            AddUnitStateExTimer(u1.u,16,10,10)
+            string s=YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1.u),"file")
+            unit mj=CreateTmUnit(GetOwningPlayer(u1.u),s,GetUnitX(u1.u),GetUnitY(u1.u),GetUnitFacing(u1.u),0,1)
+            shenshou(mj)
         endif 
 
         BJDebugMsg("释放技能"+I2S(id)+"等级"+I2S(lv))
