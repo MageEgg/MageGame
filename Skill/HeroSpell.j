@@ -867,7 +867,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS081(unit u2,real x1,real y1,real damage1)//真空领域
         unit u1=u2
         real damage=damage1 
-        real m=3+(GetUnitRealState(u1,2)/30000)
+        real m=3
         real x=x1
         real y=y1
         integer n = 0
@@ -1056,7 +1056,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real ang=0
         real x1 =0
         real y1 = 0
-        real Num = 3+(GetUnitRealState(u,2)/30000)
+        real Num = 3
         for i=0,1
             ang=0.01745*180*i
             x1 = x+50*Cos(ang)
@@ -1948,7 +1948,7 @@ function SpellS116(unit u1,real damage1)
     
     function SpellS231(unit u1,real damage1)//兽魂2
     unit u=u1
-    real m=12+(GetUnitAttack(u)/15000)
+    real m=12
     real damage=damage1
     int Num=0
     real x=0
