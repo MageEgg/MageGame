@@ -348,19 +348,19 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 if  num == 1
                     AddUnitRealState(Pu[1],18,t*5)
                 elseif  num == 2
-                    AddUnitRealState(Pu[1],10,t*7.5)
+                    AddUnitRealState(Pu[1],10,t*5)
                 elseif  num == 3
-                    AddUnitRealState(Pu[1],32,t*15)
+                    AddUnitRealState(Pu[1],32,t*6)
                 elseif  num == 4
-                    AddUnitRealState(Pu[1],4,t*7.5)
+                    AddUnitRealState(Pu[1],4,t*5)
                 elseif  num == 5
-                    AddUnitRealState(Pu[1],19,t*5)
+                    AddUnitRealState(Pu[1],19,t*3)
                 elseif  num == 6
-                    AddUnitRealState(Pu[1],9,t*50)
+                    AddUnitRealState(Pu[1],9,t*30)
                 elseif  num == 7
-                    AddUnitRealState(Pu[1],31,t*15)
+                    AddUnitRealState(Pu[1],31,t*10)
                 elseif  num == 8
-                    AddUnitRealState(Pu[1],25,t*7.5)
+                    AddUnitRealState(Pu[1],25,t*5)
                 endif
             endif
         end

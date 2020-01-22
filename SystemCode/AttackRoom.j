@@ -356,7 +356,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币！")
+                    UnitAddItemEx(Pu[1],'I010')
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币和"+GetObjectName('I010')+"！")
                     ShowPlayerTaskUIOfPlayer(pid,false,0)
                     SetPlayerTaskUIChatOfPlayer(pid," "," ",0)
                     SetPlayerTaskUITaskOfPlayer(pid," ",0)
