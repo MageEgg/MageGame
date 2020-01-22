@@ -319,6 +319,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             endif
             GroupClear(gg)
             DestroyGroup(gg)
+            flush locals
         }
         flush locals
     endfunction
@@ -346,6 +347,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 endif
                 GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnit(GetOwningPlayer(u1),wg,""))
                 UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                GroupClear(gg)
+                DestroyGroup(gg)
             else
                 RemoveUnit(u2)
                 GroupClear(wg)
@@ -354,8 +357,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 DestroyGroup(ug)
                 endtimer
             endif
-            GroupClear(gg)
-            DestroyGroup(gg)
+           
             flush locals
         }
         flush locals

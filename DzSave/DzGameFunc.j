@@ -122,7 +122,9 @@ piece DzGameFunc
         {
             DzPalyerSignInEx(pid)
             endtimer
+            flush locals
         }
+        flush locals
     endfunction
 
 endpiece

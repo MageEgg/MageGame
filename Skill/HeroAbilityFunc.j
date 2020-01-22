@@ -21,6 +21,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
+            endtimer
             flush locals
         }
         flush locals
@@ -47,6 +48,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             endif
             UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
+            endtimer
             flush locals
         }
         flush locals

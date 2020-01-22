@@ -93,7 +93,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
     endfunction
     
     function BossDamageUIClose()
-        TimerStart(5,true)
+        TimerStart(5,false)
         {
             BossDamageUICloceEx()
             endtimer
