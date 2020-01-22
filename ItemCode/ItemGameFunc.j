@@ -671,7 +671,7 @@ library ItemGameFunc uses DamageCode
 
     function UnitItemIN12(int pid,int itid)
         int ran = GetRandomInt(1,5)
-        unit u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30'+ran,-5984+GetRandomInt(-300,300),-6656,270)
+        unit u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30'+ran,-5684+ran*150,-6656,270)
         PingMinimap(-5984,-6656,8)
         RemoveUnitTimer(u,30)
         

@@ -427,9 +427,7 @@ scope ItemSystem initializer InitItemSystem
         endif
 
 
-        if  itemid >= 'IN07' and itemid <= 'IN24'
-            PlayerUsesstrangeItem(pid,itemid)
-        endif
+        
 
         if  itemid == 'I00A'
             AttackOperaAGold(GetItemX(GetManipulatedItem()),GetItemY(GetManipulatedItem()))
@@ -513,6 +511,10 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r未获得R技能！无法洗练！")
             endif
 
+
+        elseif  itemid >= 'IN07' and itemid <= 'IN24'
+            PlayerUsesstrangeItem(pid,itemid)
+        
         elseif  itemid == 'IN31'//炽星魔盒IN31注册
             if  attacklv <= 11
                 UnitAddPoolItemShow(u1,11)

@@ -178,6 +178,18 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         return false
     endfunction
 
+    function BoxShowPassCheck(int pid,int index,int id)
+        if  id > 0
+            DzFrameShow(UI_TipsHead, true)
+            SetTipsData(1,"",GetTypeIdName(id))
+            
+            SetTipsData(10,"",GetTypeIdStateTips(id))
+            SetTipsData(11,"",GetTypeIdTips(id))
+            ShowTipsUI()
+        endif
+    endfunction
+
+
     function BoxShowSaveFrame(int pid,int index)
         int step = Step[pid]
         int page = Page[pid]
@@ -233,6 +245,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             ShowTipsUI()
         endif
     endfunction
+
+    
 
     //刷新显示
     function ReShowSaveFrame(int pid,int page,int step)
