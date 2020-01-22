@@ -910,11 +910,11 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitState(tu,UNIT_STATE_LIFE,life + maxlife * 0.3)
         endif
         if  lv >= 4
-            AddUnitStateExTimer(tu,32,30,4)
+            AddUnitStateExTimer(tu,32,40,4)
         elseif  lv >= 3
-            AddUnitStateExTimer(tu,32,20,4)
+            AddUnitStateExTimer(tu,32,25,4)
         else
-            AddUnitStateExTimer(tu,32,10,4)
+            AddUnitStateExTimer(tu,32,15,4)
         endif
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_e_buffgreen2a.mdl")
     endfunction
@@ -1210,7 +1210,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然斩杀了队友！")
         else
-            BJDebugMsg("错误的目标")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|CffFF0000该技能只能对队友使用。|r")
             lv = GetUnitAbilityLevel(wu,'AG05')
             UnitRemoveAbility(wu,'AG05')
             UnitAddAbility(wu,'AG05')

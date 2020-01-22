@@ -62,7 +62,7 @@ scope ItemSystem initializer InitItemSystem
                     if  IsHeroEquipCanOpenPlot(Pu[1]) == true
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备均达到|Cff00ff7f绿色|r，解锁|Cffff0000剧情副本挑战|r|Cfff0f0f0。|r")
 
-                        Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1]+512,AttackRoomPostion[pid][2]-256,270)//副本入口
+                        Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]+512,270)//副本入口
                         LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
                         UnitAddAbility(Pu[1],'AG09')
                         UnitMakeAbilityPermanent(Pu[1],true,'AG09')
@@ -181,20 +181,22 @@ scope ItemSystem initializer InitItemSystem
         int num = GetPlayerDrawNum(pid,index)
         int use1 = GetPlayerDrawUse(pid,index,num+1)
         int use2 = 0
+        /*
         if  num > 0
             use2 = 1
         endif
+        */
         if  num < 10
             if  use1 > 0
                 if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER) >= use2
                     if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
                         AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
-                        AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                        //AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                         PlayerUseLearnAbilityBook(pid,index,GetExpectLevel(pid,index))
                         AddPlayerDrawNum(pid,index)
                         RePlayerAbilityDrawTips(pid,index)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前抽取次数"+I2S(num+1)+"/10")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r|Cff00FF7FQ技能|r抽取次数"+I2S(num+1)+"/10")
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
                     endif

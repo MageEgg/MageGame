@@ -103,10 +103,13 @@ scope DeathEvent initializer InitDeathEvent
         //使用招魂幡
         int gold = 0
         int i1 = 0
-        if  itemid == 'I011'
+
+        if  itemid == 'I010'
+            gold = GetRandomInt(3000,6000)
+            i1 = GetRandomInt(1000,2000)
+        elseif  itemid == 'I011'
             gold = GetRandomInt(7000,12000)
-            i1 = GetRandomInt(2000,5000)
-            
+            i1 = GetRandomInt(2000,5000)    
         elseif  itemid == 'I012'
             gold = GetRandomInt(8000,13000)
             i1 = GetRandomInt(3000,6000)
@@ -116,7 +119,7 @@ scope DeathEvent initializer InitDeathEvent
         elseif  itemid == 'I014'
             gold = GetRandomInt(10000,15000)
             i1 = GetRandomInt(5000,8000)
-        elseif  itemid == 'I014'
+        elseif  itemid == 'I015'
             gold = GetRandomInt(12000,17000)
             i1 = GetRandomInt(6000,9000)
         endif
@@ -174,7 +177,7 @@ scope DeathEvent initializer InitDeathEvent
         int lv = 0
         for i1 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i1))
-            if  id >= 'I011' and id <= 'I015'
+            if  id >= 'I010' and id <= 'I015'
                 if  PlayerItemGrowFunc(pid,UnitItemInSlot(Pu[1],i1),1) == true
                     PlayerUseGoldBox(pid,id)
                 endif
