@@ -182,20 +182,20 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             endif
             if  move == 1
                 if  PlayerDeathBool == false 
-                    HeroMoveToRoom(pid)
+                    HeroMoveToRoom.execute(pid)
                 endif
             endif
         endif 
     endfunction
 
-    function AddPlayerImmortalFruit(unit wu,int id)
+    function AddPlayerImmortalFruit(unit wu,int id,int move)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
         int now = GetHeroXP(Pu[1]) 
         int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
         int i1 = 0
         if  max - now == 1
-            AddImmortalFruit(wu,id,0)
+            AddImmortalFruit(wu,id,move)
         endif
     endfunction
 
