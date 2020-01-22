@@ -109,7 +109,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         loop
             uu=FirstOfGroup(g.ejg)
             exitwhen uu==null
-            AddUnitStateExTimer(u,3,-20,3)
             GroupRemoveUnit(g.ejg,uu)
         endloop
         
