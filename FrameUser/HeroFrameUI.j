@@ -140,7 +140,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
     endfunction
 
     //添加道果
-    function AddImmortalFruit(unit wu,int id)
+    function AddImmortalFruit(unit wu,int id,int move)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
         if  num < MaxHeroLevel
@@ -180,6 +180,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
             if  id == 'IJ10'
                 MissionAddNumFunc(pid,26,1)//获得混沌道果
             endif
+            if  move == 1
+                if  PlayerDeathBool == false 
+                    HeroMoveToRoom(pid)
+                endif
+            endif
         endif 
     endfunction
 
@@ -190,7 +195,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
         int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
         int i1 = 0
         if  max - now == 1
-            AddImmortalFruit(wu,id)
+            AddImmortalFruit(wu,id,0)
         endif
     endfunction
 

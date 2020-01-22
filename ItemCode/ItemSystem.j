@@ -343,7 +343,7 @@ scope ItemSystem initializer InitItemSystem
             SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
             ReCollectFrameResources(pid)
         elseif  itemid >= 'IJ01' and itemid <= 'IJ10'
-            AddPlayerImmortalFruit(u1,itemid)
+            //AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS03'
@@ -557,7 +557,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid >= 'ID11' and itemid <= 'ID20'//道果
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
                 if  DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]) == 1
-                    AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00')
+                    AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00',0)
                 else
                     UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r境界经验不足，无法晋升境界！")
@@ -616,7 +616,7 @@ scope ItemSystem initializer InitItemSystem
         for i = 0,15
             TriggerRegisterPlayerUnitEvent(trig, Player(i), EVENT_PLAYER_UNIT_PICKUP_ITEM, null) //获得物品
         end
-        TriggerAddCondition(trig, Condition(function PickupItemActions))
+        TriggerAddCondition(trig, Condition(function PickupItemActions))    
         trig = CreateTrigger()
         for i = 0,15
             TriggerRegisterPlayerUnitEvent(trig, Player(i), EVENT_PLAYER_UNIT_USE_ITEM, null) //使用物品

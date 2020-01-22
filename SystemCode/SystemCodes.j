@@ -868,38 +868,26 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             end
 
 
-RegisterItemPool(31,'I014',1)
-RegisterItemPool(31,'I015',1)
-RegisterItemPool(31,'IN00',1)
-RegisterItemPool(31,'IS24',1)
-RegisterItemPool(31,'IS25',1)
-RegisterItemPool(31,'IS26',1)
-RegisterItemPool(31,'IP04',1)
-RegisterItemPool(31,'CS22',1)
-RegisterItemPool(31,'IP02',1)
-RegisterItemPool(31,'IP03',1)
-RegisterItemPool(31,'IP01',1)
-
 //炽星魔盒IN31注册
-RegisterItemPool(11,'I011',10)
+RegisterItemPool(11,'I011',5)
 RegisterItemPool(11,'I013',2)
 RegisterItemPool(11,'I015',1)
 RegisterItemPool(11,'IN26',10)
-RegisterItemPool(11,'IC03',10)
+RegisterItemPool(11,'IC03',20)
 RegisterItemPool(11,'IC04',3)
-RegisterItemPool(11,'IC06',10)
+RegisterItemPool(11,'IC06',20)
 RegisterItemPool(11,'IC07',3)
-RegisterItemPool(11,'IC09',10)
+RegisterItemPool(11,'IC09',20)
 RegisterItemPool(11,'IC10',3)
 RegisterItemPool(11,'IN28',3)
 RegisterItemPool(11,'IN25',5)
 RegisterItemPool(11,'IP01',5)
-RegisterItemPool(11,'IP06',3)
+RegisterItemPool(11,'IP06',10)
 RegisterItemPool(11,'IP08',3)
-RegisterItemPool(11,'IP09',3)
+RegisterItemPool(11,'IP09',2)
 RegisterItemPool(11,'IN30',2)
 RegisterItemPool(11,'IN19',1)
-RegisterItemPool(11,'IC00',40)
+RegisterItemPool(11,'IC00',100)
 
 
 
@@ -924,9 +912,22 @@ RegisterItemPool(17,'IN19',2)
 RegisterItemPool(17,'IP01',3)
 RegisterItemPool(17,'IP06',5)
 RegisterItemPool(17,'IP08',1)
-RegisterItemPool(17,'IC00',32)
+RegisterItemPool(17,'IC00',160)
 
 
+
+
+
+//黑市/玄铁注册
+RegisterItemPool(31,'I015',1)
+RegisterItemPool(31,'IN00',1)
+RegisterItemPool(31,'IS24',1)
+RegisterItemPool(31,'IS25',1)
+RegisterItemPool(31,'IS26',1)
+RegisterItemPool(31,'CS22',1)
+RegisterItemPool(31,'IP02',1)
+RegisterItemPool(31,'IP03',1)
+RegisterItemPool(31,'IP01',1)
 //入门道果箱IN25注册
 RegisterItemPool(12,'ID12',10)
 RegisterItemPool(12,'ID13',2)
@@ -980,16 +981,21 @@ RegisterItemPool(15,'IC00',30)
 //锦囊IN00注册
 RegisterItemPool(16,'IN07',1)
 RegisterItemPool(16,'IN08',1)
+
 RegisterItemPool(16,'IN10',1)
 RegisterItemPool(16,'IN11',1)
 RegisterItemPool(16,'IN12',1)
 RegisterItemPool(16,'IN13',1)
 RegisterItemPool(16,'IN14',1)
 RegisterItemPool(16,'IN15',1)
+
 RegisterItemPool(16,'IN17',1)
 RegisterItemPool(16,'IN18',1)
 RegisterItemPool(16,'IN20',1)
 RegisterItemPool(16,'IN21',1)
+
+
+
 RegisterItemPool(16,'IC03',2)
 RegisterItemPool(16,'IC06',2)
 RegisterItemPool(16,'IC09',2)

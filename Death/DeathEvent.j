@@ -125,7 +125,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" 金币+"+I2S(gold)+" 业力+"+I2S(i1))
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold)+|r" |CffCC99FF业力+"+I2S(i1)+"|r")
 
     endfunction
 
@@ -420,25 +420,25 @@ scope DeathEvent initializer InitDeathEvent
             endif
         elseif  uid >= 'uJ00' and uid <= 'uJzz'
             if  uid == 'uJ00'
-                AddPlayerImmortalFruit(Pu[1],'IJ01')
+                AddPlayerImmortalFruit(Pu[1],'IJ01',1)
             elseif  uid == 'uJ10'
-                AddPlayerImmortalFruit(Pu[1],'IJ02')
+                AddPlayerImmortalFruit(Pu[1],'IJ02',1)
             elseif  uid == 'uJ20'
-                AddPlayerImmortalFruit(Pu[1],'IJ03')
+                AddPlayerImmortalFruit(Pu[1],'IJ03',1)
             elseif  uid == 'uJ30'
-                AddPlayerImmortalFruit(Pu[1],'IJ04')
+                AddPlayerImmortalFruit(Pu[1],'IJ04',1)
             elseif  uid == 'uJ40'
-                AddPlayerImmortalFruit(Pu[1],'IJ05')
+                AddPlayerImmortalFruit(Pu[1],'IJ05',1)
             elseif  uid == 'uJ50'
-                AddPlayerImmortalFruit(Pu[1],'IJ06')
+                AddPlayerImmortalFruit(Pu[1],'IJ06',1)
             elseif  uid == 'uJ60'
-                AddPlayerImmortalFruit(Pu[1],'IJ07')
+                AddPlayerImmortalFruit(Pu[1],'IJ07',1)
             elseif  uid == 'uJ70'
-                AddPlayerImmortalFruit(Pu[1],'IJ08')
+                AddPlayerImmortalFruit(Pu[1],'IJ08',1)
             elseif  uid == 'uJ80'
-                AddPlayerImmortalFruit(Pu[1],'IJ09')
+                AddPlayerImmortalFruit(Pu[1],'IJ09',1)
             elseif  uid == 'uJ90'
-                AddPlayerImmortalFruit(Pu[1],'IJ10')
+                AddPlayerImmortalFruit(Pu[1],'IJ10',1)
             endif
         
         endif
