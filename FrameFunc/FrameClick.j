@@ -213,6 +213,7 @@ endscope
 //! runtextmacro AddFrameFunc("585")
 //! runtextmacro AddFrameFunc("586")
 //! runtextmacro AddFrameFunc("587")
+//! runtextmacro AddFrameFunc("588")
 
 
 //通行证签到

@@ -378,7 +378,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         int index = 0
         for x = 0,7
             index = 581+x
-            CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.003,-0.025-x*0.025,0.075,0.0225,"war3mapImported\\alpha.tga")
+            CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.003,-0.026-x*0.026,0.075,0.024,"war3mapImported\\alpha.tga")
             
         end
 
