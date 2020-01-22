@@ -109,7 +109,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         loop
             uu=FirstOfGroup(g.ejg)
             exitwhen uu==null
-            AddUnitStateExTimer(u,3,-20,3)
             GroupRemoveUnit(g.ejg,uu)
         endloop
         
@@ -639,10 +638,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real dis=Udis(u2,u1)
         integer i=0
          group wg = CreateGroup()
-        TimerStart(0.03,true)
+        TimerStart(0.02,true)
         {
             i=i+1
-            if i>30
+            if i>20
                 ang=Uang(u2,u1)
                 dis=Udis(u2,u1)
                 group gg = CreateGroup()
@@ -675,7 +674,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u1=u
         real ang=ang1
         real dam=damage1
-        integer time=25
+        integer time=18
         unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_fense-lizi-toushewu.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,70,1)
         group wg = CreateGroup()
         real x=0
@@ -745,7 +744,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS078(unit u2,real x1,real y1,real damage1)
         unit u=u2
         real damage=damage1 
-        real m=1.5
+        real m=1
         real x=x1
         real y=y1
         real x0=GetUnitX(u)
@@ -801,7 +800,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS079(unit u2,real x1,real y1,real damage1)
         unit u=u2
         real damage=damage1 
-        real m=3
+        real m=2
         real x=x1
         real y=y1
         real x0=GetUnitX(u)
@@ -868,7 +867,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS081(unit u2,real x1,real y1,real damage1)//真空领域
         unit u1=u2
         real damage=damage1 
-        real m=3+(GetUnitRealState(u1,2)/30000)
+        real m=3
         real x=x1
         real y=y1
         integer n = 0
@@ -1057,7 +1056,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real ang=0
         real x1 =0
         real y1 = 0
-        real Num = 3+(GetUnitRealState(u,2)/30000)
+        real Num = 3
         for i=0,1
             ang=0.01745*180*i
             x1 = x+50*Cos(ang)
@@ -1949,7 +1948,7 @@ function SpellS116(unit u1,real damage1)
     
     function SpellS231(unit u1,real damage1)//兽魂2
     unit u=u1
-    real m=12+(GetUnitAttack(u)/15000)
+    real m=12
     real damage=damage1
     int Num=0
     real x=0
@@ -1988,7 +1987,7 @@ function SpellS116(unit u1,real damage1)
         unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_qilin.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
         shenshou(mj)
         IndexGroup g = IndexGroup.create()
-        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_blue-dao-mofa.mdl")
+        LocAddEffect(GetUnitX(u),GetUnitY(u),"effect2_az_cocoguanyu_t2_death.mdl")
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         loop
             uu = FirstOfGroup(g.ejg)
@@ -2004,7 +2003,7 @@ function SpellS116(unit u1,real damage1)
     function SpellS233ice(unit u1)
     unit uu=u1
     UnitAddBuff(uu,'DB01',3,852189)
-    TimerStart(2,false)
+    TimerStart(3,false)
         {
         UnitAddBuff(uu,'DB02',3,852095)
         endtimer
@@ -2067,7 +2066,7 @@ function SpellS236(unit u,unit u1)
      SetUnitX(u,GetUnitX(u1))
      SetUnitY(u,GetUnitY(u1))
      AddUnitStateExTimer(u,9,220,3)
-    unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
+    unit mj=CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),0,1)
     shenshou(mj)
     if GetUnitRealState(u,1)>GetUnitRealState(u,2)
         damage=GetUnitRealState(u,1)*12
@@ -2081,7 +2080,7 @@ function SpellS236(unit u,unit u1)
 endfunction
 
 function SpellS237(unit u)
-    AddUnitStateExTimer(u,25,40,5)
+    AddUnitStateExTimer(u,25,20,5)
      UnitTimerAddSkill(u,'A237',5)
      flush locals
 endfunction
