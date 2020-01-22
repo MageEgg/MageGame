@@ -670,11 +670,11 @@ library ItemGameFunc uses DamageCode
     endfunction
 
     function UnitItemIN12(int pid,int itid)
-        unit u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-5984,-6656,270)
+        int ran = GetRandomInt(1,5)
+        unit u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30'+ran,-5984+GetRandomInt(-300,300),-6656,270)
         PingMinimap(-5984,-6656,8)
         RemoveUnitTimer(u,30)
         
-        GetPoolItemId(31)
 
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家召唤了黑市商店，快回城看看！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家召唤了黑市商店，快回城看看！！！|r")

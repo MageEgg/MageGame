@@ -523,7 +523,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int use = 0
         int lv = GetUnitIntState(wu,120+index)
         if  GetHeroAbilityID(wu,index) == 0
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]：技能升级失败！该键位无技能！|r")
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffff0000[系统]：技能升级失败！该键位无技能！|r")
         else
             HeroSetAbilityLevelByIndex(wu,index,lv+1)
         endif
@@ -564,7 +564,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             if  GetHeroAbilityID(Pu[1],id)>0
                 HeroRemoveAbilityByIndex(Pu[1],id)
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：技能删除失败！该位置无技能")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]|r：技能删除失败！该位置无技能")
             endif
         endif
     endfunction

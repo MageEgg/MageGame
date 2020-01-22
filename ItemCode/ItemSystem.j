@@ -132,7 +132,7 @@ scope ItemSystem initializer InitItemSystem
                 endif
             else
                 
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！金币不足"+I2S(gold))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！金币不足"+I2S(gold))
             endif
             
         else    
@@ -198,10 +198,10 @@ scope ItemSystem initializer InitItemSystem
                         RePlayerAbilityDrawTips(pid,index)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r|Cff00FF7FQ技能|r抽取次数"+I2S(num+1)+"/10")
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取失败！木材不足"+I2S(use2)+"。")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！玄铁不足"+I2S(use2)+"。")
                 endif
             endif
         else
@@ -263,7 +263,7 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(wu,CreateItem(next,GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
             else    
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r附魔失败！金币不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r附魔失败！金币不足"+I2S(use))
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包内没有可升级的饰品！")
@@ -284,10 +284,10 @@ scope ItemSystem initializer InitItemSystem
                 LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffyellow2.mdl")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！杀敌数不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！杀敌数不足"+I2S(use))
             endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级失败！该技能已经满级！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff000[系统]：|r升级失败！该技能已经满级！")
         endif
     endfunction
     
@@ -375,7 +375,7 @@ scope ItemSystem initializer InitItemSystem
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
                     OpenGameTeamChallenge(pid,1,20)
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r木材不足2000！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r玄铁不足2000！")
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
