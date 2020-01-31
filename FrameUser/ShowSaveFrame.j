@@ -217,6 +217,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             UnitRemoveAbility(Pu[1],nowid)
         endif
 
+
         if  sid == nowid
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
         else
@@ -229,26 +230,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         endif
     endfunction
 
-    //点击按钮
-    function PlayerClickShowSaveFrame(int pid,int index)
-        int step = Step[pid]
-        int page = Page[pid]
-        int id = GetShowSaveId(page,index+step*4)
-        
-
-        if  IsSaveIdCanShow(id,page) == true
-            if  IsSaveFrameTechUnLock(pid,index) == true
-                BJDebugMsg("已解锁")
-                RefreshOrnament(pid,id)
-            else
-                BJDebugMsg("未解锁")
-            endif
-        else
-            
-            BJDebugMsg("不是外观类")
-        endif
-
-    endfunction
+    
 
     //显示说明
     function BoxShowSaveFrame(int pid,int index)
@@ -264,8 +246,11 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
             
-
-            SetTipsData(1,"",GetTypeIdName(id))
+            if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
+                SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
+            else
+                SetTipsData(1,"",GetTypeIdName(id))
+            endif
 
 
             tech = GetShowSaveFrameTechTips(pid,index)
@@ -342,6 +327,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                             endif
                         end
 
+                        if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
+                            DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
+                        endif
                         DzFrameSetTexture(BUTTON_Back[500+index][1],GetTypeIdIcon(id),0)
                         DzFrameSetText(BUTTON_Text[500+index],GetTypeIdColor(id)+GetTypeIdName(id))
                     else
@@ -355,6 +343,28 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         endif
     endfunction
 
+    //点击按钮
+    function PlayerClickShowSaveFrame(int pid,int index)
+        int step = Step[pid]
+        int page = Page[pid]
+        int id = GetShowSaveId(page,index+step*4)
+        
+
+        if  IsSaveIdCanShow(id,page) == true
+            if  IsSaveFrameTechUnLock(pid,index) == true
+                BJDebugMsg("已解锁")
+                RefreshOrnament(pid,id)
+                
+                ReShowSaveFrame(pid,page,step)
+            else
+                BJDebugMsg("未解锁")
+            endif
+        else
+            
+            BJDebugMsg("不是外观类")
+        endif
+
+    endfunction
     
     function SetPlayerShowSaveStep(int pid,int step)
         int max = GetShowSaveMax(Page[pid])
@@ -421,6 +431,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
         if  GetLocalPlayer() == Player(pid)
             Button.show = show
+            if  show == true
+                ReShowSaveFrame(pid, Page[pid], Step[pid])
+            endif
         endif
     
     endfunction
@@ -441,6 +454,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                 Button.show = false
             else
                 Button.show = true
+                ReShowSaveFrame(pid, Page[pid], Step[pid])
             endif
         endif
     endfunction

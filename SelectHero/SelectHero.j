@@ -35,6 +35,13 @@ scope SelectHero
             AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
         endif*/
 
+
+        
+
+        
+        
+                
+
     endfunction
 
 
@@ -49,7 +56,6 @@ scope SelectHero
             SelectUnit(Pu[1],true)
 
             DzFrameShow(BUTTON_Back[702][0], true)
-            DzFrameShow(BUTTON_Back[703][0], true) 
         endif
 
 
@@ -96,6 +102,8 @@ scope SelectHero
             SelectHeroInitSkill(pid)//加载必要技能
 
             GameChallenge_0Start(pid)//加载新手任务
+
+            ReTechFuncItemTips.execute(pid)//刷新道具兑换说明
             
         endif
     endfunction

@@ -366,8 +366,10 @@ library DzSave initializer InitDzData uses DzDataSetting
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         //加载科技
+                        LoadPlayerAllUnlocTech.execute(pid)
                     endif
                 end
+                ExecuteFunc("InitAllUnlocTechFuncItem")
             elseif  time == 8
                 ExecuteFunc("OpenSelectMode")
                 GetDzHD()

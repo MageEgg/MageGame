@@ -408,6 +408,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
 
+                Pu[41]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np41',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]-256,0)//积分兑换
+
                 UnitAddAbility(Pu[27],'Avul')
                 SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,400)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)

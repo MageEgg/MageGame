@@ -317,8 +317,41 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             endif
         endfunction
         
+
+        function ReExChangeTips(int pid,int itemid)
+            int index = GetTypeIdData(itemid,0x10010)
+            int id = itemid + 0x9000000
+            string tip = ""
+
+            if  GetDzPlayerData(pid,data_uselist,data_usepos) >= data_use
+                tip = tip + "需求：|cff00ff00"+I2S(data_use)
+            else
+                tip = tip + "需求：|cffff0000"+I2S(data_use)
+            endif
+            
+
+            if  data_uselist == 2
+                if  data_usepos == 1
+                    tip = tip + "|r 通关积分且地图"
+                endif
+            endif
+
+            if  DzPlayerLv(Player(pid)) >= data_level
+                tip = tip +" |cff00ff00"+I2S(data_level)+" |r级\n\n|cffffcc00属性：|r"
+            else
+                tip = tip +" |cffff0000"+I2S(data_level)+" |r级\n\n|cffffcc00属性：|r"
+            endif
+            
+
+            tip = tip + GetTypeIdStateTips(id)+GetTypeIdTips(id)
+            if  GetLocalPlayer() == Player(pid)
+                YDWESetItemDataString(itemid,3,tip)
+            endif
+            BJDebugMsg(YDWEId2S(id))
+            BJDebugMsg(tip)
+        endfunction
         
-        function ExChangeList(int itemid,int level ,int list,int pos,int uselist,int usepos,int use,int data)->int
+        function ExChangeList(int itemid,int level ,int uselist,int usepos,int use,int list,int pos,int data)->int
             Data_index = Data_index + 1
             int index = Data_index
             data_level = level
@@ -340,57 +373,70 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         #undef data_data
         #undef data_level
     endscope
+
+
+    //科技注册
+    function InitAllUnlocTechFunc1()    
+
+        //成就  
+        InitUnlocTechConditions('RJ1A',InitCond1(2,Unloc_Type_Level,2),0,0,0,0)
+        InitUnlocTechConditions('RJ1B',InitCond1(2,Unloc_Type_Level,3),0,0,0,0)
+        InitUnlocTechConditions('RJ1C',InitCond1(2,Unloc_Type_Level,5),0,0,0,0)
+        InitUnlocTechConditions('RJ1D',InitCond1(2,Unloc_Type_Level,8),0,0,0,0)
+        InitUnlocTechConditions('RJ1E',InitCond1(2,Unloc_Type_Level,10),0,0,0,0)
+        InitUnlocTechConditions('RJ1F',InitCond1(2,Unloc_Type_Level,12),0,0,0,0)
+        InitUnlocTechConditions('RJ1G',InitCond1(2,Unloc_Type_Level,15),0,0,0,0)
+
+
+        //积分兑换
+        InitUnlocTechConditions('RY1C',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_Load,GameDataList(11,3,3)),0,0,0)
+        InitUnlocTechConditions('RY2C',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_Load,GameDataList(12,3,3)),0,0,0)
+        InitUnlocTechConditions('RY3C',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_Load,GameDataList(13,3,3)),0,0,0)
+        InitUnlocTechConditions('RY4C',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_Load,GameDataList(14,3,3)),0,0,0)
+        
+
+
+        //称号
+        InitUnlocTechConditions('RY4E',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(3,2,1)),0,0,0)
+        InitUnlocTechConditions('RY4F',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(3,3,1)),0,0,0)
+        InitUnlocTechConditions('RY4G',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,4,1)),0,0,0)
+        InitUnlocTechConditions('RY4H',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,5,1)),0,0,0)
+        InitUnlocTechConditions('RY4I',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,1)),0,0,0)
+        
+
+
+
+        
+    endfunction
+
+
+    //物品说明修改
+    
+    function ReTechFuncItemTips(int pid)
+        ReExChangeTips(pid,'IY1C')
+        ReExChangeTips(pid,'IY2C')
+        ReExChangeTips(pid,'IY3C')
+        ReExChangeTips(pid,'IY4C')
+    endfunction
+
+    //物品兑换注册
+    function InitAllUnlocTechFuncItem()
+
+        ExChangeList('IY1C',4,2,1,1200,11,3,3)
+        ExChangeList('IY2C',3,2,1,300,12,3,3)
+        ExChangeList('IY3C',6,2,1,6000,13,3,3)
+        ExChangeList('IY4C',3,2,1,800,14,3,3)
+
+    endfunction
+
+
+    
+
+    //初始化
     function InitAllUnlocTech()
 
-        //英雄
-        InitUnlocTechConditions('KE01',InitCond1(2,Unloc_Type_Level,0),0,0,0,0)
-        InitUnlocTechConditions('KE02',InitCond1(2,Unloc_Type_Level,0),0,0,0,0)
-        InitUnlocTechConditions('KE03',InitCond1(2,Unloc_Type_Level,0),0,0,0,0)
-        InitUnlocTechConditions('KE04',InitCond1(2,Unloc_Type_Level,0),0,0,0,0)
-        InitUnlocTechConditions('KE05',InitCond1(2,Unloc_Type_Level,0),0,0,0,0)
+        ExecuteFunc("InitAllUnlocTechFunc1")
 
-        InitUnlocTechConditions('KD01',InitCond1(2,Unloc_Type_Level,3),0,0,0,0)
-        InitUnlocTechConditions('KD02',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(3,2,1)),0,0,0)
-        InitUnlocTechConditions('KD03',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(4,1,3)),0,0,0)
-        
-        InitUnlocTechConditions('KC01',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,1,1)),0,0,0)
-        InitUnlocTechConditions('KC02',InitCond1(2,Unloc_Type_Level,7),0,0,0,0)
-        InitUnlocTechConditions('KC01',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(6,1,10)),0,0,0)
-        
-        InitUnlocTechConditions('KB01',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_Load,GameDataList(5,1,1)),0,0,0)
-        InitUnlocTechConditions('KB02',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,4,1)),0,0,0)
-        InitUnlocTechConditions('KB03',InitCond1(2,Unloc_Type_Level,12),0,0,0,0)
-        
-        InitUnlocTechConditions('KA01',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(4,2,14)),0,0,0)
-        InitUnlocTechConditions('KA02',InitCond1(1,Unloc_Type_Level,8),InitCond2(0,Unloc_Type_Load,GameDataList(6,2,10)),0,0,0)
-        
-        
-        InitUnlocTechConditions('KS01',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(4,2,28)),0,0,0)
-        InitUnlocTechConditions('KS02',InitCond1(2,Unloc_Type_Level,18),0,0,0,0)
-        InitUnlocTechConditions('KS03',InitCond1(2,Unloc_Type_Shop,ShopList("HS03")),0,0,0,0)
-        InitUnlocTechConditions('KS04',InitCond1(2,Unloc_Type_Shop,ShopList("HS04")),0,0,0,0)
-        InitUnlocTechConditions('KS03',InitCond1(2,Unloc_Type_Shop,ShopList("HS03")),0,0,0,0)
-        
-        InitUnlocTechConditions('KHS4',InitCond1(2,Unloc_Type_Shop,ShopList("KHS4")),InitCond2(2,Unloc_Type_Dad,1),0,0,0)
-        
-
-
-        InitUnlocTechConditions('KJ02',InitCond1(2,Unloc_Type_JF,GameDataList(3,2,1)),0,0,0,0)
-        InitUnlocTechConditions('KJ03',InitCond1(2,Unloc_Type_JF,GameDataList(3,3,1)),0,0,0,0)
-        InitUnlocTechConditions('KJ04',InitCond1(2,Unloc_Type_JF,GameDataList(3,4,1)),0,0,0,0)
-        InitUnlocTechConditions('KJ05',InitCond1(2,Unloc_Type_JF,GameDataList(3,5,1)),0,0,0,0)
-        InitUnlocTechConditions('KJ06',InitCond1(2,Unloc_Type_JF,GameDataList(3,6,1)),0,0,0,0)
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
         
     endfunction
     

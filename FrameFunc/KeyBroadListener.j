@@ -90,9 +90,13 @@ scope KeyEvent initializer InitKeyBroadListener
             elseif  key == 115 //F4
                 ClickCollectFrame(pid)
             elseif  key == 116 //F5
-                ClickShowSaveFrame(pid)
+                if  GetUnitAbilityLevel(Pu[1],'AG0A') > 0
+                    ClickShowSaveFrame(pid)
+                endif
             elseif  key == 117 //F6
-                ClickPassFrame(pid)
+                if  GetUnitAbilityLevel(Pu[1],'AG0B') > 0
+                    ClickPassFrame(pid)
+                endif
             elseif  key == 118 //F7
                 
             elseif  key == 119 or key == 192//F8 ~

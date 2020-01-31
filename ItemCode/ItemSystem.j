@@ -424,6 +424,13 @@ scope ItemSystem initializer InitItemSystem
                 endif
 
             endif
+        elseif  itemid >= 'IY1A' and itemid <= 'IY5Z'//积分兑换
+            if  IsCanExChange(pid,itemid) == true
+                ExChangeItem(pid,itemid)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
+            endif
+
         endif
 
 
