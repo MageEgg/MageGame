@@ -44,6 +44,8 @@ library GameChallenge0 uses GameChallengeBase
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E001')+"和"+GetObjectName('E201')+"！")
                 SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","妖魅已除，这些宝物就作为我的答谢了。唔？庄外妖气弥漫，似有妖物作祟。仁兄不若助我一臂之力，将其降伏？",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀玉石琵琶精|r",0)
+
+                
             endif
         endif
     endfunction
@@ -79,6 +81,7 @@ library GameChallenge0 uses GameChallengeBase
                     for n = 1,3
                         SetUnitAPOfBool(GameBiaoJI[n],1)
                     end
+                    SelectHeroAddSaveState.execute(pid)//读取属性
                 endif
             endif
         endif

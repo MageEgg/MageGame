@@ -1249,6 +1249,11 @@ library HeroAbilityFunc uses OtherDamageTimer
                     
                     YDWESetUnitAbilityDataReal( Pu[1],'AC05', 1, 105, cd )
                     YDWESetUnitAbilityState( Pu[1], 'AC05', 1, cd)
+                    if  wu == Pu[1]
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+GetPlayerNameOfColor(pid)+"释放|cffff0000神医救世|r复活了自己！")
+                    else
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+GetPlayerNameOfColor(pid)+"释放|cffff0000神医救世|r复活了队友！")
+                    endif
                     return true
                 endif
             endif

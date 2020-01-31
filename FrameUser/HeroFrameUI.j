@@ -1,4 +1,4 @@
-library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame
+library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMission
 
     /*
     150-160     道果

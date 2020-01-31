@@ -444,6 +444,7 @@ library DamageCode uses UnitStateSet
         for i = 1,70
             value = GetTypeIdReal(newid,i)
             if  value != 0
+                BJDebugMsg(StateName[i]+"+"+R2S(value))
                 AddUnitRealState(wu,i,value*offset)
             endif
         end

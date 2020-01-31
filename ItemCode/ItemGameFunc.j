@@ -1,4 +1,4 @@
-library ItemGameFunc uses DamageCode
+library ItemGameFunc uses DamageCode,AttackUnit
 
     int array ItemGameFuncArrayInt[12][680]
 

@@ -39,7 +39,8 @@ scope FrameButton
                     elseif  id >= 421 and id <= 423//选择奖励
                         PlayerClickPrize(pid,id-420)
                         
-                        
+                    elseif  id >= 501 and id <= 516//存档的按钮
+                        PlayerClickShowSaveFrame(pid,id-500)
                     elseif  id >= 581 and id <= 590
                         SetPlayerShowSavePage(pid,id-581)
                     

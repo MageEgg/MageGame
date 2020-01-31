@@ -1,6 +1,7 @@
-library PassCheckMission initializer InitPassCheckMission uses DzSave
+library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
     int MissionDay = 0
-    int MaxMissionNum = 4
+    int MaxMissionNum = 4//任务数量
+    int MaxPassCheckPrizeNum = 20 //奖励数量
     
     scope RegisterMission
         int array PassCheckMissionData[1000][8]
@@ -323,16 +324,61 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave
             end
         endfunction
 
+
+
+        function GivePassCheckPrize(int pid,int index,int num)
+            int id = GetPassCheckPrize(index,num)
+            real x = AttackRoomPostion[pid][1]
+            real y = AttackRoomPostion[pid][2]
+            if  id > 0
+                
+                if  id >= 'RS01' and id <= 'RS99'//普通通行证属性
+                    BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---普通属性")
+                    AddEquipState(Pu[1],id)
+                elseif  id >= 'RT01' and id <= 'RT99'//封神通行证属性
+                    BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---封神属性")
+                    AddEquipState(Pu[1],id)
+                elseif  id >= 'R000' and id <= 'RZZZ'
+                    BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---道具类")
+                    SetPlayerTechResearchedEx(Player(pid),id)
+                else
+                    CreateItem(id,x-512,y-512)
+                    BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---物品类")
+                endif
+            endif
+        endfunction
+
+
+
+        function PlayerAddPassPrize(int pid)
+            int lv = GetPlayerPassLevel(pid)
+            int shop = 0
+
+            if  DzShop(Player(pid),"RWK") == true
+                shop = 1
+            endif
+
+            for i = 1,MaxPassCheckPrizeNum
+                if  lv >= i
+                    GivePassCheckPrize(pid,i,1)
+                    
+                    if  shop == 1
+                        GivePassCheckPrize(pid,i,2)
+                    endif
+                endif
+            end
+        endfunction
+
         function PlayerLoadPassCheck(int pid)//加载通行证
-            int exp = 0
-            int lv = 0
+            
             
             if  DzConA[0] == 1 //全局限制
                 
                 PlayerAddMission(pid)
                 
                 //通行证加载道具
-
+                
+                PlayerAddPassPrize(pid)
                 
                 if  TimeHour >= 20 and TimeHour<= 24
                     MissionAddNumFunc(pid,18,1)

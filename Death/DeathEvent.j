@@ -343,7 +343,7 @@ scope DeathEvent initializer InitDeathEvent
             if  AttackRoomXCNum > 24
                 AttackRoomXCNum = 1
             endif
-            CreateItem('I030',GetUnitX(tu),GetUnitY(tu))
+            CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
             AdjustPlayerStateBJ( 50 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+50")
         
@@ -365,7 +365,7 @@ scope DeathEvent initializer InitDeathEvent
                 endif
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
                 AdjustPlayerStateBJ( 10 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+10")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵挑战成功！奖励幸运星盒x1 玄铁+10")
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵("+I2S(10-AttackRoomXCUnitNum)+"/10)")
             endif

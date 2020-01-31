@@ -190,12 +190,73 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     endfunction
 
 
+
+    
+    function RefreshOrnament(int pid,int id)
+        int sid = id - 0x11000000
+        int index = 0
+        int nowid = 0
+        if  sid >= 'AY1A' and sid <= 'AY1Z'
+            index = 1
+        elseif  sid >= 'AY2A' and sid <= 'AY2Z'
+            index = 2
+        elseif  sid >= 'AY3A' and sid <= 'AY3Z'
+            index = 3
+        elseif  sid >= 'AY4A' and sid <= 'AY4Z'
+            index = 4
+        endif
+
+        for i = 0,25
+            if  GetUnitAbilityLevel(Pu[1],'AY0A'+i+index*0x100) > 0
+                nowid = 'AY0A'+i+index*0x100
+                exitwhen true
+            endif
+        end
+        
+        if  nowid != 0
+            UnitRemoveAbility(Pu[1],nowid)
+        endif
+
+        if  sid == nowid
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
+        else
+            if  nowid == 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观激活成功！")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观替换成功！")
+            endif
+            UnitAddAbility(Pu[1],sid)
+        endif
+    endfunction
+
+    //点击按钮
+    function PlayerClickShowSaveFrame(int pid,int index)
+        int step = Step[pid]
+        int page = Page[pid]
+        int id = GetShowSaveId(page,index+step*4)
+        
+
+        if  IsSaveIdCanShow(id,page) == true
+            if  IsSaveFrameTechUnLock(pid,index) == true
+                BJDebugMsg("已解锁")
+                RefreshOrnament(pid,id)
+            else
+                BJDebugMsg("未解锁")
+            endif
+        else
+            
+            BJDebugMsg("不是外观类")
+        endif
+
+    endfunction
+
+    //显示说明
     function BoxShowSaveFrame(int pid,int index)
         int step = Step[pid]
         int page = Page[pid]
         int id = GetShowSaveId(page,index+step*4)
         int h = 10
-        int techid = 0
+        
         int unlock = 0
         string tech = ""
         BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
@@ -348,7 +409,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     endfunction
 
 
-
+    
 
     
 

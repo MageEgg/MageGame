@@ -1,4 +1,4 @@
-library AttackUnit uses DamageCode 
+library AttackUnit uses DamageCode,PassCheckMission
     
     group AttackUnitGroup = CreateGroup()
     unit array AttackUnitBoss
