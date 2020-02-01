@@ -152,10 +152,15 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         int uid = GetAttackRoomUnitId(pid)
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        int max = GetPlayerAttackUnitNum(pid)
-        for i = 1,max
-            CreateAttackRoomUnit(pid,uid,x,y,GetRandomReal(1,360))
-        end
+        int num = GetNum(pid,2)
+        int max = GetPlayerAttackUnitNum(pid) - num
+        if  max >= 1
+            for i = 1,max
+                CreateAttackRoomUnit(pid,uid,x,y,GetRandomReal(1,360))
+            end
+        else
+            BJDebugMsg("错误的刷一波怪 但是被阻止了 max"+I2S(max))
+        endif
     endfunction
 
     //延迟刷一波怪
@@ -365,39 +370,40 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
     //回收死亡单位
     function RecoveryAttackRoomUnit(int pid,unit u)
-        OutAttackRoomUnitByHandle(pid,2,u)//从组2中移除
-        if  IsAttackRoomUnit(pid,1,u) == false
-            RecUnit(pid,1,u)//将单位存入组1
-        else
-            BJDebugMsg("试图错误的回收单位，但是被阻止了！")
+        if  IsAttackRoomUnit(pid,2,u) == true
+            OutAttackRoomUnitByHandle(pid,2,u)//从组2中移除
+            if  IsAttackRoomUnit(pid,1,u) == false
+                RecUnit(pid,1,u)//将单位存入组1
+                ShowUnit(u,false)
+                UnitRemoveBuffs(u, true, true)
+                SetUnitPathing( u, false )
+                SetUnitInvulnerable( u, true )
+                PauseUnit(u,true)
+                int max = GetNum(pid,2)
+                real x = GetUnitX(u)
+                real y = GetUnitY(u)
+                if  max == 0
+                    //BJDebugMsg("怪物空了 刷一波")
+                    RefreshAttackRoomTimer(pid,0.8)
+
+                    if  GetUnitTypeId(Pu[27]) == 'np27'
+                        SoulTimer(pid,x,y)
+                    elseif  GetUnitTypeId(Pu[27]) == 'np28'
+                        SoulTimer2(pid,x,y)
+                    endif
+                elseif  max < 0
+                    if  IsAttackRoomUnit(pid,1,u) == true
+                        //BJDebugMsg("该单位在组1")
+                    endif
+                    if  IsAttackRoomUnit(pid,2,u) == true
+                        //BJDebugMsg("该单位在组2")
+                    endif
+                endif
+            else
+                BJDebugMsg("试图错误的回收单位，但是被阻止了！")
+            endif
         endif
         //BJDebugMsg("回收单位 max1"+I2S(GetNum(pid,1))+" max2 "+I2S(GetNum(pid,2)))
-        ShowUnit(u,false)
-        UnitRemoveBuffs(u, true, true)
-        SetUnitPathing( u, false )
-        SetUnitInvulnerable( u, true )
-        PauseUnit(u,true)
-
-        int max = GetNum(pid,2)
-        real x = GetUnitX(u)
-        real y = GetUnitY(u)
-        if  max == 0
-            //BJDebugMsg("怪物空了 刷一波")
-            RefreshAttackRoomTimer(pid,0.8)
-
-            if  GetUnitTypeId(Pu[27]) == 'np27'
-                SoulTimer(pid,x,y)
-            elseif  GetUnitTypeId(Pu[27]) == 'np28'
-                SoulTimer2(pid,x,y)
-            endif
-        elseif  max < 0
-            if  IsAttackRoomUnit(pid,1,u) == true
-                //BJDebugMsg("该单位在组1")
-            endif
-            if  IsAttackRoomUnit(pid,2,u) == true
-                //BJDebugMsg("该单位在组2")
-            endif
-        endif
     endfunction
 
 
@@ -426,9 +432,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
 
 
-    function MoveHeroToAttackRoom(int pid)
-        SetPlayerUnitPostionSelectUnit(Pu[1],AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],Pu[1])
-    endfunction
+   
 
 
     function HeroMoveToRoom(int pid) //传送
@@ -442,6 +446,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 ////BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
+                RefreshAttackRoom(pid)
+
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
