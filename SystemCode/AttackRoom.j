@@ -1,122 +1,178 @@
 library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengDeath
     
     real array AttackRoomPostion[12][600] 
-    //group array diesgroup
-    group array AttackRoomGroup
-    integer array AttackRoomUid
-    boolean array AttackRoomTimer
-    unit array AttackRoomUnit[4][2000]
-    integer array AttackRoomUnitMax[4][5]
-    texttag array AttackTexttag
-    
-//初始化数据类
 
+    texttag array AttackTexttag
+
+    //设置刷怪id
+    function SetAttackRoomUnitId(int pid,int id)
+        AttackRoomUnitId = id
+    endfunction
+    //获取刷怪id
+    function GetAttackRoomUnitId(int pid)->int
+        if  AttackRoomUnitId == 0
+            SetAttackRoomUnitId(pid,'g00A')
+        endif
+        return AttackRoomUnitId
+    endfunction
+    //获取刷怪数量
+    function GetPlayerAttackUnitNum(int pid)->int
+        return R2I(GetUnitRealState(Pu[1],61))+10
+    endfunction
+
+    //设置玩家移动坐标
     function SetAttackRoomMovePostion(int pid,real x,real y)
         AttackRoomPostion[pid][1] = x
         AttackRoomPostion[pid][2] = y
-        //设置玩家移动坐标
     endfunction
+
+    //设置怪物刷新坐标
     function SetAttackRoomRefreshPostion(int pid,real x,real y)
         AttackRoomPostion[pid][3] = x
         AttackRoomPostion[pid][4] = y
-        //设置怪物刷新坐标
     endfunction
     
-    function GetPlayerAttackUnitNum(integer pid)->integer
-        return R2I(GetUnitRealState(Pu[1],61))+AttackRoomUnitNum
+
+
+    unit array AttackRoomUnit[4][2000]
+    int array AttackRoomMax[4][2000]
+
+
+    //1.回收组 2.刷怪组
+
+
+    
+
+    //设置组内单位数量
+    private function SetNum(int pid,int index,int num)
+        AttackRoomMax[pid][index] = num
     endfunction
-    
-//单位回收类
-    
-    function CreateAttackRoomUnit(int unitid,int pid)
-        int uid = unitid -'g00A'+1
-        unit u=null
-        if  AttackRoomUnitMax[pid][uid]==0
-            u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, AttackRoomPostion[pid][3], AttackRoomPostion[pid][4], bj_UNIT_FACING )
-            SetPlayerOnlyDamage(u,pid)
-            SaveInteger(ht,GetHandleId(u),1,pid)
-            GroupAddUnit(AttackRoomGroup[pid],u)
+
+    //读取组内单位数量
+    private function GetNum(int pid,int index)->int
+        return AttackRoomMax[pid][index]
+    endfunction
+
+
+    //根据序号设置单位
+    private function SetUnit(int pid,int index,int num,unit u)
+        AttackRoomUnit[pid][index*100+num] = u
+    endfunction
+    //根据序号读取单位
+    private function GetUnit(int pid,int index,int num)->unit
+        return AttackRoomUnit[pid][index*100+num]
+    endfunction
+
+    //获取单位在组内序号
+    function GetAttackRoomUnitNum(int pid,int index,unit u)->int
+        int max = GetNum(pid,index)
+        for i = 1,max
+            if  GetUnit(pid,index,i) == u
+                return i
+            endif
+        end
+        return 0
+    endfunction
+
+    //判断单位是否在组内
+    function IsAttackRoomUnit(int pid,int index,unit u)->bool
+        return GetAttackRoomUnitNum(pid,index,u) != 0
+    endfunction
+
+    //回收单位
+    private function RecUnit(int pid,int index,unit u)
+        int max = GetNum(pid,index)+1
+        SetUnit(pid,index,max,u)
+        SetNum(pid,index,max)
+    endfunction
+
+    unit outunit = null
+    //根据序号 取出单位
+    private function OutUnit(int pid,int index,int num)->unit
+        int max = GetNum(pid,index)
+
+        outunit = GetUnit(pid,index,num)
+        
+        if  max != num and max != 1
+            SetUnit(pid,index,num,GetUnit(pid,index,max))
+        endif
+
+        SetUnit(pid,index,max,null)
+        SetNum(pid,index,max-1)
+        return outunit
+    endfunction
+
+    //根据单位取出单位
+    function OutAttackRoomUnitByHandle(int pid,int index,unit u)
+        int num = GetAttackRoomUnitNum(pid,index,u)
+        if  num == 0
+            BJDebugMsg("单位不在组内，无法取出")
         else
-             u = AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]
-            if  GetUnitTypeId(u)!=0
-                AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=null
-                AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]-1
-                UnitRemoveAbility( u, 'Aloc' )
-                UnitRemoveBuffs(u, true, true)
-                SetUnitX(u,AttackRoomPostion[pid][3])
-                SetUnitY(u,AttackRoomPostion[pid][4])
-                SetUnitInvulnerable( u, false )
-                SetUnitPathing( u, true )
-                ShowUnit(u,true)
-                PauseUnit(u,false)
-                GroupAddUnit(AttackRoomGroup[pid],u)
-                SaveInteger(ht,GetHandleId(u),1,pid)
-            // GroupRemoveUnit(diesgroup[uid],u)
-                SetPlayerOnlyDamage(u,pid)
+            OutUnit(pid,index,num)
+        endif
+    endfunction
+
+    
+
+    //创建练功房单位
+    function CreateAttackRoomUnit(int pid,int unitid,real x,real y,real face)
+        int max = GetNum(pid,1)
+        unit u = null
+        //BJDebugMsg("创建单位 max"+I2S(max))
+        if  max == 0
+            u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, x, y,face)
+            SetPlayerOnlyDamage(u,pid)
+            RecUnit(pid,2,u)//将单位存入组2
+        else
+            u = OutUnit(pid,1,max)//从组1中取出单位
+            if  GetUnitTypeId(u) != unitid
+                RemoveUnit(u)
+                //BJDebugMsg("重新创建")
+                CreateAttackRoomUnit(pid,unitid,x,y,face)
             else
-                AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=null
-                AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]-1
-                CreateAttackRoomUnit(unitid,pid)
+                
+                SetUnitPathing( u, true )
+                SetUnitInvulnerable( u, false )
+                PauseUnit(u,false)
+                SetUnitX(u,x)
+                SetUnitY(u,y)
+                //SetUnitAnimation( u, "stand" )
+                ShowUnit(u,true)
+                
+                SetPlayerOnlyDamage(u,pid)
+                RecUnit(pid,2,u)//将单位存入组2
             endif
         endif
-        u = null
+
+        
     endfunction
-    //复活创建练功房怪物
-    //----------------------------------------------
-    
-    
-    function RecoveryAttackRoomUnit(int pid1,unit u1)
-        unit u=u1
-        int pid=pid1
-        int uid=GetUnitTypeId(u)-'g00A'+1
-        SetUnitInvulnerable( u, true )
-        SetUnitPathing( u, false )
-        AttackRoomUnitMax[pid][uid]= AttackRoomUnitMax[pid][uid]+1
-        AttackRoomUnit[pid][AttackRoomUnitMax[pid][uid]]=u
-        //GroupAddUnit(diesgroup[uid],u)
-        GroupRemoveUnit(AttackRoomGroup[pid],u)
-        SetUnitLifePercentBJ( u, 100 )
-        ShowUnit( u, false )
-        SetUnitInvulnerable( u, true )
-        PauseUnit(u,true)
+
+    //刷一波怪
+    function RefreshAttackRoom(int pid)
+        int uid = GetAttackRoomUnitId(pid)
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        int max = GetPlayerAttackUnitNum(pid)
+        for i = 1,max
+            CreateAttackRoomUnit(pid,uid,x,y,GetRandomReal(1,360))
+        end
+    endfunction
+
+    //延迟刷一波怪
+    function RefreshAttackRoomTimer(int p,real time)
+        int pid = p
+        TimerStart(time,false)
+        {
+            RefreshAttackRoom(pid)
+            endtimer
+            flush locals
+        }
         flush locals
     endfunction
-                
-//把即将要死亡的单位回收--------------
-        
 
     
-    
-//练功房操作类
-    
-    //计时器会额外出一波
-    function ClearAttackRoomFun()
-        RecoveryAttackRoomUnit(LoadInteger(ht,GetHandleId(GetEnumUnit()),1),GetEnumUnit())
-    endfunction
-    
-    function ClearAttackRoom(int pid)
-        ForGroup(AttackRoomGroup[pid],function ClearAttackRoomFun)
-    endfunction
-//清空练功房内怪物
 
-    function RefreshAttackRoom(int pid,int uid)
-        loop
-            exitwhen CountUnitsInGroup(AttackRoomGroup[pid])==GetPlayerAttackUnitNum(pid)
-            CreateAttackRoomUnit(uid,pid)
-        endloop
-        //DBUG(I2S(CountUnitsInGroup(AttackRoomGroup[pid])))
-    endfunction
-//刷新一波怪物
-    
-    function MoveHeroToAttackRoom(int pid)
-        SetPlayerUnitPostionSelectUnit(Pu[1],AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],Pu[1])
-    endfunction
-
-
-//事件类
-    function AttackRoomKillUnit(unit wu,unit tu)
-        PlayerHeroKillUnit.execute(wu,tu)
-    endfunction
+    //青蛙
     function SoulToFrog(int pid)
         real x = AttackRoomPostion[pid][1] 
         real y = AttackRoomPostion[pid][2] 
@@ -225,7 +281,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         endif
     endfunction
 
-
     //周天星辰阵
     function SoulTimer2FuncGivePrize(int pid)
         int num = AttackRoomXCNum
@@ -307,38 +362,75 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     function SoulTimer2(int pid,real x,real y)
         SoulTimer2Func(pid,x,y)
     endfunction
-    
 
+    //回收死亡单位
+    function RecoveryAttackRoomUnit(int pid,unit u)
+        OutAttackRoomUnitByHandle(pid,2,u)//从组2中移除
+        if  IsAttackRoomUnit(pid,1,u) == false
+            RecUnit(pid,1,u)//将单位存入组1
+        else
+            BJDebugMsg("试图错误的回收单位，但是被阻止了！")
+        endif
+        //BJDebugMsg("回收单位 max1"+I2S(GetNum(pid,1))+" max2 "+I2S(GetNum(pid,2)))
+        ShowUnit(u,false)
+        UnitRemoveBuffs(u, true, true)
+        SetUnitPathing( u, false )
+        SetUnitInvulnerable( u, true )
+        PauseUnit(u,true)
 
+        int max = GetNum(pid,2)
+        real x = GetUnitX(u)
+        real y = GetUnitY(u)
+        if  max == 0
+            //BJDebugMsg("怪物空了 刷一波")
+            RefreshAttackRoomTimer(pid,0.8)
 
-
-    //任意单位死亡 触发单位，凶手单位
-    function AttackRoomUnitDeath(unit wu,unit ku)
-        real x = GetUnitX(ku)
-        real y = GetUnitY(ku)
-        integer pid=GetPlayerId(GetOwningPlayer(ku))
-        AttackRoomKillUnit(ku,wu)
-        RecoveryAttackRoomUnit(pid,wu)
-        if  CountUnitsInGroup(AttackRoomGroup[pid]) == 0
             if  GetUnitTypeId(Pu[27]) == 'np27'
                 SoulTimer(pid,x,y)
             elseif  GetUnitTypeId(Pu[27]) == 'np28'
                 SoulTimer2(pid,x,y)
             endif
-            AttackRoomTimer[pid] = true
-            TimerStart(0.8,false)
-            {
-                RefreshAttackRoom(pid,AttackRoomUid[pid])
-                AttackRoomTimer[pid] = false
-                endtimer
-                flush locals
-            }
-            flush locals
+        elseif  max < 0
+            if  IsAttackRoomUnit(pid,1,u) == true
+                //BJDebugMsg("该单位在组1")
+            endif
+            if  IsAttackRoomUnit(pid,2,u) == true
+                //BJDebugMsg("该单位在组2")
+            endif
         endif
-    
     endfunction
-    
-    
+
+
+    //死亡单位
+    function AttackRoomUnitDeath(unit wu)
+        int pid = GetUnitAbilityLevel(wu,'AZ99')-1
+
+        if  pid >= 0
+            RecoveryAttackRoomUnit(pid,wu)
+        endif
+    endfunction
+
+    //练功房单位死亡
+    function KillAttackRoomUnitEvent(unit wu,unit tu)
+        
+        //杀怪奖励
+        PlayerHeroKillUnit.execute(wu,tu)
+
+        //单位死亡回收
+        AttackRoomUnitDeath(tu)
+    endfunction
+
+
+
+
+
+
+
+    function MoveHeroToAttackRoom(int pid)
+        SetPlayerUnitPostionSelectUnit(Pu[1],AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],Pu[1])
+    endfunction
+
+
     function HeroMoveToRoom(int pid) //传送
         
         if  IsCanMoveToRoom(pid) == true
@@ -347,12 +439,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             real ux = GetUnitX(Pu[1])
             real uy = GetUnitY(Pu[1])
             if  x - 768 <= ux and ux <= x + 768 and y - 768 <= uy and uy <= y + 768
-                //BJDebugMsg("在练功房内")
+                ////BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
-                if  AttackRoomTimer[pid]==false
-                    RefreshAttackRoom(pid,AttackRoomUid[pid])
-                endif
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
@@ -388,22 +477,15 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         for pid = 0,3//玩家数量
             if  IsPlaying(pid) == true
             
-                AttackSummonUnitGroup[pid] = CreateGroup()//练功房召唤怪单位组
-
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
-                RefreshAttackRoom(pid,AttackRoomUid[pid])
                 
-                AttackRoomGroup[pid] = CreateGroup()
-                AttackRoomUid[pid] = 'g00A'
-                AttackRoomUnitNum = 10
+                
                 
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x+512,y-256,270)//境界
                 ShowUnit(Pu[21],false)
                 Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
-                //Pu[23]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+512,270)//占星方士
-                
-                //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y-256,270)//兽魂神通
+
                 Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,90)//礼包
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
@@ -421,12 +503,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetTextTagText(AttackTexttag[pid],"0/400",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
 
-                
-                
-                //ShowUnit(Pu[25],false)
 
 
-                RefreshAttackRoom(pid,AttackRoomUid[pid])
+                RefreshAttackRoom(pid)
 
                 //////////////////团本分割/////////////////////
                 GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
@@ -437,10 +516,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitVertexColor(GameChallengPlayerUnit[pid][91],255,255,255,0)
             endif
         end
-        
-        
-        
-        
     endfunction
-   
+
 endlibrary

@@ -395,8 +395,7 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u0DA' and uid <= 'u0DZ'
             KillXCUnitFunc(wu,tu,uid)
         elseif  uid >= 'u001' and uid <= 'u004'
-            AttackRoomUid[pid]='g00A'+ (uid - 'u000')
-            //AddUnitRealState(Pu[1],41,80)
+            SetAttackRoomUnitId(pid,'g00A'+ (uid - 'u000'))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
             AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
