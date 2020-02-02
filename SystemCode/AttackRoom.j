@@ -492,11 +492,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 ShowUnit(Pu[21],false)
                 Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
 
-                Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,90)//礼包
+                Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,270)//礼包
                 
                 Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
 
                 Pu[41]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np41',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]-256,0)//积分兑换
+
+                Pu[42]=CreateUnit(Player(pid),'np42',AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]-256,270)//挑战
+                ExecuteFunc("InitAttackUnitChallengeState")
 
                 UnitAddAbility(Pu[27],'Avul')
                 SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,400)
