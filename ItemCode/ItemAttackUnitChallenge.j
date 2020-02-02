@@ -79,9 +79,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int id = AttackUnitChallengeStateTypeValueA[zu][wei]
         int zero = AttackUnitChallengeStateTypeValueA[zu][0]
         string s = ""
+        BJDebugMsg(YDWEId2S(id))
         UnitAddAbility(Pu[42],id)
-        if  GetPlayerTechCount(Player(pid),id+167772160,true) > 0 or id == zero
+        if  GetPlayerTechCount(Player(pid),id+167772160-1,true) > 0 or id == zero
             s = GetStockSkillConsume(zu,wei)
+            BJDebugMsg("GetStockSkillConsume")
         endif
         s = s + AttackUnitChallengeStateTypeString[zu][wei]
         if  Player(pid) == GetLocalPlayer()
