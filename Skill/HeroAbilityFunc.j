@@ -934,25 +934,25 @@ library HeroAbilityFunc uses OtherDamageTimer
                     AddUnitStateExTimer(wu,1,GetUnitRealState(wu,1)*0.1,180)
                     AddUnitStateExTimer(tu,1,GetUnitRealState(tu,1)*0.1,180)
                 endif
-                BJDebugMsg("成功")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|Cff00ff00[提示]：劝说成功！|r")
             elseif  ran <= 70
                 r1 = GetUnitRealState(tu,1)*0.1
                 if  lv >= 3
                     AddUnitStateExTimer(tu,1,-r1,180)
                 endif
                 AddUnitStateExTimer(wu,1,r1,180)
-                BJDebugMsg("暴力")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|Cffff0000[提示]：劝说不成功！对其进行了暴力劝说！|r")
             else
                 r1 = GetUnitRealState(wu,1)*0.3
                 if  lv >= 2
                     AddUnitStateExTimer(wu,1,-r1,180)
                 endif
                 AddUnitStateExTimer(tu,1,r1,180)
-                BJDebugMsg("失败")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|Cffff0000[提示]：劝说失败！|r")
             endif
             LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az_goods_lvlup(green).mdl")
         else
-            BJDebugMsg("错误的目标")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|Cffff0000[提示]：只能对队友使用。|r")
             lv = GetUnitAbilityLevel(wu,'AG05')
             UnitRemoveAbility(wu,'AG05')
             UnitAddAbility(wu,'AG05')

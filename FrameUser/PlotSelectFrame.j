@@ -293,9 +293,11 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int prizeid = GetPlotPrizeMagicIndex(index)
 
         if  Type == 3
+            BJDebugMsg("时渊奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             id2 = GetPlayerPlotPrizeId(pid,index,2)
         else
+            BJDebugMsg("普通奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             id2 = GetPlayerPlotPrizeId(pid,index,2)
             id3 = GetPrize(pid,prizeid,true)
