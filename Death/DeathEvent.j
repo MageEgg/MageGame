@@ -620,6 +620,9 @@ scope DeathEvent initializer InitDeathEvent
                     if  uid == 'uJ01'
                         MeridiansChallengeDeath(pid2)
                     endif
+                    if  uid >= 'uTAA' and uid <= 'uTZZ'
+                        AttackUnitChallengeStateDeathEvent(pid2,u1)
+                    endif
                 else
                     KillUnitNotHasKiller(u1,uid)
                 
