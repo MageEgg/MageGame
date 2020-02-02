@@ -278,7 +278,7 @@ scope DeathEvent initializer InitDeathEvent
         
         SetUnitOwner(u1,Player(PLAYER_NEUTRAL_PASSIVE),false)
         SetUnitState(u1,UNIT_STATE_LIFE,GetUnitState(u1,UNIT_STATE_MAX_LIFE))
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾逃跑啦！10秒后再来吧！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：送宝金蟾逃跑啦！10秒后再来吧！|r")
         SetUnitPosition(u1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512)
         UnitAddAbility(u1,'Avul')
         ShowUnit(u1,false)
