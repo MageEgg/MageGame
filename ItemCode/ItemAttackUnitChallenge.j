@@ -50,12 +50,17 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(0,3,1000,10,108,100,Buy_Unit,'ATAD',0,0,"奖励xxx")
         InitAttackUnitChallengeStateData(0,4,1000,10,108,50,Buy_Tech,'ATAE',0,0,"奖励xxx")
         InitAttackUnitChallengeStateData(0,5,1000,10,108,50,Buy_Tech,'ATAF',0,0,"奖励xxx")
-        InitAttackUnitChallengeStateData(0,6,1000,10,108,50,Buy_Tech,'ATAG',0,0,"奖励xxx")
-        InitAttackUnitChallengeStateData(0,7,1000,10,108,60,Buy_Item,'ATAH','ID16',0,"奖励xxx")
-        InitAttackUnitChallengeStateData(0,8,1000,10,108,80,Buy_Tech,'ATAE',0,0,"奖励xxx")
-        InitAttackUnitChallengeStateData(0,9,1000,10,108,90,Buy_Tech,'ATAF',0,0,"奖励xxx")
-        InitAttackUnitChallengeStateData(0,10,1000,10,108,100,Buy_Tech,'ATAG',0,0,"奖励xxx")
-        InitAttackUnitChallengeStateData(0,11,1000,10,108,120,Buy_Unit_Item,'ATAH','ID16',0,"奖励xxx")
+        InitAttackUnitChallengeStateData(0,6,1000,10,108,100,Buy_Tech,'ATAG',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(0,7,1000,10,108,120,Buy_Unit_Item,'ATAH','ID16',0,"奖励xxx")
+
+        InitAttackUnitChallengeStateData(1,0,1000,10,0,0,Buy_Tech,'ATAI',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,1,1000,10,0,0,Buy_Tech,'ATAJ',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,2,1000,10,0,0,Buy_Tech,'ATAK',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,3,1000,10,108,100,Buy_Unit,'ATAL',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,4,1000,10,108,50,Buy_Tech,'ATAM',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,5,1000,10,108,50,Buy_Tech,'ATAN',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,6,1000,10,108,50,Buy_Tech,'ATAO',0,0,"奖励xxx")
+        InitAttackUnitChallengeStateData(1,7,1000,10,108,60,Buy_Item,'ATAP','ID16',0,"奖励xxx")
 
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
@@ -288,7 +293,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 UnitAddAbility(u,'AZ99')
                 SetUnitAbilityLevel(u,'AZ99',pid+1)
                 AddAttackSummonUnit.execute(pid,u)
-                SetUnitRealState(u,97,id)
+                SetUnitIntState(u,101,id)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
             elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Item
                 UnitRemoveAbility(Pu[42],id)
@@ -301,8 +306,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 UnitAddAbility(u,'AZ99')
                 SetUnitAbilityLevel(u,'AZ99',pid+1)
                 AddAttackSummonUnit.execute(pid,u)
-                SetUnitRealState(u,97,id)
-                SetUnitRealState(u,98,itemid)
+                SetUnitIntState(u,101,id)
+                SetUnitIntState(u,102,itemid)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
             endif
         endif
@@ -310,8 +315,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
     endfunction
 
     function AttackUnitChallengeStateDeathEvent(int pid,unit u)
-        int id = R2I(GetUnitRealState(u,97))
-        int itemid = R2I(GetUnitRealState(u,98))
+        int id = GetUnitIntState(u,101)
+        int itemid = GetUnitIntState(u,102)
         int tech = id+167772160
         UnitRemoveAbility(Pu[42],id)
         SetPlayerTechResearchedEx(Player(pid),tech)
