@@ -78,7 +78,9 @@ scope KeyEvent initializer InitKeyBroadListener
                     endif
                 endif
             elseif  key == 9 //Tab
-                ClickPlotFrame(pid)
+                if  GetUnitAbilityLevel(Pu[1],'AG09') > 0
+                    ClickPlotFrame(pid)
+                endif
             elseif  key == 113 //F2
                 if  PlayerDeathBool == false
                     HeroMoveToHome(pid)

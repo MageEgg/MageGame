@@ -127,12 +127,15 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     //设置控件为未解锁
     function RePlotSelectState0(int pid,int index)
+        
+        DzFrameSetTexture(BUTTON_Back[index+300][0],"war3mapImported\\UI_fuben"+I2S(index)+"locked.tga",0)
         DzFrameSetTexture(BUTTON_Back[index+310][0],"war3mapImported\\UI_PlotSelect_unlock.tga",0)
         SetPlotButtonShow(index,false)
     endfunction
     //设置控件为已解锁
     function RePlotSelectState1(int pid,int index)
         SetPlotButtonShow(index,true)
+        DzFrameSetTexture(BUTTON_Back[index+300][0],"war3mapImported\\UI_PlotSelect_FBBack.tga",0)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
         DzFrameSetTexture(BUTTON_Back[index+330][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,2)),0)
@@ -140,11 +143,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
     //设置控件为已通关
     function RePlotSelectState2(int pid,int index)
+        DzFrameSetTexture(BUTTON_Back[index+300][0],"war3mapImported\\UI_PlotSelect_FBBack.tga",0)
         DzFrameSetTexture(BUTTON_Back[index+310][0],"war3mapImported\\UI_PlotSelect_finish.tga",0)
         SetPlotButtonShow(index,false)
     endfunction
     //设置控件为时渊
     function RePlotSelectState3(int pid,int index)
+        DzFrameSetTexture(BUTTON_Back[index+300][0],"war3mapImported\\UI_PlotSelect_FBBack.tga",0)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
         DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
@@ -291,7 +296,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int id5 = 0
 
         int prizeid = GetPlotPrizeMagicIndex(index)
-
+        BJDebugMsg("Type is "+I2S(Type))
         if  Type == 3
             BJDebugMsg("时渊奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
@@ -320,29 +325,38 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //完成副本
     function PlayerFinishPlot(int pid,int index)
         int Type = GetPlayerPlotStateByIndex(pid,index)
-        SetPlayerPlotStateByIndex(pid,index,2)
+        
         if  Type == 1
             
             
             //发奖励
             GivePlayerFinishPlotPrize(pid,index)
-            RePlotSelectByIndex(pid,index)
+            
 
             if  index == 8
                 PlayerOpenExPlot(pid)
             else
                 PlayerUnLockPlot(pid,index+1)
+                SetPlayerPlotStateByIndex(pid,index,2)
+                RePlotSelectByIndex(pid,index)
             endif
+
+            
 
         elseif  Type  == 3
             
             GivePlayerFinishPlotPrize(pid,index)
+
+
+            SetPlayerPlotStateByIndex(pid,index,2)
+            RePlotSelectByIndex(pid,index)
             
             //RePlayerExPlotPrizeId(pid,index)
 
-            RePlotSelectByIndex(pid,index)
         
         endif
+
+        
         if  GetLocalPlayer() == Player(pid)
             Button.show = false
         endif
@@ -372,10 +386,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         for x = 0,3
             for y = 0,1
                 index = y * 4 + x + 1
-                CreateButton(index+300,Button.frameid,TYPE_FUNC,0,Button.frameid,0,0.01+x*0.081,-0.01-y*0.120,0.076,0.115,"war3mapImported\\UI_PlotSelect_FBBack.tga")
+                CreateButton(index+300,Button.frameid,TYPE_FUNC,0,Button.frameid,0,0.01+x*0.081,-0.01-y*0.120,0.076,0.115,"war3mapImported\\UI_fuben"+I2S(index)+"locked.tga")
 
 
-                CreateButton(index+310,Button.frameid,TYPE_FUNC,0,BUTTON_Back[index+300][0],0,0.001,-0.001,0.074,0.073,"war3mapImported\\UI_PlotSelect_unlock.tga")
+                CreateButton(index+310,Button.frameid,TYPE_FUNC,0,BUTTON_Back[index+300][0],0,0.001,-0.001,0.074,0.073,"war3mapImported\\alpha.tga")
 
                 CreateButton(index+320,Button.frameid,TYPE_BUTTON,6,BUTTON_Back[index+300][0],6,0.0025,0.0025,0.033,0.033,"war3mapImported\\alpha.tga")
                 CreateButton(index+330,Button.frameid,TYPE_BUTTON,8,BUTTON_Back[index+300][0],8,-0.0025,0.0025,0.033,0.033,"war3mapImported\\alpha.tga")
