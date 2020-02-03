@@ -27,7 +27,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     function AddPlayerMeridiansStateOfLevel(int pid,int num,int lv)
         int id = 'RM1A'+(num-1)*256
         if  lv > 0
-            SetPlayerTechResearchedEx(Player(pid),id+num-1)
+            SetPlayerTechResearchedEx(Player(pid),id+lv-1)
         endif
     endfunction
     
@@ -35,9 +35,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         int lv = GetDzPlayerData(pid,6,num+1)
         int id = 0
         if  lv > 0
-            for num = 1,lv
+            for n = 1,lv
                 id = 'RM1A'+(num-1)*256
-                SetPlayerTechResearchedEx(Player(pid),id+num-1)
+                SetPlayerTechResearchedEx(Player(pid),id+n-1)
             end
         endif
     endfunction
