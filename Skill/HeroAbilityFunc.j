@@ -525,6 +525,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S510',1)
             DzSetUnitModel( wu, "Hero_yangjian_Dragon.mdl" )
             SetUnitScale(wu,0.3,0.3,0.3)
+
+            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_2.blp")
+            
         elseif  index == 1
 
             AddUnitRealState(wu,19,-10)
@@ -542,7 +545,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S510',2)
             DzSetUnitModel( wu, "Hero_yangjian_Tiger.mdl" )
             SetUnitScale(wu,1.5,1.5,1.5)
-            
+            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_3.blp")
         elseif  index == 2
             AddUnitRealState(wu,9,-45)
             if  lv >= 3
@@ -556,7 +559,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S510',0)
             DzSetUnitModel( wu, "H010.mdl" )
             SetUnitScale(wu,1.0,1.0,1.0)
-            
+            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_1.blp")
         endif
     endfunction
 
