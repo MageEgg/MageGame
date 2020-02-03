@@ -129,8 +129,6 @@ library GameChallenge1 uses GameChallengeBase
         IsFinshChallenge(1) = true
         //奖励
         PlayerFinishPlotEx(pid,1)
-        ShowUnit(Pu[21],true)
-        UnitAddEffectOfNPC(Pu[21])
     endfunction
 
     function GameChalleng_1_XYTimerEx(int id)
