@@ -78,6 +78,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)
+
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
@@ -215,27 +216,31 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             index = 4
         endif
 
-        for i = 0,25
-            if  GetUnitAbilityLevel(Pu[1],'AY0A'+i+index*0x100) > 0
-                nowid = 'AY0A'+i+index*0x100
-                exitwhen true
+        BJDebugMsg("点击的id"+YDWEId2S(sid))
+
+        if  index != 0
+            for i = 0,25
+                if  GetUnitAbilityLevel(Pu[1],'AY0A'+i+index*0x100) > 0
+                    nowid = 'AY0A'+i+index*0x100
+                    exitwhen true
+                endif
+            end
+            
+            if  nowid != 0
+                UnitRemoveAbility(Pu[1],nowid)
             endif
-        end
-        
-        if  nowid != 0
-            UnitRemoveAbility(Pu[1],nowid)
-        endif
 
 
-        if  sid == nowid
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
-        else
-            if  nowid == 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观激活成功！")
+            if  sid == nowid
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观替换成功！")
+                if  nowid == 0
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观激活成功！")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观替换成功！")
+                endif
+                UnitAddAbility(Pu[1],sid)
             endif
-            UnitAddAbility(Pu[1],sid)
         endif
     endfunction
 
@@ -251,7 +256,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         int unlock = 0
         string tech = ""
         int lv = 0
-        BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
+        //BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
@@ -382,7 +387,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         int page = Page[pid]
         int id = GetShowSaveId(page,index+step*4)
         
-
+        BJDebugMsg("存档id"+YDWEId2S(id))
         if  IsSaveIdCanShow(id,page) == true
             if  IsSaveFrameTechUnLock(pid,index) == true
                 BJDebugMsg("已解锁")
