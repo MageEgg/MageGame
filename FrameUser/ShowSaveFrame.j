@@ -116,6 +116,15 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(6,'RY2D','RY2D',0,0,0,0)//168
         //RegisterShowSaveFrameData(6,'RY4D','RY4D',0,0,0,0)//238
         RegisterShowSaveFrameData(6,'RY3D','RY3D',0,0,0,0)//298
+
+        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)
+        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)
         
     endfunction
 
@@ -241,52 +250,74 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         
         int unlock = 0
         string tech = ""
+        int lv = 0
         BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
             
-            if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
-                SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
-            else
-                SetTipsData(1,"",GetTypeIdName(id))
-            endif
-
-
-            tech = GetShowSaveFrameTechTips(pid,index)
-            if  tech != ""
-                SetTipsData(10,"",tech)
-                h = 11
-            endif
-            
-            if  IsSaveFrameTechUnLock(pid,index) == true
-                unlock = 1
-            else
-                unlock = 0
-            endif
-            
-            if  unlock == 1
-                SetTipsData(h,"",GetTypeIdStateTips(id))
-            else
-                SetTipsData(h,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
-            endif
-
-            h = h + 1
-
-            if  page == 6 and  unlock == 0//商城分页
-                SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
-            else
-                SetTipsData(h,"",GetTypeIdTips(id))
-            endif
-
-            h = h + 1
-            if  IsSaveIdCanShow(id,page) == true
-                if  unlock == 1
-                    SetTipsData(h,"","|cffffcc00所有内容属性均叠加|r\n|cff00ff00（点击激活/隐藏外观）|r")
+            if  page == 7
+                lv = GetDzPlayerData(pid,6,index+1)
+                SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
+                //当前经脉最高5级
+                if  lv == 0
+                    SetTipsData(10,"","|cffffff00需求：|r\n - |cff808080解锁该经脉|r")
                 else
-                    SetTipsData(h,"","|cff808080（解锁后可激活/隐藏外观）|r")
+                    SetTipsData(10,""," ")
+                endif
+                h = 11
+                for i = 1,5
+                    if  lv >= i
+                        SetTipsData(h,"","Lv."+I2S(i)+"："+GetTypeIdName(id+i+16))
+                    else
+                        SetTipsData(h,"","|cff808080Lv."+I2S(i)+"："+GetTypeIdName(id+i+16)+"|r")
+                    endif
+                    h = h + 1
+                end
+            else
+                if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
+                    SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
+                else
+                    SetTipsData(1,"",GetTypeIdName(id))
+                endif
+                tech = GetShowSaveFrameTechTips(pid,index)
+                if  tech != ""
+                    SetTipsData(10,"",tech)
+                    h = 11
+                endif
+                
+                if  IsSaveFrameTechUnLock(pid,index) == true
+                    unlock = 1
+                else
+                    unlock = 0
+                endif
+                
+                if  unlock == 1
+                    SetTipsData(h,"",GetTypeIdStateTips(id))
+                else
+                    SetTipsData(h,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
+                endif
+
+                h = h + 1
+
+                if  page == 6 and  unlock == 0//商城分页
+                    SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
+                else
+                    SetTipsData(h,"",GetTypeIdTips(id))
+                endif
+
+                h = h + 1
+                if  IsSaveIdCanShow(id,page) == true
+                    if  unlock == 1
+                        SetTipsData(h,"","|cffffcc00所有内容属性均叠加|r\n|cff00ff00（点击激活/隐藏外观）|r")
+                    else
+                        SetTipsData(h,"","|cff808080（解锁后可激活/隐藏外观）|r")
+                    endif
                 endif
             endif
+
+
+            
 
             ShowTipsUI()
         endif
@@ -327,8 +358,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                             endif
                         end
 
-                        if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
-                            DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
+                        if  page != 7
+                            if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
+                                DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
+                            endif
                         endif
                         DzFrameSetTexture(BUTTON_Back[500+index][1],GetTypeIdIcon(id),0)
                         DzFrameSetText(BUTTON_Text[500+index],GetTypeIdColor(id)+GetTypeIdName(id))
