@@ -373,6 +373,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                             UnitAddAbility(u,'AZ01')
                             SetUnitXY(u,psx[k],psy[k])
                             PingMinimap(psx[k],psy[k],5)
+                            IssueImmediateOrderById(u,852076)
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
                             CreateBossAttachUnit(u,pex[k],pey[k],0.1)

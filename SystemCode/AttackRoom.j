@@ -486,7 +486,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
                 
-                
+                AttackSummonUnitGroup[pid] = CreateGroup()
                 
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x+512,y-256,270)//境界
 
@@ -511,8 +511,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 AttackTexttag[pid] = CreateTextTag()
                 SetTextTagText(AttackTexttag[pid],"0/400",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
-
-
 
                 RefreshAttackRoom(pid)
 
