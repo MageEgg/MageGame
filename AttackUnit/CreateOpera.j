@@ -113,6 +113,7 @@ library CreateOpera uses DamageCode
         DestroyTimer(OperaTimer)
         OperaTimer = null
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        EXSetUnitMoveType(AttackUnitOperaBoss,0x04)
         SetUnitFlyHeight(AttackUnitOperaBoss,1450,10000.00)
         FlushChildHashtable(ht,GetHandleId(AttackUnitOperaBoss))
         RemoveUnitTimer(AttackUnitOperaBoss,0.5)
@@ -254,6 +255,7 @@ library CreateOpera uses DamageCode
         TimerStart(0.5,false)
         {
             SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+            EXSetUnitMoveType(AttackUnitOperaBoss,0x02)
             endtimer
             flush locals
         }
@@ -308,6 +310,7 @@ library CreateOpera uses DamageCode
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     UnitAddItemEx(Pu[2],'I015')
+                    GivePlayerMissionPrize(pid,'RR0D')
                 endif
             end
         endif
@@ -331,7 +334,6 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ96')
-                        GivePlayerMissionPrize(pid,'RR0D')
                     endif
                 end
                 endtimer
@@ -588,6 +590,7 @@ library CreateOpera uses DamageCode
         DestroyTimer(OperaTimer)
         OperaTimer = null
         SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        EXSetUnitMoveType(AttackUnitOperaBoss,0x04)
         x = GetUnitX(AttackUnitOperaBoss)
         y = GetUnitY(AttackUnitOperaBoss)
         AddEffectInArea(x,y,480,18,"effect_yanhua1.mdx")
@@ -613,6 +616,7 @@ library CreateOpera uses DamageCode
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     UnitAddItemEx(Pu[2],'I015')
+                    GivePlayerMissionPrize(pid,'RR0E')
                 endif
             end
         endif
@@ -634,7 +638,6 @@ library CreateOpera uses DamageCode
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         UnitRemoveAbility(Pu[1],'AZ96')
-                        GivePlayerMissionPrize(pid,'RR0E')
                     endif
                 end
                 endtimer
@@ -790,6 +793,7 @@ library CreateOpera uses DamageCode
         TimerStart(0.4,false)
         {
             SetUnitOwner(AttackUnitOperaBoss,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+            EXSetUnitMoveType(AttackUnitOperaBoss,0x02)
             AttackPlayingHero(AttackUnitOperaBoss)
             endtimer
             flush locals
