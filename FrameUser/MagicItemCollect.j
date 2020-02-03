@@ -917,7 +917,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
     function FB01FuncTimer(unit wu)
         unit u1 = wu
-        SetUnitIntState(wu,'FB01',1)
+        SetUnitIntState(wu,'FC01',1)
         TimerStart(15,false)
         {
             SetUnitIntState(u1,'FC01',0)
