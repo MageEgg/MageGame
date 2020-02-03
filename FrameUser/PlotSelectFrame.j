@@ -336,7 +336,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             if  index == 8
                 PlayerOpenExPlot(pid)
             else
-                PlayerUnLockPlot(pid,index+1)
+                //PlayerUnLockPlot(pid,index+1)
                 SetPlayerPlotStateByIndex(pid,index,2)
                 RePlotSelectByIndex(pid,index)
             endif
