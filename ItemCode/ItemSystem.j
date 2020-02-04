@@ -64,8 +64,7 @@ scope ItemSystem initializer InitItemSystem
 
                         
                         //LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
-                        UnitAddAbility(Pu[1],'AG09')
-                        UnitMakeAbilityPermanent(Pu[1],true,'AG09')
+                        
                         //PlayerUnLockPlot(pid,1)
                     endif
                 endif
