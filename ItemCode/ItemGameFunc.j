@@ -577,10 +577,10 @@ library ItemGameFunc uses DamageCode,AttackUnit
 
     function InitPlayerMonsterSoulSkill(int pid)
         string s = ""
-        RemoveItem(CreateItem('IS12',0,0))
+        /*RemoveItem(CreateItem('IS12',0,0))
         RemoveItem(CreateItem('IZ0C',0,0))
         SetPlayerMonsterSoulSkill(pid)
-        SetPlayerMonsterSoulItem(pid)
+        SetPlayerMonsterSoulItem(pid)*/
         for num = 0,7
             if  num == 0
                 s = "|CffAAAAAA基础属性：|r|n攻击|Cffffd24d+20%|n|n|r|Cffaaaaaa龙生九子之一，形如猛虎，吞吃虎豹。|r"
