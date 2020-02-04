@@ -11,28 +11,28 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
                             if  GetPlayerPlotPartNum(pid) > 0
                                 if  flag == 1
                                     OpenGameChallenge_1(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 2
                                     OpenGameChallenge_2(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 3
                                     OpenGameChallenge_3(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 4
                                     OpenGameChallenge_4(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 5
                                     OpenGameChallenge_5(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 6
                                     OpenGameChallenge_6(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 7
                                     OpenGameChallenge_7(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 elseif  flag == 8
                                     OpenGameChallenge_8(pid,ty)
-                                    SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
+                                    //SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
                                 endif
                                 ClosePlotFrame(pid)
                             else
