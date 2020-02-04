@@ -130,6 +130,7 @@ library MagicItemCollectFrame uses GameFrame
         BackSmall.SetPoint(0,GameUI,0,0.05,-0.027)
         BackSmall.SetSize(0.13,0.048)
         BackSmall.SetTexture("war3mapImported\\UI_MagicItem_SmallBack.tga",0)
+        BackSmall.show = false
         //创建small按钮
         CreateMagicItemButton4()
 

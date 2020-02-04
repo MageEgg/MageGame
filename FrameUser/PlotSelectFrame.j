@@ -346,7 +346,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         elseif  Type  == 3
             
             GivePlayerFinishPlotPrize(pid,index)
-
+            
+            SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)-1)
 
             SetPlayerPlotStateByIndex(pid,index,2)
             RePlotSelectByIndex(pid,index)

@@ -217,13 +217,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
         if  index == 5
             name = name + "\n天赋"
+        elseif  index == 4
+            name = name + "\n神通"
         else
-            if  color == 0
-                name = name + "\n神通"
-            else
-                name = name +"\n" +GetSkillGrade(level)
-                
-            endif
+            name = name +"\n" +GetSkillGrade(level)
         endif
         
         
