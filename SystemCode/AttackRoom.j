@@ -488,17 +488,20 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 
                 AttackSummonUnitGroup[pid] = CreateGroup()
                 
-                Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x+512,y-256,270)//境界
+                Pu[21]=CreateUnit(Player(pid),'np01',x+128,y+512,270)//境界
 
-                Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y,270)//技能商店
+                Pu[22]=CreateUnit(Player(pid),'np02',x-512,y+128,270)//技能商店
 
-                Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,270)//礼包
+                Pu[24]=CreateUnit(Player(pid),'np04',x+512,y+128,270)//副本入口
+
+                Pu[26]=CreateUnit(Player(pid),'np06',x,y-512,270)//礼包
                 
-                Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np27',x+256,y+512,225)//送宝金蝉
+                Pu[27]=CreateUnit(Player(pid),'np27',x+512,y+512,225)//送宝金蝉
 
-                Pu[41]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np41',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]-256,0)//积分兑换
+                Pu[41]=CreateUnit(Player(pid),'np41',x,y-512,0)//积分兑换
 
-                Pu[42]=CreateUnit(Player(pid),'np42',AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]-256,270)//挑战
+                Pu[42]=CreateUnit(Player(pid),'np42',x-128,y+512,270)//挑战
+
                 ExecuteFunc("InitAttackUnitChallengeState")
 
                 UnitAddAbility(Pu[27],'Avul')

@@ -405,7 +405,7 @@ scope DeathEvent initializer InitDeathEvent
             endif
 
             if  uid == 'u001'//占星NPC
-                Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x+512,y+256,270)//兽魂神通
+                Pu[28]=CreateUnit(Player(pid),'np03',x-512,y-128,270)//兽魂神通
                 //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y+256,270)//占星抽奖
                 UnitAddEffectOfNPC(Pu[28])
                 //UnitAddEffectOfNPC(Pu[25])
