@@ -147,7 +147,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             num = num + 1
             SetUnitIntState(Pu[1],150+num,id)
             SetUnitIntState(Pu[1],150,num)
-            SetPlayerTechResearched(Player(pid),'KJ0A'+num - 1,1)
+            SetPlayerTechResearched(Player(pid),'RJ0A'+num - 1,1)
             //BJDebugMsg("num"+I2S(num))
             AddEquipState(Pu[1],id)
             HeroIncLevel(Pu[1])
