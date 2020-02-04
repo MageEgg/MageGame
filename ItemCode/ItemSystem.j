@@ -275,17 +275,17 @@ scope ItemSystem initializer InitItemSystem
     //升级加血技能
     function IncHeroAddLifeAbility(int pid)
         int lv = GetUnitAbilityLevel(Pu[1],'AG06')
-        int use = lv * 150 + 150
+        int use = 0lv * 150 + 150
         if  lv < 10
-            if  GetUnitIntState(Pu[1],108)>=use
-                AddUnitIntState(Pu[1],108,-use)
+            //if  GetUnitIntState(Pu[1],108)>=use
+                //AddUnitIntState(Pu[1],108,-use)
                 SetUnitAbilityLevel(Pu[1],'AG06',lv+1)
                 AddUnitRealState(Pu[1],45,30)
                 LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffyellow2.mdl")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r升级成功！")
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！杀敌数不足"+I2S(use))
-            endif
+            //else
+                //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！杀敌数不足"+I2S(use))
+            //endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff000[系统]：|r升级失败！该技能已经满级！")
         endif
