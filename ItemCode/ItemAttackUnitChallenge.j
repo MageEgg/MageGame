@@ -460,6 +460,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
     function ItemEventOfAttackUnitChallengeState(int pid,int itid)
         int ran = 0
         if  itid == 'IZ0D'
+            UnitAddAbility(Pu[1],'AG09')
+            UnitMakeAbilityPermanent(Pu[1],true,'AG09')
             ShowUnit(Pu[24],true)
             UnitAddEffectOfNPC.execute(Pu[24])
             if  GetLocalPlayer() == Player(pid)
