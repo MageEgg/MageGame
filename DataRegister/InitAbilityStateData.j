@@ -5,7 +5,7 @@ scope AbilityStateData initializer init
 call InitAbilityData('S0Q0',1,9,0,0,0,0,0,0,0,0,"Q技能","|Cff00FF7F需求：\n |r|Cff808080- 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTN013.blp")
 call InitAbilityData('S0W0',1,9,0,0,0,0,0,0,0,0,"W技能","|Cff00FF7F需求：\n |r|Cff808080- 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTN014.blp")
 call InitAbilityData('S0E0',1,9,0,0,0,0,0,0,0,0,"E技能","|Cff00FF7F需求：\n |r|Cff808080- 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTN015.blp")
-call InitAbilityData('S0R0',1,9,0,0,0,0,0,0,0,0,"R技能","|Cff00FF7F需求：\n|r|cff808080 - 境界七-觉醒后解锁|r","ReplaceableTextures\\CommandButtons\\BTN016.blp")
+call InitAbilityData('S0R0',1,9,0,0,0,0,0,0,0,0,"R技能","|Cff00FF7F需求：\n|r|cff808080 - 完成历练挑战14后解锁|r","ReplaceableTextures\\CommandButtons\\BTN016.blp")
 call InitAbilityData('S0Q1',1,9,0,0,0,0,0,0,0,0,"Q技能","暂未学习技能\n\n在|cff00ff40技能商店|r内购买|cff00ff40技能书|r学习。","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
 call InitAbilityData('S0W1',1,9,0,0,0,0,0,0,0,0,"W技能","暂未学习技能\n\n在|cff00ff40技能商店|r内购买|cff00ff40技能书|r学习。","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
 call InitAbilityData('S0E1',1,9,0,0,0,0,0,0,0,0,"E技能","暂未学习技能\n\n在|cff00ff40技能商店|r内购买|cff00ff40技能书|r学习。","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp")
