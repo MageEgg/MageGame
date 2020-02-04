@@ -377,7 +377,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             if  GetLocalPlayer() == Player(pid)
                 DzFrameShow(BUTTON_Back[700+4][0], true)
             endif
-            CloseCollectFrame(int pid)
+            CloseCollectFrame(pid)
         elseif  itid == 'IZ0E'
             ran = GetRandomInt(0,7)
             AddPlayerMonsterSoulState(pid,ran)
