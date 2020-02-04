@@ -559,7 +559,9 @@ scope ItemSystem initializer InitItemSystem
 
         elseif  itemid >= 'ID01' and itemid <= 'ID10'//道果
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
+                i1 = 800-(DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]))
                 AddImmortalFruit(Pu[1],itemid - 'ID00' + 'IJ00',0)
+                HeroAddExp(Pu[1],i1)
             else
                 UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
