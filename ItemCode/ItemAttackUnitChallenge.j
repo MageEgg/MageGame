@@ -122,7 +122,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 for num = 0,AttackUnitChallengeStateStockMax
                     AddAttackUnitChallengeStateStock(pid,0,num)
                 end
-                AddAttackUnitChallengeStateStock(pid,220,num)
+                AddAttackUnitChallengeStateStock(pid,220,0)
             endif
         end
     endfunction
@@ -310,7 +310,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
     endfunction
 
-    function AddAttackUnitChallengeState(int pid)
+    function AddAttackUnitChallengeState(int pid,int sid)
         int zu = 0
         int wei = 0
         int id = 0
@@ -322,8 +322,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         unit u = null
-        if  id - 'AT9A' < 2048
-            challenge = SubString(YDWEId2S(id),2,3) + 1
+        if  sid - 'AT9A' < 2048
+            challenge = S2I(SubString(YDWEId2S(id),2,3)) + 1
             zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
         else
@@ -331,6 +331,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             wei = AttackUnitChallengePlayerWeiNum(challenge)
         endif
         id = AttackUnitChallengeStateTypeValueA[zu][wei]
+        BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+YDWEId2S(challenge))
         tech = id+167772160
         uid = id+872415232
         if  IsPlayerInAttackUnitChallenge(challenge) == 0
@@ -390,7 +391,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int unitnum = 0
         int challenge = 0
         if  id - 'AT9A' < 2048
-            challenge = SubString(YDWEId2S(id),2,3) + 1
+            challenge = S2I(SubString(YDWEId2S(id),2,3)) + 1
             zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
         else
@@ -399,6 +400,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
         unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
         AttackUnitChallengePlayerKillCos(challenge) = AttackUnitChallengePlayerKillCos(challenge) + 1
+        BJDebugMsg(YDWEId2S(id)+"@@"+YDWEId2S(challenge))
         if  challenge == 0
             if  unitnum >= 15
                 if  ModuloInteger(AttackUnitChallengePlayerKillCos(challenge),4) == 0 or AttackUnitChallengePlayerKillCos(challenge) == unitnum
