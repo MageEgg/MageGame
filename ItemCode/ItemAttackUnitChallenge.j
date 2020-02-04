@@ -112,6 +112,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             YDWESetUnitAbilityDataString(Pu[42],id,1,218,s)
             if  zu >= 200
                 YDWESetUnitAbilityState(Pu[42],id,1,60)
+            else
+                YDWESetUnitAbilityState(Pu[42],id,1,10)
             endif
         endif
     endfunction
@@ -323,7 +325,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         real y = AttackRoomPostion[pid][2]
         unit u = null
         if  sid - 'AT9A' < 2048
-            challenge = S2I(SubString(YDWEId2S(id),2,3)) + 1
+            challenge = S2I(SubString(YDWEId2S(sid),2,3)) + 1
             zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
         else
@@ -331,7 +333,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             wei = AttackUnitChallengePlayerWeiNum(challenge)
         endif
         id = AttackUnitChallengeStateTypeValueA[zu][wei]
-        BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+YDWEId2S(challenge))
+        BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
         tech = id+167772160
         uid = id+872415232
         if  IsPlayerInAttackUnitChallenge(challenge) == 0
@@ -400,7 +402,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
         unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
         AttackUnitChallengePlayerKillCos(challenge) = AttackUnitChallengePlayerKillCos(challenge) + 1
-        BJDebugMsg(YDWEId2S(id)+"@@"+YDWEId2S(challenge))
+        BJDebugMsg(YDWEId2S(id)+"@@"+I2S(challenge))
         if  challenge == 0
             if  unitnum >= 15
                 if  ModuloInteger(AttackUnitChallengePlayerKillCos(challenge),4) == 0 or AttackUnitChallengePlayerKillCos(challenge) == unitnum
@@ -426,11 +428,16 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 endif
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
                 AddAttackUnitChallengeStateLevel(pid,challenge)
+                IsPlayerInAttackUnitChallenge(challenge) = 0
             endif
         else
-            if  challenge == 3
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[副本挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+            ///////////////////////分割判断/////////////////////
+            if  challenge == 2
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[法宝亲和挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+            elseif  challenge == 3
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[副本解锁挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             endif
+            ///////////////////////分割判断/////////////////////
             if  AttackUnitChallengePlayerKillCos(challenge) == unitnum
                 AttackUnitChallengePlayerKillCos(challenge) = 0
                 UnitRemoveAbility(Pu[42],id)
@@ -440,6 +447,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 endif
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
                 AddAttackUnitChallengeStateLevel(pid,challenge)
+                ///////////////////////分割判断/////////////////////
+                if  challenge == 3
+                    PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
+                endif 
+                ///////////////////////分割判断/////////////////////
                 IsPlayerInAttackUnitChallenge(challenge) = 0
             endif
         endif
