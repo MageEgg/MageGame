@@ -80,7 +80,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  AttackUnitChallengeStatePriceC[zu][wei] > 0 and AttackUnitChallengeStatePriceD[zu][wei] > 0
             s = s + "|n"+"|cffffcc00"+StateName[AttackUnitChallengeStatePriceC[zu][wei]]+"：|r" + I2S(AttackUnitChallengeStatePriceD[zu][wei])
         endif
-        return s+"|n|n"
+        if  s == "|cff00ffff挑战消耗：|r"
+            return ""
+        else
+            return s+"|n|n"
+        endif
     endfunction
 
     function AddAttackUnitChallengeStateStock(int pid,int zu,int wei)
@@ -297,7 +301,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Unit
                 unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
                 for num = 1,unitnum
-                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-512,y+512,270)
+                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
                     UnitAddAbility(u,'AZ99')
                     SetUnitAbilityLevel(u,'AZ99',pid+1)
                     AddAttackSummonUnit.execute(pid,u)
@@ -316,7 +320,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
                 itemid = AttackUnitChallengeStateTypeValueC[zu][wei]
                 for num = 1,unitnum
-                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,270)
+                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
                     UnitAddAbility(u,'AZ99')
                     SetUnitAbilityLevel(u,'AZ99',pid+1)
                     AddAttackSummonUnit.execute(pid,u)
@@ -339,15 +343,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
         AttackUnitChallengePlayerKillCos = AttackUnitChallengePlayerKillCos + 1
         if  unitnum >= 15
-            if  ModuloInteger(unitnum,4) == 0 or AttackUnitChallengePlayerKillCos == unitnum
+            if  ModuloInteger(AttackUnitChallengePlayerKillCos,4) == 0 or AttackUnitChallengePlayerKillCos == unitnum
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
             endif
         elseif  unitnum >= 9
-            if  ModuloInteger(unitnum,3) == 0 or AttackUnitChallengePlayerKillCos == unitnum
+            if  ModuloInteger(AttackUnitChallengePlayerKillCos,3) == 0 or AttackUnitChallengePlayerKillCos == unitnum
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
             endif
         elseif  unitnum >= 2
-            if  ModuloInteger(unitnum,2) == 0 or AttackUnitChallengePlayerKillCos == unitnum
+            if  ModuloInteger(AttackUnitChallengePlayerKillCos,2) == 0 or AttackUnitChallengePlayerKillCos == unitnum
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
             endif
         elseif  unitnum == 1
