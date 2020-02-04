@@ -292,6 +292,9 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetMosterUnitState(wu)
         elseif  id >= 'u0DA' and id <= 'u0DZ'
             //周天星辰阵
+            SetMosterUnitState(wu)
+            /*
+            
             index = AttackUnitInt[0][2]+1//进攻波数d
             
             if  index <= 0
@@ -312,7 +315,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             else
                 SetUnitRealStateOfStar(wu,newid,0.5,1,1)
             endif
-            
+            */
         elseif  id >= 'u000' and id <= 'uzzz'
             SetMosterUnitState(wu)
         elseif  id >= 'H000' and id <= 'H099'
