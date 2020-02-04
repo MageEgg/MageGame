@@ -62,8 +62,8 @@ scope ItemSystem initializer InitItemSystem
                     if  IsHeroEquipCanOpenPlot(Pu[1]) == true
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备均达到|Cff00ff7f绿色|r，解锁|Cffff0000剧情副本挑战|r|Cfff0f0f0。|r")
 
-                        Pu[24] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2]+512,270)//副本入口
-                        LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
+                        
+                        //LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
                         UnitAddAbility(Pu[1],'AG09')
                         UnitMakeAbilityPermanent(Pu[1],true,'AG09')
                         //PlayerUnLockPlot(pid,1)
@@ -275,7 +275,7 @@ scope ItemSystem initializer InitItemSystem
     //升级加血技能
     function IncHeroAddLifeAbility(int pid)
         int lv = GetUnitAbilityLevel(Pu[1],'AG06')
-        int use = 0lv * 150 + 150
+        int use = 0//lv * 150 + 150
         if  lv < 10
             //if  GetUnitIntState(Pu[1],108)>=use
                 //AddUnitIntState(Pu[1],108,-use)
@@ -287,7 +287,7 @@ scope ItemSystem initializer InitItemSystem
                 //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！杀敌数不足"+I2S(use))
             //endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff000[系统]：|r升级失败！该技能已经满级！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r升级失败！该技能已经满级！")
         endif
     endfunction
     
