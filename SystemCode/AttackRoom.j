@@ -493,6 +493,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 Pu[22]=CreateUnit(Player(pid),'np02',x-512,y+128,270)//技能商店
 
                 Pu[24]=CreateUnit(Player(pid),'np04',x+512,y+128,270)//副本入口
+                ShowUnit(Pu[24],false)
 
                 Pu[26]=CreateUnit(Player(pid),'np06',x,y-512,270)//礼包
                 
