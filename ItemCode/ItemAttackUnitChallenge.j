@@ -15,13 +15,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
 
     int array AttackUnitChallengePlayerArrayInt[12][680]
 
-    #define AttackUnitChallengeStateGold            AttackUnitChallengeStatePriceA
-    #define AttackUnitChallengeStateLumber          AttackUnitChallengeStatePriceB
+    #define AttackUnitChallengeStateGold                    AttackUnitChallengeStatePriceA
+    #define AttackUnitChallengeStateLumber                  AttackUnitChallengeStatePriceB
 
-    #define AttackUnitChallengePlayerInt            AttackUnitChallengePlayerArrayInt[pid]
-    #define AttackUnitChallengePlayerZuNum          AttackUnitChallengePlayerInt[0]
-    #define AttackUnitChallengePlayerWeiNum         AttackUnitChallengePlayerInt[1]
-    #define AttackUnitChallengePlayerKillCos        AttackUnitChallengePlayerInt[2]
+    #define AttackUnitChallengePlayerInt                    AttackUnitChallengePlayerArrayInt[pid]
+    #define AttackUnitChallengePlayerZuNum(num)             AttackUnitChallengePlayerInt[0+num]
+    #define AttackUnitChallengePlayerWeiNum(num)            AttackUnitChallengePlayerInt[10+num]
+    #define IsPlayerInAttackUnitChallenge(num)              AttackUnitChallengePlayerInt[20+num]
+    #define AttackUnitChallengePlayerKillCos(num)           AttackUnitChallengePlayerInt[30+num]
 
     #define Buy_Tech 0             
     #define Buy_Unit 1             
@@ -65,6 +66,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(1,6,0,0,108,0,Buy_Unit_Item,'ATAO',15,'IS14',0,"奖励15药品升级：使用后立即恢复40%生命值，每秒恢复8%生命值，持续6秒。药水持续时间内，攻击速度+30%，冷却缩减+15%.")
         InitAttackUnitChallengeStateData(1,7,0,0,108,0,Buy_Unit,'ATAP',20,0,0,"奖励16生命%&固定防御")
 
+        InitAttackUnitChallengeStateData(220,0,0,0,108,0,Buy_Unit,'AT2A',1,0,0,"奖励解锁副本1")
+        InitAttackUnitChallengeStateData(220,1,0,0,108,0,Buy_Unit,'AT2B',1,0,0,"奖励解锁副本2")
+        InitAttackUnitChallengeStateData(220,2,0,0,108,0,Buy_Unit,'AT2C',1,0,0,"奖励解锁副本3")
+        InitAttackUnitChallengeStateData(220,3,0,0,108,0,Buy_Unit,'AT2D',1,0,0,"奖励解锁副本4")
+        InitAttackUnitChallengeStateData(220,4,0,0,108,0,Buy_Unit,'AT2E',1,0,0,"奖励解锁副本5")
+        InitAttackUnitChallengeStateData(220,5,0,0,108,0,Buy_Unit,'AT2F',1,0,0,"奖励解锁副本6")
+        InitAttackUnitChallengeStateData(220,6,0,0,108,0,Buy_Unit,'AT2G',1,0,0,"奖励解锁副本7")
+        InitAttackUnitChallengeStateData(220,7,0,0,108,0,Buy_Unit,'AT2H',1,0,0,"奖励解锁副本8")
+
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
@@ -91,15 +101,18 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int id = AttackUnitChallengeStateTypeValueA[zu][wei]
         int zero = AttackUnitChallengeStateTypeValueA[zu][0]
         string s = ""
-        BJDebugMsg(YDWEId2S(id))
+        //BJDebugMsg(YDWEId2S(id))
         UnitAddAbility(Pu[42],id)
         if  GetPlayerTechCount(Player(pid),id+167772160-1,true) > 0 or id == zero
             s = GetStockSkillConsume(zu,wei)
-            BJDebugMsg("GetStockSkillConsume")
+            //BJDebugMsg("GetStockSkillConsume")
         endif
         s = s + AttackUnitChallengeStateTypeString[zu][wei]
         if  Player(pid) == GetLocalPlayer()
             YDWESetUnitAbilityDataString(Pu[42],id,1,218,s)
+            if  zu >= 200
+                YDWESetUnitAbilityState(Pu[42],id,1,60)
+            endif
         endif
     endfunction
 
@@ -109,18 +122,30 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 for num = 0,AttackUnitChallengeStateStockMax
                     AddAttackUnitChallengeStateStock(pid,0,num)
                 end
+                AddAttackUnitChallengeStateStock(pid,220,num)
             endif
         end
     endfunction
 
-    function IsCanGetAttackUnitChallengeState(int pid)->bool
-        int zu = AttackUnitChallengePlayerZuNum
-        int wei = AttackUnitChallengePlayerWeiNum
-        int gold = AttackUnitChallengeStateGold[zu][wei]
-        int lumber = AttackUnitChallengeStateLumber[zu][wei]
-        int othertype = AttackUnitChallengeStatePriceC[zu][wei]
-        int othervalue = AttackUnitChallengeStatePriceD[zu][wei]
+    function IsCanGetAttackUnitChallengeState(int pid,int challenge)->bool
+        int zu = 0
+        int wei = 0
+        int gold = 0
+        int lumber = 0
+        int othertype = 0
+        int othervalue = 0
         int other = 0
+        if  challenge == 0
+            zu = AttackUnitChallengePlayerZuNum(challenge) 
+            wei = AttackUnitChallengePlayerWeiNum(challenge)
+        else
+            zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
+            wei = AttackUnitChallengePlayerWeiNum(challenge)
+        endif
+        gold = AttackUnitChallengeStateGold[zu][wei]
+        lumber = AttackUnitChallengeStateLumber[zu][wei]
+        othertype = AttackUnitChallengeStatePriceC[zu][wei]
+        othervalue = AttackUnitChallengeStatePriceD[zu][wei]
         if  othertype > 0 and othervalue > 0
             other = othervalue
         endif
@@ -268,104 +293,153 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         return false
     endfunction
 
-    function AddAttackUnitChallengeStateLevel(int pid)
-        AttackUnitChallengePlayerWeiNum = AttackUnitChallengePlayerWeiNum + 1
-        if  AttackUnitChallengePlayerWeiNum == AttackUnitChallengeStateStockMax
-            AttackUnitChallengePlayerZuNum = AttackUnitChallengePlayerZuNum + 1
-            AttackUnitChallengePlayerWeiNum = 0
-            for num = 0,AttackUnitChallengeStateStockMax
-                AddAttackUnitChallengeStateStock(pid,AttackUnitChallengePlayerZuNum,num)
-            end
+    function AddAttackUnitChallengeStateLevel(int pid,int challenge)
+        AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
+        if  challenge == 0
+            if  AttackUnitChallengePlayerWeiNum(challenge) == AttackUnitChallengeStateStockMax
+                AttackUnitChallengePlayerZuNum(challenge) = AttackUnitChallengePlayerZuNum(challenge) + 1
+                AttackUnitChallengePlayerWeiNum(challenge) = 0
+                for num = 0,AttackUnitChallengeStateStockMax
+                    AddAttackUnitChallengeStateStock(pid,AttackUnitChallengePlayerZuNum(challenge),num)
+                end
+            else
+                AddAttackUnitChallengeStateStock(pid,AttackUnitChallengePlayerZuNum(challenge),AttackUnitChallengePlayerWeiNum(challenge))
+            endif
         else
-            AddAttackUnitChallengeStateStock(pid,AttackUnitChallengePlayerZuNum,AttackUnitChallengePlayerWeiNum)
+            AddAttackUnitChallengeStateStock(pid,AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1),AttackUnitChallengePlayerWeiNum(challenge))
         endif
     endfunction
 
     function AddAttackUnitChallengeState(int pid)
-        int zu = AttackUnitChallengePlayerZuNum
-        int wei = AttackUnitChallengePlayerWeiNum
-        int id = AttackUnitChallengeStateTypeValueA[zu][wei]
-        int tech = id+167772160
-        int uid = id+872415232
+        int zu = 0
+        int wei = 0
+        int id = 0
+        int tech = 0
+        int uid = 0
         int itemid = 0
         int unitnum = 0
+        int challenge = 0
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         unit u = null
-        if  IsCanGetAttackUnitChallengeState(pid) == true
-            if  AttackUnitChallengeStateType[zu][wei] == Buy_Tech
-                UnitRemoveAbility(Pu[42],id)
-                SetPlayerTechResearchedEx(Player(pid),tech)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
-                AddAttackUnitChallengeStateLevel(pid)
-            elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Unit
-                unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
-                for num = 1,unitnum
-                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
-                    UnitAddAbility(u,'AZ99')
-                    SetUnitAbilityLevel(u,'AZ99',pid+1)
-                    AddAttackSummonUnit.execute(pid,u)
-                    SetUnitIntState(u,101,id)
-                    IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                end
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
-            elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Item
-                itemid = AttackUnitChallengeStateTypeValueB[zu][wei]
-                UnitRemoveAbility(Pu[42],id)
-                SetPlayerTechResearchedEx(Player(pid),tech)
-                UnitAddItemEx(Pu[1],itemid)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
-                AddAttackUnitChallengeStateLevel(pid)
-            elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Unit_Item
-                unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
-                itemid = AttackUnitChallengeStateTypeValueC[zu][wei]
-                for num = 1,unitnum
-                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
-                    UnitAddAbility(u,'AZ99')
-                    SetUnitAbilityLevel(u,'AZ99',pid+1)
-                    AddAttackSummonUnit.execute(pid,u)
-                    SetUnitIntState(u,101,id)
-                    SetUnitIntState(u,102,itemid)
-                    IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                end
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
+        if  id - 'AT9A' < 2048
+            challenge = SubString(YDWEId2S(id),2,3) + 1
+            zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
+            wei = AttackUnitChallengePlayerWeiNum(challenge)
+        else
+            zu = AttackUnitChallengePlayerZuNum(challenge)
+            wei = AttackUnitChallengePlayerWeiNum(challenge)
+        endif
+        id = AttackUnitChallengeStateTypeValueA[zu][wei]
+        tech = id+167772160
+        uid = id+872415232
+        if  IsPlayerInAttackUnitChallenge(challenge) == 0
+            if  IsCanGetAttackUnitChallengeState(pid,challenge) == true
+                if  AttackUnitChallengeStateType[zu][wei] == Buy_Tech
+                    UnitRemoveAbility(Pu[42],id)
+                    SetPlayerTechResearchedEx(Player(pid),tech)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
+                    AddAttackUnitChallengeStateLevel(pid,challenge)
+                elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Unit
+                    IsPlayerInAttackUnitChallenge(challenge) = 1
+                    unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
+                    for num = 1,unitnum
+                        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
+                        UnitAddAbility(u,'AZ99')
+                        SetUnitAbilityLevel(u,'AZ99',pid+1)
+                        AddAttackSummonUnit.execute(pid,u)
+                        SetUnitIntState(u,101,id)
+                        IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    end
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
+                elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Item
+                    itemid = AttackUnitChallengeStateTypeValueB[zu][wei]
+                    UnitRemoveAbility(Pu[42],id)
+                    SetPlayerTechResearchedEx(Player(pid),tech)
+                    UnitAddItemEx(Pu[1],itemid)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
+                    AddAttackUnitChallengeStateLevel(pid,challenge)
+                elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Unit_Item
+                    IsPlayerInAttackUnitChallenge(challenge) = 1
+                    unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
+                    itemid = AttackUnitChallengeStateTypeValueC[zu][wei]
+                    for num = 1,unitnum
+                        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
+                        UnitAddAbility(u,'AZ99')
+                        SetUnitAbilityLevel(u,'AZ99',pid+1)
+                        AddAttackSummonUnit.execute(pid,u)
+                        SetUnitIntState(u,101,id)
+                        SetUnitIntState(u,102,itemid)
+                        IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    end
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
+                endif
             endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前正在挑战！")
         endif
         u = null
     endfunction
 
     function AttackUnitChallengeStateDeathEvent(int pid,unit u)
-        int zu = AttackUnitChallengePlayerZuNum
-        int wei = AttackUnitChallengePlayerWeiNum
+        int zu = 0
+        int wei = 0
         int id = GetUnitIntState(u,101)
         int itemid = GetUnitIntState(u,102)
         int tech = id+167772160
-        int unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
-        AttackUnitChallengePlayerKillCos = AttackUnitChallengePlayerKillCos + 1
-        if  unitnum >= 15
-            if  ModuloInteger(AttackUnitChallengePlayerKillCos,4) == 0 or AttackUnitChallengePlayerKillCos == unitnum
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
-            endif
-        elseif  unitnum >= 9
-            if  ModuloInteger(AttackUnitChallengePlayerKillCos,3) == 0 or AttackUnitChallengePlayerKillCos == unitnum
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
-            endif
-        elseif  unitnum >= 2
-            if  ModuloInteger(AttackUnitChallengePlayerKillCos,2) == 0 or AttackUnitChallengePlayerKillCos == unitnum
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
-            endif
-        elseif  unitnum == 1
-            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos)+"/"+I2S(unitnum)+"|r)")
+        int unitnum = 0
+        int challenge = 0
+        if  id - 'AT9A' < 2048
+            challenge = SubString(YDWEId2S(id),2,3) + 1
+            zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
+            wei = AttackUnitChallengePlayerWeiNum(challenge)
+        else
+            zu = AttackUnitChallengePlayerZuNum(challenge)
+            wei = AttackUnitChallengePlayerWeiNum(challenge)
         endif
-        if  AttackUnitChallengePlayerKillCos == unitnum
-            AttackUnitChallengePlayerKillCos = 0
-            UnitRemoveAbility(Pu[42],id)
-            SetPlayerTechResearchedEx(Player(pid),tech)
-            if  itemid > 0
-                UnitAddItemEx(Pu[1],itemid)
+        unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
+        AttackUnitChallengePlayerKillCos(challenge) = AttackUnitChallengePlayerKillCos(challenge) + 1
+        if  challenge == 0
+            if  unitnum >= 15
+                if  ModuloInteger(AttackUnitChallengePlayerKillCos(challenge),4) == 0 or AttackUnitChallengePlayerKillCos(challenge) == unitnum
+                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+                endif
+            elseif  unitnum >= 9
+                if  ModuloInteger(AttackUnitChallengePlayerKillCos(challenge),3) == 0 or AttackUnitChallengePlayerKillCos(challenge) == unitnum
+                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+                endif
+            elseif  unitnum >= 2
+                if  ModuloInteger(AttackUnitChallengePlayerKillCos(challenge),2) == 0 or AttackUnitChallengePlayerKillCos(challenge) == unitnum
+                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+                endif
+            elseif  unitnum == 1
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[历练挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             endif
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
-            AddAttackUnitChallengeStateLevel(pid)
+            if  AttackUnitChallengePlayerKillCos(challenge) == unitnum
+                AttackUnitChallengePlayerKillCos(challenge) = 0
+                UnitRemoveAbility(Pu[42],id)
+                SetPlayerTechResearchedEx(Player(pid),tech)
+                if  itemid > 0
+                    UnitAddItemEx(Pu[1],itemid)
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
+                AddAttackUnitChallengeStateLevel(pid,challenge)
+            endif
+        else
+            if  challenge == 3
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[副本挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+            endif
+            if  AttackUnitChallengePlayerKillCos(challenge) == unitnum
+                AttackUnitChallengePlayerKillCos(challenge) = 0
+                UnitRemoveAbility(Pu[42],id)
+                SetPlayerTechResearchedEx(Player(pid),tech)
+                if  itemid > 0
+                    UnitAddItemEx(Pu[1],itemid)
+                endif
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
+                AddAttackUnitChallengeStateLevel(pid,challenge)
+                IsPlayerInAttackUnitChallenge(challenge) = 0
+            endif
         endif
     endfunction
 
