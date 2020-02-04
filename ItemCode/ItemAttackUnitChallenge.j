@@ -369,4 +369,24 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
     endfunction
 
+    function ItemEventOfAttackUnitChallengeState(int pid,int itid)
+        int ran = 0
+        if  itid == 'IZ0D'
+            ShowUnit(Pu[24],true)
+            UnitAddEffectOfNPC.execute(Pu[24])
+        elseif  itid == 'IZ0E'
+            ran = GetRandomInt(0,7)
+            AddPlayerMonsterSoulState(pid,ran)
+            AddPlayerTechResearched(Player(pid),'RM50'+ran,1)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80获得|cffff0080“"+GetMonsterSoulLuck(ran)+"”|cffffff80！|r")
+            UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)
+        elseif  itid == 'IZ0F'
+            HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
+            for num = 1,3
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“[R]技能”|cffffff80！|r")
+            end
+            GivePlayerMissionPrize(pid,'RR0A')
+        endif
+    endfunction
+
 endlibrary 
