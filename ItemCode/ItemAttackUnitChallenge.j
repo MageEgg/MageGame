@@ -75,6 +75,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(220,6,0,0,108,0,Buy_Unit,'AT2G',1,0,0,"奖励解锁副本7")
         InitAttackUnitChallengeStateData(220,7,0,0,108,0,Buy_Unit,'AT2H',1,0,0,"奖励解锁副本8")
 
+        InitAttackUnitChallengeStateData(210,0,0,0,108,0,Buy_Unit,'AT1A',1,0,0,"奖励法宝亲和度1")
+        InitAttackUnitChallengeStateData(210,1,0,0,108,0,Buy_Unit,'AT1B',1,0,0,"奖励法宝亲和度2")
+        InitAttackUnitChallengeStateData(210,2,0,0,108,0,Buy_Unit,'AT1C',1,0,0,"奖励法宝亲和度3")
+        InitAttackUnitChallengeStateData(210,3,0,0,108,0,Buy_Unit,'AT1D',1,0,0,"奖励法宝亲和度4")
+        InitAttackUnitChallengeStateData(210,4,0,0,108,0,Buy_Unit,'AT1E',1,0,0,"奖励法宝亲和度5")
+        InitAttackUnitChallengeStateData(210,5,0,0,108,0,Buy_Unit,'AT1F',1,0,0,"奖励法宝亲和度6")
+        InitAttackUnitChallengeStateData(210,6,0,0,108,0,Buy_Unit,'AT1G',1,0,0,"奖励法宝亲和度7")
+        InitAttackUnitChallengeStateData(210,7,0,0,108,0,Buy_Unit,'AT1H',1,0,0,"奖励法宝亲和度8")
+
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
@@ -124,6 +133,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 for num = 0,AttackUnitChallengeStateStockMax
                     AddAttackUnitChallengeStateStock(pid,0,num)
                 end
+                AddAttackUnitChallengeStateStock(pid,210,0)
                 AddAttackUnitChallengeStateStock(pid,220,0)
             endif
         end
