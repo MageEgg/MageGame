@@ -374,6 +374,10 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  itid == 'IZ0D'
             ShowUnit(Pu[24],true)
             UnitAddEffectOfNPC.execute(Pu[24])
+            if  GetLocalPlayer() == Player(pid)
+                DzFrameShow(BUTTON_Back[700+4][0], true)
+            endif
+            CloseCollectFrame(pid)
         elseif  itid == 'IZ0E'
             ran = GetRandomInt(0,7)
             AddPlayerMonsterSoulState(pid,ran)
