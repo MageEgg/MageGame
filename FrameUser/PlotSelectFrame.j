@@ -341,6 +341,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
                 RePlotSelectByIndex(pid,index)
             endif
 
+            SetPlayerTechResearched(Player(pid),'RF0A'+index-1,1)
             
 
         elseif  Type  == 3
