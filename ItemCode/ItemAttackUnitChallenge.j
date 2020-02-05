@@ -357,7 +357,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     IsPlayerInAttackUnitChallenge(challenge) = 1
                     unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
                     for num = 1,unitnum
-                        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
+                        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-440,y+440,270)
                         UnitAddAbility(u,'AZ99')
                         SetUnitAbilityLevel(u,'AZ99',pid+1)
                         AddAttackSummonUnit.execute(pid,u)
@@ -377,7 +377,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     unitnum = AttackUnitChallengeStateTypeValueB[zu][wei]
                     itemid = AttackUnitChallengeStateTypeValueC[zu][wei]
                     for num = 1,unitnum
-                        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-460,y+460,270)
+                        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-440,y+440,270)
                         UnitAddAbility(u,'AZ99')
                         SetUnitAbilityLevel(u,'AZ99',pid+1)
                         AddAttackSummonUnit.execute(pid,u)
