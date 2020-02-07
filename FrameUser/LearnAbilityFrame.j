@@ -329,19 +329,21 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         endif
     endfunction
 
+    function GetNowLColor(int pid,int index)->int
+        return GetUnitIntState(Pu[1],120+index)
+    endfunction
+
     //获取一个期待的颜色
     function GetExpectLevel(int pid,int index)->int
-        int nowcolor = GetUnitIntState(Pu[1],120+index)
+        int nowcolor = GetNowLColor(pid,index)
         int newcolor = 0
-        if  nowcolor == 1
-            if  GetRandomInt(1,100) <= 20
-                newcolor = 2
-            else
-                newcolor = 1
-            endif
+        
+        if  GetRandomInt(1,100) <= 20
+            newcolor = 2
         else
-            newcolor = nowcolor
+            newcolor = 1
         endif
+    
         return newcolor
     endfunction
 
@@ -417,7 +419,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         for i = 1,3
             id = GetHeroAbilityID(Pu[1],i)
             if  id > 0 and GetTypeIdData(id,101) != 9
-                color = GetExpectLevel(pid,i)
+                color = GetNowLColor(pid,i)
                 if  max == 5
                     if  color == 4
                         n = n + 1

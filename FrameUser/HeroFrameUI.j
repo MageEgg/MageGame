@@ -334,10 +334,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         DzFrameSetPoint(GetFrameItemNameFrame(),4,origin,3,-0.038,-0.005)
         DzFrameSetSize(GetFrameItemNameFrame(),0.1,0.0)
         
+        
 
         DzFrameClearAllPoints(GetFrameItemTipsFrame())
         DzFrameSetPoint(GetFrameItemTipsFrame(),1,origin,7,0.0,-0.018)
         DzFrameSetSize(GetFrameItemTipsFrame(),0.2,0.0)
+        DzFrameSetScale(GetFrameItemTipsFrame(),1.3)
         
         
         

@@ -145,21 +145,19 @@ scope ItemSystem initializer InitItemSystem
     endfunction
     //增加玩家抽技能次数
     function AddPlayerDrawNum(int pid,int index)
-        PlayerInt[pid][110+index] ++
+        PlayerInt[pid][110+index] = PlayerInt[pid][110+index] + 1
     endfunction
     //读取玩家抽技能需求
     function GetPlayerDrawUse(int pid,int index,int num)->int
         int use = 0
-        num = num - 1
+        
         if  index == 1
-            use = 1500 + num * 1500
+            use = 0 + (num-1)
         elseif  index == 2
-            use = 5000 + num * 5000
-        elseif  index == 3
-            use = 15000 + num * 15000
+            use = 1 + (num-1)
         endif
-        if  use > 1000000
-            use = 1000000
+        if  use > 3
+            use = 3
         endif
         return use
     endfunction
@@ -167,10 +165,11 @@ scope ItemSystem initializer InitItemSystem
     function RePlayerAbilityDrawTips(int pid,int index)
         int id = 'IS00' + index
         int num = GetPlayerDrawNum(pid,index)
-        int use1 = GetPlayerDrawUse(pid,index,1)
+        int use1 = GetPlayerDrawUse(pid,index,num+1)
+        
         if  GetLocalPlayer() == Player(pid)
             if  num > 0
-                YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r"+I2S(use1)+"金币*次数|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
+                YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r灵力*"+I2S(use1)+"|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
             endif
         endif
     endfunction
@@ -178,31 +177,21 @@ scope ItemSystem initializer InitItemSystem
     function PlayerAbilityDraw(int pid,int itemid)
         int index = itemid - 'IS00'
         int num = GetPlayerDrawNum(pid,index)
-        int use1 = GetPlayerDrawUse(pid,index,num+1)
-        int use2 = 0
-        /*
-        if  num > 0
-            use2 = 1
-        endif
-        */
-        if  num < 10
-            if  use1 > 0
-                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER) >= use2
-                    if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD) >= use1
-                        AdjustPlayerStateBJ(-use1, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+        int use = GetPlayerDrawUse(pid,index,num+1)
 
-                        //AdjustPlayerStateBJ(-use2, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-                        PlayerUseLearnAbilityBook(pid,index,GetExpectLevel(pid,index))
-                        AddPlayerDrawNum(pid,index)
-                        RePlayerAbilityDrawTips(pid,index)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r|Cff00FF7FQ技能|r抽取次数"+I2S(num+1)+"/10")
-                    else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！金币不足"+I2S(use1)+"。")
-                    endif
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！玄铁不足"+I2S(use2)+"。")
-                endif
+        if  num < 10
+                
+            if  GetUnitIntState(Pu[1],108)>=use
+                AddUnitIntState(Pu[1],108,-use)
+                PlayerUseLearnAbilityBook(pid,index,GetExpectLevel(pid,index))
+                AddPlayerDrawNum(pid,index)
+                RePlayerAbilityDrawTips(pid,index)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r|Cff00FF7FQ技能|r抽取次数"+I2S(num+1)+"/10")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！灵力不足"+I2S(use)+"。")
             endif
+        
+           
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取次数已达到上限！")
         endif
