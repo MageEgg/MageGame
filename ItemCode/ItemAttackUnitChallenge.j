@@ -66,6 +66,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(1,6,0,0,108,0,Buy_Unit_Item,'ATAO',15,'IS14',0,"奖励15药品升级：使用后立即恢复40%生命值，每秒恢复8%生命值，持续6秒。药水持续时间内，攻击速度+30%，冷却缩减+15%.")
         InitAttackUnitChallengeStateData(1,7,0,0,108,0,Buy_Unit,'ATAP',20,0,0,"奖励16生命%&固定防御")
 
+        InitAttackUnitChallengeStateData(200,0,0,2,108,0,Buy_Unit,0,1,0,0,"奖励灵力挑战")
+
         InitAttackUnitChallengeStateData(220,0,0,0,108,0,Buy_Unit,'AT2A',1,0,0,"奖励解锁副本1")
         InitAttackUnitChallengeStateData(220,1,0,0,108,0,Buy_Unit,'AT2B',1,0,0,"奖励解锁副本2")
         InitAttackUnitChallengeStateData(220,2,0,0,108,0,Buy_Unit,'AT2C',1,0,0,"奖励解锁副本3")
@@ -135,10 +137,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 end
                 AddAttackUnitChallengeStateStock(pid,210,0)
                 AddAttackUnitChallengeStateStock(pid,220,0)
+                UnitAddAbility(Pu[42],'AT0A')
             endif
         end
     endfunction
-
+    
     function IsCanGetAttackUnitChallengeState(int pid,int challenge)->bool
         int zu = 0
         int wei = 0
@@ -150,6 +153,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  challenge == 0
             zu = AttackUnitChallengePlayerZuNum(challenge) 
             wei = AttackUnitChallengePlayerWeiNum(challenge)
+        elseif  challenge == 1
+            zu = 200
+            wei = 0
         else
             zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
@@ -334,18 +340,40 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         unit u = null
-        if  sid - 'AT9A' < 2048
+        if  sid == 'AT0A'
+            challenge = 1
+            zu = 200
+            wei = 0
+            
+            id = 'AT0A'+AttackUnitChallengePlayerWeiNum(challenge)
+            BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
+            tech = 'KT0A'+AttackUnitChallengePlayerWeiNum(challenge)
+            uid = 'uT0A'+AttackUnitChallengePlayerWeiNum(challenge)
+            if  AttackUnitChallengePlayerWeiNum(challenge) > 12
+                id = 'AT0L'
+                tech = 'KT0L'
+                uid = 'uT0L'
+            endif
+        elseif  sid - 'AT9A' < 2048
             challenge = S2I(SubString(YDWEId2S(sid),2,3)) + 1
             zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
+
+            id = AttackUnitChallengeStateTypeValueA[zu][wei]
+            BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
+            tech = id+167772160
+            uid = id+872415232
+
         else
             zu = AttackUnitChallengePlayerZuNum(challenge)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
+
+            id = AttackUnitChallengeStateTypeValueA[zu][wei]
+            BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
+            tech = id+167772160
+            uid = id+872415232
+
         endif
-        id = AttackUnitChallengeStateTypeValueA[zu][wei]
-        BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
-        tech = id+167772160
-        uid = id+872415232
         if  IsPlayerInAttackUnitChallenge(challenge) == 0
             if  IsCanGetAttackUnitChallengeState(pid,challenge) == true
                 if  AttackUnitChallengeStateType[zu][wei] == Buy_Tech
@@ -363,6 +391,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         AddAttackSummonUnit.execute(pid,u)
                         SetUnitIntState(u,101,id)
                         IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                        if  challenge == 1 and AttackUnitChallengePlayerWeiNum(challenge) > 12
+                            SetUnitRealStateOfOtherIdAddValue(u,uid,1+0.3*I2R(AttackUnitChallengePlayerWeiNum(challenge)-12))
+                        endif
                     end
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
                 elseif  AttackUnitChallengeStateType[zu][wei] == Buy_Item
@@ -402,7 +433,12 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int tech = id+167772160
         int unitnum = 0
         int challenge = 0
-        if  id - 'AT9A' < 2048
+        int ran = 0
+        if  id >= 'AT0A' and id <= 'AT0L'
+            challenge = 1
+            zu = 200
+            wei = 0
+        elseif  id - 'AT9A' < 2048
             challenge = S2I(SubString(YDWEId2S(id),2,3)) + 1
             zu = AttackUnitChallengePlayerZuNum(challenge) + 200+10*(challenge-1)
             wei = AttackUnitChallengePlayerWeiNum(challenge)
@@ -442,7 +478,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             endif
         else
             ///////////////////////分割判断/////////////////////
-            if  challenge == 2
+            if  challenge == 1
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[灵力挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+            elseif  challenge == 2
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[法宝亲和挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             elseif  challenge == 3
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[副本解锁挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
@@ -450,18 +488,26 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             ///////////////////////分割判断/////////////////////
             if  AttackUnitChallengePlayerKillCos(challenge) == unitnum
                 AttackUnitChallengePlayerKillCos(challenge) = 0
-                UnitRemoveAbility(Pu[42],id)
-                SetPlayerTechResearchedEx(Player(pid),tech)
-                if  itemid > 0
-                    UnitAddItemEx(Pu[1],itemid)
+                if  challenge == 1
+                    SetPlayerTechResearched(Player(pid),tech,1)
+                    ran = GetRandomInt(2,4)
+                    AddUnitIntState(Pu[1],108,ran)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName('AT0A')+",|cffffff00获得"+I2S(ran)+"点灵力|r！")
+                    AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
+                else
+                    UnitRemoveAbility(Pu[42],id)
+                    SetPlayerTechResearchedEx(Player(pid),tech)
+                    if  itemid > 0
+                        UnitAddItemEx(Pu[1],itemid)
+                    endif
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
+                    AddAttackUnitChallengeStateLevel(pid,challenge)
+                    ///////////////////////分割判断/////////////////////
+                    if  challenge == 3
+                        PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
+                    endif 
+                    ///////////////////////分割判断/////////////////////
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
-                AddAttackUnitChallengeStateLevel(pid,challenge)
-                ///////////////////////分割判断/////////////////////
-                if  challenge == 3
-                    PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
-                endif 
-                ///////////////////////分割判断/////////////////////
                 IsPlayerInAttackUnitChallenge(challenge) = 0
             endif
         endif
