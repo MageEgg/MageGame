@@ -86,6 +86,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(210,6,0,0,108,0,Buy_Unit,'AT1G',1,0,0,"奖励法宝亲和度7")
         InitAttackUnitChallengeStateData(210,7,0,0,108,0,Buy_Unit,'AT1H',1,0,0,"奖励法宝亲和度8")
 
+        InitAttackUnitChallengeStateData(230,0,0,0,108,0,Buy_Unit,'AT3A',1,0,0,"奖励副本9入场券")
+        InitAttackUnitChallengeStateData(230,1,0,0,108,0,Buy_Unit,'AT3B',1,0,0,"奖励副本10入场券")
+        InitAttackUnitChallengeStateData(230,2,0,0,108,0,Buy_Unit,'AT3C',1,0,0,"奖励副本11入场券")
+        InitAttackUnitChallengeStateData(230,3,0,0,108,0,Buy_Unit,'AT3D',1,0,0,"奖励副本12入场券")
+        InitAttackUnitChallengeStateData(230,4,0,0,108,0,Buy_Unit,'AT3E',1,0,0,"奖励副本13入场券")
+        InitAttackUnitChallengeStateData(230,5,0,0,108,0,Buy_Unit,'AT3F',1,0,0,"奖励副本14入场券")
+        InitAttackUnitChallengeStateData(230,6,0,0,108,0,Buy_Unit,'AT3G',1,0,0,"奖励副本15入场券")
+        InitAttackUnitChallengeStateData(230,7,0,0,108,0,Buy_Unit,'AT3H',1,0,0,"奖励副本16入场券")
+
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
@@ -505,6 +514,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     ///////////////////////分割判断/////////////////////
                     if  challenge == 3
                         PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
+                        if  AttackUnitChallengePlayerWeiNum(challenge) == 8
+                            AddAttackUnitChallengeStateStock(pid,230,0)
+                        endif
                     endif 
                     ///////////////////////分割判断/////////////////////
                 endif
