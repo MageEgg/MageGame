@@ -104,6 +104,10 @@ scope SelectHero
             GameChallenge_0Start(pid)//加载新手任务
 
             ReTechFuncItemTips.execute(pid)//刷新道具兑换说明
+
+            for i = 1,GameLevel
+                SetPlayerTechResearched(Player(pid),'KNDA'+i-1,1)
+            end
             
         endif
     endfunction
