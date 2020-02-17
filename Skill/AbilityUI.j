@@ -172,13 +172,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         elseif  color == 4
             name = name + "\nC级"
         elseif  color == 5
-            name = name + "\nC-级"
-        elseif  color == 6
-            name = name + "\nD+级"
-        elseif  color == 7
             name = name + "\nD级"
-        elseif  color == 8
-            name = name + "\nD-级"
         endif
         
         
@@ -497,6 +491,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         else
             
             if  newlv == 5
+                //当局任务
                 GivePlayerMissionPrize(pid,'RR0F')
             endif
         endif

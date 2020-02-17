@@ -148,53 +148,34 @@ scope ItemSystem initializer InitItemSystem
         PlayerInt[pid][110+index] = PlayerInt[pid][110+index] + 1
     endfunction
     //读取玩家抽技能需求
-    function GetPlayerDrawUse(int pid,int index,int num)->int
-        int use = 0
-        
-        if  index == 1
-            use = 0 + (num-1)
-        elseif  index == 2
-            use = 1 + (num-1)
+    function GetPlayerDrawUse(int pid,int itemid)->int
+        if  itemid == 'IS01' or itemid == 'IS06'
+            return 2
+        elseif  itemid == 'IS02' or itemid == 'IS07'
+            return 5
+        elseif  itemid == 'IS03' or itemid == 'IS08'
+            return 8
         endif
-        if  use > 3
-            use = 3
-        endif
-        return use
+        return 0
     endfunction
-    //设置抽技能说明
-    function RePlayerAbilityDrawTips(int pid,int index)
-        int id = 'IS00' + index
-        int num = GetPlayerDrawNum(pid,index)
-        int use1 = GetPlayerDrawUse(pid,index,num+1)
-        
-        if  GetLocalPlayer() == Player(pid)
-            if  num > 0
-                YDWESetItemDataString(id,3,"学习或重置当前|cffffd24d"+SubString(GetObjectName(id),6,7)+"技能|r。|n|cffffcc00抽取消耗：|r灵力*"+I2S(use1)+"|n|cffffcc00抽取次数：|r"+I2S(num)+"/10|n|n|cff00ff7f单局最多抽取10次|r")
-            endif
-        endif
-    endfunction
+    
     //抽技能
-    function PlayerAbilityDraw(int pid,int itemid)
-        int index = itemid - 'IS00'
+    function PlayerAbilityDraw(int pid,int index,int itemid)
         int num = GetPlayerDrawNum(pid,index)
-        int use = GetPlayerDrawUse(pid,index,num+1)
+        int use = GetPlayerDrawUse(pid,itemid)
 
-        if  num < 10
+
                 
-            if  GetUnitIntState(Pu[1],108)>=use
-                AddUnitIntState(Pu[1],108,-use)
-                PlayerUseLearnAbilityBook(pid,index,GetExpectLevel(pid,index))
-                AddPlayerDrawNum(pid,index)
-                RePlayerAbilityDrawTips(pid,index)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r|Cff00FF7FQ技能|r抽取次数"+I2S(num+1)+"/10")
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！灵力不足"+I2S(use)+"。")
-            endif
+        if  GetUnitIntState(Pu[1],108)>=use
+            AddUnitIntState(Pu[1],108,-use)
+            PlayerUseLearnAbilityBook(pid,index,itemid)
+            AddPlayerDrawNum(pid,index)
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！灵力不足"+I2S(use)+"。")
+        endif
         
            
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r抽取次数已达到上限！")
-        endif
+ 
     endfunction
     
 
@@ -358,7 +339,9 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS03'
-            PlayerAbilityDraw(pid,itemid)
+            PlayerAbilityDraw(pid,1,itemid)
+        elseif  itemid >= 'IS06' and itemid <= 'IS08'
+            PlayerAbilityDraw(pid,2,itemid)
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
         elseif  itemid == 'IS13'
@@ -491,7 +474,6 @@ scope ItemSystem initializer InitItemSystem
         if  itemid == 'CS01'
             PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
             AddPlayerDrawNum(pid,1)
-            RePlayerAbilityDrawTips(pid,1)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'

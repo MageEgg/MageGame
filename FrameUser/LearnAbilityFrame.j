@@ -334,66 +334,59 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
     endfunction
 
     //获取一个期待的颜色
-    function GetExpectLevel(int pid,int index)->int
-        int nowcolor = GetNowLColor(pid,index)
-        int newcolor = 0
-        
-        if  GetRandomInt(1,100) <= 20
-            newcolor = 2
-        else
-            newcolor = 1
+    function GetExpectLevel(int pid,int itemid)->int
+        int ran = GetRandomInt(1,100)
+        if  itemid == 'IS01' or itemid == 'IS06'
+            if  ran <= 70
+                return 5
+            else
+                return 4
+            endif
+        elseif  itemid == 'IS02' or itemid == 'IS07'
+            if  ran <= 25
+                return 5
+            elseif  ran <= 75
+                return 4
+            else
+                return 3
+            endif
+        elseif  itemid == 'IS03' or itemid == 'IS08'
+            if  ran <= 25
+                return 4
+            elseif  ran <= 75
+                return 3
+            else
+                return 2
+            endif
         endif
-    
-        return newcolor
+
+        return 0
     endfunction
 
-    //回收
-    function RecoveryExpectAbility(int pid,int id)
-        int index = 0
-        for pool = 1,5
-            if  GetTypeIdReal(id,100+pool) > 0
-                BJDebugMsg(GetTypeIdString(id,100)+"回收至"+I2S(pool))
-                RecoveryPrizePoolData(pid,pool,id)
-            else
-                BJDebugMsg(GetTypeIdString(id,100)+"无法回收至"+I2S(pool))
-            endif
-        end
-        
-    endfunction
-    //清空其他奖池
-    function FlushExpectAbility(int pid,int id)
-        int index = 0
-        for pool = 1,5
-            index = FindPrizePool(pid,pool,id)
-            if  index != 0
-                BJDebugMsg(GetTypeIdString(id,100)+"从"+I2S(pool)+"移除")
-                RemPrizeData(pid,pool,index)
-            else
-                BJDebugMsg(GetTypeIdString(id,100)+"从"+I2S(pool)+"中未找到")
-            endif
-        end
-        
-    endfunction
-    //获取新技能
-    function GetNewExpectAbility(int pid,int color)->int
-        int id = GetPrize(pid,color,false)
-        
-        FlushExpectAbility(pid,id)
 
-        return id
-    endfunction
     
     //抽技能
-    function PlayerUseLearnAbilityBook(int pid,int index,int newcolor)
+    function PlayerUseLearnAbilityBook(int pid,int index,int itemid)
         int now = GetHeroAbilityID(Pu[1],index)
-
-        int new = GetNewExpectAbility(pid,newcolor)
-
-        if  GetTypeIdData(now,101) == 9//第一次抽
-
+        int new = 0
+        int prize = 0
+        int level = GetExpectLevel(pid,itemid)
+        if  index == 1
+            prize = level + 5
         else
+            prize = level
+        endif
+        BJDebugMsg("读取奖池"+I2S(prize))
+
+        new = GetPrize(pid,prize,true)
+
+        if  GetTypeIdData(now,101) != 9
             //重复抽 回收技能
-            RecoveryExpectAbility(pid,now)    
+            if  GetTypeIdData(now,100) == 1
+                RecoveryPrizePoolData(pid,GetTypeIdData(now,101),now)
+            else
+                RecoveryPrizePoolData(pid,GetTypeIdData(now,101)+5,now)
+            endif
         endif
         
         
@@ -402,7 +395,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         //添加新技能
         HeroAddAbilityByIndex(Pu[1],index,new)
 
-        HeroSetAbilityLevelByIndex(Pu[1],index,newcolor)
+        HeroSetAbilityLevelByIndex(Pu[1],index,6-level)
         
 
         MissionAddNumFunc(pid,5,1)//抽技能
@@ -538,34 +531,4 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
     endfunction
 endlibrary
 
-/*
-    function PlayerUseLearnAbilityBook(int pid,int itemid,int num)
-        int rid = 0
-        for i =1,3
-            rid = GetUnitIntState(Pu[1],130+i)
-            if  rid > 0
-                RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
-                BJDebugMsg("回收"+GetTypeIdName(rid))
-            endif
-            SetUnitIntState(Pu[1],130+i,0)
-        end
-
-
-        rid = GetUnitIntState(Pu[1],120)
-        if  rid > 0
-            RecoveryPrizePoolData(pid,GetTypeIdData(rid,101),rid)
-            BJDebugMsg("回收"+GetTypeIdName(rid))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您放弃了学习技能！")
-            SetUnitIntState(Pu[1],120,0)
-            CloseReplaceFrame(pid)
-        else
-            BJDebugMsg("新窗口学习技能")
-        endif
-        if  GameLevel >= 3
-            PlayerLearnThreeAbilityFunc(pid,GetLearnAbilityBookId(pid,itemid),GetLearnAbilityBookId(pid,itemid),GetLearnAbilityBookId(pid,itemid))
-        else
-            PlayerLearnAbilityFunc(pid,GetLearnAbilityBookId(pid,itemid))
-        endif
-    endfunction
-    */
 

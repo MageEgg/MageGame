@@ -744,6 +744,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         //技能奖池修正
             
         function RecoveryPrizePoolData(int page,int pool,int id)
+            BJDebugMsg(GetTypeIdName(id)+"回收"+I2S(pool))
             AddPrizePoolMax(page,pool,1)
             SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
         endfunction
