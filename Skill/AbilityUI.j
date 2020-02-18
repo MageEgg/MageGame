@@ -44,22 +44,41 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     
     func GetAbilityDamage(unit wu,int id,int lv)->real
         real r1 = 0
+        real r2 = 0
         int chi = GetTypeIdData(id,102)     
         int index = GetHeroAbilityIndex(wu,id)
+        int class = GetTypeIdData(id,104)
+
         if  index == 5
             r1 = GetTypeIdReal(id,101)
         else
             r1 = GetTypeIdReal(id,100+lv)
         endif
+
         if  chi == 1
-            return r1 * GetUnitAttack(wu)
-        elseif  chi == 0
-            return r1
-        else
-            return r1 * GetUnitRealState(wu,chi)
+            r1 = r1 * GetUnitAttack(wu)
+        elseif  chi != 0
+            r1 =  r1 * GetUnitRealState(wu,chi)
         endif
+
+        r2 = GetUnitRealState(wu,class + 71)
+        if  r2 > 0
+            r1 = r1 * (1+r2*0.01)
+        endif
+
+
+        return r1
         flush locals
     end
+
+    function GetDamageEx(unit wu,int id,real damage)->real
+        int class = GetTypeIdData(id,104)
+        real r2 = GetUnitRealState(wu,class + 71)
+        if  r2 > 0
+            damage = damage * (1+r2*0.01)
+        endif
+        return damage
+    endfunction
     
     
     
@@ -110,7 +129,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             elseif  id == 'S053'//落魂咒
                 return r1
             endif
-            
+
             r1 = r1 * (1-r2*0.01)
             if  r1 < 1
                 r1 = 1
@@ -590,11 +609,12 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     endfunction
 
     //InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
-    function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,real r4,real r5,int Damagetype,real cd,string name,string tips,string icon)
+    function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,real r4,real r5,int Damagetype,real cd,int class,string name,string tips,string icon)
         SetTypeIdData(id,100,Type)
         SetTypeIdData(id,101,color)
         SetTypeIdData(id,102,chi)
         SetTypeIdData(id,103,Damagetype)
+        SetTypeIdData(id,104,class)
         SetTypeIdString(id,100,name)
         SetTypeIdString(id,101,icon)
         SetTypeIdString(id,102,tips)
