@@ -2278,6 +2278,8 @@ endfunction
                 SpellS504(u1.u,sx,sy,damage,lv)
             elseif  id == 'S505'
                 SpellS505(u1.u,lv)
+            elseif  id == 'S509'
+                SpellS509(u1.u,lv)
             elseif  id == 'S510'
                 SpellS510(u1.u,lv)
             elseif  id == 'S512'
