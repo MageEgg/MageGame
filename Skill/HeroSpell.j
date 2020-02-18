@@ -18,8 +18,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int id = 'S013'
         real damage = 0
         int Num = LoadInteger(ht,GetHandleId(wu),id)
-        Num=Num+GetUnitAttackNumb(u)
-        SaveInteger(ht,GetHandleId(u),id,Num)
+        Num=Num+GetUnitAttackNumb(wu)
+        SaveInteger(ht,GetHandleId(wu),id,Num)
         if  Num >= 4
             gg = CreateGroup()
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
@@ -30,7 +30,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_az_earthshaker_a.mdl",1.4)
             GroupClear(gg)
             DestroyGroup(gg)
-            SaveInteger(ht,GetHandleId(u),id,0)
+            SaveInteger(ht,GetHandleId(wu),id,0)
         endif
         flush locals
     endfunction
@@ -66,12 +66,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int id = 'S001'
         real damage = 0
         int Num = LoadInteger(ht,GetHandleId(wu),id)
-        Num=Num+GetUnitAttackNumb(u)
-        SaveInteger(ht,GetHandleId(u),id,Num)
+        Num=Num+GetUnitAttackNumb(wu)
+        SaveInteger(ht,GetHandleId(wu),id,Num)
         if  Num >= 6
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
             SpellS001AttackEx(wu,tu,damage)
-            SaveInteger(ht,GetHandleId(u),id,0)
+            SaveInteger(ht,GetHandleId(wu),id,0)
         endif
         flush locals
     endfunction
