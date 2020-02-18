@@ -2146,19 +2146,13 @@ endfunction
             damage = GetAbilityDamage(wu,id,lv)
 
             if  GetUnitTypeId(wu) == 'H011'
-                if  SpellS511Spell(u1.u) == true
-                    i1 = GetHeroAbilityLevelByIndex(wu,5)
-                    if  i1 >= 4
-                        damage = damage * 3.0
-                    elseif  i1 >= 3
-                        damage = damage * 2.1
-                    elseif  i1 >= 2
-                        damage = damage * 1.8
+                i1 = GetHeroAbilityLevelByIndex(wu,5)
+                if  SpellS511Spell(wu,i1) == true
+                    if  i1 >= 3
+                        damage = damage * 1.4
                     else
-                        damage = damage * 1.5
+                        damage = damage * 1.2
                     endif
-                else
-                    damage = damage * 0.5
                 endif
             endif
 
@@ -2295,12 +2289,14 @@ endfunction
                 
             elseif  id == 'S516'
                 SpellS516(u1.u,lv)
+            elseif  id == 'S520'
+                SpellS520(u1.u,lv)
             elseif  id == 'S521'
-                SpellS521(u1.u,lv)
+                SpellS521(u1.u,damage,lv)
             elseif  id == 'S523'
                 SpellS523(u1.u,u2.u,lv)
             elseif  id == 'S524'
-                SpellS524(u1.u,u2.u,lv)
+                SpellS524(u1.u,sx,sy,damage,lv)
             elseif  id == 'S525'
                 SpellS525(u1.u,sx,sy,damage,lv)
             elseif  id == 'S527'
