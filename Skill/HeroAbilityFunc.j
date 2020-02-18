@@ -519,7 +519,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         {
             AddUnitIntState(u1,'S509',-1)
             if  lv >=2 
-                AddUnitIntState(wu,10,-15)
+                AddUnitIntState(u1,10,-15)
             endif
             endtimer
             flush locals
