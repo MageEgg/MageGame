@@ -10,7 +10,115 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         return i
     endfunction
     
-    
+    function SpellS013Attack(unit wu,unit tu)
+        group gg = null
+        int id = 'S013'
+        real damage = 0
+        if  GetUnitAbilityLevel(wu,id) == 0
+            UnitAddAbility(wu,id)
+        elseif  GetUnitAbilityLevel(wu,id) < 4
+            SetUnitAbilityLevel(wu,id,GetUnitAbilityLevel(wu,id)+1)
+        elseif  GetUnitAbilityLevel(wu,id) == 4
+            UnitRemoveAbility(wu,id)
+            gg = CreateGroup()
+            damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+            GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),500,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,1,0))
+            UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect2_az_goods_blink(green).mdl",1.4)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_white-qiquan-juhuang.mdl",1.4)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_az_earthshaker_a.mdl",1.4)
+            GroupClear(gg)
+            DestroyGroup(gg)
+        endif
+        flush locals
+    endfunction
+
+    function SpellS001Attack(unit wu,unit tu)
+        int id = 'S001'
+        real damage = 0
+        if  GetUnitAbilityLevel(wu,id) == 0
+            UnitAddAbility(wu,id)
+        elseif  GetUnitAbilityLevel(wu,id) < 6
+            SetUnitAbilityLevel(wu,id,GetUnitAbilityLevel(wu,id)+1)
+        elseif  GetUnitAbilityLevel(wu,id) == 6
+            UnitRemoveAbility(wu,id)
+            damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+            
+        endif
+        flush locals
+    endfunction
+
+    function SpellS014Attack(unit wu)
+        group gg = CreateGroup()
+        int id = 'S014'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        GroupEnumUnitsInRange(gg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect3_az_lcdark_w1.mdl")
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function SpellS096Attack(unit wu)
+        group gg = CreateGroup()
+        int id = 'S096'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        real x = 0
+        real y = 0
+        GroupEnumUnitsInRange(gg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        for num = 0,15
+            x = GetUnitX(wu) + 100*Cos(22.5*num*0.01745)
+            y = GetUnitY(wu) + 100*Sin(22.5*num*0.01745)
+            RemoveUnitTimer(CreateUnit(GetOwningPlayer(wu),'eZ15',x,y,22.5*num),1)
+        end
+        flush locals
+    endfunction
+
+    function SpellS095Attack(unit wu)
+        group gg = CreateGroup()
+        int id = 'S095'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        GroupEnumUnitsInRange(gg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_by_wood_gongchengsipai_6.mdl",1.6)
+        LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_az-ice-zhendi.mdl",1.1)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function SpellS005(unit wu,real x,real y)
+        unit u1 = wu
+        int id = 'S005'
+        real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ17',x,y,0)
+        int time = 0
+        TimerStart(0.01,true)
+        {
+            group gg = null
+            if  time < 200
+                time = time + 1
+                SetUnitFacing(u2,time*3.6)
+                if  time == 1
+                    gg = CreateGroup()
+                    GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),500,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                    UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect3_desecrategreen.mdl",0.85)
+                    GroupClear(gg)
+                    DestroyGroup(gg)
+                endif
+            else
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
     
 
 
