@@ -504,8 +504,36 @@ library HeroAbilityFunc uses OtherDamageTimer
         real ang = GetRandomReal(-3.14,3.14)
         real x2 = x1+300*Cos(ang)
         real y2 = y1+300*Sin(ang)
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file"),x2,y2,3.14/0.01745+180,0,1.0)
-
+        ang = ang + 3.14
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file"),x2,y2,3.14/0.01745,0,1.0)
+        int time = 112
+        group g1 = CreateGroup()
+        real damage = GetAbilityDamage(u1,'S509',1)
+        if  GetHeroAbilityLevel(u1,'S509') >= 4
+            damage = damage * 1.2
+        endif
+        TimerStart(0.03,true)
+        {
+            time = time - 1
+            if  time < 12
+                x2 = x2 + 30 * Cos(ang)
+                y2 = y2 + 30 * Sin(ang)
+                SetUnitX(u2,x2)
+                SetUnitY(u2,y2)
+                IndexGroup g = IndexGroup.create()
+                
+                GroupEnumUnitsInRange(g.ejg,x2,y2,175,GroupHasUnitJT(GetOwningPlayer(u1),x2,y2,50,g1))
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+            endif
+            if  time <= 0
+                DestroyGroup(g1)
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
     endfunction
 
     function SpellS509(unit wu,int level)
