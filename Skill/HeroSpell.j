@@ -199,9 +199,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int id = 'S011'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         group gg = CreateGroup()
+        int k = 0
         for i = 1,4
-            id = 'AG00' + i
-            YDWESetUnitAbilityState(u,id, 1,YDWEGetUnitAbilityState(u, id, 1)-0.5)
+            k = 'AG00' + i
+            YDWESetUnitAbilityState(wu,k, 1,YDWEGetUnitAbilityState(wu, k, 1)-0.5)
         end
         AddEffectInArea(GetUnitX(tu),GetUnitY(tu),380,15,"effect2_az_coco_e2.mdl")
         GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
