@@ -497,10 +497,83 @@ library HeroAbilityFunc uses OtherDamageTimer
         
     endfunction
 
-     function SpellS509(unit u)          
-        if  GetUnitAbilityLevel(u,'A031')==0
-            AddUnitStateExTimer(u,9,20,4)
-            UnitTimerAddSkill(u,'A031',4)
+    function SpellS509Func(unit wu)
+        unit u1 = wu
+        real x1 = GetUnitX(wu) + 100 * Cos(GetUnitFacing(wu)*0.01745)
+        real y1 = GetUnitY(wu) + 100 * Sin(GetUnitFacing(wu)*0.01745)
+        real ang = GetRandomReal(-3.14,3.14)
+        real x2 = x1+300*Cos(ang)
+        real y2 = y1+300*Sin(ang)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file"),x2,y2,3.14/0.01745+180,0,1.0)
+
+    endfunction
+
+    function SpellS509(unit wu,int level)
+        unit u1 = wu   
+        int lv = level
+        AddUnitIntState(wu,'S509',1)
+        if  lv >=2 
+            AddUnitIntState(wu,10,15)
+        endif
+        TimerStart(3,false)
+        {
+            AddUnitIntState(u1,'S509',-1)
+            if  lv >=2 
+                AddUnitIntState(u1,10,-15)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    
+
+
+    function SpellS510Spell2(unit wu)
+        unit u1 = wu
+        if  GetHeroAbilityIndex(wu,5) >= 4
+            if  GetUnitIntState(wu,'S512') == 0
+
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_fire-boom-new.mdl")
+                g.destroy()
+
+                SetUnitIntState(wu,'S512',1)
+
+                TimerStart(6,false)
+                {
+                    SetUnitIntState(u1,'S512',0)
+                    endtimer
+                    flush locals
+                }
+            endif
+        endif
+        flush locals
+    endfunction
+
+    function SpellS510Spell1(unit wu)
+        unit u1 = wu
+        if  GetHeroAbilityIndex(wu,5) >= 3
+            if  GetUnitIntState(wu,'S511') == 0
+
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_green-texiao-shandian.mdl")
+                g.destroy()
+
+                
+
+                SetUnitIntState(wu,'S511',1)
+                TimerStart(2,false)
+                {
+                    SetUnitIntState(u1,'S511',0)
+                    endtimer
+                    flush locals
+                }
+            endif
         endif
         flush locals
     endfunction
@@ -815,12 +888,65 @@ library HeroAbilityFunc uses OtherDamageTimer
         end
     endfunction
 
-    function SpellS517(unit wu)
-        int lv = GetHeroAbilityLevelByIndex(wu,5)
-        
-        if  GetRandomInt(1,100)<= lv * 50
-            SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))-0.01)
-            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:小哪吒天资聪颖，学习技能额外降低0.01攻击间隔！")
+    function SpellS517Timer(unit wu)
+        unit u1 = wu
+        AddUnitIntState(u1,'S517',1)
+        TimerStart(4,false)
+        {
+            AddUnitIntState(u1,'S517',-1)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS517(unit wu,unit tu,real dam,int level)        
+        unit u1 = wu
+        unit u2 = tu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_tx_asad (9).mdl",x1,y1,0,0,0.7)
+        real damage = dam
+        int lv = level
+        group g1 = CreateGroup()
+        TimerStart(0.03,true)
+        {
+            real dis = Udis(u3,u2)
+            real ang = Uang(u3,u2)
+            IndexGroup g = IndexGroup.create()
+            if  dis > 50
+                x1 = x1 + 30 * Cos(ang)
+                y1 = y1 + 30 * Sin(ang)
+
+                
+                GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+
+            else
+                if  lv >= 3
+                    damage = damage * 1.5
+                elseif  lv >= 2
+                    damage = damage * 1.2
+                endif
+                AddEffectInAreaSetSize(x1,y1,300,0.5,8,"effect_hero_attack1.mdl")
+                GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+                SpellS517Timer(u1)
+                DestroyGroup(g1)
+                RemoveUnit(u3)
+                g.destroy()
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS517Spell(unit wu,unit tu,real dam,int lv)
+        if  Chance(wu,10) == true
+    
+            SpellS517(wu,tu,dam,lv)
         endif
     endfunction
 
@@ -893,19 +1019,26 @@ library HeroAbilityFunc uses OtherDamageTimer
         unit u1 = wu
         AddUnitStateExTimer(u1,11,24,6)
         if  lv >= 2
-            if  GetUnitIntState(u1,'S520') == 0
-                SetUnitIntState(u1,'S520',1)
-                TimerStart(6,false)
-                {
-                    SetUnitIntState(u1,'S520',0)
-                    endtimer
-                    flush locals
-                }
-            endif
+            
+            AddUnitIntState(u1,'S520',1)
+            TimerStart(6,false)
+            {
+                AddUnitIntState(u1,'S520',-0)
+                endtimer
+                flush locals
+            }
+            
         endif
         flush locals
     endfunction
 
+    function SpellS521Spell(unit wu,int lv)
+        if  lv >= 4
+            if  Chance(wu,3) == true
+                SetAbilityCD_AG(wu,'AG05',0)
+            endif
+        endif
+    endfunction
     function SpellS521(unit wu,real dam,int lv)
         unit u1 = wu
         real damage = dam
