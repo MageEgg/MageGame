@@ -33,6 +33,33 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
+    function SpellS001AttackEx(unit wu,unit tu,real dam)
+        unit u1 = wu
+        unit u2 = tu
+        real x2 = GetUnitX(u2)
+        real y2 = GetUnitY(u2)
+        int time = 0
+        real damage = dam / 3
+        TimerStart(0.1,true)
+        {
+            group gg = CreateGroup()
+            time = time + 1
+            if  time <= 3
+                AddEffectInArea(x2,y2,380,6,"effect3_red-zhendi.mdl")
+                AddEffectInArea(x2,y2,380,6,"effect2_zhendi-qiquan-boom.mdl")
+                LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.2)
+                GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            else
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function SpellS001Attack(unit wu,unit tu)
         int id = 'S001'
         real damage = 0
@@ -43,7 +70,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         elseif  GetUnitAbilityLevel(wu,id) == 6
             UnitRemoveAbility(wu,id)
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-            
+            SpellS001AttackEx(wu,tu,damage)
         endif
         flush locals
     endfunction
@@ -117,6 +144,34 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
             flush locals
         }
+        flush locals
+    endfunction
+
+    function SpellS007Attack(unit wu,unit tu)
+        int id = 'S007'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        
+        flush locals
+    endfunction
+
+    function SpellS010Attack(unit wu,unit tu)
+        int id = 'S010'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        
+        flush locals
+    endfunction
+
+    function SpellS011Attack(unit wu,unit tu)
+        int id = 'S011'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        
+        flush locals
+    endfunction
+
+    function SpellS012Attack(unit wu,unit tu)
+        int id = 'S012'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        
         flush locals
     endfunction
     
