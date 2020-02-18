@@ -97,7 +97,7 @@ library DamageCode uses UnitStateSet
         real s = (GetUnitWcState(wu))
         return s*0.01
     endfunction
-    
+    /*
     //法术穿透
     function GetUnitFcState(unit wu)->real
         real s = GetUnitRealState(wu,14)
@@ -110,6 +110,7 @@ library DamageCode uses UnitStateSet
         real s = (GetUnitFcState(wu))
         return s*0.01
     endfunction
+    */
     
     //获取物理加成结算
     function GetUnitWsState(unit wu)->real

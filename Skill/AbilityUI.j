@@ -100,18 +100,24 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function GetAbilityCD(unit wu,int id)->real
         real r1 = GetTypeIdReal(id,100)
         real r2 = GetUnitRealState(wu,25)
-
         int lv = GetHeroAbilityLevel(wu,id)
 
-        if  id == 'S527'//不享受冷却减免加成
-            return r1
-        elseif  id == 'S525'//攒心钉
-            r1 = r1 - 2
-        elseif  id == 'S053'//落魂咒
-            return r1
-        endif
+        if  r1 > 0
+            if  id == 'S527'//不享受冷却减免加成
+                return r1
+            elseif  id == 'S525'//攒心钉
+                r1 = r1 - 2
+            elseif  id == 'S053'//落魂咒
+                return r1
+            endif
+            
+            r1 = r1 * (1-r2*0.01)
+            if  r1 < 1
+                r1 = 1
+            endif
 
-        return r1 * (1-r2*0.01)
+        endif
+        return r1
     endfunction
     
     function GetHeroAbilityName(unit wu,int index)->string
