@@ -7,6 +7,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             if  IsPlayerHasAbility(wu,'S036') == true
                 i=i+1
             endif
+            if  GetUnitAbilityLevel(wu,'S013') > 0
+                i=i+1
+            endif
         return i
     endfunction
     
@@ -14,12 +17,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         group gg = null
         int id = 'S013'
         real damage = 0
-        if  GetUnitAbilityLevel(wu,id) == 0
-            UnitAddAbility(wu,id)
-        elseif  GetUnitAbilityLevel(wu,id) < 4
-            SetUnitAbilityLevel(wu,id,GetUnitAbilityLevel(wu,id)+1)
-        elseif  GetUnitAbilityLevel(wu,id) == 4
-            UnitRemoveAbility(wu,id)
+        int Num = LoadInteger(ht,GetHandleId(wu),id)
+        Num=Num+GetUnitAttackNumb(u)
+        SaveInteger(ht,GetHandleId(u),id,Num)
+        if  Num >= 4
             gg = CreateGroup()
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
             GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),500,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,1,0))
@@ -29,6 +30,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_az_earthshaker_a.mdl",1.4)
             GroupClear(gg)
             DestroyGroup(gg)
+            SaveInteger(ht,GetHandleId(u),id,0)
         endif
         flush locals
     endfunction
@@ -63,14 +65,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS001Attack(unit wu,unit tu)
         int id = 'S001'
         real damage = 0
-        if  GetUnitAbilityLevel(wu,id) == 0
-            UnitAddAbility(wu,id)
-        elseif  GetUnitAbilityLevel(wu,id) < 6
-            SetUnitAbilityLevel(wu,id,GetUnitAbilityLevel(wu,id)+1)
-        elseif  GetUnitAbilityLevel(wu,id) == 6
-            UnitRemoveAbility(wu,id)
+        int Num = LoadInteger(ht,GetHandleId(wu),id)
+        Num=Num+GetUnitAttackNumb(u)
+        SaveInteger(ht,GetHandleId(u),id,Num)
+        if  Num >= 6
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
             SpellS001AttackEx(wu,tu,damage)
+            SaveInteger(ht,GetHandleId(u),id,0)
         endif
         flush locals
     endfunction
@@ -124,6 +125,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
         unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ17',x,y,0)
         int time = 0
+        UnitTimerAddSkill(wu,'S013',3)
         TimerStart(0.01,true)
         {
             group gg = null
@@ -150,28 +152,77 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS007Attack(unit wu,unit tu)
         int id = 'S007'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        
+        real x2 = GetUnitX(tu)
+        real y2 = GetUnitY(tu)
+        unit u1 = wu
+        int time = 0
+        damage = damage / 10
+        AddUnitStateExTimer(wu,73,20,6)
+        TimerStart(0.03,true)
+        {
+            group gg = CreateGroup()
+            time = time + 1
+            if  time <= 10
+                GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                AddEffectInArea(x2,y2,350,1,"effect_tx_asad (24).mdl")
+                LocAddEffectSetSize(x2,y2,"effect_az_pafeathermoon_b.mdx",3.6)
+            else    
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
 
     function SpellS010Attack(unit wu,unit tu)
         int id = 'S010'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        
+        real x2 = GetUnitX(tu)
+        real y2 = GetUnitY(tu)
+        unit u1 = wu
+        group gg = CreateGroup()
+        UnitTimerAddSkill(wu,'S010',6)
+        AddUnitStateExTimer(wu,1,20,6)
+        LocAddEffectSetSize(x2,y2,"effect2_by_wood_leitingyiji.mdl",1.2)
+        LocAddEffectSetSize(x2,y2,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",2)
+        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
         flush locals
     endfunction
 
     function SpellS011Attack(unit wu,unit tu)
         int id = 'S011'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        
+        group gg = CreateGroup()
+        AddEffectInArea(GetUnitX(tu),GetUnitY(tu),380,15,"effect2_az_coco_e2.mdl")
+        GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
         flush locals
     endfunction
 
     function SpellS012Attack(unit wu,unit tu)
         int id = 'S012'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        
+        real x2 = GetUnitX(tu)
+        real y2 = GetUnitY(tu)
+        unit u1 = wu
+        group gg = CreateGroup()
+        UnitTimerAddSkill(wu,'S012',6)
+        AddUnitStateExTimer(wu,2,20,6)
+        LocAddEffectSetSize(x2,y2,"effect2_zhendi-yinghua.mdl",1.5)
+        LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.0)
+        LocAddEffectSetSize(x2,y2,"effect2_blue-blink-lizi-start.mdl",1.1)
+        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"effect2_az_goods_force staff(3).mdl","origin",0))
+        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
         flush locals
     endfunction
     
@@ -2323,85 +2374,87 @@ endfunction
 
 
         if  id >= 'S000' and id <= 'S300'
-            if  id== 'S006'
+            if  id == 'S005'
+                SpellS005(u1.u,sx,sy)
+            elseif  id == 'S006'
                 SpellS006(u1.u,sx,sy,damage)
-            elseif  id== 'S018'
+            elseif  id == 'S018'
                 SpellS018(u1.u,damage)
-            elseif  id== 'S022'
+            elseif  id == 'S022'
                 SpellS022(u1.u,sx,sy,damage)
-            elseif  id== 'S033'
+            elseif  id == 'S033'
                 SpellS033(u1.u)
-            elseif  id== 'S046'
+            elseif  id == 'S046'
                 SpellS046(u1.u,damage)
-            elseif  id== 'S047'
+            elseif  id == 'S047'
                 SpellS047(u1.u,damage)
-            elseif  id== 'S049'
+            elseif  id == 'S049'
                 SpellS049(u1.u,damage)
-            elseif  id== 'S052'
+            elseif  id == 'S052'
                 SpellS052(u1.u,sx,sy,damage)
-            elseif  id== 'S053'
+            elseif  id == 'S053'
                 SpellS053(u1.u,damage)
-            elseif  id== 'S065'
+            elseif  id == 'S065'
                 SpellS065(u1.u,damage)
-            elseif  id== 'S070'
+            elseif  id == 'S070'
                 SpellS070(u1.u,sx,sy,damage)
-            elseif  id== 'S073'
+            elseif  id == 'S073'
                 SpellS073(u1.u,damage)
-            elseif  id== 'S074'
+            elseif  id == 'S074'
                 SpellS074(u1.u,sx,sy,damage)
-            elseif  id== 'S078'
+            elseif  id == 'S078'
                 SpellS078(u1.u,sx,sy,damage)
-            elseif  id== 'S079'
+            elseif  id == 'S079'
                 SpellS079(u1.u,sx,sy,damage)
-            elseif  id== 'S080'
+            elseif  id == 'S080'
                 SpellS080(u1.u,sx,sy,damage)
-            elseif  id== 'S081'    
+            elseif  id == 'S081'    
                 SpellS081(u1.u,sx,sy,damage)
-            elseif  id== 'S082'    
+            elseif  id == 'S082'    
                 SpellS082(u1.u,damage)
-            elseif  id== 'S083'    
+            elseif  id == 'S083'    
                 SpellS083(u1.u,damage)
-            elseif  id== 'S086'    
+            elseif  id == 'S086'    
                 SpellS086(u1.u)
-            elseif  id== 'S087'    
+            elseif  id == 'S087'    
                 SpellS087(u1.u)
-            elseif  id== 'S089'    
+            elseif  id == 'S089'    
                 SpellS089(u1.u)
-            elseif  id== 'S090'    
+            elseif  id == 'S090'    
                 SpellS090(u1.u)
-             elseif  id== 'S091'    
+             elseif  id == 'S091'    
                 SpellS091(u1.u)
-            elseif  id== 'S100'    
+            elseif  id == 'S100'    
                 SpellS100(u1.u)
-            elseif  id== 'S101'    
+            elseif  id == 'S101'    
                 SpellS101(u1.u,sx,sy,damage) 
-            elseif  id== 'S103'    
+            elseif  id == 'S103'    
                 SpellS103(u1.u)       
-            elseif  id== 'S110'    
+            elseif  id == 'S110'    
                 SpellS110(u1.u,sx,sy,damage)
-            elseif  id== 'S111'    
+            elseif  id == 'S111'    
                 SpellS111(u1.u)
-             elseif  id== 'S112'    
+             elseif  id == 'S112'    
                 SpellS112(u1.u,sx,sy)
-             elseif  id== 'S113'    
+             elseif  id == 'S113'    
                 SpellS113(u1.u,sx,sy,damage)
-             elseif  id== 'S115'    
+             elseif  id == 'S115'    
                 SpellS115(u1.u,sx,sy,damage)
-            elseif  id== 'S116'    
+            elseif  id == 'S116'    
                 SpellS116(u1.u,damage)
-            elseif  id== 'S120'    
+            elseif  id == 'S120'    
                 SpellS120(u1.u,damage)
-            elseif  id== 'S121'    
+            elseif  id == 'S121'    
                 SpellS121(u1.u,damage)
-            elseif  id== 'S122'    
+            elseif  id == 'S122'    
                 SpellS122(u1.u,damage)
-            elseif  id== 'S123'    
+            elseif  id == 'S123'    
                 SpellS123(u1.u,damage)
-            elseif  id== 'S124'    
+            elseif  id == 'S124'    
                 SpellS124(u1.u,damage)
 
 
-            elseif  id== 'S127'    
+            elseif  id == 'S127'    
                 SpellS127(u1.u)
             
             elseif   id>='S230' and id<='S237'
@@ -2412,21 +2465,21 @@ endfunction
                 if  GetUnitIntState(u1.u,'FB45') > 0
                       damage=damage*2
                 endif
-                if  id== 'S230'
+                if  id == 'S230'
                         SpellS230(u1.u,sx,sy,damage)
-                    elseif  id== 'S231'
+                    elseif  id == 'S231'
                         SpellS231(u1.u,damage)
-                    elseif  id== 'S232'
+                    elseif  id == 'S232'
                         SpellS232(u1.u)
-                    elseif  id== 'S233'
+                    elseif  id == 'S233'
                         SpellS233(u1.u)
-                    elseif  id== 'S234'
+                    elseif  id == 'S234'
                         SpellS234(u1.u,u2.u,damage)
-                    elseif  id== 'S235'
+                    elseif  id == 'S235'
                         SpellS235(u1.u)
-                    elseif  id== 'S236'
+                    elseif  id == 'S236'
                         SpellS236(u1.u,u2.u)
-                    elseif  id== 'S237'
+                    elseif  id == 'S237'
                         SpellS237(u1.u)
                 endif
             endif
