@@ -389,7 +389,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(tu)
         group g = CreateGroup()
         DestroyEffect(AddSpecialEffect("effect_az_bw_lina_t1-2.mdl",x,y))
-        GroupEnumUnitsInRange(g,x,y,800,GroupNormalNoStr(GetOwningPlayer(u),"effect_AZ_PotM(1)_T1_Impact.mdl","origin",0))
+        GroupEnumUnitsInRange(g,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"effect_AZ_PotM(1)_T1_Impact.mdl","origin",0))
         if  GetUnitAbilityLevel(u1,'S028') == 0
             UnitTimerAddSkill(u1,'S028',3)
             AddUnitStateExTimer(u1,71,6,3)
