@@ -406,7 +406,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS030(unit u,real x2,real y2,real damage)//三味真火
+    function SpellS030(unit u,real x2,real y2)//三味真火
         int id = 'S030'
         real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
         real x1=GetUnitX(u)
