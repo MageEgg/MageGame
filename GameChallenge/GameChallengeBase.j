@@ -58,6 +58,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         if  CountUnitsInGroup(AttackSummonUnitGroup[pid]) > 0
             BJDebugMsg("清空所有召唤的练功房怪")
             ForGroup(AttackSummonUnitGroup[pid],function FlushAttackSummonUnitGroupFunc)
+            for num = 0,9
+                IsPlayerInAttackUnitChallenge(challenge) = 0
+                AttackUnitChallengePlayerKillCos(challenge) = 0
+            end
         endif
     endfunction
 
