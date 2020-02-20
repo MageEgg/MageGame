@@ -76,6 +76,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
+    function SpellS002(unit wu)
+        SetUnitIntState(wu'S002',0)
+    endfunction
+
     function SpellS014Attack(unit wu)
         group gg = CreateGroup()
         int id = 'S014'
@@ -2377,6 +2381,8 @@ endfunction
         if  id >= 'S000' and id <= 'S300'
             if  id == 'S005'
                 SpellS005(u1.u,sx,sy)
+            elseif  id == 'S002'
+                SpellS002(u1.u)
             elseif  id == 'S006'
                 SpellS006(u1.u,sx,sy,damage)
             elseif  id == 'S018'
