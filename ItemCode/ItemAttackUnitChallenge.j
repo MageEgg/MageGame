@@ -525,7 +525,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AttackUnitChallengePlayerKillCos(challenge) = 0
                 if  challenge == 1
                     SetPlayerTechResearched(Player(pid),tech,1)
-                    ran = GetRandomInt(2,4)
+                    ran = GetRandomInt(2,6)
                     AddUnitIntState(Pu[1],108,ran)
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName('AT0A')+",|cffffff00获得"+I2S(ran)+"点灵力|r！")
                     AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
