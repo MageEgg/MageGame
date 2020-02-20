@@ -614,7 +614,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             AddUnitRealState(wu,25,-10)
             AddUnitRealState(wu,19,10)
             if  lv >= 2
-                SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))-0.1)
+                AddUnitRealState(wu,9,40)
             endif
             
             
@@ -629,7 +629,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             AddUnitRealState(wu,19,-10)
             AddUnitRealState(wu,9,45)
             if  lv >= 2
-                SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))+0.1)
+                AddUnitRealState(wu,9,-40)
             endif
 
 
@@ -652,7 +652,10 @@ library HeroAbilityFunc uses OtherDamageTimer
 
     function SpellS511Spell(unit wu,int lv)->bool
         int num = 0
-        int ran = 0
+        int ran = 30
+        if  lv >= 4
+            ran = 45
+        endif
         if  GetRandomInt(1,100)<= ran
             BJDebugMsg("命途多舛 成功")
             return true

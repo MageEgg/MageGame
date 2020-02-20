@@ -536,7 +536,17 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
                 else
                     UnitRemoveAbility(Pu[42],id)
-                    SetPlayerTechResearchedEx(Player(pid),tech)
+                    if  challenge == 2
+                        //法宝减属性
+                        RemAllMagicState(Pu[1])
+                        SetPlayerTechResearchedEx(Player(pid),tech)
+                        AddAllMagicState(Pu[1])
+                        //法宝加属性
+                    else
+                        SetPlayerTechResearchedEx(Player(pid),tech)
+                    endif
+
+
                     if  itemid > 0
                         UnitAddItemEx(Pu[1],itemid)
                     endif

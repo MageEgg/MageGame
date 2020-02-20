@@ -421,10 +421,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         if  index == 5
             if  uid == 'H009'
                 if  newlv == 3
-                    BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
-                    SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))-0.1)
-                    BJDebugMsg(GetUnitName(wu)+"攻击间隔"+R2S(GetUnitState( wu, ConvertUnitState(0x25))))
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：广成子奕剑之道，攻击间隔降低0.1秒")
+                    AddUnitRealState(wu,9,40)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：广成子奕剑之道，攻击速度+40%！")
                 endif
             elseif  uid == 'H010'
                 if  newlv == 2

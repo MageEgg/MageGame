@@ -385,10 +385,35 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         return "\n|cff999999羁绊|r" + s
     endfunction
 
+    function GetMagicStateTips(int id,real lv)->string
+        string s = ""
+        real value = 0
+
+  
+        for i = 1,60
+
+                value = GetTypeIdReal(id,i)
+                if  value > 0
+                    if  i == 1 or i == 2 or i == 5 or i == 7
+                        if  lv > 0
+                            s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]+"(|CFF00FF00+"+I2S(R2I(value*lv))+"|R)"
+                        else
+                            s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]    
+                        endif
+                    else
+                        s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+                    endif
+                endif
+
+            
+        end
+        return  s
+    endfunction
     
     function BoxShowMagicItemPublic(int pid,int id)
         int h = 10
         int value = 0
+        real lv = GetUnitRealState(Pu[1],63)*0.01
         if  id > 0
             DzFrameShow(UI_TipsHead, true)
             
@@ -397,10 +422,10 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
             SetTipsData(10,"",GetMagicItemColorName(id))
             if  GetTypeIdTips(id) == ""
-                SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id))
+                SetTipsData(11,"","|cff999999基础属性|r" + GetMagicStateTips(id,lv))
                 h = 12
             else
-                SetTipsData(11,"","|cff999999基础属性|r" + GetTypeIdStateTips(id)+"\n"+GetTypeIdTips(id))
+                SetTipsData(11,"","|cff999999基础属性|r" + GetMagicStateTips(id,lv)+"\n"+GetTypeIdTips(id))
                 h = 12
             endif
             
@@ -667,6 +692,54 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         SetMagicItemState(pid,index-MagicItemStateIndex,new,1)
     endfunction
 
+
+    function RemMagicState(unit wu,int id)
+        real value = 0
+        real lv = GetUnitRealState(wu,63)*0.01
+        BJDebugMsg("移除法宝"+GetTypeIdName(id)+"属性加成"+R2S(lv*100)+"%")
+        for i = 1,70
+            value = GetTypeIdReal(id,i)
+            if  value != 0
+                if  i == 1 or i == 2 or i == 5 or i == 7
+                    value = value + R2I(value * lv)
+                endif
+                AddUnitRealState(wu,i,-value)
+            endif
+        end
+    endfunction
+    function AddMagicState(unit wu,int id)
+        real value = 0
+        real lv = GetUnitRealState(wu,63)*0.01
+        BJDebugMsg("添加法宝"+GetTypeIdName(id)+"属性加成"+R2S(lv*100)+"%")
+        for i = 1,70
+            value = GetTypeIdReal(id,i)
+            if  value != 0
+                if  i == 1 or i == 2 or i == 5 or i == 7
+                    value = value + R2I(value * lv)
+                endif
+                AddUnitRealState(wu,i,value)
+            endif
+        end
+    endfunction
+    function AddAllMagicState(unit wu)
+        int id = 0
+        for i = 1,8
+            id = GetUnitIntState(wu,MagicItemIndex+i)
+            if  id > 0
+                AddMagicState(wu,id)
+            endif
+        end
+    endfunction
+    function RemAllMagicState(unit wu)
+        int id = 0
+        for i = 1,8
+            id = GetUnitIntState(wu,MagicItemIndex+i)
+            if  id > 0
+                RemMagicState(wu,id)
+            endif
+        end
+    endfunction
+
     //移除刷新羁绊数据
     function RemPlayerMagicItemState(int pid,int index)
         int value = 0
@@ -675,7 +748,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         
         //if  IsMagicItemOnly(pid,index) == true
         if  id > 0
-            RemoveEquipState(Pu[1],id)
+            RemMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,-1)
             RePlayerMagicOtherState(pid,id,-1)
             for i = 1,10
@@ -695,7 +768,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         
         //if  IsMagicItemOnly(pid,index) == true
         if  id > 0
-            AddEquipState(Pu[1],id)
+            AddMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,1)
             RePlayerMagicOtherState(pid,id,1)
             for i = 1,10

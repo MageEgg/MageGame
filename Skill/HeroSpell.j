@@ -80,7 +80,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS002(unit wu)
-        SetUnitIntState(wu'S002',0)
+        SetUnitIntState(wu,'S002',0)
     endfunction
 
     function SpellS014Attack(unit wu)
@@ -2286,23 +2286,16 @@ function SpellS116(unit u1,real damage1)
         flush locals
     endfunction
     
-function SpellS236(unit u,unit u1)
-    real damage=0
+function SpellS236(unit u,unit u1,real damage)
     SetUnitX(u,GetUnitX(u1))
     SetUnitY(u,GetUnitY(u1))
-    AddUnitStateExTimer(u,9,220,3)
+    AddUnitStateExTimer(u,9,50,5)
     UnitAddEffectTimer(u,"Abilities\\Spells\\Orc\\CommandAura\\CommandAura.mdl",3)
     
     shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),0,1))
-    if GetUnitRealState(u,1)>GetUnitRealState(u,2)
-        damage=GetUnitRealState(u,1)*12
-        UnitDamageTarget(u,u1,damage, true,true, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-    else
-        damage=GetUnitRealState(u,2)*12
-        UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
-    endif
-     LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl")
-     flush locals
+    UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+    LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl")
+    flush locals
 endfunction
 
 function SpellS237(unit u)
@@ -2429,8 +2422,6 @@ endfunction
                 SpellS065(u1.u,damage)
             elseif  id == 'S070'
                 SpellS070(u1.u,sx,sy,damage)
-            elseif  id == 'S073'
-                SpellS073(u1.u,damage)
             elseif  id == 'S074'
                 SpellS074(u1.u,sx,sy,damage)
             elseif  id == 'S078'
@@ -2509,7 +2500,7 @@ endfunction
                     elseif  id == 'S235'
                         SpellS235(u1.u)
                     elseif  id == 'S236'
-                        SpellS236(u1.u,u2.u)
+                        SpellS236(u1.u,u2.u,damage)
                     elseif  id == 'S237'
                         SpellS237(u1.u)
                 endif
