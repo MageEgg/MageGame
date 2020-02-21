@@ -94,14 +94,32 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         }
         flush locals
     endfunction
+
+    function GetExExpMax(int pid)->int
+        return 30000
+    endfunction
     function HeroAddExp(unit wu,int exp)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int last = 0
         int now = GetHeroXP(wu) + exp
         int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))-1
-
+        int exmax = GetExExpMax(pid)
         if  now > max
+            HeroExExp = HeroExExp + (now-max)
+            if  HeroExExp > exmax
+                HeroExExp = exmax
+            endif
             now = max
+        else
+            if  HeroExExp > 0
+                if  now + HeroExExp <= max
+                    now = now + HeroExExp
+                    HeroExExp = 0 
+                else
+                    HeroExExp = HeroExExp - (max-now)
+                    now = max
+                endif
+            endif
         endif
 
         if  now != GetHeroXP(wu)

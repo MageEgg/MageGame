@@ -121,7 +121,7 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
             Number=Number+2
         endif
 
-         if  GetUnitIntState(u,'FB18') > 0
+         if  GetUnitIntState(u,'FB49') > 0
              Number=Number+1
          endif
 
@@ -145,10 +145,6 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                 if  IsPlayerHasAbility(u,'S085') == true
                     SetUnitRealState(summon,19,20)
                     SetUnitRealState(summon,20,50)
-                endif
-
-                if  GetUnitIntState(u,'FB50') > 0
-                    AddUnitRealState(summon,9,20)
                 endif
 
             endloop
@@ -180,9 +176,6 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
                 SaveInteger(ht,GetHandleId(u),id,LoadInteger(ht,GetHandleId(u),id)+1)
                 SetUnitRealState(summon,9,GetUnitRealState(u,9))
                 UnitApplyTimedLife(summon, 'BHwe', 12 )
-                 if  GetUnitIntState(u,'FB50') > 0
-                    AddUnitRealState(summon,9,20)
-                endif
                 if  IsPlayerHasAbility(u,'S085') == true
                     SetUnitRealState(summon,1,(GetUnitRealState(u,1)*1)+(GetUnitRealState(u,2)*1))
                 else

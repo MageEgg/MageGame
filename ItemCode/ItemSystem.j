@@ -551,8 +551,15 @@ scope ItemSystem initializer InitItemSystem
 
 
         elseif  itemid >= 'ID01' and itemid <= 'ID10'//道果
+
             if  GetUnitIntState(Pu[1],150) < MaxHeroLevel
-                i1 = 800-(DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]))
+                if  GetHeroLevel(Pu[1]) == 1
+                    i2 = 0
+                else
+                    i2 = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])-1)
+                endif
+                i1 =  GetHeroXP(Pu[1])-i2
+
                 AddImmortalFruit(Pu[1],itemid - 'ID00' + 'IJ00',0)
                 HeroAddExp(Pu[1],i1)
             else

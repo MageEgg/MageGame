@@ -217,6 +217,8 @@
         DzFrameShow(UI_TipsHead, true)
         SetTipsData(10,"","|cffffcc00当前境界：|r"+I2S(lv-1))
         SetTipsData(11,"","|cffffcc00境界经验：|r"+I2S(now+1)+"/"+I2S(use))
+        SetTipsData(12,"","|cffffcc00储存经验：|r"+I2S(HeroExExp)+"(最大值："+I2S(GetExExpMax(pid))+")")
+        
         ShowTipsUI()
     endfunction
     

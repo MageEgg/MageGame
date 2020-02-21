@@ -679,15 +679,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
 
-     function SpellS057(unit u)
-        int Num = LoadInteger(ht,GetHandleId(u),'S057')+GetUnitAttackNumb(u)
-        SaveInteger(ht,GetHandleId(u),'S057',Num)
-        if  Num >= 24
-            RefreshUnitSkill(u)
-            SaveInteger(ht,GetHandleId(u),'S057',0)
-        endif
-        flush locals
-    endfunction
+     
 
     function SpellS065(unit u1,real damage)//造成伤害三秒内法穿+15%
         unit u=u1
@@ -1658,7 +1650,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=GetUnitX(u1)
         real y=GetUnitY(u1)
         real damage = GetHeroStr(u,true)
-        
+
+        if  GetUnitIntState(u,'FB21') > 0
+            damage = damage * 1.5
+        endif
         IndexGroup g 
         if  GetUnitAbilityLevel(u,'AZ15') > 0 and Chance(u,10) == true
             g = IndexGroup.create()
@@ -2345,6 +2340,42 @@ endfunction
     endfunction
 
 
+    //法宝
+    function SpellFB16(unit wu)
+        int num = GetUnitIntState(wu,'FC16')+GetUnitAttackNumb(wu)
+        SetUnitIntState(wu,'FC16',num)
+                
+        if  num >= 24
+            RefreshUnitSkill(wu)
+            SetUnitIntState(wu,'FC16',0)
+        endif
+        flush locals
+    endfunction
+    //攻击暴击时，10%几率造成400码范围的750%业力的群体伤害。每8秒只能触发1次
+    function SpellFB23(unit wu,unit tu)
+    endfunction
+
+    //攻击有4%几率，对目标及周围400码范围内的敌人造成 业力*400%的伤害
+    function SpellFB38(unit wu,unit tu)
+    endfunction
+    //每击杀1个单位，下一次攻击的伤害增加50%，此效果最多持续5秒且不会叠加
+    function SpellFB39(unit wu,unit tu)
+    endfunction
+    //攻击有6%几率，对目标及周围400码敌人造成最大生命*20%的范围伤害(原效果暂时不用：对生命值高于80%的单位额外造成30%伤害)
+    function SpellFB40(unit wu,unit tu)
+    endfunction
+    //受到攻击时，5%几率对攻击者造成攻击力*700%的伤害
+    function SpellFB45(unit wu,unit tu)
+    endfunction
+    //攻击有4%几率，造成目标及周围400码 业力*500%的伤害
+    function SpellFB46(unit wu,unit tu)
+    endfunction
+
+    //释放主动技能时，对自身周围400码敌人造成1秒眩晕,并减低护甲20点，持续3秒
+    function SpellFB47(unit wu)
+    endfunction
+
+
 
 
     //-----------------------------------------------------------------------------
@@ -2480,13 +2511,7 @@ endfunction
                 SpellS127(u1.u)
             
             elseif   id>='S230' and id<='S237'
-                if  GetUnitIntState(u1.u,'FB44') > 0
-                    AddUnitStateExTimer(u1.u,31,200,10)
-                    AddUnitStateExTimer(u1.u,17,100,10)
-                endif
-                if  GetUnitIntState(u1.u,'FB45') > 0
-                      damage=damage*2
-                endif
+                
                 if  id == 'S230'
                         SpellS230(u1.u,sx,sy,damage)
                     elseif  id == 'S231'

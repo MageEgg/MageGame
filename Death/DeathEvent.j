@@ -234,8 +234,9 @@ scope DeathEvent initializer InitDeathEvent
             UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
         endif
         //杀敌经验
-        exp = 1
+        exp = 10
         if  exp > 0
+            exp = exp + R2I(I2R(exp) * GetUnitRealState(Pu[1],64)*0.01)
             HeroAddExp( Pu[1],exp)
         endif
 
@@ -572,16 +573,12 @@ scope DeathEvent initializer InitDeathEvent
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
                     if  SpellS529Spell(u1) == false
-                        if  FB01Func(u1) == false
-                            RevivePlayerHero(pid)
-                            BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
+                        
+                        RevivePlayerHero(pid)
+                        BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
 
-                            GameChallengPlayerDeathEvent(u1)
-                            
+                        GameChallengPlayerDeathEvent(u1)
 
-
-
-                        endif
                     endif
                     AttackSummonUnitGroupDeathEvent(pid,u2)
                 endif

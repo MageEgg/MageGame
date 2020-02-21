@@ -52,9 +52,7 @@ library SkillCode uses System,State,DamageCode
             real damage=damage1
             group g = CreateGroup()
             unit gu=null 
-            if  GetUnitIntState(wu,'FB35') > 0 
-                damage=damage*2
-            endif
+   
             TimerStart(1,true)
             {
                 time=time+1

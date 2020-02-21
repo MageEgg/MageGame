@@ -196,14 +196,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
         endif
 
-    
+        id1 = GetPrize(pid,14,true)
         
-        if  ran <= 85
-            id1 = GetPrize(pid,13,true)
-        else
-            id1 = GetPrize(pid,12,true)
-        endif
-
         
         SetPlayerPlotStateByIndex(pid,index,3)
 
@@ -263,27 +257,15 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //读取奖励法宝池序号
     function GetPlotPrizeMagicIndex(int index)->int
         int ran = GetRandomInt(1,100)
-        if  index == 1
+        int green = 53 - index * 3
+        int blue = 100 - 4 * index
+        if  ran <= green
+            return 15
+        elseif  ran <= blue
             return 14
-        elseif  index >= 2 and index <= 4
-            BJDebugMsg("副本2-4概率"+I2S(ran))
-            if  ran <= 80
-                BJDebugMsg(I2S(index)+"副本概率"+I2S(ran)+"头顶带绿")
-                return 14
-            else
-                BJDebugMsg(I2S(index)+"副本概率"+I2S(ran)+"出了个蓝")
-                return 13
-            endif
         else
-            if  ran <= 10
-                return 14
-            elseif  ran<= 95
-                return 13
-            else
-                return 12
-            endif
+            return 13
         endif
-        BJDebugMsg("副本序号"+I2S(index))
     endfunction
 
     //给玩家副本奖励
@@ -295,7 +277,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int id4 = 0
         int id5 = 0
 
-        int prizeid = GetPlotPrizeMagicIndex(index)
+        //int prizeid = GetPlotPrizeMagicIndex(index)
         BJDebugMsg("Type is "+I2S(Type))
         if  Type == 3
             BJDebugMsg("时渊奖励")
@@ -305,10 +287,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             BJDebugMsg("普通奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             id2 = GetPlayerPlotPrizeId(pid,index,2)
-            id3 = GetPrize(pid,prizeid,true)
-            id4 = GetPrize(pid,prizeid,true)
+            id3 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
+            id4 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
             if  GameLevel >= 3
-                id5 = GetPrize(pid,prizeid,true)
+                id5 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
             endif
         endif
 

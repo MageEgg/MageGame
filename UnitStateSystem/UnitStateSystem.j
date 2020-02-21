@@ -315,13 +315,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     endfunction
     
     function GetUnitLqMax(unit wu)->int
-        int max = 50
-        if  GetUnitIntState(wu,'FB10')>0
-            max = max + 9
-        endif
-        if  GetUnitIntState(wu,'FB20')>0
-            max = max + 6
-        endif
+        int max = 99
         return max
     endfunction
     

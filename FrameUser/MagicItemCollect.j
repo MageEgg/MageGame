@@ -965,7 +965,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
 
+    
 
+    /*
     function FB49Func(unit wu)
         unit u1 = wu
         int time = 20
@@ -1016,6 +1018,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
         return false
     endfunction
+    */
 
     #undef MagicItemMax
     #undef MagicItemIndex
