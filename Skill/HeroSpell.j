@@ -2337,14 +2337,10 @@ endfunction
                 SpellS083(u1.u,damage)
             elseif  id == 'S086'    
                 SpellS086(u1.u)
-            elseif  id == 'S087'    
-                SpellS087(u1.u)
             elseif  id == 'S089'    
                 SpellS089(u1.u)
             elseif  id == 'S090'    
                 SpellS090(u1.u)
-            elseif  id == 'S091'    
-                SpellS091(u1.u)
             elseif  id == 'S100'    
                 SpellS100(u1.u)
             elseif  id == 'S101'    

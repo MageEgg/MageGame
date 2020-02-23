@@ -13,8 +13,8 @@ library Summon uses AbilityUI,OtherDamageTimer
 
     function Z103DamageEx(unit u)
         IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,GetUnitRealState(u1,1),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        UnitDamageGroup(u,g.ejg,GetUnitRealState(u,1),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
 
@@ -41,7 +41,7 @@ library Summon uses AbilityUI,OtherDamageTimer
         {
             if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == uid
                 if  Udis(u1,u2) > 800
-                    SetUnitXY(u2,GetUnitX(Pu[1])+GetRandomReal(-200,200),GetUnitY(Pu[1])+GetRandomReal(-200,200))
+                    SetUnitXY(u2,GetUnitX(u2)+GetRandomReal(-200,200),GetUnitY(u2)+GetRandomReal(-200,200))
                     UnitAddEffect(u2,"effect_az_pafeathermoon_b.mdl")
                     IssuePointOrderById(u2,851983,GetUnitX(u2)+GetRandomReal(-250,250),GetUnitY(u2)+GetRandomReal(-250,250))
                 endif
