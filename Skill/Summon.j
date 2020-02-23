@@ -41,8 +41,8 @@ library Summon uses AbilityUI,OtherDamageTimer
         {
             if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == uid
                 if  Udis(u1,u2) > 800
-                    SetUnitXY(Pu[200+num],GetUnitX(Pu[1])+GetRandomReal(-200,200),GetUnitY(Pu[1])+GetRandomReal(-200,200))
-                    UnitAddEffect(Pu[200+num],"effect_az_pafeathermoon_b.mdl")
+                    SetUnitXY(u2,GetUnitX(Pu[1])+GetRandomReal(-200,200),GetUnitY(Pu[1])+GetRandomReal(-200,200))
+                    UnitAddEffect(u2,"effect_az_pafeathermoon_b.mdl")
                     IssuePointOrderById(u2,851983,GetUnitX(u2)+GetRandomReal(-250,250),GetUnitY(u2)+GetRandomReal(-250,250))
                 endif
                 if  GetUnitCurrentOrder(u2) == 0
@@ -57,7 +57,7 @@ library Summon uses AbilityUI,OtherDamageTimer
     endfunction
 
     function HeroSpellSummon(unit u,real x,real y,integer id)
-        integer num = GetHeroSummonNum(u1)
+        integer num = GetHeroSummonNum(u)
         unit u2 = null
         if  id == 'z102'
             num = num + 1
