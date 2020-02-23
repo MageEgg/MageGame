@@ -6,10 +6,10 @@ library PetSystem uses AbilityUI,OtherDamageTimer
                 if  Udis(Pu[1],Pu[200+num]) > 800
                     SetUnitXY(Pu[200+num],GetUnitX(Pu[1])+GetRandomReal(-200,200),GetUnitY(Pu[1])+GetRandomReal(-200,200))
                     UnitAddEffect(Pu[200+num],"effect_az_pafeathermoon_b.mdl")
-                    IssuePointOrderById(Pu[200+num],851983,(GetUnitX(Pu[1])+GetRandomReal(-250,250)),(GetUnitY(Pu[1])+GetRandomReal(-250,250)))
+                    IssuePointOrderById(Pu[200+num],851983,(GetUnitX(Pu[1])+GetRandomReal(-500,500)),(GetUnitY(Pu[1])+GetRandomReal(-500,500)))
                 endif
                 if  GetUnitCurrentOrder(Pu[200+num]) == 0
-                    IssuePointOrderById(Pu[200+num],851983,(GetUnitX(Pu[1])+GetRandomReal(-250,250)),(GetUnitY(Pu[1])+GetRandomReal(-250,250)))
+                    IssuePointOrderById(Pu[200+num],851983,(GetUnitX(Pu[1])+GetRandomReal(-500,500)),(GetUnitY(Pu[1])+GetRandomReal(-500,500)))
                 endif
             endif
         end
@@ -43,7 +43,7 @@ library PetSystem uses AbilityUI,OtherDamageTimer
             Pu[200] = null
         endif
         Pu[200] = CreateUnit(Player(pid),'hC01',GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
-        IssuePointOrderById(Pu[200],851983,(GetUnitX(Pu[1])+GetRandomReal(-250,250)),(GetUnitY(Pu[1])+GetRandomReal(-250,250)))
+        IssuePointOrderById(Pu[200],851983,(GetUnitX(Pu[1])+GetRandomReal(-500,500)),(GetUnitY(Pu[1])+GetRandomReal(-500,500)))
     endfunction
 
 endlibrary
