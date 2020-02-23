@@ -565,11 +565,6 @@ scope DeathEvent initializer InitDeathEvent
         int uid = GetUnitTypeId(u1)
         int uid2 = GetUnitTypeId(u2)
         if  pid <= 5//玩家类型死亡
-            if  IsUnitInGroup(u1,SummonGroup[pid])==true//用于召唤物移出单位组
-                SaveInteger(ht,GetHandleId(Pu[1]),GetUnitTypeId(u1),LoadInteger(ht,GetHandleId(Pu[1]),GetUnitTypeId(u1))-1)
-                GroupRemoveUnit(SummonGroup[pid],u1)
-            endif
-            
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
                     if  SpellS529Spell(u1) == false

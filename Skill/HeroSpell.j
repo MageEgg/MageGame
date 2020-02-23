@@ -1292,72 +1292,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS087(unit u)
-        Summon(u,GetUnitX(u),GetUnitY(u),'z101')
-    endfunction
-
-
     function SpellS089(unit u)
-        Summon(u,GetUnitX(u),GetUnitY(u),'z102')
+        HeroSpellSummon(u,GetUnitX(u),GetUnitY(u),'z102')
     endfunction
 
      function SpellS090(unit u)
-        Summon(u,GetUnitX(u),GetUnitY(u),'z103')
+        HeroSpellSummon(u,GetUnitX(u),GetUnitY(u),'z103')
     endfunction
-
-    function SpellS091(unit u)
-        integer pid = GetPlayerId(GetOwningPlayer(u))
-        unit uu=null
-        loop
-            uu=FirstOfGroup(SummonGroup[pid])
-            exitwhen uu==null
-            if  GetUnitTypeId(uu)=='z100'
-                GroupRemoveUnit(SummonGroup[pid],uu)
-                SaveInteger(ht,GetHandleId(u),'z100',LoadInteger(ht,GetHandleId(u),'z100')-1)
-                KillUnit(uu)
-                if GetUnitAbilityLevel(u,'A086')==0
-                    AddUnitStateExTimer(u,19,30,4)
-                    UnitTimerAddSkill(u,'A086',4)
-                endif
-            endif
-
-            if  GetUnitTypeId(uu)=='z101'
-                GroupRemoveUnit(SummonGroup[pid],uu)
-                SaveInteger(ht,GetHandleId(u),'z101',LoadInteger(ht,GetHandleId(u),'z101')-1)
-                KillUnit(uu)
-                if GetUnitAbilityLevel(u,'A087')==0
-                  
-                    AddUnitStateExTimer(u,32,40,4)
-                    AddUnitStateExTimer(u,33,40,4)
-                    UnitTimerAddSkill(u,'A087',4)
-                endif
-            endif
-
-            if  GetUnitTypeId(uu)=='z102'
-                GroupRemoveUnit(SummonGroup[pid],uu)
-                SaveInteger(ht,GetHandleId(u),'z102',LoadInteger(ht,GetHandleId(u),'z102')-1)
-                KillUnit(uu)
-                if  GetUnitAbilityLevel(u,'A089')==0
-                    AddUnitStateExTimer(u,9,80,4)
-                    UnitTimerAddSkill(u,'A089',4)
-                endif
-            endif
-
-            if  GetUnitTypeId(uu)=='z103'
-                GroupRemoveUnit(SummonGroup[pid],uu)
-                SaveInteger(ht,GetHandleId(u),'z103',LoadInteger(ht,GetHandleId(u),'z103')-1)
-                KillUnit(uu)
-                if  GetUnitAbilityLevel(u,'A090')==0
-                    AddUnitStateExTimer(u,9,80,4)
-                    UnitTimerAddSkill(u,'A090',4)
-                endif
-            endif
-        endloop
-        u=null
-        uu=null
-        flush locals
-    endfunction
-
 
     function SpellS094(unit u1,real damage)
         unit u=u1
@@ -1527,70 +1468,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction  
 
-    function SpellS103Attack(unit wu,unit gui1)
-        unit u=wu
-        unit gui=gui1
-        real dis=0
-        real ang=0
-        real x=0
-        real y=0
-        integer i=0
-        integer a=255
-        boolean b=false
-        TimerStart(0.1,true)
-        {
-            if  i<=60
-                i=i+1
-                if  b==false
-                    if  a>25
-                        a=a-25
-                    else
-                        b=true
-                    endif
-                else
-                    if  a<255
-                        a=a+25
-                    else
-                        b=false
-                    endif
-                endif
-                SetUnitVertexColor(gui, 255, 255, 255, a )
-                if  Udis(u,gui)>500
-                    dis=GetRandomReal(0, 200)
-                    ang=GetRandomReal(-3.14, 3.14)
-                    x=GetUnitX(u)+(dis*Cos(ang))
-                    y=GetUnitY(u)+(dis*Sin(ang))
-                    SetUnitX(gui,x)
-                    SetUnitY(gui,y)
-                    IssueTargetOrder( gui, "Attack", u)
-                endif
-            else
-                KillUnit(gui)
-                endtimer
-            endif
-            flush locals
-        }
-        flush locals
-    endfunction
-
-    function SpellS103(unit u)
-        unit gui=null
-        real dis=0
-        real ang=0
-        real x=0
-        real y=0
-        for i= 1,3
-            dis=GetRandomReal(0, 200)
-            ang=GetRandomReal(-3.14, 3.14)
-            x=GetUnitX(u)+(dis*Cos(ang))
-            y=GetUnitY(u)+(dis*Sin(ang))
-            gui=CreateUnit(Player(12),'eZ10',x,y,GetUnitFacing(u))
-            IssueTargetOrder( gui, "Attack", u)
-            SpellS103Attack(u,gui)
-        end
-        flush locals
-    endfunction 
-
     function SpellS104Ex(unit u)
         integer pid = GetPlayerId(GetOwningPlayer(u))
         if  PlayerDeathBool == false
@@ -1717,17 +1594,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             flush locals
         }
         flush locals
-    endfunction
-
-
-
-
-    function SpellS111(unit u)
-        Summon(u,GetUnitX(u),GetUnitY(u),'z104')
-    endfunction
-
-    function SpellS112(unit u,real x,real y)
-        Summon(u,x,y,'z105')
     endfunction
 
     function SpellS113Attack(unit u,real x1,real y1,real damage)
@@ -2477,26 +2343,20 @@ endfunction
                 SpellS089(u1.u)
             elseif  id == 'S090'    
                 SpellS090(u1.u)
-             elseif  id == 'S091'    
+            elseif  id == 'S091'    
                 SpellS091(u1.u)
             elseif  id == 'S100'    
                 SpellS100(u1.u)
             elseif  id == 'S101'    
-                SpellS101(u1.u,sx,sy,damage) 
-            elseif  id == 'S103'    
-                SpellS103(u1.u)    
+                SpellS101(u1.u,sx,sy,damage)   
             elseif  id == 'S104'    
                 SpellS104(u1.u) 
             elseif  id == 'S110'    
                 SpellS110(u1.u,sx,sy,damage)
-            elseif  id == 'S111'    
-                SpellS111(u1.u)
-             elseif  id == 'S112'    
-                SpellS112(u1.u,sx,sy)
-             elseif  id == 'S113'    
-                SpellS113(u1.u,sx,sy,damage)
-             elseif  id == 'S115'    
-                SpellS115(u1.u,sx,sy,damage)
+            elseif  id == 'S113'    
+               SpellS113(u1.u,sx,sy,damage)
+            elseif  id == 'S115'    
+               SpellS115(u1.u,sx,sy,damage)
             elseif  id == 'S116'    
                 SpellS116(u1.u,damage)
             elseif  id == 'S120'    
