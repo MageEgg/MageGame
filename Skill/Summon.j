@@ -13,7 +13,7 @@ library Summon uses AbilityUI,OtherDamageTimer
 
     function Z103DamageEx(unit u)
         IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"Abilities\\Spells\\Human\\Feedback\\ArcaneTowerAttack.mdl","origin",0))
         UnitDamageGroup(u,g.ejg,GetUnitRealState(u,1),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
