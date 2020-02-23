@@ -1655,7 +1655,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             damage = damage * 1.5
         endif
         IndexGroup g 
-        if  GetUnitAbilityLevel(u,'AZ15') > 0 and Chance(u,10) == true
+        if  GetUnitAbilityLevel(u,'AZ15') > 0 and ChanceEx(u,'S109',10) == true
             g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             if  FirstOfGroup(g.ejg)!=null
@@ -1771,7 +1771,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y = y1
         real dam = damage
         integer i=0
-        if  Chance(u1,30)==true
+        if  ChanceEx(u1,'S113',30)==true
             TimerStart(0.2,true)
             {
                 i=i+1
@@ -1894,7 +1894,7 @@ function SpellS116(unit u1,real damage1)
         DestroyEffect(AddSpecialEffect("effect_[dz.spell]001.mdl",x,y))
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        if  Chance(u,40)
+        if  ChanceEx(u,'S120',40)
             TimerStart(0.6,false)
             {
                 LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
@@ -1918,7 +1918,7 @@ function SpellS116(unit u1,real damage1)
         AddUnitStateExTimer(u,14,15,4)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        if   Chance(u,40)
+        if   ChanceEx(u,'S121',40)
             TimerStart(0.6,false)
             {
                 LocAddEffectSetSize(x,y,"effect_by_wood_sand_yuekongji.mdl",1.2)
@@ -1942,7 +1942,7 @@ function SpellS116(unit u1,real damage1)
         AddUnitStateExTimer(u,13,15,4)
         GroupEnumUnitsInRange(g,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        if  Chance(u,40)
+        if  ChanceEx(u,'S122',40)
             TimerStart(0.6,false)
             {
                 LocAddEffectSetSize(x,y,"effect_daoguang-new.mdl",1.2)
