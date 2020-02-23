@@ -1197,7 +1197,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             ang=0.01745*90*i
             x1 = x+10*Cos(ang)
             y1 = y+10*Sin(ang)    
-            u2 = CreateUnit(GetOwningPlayer(u1),'eZ18',x1,y1,GetUnitFacing(u))                               
+            u2 = CreateUnit(GetOwningPlayer(u),'eZ18',x1,y1,GetUnitFacing(u))                               
             //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
             AroundSystemlei(u,u2,1.5,num,20,100,damage*num*0.34)
         end
