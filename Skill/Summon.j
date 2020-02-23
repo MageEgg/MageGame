@@ -2,6 +2,17 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
 
     group array SummonGroup
 
+    function GetHeroSummonNum(unit u)->int
+        int num = 0
+        if  IsPlayerHasAbility(u,'S088') == true
+            num = num + 2
+        endif
+        if  GetUnitIntState(u,'FB49') > 0
+            num = num + 1
+        endif
+        return num
+    endfunction
+
     function SummonInit()
         for pid = 0,3
             SummonGroup[pid] = CreateGroup()
@@ -115,22 +126,8 @@ library Summon  initializer SummonInit uses AbilityUI,OtherDamageTimer
         real x=x1
         real y=y1
         integer id=id1
-        integer Number=0
+        integer Number = GetHeroSummonNum(u1)
         unit summon=null
-        if IsPlayerHasAbility(u,'S088') == true
-            Number=Number+2
-        endif
-
-         if  GetUnitIntState(u,'FB49') > 0
-             Number=Number+1
-         endif
-
-        if IsPlayerHasAbility(u,'S507') == true
-            if  GetUnitRealState(u,14)>=30
-                Number=Number+2
-            endif
-        endif
-
         if  id=='z100'
              Number=Number+4         //此单位最大召唤数
 

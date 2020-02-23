@@ -562,9 +562,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             
         endif
         
-        if  id == 'S104'
-            SpellS104.execute(wu) //熔炉之身
-        elseif  id == 'S034'
+        if  id == 'S034'
             UnitAddAbility(wu,'A034'+pid)
         elseif  id == 'S067'
             UnitAddAbility(wu,'A067'+pid)
