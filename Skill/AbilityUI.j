@@ -118,7 +118,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
     function GetAbilityCD(unit wu,int id)->real
         real r1 = GetTypeIdReal(id,100)
-        real r2 = GetUnitRealState(wu,25)
+        real r2 = GetUnitLs(wu)
         int lv = GetHeroAbilityLevel(wu,id)
 
         if  r1 > 0
@@ -138,7 +138,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 return r1
             endif
 
-            r1 = r1 * (1-r2*0.01)
+            r1 = r1 / (1+r2)
             if  r1 < 1
                 r1 = 1
             endif
