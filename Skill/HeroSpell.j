@@ -2329,9 +2329,9 @@ endfunction
                 i1 = GetHeroAbilityLevelByIndex(wu,5)
                 if  SpellS511Spell(wu,i1) == true
                     if  i1 >= 3
-                        damage = damage * 1.4
+                        damage = damage * 2.5
                     else
-                        damage = damage * 1.2
+                        damage = damage * 2
                     endif
                 endif
             endif
