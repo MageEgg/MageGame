@@ -48,54 +48,54 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
 
     function InitAttackUnitChallengeState()
         //轮数 次数 金币 玄铁 属性消耗序号 属性消耗值 挑战类型 技能ID 参数1 参数2 说明
-        InitAttackUnitChallengeStateData(0,0,0,0,108,0,Buy_Unit,'ATAA',6,0,0,"奖励击杀金币+3")
-        InitAttackUnitChallengeStateData(0,1,0,0,108,0,Buy_Unit,'ATAB',1,0,0,"奖励练功房怪物+2")
-        InitAttackUnitChallengeStateData(0,2,0,0,108,0,Buy_Unit,'ATAC',6,0,0,"奖励金币加成+20%")
-        InitAttackUnitChallengeStateData(0,3,0,0,108,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"奖励副本NPC出现，解锁门票挑战")
-        InitAttackUnitChallengeStateData(0,4,0,0,108,0,Buy_Unit,'ATAE',1,0,0,"奖励攻击速度+40%")
-        InitAttackUnitChallengeStateData(0,5,0,0,108,0,Buy_Unit_Item,'ATAF',12,'IS14',0,"奖励药品升级，使用后立即恢复40%生命值，每秒恢复5%生命值，持续6秒")
-        InitAttackUnitChallengeStateData(0,6,0,0,108,0,Buy_Unit,'ATAG',8,0,0,"奖励金币")
-        InitAttackUnitChallengeStateData(0,7,0,0,108,0,Buy_Unit,'ATAH',1,0,0,"奖励攻击")
+        InitAttackUnitChallengeStateData(0,0,0,0,108,0,Buy_Unit,'ATAA',6,0,0,"|CffBBBBBB历练奖励：|r|n击杀金币|Cffffc926+3|r，分裂攻击|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(0,1,0,0,108,0,Buy_Unit,'ATAB',1,0,0,"|CffBBBBBB历练奖励：|r|n练功房怪物|Cffffc926+2|r，攻击吸血|Cffffc926+5%|r")
+        InitAttackUnitChallengeStateData(0,2,0,0,108,0,Buy_Unit,'ATAC',6,0,0,"|CffBBBBBB历练奖励：|r|n金币加成|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(0,3,0,0,108,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"|CffBBBBBB历练奖励：|r|n解锁|Cffff0000副本挑战|r")
+        InitAttackUnitChallengeStateData(0,4,0,0,108,0,Buy_Unit,'ATAE',1,0,0,"|CffBBBBBB历练奖励：|r|n攻击速度|Cffffc926+40%|r")
+        InitAttackUnitChallengeStateData(0,5,0,0,108,0,Buy_Unit_Item,'ATAF',12,'IS14',0,"|CffBBBBBB历练奖励：|r|n药品升级为|Cff3399ff明清灵水|r。")
+        InitAttackUnitChallengeStateData(0,6,0,0,108,0,Buy_Unit,'ATAG',8,0,0,"|CffBBBBBB历练奖励：|r|n金币|Cffffc926+20000|r")
+        InitAttackUnitChallengeStateData(0,7,0,0,108,0,Buy_Unit,'ATAH',1,0,0,"|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+10|r")
 
-        InitAttackUnitChallengeStateData(1,0,0,0,108,0,Buy_Unit,'ATAI',8,0,0,"奖励玄铁")
-        InitAttackUnitChallengeStateData(1,1,0,0,108,0,Buy_Unit_Item,'ATAJ',1,'IZ0E',0,"奖励随机兽魂一个")
-        InitAttackUnitChallengeStateData(1,2,0,0,108,0,Buy_Unit,'ATAK',1,0,0,"奖励固定生命&防御")
-        InitAttackUnitChallengeStateData(1,3,0,0,108,0,Buy_Unit_Item,'ATAL',1,'CS23',0,"奖励攻击速度+30%、残破技能进阶石")
-        InitAttackUnitChallengeStateData(1,4,0,0,108,0,Buy_Unit_Item,'ATAM',12,'IS14',0,"奖励药品升级：使用后立即恢复40%生命值，每秒恢复4%生命值，持续6秒。药水持续时间内，攻击速度+30%")
-        InitAttackUnitChallengeStateData(1,5,0,0,108,0,Buy_Unit_Item,'ATAN',1,'IZ0F',0,"奖励14随机R技能")
-        InitAttackUnitChallengeStateData(1,6,0,0,108,0,Buy_Unit_Item,'ATAO',15,'IS14',0,"奖励15药品升级：使用后立即恢复40%生命值，每秒恢复8%生命值，持续6秒。药水持续时间内，攻击速度+30%，冷却缩减+15%.")
-        InitAttackUnitChallengeStateData(1,7,0,0,108,0,Buy_Unit,'ATAP',20,0,0,"奖励16生命%&固定防御")
+        InitAttackUnitChallengeStateData(1,0,0,0,108,0,Buy_Unit,'ATAI',8,0,0,"|CffBBBBBB历练奖励：|r|n攻击|Cffffc926+20000|r，业力|Cffffc926+20000|r")
+        InitAttackUnitChallengeStateData(1,1,0,0,108,0,Buy_Unit,'ATAJ',1,0,0,"|CffBBBBBB历练奖励：|r|n攻击伤害|Cffffc926+20%|r，技能伤害|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(1,2,0,0,108,0,Buy_Unit,'ATAK',1,0,0,"|CffBBBBBB历练奖励：|r|n生命|Cffffc926+500000|r，防御|Cffffc92650|r")
+        InitAttackUnitChallengeStateData(1,3,0,0,108,0,Buy_Unit_Item,'ATAL',1,'IZ0E',0,"|CffBBBBBB历练奖励：|r|n领悟|Cffff0000觉醒神通【R】|r技能")
+        InitAttackUnitChallengeStateData(1,4,0,0,108,0,Buy_Unit,'ATAM',12,0,0,"|CffBBBBBB历练奖励：|r|n攻击速度|Cffffc926+60%|r")
+        InitAttackUnitChallengeStateData(1,5,0,0,108,0,Buy_Unit_Item,'ATAN',1,'IS14',0,"|CffBBBBBB历练奖励：|r|n药品升级为|Cffffc926九曲灵参丹|r。")
+        InitAttackUnitChallengeStateData(1,6,0,0,108,0,Buy_Unit,'ATAO',15,0,0,"|CffBBBBBB历练奖励：|r|n攻击|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(1,7,0,0,108,0,Buy_Unit,'ATAP',20,0,0,"|CffBBBBBB历练奖励：|r|n生命|Cffffc926+20%|r，防御|Cffffc926+100|r")
 
-        InitAttackUnitChallengeStateData(200,0,0,2,108,0,Buy_Unit,0,1,0,0,"奖励灵力挑战")
+        InitAttackUnitChallengeStateData(200,0,0,2,108,0,Buy_Unit,0,1,0,0,"山灵挑战")
 
-        InitAttackUnitChallengeStateData(220,0,0,0,108,0,Buy_Unit,'AT2A',1,0,0,"奖励解锁副本1")
-        InitAttackUnitChallengeStateData(220,1,0,0,108,0,Buy_Unit,'AT2B',1,0,0,"奖励解锁副本2")
-        InitAttackUnitChallengeStateData(220,2,0,0,108,0,Buy_Unit,'AT2C',1,0,0,"奖励解锁副本3")
-        InitAttackUnitChallengeStateData(220,3,0,0,108,0,Buy_Unit,'AT2D',1,0,0,"奖励解锁副本4")
-        InitAttackUnitChallengeStateData(220,4,0,0,108,0,Buy_Unit,'AT2E',1,0,0,"奖励解锁副本5")
-        InitAttackUnitChallengeStateData(220,5,0,0,108,0,Buy_Unit,'AT2F',1,0,0,"奖励解锁副本6")
-        InitAttackUnitChallengeStateData(220,6,0,0,108,0,Buy_Unit,'AT2G',1,0,0,"奖励解锁副本7")
-        InitAttackUnitChallengeStateData(220,7,0,0,108,0,Buy_Unit,'AT2H',1,0,0,"奖励解锁副本8")
+        InitAttackUnitChallengeStateData(210,0,0,0,108,0,Buy_Unit,'AT1A',1,0,0,"武灵1")
+        InitAttackUnitChallengeStateData(210,1,0,0,108,0,Buy_Unit,'AT1B',1,0,0,"武灵2")
+        InitAttackUnitChallengeStateData(210,2,0,0,108,0,Buy_Unit,'AT1C',1,0,0,"武灵3")
+        InitAttackUnitChallengeStateData(210,3,0,0,108,0,Buy_Unit,'AT1D',1,0,0,"武灵4")
+        InitAttackUnitChallengeStateData(210,4,0,0,108,0,Buy_Unit,'AT1E',1,0,0,"武灵5")
+        InitAttackUnitChallengeStateData(210,5,0,0,108,0,Buy_Unit,'AT1F',1,0,0,"武灵6")
+        InitAttackUnitChallengeStateData(210,6,0,0,108,0,Buy_Unit,'AT1G',1,0,0,"武灵7")
+        InitAttackUnitChallengeStateData(210,7,0,0,108,0,Buy_Unit,'AT1H',1,0,0,"武灵8")
 
-        InitAttackUnitChallengeStateData(210,0,0,0,108,0,Buy_Unit,'AT1A',1,0,0,"奖励法宝亲和度1")
-        InitAttackUnitChallengeStateData(210,1,0,0,108,0,Buy_Unit,'AT1B',1,0,0,"奖励法宝亲和度2")
-        InitAttackUnitChallengeStateData(210,2,0,0,108,0,Buy_Unit,'AT1C',1,0,0,"奖励法宝亲和度3")
-        InitAttackUnitChallengeStateData(210,3,0,0,108,0,Buy_Unit,'AT1D',1,0,0,"奖励法宝亲和度4")
-        InitAttackUnitChallengeStateData(210,4,0,0,108,0,Buy_Unit,'AT1E',1,0,0,"奖励法宝亲和度5")
-        InitAttackUnitChallengeStateData(210,5,0,0,108,0,Buy_Unit,'AT1F',1,0,0,"奖励法宝亲和度6")
-        InitAttackUnitChallengeStateData(210,6,0,0,108,0,Buy_Unit,'AT1G',1,0,0,"奖励法宝亲和度7")
-        InitAttackUnitChallengeStateData(210,7,0,0,108,0,Buy_Unit,'AT1H',1,0,0,"奖励法宝亲和度8")
+        InitAttackUnitChallengeStateData(220,0,0,0,108,0,Buy_Unit,'AT2A',1,0,0,"解锁副本1")
+        InitAttackUnitChallengeStateData(220,1,0,0,108,0,Buy_Unit,'AT2B',1,0,0,"解锁副本2")
+        InitAttackUnitChallengeStateData(220,2,0,0,108,0,Buy_Unit,'AT2C',1,0,0,"解锁副本3")
+        InitAttackUnitChallengeStateData(220,3,0,0,108,0,Buy_Unit,'AT2D',1,0,0,"解锁副本4")
+        InitAttackUnitChallengeStateData(220,4,0,0,108,0,Buy_Unit,'AT2E',1,0,0,"解锁副本5")
+        InitAttackUnitChallengeStateData(220,5,0,0,108,0,Buy_Unit,'AT2F',1,0,0,"解锁副本6")
+        InitAttackUnitChallengeStateData(220,6,0,0,108,0,Buy_Unit,'AT2G',1,0,0,"解锁副本7")
+        InitAttackUnitChallengeStateData(220,7,0,0,108,0,Buy_Unit,'AT2H',1,0,0,"解锁副本8")
 
-        InitAttackUnitChallengeStateData(230,0,0,0,108,0,Buy_Unit,'AT3A',1,0,0,"奖励副本9入场券")
-        InitAttackUnitChallengeStateData(230,1,0,0,108,0,Buy_Unit,'AT3B',1,0,0,"奖励副本10入场券")
-        InitAttackUnitChallengeStateData(230,2,0,0,108,0,Buy_Unit,'AT3C',1,0,0,"奖励副本11入场券")
-        InitAttackUnitChallengeStateData(230,3,0,0,108,0,Buy_Unit,'AT3D',1,0,0,"奖励副本12入场券")
-        InitAttackUnitChallengeStateData(230,4,0,0,108,0,Buy_Unit,'AT3E',1,0,0,"奖励副本13入场券")
-        InitAttackUnitChallengeStateData(230,5,0,0,108,0,Buy_Unit,'AT3F',1,0,0,"奖励副本14入场券")
-        InitAttackUnitChallengeStateData(230,6,0,0,108,0,Buy_Unit,'AT3G',1,0,0,"奖励副本15入场券")
-        InitAttackUnitChallengeStateData(230,7,0,0,108,0,Buy_Unit,'AT3H',1,0,0,"奖励副本16入场券")
+        InitAttackUnitChallengeStateData(230,0,0,0,108,0,Buy_Unit,'AT3A',1,0,0,"副本9入场券")
+        InitAttackUnitChallengeStateData(230,1,0,0,108,0,Buy_Unit,'AT3B',1,0,0,"副本10入场券")
+        InitAttackUnitChallengeStateData(230,2,0,0,108,0,Buy_Unit,'AT3C',1,0,0,"副本11入场券")
+        InitAttackUnitChallengeStateData(230,3,0,0,108,0,Buy_Unit,'AT3D',1,0,0,"副本12入场券")
+        InitAttackUnitChallengeStateData(230,4,0,0,108,0,Buy_Unit,'AT3E',1,0,0,"副本13入场券")
+        InitAttackUnitChallengeStateData(230,5,0,0,108,0,Buy_Unit,'AT3F',1,0,0,"副本14入场券")
+        InitAttackUnitChallengeStateData(230,6,0,0,108,0,Buy_Unit,'AT3G',1,0,0,"副本15入场券")
+        InitAttackUnitChallengeStateData(230,7,0,0,108,0,Buy_Unit,'AT3H',1,0,0,"副本16入场券")
 
-        InitAttackUnitChallengeStateData(250,0,0,1,108,0,Buy_Unit,0,1,0,0,"奖励资源挑战")
+        InitAttackUnitChallengeStateData(250,0,0,1,108,0,Buy_Unit,0,1,0,0,"资源挑战")
 
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
@@ -132,11 +132,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         s = s + AttackUnitChallengeStateTypeString[zu][wei]
         if  Player(pid) == GetLocalPlayer()
             YDWESetUnitAbilityDataString(Pu[42],id,1,218,s)
-            if  zu >= 200
-                YDWESetUnitAbilityState(Pu[42],id,1,60)
-            else
-                YDWESetUnitAbilityState(Pu[42],id,1,10)
-            endif
+            YDWESetUnitAbilityState(Pu[42],id,1,5)
         endif
     endfunction
 
@@ -505,7 +501,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 if  itemid > 0
                     UnitAddItemEx(Pu[1],itemid)
                 endif
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+SubString(AttackUnitChallengeStateTypeString[zu][wei],29,StringLength(AttackUnitChallengeStateTypeString[zu][wei]))+"！")
                 AddAttackUnitChallengeStateLevel(pid,challenge)
                 IsPlayerInAttackUnitChallenge(challenge) = 0
             endif
@@ -525,8 +521,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AttackUnitChallengePlayerKillCos(challenge) = 0
                 if  challenge == 1
                     SetPlayerTechResearched(Player(pid),tech,1)
-                    ran = GetRandomInt(2,6)
-                    AddUnitIntState(Pu[1],108,ran)
+                    /*ran = GetRandomInt(2,6)
+                    AddUnitIntState(Pu[1],108,ran)*/
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName('AT0A')+",|cffffff00获得"+I2S(ran)+"点灵力|r！")
                     AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
                 elseif  challenge == 6
@@ -578,17 +574,23 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             endif
             CloseCollectFrame(pid)
         elseif  itid == 'IZ0E'
-            ran = GetRandomInt(0,7)
-            AddPlayerMonsterSoulState(pid,ran)
-            AddPlayerTechResearched(Player(pid),'RM50'+ran,1)
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80获得|cffff0080“"+GetMonsterSoulLuck(ran)+"”|cffffff80！|r")
-            UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)
-        elseif  itid == 'IZ0F'
             HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
             for num = 1,3
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“[R]技能”|cffffff80！|r")
             end
             GivePlayerMissionPrize(pid,'RR0A')
+
+            /*ran = GetRandomInt(0,7)
+            AddPlayerMonsterSoulState(pid,ran)
+            AddPlayerTechResearched(Player(pid),'RM50'+ran,1)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80获得|cffff0080“"+GetMonsterSoulLuck(ran)+"”|cffffff80！|r")
+            UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)*/
+        elseif  itid == 'IZ0F'
+            /*HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
+            for num = 1,3
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“[R]技能”|cffffff80！|r")
+            end
+            GivePlayerMissionPrize(pid,'RR0A')*/
         endif
     endfunction
 
