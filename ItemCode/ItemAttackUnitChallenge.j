@@ -54,8 +54,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(0,3,0,0,108,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"|CffBBBBBB历练奖励：|r|n解锁|Cffff0000副本挑战|r")
         InitAttackUnitChallengeStateData(0,4,0,0,108,0,Buy_Unit,'ATAE',1,0,0,"|CffBBBBBB历练奖励：|r|n攻击速度|Cffffc926+40%|r")
         InitAttackUnitChallengeStateData(0,5,0,0,108,0,Buy_Unit_Item,'ATAF',12,'IS14',0,"|CffBBBBBB历练奖励：|r|n药品升级为|Cff3399ff明清灵水|r。")
-        InitAttackUnitChallengeStateData(0,6,0,0,108,0,Buy_Unit,'ATAG',8,0,0,"|CffBBBBBB历练奖励：|r|n金币|Cffffc926+20000|r")
-        InitAttackUnitChallengeStateData(0,7,0,0,108,0,Buy_Unit,'ATAH',1,0,0,"|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+10|r")
+        InitAttackUnitChallengeStateData(0,6,0,0,108,0,Buy_Unit_Item,'ATAG',8,'IZ0F',0,"|CffBBBBBB历练奖励：|r|n金币|Cffffc926+20000|r")
+        InitAttackUnitChallengeStateData(0,7,0,0,108,0,Buy_Unit_Item,'ATAH',1,'IZ0G',0,"|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+10|r")
 
         InitAttackUnitChallengeStateData(1,0,0,0,108,0,Buy_Unit,'ATAI',8,0,0,"|CffBBBBBB历练奖励：|r|n攻击|Cffffc926+20000|r，业力|Cffffc926+20000|r")
         InitAttackUnitChallengeStateData(1,1,0,0,108,0,Buy_Unit,'ATAJ',1,0,0,"|CffBBBBBB历练奖励：|r|n攻击伤害|Cffffc926+20%|r，技能伤害|Cffffc926+20%|r")
@@ -586,11 +586,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80获得|cffff0080“"+GetMonsterSoulLuck(ran)+"”|cffffff80！|r")
             UnitAddEffectSetSize(Pu[1],"effect_hero_levelup.mdx",3)*/
         elseif  itid == 'IZ0F'
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,20000)
             /*HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
             for num = 1,3
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“[R]技能”|cffffff80！|r")
             end
             GivePlayerMissionPrize(pid,'RR0A')*/
+        elseif  itid == 'IZ0G'
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
         endif
     endfunction
 
