@@ -308,13 +308,15 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     function GetMagicItemColorName(int id)->string
         int color = GetTypeIdData(id,101)
         if  color == 1
-            return "|cffff0000造化至宝|r"
+            return "|CffFF0000混沌圣器|r"
         elseif  color == 2
-            return "|cffffcc00先天神器|r"
+            return "|CffFFD24D造化至宝|r"
         elseif  color == 3
-            return "|cff9cc3e6后天仙器|r"
+            return "|CffBF00FF先天神器|r"
         elseif  color == 4
-            return "|cffa9d18d通天灵宝|r"
+            return "|Cff00BFFF后天仙器|r"
+        elseif  color == 5
+            return "|Cff00FF7F通天灵宝|r"
         endif
         return ""
     endfunction
@@ -322,13 +324,15 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     function GetMagicItemName(int id)->string
         int color = GetTypeIdData(id,101)
         if  color == 1
-            return "|cffff0000造化至宝-"+ GetTypeIdName(id) + "|r"
+            return "|CffFF0000混沌圣器-"+ GetTypeIdName(id) + "|r"
         elseif  color == 2
-            return "|cffffcc00先天神器-"+ GetTypeIdName(id) + "|r"
+            return "|CffFFD24D造化至宝-"+ GetTypeIdName(id) + "|r"
         elseif  color == 3
-            return "|cff9cc3e6后天仙器-"+ GetTypeIdName(id) + "|r"
+            return "|CffBF00FF先天神器-"+ GetTypeIdName(id) + "|r"
         elseif  color == 4
-            return "|cffa9d18d通天灵宝-"+ GetTypeIdName(id) + "|r"
+            return "|Cff00BFFF后天仙器-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 5
+            return "|Cff00FF7F通天灵宝-"+ GetTypeIdName(id) + "|r"
         endif
         return ""
     endfunction
