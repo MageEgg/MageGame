@@ -150,29 +150,30 @@ scope ItemSystem initializer InitItemSystem
     //读取玩家抽技能需求
     function GetPlayerDrawUse(int pid,int itemid)->int
         if  itemid == 'IS01' or itemid == 'IS06'
-            return 2
+            return 1
         elseif  itemid == 'IS02' or itemid == 'IS07'
-            return 5
+            return 2
         elseif  itemid == 'IS03' or itemid == 'IS08'
-            return 8
+            return 3
         endif
         return 0
     endfunction
     
     //抽技能
     function PlayerAbilityDraw(int pid,int index,int itemid)
-        int num = GetPlayerDrawNum(pid,index)
-        int use = GetPlayerDrawUse(pid,itemid)
+        //int num = GetPlayerDrawNum(pid,index)
+        //int use = GetPlayerDrawUse(pid,itemid)
 
 
+             
                 
-        if  GetUnitIntState(Pu[1],108)>=use
-            AddUnitIntState(Pu[1],108,-use)
+        //if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= use
+            //AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             PlayerUseLearnAbilityBook(pid,index,itemid)
             AddPlayerDrawNum(pid,index)
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！灵力不足"+I2S(use)+"。")
-        endif
+        //else
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！玄铁不足"+I2S(use)+"。")
+        //endif
         
            
  
@@ -364,6 +365,7 @@ scope ItemSystem initializer InitItemSystem
                     UnitAddPoolItemShow(u1,17)
                 end
             endif
+             
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
