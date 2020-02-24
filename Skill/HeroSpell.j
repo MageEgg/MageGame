@@ -2353,26 +2353,71 @@ endfunction
     endfunction
     //攻击暴击时，10%几率造成400码范围的750%业力的群体伤害。每8秒只能触发1次
     function SpellFB23(unit wu,unit tu)
+        if  GetUnitIntState(wu,'FC23') == 0
+            if  Chance(wu,10) == true
+                IndexGroup g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*7.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+                g.destroy()
+                AddUnitIntStateTimer(wu,'FC23',1,8)
+            endif
+        endif
+
     endfunction
 
     //攻击有4%几率，对目标及周围400码范围内的敌人造成 业力*400%的伤害
     function SpellFB38(unit wu,unit tu)
+        if  Chance(wu,4) == true
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*4.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+            g.destroy()
+        endif
     endfunction
     //每击杀1个单位，下一次攻击的伤害增加50%，此效果最多持续5秒且不会叠加
     function SpellFB39(unit wu,unit tu)
+        if  GetUnitIntState(wu,'FC39') == 0
+            AddUnitIntStateTimer(wu,'FC39',1,5)
+        endif
     endfunction
-    //攻击有6%几率，对目标及周围400码敌人造成最大生命*20%的范围伤害(原效果暂时不用：对生命值高于80%的单位额外造成30%伤害)
+    //攻击有6%几率，对目标及周围400码敌人造成最大生命*20%的范围伤害
     function SpellFB40(unit wu,unit tu)
+        if  Chance(wu,6) == true
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,5)*0.2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+            g.destroy()
+        endif
     endfunction
     //受到攻击时，5%几率对攻击者造成攻击力*700%的伤害
     function SpellFB45(unit wu,unit tu)
+        if  Chance(wu,5) == true
+            UnitDamageTarget(wu,tu,GetUnitAttack(wu)*7,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        endif
     endfunction
     //攻击有4%几率，造成目标及周围400码 业力*500%的伤害
     function SpellFB46(unit wu,unit tu)
+        if  Chance(wu,4) == true
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*5.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+            g.destroy()
+        endif
     endfunction
 
     //释放主动技能时，对自身周围400码敌人造成1秒眩晕,并减低护甲20点，持续3秒
     function SpellFB47(unit wu)
+        if  Chance(wu,4) == true
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            
+            LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_misaka light.mdl",0.5)
+            g.destroy()
+        endif
     endfunction
 
 

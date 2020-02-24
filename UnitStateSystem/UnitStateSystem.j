@@ -496,7 +496,20 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
 
 
     
-    
+    func AddUnitIntStateTimer(unit wu,int id,int v,real t)
+        unit u1 = wu
+        int StateId = id
+        int value = v
+        real time = t
+        AddUnitIntState(u1,StateId,value)
+        TimerStart(time,false)
+        {
+            AddUnitIntState(u1,StateId,-value)
+            endtimer
+            flush locals
+        }
+        flush locals
+    end
     
     
     func AddUnitStateExTimer(unit wu,int id,real v,real t)
