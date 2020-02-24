@@ -465,7 +465,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         int value = 0
         num = GetUnitIntState(wu,'S508')
         if  num < 6
-            if  Chance(wu,10) == true
+            if  ChanceEx(wu,'S508',10) == true
                 if  lv >= 3
                     value = 12
                 elseif  lv >= 2
@@ -975,7 +975,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         flush locals
     endfunction
     function SpellS517Spell(unit wu,unit tu,real dam,int lv)
-        if  Chance(wu,10) == true
+        if  ChanceEx(wu,'S517',10) == true
     
             SpellS517(wu,tu,dam,lv)
         endif
@@ -997,17 +997,17 @@ library HeroAbilityFunc uses OtherDamageTimer
         int lv = GetHeroAbilityLevelByIndex(wu,5)
     
         if  lv >= 3
-            if  Chance(wu,100) == true
+            if  ChanceEx(wu,'S518',100) == true
                 SetEquipStateOfPlayer(wu,id,0.1)
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，额外获得10%道果属性！")
             endif
         elseif  lv >= 2
-            if  Chance(wu,70) == true
+            if  ChanceEx(wu,'S518',70) == true
                 SetEquipStateOfPlayer(wu,id,0.1)
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，额外获得10%道果属性！")
             endif
         else
-            if  Chance(wu,40) == true
+            if  ChanceEx(wu,'S518',40) == true
                 SetEquipStateOfPlayer(wu,id,0.1)
                 DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，额外获得10%道果属性！")
             endif
@@ -1065,7 +1065,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
     function SpellS521Spell(unit wu,int lv)
         if  lv >= 4
-            if  Chance(wu,3) == true
+            if  ChanceEx(wu,'S521',3) == true
                 SetAbilityCD_AG(wu,'AG05',0)
             endif
         endif
@@ -1426,7 +1426,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 4
                 ran = 100
             endif
-            if  Chance(wu,ran) == true
+            if  ChanceEx(wu,'S528',ran) == true
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*3.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -1492,7 +1492,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         int jj = GetUnitIntState(wu,150)
         real damage = GetUnitRealState(wu,2) * jj
         if  lv >= 4
-            if  Chance(wu,10) == true
+            if  ChanceEx(wu,'S531',10) == true
                 LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_blue-guagnzhu-special.mdl",0.5)
                 UnitDamageTarget(wu,tu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif

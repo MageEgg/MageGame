@@ -289,6 +289,16 @@ library DamageCode uses UnitStateSet
         gl=gl*0.01
         return GetRandomReal(0, 1) <= gl+s
     endfunction
+
+    function ChanceEx(unit wu,int id,real gl)->bool
+        int class = GetTypeIdData(id,104)
+        real value = GetUnitRealState(wu,80+class)
+        if  value > 0
+            gl = gl + value
+        endif
+        
+        return Chance(wu,gl)
+    endfunction
     
     //元神
     function GetUnitEnlState(unit wu)->real
