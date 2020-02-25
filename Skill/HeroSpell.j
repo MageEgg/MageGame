@@ -388,12 +388,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS028(unit wu,unit tu)//冥月流星落
+    function SpellS028(unit wu,real x,real y)//冥月流星落
         unit u1 = wu
         int id = 'S028'
         real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
-        real x=GetUnitX(tu)
-        real y=GetUnitY(tu)
         group g = CreateGroup()
         DestroyEffect(AddSpecialEffect("effect_az_bw_lina_t1-2.mdl",x,y))
         GroupEnumUnitsInRange(g,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"effect_AZ_PotM(1)_T1_Impact.mdl","origin",0))
@@ -910,12 +908,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS076(unit wu,unit u1)//连环刺
+    function SpellS076(unit wu,real x,real y)//连环刺
         unit u=wu
         int id = 'S076'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        real x=GetUnitX(u1)
-        real y=GetUnitY(u1)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -2350,6 +2346,8 @@ endfunction
                 SpellS018(u1.u,damage)
             elseif  id == 'S022'
                 SpellS022(u1.u,sx,sy,damage)
+            elseif  id == 'S028'
+                SpellS028(u1.u,sx,sy)
             elseif  id == 'S030'
                 SpellS030(u1.u,sx,sy)
             elseif  id == 'S033'
@@ -2368,6 +2366,8 @@ endfunction
                 SpellS070(u1.u,sx,sy,damage)
             elseif  id == 'S074'
                 SpellS074(u1.u,sx,sy,damage)
+            elseif  id == 'S076'
+                SpellS076(u1.u,sx,sy)
             elseif  id == 'S078'
                 SpellS078(u1.u,sx,sy,damage)
             elseif  id == 'S079'
