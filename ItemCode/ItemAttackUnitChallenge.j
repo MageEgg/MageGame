@@ -78,11 +78,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(210,7,0,40,0,0,Buy_Unit,'AT1H',1,0,0,"武灵8")
         InitAttackUnitChallengeStateData(210,8,0,45,0,0,Buy_Unit,'AT1I',1,0,0,"武灵9")
         InitAttackUnitChallengeStateData(210,9,0,50,0,0,Buy_Unit,'AT1J',1,0,0,"武灵10")
-        InitAttackUnitChallengeStateData(210,10,0,55,0,0,Buy_Unit,'AT1K',1,0,0,"武灵11")
+        /*InitAttackUnitChallengeStateData(210,10,0,55,0,0,Buy_Unit,'AT1K',1,0,0,"武灵11")
         InitAttackUnitChallengeStateData(210,11,0,60,0,0,Buy_Unit,'AT1L',1,0,0,"武灵12")
         InitAttackUnitChallengeStateData(210,12,0,65,0,0,Buy_Unit,'AT1M',1,0,0,"武灵13")
         InitAttackUnitChallengeStateData(210,13,0,70,0,0,Buy_Unit,'AT1N',1,0,0,"武灵14")
-        InitAttackUnitChallengeStateData(210,14,0,75,0,0,Buy_Unit,'AT1O',1,0,0,"武灵15")
+        InitAttackUnitChallengeStateData(210,14,0,75,0,0,Buy_Unit,'AT1O',1,0,0,"武灵15")*/
 
         InitAttackUnitChallengeStateData(220,0,0,0,108,0,Buy_Unit,'AT2A',1,0,0,"解锁副本1")
         InitAttackUnitChallengeStateData(220,1,0,0,108,0,Buy_Unit,'AT2B',1,0,0,"解锁副本2")
@@ -367,7 +367,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
             tech = 'KT0A'+AttackUnitChallengePlayerWeiNum(challenge)
             uid = 'uT0A'+AttackUnitChallengePlayerWeiNum(challenge)
-            if  AttackUnitChallengePlayerWeiNum(challenge) > 12
+            if  AttackUnitChallengePlayerWeiNum(challenge) >= 12
                 id = 'AT0L'
                 tech = 'KT0L'
                 uid = 'uT0L'
@@ -381,7 +381,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             BJDebugMsg(YDWEId2S(sid)+"@@"+YDWEId2S(id)+"@@"+I2S(challenge))
             tech = 'KT5A'+AttackUnitChallengePlayerWeiNum(challenge)
             uid = 'uT5A'+AttackUnitChallengePlayerWeiNum(challenge)
-            if  AttackUnitChallengePlayerWeiNum(challenge) > 12
+            if  AttackUnitChallengePlayerWeiNum(challenge) >= 12
                 id = 'AT5L'
                 tech = 'KT5L'
                 uid = 'uT5L'
@@ -423,8 +423,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         AddAttackSummonUnit.execute(pid,u)
                         SetUnitIntState(u,101,id)
                         IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                        if  (challenge == 1 or challenge == 6) and AttackUnitChallengePlayerWeiNum(challenge) > 12
+                        if  (challenge == 1 or challenge == 6) and AttackUnitChallengePlayerWeiNum(challenge) >= 12
                             SetUnitRealStateOfOtherIdAddValue(u,uid,1+0.3*I2R(AttackUnitChallengePlayerWeiNum(challenge)-12))
+                            BJDebugMsg(R2S(1+0.3*I2R(AttackUnitChallengePlayerWeiNum(challenge)-12)))
                         endif
                     end
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
@@ -531,10 +532,10 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
                     SetPlayerTechResearched(Player(pid),tech,1)
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,AttackUnitChallengePlayerWeiNum(challenge)*5)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName('AT0A')+",|cffffff00奖励玄铁x"+I2S(AttackUnitChallengePlayerWeiNum(challenge)*5)+"|r！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(AttackUnitChallengePlayerWeiNum(challenge)*5)+"|r！")
                     UnitRemoveAbility(Pu[42],id)
                     if  AttackUnitChallengePlayerWeiNum(challenge) < 12
-                        newid = id+AttackUnitChallengePlayerWeiNum(challenge)+872415232
+                        newid = AttackUnitChallengePlayerWeiNum(challenge)+'uT0A'
                         if  AttackUnitChallengePlayerWeiNum(challenge) < 5
                             AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 500
                         else
@@ -542,16 +543,16 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         endif
                         AttackUnitChallengeStateTypeString[zu][wei] = "|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+"+I2S((AttackUnitChallengePlayerWeiNum(challenge)+1)*5)+"|r"
                     else
-                        newid = id+11+872415232
+                        newid = 'uT0L'
                     endif
                     AddAttackUnitChallengeStateStock(pid,zu,wei)
                     if  Player(pid) == GetLocalPlayer()
-                        YDWESetUnitAbilityDataString(Pu[42],id,1,203,GetObjectName(newid))
+                        YDWESetUnitAbilityDataString(Pu[42],'AT0A',1,215,GetObjectName(newid))
                     endif
                 elseif  challenge == 6
                     SetPlayerTechResearched(Player(pid),tech,1)
                     UnitAddItemEx(Pu[1],'IN30')
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName('AT5A')+",|cffffff00获得"+GetObjectName('IN30')+"|r！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00获得"+GetObjectName('IN30')+"|r！")
                     AttackUnitChallengePlayerWeiNum(challenge) = AttackUnitChallengePlayerWeiNum(challenge) + 1
                 else
                     UnitRemoveAbility(Pu[42],id)
