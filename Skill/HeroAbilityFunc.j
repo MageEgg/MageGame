@@ -1083,11 +1083,12 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
         TimerStart(1,true)
         {
+            time = time - 1
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
-
+            
             if  time <= 0
                 DestroyEffect(eff)
                 endtimer
