@@ -949,9 +949,12 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  dis > 50
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
+                SetUnitX(u3,x1)
+                SetUnitY(u3,y1)
 
                 
-                GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+
+                GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,2,0))
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
 
@@ -961,14 +964,13 @@ library HeroAbilityFunc uses OtherDamageTimer
                 elseif  lv >= 2
                     damage = damage * 1.2
                 endif
-                AddEffectInAreaSetSize(x1,y1,300,0.5,8,"effect_hero_attack1.mdl")
-                GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+                AddEffectInAreaSetSize(x1,y1,250,0.5,10,"effect_hero_attack1.mdl")
+                GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
                 SpellS517Timer(u1)
                 DestroyGroup(g1)
                 RemoveUnit(u3)
-                g.destroy()
                 endtimer
             endif
             flush locals
