@@ -117,14 +117,17 @@ scope ItemSystem initializer InitItemSystem
                         RemoveItem(it)
                         UnitAddItem(u1,CreateItem(next,GetUnitX(u1),GetUnitY(u1)))
                         UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备"+GetObjectName(id)+"成功升级为"+GetObjectName(next))
+                        IncEquipModelFunc(pid,1)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：装备升级成功！|r")
                     else
-                        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！|r")
+                        /*if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
                             AdjustPlayerStateBJ(gold/5, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备|r"+GetObjectName(id)+"|cffff0000升级失败！返还"+I2S(gold/5)+"金币|r")
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备|r"+GetObjectName(id)+"|cffff0000升级失败！|r")
-                        endif
+                        endif*/
+                        IncEquipModelFunc(pid,2)
                         
                     endif
                     

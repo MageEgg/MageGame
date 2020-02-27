@@ -89,7 +89,7 @@ scope AllPrizeData initializer init
         RegisterPrizePoolData(pid,7,'S081')
         RegisterPrizePoolData(pid,9,'S083')
         RegisterPrizePoolData(pid,2,'S095')
-        RegisterPrizePoolData(pid,5,'S095')
+        RegisterPrizePoolData(pid,5,'S015')
         RegisterPrizePoolData(pid,5,'S014')
         RegisterPrizePoolData(pid,2,'S096')
         RegisterPrizePoolData(pid,3,'S097')

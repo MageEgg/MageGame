@@ -392,28 +392,52 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     function GetMagicStateTips(int id,real lv)->string
         string s = ""
         real value = 0
+        int ps = 0
 
-  
-        for i = 1,60
-
-                value = GetTypeIdReal(id,i)
-                if  value > 0
-                    if  i == 1 or i == 2 or i == 5 or i == 7
-                        if  lv > 0
-                            s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]+"(|CFF00FF00+"+I2S(R2I(value*lv))+"|R)"
-                        else
-                            s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]    
-                        endif
+        for i = 1,7
+            value = GetTypeIdReal(id,i)
+            if  value > 0
+                if  i == 1 or i == 2 or i == 5 or i == 7
+                    if  lv > 0
+                        s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]+" |CFF00FF00+"+I2S(R2I(value*lv))+"|r"
                     else
-                        s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+                        s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]    
                     endif
                 endif
+            endif
+        end
 
+
+        for i = 1,60
+
+            value = GetTypeIdReal(id,i)
+            if  i != 1 and i != 2 and i != 5 and i != 7
+                if  value > 0
+                    if  ps == 0
+                        ps = 1
+                        s = s + "\n\n|cff999999特殊属性：|r|Cff00BFFF"
+                    endif
+                    s = s + "\n" + StateName[i] + "+" + I2S(R2I(value)) + StateName[i+1000]
+                endif
+            endif
             
         end
         return  s
     endfunction
     
+    function GetMagicLevel(int pid)->int
+        int lv = 0
+        for i = 1,12
+            if  GetPlayerTechCount(Player(pid),'KT1A'+i-1,true) > 0  
+                lv = i
+            else
+                exitwhen true
+            endif
+        end
+        return lv
+
+    endfunction
+
     function BoxShowMagicItemPublic(int pid,int id)
         int h = 10
         int value = 0
@@ -425,17 +449,20 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             SetTipsData(1,"GetTypeIdIcon(id)","["+GetMagicItemStateAllName(id)+"]"+GetTypeIdName(id))
 
             SetTipsData(10,"",GetMagicItemColorName(id))
+
+            SetTipsData(11,"","|cff999999武灵等级：|r"+I2S(GetMagicLevel(pid)))
             if  GetTypeIdTips(id) == ""
-                SetTipsData(11,"","|cff999999基础属性|r" + GetMagicStateTips(id,lv))
-                h = 12
+                SetTipsData(12,"","|cff999999基础属性：|r" + GetMagicStateTips(id,lv))
+                h = 13
             else
-                SetTipsData(11,"","|cff999999基础属性|r" + GetMagicStateTips(id,lv)+"\n"+GetTypeIdTips(id))
-                h = 12
+                SetTipsData(12,"","|cff999999基础属性：|r" + GetMagicStateTips(id,lv)+"\n"+GetTypeIdTips(id))
+                h = 13
             endif
             
+            SetTipsData(h,"","|cff999999点击法宝可进行脱卸/替换等操作。")
             
 
-            SetTipsData(h,"",GetMagicItemCollectTips(pid,id))
+            //SetTipsData(h,"",GetMagicItemCollectTips(pid,id))
 
 
             ShowTipsUI()

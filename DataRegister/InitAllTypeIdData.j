@@ -1,7 +1,6 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
     //输出代码
-        //输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","")
@@ -54,7 +53,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB50',"|Cff00BFFF招妖幡|r","ReplaceableTextures\\CommandButtons\\BTNFB50.BLP","")
         call InitTypeIdStrings('FB51',"|Cff00BFFF九曲黄河阵|r","ReplaceableTextures\\CommandButtons\\BTNFB51.BLP","")
         call InitTypeIdStrings('FB52',"|CffBF00FF紫绶仙衣|r","ReplaceableTextures\\CommandButtons\\BTNFB52.BLP","")
-        
         call InitTypeIdStrings('FJ01',"武器","ReplaceableTextures\\CommandButtons\\BTNFJ01.BLP","")
         call InitTypeIdStrings('FJ02',"副手","ReplaceableTextures\\CommandButtons\\BTNFJ02.BLP","")
         call InitTypeIdStrings('FJ03',"护具","ReplaceableTextures\\CommandButtons\\BTNFJ03.BLP","")
@@ -64,7 +62,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FJ07',"秘宝","ReplaceableTextures\\CommandButtons\\BTNFJ07.BLP","")
         call InitTypeIdStrings('FJ08',"坐骑","ReplaceableTextures\\CommandButtons\\BTNFJ08.BLP","")
         call InitTypeIdStrings('FJ09',"法器","ReplaceableTextures\\CommandButtons\\BTNFJ09.BLP","")
-
         call InitTypeIdStrings('IJ01',"低级道果[1]","war3mapImported\\ch_DG1.mdl","")
         call InitTypeIdStrings('IJ02',"中级道果[2]","war3mapImported\\ch_DG2.mdl","")
         call InitTypeIdStrings('IJ03',"|cff00FA9A高级道果[3]|r","war3mapImported\\ch_DG3.mdl","")
@@ -127,11 +124,11 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY2A',"[翅膀]光洁之翼","ReplaceableTextures\\CommandButtons\\BTNRY2A.BLP","")
         call InitTypeIdStrings('RY2B',"[翅膀]圣灵之翼","ReplaceableTextures\\CommandButtons\\BTNRY2B.BLP","")
         call InitTypeIdStrings('RY2C',"[翅膀]五彩凰翼","ReplaceableTextures\\CommandButtons\\BTNRY2C.BLP","")
-        call InitTypeIdStrings('RY2D',"[翅膀]幻莲仙翼","ReplaceableTextures\\CommandButtons\\BTNRY2D.BLP","杀敌生命+100+20*地图等级\n每秒攻击+100+20*地图等级\n物理伤害+50%\n法术伤害+50%\n解锁外观|Cffff0000幻莲仙翼|r")
+        call InitTypeIdStrings('RY2D',"[翅膀]幻莲仙翼","ReplaceableTextures\\CommandButtons\\BTNRY2D.BLP","杀敌生命+100+20*地图等级\n每秒攻击+100+20*地图等级\n攻击伤害+50%\n技能伤害+50%\n解锁外观|Cffff0000幻莲仙翼|r")
         call InitTypeIdStrings('RY3A',"[神兵]凝霜","ReplaceableTextures\\CommandButtons\\BTNRY3A.BLP","")
         call InitTypeIdStrings('RY3B',"[神兵]破阙","ReplaceableTextures\\CommandButtons\\BTNRY3B.BLP","")
         call InitTypeIdStrings('RY3C',"[神兵]崩鸣刃","ReplaceableTextures\\CommandButtons\\BTNRY3C.BLP","")
-        call InitTypeIdStrings('RY3D',"[神兵]戮仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3D.BLP","杀敌攻击+30+5*地图等级\n每秒业力+100+20*地图等级\n暴击率+10%\n吸血+10%\n攻击5%范围攻击力*5法术伤害\n解锁外观|Cffff0000戮仙剑|r")
+        call InitTypeIdStrings('RY3D',"[神兵]戮仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3D.BLP","杀敌攻击+30+5*地图等级\n每秒业力+100+20*地图等级\n暴击率+10%\n吸血+10%\n攻击5%范围攻击力*5技能伤害\n解锁外观|Cffff0000戮仙剑|r")
         call InitTypeIdStrings('RY4A',"[称号]君临天下","ReplaceableTextures\\CommandButtons\\BTNRY4A.BLP","")
         call InitTypeIdStrings('RY4B',"[称号]精英玩家","ReplaceableTextures\\CommandButtons\\BTNRY4B.BLP","")
         call InitTypeIdStrings('RY4C',"[称号]俯瞰寰宇","ReplaceableTextures\\CommandButtons\\BTNRY4C.BLP","")
@@ -154,7 +151,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1U',"[礼包]封神礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1U.BLP","每秒金币+10+3*地图等级\n每秒生命+50+10*地图等级\n入门道果箱x1\n装备升级失败返还20%金币")
         call InitTypeIdStrings('RJ1V',"[礼包]金币礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1V.BLP","开局金币+2000")
         call InitTypeIdStrings('RJ1W',"[礼包]木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+1")
-        call InitTypeIdStrings('RK1A',"[宠物]小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","每秒生命+100+20*地图等级\n每秒业力+50+10*地图等级\n\n宠物攻击力=英雄业力\n宠物攻击5%范围业力*10法术伤害\n解锁宠物|Cffffd24d小狐妖|r")
+        call InitTypeIdStrings('RK1A',"[宠物]小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","每秒生命+100+20*地图等级\n每秒业力+50+10*地图等级\n\n宠物攻击力=英雄业力\n宠物攻击5%范围业力*10技能伤害\n解锁宠物|Cffffd24d小狐妖|r")
         call InitTypeIdStrings('RC1A',"[隐藏]？？？","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp","???")
         call InitTypeIdStrings('RC1B',"[隐藏]？？？","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp","???")
         call InitTypeIdStrings('RC1C',"[隐藏]？？？","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp","???")
@@ -207,26 +204,26 @@ scope AllTypeIdData initializer init
     endfunction
     function InitDataString2()//注册法宝说明数据
     
-
+        
         InitTypeIdJbStateOnec('FJ01',"提高150000攻击力","提高300000攻击力","提高450000攻击力")
-        InitTypeIdJbStateOnec('FJ02',"提高6%物理伤害","提高12%物理伤害","提高24%物理伤害")
+        InitTypeIdJbStateOnec('FJ02',"提高6%攻击伤害","提高12%攻击伤害","提高24%攻击伤害")
         InitTypeIdJbStateOnec('FJ03',"提高3%闪避/物理抵抗","提高6%闪避/物理抵抗","提高9%闪避/物理抵抗")
         InitTypeIdJbStateOnec('FJ04',"提高3%法术穿透","提高4%法术穿透","提高8%法术穿透")
         InitTypeIdJbStateOnec('FJ05',"提高3%物理穿透","提高4%物理穿透","提高8%物理穿透")
         InitTypeIdJbStateOnec('FJ06',"每10秒30%几率攻速提高100%","每10秒50%几率攻速提高100%","每10秒70%几率攻速提高100%")
         InitTypeIdJbStateOnec('FJ07',"提高2%暴击，50%暴击伤害","提高3%暴击，100%暴击伤害","提高6%暴击，150%暴击伤害")
         InitTypeIdJbStateOnec('FJ08',"提高4%法术抵抗","提高8%法术抵抗","提高12%法术抵抗")
-        InitTypeIdJbStateOnec('FJ09',"提高6%法术伤害","提高12%法术伤害","提高24%法术伤害")
+        InitTypeIdJbStateOnec('FJ09',"提高6%技能伤害","提高12%技能伤害","提高24%技能伤害")
 
         InitTypeIdJbState('FJ01',2,"|Cff999999武器(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f150000|r|Cff999999/300000/450000攻击力|r",3,"|Cff999999武器(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高150000/|r|Cff00ff7f300000|r|Cff999999/450000攻击力|r",4,"|Cff999999武器(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高150000/300000/|r|Cff00ff7f450000|r|Cff999999攻击力|r","|Cff999999武器|r|Cffdddddd(2/3/4)|r|Cff999999\n提高|r|Cffdddddd150000/300000/450000|r|Cff999999攻击力|r")
-        InitTypeIdJbState('FJ02',2,"|Cff999999副手(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f6|r|Cff999999/12/24%物理伤害|r",3,"|Cff999999副手(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高6/|r|Cff00ff7f12|r|Cff999999/24%物理伤害|r",4,"|Cff999999副手(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高6/9/|r|Cff00ff7f12|r|Cff999999%物理伤害|r","|Cff999999副手|r|Cffdddddd(2/3/4)|r|Cff999999\n提高|r|Cffdddddd6/12/24%|r|Cff999999物理伤害|r")
+        InitTypeIdJbState('FJ02',2,"|Cff999999副手(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f6|r|Cff999999/12/24%攻击伤害|r",3,"|Cff999999副手(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高6/|r|Cff00ff7f12|r|Cff999999/24%攻击伤害|r",4,"|Cff999999副手(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高6/9/|r|Cff00ff7f12|r|Cff999999%攻击伤害|r","|Cff999999副手|r|Cffdddddd(2/3/4)|r|Cff999999\n提高|r|Cffdddddd6/12/24%|r|Cff999999攻击伤害|r")
         InitTypeIdJbState('FJ03',2,"|Cff999999护具(|r|Cff00ff7f2|r|Cff999999/3/4)\n闪避/物理抵抗提高|r|Cff00ff7f3|r|Cff999999/6/9%|r",3,"|Cff999999护具(2/|r|Cff00ff7f3|r|Cff999999/4)\n闪避/物理抵抗提高3/|r|Cff00ff7f6|r|Cff999999/9%|r",4,"|Cff999999护具(2/3/|r|Cff00ff7f4|r|Cff999999)\n闪避/物理抵抗提高3/6/|r|Cff00ff7f9|r|Cff999999%|r","|Cff999999护具|r|Cffdddddd(2/3/4)|r|Cff999999\n闪避/物理抵抗提高|r|Cffdddddd3/6/9%|r")
         InitTypeIdJbState('FJ04',2,"|Cff999999旗(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f3|r|Cff999999/4/8%法术穿透。|r",3,"|Cff999999旗(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高3/|r|Cff00ff7f4|r|Cff999999/8%法术穿透。|r",4,"|Cff999999旗(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高3/4/|r|Cff00ff7f8|r|Cff999999%法术穿透。|r","|Cff999999旗|r|Cffdddddd(2/3/4)|r|Cff999999\n提高|r|Cffdddddd3/4/8%|r|Cff999999法术穿透。|r")
         InitTypeIdJbState('FJ05',2,"|Cff999999暗器(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f3|r|Cff999999/4/8%物穿|r",3,"|Cff999999暗器(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高3/|r|Cff00ff7f4|r|Cff999999/8%物穿|r",4,"|Cff999999暗器(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高3/4/|r|Cff00ff7f8|r|Cff999999%物穿|r","|Cff999999暗器|r|Cffdddddd(2/3/4)|r|Cff999999\n提高|r|Cffdddddd3/4/8%|r|Cff999999物穿|r")
         InitTypeIdJbState('FJ06',2,"|Cff999999阵图(|r|Cff00ff7f2|r|Cff999999/3/4)\n每10秒|r|Cff00ff7f30|r|Cff999999/50/70%几率攻速提高|r|Cff00ff7f100%|r",3,"|Cff999999阵图(2/|r|Cff00ff7f3|r|Cff999999/4)\n每10秒30/|r|Cff00ff7f50|r|Cff999999/70%几率攻速提高|r|Cff00ff7f100%|r",4,"|Cff999999阵图(2/3/|r|Cff00ff7f4|r|Cff999999)\n每10秒30/50/|r|Cff00ff7f70|r|Cff999999%几率攻速提高|r|Cff00ff7f100%|r","|Cff999999阵图(|r|Cffdddddd2/3/4|r|Cff999999)\n每10秒|r|Cffdddddd30/50/70%|r|Cff999999几率攻速提高|r|Cffdddddd100%|r")
         InitTypeIdJbState('FJ07',2,"|Cff999999秘宝(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f2|r|Cff999999/3/6%暴击，|r|Cff00ff7f50|r|Cff999999/100/150%暴击伤害|r",3,"|Cff999999秘宝(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高2/|r|Cff00ff7f3|r|Cff999999/6%暴击，50/|r|Cff00ff7f100|r|Cff999999/150%暴击伤害|r",4,"|Cff999999秘宝(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高2/3/|r|Cff00ff7f6|r|Cff999999%暴击，50/100/|r|Cff00ff7f150|r|Cff999999%暴击伤害|r","|Cff999999秘宝(|r|Cffdddddd2/3/4|r|Cff999999)\n提高|r|Cffdddddd2/3/6%|r|Cff999999暴击，|r|Cffdddddd50/100/150%|r|Cff999999暴击伤害|r")
         InitTypeIdJbState('FJ08',2,"|Cff999999坐骑(|r|Cff00ff7f2|r|Cff999999/3/4)\n法术抵抗|r|Cff00ff7f4|r|Cff999999/8/12%|r",3,"|Cff999999坐骑(2/|r|Cff00ff7f3|r|Cff999999/4)\n法术抵抗4/|r|Cff00ff7f8|r|Cff999999/12%|r",4,"|Cff999999坐骑(2/3/|r|Cff00ff7f4|r|Cff999999)\n法术抵抗4/8/|r|Cff00ff7f12|r|Cff999999%|r","|Cff999999坐骑(|r|Cffdddddd2/3/4|r|Cff999999)\n法术抵抗|r|Cffdddddd4/8/12%|r")
-        InitTypeIdJbState('FJ09',2,"|Cff999999法器(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f6|r|Cff999999/12/24%法术伤害|r",3,"|Cff999999法器(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高6/|r|Cff00ff7f12|r|Cff999999/24%法术伤害|r",4,"|Cff999999法器(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高6/12/|r|Cff00ff7f24|r|Cff999999%法术伤害|r","|Cff999999法器(|r|Cffdddddd2/3/4|r|Cff999999)\n提高|r|Cffdddddd6/12/24%|r|Cff999999法术伤害|r")
+        InitTypeIdJbState('FJ09',2,"|Cff999999法器(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f6|r|Cff999999/12/24%技能伤害|r",3,"|Cff999999法器(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高6/|r|Cff00ff7f12|r|Cff999999/24%技能伤害|r",4,"|Cff999999法器(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高6/12/|r|Cff00ff7f24|r|Cff999999%技能伤害|r","|Cff999999法器(|r|Cffdddddd2/3/4|r|Cff999999)\n提高|r|Cffdddddd6/12/24%|r|Cff999999技能伤害|r")
 
         
         BJDebugMsg("init2end")
@@ -307,7 +304,7 @@ InitEquipData('E016',0,0,20000,60,0,'E017',0,0)
 InitEquipData('E017',0,0,20000,60,0,'E018',0,0)
 InitEquipData('E018',0,0,20000,60,0,'E019',0,0)
 InitEquipData('E019',0,0,20000,60,0,'E020',0,0)
-InitEquipData('E020',0,0,35000,100,'uE04','E021',0,0)
+InitEquipData('E020',0,0,50000,100,'uE04','E021',0,0)
 InitEquipData('E021',0,0,35000,50,0,'E022',0,0)
 InitEquipData('E022',0,0,35000,50,0,'E023',0,0)
 InitEquipData('E023',0,0,35000,50,0,'E024',0,0)
@@ -357,7 +354,7 @@ InitEquipData('E216',0,0,20000,60,0,'E217',0,0)
 InitEquipData('E217',0,0,20000,60,0,'E218',0,0)
 InitEquipData('E218',0,0,20000,60,0,'E219',0,0)
 InitEquipData('E219',0,0,20000,60,0,'E220',0,0)
-InitEquipData('E220',0,0,35000,100,'uE24','E221',0,0)
+InitEquipData('E220',0,0,50000,100,'uE24','E221',0,0)
 InitEquipData('E221',0,0,35000,50,0,'E222',0,0)
 InitEquipData('E222',0,0,35000,50,0,'E223',0,0)
 InitEquipData('E223',0,0,35000,50,0,'E224',0,0)

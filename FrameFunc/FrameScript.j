@@ -80,11 +80,13 @@
                 endif
                 SetTipsData(12,"","|cff808080攻击距离："+R2SI(GetUnitState(Pu[5],ConvertUnitState(0x16))))
                 SetTipsData(13,""," ")
-                SetTipsData(14,"","物理伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
-                SetTipsData(15,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
-                SetTipsData(16,"","法术伤害："+R2SI(GetUnitRealState(Pu[5],16))+"%|r")
-                SetTipsData(17,"","法术穿透："+R2SI(GetUnitRealState(Pu[5],14))+"%|r")
-                SetTipsData(18,""," ")
+                SetTipsData(14,"","攻击伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
+                SetTipsData(15,"","技能伤害："+R2SI(GetUnitRealState(Pu[5],16))+"%|r")
+                SetTipsData(16,""," ")
+                //SetTipsData(15,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
+                
+                //SetTipsData(17,"","法术穿透："+R2SI(GetUnitRealState(Pu[5],14))+"%|r")
+                
                 ShowTipsUI()
                 ShowNewDzFrameTooltip(0.11)
             endif

@@ -164,11 +164,11 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[9]="攻速"
         StateName[10]="闪避"
         StateName[11]="免伤"
-        StateName[12]="普攻伤害"
+        StateName[12]=""
         StateName[13]="物理穿透"
         StateName[14]="法术穿透"
-        StateName[15]="物理伤害"
-        StateName[16]="法术伤害"
+        StateName[15]="攻击伤害"
+        StateName[16]="技能伤害"
         StateName[17]="伤害加成"
         StateName[18]="物理抵抗"
         StateName[19]="暴击"
@@ -376,39 +376,30 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 endif
 
 
-
-                if  StateId == 19
-                    DzFrameSetText(BUTTON_Text[161],"|cffffcc00暴击：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 20
-                    DzFrameSetText(BUTTON_Text[162],"|cffffcc00暴伤：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 10
-                    DzFrameSetText(BUTTON_Text[163],"|cffffcc00闪避：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 22
-                    DzFrameSetText(BUTTON_Text[164],"|cffffcc00分裂：|r"+I2S(R2I(showvalue))+"%")
+                if  StateId == 32
+                    DzFrameSetText(BUTTON_Text[161],"|cffffcc00攻击加成：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 33
+                    DzFrameSetText(BUTTON_Text[162],"|cffffcc00业力加成：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 15
-                    DzFrameSetText(BUTTON_Text[165],"|cffffcc00物理伤害：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[163],"|cffffcc00攻击伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 16
-                    DzFrameSetText(BUTTON_Text[166],"|cffffcc00法术伤害：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[164],"|cffffcc00技能伤害：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 19
+                    DzFrameSetText(BUTTON_Text[165],"|cffffcc00暴击概率：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 20
+                    DzFrameSetText(BUTTON_Text[166],"|cffffcc00暴击伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 41
                     DzFrameSetText(BUTTON_Text[167],"|cffffcc00金币加成：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 27
-                    DzFrameSetText(BUTTON_Text[168],"|cffffcc00技能概率：|r"+I2S(R2I(showvalue))+"%")
-                elseif  StateId == 45
-                    DzFrameSetText(BUTTON_Text[169],"|cffffcc00杀敌生命：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 43
-                    DzFrameSetText(BUTTON_Text[170],"|cffffcc00杀敌攻击：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 44
-                    DzFrameSetText(BUTTON_Text[171],"|cffffcc00杀敌业力：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 49
-                    DzFrameSetText(BUTTON_Text[172],"|cffffcc00每秒生命：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 47
-                    DzFrameSetText(BUTTON_Text[173],"|cffffcc00每秒攻击：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 48
-                    DzFrameSetText(BUTTON_Text[174],"|cffffcc00每秒业力：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 46
-                    DzFrameSetText(BUTTON_Text[175],"|cffffcc00杀敌金币：|r"+I2S(R2I(showvalue)))
-                elseif  StateId == 50
-                    DzFrameSetText(BUTTON_Text[176],"|cffffcc00每秒金币：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 10
+                    DzFrameSetText(BUTTON_Text[168],"|cffffcc00傻逼：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 18
+                    DzFrameSetText(BUTTON_Text[169],"|cffffcc00减伤：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 22
+                    DzFrameSetText(BUTTON_Text[170],"|cffffcc00分裂：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 21
+                    DzFrameSetText(BUTTON_Text[171],"|cffffcc00吸血：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 17
+                    DzFrameSetText(BUTTON_Text[172],"|cffffcc00伤害加成：|r"+I2S(R2I(showvalue))+"%")
                 endif
 
 
