@@ -385,8 +385,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r0%")
         CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
         CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00分裂：|r0%")
-        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00物理伤害：|r0%")
-        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00法术伤害：|r0%")
+        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00攻击伤害：|r0%")
+        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00技能伤害：|r0%")
         CreateText(167,origin,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
         
         

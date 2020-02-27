@@ -164,11 +164,11 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[9]="攻速"
         StateName[10]="闪避"
         StateName[11]="免伤"
-        StateName[12]="普攻伤害"
+        StateName[12]=""
         StateName[13]="物理穿透"
         StateName[14]="法术穿透"
-        StateName[15]="物理伤害"
-        StateName[16]="法术伤害"
+        StateName[15]="攻击伤害"
+        StateName[16]="技能伤害"
         StateName[17]="伤害加成"
         StateName[18]="物理抵抗"
         StateName[19]="暴击"
@@ -386,9 +386,9 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 elseif  StateId == 22
                     DzFrameSetText(BUTTON_Text[164],"|cffffcc00分裂：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 15
-                    DzFrameSetText(BUTTON_Text[165],"|cffffcc00物理伤害：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[165],"|cffffcc00攻击伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 16
-                    DzFrameSetText(BUTTON_Text[166],"|cffffcc00法术伤害：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[166],"|cffffcc00技能伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 41
                     DzFrameSetText(BUTTON_Text[167],"|cffffcc00金币加成：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 27

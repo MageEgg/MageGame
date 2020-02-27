@@ -122,7 +122,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function SetPlotButtonShow(int index,bool show)
         
         DzFrameShow(BUTTON_Back[index+320][0],show)
-        DzFrameShow(BUTTON_Back[index+330][0],show)
+        //DzFrameShow(BUTTON_Back[index+330][0],show)
     endfunction
 
     //设置控件为未解锁
@@ -138,7 +138,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         DzFrameSetTexture(BUTTON_Back[index+300][0],"war3mapImported\\UI_PlotSelect_FBBack.tga",0)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
-        DzFrameSetTexture(BUTTON_Back[index+330][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,2)),0)
+        //DzFrameSetTexture(BUTTON_Back[index+330][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,2)),0)
         
     endfunction
     //设置控件为已通关
@@ -152,7 +152,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         DzFrameSetTexture(BUTTON_Back[index+300][0],"war3mapImported\\UI_PlotSelect_FBBack.tga",0)
         DzFrameSetTexture(BUTTON_Back[index+310][0],GetPlotIcon(pid,index),0)
         DzFrameSetTexture(BUTTON_Back[index+320][0],GetTypeIdIcon(GetPlayerPlotPrizeId(pid,index,1)),0)
-        DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
+        //DzFrameSetTexture(BUTTON_Back[index+330][0],"war3mapImported\\alpha.tga",0)
         SetPlotButtonShow(index,true)
     endfunction
 
@@ -178,7 +178,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function RePlayerPlotPrizeId(int pid)
         for i = 1,8
             SetPlayerPlotPrizeId(pid,i,1,'CF01')
-            SetPlayerPlotPrizeId(pid,i,2,'IN32')
+            //SetPlayerPlotPrizeId(pid,i,2,'IN32')
         end
 
         
@@ -282,11 +282,11 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         if  Type == 3
             BJDebugMsg("时渊奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
-            id2 = GetPlayerPlotPrizeId(pid,index,2)
+            //id2 = GetPlayerPlotPrizeId(pid,index,2)
         else
             BJDebugMsg("普通奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
-            id2 = GetPlayerPlotPrizeId(pid,index,2)
+            //id2 = GetPlayerPlotPrizeId(pid,index,2)
             id3 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
             id4 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
             if  GameLevel >= 3
@@ -375,12 +375,12 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
                 CreateButton(index+310,Button.frameid,TYPE_FUNC,0,BUTTON_Back[index+300][0],0,0.001,-0.001,0.074,0.073,"war3mapImported\\alpha.tga")
 
-                CreateButton(index+320,Button.frameid,TYPE_BUTTON,6,BUTTON_Back[index+300][0],6,0.0025,0.0025,0.033,0.033,"war3mapImported\\alpha.tga")
-                CreateButton(index+330,Button.frameid,TYPE_BUTTON,8,BUTTON_Back[index+300][0],8,-0.0025,0.0025,0.033,0.033,"war3mapImported\\alpha.tga")
+                CreateButton(index+320,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[index+300][0],7,0.0,0.0025,0.033,0.033,"war3mapImported\\alpha.tga")
+                //CreateButton(index+330,Button.frameid,TYPE_BUTTON,8,BUTTON_Back[index+300][0],8,-0.0025,0.0025,0.033,0.033,"war3mapImported\\alpha.tga")
 
                 
                 DzFrameShow(BUTTON_Back[index+320][0],false)
-                DzFrameShow(BUTTON_Back[index+330][0],false)
+                //DzFrameShow(BUTTON_Back[index+330][0],false)
             end
         end
         CreateButton(309,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.01,0.01,0.076,0.021,"war3mapImported\\UI_PlotSelect_Resources.tga")

@@ -76,11 +76,11 @@ scope PlayerCaht initializer InitPlayerChat
             if  DzBool == true
                 if  chat3 == "add"
                     if  S2I(SubString(chat,3,6)) > 99
-                        AddUnitIntState(Pu[1],S2I(SubString(chat,3,6)),S2I(SubString(chat,6,15)))
+                        AddUnitIntState(Pu[5],S2I(SubString(chat,3,6)),S2I(SubString(chat,6,15)))
                     else
-                        AddUnitRealState(Pu[1],S2I(SubString(chat,3,6)),S2I(SubString(chat,6,15)))
+                        AddUnitRealState(Pu[5],S2I(SubString(chat,3,6)),S2I(SubString(chat,6,15)))
                     endif
-                    BJDebugMsg("玩家"+I2S(pid)+StateName[S2I(SubString(chat,3,6))]+"增加"+SubString(chat,6,15))
+                    BJDebugMsg(GetUnitName(Pu[5])+StateName[S2I(SubString(chat,3,6))]+"增加"+SubString(chat,6,15))
                 elseif  chat2 == "se"
                     SaveData(pid,S2I(SubString(chat,2,3)),S2I(SubString(chat,3,5)),S2I(SubString(chat,5,10)))
                     BJDebugMsg(SubString(chat,2,3)+"&"+SubString(chat,3,5)+"&"+SubString(chat,5,10))

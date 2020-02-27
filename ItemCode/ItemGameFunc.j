@@ -102,7 +102,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
                         GameGiftBool[num] = true
                         AddUnitRealState(Pu[1],15,5)
                         AddUnitRealState(Pu[1],16,5)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，物理伤害+5%、法术伤害+5%！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，攻击伤害+5%、技能伤害+5%！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
@@ -422,9 +422,9 @@ library ItemGameFunc uses DamageCode,AttackUnit
         elseif  num == 2
             return "杀敌生命+"+I2S(16+24*GameLevel)
         elseif  num == 3
-            return "物理伤害+"+I2S(7+3*GameLevel)+"%"
+            return "攻击伤害+"+I2S(7+3*GameLevel)+"%"
         elseif  num == 4
-            return "魔法伤害+"+I2S(7+3*GameLevel)+"%"
+            return "技能伤害+"+I2S(7+3*GameLevel)+"%"
         elseif  num == 5
             return "暴击+5%"
         elseif  num == 6
@@ -589,9 +589,9 @@ library ItemGameFunc uses DamageCode,AttackUnit
             elseif  num == 2
                 s = "|CffAAAAAA基础属性：|r|n杀敌生命|Cffffd24d+"+I2S(16+24*GameLevel)+"|n|n|r|Cffaaaaaa四足风云声响亮，麟生雾彩映金光。|r"
             elseif  num == 3
-                s = "|CffAAAAAA基础属性：|r|n物理伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa龙生九子之一，形如雄狮，生裂狮虎，据说和麒麟有仇。|r"
+                s = "|CffAAAAAA基础属性：|r|n攻击伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa龙生九子之一，形如雄狮，生裂狮虎，据说和麒麟有仇。|r"
             elseif  num == 4
-                s = "|CffAAAAAA基础属性：|r|n法术伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa凤生九雏之一，空中飞行，有巨爪利喙。|r"
+                s = "|CffAAAAAA基础属性：|r|n技能伤害|Cffffd24d+"+I2S(7+3*GameLevel)+"%|n|n|r|Cffaaaaaa凤生九雏之一，空中飞行，有巨爪利喙。|r"
             elseif  num == 5
                 s = "|CffAAAAAA基础属性：|r|n暴击|Cffffd24d+5%|n|n|r|Cffaaaaaa五尾一角，类赤豹，上古凶兽，异常凶猛|r"
             elseif  num == 6
@@ -682,7 +682,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
             if  IsPlaying(pid) == true
                 if  PlayerDeathBool == false
                     AddUnitStateExTimer(Pu[1],16,30,10)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加30%法术伤害！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加30%技能伤害！|r")
                 endif
             endif
         end
@@ -748,7 +748,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
         elseif  itid == 'IN10' //写在释放技能
         elseif  itid == 'IN11'
             AddUnitStateExTimer(Pu[1],15,100,5)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在5秒内增加100%物理伤害！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在5秒内增加100%攻击伤害！")
         elseif  itid == 'IN12'
             UnitItemIN12(pid,itid)
         elseif  itid == 'IN13'

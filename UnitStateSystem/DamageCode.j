@@ -67,7 +67,7 @@ library DamageCode uses UnitStateSet
         return s
     endfunction
     
-    //普攻伤害加强
+    //攻击伤害加强
     function GetUnitPsState(unit wu)->real
         real s = GetUnitRealState(wu,12)
         if  s <= -100

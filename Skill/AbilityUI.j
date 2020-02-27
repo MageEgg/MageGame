@@ -256,6 +256,23 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         else
             name = name + " |r主动"
         endif
+
+        
+        if  index == 1 or index == 2 or index == 5
+            int class = GetTypeIdData(id,104)
+            if  class == 0
+                name = name + " 刺杀系"
+            elseif  class == 1
+                name = name + " 仙术系"
+            elseif  class == 2
+                name = name + " 妖魔系"
+            elseif  class == 3
+                name = name + " 佛门系"
+            elseif  class == 4
+                name = name + " 道兵系"
+            endif
+        endif
+
         return name
     endfunction
     
@@ -335,9 +352,9 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     real dam = r1*100
         
                     if  DamageType == 1
-                        tip = tip + "\n\n|Cffff8000物理伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
+                        tip = tip + "\n\n|Cffff8000攻击伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
                     elseif  DamageType == 2
-                        tip = tip + "\n\n|Cff00bfff法术伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
+                        tip = tip + "\n\n|Cff00bfff技能伤害："+StateName[chi]+"×"+I2S(R2I(dam))+"%|r"
                     elseif  id == 'S009'
                         tip = tip + "\n\n|Ce754ff05冷却时间："+I2S(R2I(r1))+"|r"
                     elseif  id == 'S002' or id == 'S003' or id == 'S004'
