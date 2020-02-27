@@ -1116,7 +1116,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             IndexGroup g = IndexGroup.create()
             yxtime=yxtime+0.03
             time=time-0.03
-            if  yxtime>=0.75
+            if  yxtime >= 1.2
                 yxtime=0
                 GroupEnumUnitsInRange(g1,x1,y1,800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))  
                 uu = GroupPickRandomUnit(g1)

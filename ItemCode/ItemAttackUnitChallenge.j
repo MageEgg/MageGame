@@ -534,7 +534,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     UnitRemoveAbility(Pu[42],id)
                     if  AttackUnitChallengePlayerWeiNum(challenge) < 12
                         newid = AttackUnitChallengePlayerWeiNum(challenge)+'uT0A'
-                        lumber = AttackUnitChallengePlayerWeiNum(challenge)*5
+                        if  AttackUnitChallengePlayerWeiNum(challenge) >= 9
+                            lumber = 20
+                        elseif  AttackUnitChallengePlayerWeiNum(challenge) >= 5
+                            lumber = 25
+                        elseif  AttackUnitChallengePlayerWeiNum(challenge) >= 2
+                            lumber = 10
+                        else
+                            lumber = 5
+                        endif
                         if  AttackUnitChallengePlayerWeiNum(challenge) < 5
                             AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 500
                         else
@@ -543,7 +551,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         AttackUnitChallengeStateTypeString[zu][wei] = "|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+"+I2S((AttackUnitChallengePlayerWeiNum(challenge)+1)*5)+"|r"
                     else
                         newid = 'uT0L'
-                        lumber = 60
+                        lumber = 20
                     endif
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber)
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
