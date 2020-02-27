@@ -1276,7 +1276,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real Num = 3
         if  GetUnitAbilityLevel(u,'S083') == 0
             UnitTimerAddSkill(u,'S083',4)
-            AddUnitStateExTimer(u,86,10,4)
+            AddUnitStateExTimer(u,10,15,4)
         endif
         for i=0,1
             ang=0.01745*180*i
