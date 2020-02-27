@@ -129,8 +129,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS005(unit wu,real x,real y)
+    function SpellS005(unit wu,real r1,real r2)
         unit u1 = wu
+        real x = r1
+        real y = r2
         int id = 'S005'
         real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
         unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ17',x,y,0)
@@ -144,9 +146,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 SetUnitFacing(u2,time*3.6)
                 if  time == 1
                     gg = CreateGroup()
-                    GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),500,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                    GroupEnumUnitsInRange(gg,x,y,500,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                     UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                    LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect3_desecrategreen.mdl",0.85)
+                    LocAddEffectSetSize(x,y,"effect3_desecrategreen.mdl",0.85)
                     GroupClear(gg)
                     DestroyGroup(gg)
                 endif
