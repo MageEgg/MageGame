@@ -566,6 +566,14 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             UnitAddAbility(wu,'A034'+pid)
         elseif  id == 'S067'
             UnitAddAbility(wu,'A067'+pid)
+        elseif  id == 'S082'
+            if  LoadInteger(ht,GetHandleId(wu),id) == 0
+                SpellS082.execute(u1.u)
+            endif
+        elseif  id == 'S086'
+            if  LoadInteger(ht,GetHandleId(wu),id) == 0
+                SpellS086.execute(u1.u)
+            endif
         elseif  id == 'S102'
             SpellS102.execute(wu,GetAbilityDamage(wu,'S102',1))
         endif

@@ -261,7 +261,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             SetUnitX(wu,GetUnitX(uu)+70*Cos(ang))
             SetUnitY(wu,GetUnitY(uu)+70*Sin(ang))
             
-            UnitDamageTarget(wu,uu,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageTarget(wu,uu,dam,true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
 
             DestroyGroup(gg)
             gg = null
@@ -1094,7 +1094,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
     
-      function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1)
+      function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1,int id)
         unit u=u1
         unit mj=mj1
         unit uu=null
@@ -1102,6 +1102,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real speed=speed1
         real jvli=jvli1
         real damage=damage1
+        int sid = id
         real x1=GetUnitX(mj)
         real y1=GetUnitY(mj)
         group g1=CreateGroup()
@@ -1109,8 +1110,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real xzsd=360/(qtime/0.03)*0.01745
         real ang=Uang(u,mj)
         real yxtime=0
-        
-        TimerStart(0.03,true)    
+        SaveInteger(ht,GetHandleId(u),sid,1)
+        TimerStart(0.02,true)    
         {
             IndexGroup g = IndexGroup.create()
             yxtime=yxtime+0.03
@@ -1122,38 +1123,49 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 GroupClear(g1)
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                if uu !=null
+                if  uu !=null
                     Ligfunc(mj,uu,AddLightningEx("CLPB",false,GetUnitX(mj),GetUnitY(mj),GetUnitZ(mj),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
                     DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
                 endif
                 g.destroy()
             endif
-            if  time>=jvli/(speed/0.03)      
-                if  Udis(u,mj)<=jvli
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
-                    y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
+            if  IsPlayerHasAbility(u,sid) == true
+                if  time>=jvli/(speed/0.03)      
+                    if  Udis(u,mj)<=jvli
+                        ang=ang+xzsd
+                        x1 = GetUnitX(u)+(Udis(u,mj)+speed)*Cos(ang)
+                        y1 = GetUnitY(u)+(Udis(u,mj)+speed)*Sin(ang)
+                        SetUnitX(mj,x1)
+                        SetUnitY(mj,y1)
+                        SetUnitFacing(mj,GetUnitFacing(u))
+                    else
+                        ang=ang+xzsd
+                        x1 = GetUnitX(u)+jvli*Cos(ang)
+                        y1 = GetUnitY(u)+jvli*Sin(ang)
+                        SetUnitX(mj,x1)
+                        SetUnitY(mj,y1)
+                        SetUnitFacing(mj,GetUnitFacing(u))
+                    endif
                 else
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+jvli*Cos(ang)
-                    y1 = GetUnitY(u)+jvli*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
+                    if  Udis(u,mj)>50
+                        ang=ang+xzsd
+                        x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
+                        y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
+                        SetUnitX(mj,x1)
+                        SetUnitY(mj,y1)
+                        SetUnitFacing(mj,GetUnitFacing(u))
+                    else
+                        DestroyGroup(g1)
+                        RemoveUnit(mj)
+                        SaveInteger(ht,GetHandleId(u),sid,0)
+                        endtimer
+                    endif
                 endif
             else
-                if  Udis(u,mj)>50
-                    ang=ang+xzsd
-                    x1 = GetUnitX(u)+(Udis(u,mj)-speed)*Cos(ang)
-                    y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
-                    SetUnitX(mj,x1)
-                    SetUnitY(mj,y1)
-                else
-                    DestroyGroup(g1)
-                    RemoveUnit(mj)
-                    endtimer
-                endif
+                DestroyGroup(g1)
+                RemoveUnit(mj)
+                SaveInteger(ht,GetHandleId(u),sid,0)
+                endtimer
             endif
             flush locals
         }
@@ -1170,13 +1182,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real num = 4+GetHeroSummonNum(u)
         real damage = GetUnitRealState(u,1)
         unit u2 = null
-        for i=0,3
+        for i = 1,num
             ang=0.01745*90*i
             x1 = x+10*Cos(ang)
             y1 = y+10*Sin(ang)
             u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",x1,y1,GetUnitFacing(u),100,1)                                        
             //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-            AroundSystemlei(u,u2,1.5,num,20,100,damage*num*0.25)
+            AroundSystemlei(u,u2,1.5,num,100000000,160,damage*num*0.25,'S082')
         end
         flush locals
     endfunction
@@ -1191,13 +1203,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real num = 3+GetHeroSummonNum(u)
         real damage = GetUnitRealState(u,1)
         unit u2 = null
-        for i=0,3
+        for i = 1,num
             ang=0.01745*90*i
             x1 = x+10*Cos(ang)
             y1 = y+10*Sin(ang)    
             u2 = CreateUnit(GetOwningPlayer(u),'eZ18',x1,y1,GetUnitFacing(u))                               
             //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-            AroundSystemlei(u,u2,1.5,num,20,100,damage*num*0.34)
+            AroundSystemlei(u,u2,1.5,num,10000000,200,damage*num*0.34,'S086')
         end
         flush locals
     endfunction
@@ -2378,12 +2390,12 @@ endfunction
                 SpellS080(u1.u,sx,sy,damage)
             elseif  id == 'S081'    
                 SpellS081(u1.u,sx,sy,damage)
-            elseif  id == 'S082'    
-                SpellS082(u1.u)
+            //elseif  id == 'S082'    
+            //    SpellS082(u1.u)
             elseif  id == 'S083'    
                 SpellS083(u1.u,damage)
-            elseif  id == 'S086'    
-                SpellS086(u1.u)
+            //elseif  id == 'S086'    
+            //    SpellS086(u1.u)
             elseif  id == 'S089'    
                 SpellS089(u1.u)
             elseif  id == 'S090'    
