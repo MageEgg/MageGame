@@ -381,34 +381,34 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
 
         
-        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00暴击：|r0%")
-        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00暴伤：|r0%")
-        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
-        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00分裂：|r0%")
-        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00攻击伤害：|r0%")
-        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00技能伤害：|r0%")
-        CreateText(167,origin,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
+        
         
         
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.09,0.145)
+        Back2.SetSize(0.09,0.105)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,9
+        for i = 1,5
             CreateButton(167+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
 
-        CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00技能概率：|r0%")
-        CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌生命：|r0")
-        CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌攻击：|r0")
-        CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌业力：|r0")
-        CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒生命：|r0")
-        CreateText(173,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒攻击：|r0")
-        CreateText(174,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒业力：|r0")
-        CreateText(175,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00杀敌金币：|r0")
-        CreateText(176,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒金币：|r0")
+        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00攻击加成：|r0%")
+        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00业力加成：|r0%")
+        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00攻击伤害：|r0%")
+        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00技能伤害：|r0%")
+        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00暴击概率：|r0%")
+        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00暴击伤害：|r0%")
+        CreateText(167,origin,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
+
+        
+        CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
+        CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00减伤：|r0%")
+        CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00分裂：|r0%")
+        CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00吸血：|r0%")
+        CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00伤害加成：|r0%")
+
 
 
         FrameSetScriptByExecute( Button2.frameid, 1,160,TYPE_FUNC)

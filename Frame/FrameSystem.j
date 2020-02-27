@@ -234,6 +234,9 @@ library GameUIInit initializer init uses OriginGameFrame
 
         ExecuteFunc("InitAttackTipUI")
         ExecuteFunc("TipsToolInit")
+
+        ExecuteFunc("InitExNativeFrame")
+        
         
         DestroyTrigger(GetTriggeringTrigger())
     end
