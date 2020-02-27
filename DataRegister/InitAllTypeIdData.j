@@ -442,11 +442,16 @@ InitEquipData('E224',0,0,35000,50,0,'E225',0,0)
 
         
 
-        SetTypeIdData('g00A',103,15)
-        SetTypeIdData('g00B',103,35)
-        SetTypeIdData('g00C',103,60)
-        SetTypeIdData('g00D',103,100)
-        SetTypeIdData('g00E',103,160)
+        SetTypeIdData('g00A',103,6)
+        SetTypeIdData('g00B',103,12)
+        SetTypeIdData('g00C',103,20)
+        SetTypeIdData('g00D',103,30)
+        SetTypeIdData('g00E',103,42)
+		
+		SetTypeIdData('u001',103,2000)
+        SetTypeIdData('u002',103,10000)
+        SetTypeIdData('u003',103,30000)
+        SetTypeIdData('u004',103,100000)
 
         SetTypeIdData('u020',103,5)
         SetTypeIdData('u021',103,100)
