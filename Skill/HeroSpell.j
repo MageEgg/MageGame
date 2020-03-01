@@ -471,9 +471,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u2=u21
         real damage=damage1
         int Num= LoadInteger(ht,GetHandleId(u1),'S039')+GetUnitAttackNumb(u1)
-
         SaveInteger(ht,GetHandleId(u1),'S039',Num)
-        
         if  Num >= 12
             real x=GetUnitX(u2)
             real y=GetUnitY(u2)
@@ -488,8 +486,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 endtimer
                 flush locals
             }
-            
-            
         endif
         flush locals
     endfunction
@@ -1987,59 +1983,74 @@ function SpellS116(unit u1,real damage1)
         flush locals
     endfunction  
 
-    function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
+    function SpellS230(unit wu,real r1,real r2)//兽魂1
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
-        real ang = Atan2(r2-y1,r1-x1)
-        real dis = Pdis(x1,y1,r1,r2)
-        real damage = dam
-        real sp = dis/50
-        real x2 = sp*Cos(ang)
-        real y2 = sp*Sin(ang)
-        real time = 0
-        real height = dis
-        string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file")
-        DzSetUnitModel( u1,"shenshou_shenshou_bian.mdl")
-        SetUnitAnimation( u1,"spell" )
-        if  height < 500
-            height = 500
-        endif
-        
+        real x2 = r1
+        real y2 = r2
+        real ang = Atan2(y2-y1,x2-x1)
+        real dis = Pdis(x1,y1,x2,y2)
+        int id = 'S230'
+        real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
+        real xx = 30*Cos(ang)
+        real yy = 30*Sin(ang)
+        unit uu = CreateTmUnit(GetOwningPlayer(u1),"shenshou_shenshou_bian.mdl",x1,y1,0,0,3.5)
+        ShowUnit(u1,false)
+        SetUnitAnimation(u1,"spell" )
         SetUnitFacing(u1,ang/0.01745)
         EXSetUnitFacing(u1,ang/0.01745)
-        TimerStart(0.01,true)
+
+        SetUnitAnimation(uu,"spell" )
+        SetUnitFacing(uu,ang/0.01745)
+        EXSetUnitFacing(uu,ang/0.01745)
+
+        TimerStart(0.02,true)
         {
-            time = time + sp
-            x1 = GetUnitX(u1) + x2
-            y1 = GetUnitY(u1) + y2
-            if  IsCanFlyTerrain(x1,y1) == true
-                SetUnitX(u1,x1)
-                SetUnitY(u1,y1)
-                UnitAddAbility(u1,'Arav')
-                SetUnitFlyHeight(u1,Sin(time/dis*3.1415926)*height,0)
-                UnitRemoveAbility(u1,'Arav')
-                SetUnitFacing(u1,ang/0.01745)
-                EXSetUnitFacing(u1,ang/0.01745)
-                
+            group gg = null
+            if  GetUnitAbilityLevel(u1,'AZ98') == 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                if  IsCanFlyTerrain(x1,y1) == true and Pdis(x1,y1,x2,y2) >= 30
+                    SetUnitX(u1,x1)
+                    SetUnitY(u1,y1)
+
+                    SetUnitX(uu,x1)
+                    SetUnitY(uu,y1)
+                    SetUnitFacing(uu,ang/0.01745)
+                    EXSetUnitFacing(uu,ang/0.01745)
+                else
+                    SetUnitFacing(uu,ang/0.01745)
+                    EXSetUnitFacing(uu,ang/0.01745)
+                    IssueImmediateOrderById( uu, 851972 )
+
+                    LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_by_wood_effect_tianhuo_2_1.mdl",2.5)
+                    gg = CreateGroup()
+                    GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
+                    UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )  
+                    GroupClear(gg)                
+                    DestroyGroup(gg)
+
+                    RemoveUnit(uu)
+                    ShowUnit(u1,true)
+
+                    endtimer
+                endif
             else
-                time = dis+1
-            endif
-            if  time >= dis
-                UnitAddAbility(u1,'Arav')
-                SetUnitFlyHeight(u1,GetUnitDefaultFlyHeight(u1),0)
-                UnitRemoveAbility(u1,'Arav')
-                SetUnitFacing(u1,ang/0.01745)
-                EXSetUnitFacing(u1,ang/0.01745)
-                IssueImmediateOrderById( u1, 851972 )
-                LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_by_wood_effect_tianhuo_2_1.mdl",2)
-                
-                IndexGroup gg = IndexGroup.create()
-                GroupEnumUnitsInRange(gg.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'ABFA',3,852095))
-                UnitDamageGroup(u1,gg.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )
-                DzSetUnitModel( u1,mdoelorigin)                   
-                gg.destroy()
-                
+                SetUnitFacing(uu,ang/0.01745)
+                EXSetUnitFacing(uu,ang/0.01745)
+                IssueImmediateOrderById( uu, 851972 )
+
+                LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_by_wood_effect_tianhuo_2_1.mdl",2.5)
+                gg = CreateGroup()
+                GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
+                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS ) 
+                GroupClear(gg)                
+                DestroyGroup(gg)
+
+                RemoveUnit(uu)
+                ShowUnit(u1,true)
+
                 endtimer
             endif
             flush locals
@@ -2082,8 +2093,8 @@ function SpellS116(unit u1,real damage1)
     function SpellS232(unit u1)
         unit u=u1
         unit uu=null
-        AddUnitStateExTimer(u,18,20,3)
-        UnitTimerAddSkill(u,'A232',3)  //添加判断Buff
+        AddUnitStateExTimer(u,18,20,6)
+        UnitTimerAddSkill(u,'A232',6)  //添加判断Buff
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_qilin.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
         IndexGroup g = IndexGroup.create()
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect2_az_cocoguanyu_t2_death.mdl")
@@ -2095,6 +2106,14 @@ function SpellS116(unit u1,real damage1)
             GroupRemoveUnit(g.ejg,uu)
         endloop
         g.destroy()
+        flush locals
+    endfunction
+
+    function SpellS232Attack(unit wu,unit tu)
+        int id = 'S232'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        UnitDamageTarget(wu,tu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitAddEffect(tu,"Abilities\\Spells\\Other\\Stampede\\StampedeMissileDeath.mdl")
         flush locals
     endfunction
 
@@ -2111,7 +2130,9 @@ function SpellS116(unit u1,real damage1)
     endfunction
     
     function SpellS233(unit u)
-        unit uu=null
+        int id = 'S233'
+        real damage = GetAbilityDamage(u,id,GetHeroAbilityLevel(u,id))
+        unit uu = null
         IndexGroup g = IndexGroup.create()
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_suanni.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
@@ -2120,6 +2141,7 @@ function SpellS116(unit u1,real damage1)
         loop
             uu = FirstOfGroup(g.ejg)
             exitwhen uu == null
+            UnitDamageTarget(u,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             SpellS233ice(uu)
             GroupRemoveUnit(g.ejg,uu)
         endloop
@@ -2128,16 +2150,28 @@ function SpellS116(unit u1,real damage1)
         flush locals  
     endfunction
     
-    function SpellS234(unit u,unit u1,real damage)
-        
-        shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),-50,1))
-        UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+    function SpellS234(unit u,real x,real y)
+        int id = 'S234'
+        real damage = GetAbilityDamage(u,id,GetHeroAbilityLevel(u,id))
         unit UnitAddBuffUnit=null
-        UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',GetUnitX(u1),GetUnitY(u1),0)
+        unit uu = null
+        UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',x,y,0)
         UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
         UnitAddAbility(UnitAddBuffUnit,'DB03')
         SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
-        IssuePointOrderById(UnitAddBuffUnit, 852592,GetUnitX(u1),GetUnitY(u1))
+        IssuePointOrderById(UnitAddBuffUnit, 852592,x,y)
+
+        shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",x,y,GetUnitFacing(u),-50,1))
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
+        loop
+            uu = FirstOfGroup(g.ejg)
+            exitwhen uu == null
+            UnitDamageTarget(u,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            AddUnitStateExTimer(uu,1,-GetUnitRealState(uu,1)*0.7,6)
+            GroupRemoveUnit(g.ejg,uu)
+        endloop
+        g.destroy()
         flush locals
     endfunction
     
@@ -2147,7 +2181,7 @@ function SpellS116(unit u1,real damage1)
         AddUnitRealState(u,19,b)
         UnitAddAbility(u,'A235')
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-200,1))
-        TimerStart(5,false)
+        TimerStart(4,false)
         {
             RemoveUnitStateEx(u,19,b)
             RemoveUnitStateEx(u,20,LoadReal(ht,GetHandleId(u),'A235'))
@@ -2162,19 +2196,19 @@ function SpellS116(unit u1,real damage1)
 function SpellS236(unit u,unit u1,real damage)
     SetUnitX(u,GetUnitX(u1))
     SetUnitY(u,GetUnitY(u1))
-    AddUnitStateExTimer(u,9,50,5)
+    AddUnitStateExTimer(u,9,75,6)
     UnitAddEffectTimer(u,"Abilities\\Spells\\Orc\\CommandAura\\CommandAura.mdl",3)
     
     shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),0,1))
-    UnitDamageTarget(u,u1,damage, false,false, ATTACK_TYPE_HERO, DAMAGE_TYPE_NORMAL,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+    UnitDamageTarget(u,u1,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
     LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl")
     flush locals
 endfunction
 
 function SpellS237(unit u)
     shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_kongque.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
-    AddUnitStateExTimer(u,25,20,5)
-    UnitTimerAddSkill(u,'A237',5)
+    AddUnitStateExTimer(u,25,100,6)
+    UnitTimerAddSkill(u,'A237',6)
     flush locals
 endfunction
 
@@ -2432,7 +2466,7 @@ endfunction
             elseif   id>='S230' and id<='S237'
                 
                 if  id == 'S230'
-                        SpellS230(u1.u,sx,sy,damage)
+                        SpellS230(u1.u,sx,sy)
                     elseif  id == 'S231'
                         SpellS231(u1.u,damage)
                     elseif  id == 'S232'
@@ -2440,7 +2474,7 @@ endfunction
                     elseif  id == 'S233'
                         SpellS233(u1.u)
                     elseif  id == 'S234'
-                        SpellS234(u1.u,u2.u,damage)
+                        SpellS234(u1.u,sx,sy)
                     elseif  id == 'S235'
                         SpellS235(u1.u)
                     elseif  id == 'S236'
