@@ -120,7 +120,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         group gg = CreateGroup()
         int id = 'S015'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        SetAbilityCD_AC(u,id,0.3)
+        SetAbilityCD_AC(wu,id,0.3)
         GroupEnumUnitsInRange(gg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_by_wood_gongchengsipai_6.mdl",1.6)
