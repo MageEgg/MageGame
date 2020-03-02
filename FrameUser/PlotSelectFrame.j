@@ -184,6 +184,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         
     endfunction
 
+
+
     //刷新深渊模式奖励
     function RePlayerExPlotPrizeId(int pid,int index)
         int id1 = 0
@@ -196,7 +198,13 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
         endif
 
-        id1 = GetPrize(pid,14,true)
+        if  ran <= 30
+            id1 = GetPrize(pid,14,true)
+        elseif  ran <= 80
+            id1 = GetPrize(pid,13,true)
+        else
+            id1 = GetPrize(pid,12,true)
+        endif
         
         
         SetPlayerPlotStateByIndex(pid,index,3)

@@ -306,8 +306,9 @@ scope ItemSystem initializer InitItemSystem
             FormulaVerify()
         endif
         
-        
-        if  itemid == 'IP01'
+        if  itemid == 'IN30'
+            PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
+        elseif  itemid == 'IP01'
             SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
         elseif  itemid == 'IP02'
             SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
@@ -518,24 +519,20 @@ scope ItemSystem initializer InitItemSystem
             endif
 
 
-        elseif  itemid >= 'IN07' and itemid <= 'IN24'
+        elseif  (itemid >= 'IN07' and itemid <= 'IN24') or (itemid >= 'IN33' and itemid <= 'IN40')
             PlayerUsesstrangeItem(pid,itemid)
-        
+        elseif  itemid == 'IN30'//幸运星盒IN30注册
+            
+            UnitAddPoolItemShow(u1,15)
         elseif  itemid == 'IN31'//炽星魔盒IN31注册
-            if  attacklv <= 11
-                UnitAddPoolItemShow(u1,11)
-            else
-                UnitAddPoolItemShow(u1,17)
-            endif
+            UnitAddPoolItemShow(u1,17)
         elseif  itemid == 'IN25'//入门道果箱IN25注册
             UnitAddPoolItemShow(u1,12)
         elseif  itemid == 'IN26'//后天道果箱IN26注册
             UnitAddPoolItemShow(u1,13)
         elseif  itemid == 'IN27'//先天道果箱IN27注册
             UnitAddPoolItemShow(u1,14)
-        elseif  itemid == 'IN30'//幸运星盒IN30注册
-            PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
-            UnitAddPoolItemShow(u1,15)
+        
         elseif  itemid == 'IN00'//锦囊IN00注册
             UnitAddPoolItemShow(u1,16)
         elseif  itemid == 'IN19'//附魔宝箱IN19注册

@@ -1051,7 +1051,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
     function SpellS520(unit wu,int lv)
         unit u1 = wu
-        AddUnitStateExTimer(u1,11,24,6)
+        AddUnitStateExTimer(u1,18,24,6)
         if  lv >= 2
             
             AddUnitIntState(u1,'S520',1)

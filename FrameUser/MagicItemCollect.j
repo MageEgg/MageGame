@@ -617,7 +617,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
 
-
+    /*
     //羁绊属性
     function SetMagicItemState(int pid,int index,int now,int offset)
         int s1 = 0
@@ -714,13 +714,14 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             AddUnitRealState(Pu[1],s2,v2*offset)
         endif
     endfunction
+    */
 
     function ReMagicItemState(int pid,int index,int add)
         int now = GetUnitIntState(Pu[1],index)
         int new = now + add
         SetUnitIntState(Pu[1],index,new)
-        SetMagicItemState(pid,index-MagicItemStateIndex,now,-1)
-        SetMagicItemState(pid,index-MagicItemStateIndex,new,1)
+        //SetMagicItemState(pid,index-MagicItemStateIndex,now,-1)
+        //SetMagicItemState(pid,index-MagicItemStateIndex,new,1)
     endfunction
 
 
@@ -781,13 +782,14 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             RemMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,-1)
-            RePlayerMagicOtherState(pid,id,-1)
+            /*RePlayerMagicOtherState(pid,id,-1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
                     ReMagicItemState(pid,MagicItemStateIndex+value,-1)
                 endif
             end
+            */
         endif
         //endif
         
@@ -801,13 +803,14 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             AddMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,1)
-            RePlayerMagicOtherState(pid,id,1)
+            /*RePlayerMagicOtherState(pid,id,1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
                 if  value > 0
                     ReMagicItemState(pid,MagicItemStateIndex+value,1)
                 endif
             end
+            */
         endif
         //endif
     endfunction

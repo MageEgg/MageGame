@@ -57,6 +57,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
         if  chi == 1
             r1 = r1 * GetUnitAttack(wu)
+        elseif  chi == 99
+            r1 = r1 * (GetUnitAttack(wu)+GetUnitRealState(wu,2))
         elseif  chi != 0
             r1 =  r1 * GetUnitRealState(wu,chi)
         endif
@@ -66,6 +68,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             r1 = r1 * (1+r2*0.01)
         endif
 
+        BJDebugMsg(YDWEId2S(id)+"等级"+I2S(lv)+"伤害"+R2S(r1))
 
         return r1
         flush locals
@@ -636,7 +639,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         SetTypeIdString(id,114,s4)
         SetTypeIdString(id,115,s5)
     endfunction
-
+    
     //InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
     function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,real r4,real r5,int Damagetype,real cd,int class,string name,string tips,string icon)
         SetTypeIdData(id,100,Type)

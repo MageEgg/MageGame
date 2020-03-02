@@ -707,7 +707,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
             endif
         end
     endfunction
-
+    /*
     function UnitItemIN21(int n,int itid)
         for pid = 0,3
             if  IsPlaying(pid) == true
@@ -736,6 +736,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
         }
         flush locals
     endfunction
+    */
 
     function PlayerUsesstrangeItem(int pid,int itid)
         int ran = 0
@@ -760,24 +761,55 @@ library ItemGameFunc uses DamageCode,AttackUnit
         elseif  itid == 'IN16'
             //境界
         elseif  itid == 'IN17'
-            ran = GetRandomInt(5,50)
+            ran = GetRandomInt(5,20)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,ran)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你获得玄铁x"+I2S(ran)+"！")
         elseif  itid == 'IN18'
-            AddUnitStateExTimer(Pu[1],41,30,30)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加30%金币加成！")
+            AddUnitStateExTimer(Pu[1],41,50,30)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加50%金币加成！")
         //没有 'IN19'
         elseif  itid == 'IN20'
-            AddUnitStateExTimer(Pu[1],46,10,30)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加10点杀敌金币！")
+            AddUnitStateExTimer(Pu[1],46,25,30)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加25点杀敌金币！")
         elseif  itid == 'IN21'
-            UnitItemIN21(pid,itid)
+            ran = GetRandomInt(888,8888)
+            AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN22'
-
+            ran = GetRandomInt(2888,18888)
+            AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN23'
-
+            ran = GetRandomInt(8888,88888)
+            AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN24'
-
+            AddUnitRealState(Pu[1],1,1000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，攻击|cff00ff00+1000")
+        elseif  itid == 'IN33'
+            AddUnitRealState(Pu[1],1,2500)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，攻击|cff00ff00+2500")
+        elseif  itid == 'IN34'
+            AddUnitRealState(Pu[1],1,10000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，攻击|cff00ff00+10000")
+        elseif  itid == 'IN35'
+            AddUnitRealState(Pu[1],2,1000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，业力|cff00ff00+1000")
+        elseif  itid == 'IN36'
+            AddUnitRealState(Pu[1],2,2500)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，业力|cff00ff00+2500")
+        elseif  itid == 'IN37'
+            AddUnitRealState(Pu[1],2,10000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，业力|cff00ff00+10000")
+        elseif  itid == 'IN38'
+            AddUnitRealState(Pu[1],5,1000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+1000")
+        elseif  itid == 'IN39'
+            AddUnitRealState(Pu[1],5,2500)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+2500")
+        elseif  itid == 'IN40'
+            AddUnitRealState(Pu[1],5,10000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+10000")
         endif
     endfunction
 

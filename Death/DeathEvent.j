@@ -103,30 +103,60 @@ scope DeathEvent initializer InitDeathEvent
         //使用招魂幡
         int gold = 0
         int i1 = 0
+        int i2 = 0
+        int i3 = 0
 
         if  itemid == 'I010'
             gold = GetRandomInt(3000,6000)
-            i1 = GetRandomInt(1000,2000)
         elseif  itemid == 'I011'
             gold = GetRandomInt(7000,12000)
-            i1 = GetRandomInt(2000,5000)    
         elseif  itemid == 'I012'
             gold = GetRandomInt(8000,13000)
-            i1 = GetRandomInt(3000,6000)
         elseif  itemid == 'I013'
             gold = GetRandomInt(9000,14000)
-            i1 = GetRandomInt(4000,7000)
         elseif  itemid == 'I014'
             gold = GetRandomInt(10000,15000)
-            i1 = GetRandomInt(5000,8000)
         elseif  itemid == 'I015'
             gold = GetRandomInt(12000,17000)
-            i1 = GetRandomInt(6000,9000)
         endif
+        
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold)+"|r |CffCC99FF业力+"+I2S(i1)+"|r")
-
+        if  GetRandomInt(1,100) <= 40
+            if  itemid == 'I010'
+                i1 = GetRandomInt(300,700)
+                i2 = GetRandomInt(300,500)
+                i3 = GetRandomInt(7000,13000)
+            elseif  itemid == 'I011'
+                i1 = GetRandomInt(1000,2000)
+                i2 = GetRandomInt(900,1500)
+                i3 = GetRandomInt(20000,40000)
+            elseif  itemid == 'I012'
+                i1 = GetRandomInt(1500,3500)
+                i2 = GetRandomInt(1500,2500)
+                i3 = GetRandomInt(40000,60000)
+            elseif  itemid == 'I013'
+                i1 = GetRandomInt(3000,7000)
+                i2 = GetRandomInt(3000,5000)
+                i3 = GetRandomInt(70000,130000)
+            elseif  itemid == 'I014'
+                i1 = GetRandomInt(7000,13000)
+                i2 = GetRandomInt(6000,10000)
+                i3 = GetRandomInt(150000,250000)
+            elseif  itemid == 'I015'
+                i1 = GetRandomInt(15000,25000)
+                i2 = GetRandomInt(12000,20000)
+                i3 = GetRandomInt(300000,500000)   
+            endif
+            AddUnitRealState(Pu[1],1,i1)
+            AddUnitRealState(Pu[1],2,i2)
+            AddUnitRealState(Pu[1],5,i3)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：|r人品爆发！获得了额外属性奖励：|r")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"攻击+"+I2S(i1))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"业力+"+I2S(i2))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"生命+"+I2S(i3))
+        endif
     endfunction
 
     function PlayerItemGrowFunc(int pid,item it,int exp)->bool

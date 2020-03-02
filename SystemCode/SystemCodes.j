@@ -885,195 +885,46 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             end
 
 
-//炽星魔盒IN31注册
-RegisterItemPool(11,'I011',5)
-RegisterItemPool(11,'I013',2)
-RegisterItemPool(11,'I015',1)
-RegisterItemPool(11,'IN26',10)
-RegisterItemPool(11,'IC03',20)
-RegisterItemPool(11,'IC04',3)
-RegisterItemPool(11,'IC06',20)
-RegisterItemPool(11,'IC07',3)
-RegisterItemPool(11,'IC09',20)
-RegisterItemPool(11,'IC10',3)
-RegisterItemPool(11,'IN28',3)
-RegisterItemPool(11,'IN25',5)
-RegisterItemPool(11,'IP01',5)
-RegisterItemPool(11,'IP06',10)
-RegisterItemPool(11,'IP08',3)
-RegisterItemPool(11,'IP09',2)
-RegisterItemPool(11,'IN30',2)
-RegisterItemPool(11,'IN19',1)
-RegisterItemPool(11,'IC00',100)
-
-
-
-
-//炽星魔盒12-30波注册
-RegisterItemPool(17,'IP04',1)
-RegisterItemPool(17,'IP02',5)
-RegisterItemPool(17,'IP03',1)
-RegisterItemPool(17,'IC04',30)
-RegisterItemPool(17,'IC05',6)
-RegisterItemPool(17,'IC07',30)
-RegisterItemPool(17,'IC08',6)
-RegisterItemPool(17,'IC10',30)
-RegisterItemPool(17,'IC11',6)
-RegisterItemPool(17,'IN26',8)
-RegisterItemPool(17,'IN27',1)
-RegisterItemPool(17,'I013',5)
-RegisterItemPool(17,'I015',1)
-RegisterItemPool(17,'IN28',2)
-RegisterItemPool(17,'IN30',15)
-RegisterItemPool(17,'IN19',2)
-RegisterItemPool(17,'IP01',3)
-RegisterItemPool(17,'IP06',5)
-RegisterItemPool(17,'IP08',1)
-RegisterItemPool(17,'IC00',160)
-
-
-
-
-
-//黑市/玄铁注册
-RegisterItemPool(31,'I015',1)
-RegisterItemPool(31,'IN00',1)
-RegisterItemPool(31,'IS24',1)
-RegisterItemPool(31,'IS25',1)
-RegisterItemPool(31,'IS26',1)
-RegisterItemPool(31,'CS22',1)
-RegisterItemPool(31,'IP02',1)
-RegisterItemPool(31,'IP03',1)
-RegisterItemPool(31,'IP01',1)
-//入门道果箱IN25注册
-RegisterItemPool(12,'ID12',10)
-RegisterItemPool(12,'ID13',2)
-RegisterItemPool(12,'ID02',5)
-RegisterItemPool(12,'ID03',1)
-
-
-
-
-//后天道果箱IN26注册
-RegisterItemPool(13,'ID14',15)
-RegisterItemPool(13,'ID15',3)
-RegisterItemPool(13,'ID16',1)
-RegisterItemPool(13,'ID04',8)
-RegisterItemPool(13,'ID05',2)
-RegisterItemPool(13,'ID06',1)
-RegisterItemPool(13,'IP08',3)
-RegisterItemPool(13,'IP09',3)
-
-
-
-
-//先天道果箱IN27注册
-RegisterItemPool(14,'ID07',100)
-RegisterItemPool(14,'ID08',20)
-RegisterItemPool(14,'ID09',3)
-RegisterItemPool(14,'ID10',1)
-RegisterItemPool(14,'ID17',200)
-RegisterItemPool(14,'ID18',40)
-RegisterItemPool(14,'ID19',6)
-RegisterItemPool(14,'ID20',2)
-RegisterItemPool(14,'IP08',3)
-RegisterItemPool(14,'IP09',3)
-
-
-//幸运星盒IN30注册
-RegisterItemPool(15,'IC01',3)
-RegisterItemPool(15,'IC02',3)
-RegisterItemPool(15,'IC03',15)
-RegisterItemPool(15,'IC04',2)
-RegisterItemPool(15,'IC05',1)
-RegisterItemPool(15,'IC06',15)
-RegisterItemPool(15,'IC07',2)
-RegisterItemPool(15,'IC08',1)
-RegisterItemPool(15,'IC09',15)
-RegisterItemPool(15,'IC10',2)
-RegisterItemPool(15,'IC11',1)
-RegisterItemPool(15,'IP07',2)
-RegisterItemPool(15,'IC00',30)
-
-//锦囊IN00注册
-RegisterItemPool(16,'IN07',1)
-RegisterItemPool(16,'IN08',1)
-
-RegisterItemPool(16,'IN10',1)
-RegisterItemPool(16,'IN11',1)
-RegisterItemPool(16,'IN12',1)
-RegisterItemPool(16,'IN13',1)
-RegisterItemPool(16,'IN14',1)
-RegisterItemPool(16,'IN15',1)
-
-RegisterItemPool(16,'IN17',1)
-RegisterItemPool(16,'IN18',1)
-RegisterItemPool(16,'IN20',1)
-RegisterItemPool(16,'IN21',1)
-
-
-
-RegisterItemPool(16,'IC03',2)
-RegisterItemPool(16,'IC06',2)
-RegisterItemPool(16,'IC09',2)
-
-//附魔宝箱IN19注册
-RegisterItemPool(20,'IS21',3)
-RegisterItemPool(20,'IS22',3)
-RegisterItemPool(20,'IS23',3)
-RegisterItemPool(20,'IS24',1)
-RegisterItemPool(20,'IS25',1)
-RegisterItemPool(20,'IS26',1)
-
-//技能宝箱IN28注册
-RegisterItemPool(21,'CS23',10)
-RegisterItemPool(21,'CS21',5)
-RegisterItemPool(21,'CS22',1)
-RegisterItemPool(21,'CS24',2)
-
-//技能宝箱IN32注册
-RegisterItemPool(25,'CS23',10)
-RegisterItemPool(25,'CS21',5)
-
-//1附魔宝箱IN29注册
-RegisterItemPool(22,'IS21',3)
-RegisterItemPool(22,'IS24',1)
-
-//普通附魔注册
-RegisterItemPool(1,'IF01',1)
-RegisterItemPool(1,'IF02',1)
-RegisterItemPool(1,'IF03',1)
-RegisterItemPool(1,'IF04',1)
-RegisterItemPool(1,'IF05',1)
-RegisterItemPool(1,'IF06',1)
-RegisterItemPool(1,'IF07',1)
-RegisterItemPool(1,'IF08',1)
-RegisterItemPool(1,'IF09',1)
-RegisterItemPool(1,'IF10',1)
-RegisterItemPool(1,'IF11',1)
-RegisterItemPool(1,'IF12',1)
-RegisterItemPool(1,'IF13',1)
-RegisterItemPool(1,'IF14',1)
-RegisterItemPool(1,'IF15',1)
-RegisterItemPool(1,'IF16',1)
-
-//高级附魔注册
-RegisterItemPool(2,'IF17',1)
-RegisterItemPool(2,'IF18',1)
-RegisterItemPool(2,'IF19',1)
-RegisterItemPool(2,'IF20',1)
-RegisterItemPool(2,'IF21',1)
-RegisterItemPool(2,'IF22',1)
-RegisterItemPool(2,'IF23',1)
-RegisterItemPool(2,'IF24',1)
-RegisterItemPool(2,'IF25',1)
-RegisterItemPool(2,'IF26',1)
-RegisterItemPool(2,'IF27',1)
-RegisterItemPool(2,'IF28',1)
-RegisterItemPool(2,'IF29',1)
-RegisterItemPool(2,'IF30',1)
-RegisterItemPool(2,'IF31',1)
-RegisterItemPool(2,'IF32',1)
+            //炽星魔盒IN31注册
+            RegisterItemPool(17,'IP04',1)
+            RegisterItemPool(17,'IP02',1)
+            RegisterItemPool(17,'IP03',1)
+            RegisterItemPool(17,'IN08',2)
+            RegisterItemPool(17,'IN13',2)
+            RegisterItemPool(17,'IN23',2)
+            RegisterItemPool(17,'IN34',2)
+            RegisterItemPool(17,'IN37',2)
+            RegisterItemPool(17,'IN40',2)
+            RegisterItemPool(17,'IN18',2)
+            RegisterItemPool(17,'IN20',2)
+            RegisterItemPool(17,'I015',1)
+            RegisterItemPool(17,'CS21',2)
+            RegisterItemPool(17,'CS22',1)
+            RegisterItemPool(17,'IP01',2)
+            //幸运星盒IN30注册
+            RegisterItemPool(15,'IN07',5)
+            RegisterItemPool(15,'IN08',5)
+            RegisterItemPool(15,'IN09',5)
+            RegisterItemPool(15,'IN10',3)
+            RegisterItemPool(15,'IN11',3)
+            RegisterItemPool(15,'IN13',3)
+            RegisterItemPool(15,'IN14',5)
+            RegisterItemPool(15,'IN15',3)
+            RegisterItemPool(15,'IN17',2)
+            RegisterItemPool(15,'IN18',2)
+            RegisterItemPool(15,'IN20',2)
+            RegisterItemPool(15,'IN21',5)
+            RegisterItemPool(15,'IN22',2)
+            RegisterItemPool(15,'IN23',1)
+            RegisterItemPool(15,'IN24',5)
+            RegisterItemPool(15,'IN33',3)
+            RegisterItemPool(15,'IN34',2)
+            RegisterItemPool(15,'IN35',5)
+            RegisterItemPool(15,'IN36',3)
+            RegisterItemPool(15,'IN37',2)
+            RegisterItemPool(15,'IN38',5)
+            RegisterItemPool(15,'IN39',3)
+            RegisterItemPool(15,'IN40',2)
 
 
             
