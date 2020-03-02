@@ -186,6 +186,7 @@ library GameChallenge9 uses GameChallengeBase
 
     function GameTeamChallengA_Opera3()
         CreateUsesGameTeamChalleng(10,'ut05',6592,6368,270)
+        SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(10),0)
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  IsPlayerInTeamChallenge == true 
@@ -257,21 +258,25 @@ library GameChallenge9 uses GameChallengeBase
                         num = GetCanUsesGameTeamChallengUnitID()
                         if  num != 0
                             CreateUsesGameTeamChalleng(num,'ut04',5792,7104,315)
+                            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(num),0)
                             IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
                         endif
                         num = GetCanUsesGameTeamChallengUnitID()
                         if  num != 0
                             CreateUsesGameTeamChalleng(num,'ut04',7328,7104,315)
+                            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(num),0)
                             IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
                         endif
                         num = GetCanUsesGameTeamChallengUnitID()
                         if  num != 0
                             CreateUsesGameTeamChalleng(num,'ut04',5760,5660,315)
+                            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(num),0)
                             IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
                         endif
                         num = GetCanUsesGameTeamChallengUnitID()
                         if  num != 0
                             CreateUsesGameTeamChalleng(num,'ut04',7380,5660,315)
+                            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(num),0)
                             IssuePointOrderById(GameTeamChallengUnit(num),851983,6592,6368)
                         endif
                     end
@@ -362,6 +367,7 @@ library GameChallenge9 uses GameChallengeBase
                         endif
                     endif
                 end
+                PlayerTeamChallengeCosNum = PlayerTeamChallengeCosNum + 1
                 FlushGameTeamChallenge()
             endif
         endif
@@ -415,6 +421,10 @@ library GameChallenge9 uses GameChallengeBase
             CreateUsesGameTeamChalleng(11,'ut01',7392,4256,225)
             CreateUsesGameTeamChalleng(12,'ut02',5344,1952,45)
             CreateUsesGameTeamChalleng(13,'ut03',7488,1984,135)
+            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(10),0)
+            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(11),0)
+            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(12),0)
+            SetUnitOverStateOfGameTeamChalleng(GameTeamChallengUnit(13),0)
             OpenGameTeamChallengeTimer(30,1)
             for pid = 0,3
                 if  IsPlaying(pid) == true

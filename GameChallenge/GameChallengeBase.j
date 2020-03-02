@@ -37,7 +37,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define GameTeamChallengeInt(num)       GameChallengOperaWay[50+num]
 
-    #define UnitAPOfPlayer  0
+    #define UnitAPOfPlayer 0
+
+    int PlayerTeamChallengeCosNum = 0
 
     group array AttackSummonUnitGroup
 
@@ -693,16 +695,25 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
         real value = 0
-        value = 1.1+(PlayerChallengeCosNum*0.1)
-        if  flag == 0 //小怪
-            value = value * 0.2
-        elseif  flag == 1 //1精英
-            value = value * 0.7
+        value = Pow(1.2,(PlayerChallengeCosNum-1))
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
+        //if  flag == 0 小怪
+        //    value = value * 0.2
+        //elseif  flag == 1 精英
+        //    value = value * 0.7
         // 2 BOSS
-        endif
-        SetUnitRealStateOfOtherIdAddValue(u,'uf86',value)
+        //endif
+        //SetUnitRealStateOfOtherIdAddValue(u,'uf86',value)
     endfunction
 
+    function SetUnitOverStateOfGameTeamChalleng(unit u,int flag)
+        real value = 0
+        value = Pow(1.2,(PlayerTeamChallengeCosNum-1))
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
+    endfunction
+    
     function PlayerFinishPlotEx(int id,int f)
         int pid = id
         int flag = f
