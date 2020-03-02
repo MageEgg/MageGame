@@ -90,6 +90,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         group gg = CreateGroup()
         int id = 'S014'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        BJDebugMsg("s014")
         GroupEnumUnitsInRange(gg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect3_az_lcdark_w1.mdl")
@@ -934,16 +935,15 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         real x = 0
         real y = 0
-        BJDebugMsg("SpellS075")
         GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         GroupClear(gg)
         DestroyGroup(gg)
-        /*for num = 0,15
-            x = GetUnitX(tu) + 100*Cos(22.5*num*0.01745)
-            y = GetUnitY(tu) + 100*Sin(22.5*num*0.01745)
-            RemoveUnitTimer(CreateUnit(GetOwningPlayer(wu),'eZ20',x,y,22.5*num),1)
-        end*/
+        for num = 0,11
+            x = GetUnitX(tu) + 100*Cos(30*num*0.01745)
+            y = GetUnitY(tu) + 100*Sin(30*num*0.01745)
+            RemoveUnitTimer(CreateUnit(GetOwningPlayer(wu),'eZ20',x,y,30*num),1)
+        end
         flush locals
     endfunction
     
@@ -1352,20 +1352,19 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS097(unit u1,real damage)
-        unit u=u1
-        real x=GetUnitX(u)
-        real y=GetUnitY(u)
-        int Num= LoadInteger(ht,GetHandleId(u),'S097')
-        Num=Num+GetUnitAttackNumb(u1)
-        SaveInteger(ht,GetHandleId(u),'S097',Num)
-        if Num >= 8
+    function SpellS097(unit wu)
+        int id = 'S097'
+        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        int Num = LoadInteger(ht,GetHandleId(wu),id)
+        Num = Num + GetUnitAttackNumb(wu)
+        SaveInteger(ht,GetHandleId(wu),id,Num)
+        if  Num >= 16
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            LocAddEffectSetRotate(x,y,GetUnitFacing(u),"effect_red-yumao-zhendi-paoxiao.mdl")
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            LocAddEffectSetRotate(GetUnitX(wu),GetUnitY(wu),GetUnitFacing(wu),"effect_red-yumao-zhendi-paoxiao.mdl")
             g.destroy()
-            SaveInteger(ht,GetHandleId(u),'S097',0)
+            SaveInteger(ht,GetHandleId(wu),id,0)
         endif
         flush locals
     endfunction
