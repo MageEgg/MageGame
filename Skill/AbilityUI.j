@@ -639,7 +639,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         SetTypeIdString(id,114,s4)
         SetTypeIdString(id,115,s5)
     endfunction
-    call InitAbilityData('S007',1,2,99,0,0,0,4.6,0,2,0,1,"太清妙术","攻击|Cffffc9266%|r概率对目标范围造成伤害。\n触发后|Cffffc926仙术系|r技能伤害|Cffffc926+20%|r，持续|Cffffc9266|r秒。","ReplaceableTextures\\CommandButtons\\BTNS007.blp")
+    
     //InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
     function InitAbilityData(int id,int Type,int color,int chi,real r1,real r2,real r3,real r4,real r5,int Damagetype,real cd,int class,string name,string tips,string icon)
         SetTypeIdData(id,100,Type)
