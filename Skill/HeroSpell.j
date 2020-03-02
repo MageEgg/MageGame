@@ -83,7 +83,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS002(unit wu)
-        SetUnitIntState(wu,'S002',0)
+        SetUnitIntState(wu,'S002',1)
     endfunction
 
     function SpellS014Attack(unit wu)
