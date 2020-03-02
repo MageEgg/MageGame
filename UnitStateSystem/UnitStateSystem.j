@@ -163,14 +163,14 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[8]="魔法回复"
         StateName[9]="攻速"
         StateName[10]="闪避"
-        StateName[11]="免伤"
+        StateName[11]="免伤概率"
         StateName[12]=""
         StateName[13]="物理穿透"
         StateName[14]="法术穿透"
         StateName[15]="攻击伤害"
         StateName[16]="技能伤害"
         StateName[17]="伤害加成"
-        StateName[18]="物理抵抗"
+        StateName[18]="伤害减免"
         StateName[19]="暴击"
         StateName[20]="暴伤"
         StateName[21]="吸血"
@@ -205,6 +205,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[49]="每秒生命"
         StateName[50]="每秒金币"
         StateName[51]="攻击距离"
+
+        StateName[51]="(攻击+业力)"
 
         StateName[108]="灵力"
 
@@ -391,7 +393,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 elseif  StateId == 41
                     DzFrameSetText(BUTTON_Text[167],"|cffffcc00金币加成：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 10
-                    DzFrameSetText(BUTTON_Text[168],"|cffffcc00傻逼：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[168],"|cffffcc00闪避：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 18
                     DzFrameSetText(BUTTON_Text[169],"|cffffcc00减伤：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 22
