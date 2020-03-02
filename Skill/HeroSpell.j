@@ -116,10 +116,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS095Attack(unit wu)
+    function SpellS015Attack(unit wu)
         group gg = CreateGroup()
-        int id = 'S095'
+        int id = 'S015'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
+        SetAbilityCD_AC(u,id,0.3)
         GroupEnumUnitsInRange(gg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_by_wood_gongchengsipai_6.mdl",1.6)
@@ -196,8 +197,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y2 = GetUnitY(tu)
         unit u1 = wu
         group gg = CreateGroup()
-        UnitTimerAddSkill(wu,'S010',6)
-        AddUnitStateExTimer(wu,1,20,6)
+        if  GetUnitAbilityLevel(wu,id) == 0
+            UnitTimerAddSkill(wu,id,8)
+            AddUnitStateExTimer(wu,32,20,6)
+        endif
         LocAddEffectSetSize(x2,y2,"effect2_by_wood_leitingyiji.mdl",1.2)
         LocAddEffectSetSize(x2,y2,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",2)
         GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
@@ -231,8 +234,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y2 = GetUnitY(tu)
         unit u1 = wu
         group gg = CreateGroup()
-        UnitTimerAddSkill(wu,'S012',6)
-        AddUnitStateExTimer(wu,2,20,6)
+        if  GetUnitAbilityLevel(wu,id) == 0
+            UnitTimerAddSkill(wu,id,8)
+            AddUnitStateExTimer(wu,33,20,6)
+        endif
         LocAddEffectSetSize(x2,y2,"effect2_zhendi-yinghua.mdl",1.5)
         LocAddEffectSetSize(x2,y2,"effect_AA_bwaxec.mdl",1.0)
         LocAddEffectSetSize(x2,y2,"effect2_blue-blink-lizi-start.mdl",1.1)
@@ -929,6 +934,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         real x = 0
         real y = 0
+        BJDebugMsg("SpellS075")
         GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         GroupClear(gg)
