@@ -520,13 +520,11 @@ scope ItemSystem initializer InitItemSystem
 
         elseif  itemid >= 'IN07' and itemid <= 'IN24'
             PlayerUsesstrangeItem(pid,itemid)
-        
+        elseif  itemid == 'IN30'//幸运星盒IN30注册
+            PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
+            UnitAddPoolItemShow(u1,15)
         elseif  itemid == 'IN31'//炽星魔盒IN31注册
-            if  attacklv <= 11
-                UnitAddPoolItemShow(u1,11)
-            else
-                UnitAddPoolItemShow(u1,17)
-            endif
+            UnitAddPoolItemShow(u1,17)
         elseif  itemid == 'IN25'//入门道果箱IN25注册
             UnitAddPoolItemShow(u1,12)
         elseif  itemid == 'IN26'//后天道果箱IN26注册
