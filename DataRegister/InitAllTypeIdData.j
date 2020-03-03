@@ -18,7 +18,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB15',"|CffFFD24D九龙神火罩|r","ReplaceableTextures\\CommandButtons\\BTNFB15.BLP","")
         call InitTypeIdStrings('FB16',"|CffFFD24D风火轮|r","ReplaceableTextures\\CommandButtons\\BTNFB16.BLP","攻击24次重置所有技能冷却")
         call InitTypeIdStrings('FB17',"|CffBF00FF八棱双银锤|r","ReplaceableTextures\\CommandButtons\\BTNFB17.BLP","")
-        call InitTypeIdStrings('FB18',"|CffBF00FF莫邪宝剑|r","ReplaceableTextures\\CommandButtons\\BTNFB18.BLP","武器被动的暴击后，下一次攻击造成8倍的致命一击")
+        call InitTypeIdStrings('FB18',"|CffBF00FF莫邪宝剑|r","ReplaceableTextures\\CommandButtons\\BTNFB18.BLP","暴击后，下一次攻击造成8倍致命一击，内置冷却4秒。")
         call InitTypeIdStrings('FB19',"|Cff00FF7F火龙标|r","ReplaceableTextures\\CommandButtons\\BTNFB19.BLP","")
         call InitTypeIdStrings('FB20',"|CffFFD24D攒心钉|r","ReplaceableTextures\\CommandButtons\\BTNFB20.BLP","")
         call InitTypeIdStrings('FB21',"|CffBF00FF玉麒麟|r","ReplaceableTextures\\CommandButtons\\BTNFB21.BLP","武器被动造成的伤害提升50%")

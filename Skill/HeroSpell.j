@@ -2262,6 +2262,13 @@ endfunction
         endif
         flush locals
     endfunction
+    //暴击后，下一次攻击造成8倍致命一击，内置冷却4秒。
+    function SpellFB18(unit wu)
+        if  GetUnitIntState(wu,'FC18') == 0
+            AddUnitIntStateTimer(wu,'FC18',1,4)
+            SetUnitIntState(wu,'FD18',1)
+        endif
+    endfunction
     //攻击暴击时，10%几率造成400码范围的750%业力的群体伤害。每8秒只能触发1次
     function SpellFB23(unit wu,unit tu)
         if  GetUnitIntState(wu,'FC23') == 0
@@ -2306,6 +2313,7 @@ endfunction
     //受到攻击时，5%几率对攻击者造成攻击力*700%的伤害
     function SpellFB45(unit wu,unit tu)
         if  Chance(wu,5) == true
+            LocAddEffectSetRotateSize(GetUnitX(wu),GetUnitY(wu),GetUnitFacing(wu),1.5,"effect_az_caster_Red.mdl")
             UnitDamageTarget(wu,tu,GetUnitAttack(wu)*7,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         endif
     endfunction
