@@ -658,6 +658,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
                         SetItemCharges(UnitItemInSlot(u1,i),GetItemCharges(UnitItemInSlot(u1,i))-1)
                     else
                         RemoveItem(UnitItemInSlot(u1,i))
+                    endif
                     exitwhen true
                 endif
             end
