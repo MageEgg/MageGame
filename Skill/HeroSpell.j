@@ -255,20 +255,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         group gg = CreateGroup()
         unit uu = null
         real face = GetRandomReal(-3.14,3.14)
-        
         GroupEnumUnitsInRange(gg,sx,sy,600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-        
         uu = GroupPickRandomUnit(gg)
         if  uu != null
             real ang = Uang(wu,uu)
-            
-                        
-            
             SetUnitX(wu,GetUnitX(uu)+70*Cos(ang))
             SetUnitY(wu,GetUnitY(uu)+70*Sin(ang))
-            
-            UnitDamageTarget(wu,uu,dam,true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
-
+            UnitDamageTarget(wu,uu,dam,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
             DestroyGroup(gg)
             gg = null
             uu = null
@@ -279,7 +272,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             uu = null
             return false
         endif
-        
     endfunction
     
     function SpellS006(unit wu,real x,real y,real dam)
@@ -728,9 +720,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     ang=GetRandomReal(-3.14,3.14)
                     dis=GetRandomReal(100,300)
                     GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                    UnitDamageGroup(u,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
                     SetUnitX(mj,x+(400*Cos(ang)))
-                    SetUnitY(mj,y+(400*Sin(ang)))
+                    SetUnitY(mj,y+(400*Sin(ang))) 
                     SetUnitFacing(mj,Rad2Deg(ang))
                     SetUnitAnimation( mj, "Attack" )
                     LocAddEffectSetRotate(x+(dis*Cos(ang+1.57)),y+(dis*Sin(ang+1.57)),Rad2Deg(ang)+GetRandomReal(0,20),"effect_akiha claw.mdx")
