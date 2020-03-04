@@ -759,7 +759,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit gu=null
         TimerStart(0.03,true)    
         {
-            IndexGroup g = IndexGroup.create()
+            
             
             yxtime=yxtime+0.03
             time=time-0.03
@@ -781,7 +781,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitX(mj,x1)
                     SetUnitY(mj,y1)
                 endif
-        
+                IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnitAddBuff(GetOwningPlayer(u),g1,"",'DB02',1,852095))  
                 loop
                     gu=FirstOfGroup(g.ejg)
@@ -1107,10 +1107,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SaveInteger(ht,GetHandleId(u),sid,1)
         TimerStart(0.02,true)    
         {
-            IndexGroup g = IndexGroup.create()
+            
             yxtime=yxtime+0.03
             time=time-0.03
             if  yxtime >= 1.2
+                IndexGroup g = IndexGroup.create()
                 yxtime=0
                 GroupEnumUnitsInRange(g1,x1,y1,800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))  
                 uu = GroupPickRandomUnit(g1)
@@ -1225,7 +1226,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit gu=null
         TimerStart(0.03,true)    
         {
-            IndexGroup g = IndexGroup.create()
+            IndexGroup g = 0
             
             yxtime=yxtime+0.03
             time=time-0.03
@@ -1247,7 +1248,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitX(mj,x1)
                     SetUnitY(mj,y1)
                 endif
-        
+                g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
@@ -1258,6 +1259,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     y1 = GetUnitY(u)+(Udis(u,mj)-speed)*Sin(ang)
                     SetUnitX(mj,x1)
                     SetUnitY(mj,y1)
+                    g = IndexGroup.create()
                     GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))
                     UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     g.destroy()
