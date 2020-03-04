@@ -88,15 +88,9 @@ library DamageCode uses UnitStateSet
     //物理穿透
     function GetUnitWcState(unit wu)->real
         real s = GetUnitRealState(wu,13)
-        if  s > 80
-            s = 80
-        endif
         return s
     endfunction
-    function GetUnitWc(unit wu)->real
-        real s = (GetUnitWcState(wu))
-        return s*0.01
-    endfunction
+
     /*
     //法术穿透
     function GetUnitFcState(unit wu)->real

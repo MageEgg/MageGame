@@ -1192,7 +1192,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 SetUnitX(u2,mx)
                 SetUnitY(u2,my)
                 g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
                 
@@ -1206,7 +1206,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                     SetUnitX(u2,mx)
                     SetUnitY(u2,my)
                     g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",'AZ05',1,852149))
+                    GroupEnumUnitsInRange(g.ejg,mx,my,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
                     UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     g.destroy()
                 else

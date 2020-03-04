@@ -1,4 +1,4 @@
-library ItemGameFunc uses DamageCode,AttackUnit
+library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
 
     int array ItemGameFuncArrayInt[12][680]
 
@@ -647,18 +647,23 @@ library ItemGameFunc uses DamageCode,AttackUnit
         int gold = 0
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitTypeId(u2) >= 'g00A' and GetUnitTypeId(u2) <= 'g00F'
-            gold = GetTypeIdData(GetUnitTypeId(u2),103)*100
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
-            LocAddText(GetUnitX(u2),GetUnitY(u2),"+"+I2S(gold),255,202,0,255,90,0.023)
-            LocAddEffectSetSize(GetUnitX(u2),GetUnitY(u2),"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl",1.5)
-            for i = 0,5
-                if  GetItemTypeId(UnitItemInSlot(u1,i)) == 'IN10'
-                    RemoveItem(UnitItemInSlot(u1,i))
-                    exitwhen true
-                endif
-            end
-            SetUnitState(u2,UNIT_STATE_LIFE,1)
-            ShowUnit(u2,false)
+            if  pid == GetUnitAbilityLevel(u2,'AZ99')-1
+                gold = GetTypeIdData(GetUnitTypeId(u2),103)*100
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
+                LocAddText(GetUnitX(u2),GetUnitY(u2),"+"+I2S(gold),255,202,0,255,90,0.023)
+                LocAddEffectSetSize(GetUnitX(u2),GetUnitY(u2),"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl",1.5)
+                for i = 0,5
+                    if  GetItemTypeId(UnitItemInSlot(u1,i)) == 'IN10'
+                        if  GetItemCharges(UnitItemInSlot(u1,i)) == 0
+                            RemoveItem(UnitItemInSlot(u1,i))
+                        endif
+                        exitwhen true
+                    endif
+                end
+                KillAttackRoomUnitEvent(u1,u2)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r无法对此单位使用该道具！")
+            endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r无法对此单位使用该道具！")
         endif
