@@ -646,19 +646,23 @@ library ItemGameFunc uses DamageCode,AttackUnit
     function UnitItemIN10(unit u1,unit u2)
         int gold = 0
         int pid = GetPlayerId(GetOwningPlayer(u1))
-        if  GetUnitTypeId(u2) >= 'g00A' and GetUnitTypeId(u2) <= 'g00F'
+        int pid2 = GetUnitAbilityLevel(u2,'AZ99')-1
+        if  (GetUnitTypeId(u2) >= 'g00A' and GetUnitTypeId(u2) <= 'g00F') and pid == pid2
             gold = GetTypeIdData(GetUnitTypeId(u2),103)*100
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
             LocAddText(GetUnitX(u2),GetUnitY(u2),"+"+I2S(gold),255,202,0,255,90,0.023)
             LocAddEffectSetSize(GetUnitX(u2),GetUnitY(u2),"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl",1.5)
             for i = 0,5
                 if  GetItemTypeId(UnitItemInSlot(u1,i)) == 'IN10'
-                    RemoveItem(UnitItemInSlot(u1,i))
+                    if  GetItemCharges(UnitItemInSlot(u1,i)) > 1
+                        SetItemCharges(UnitItemInSlot(u1,i),GetItemCharges(UnitItemInSlot(u1,i))-1)
+                    else
+                        RemoveItem(UnitItemInSlot(u1,i))
                     exitwhen true
                 endif
             end
             SetUnitState(u2,UNIT_STATE_LIFE,1)
-            ShowUnit(u2,false)
+            UnitDamageTarget(u1,u2,999999999,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r无法对此单位使用该道具！")
         endif
@@ -755,7 +759,7 @@ library ItemGameFunc uses DamageCode,AttackUnit
         elseif  itid == 'IN13'
             UnitItemIN13(pid,itid)
         elseif  itid == 'IN14'
-            UnitItemIN14(pid,itid) //没有爪子
+            UnitItemIN14(pid,itid)
         elseif  itid == 'IN15'
             UnitItemIN15(pid,itid)
         elseif  itid == 'IN16'
