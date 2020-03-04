@@ -26,7 +26,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int Num = LoadInteger(ht,GetHandleId(wu),id)
         Num=Num+GetUnitAttackNumb(wu)
         SaveInteger(ht,GetHandleId(wu),id,Num)
-        if  Num >= 4
+        if  Num >= 24
             gg = CreateGroup()
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
             GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),500,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,1,0))
@@ -74,7 +74,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int Num = LoadInteger(ht,GetHandleId(wu),id)
         Num=Num+GetUnitAttackNumb(wu)
         SaveInteger(ht,GetHandleId(wu),id,Num)
-        if  Num >= 6
+        if  Num >= 16
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
             SpellS001AttackEx(wu,tu,damage)
             SaveInteger(ht,GetHandleId(wu),id,0)
@@ -261,7 +261,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             real ang = Uang(wu,uu)
             SetUnitX(wu,GetUnitX(uu)+70*Cos(ang))
             SetUnitY(wu,GetUnitY(uu)+70*Sin(ang))
-            UnitDamageTarget(wu,uu,dam,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+            UnitDamageTarget(wu,uu,dam,true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
             DestroyGroup(gg)
             gg = null
             uu = null
@@ -317,7 +317,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS009(unit u1,unit u2,real damage)//连击
         integer lv = GetHeroAbilityLevel(u1,'S009')
         real r1 = GetTypeIdReal('S009',100+lv)
-        UnitDamageTarget(u1,u2,damage, true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+        UnitDamageTarget(u1,u2,damage, true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
         SetAbilityCD_AC(u1,'S009',r1)
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file")
         unit mj=CreateTmUnit(GetOwningPlayer(u1),mdoelorigin,GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u1),0,1)
@@ -433,7 +433,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS035(unit u1,unit u2,real damage)//业火咒
         int Num= LoadInteger(ht,GetHandleId(u1),'S035') +GetUnitAttackNumb(u1)
         SaveInteger(ht,GetHandleId(u1),'S035',Num)
-        if  Num >= 8
+        if  Num >= 16
             real x=GetUnitX(u2)
             real y=GetUnitY(u2)
             IndexGroup g = IndexGroup.create()
@@ -646,7 +646,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int Num = LoadInteger(ht,GetHandleId(wu),id)
         Num=Num+GetUnitAttackNumb(wu)
         SaveInteger(ht,GetHandleId(wu),id,Num)
-        if  Num >= 6
+        if  Num >= 16
             damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
             SpellS052(wu,tu,damage)
             SaveInteger(ht,GetHandleId(wu),id,0)
@@ -720,7 +720,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     ang=GetRandomReal(-3.14,3.14)
                     dis=GetRandomReal(100,300)
                     GroupEnumUnitsInRange(g,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-                    UnitDamageGroup(u,g,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
+                    UnitDamageGroup(u,g,damage,true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_AXE_MEDIUM_CHOP )
                     SetUnitX(mj,x+(400*Cos(ang)))
                     SetUnitY(mj,y+(400*Sin(ang))) 
                     SetUnitFacing(mj,Rad2Deg(ang))
@@ -1173,7 +1173,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real ang=0
         real x1 =0
         real y1 = 0
-        real num = 4+GetHeroSummonNum(u)
+        real num = 3+GetHeroSummonNum(u)
         real damage = GetUnitRealState(u,1)
         unit u2 = null
         for i = 1,num
@@ -1348,7 +1348,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int id = 'S097'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         int Num = LoadInteger(ht,GetHandleId(wu),id)
-        Num = Num + GetUnitAttackNumb(wu)
+        Num = Num + 1
         SaveInteger(ht,GetHandleId(wu),id,Num)
         if  Num >= 16
             IndexGroup g = IndexGroup.create()
