@@ -121,6 +121,9 @@ scope SelectHero
             for i = 0,5
                 UnitAddItem(Pu[1],UnitItemInSlot(Pu[7],i))
             end
+            for n = 10,41
+                SetUnitRealState(Pu[1],n,GetUnitRealState(Pu[1],n))
+            end
             RemoveUnit(Pu[7])
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r重新选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
 

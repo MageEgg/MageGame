@@ -19,7 +19,7 @@ call InitAbilityData('S002',2,3,0,0,0,7.4,9.2,0,0,8,0,"夺天一击","|CffFFC926
 call InitAbilityData('S003',1,4,0,0,5.6,7.5,9.4,0,0,0,0,"残暴","攻击|Cffffc9266%|r概率造成|Cffffc926致命一击|r。|n|n|Cff00ff7f致命一击概率和倍率可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS003.blp")
 call InitAbilityData('S004',1,5,0,1.5,2.2,3,3.8,0,0,0,0,"无情","攻击|Cffffc92615%|r概率造成|Cffffc926致命一击|r。|n|n|Cff00ff7f致命一击概率和倍率可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS004.blp")
 call InitAbilityData('S006',8,4,1,0,0.9,1.2,1.5,0,2,8,0,"无影杀","对目标范围内怪物进行5次攻击，附带|Cffffc926普攻效果|r。","ReplaceableTextures\\CommandButtons\\BTNS006.blp")
-call InitAbilityData('S070',8,2,1,0,0,0,0.23,0,2,8,0,"暴风剑雨","对目标范围内怪物造成|Cffff800014次|r攻击，附带|Cffffc926普攻效果|r","ReplaceableTextures\\CommandButtons\\BTNS070.blp")
+call InitAbilityData('S070',8,2,1,0,0,0,0.23,0,2,8,0,"暴风剑雨","对目标范围内怪物造成多次伤害。|n|n|Cff00ff7f可触发致命一击效果。|r","ReplaceableTextures\\CommandButtons\\BTNS070.blp")
 call InitAbilityData('S052',1,5,2,4.5,6.8,9.1,11.4,0,2,0,1,"神火天降","每|Cff00bfff16|r次攻击施动神火天降，对目标范围内敌人造成伤害，所有技能|Cff00bfff冷却减少0.5秒|r。","ReplaceableTextures\\CommandButtons\\BTNS052.blp")
 call InitAbilityData('S053',2,5,2,3.7,5.5,7.4,9.2,0,2,2,1,"落魂咒","对周围单位造成伤害，|Cff00bfff30%|r几率造成|Cff00bfff双倍|r伤害\n\n|Cff00ff7f不受冷却缩减影响|r","ReplaceableTextures\\CommandButtons\\BTNS053.blp")
 call InitAbilityData('S080',3,2,1,0,0,0,1.5,0,2,8,1,"剑灵诛仙式","万剑出鞘，对目标范围造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
@@ -33,7 +33,7 @@ call InitAbilityData('S001',1,3,2,0,0,7,8.8,0,2,0,2,"南明离火","每|Cff00bff
 call InitAbilityData('S005',8,5,2,3.5,5.2,6.9,8.7,0,2,8,2,"焚心咒","施动焚心咒术对目标范围造成伤害。\n3秒内每次攻击视为|Cffffc9262次攻击计数|r。","ReplaceableTextures\\CommandButtons\\BTNS005.blp")
 call InitAbilityData('S035',1,5,1,2.9,4.3,5.8,7.2,0,2,0,2,"业火咒","每|Cff00bfff16|r次攻击施动业火咒术，对目标范围造成伤害","ReplaceableTextures\\CommandButtons\\BTNS035.blp")
 call InitAbilityData('S030',3,3,1,0,0,7.1,8.8,0,2,8,2,"三昧真火","施动业三昧真火对目标范围造成伤害。\n3秒内每次攻击视为|Cffffc9262次攻击计数|r。","ReplaceableTextures\\CommandButtons\\BTNS030.blp")
-call InitAbilityData('S073',1,4,1,0,0.5,0.6,0.8,0,2,0,2,"混元珠","攻击|Cffffc9266%|r概率掷出混元宝珠，|Cffffc926每次碰撞|r到怪物时造成伤害并|Cffffc926眩晕0.5秒|r。","ReplaceableTextures\\CommandButtons\\BTNS073.blp")
+call InitAbilityData('S073',1,4,1,0,0.5,0.6,0.8,0,2,0,2,"混元珠","攻击|Cffffc9266%|r概率掷出混元宝珠，|Cffffc926每次碰撞|r到怪物时造成伤害并|Cffffc926眩晕0.1秒|r。","ReplaceableTextures\\CommandButtons\\BTNS073.blp")
 call InitAbilityData('S074',3,5,1,3,4.4,5.9,7.4,0,2,8,2,"戮目珠","对目标范围掷出戮目宝珠，碰撞怪物时造成伤害，3秒内增加自身|Cffffc92620点护甲穿透|r。\n\n|Cff00ff7f效果可叠加|r","ReplaceableTextures\\CommandButtons\\BTNS074.blp")
 call InitAbilityData('S013',1,2,99,0,0,0,5,0,2,0,2,"轮回之狱","每|Cffffc92624次|r攻击对目标范围造成伤害并|Cffffc926眩晕1秒|r。","ReplaceableTextures\\CommandButtons\\BTNS013.blp")
 call InitAbilityData('S022',8,2,5,0,0,0.34,0.42,0,2,8,2,"强攻阵","火莲降世，对周围怪物造成伤害，3s内增加|Cffffc92610%|r暴击。\n\n|Cff00ff7f效果可叠加|r","ReplaceableTextures\\CommandButtons\\BTNS022.blp")
@@ -47,7 +47,7 @@ call InitAbilityData('S096',1,2,1,4.5,6.8,9,11.3,0,2,0,3,"酒仙剑舞","|CffFFC
 call InitAbilityData('S097',1,3,5,0,0,0.35,0.44,0,2,0,3,"佛怒","被攻击|Cffffc92616次|r对自身范围内敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS097.blp")
 call InitAbilityData('S101',7,5,5,0.19,0.28,0.38,0.47,0,2,8,3,"雷光破","对目标范围造成造成伤害。\n|Cffffc9264秒|r内|Cffffc926佛门系|r触发概率|Cffffc926+6%|r。","ReplaceableTextures\\CommandButtons\\BTNS101.blp")
 call InitAbilityData('S104',2,4,5,0,0.05,0.07,0.09,0,2,8,3,"熔炉之身","每秒对自身范围内敌人造成伤害，攻击附带|Cffffc926最大生命*20%|r伤害，持续6秒。","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
-call InitAbilityData('S082',1,2,99,0,0,0,0.29,0,2,10,4,"雷神之子","召唤|Cffffc9266朵|r雷云环绕自身。\n|Cff00ff7f雷云拥有溅射攻击。|r","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
+call InitAbilityData('S082',1,2,99,0,0,0,0.29,0,2,0,4,"雷神之子","召唤|Cffffc9263朵|r雷云环绕自身。\n|Cff00ff7f雷云拥有溅射攻击。|r","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
 call InitAbilityData('S086',1,5,1,0.08,0.11,0.15,0.19,0,2,0,4,"幻影剑阵","召唤|Cffffc9263把|r飞剑环绕自身。\n|Cff00ff7f飞剑拥有溅射攻击。|r","ReplaceableTextures\\CommandButtons\\BTNS086.blp")
 call InitAbilityData('S089',2,4,99,0,0.42,0.56,0.7,0,2,16,4,"天神道兵","召唤|Cffffc9261|r个天神道兵，持续12秒。\n|Cff00ff7f道兵拥有致命一击和分裂|r","ReplaceableTextures\\CommandButtons\\BTNS089.blp")
 call InitAbilityData('S090',8,3,2,0,0,9.2,11.6,0,2,10,4,"噬魂龙魄","召唤1个噬魂龙魄，使其周围600码单位生机骤减，每|Cffffc9260.5|r秒造成伤害，持续|Cffffc9264秒|r。\n|Cff00ff7f多个噬魂灵魄伤害可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS090.blp")
@@ -103,6 +103,10 @@ call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问�
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9265%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
 
+
+
+
+
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
 InitAbilityStringEx('S502',"附带2秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
 InitAbilityStringEx('S503',"冷却时间4秒","冷却时间2秒","冷却时间移除","","")
@@ -133,6 +137,8 @@ InitAbilityStringEx('S527',"处决目标获得神仙搭救，立即原地复活�
 InitAbilityStringEx('S528',"勇猛：施放Q技能时，50%概率对周围造成攻击*1000%伤害。","技能伤害+15%","勇猛必定触发","","")
 InitAbilityStringEx('S529',"触发时对自身周围600码造成生命*300%伤害","被复活单位5s内攻击速度+30%，暴击率+10%。","冷却时间降低至10秒","","")
 InitAbilityStringEx('S530',"攻击必定命中。","触发致命一击时回复自身3%最大生命值","领悟三重射，可触发攻击特效","","")
+
+
 
 endfunction
 endscope

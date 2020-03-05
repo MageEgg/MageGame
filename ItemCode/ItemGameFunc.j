@@ -807,14 +807,14 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             AddUnitRealState(Pu[1],2,10000)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，业力|cff00ff00+10000")
         elseif  itid == 'IN38'
-            AddUnitRealState(Pu[1],5,1000)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+1000")
+            AddUnitRealState(Pu[1],5,20000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+20000")
         elseif  itid == 'IN39'
-            AddUnitRealState(Pu[1],5,2500)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+2500")
+            AddUnitRealState(Pu[1],5,50000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+50000")
         elseif  itid == 'IN40'
-            AddUnitRealState(Pu[1],5,10000)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+10000")
+            AddUnitRealState(Pu[1],5,200000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+200000")
         endif
     endfunction
 

@@ -122,7 +122,7 @@ scope DeathEvent initializer InitDeathEvent
         
         AddUnitRealState(Pu[1],2,i1)
         AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold)+"|r |CffCC99FF业力+"+I2S(i1)+"|r")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold))
         if  GetRandomInt(1,100) <= 40
             if  itemid == 'I010'
                 i1 = GetRandomInt(300,700)

@@ -349,6 +349,7 @@ library SystemCodes uses ServerTime,Define1
         int thisnum = 0
         item thisitem = null
         int max = 999
+        
         for i = 0,5
             thisitem = UnitItemInSlot(wu,i)
             if  GetItemTypeId(thisitem) == ItemId and wi!=thisitem
