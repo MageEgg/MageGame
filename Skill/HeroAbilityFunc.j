@@ -932,55 +932,23 @@ library HeroAbilityFunc uses OtherDamageTimer
         flush locals
     endfunction
 
-    function SpellS517(unit wu,unit tu,real dam,int level)        
-        unit u1 = wu
-        unit u2 = tu
-        real x1 = GetUnitX(u1)
-        real y1 = GetUnitY(u1)
-        unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_tx_asad (9).mdl",x1,y1,0,0,0.7)
-        real damage = dam
-        int lv = level
-        group g1 = CreateGroup()
-        TimerStart(0.03,true)
-        {
-            real dis = Udis(u3,u2)
-            real ang = Uang(u3,u2)
-            IndexGroup g = IndexGroup.create()
-            if  dis > 50
-                x1 = x1 + 30 * Cos(ang)
-                y1 = y1 + 30 * Sin(ang)
-                SetUnitX(u3,x1)
-                SetUnitY(u3,y1)
-
-                
-
-                GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,2,0))
-                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                g.destroy()
-
-            else
-                if  lv >= 3
-                    damage = damage * 1.5
-                elseif  lv >= 2
-                    damage = damage * 1.2
-                endif
-                AddEffectInAreaSetSize(x1,y1,250,0.5,10,"effect_hero_attack1.mdl")
-                GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                g.destroy()
-                SpellS517Timer(u1)
-                DestroyGroup(g1)
-                RemoveUnit(u3)
-                endtimer
+    function SpellS517Spell(unit wu,unit tu,real damage,int lv)
+        if  YDWEGetUnitAbilityState(wu, 'AC05', 1) == 0
+            real x1 = GetUnitX(tu)
+            real y1 = GetUnitY(tu)
+            if  lv >= 4
+                SpellS517Timer(wu)
             endif
-            flush locals
-        }
-        flush locals
-    endfunction
-    function SpellS517Spell(unit wu,unit tu,real dam,int lv)
-        if  ChanceEx(wu,'S517',10) == true
-    
-            SpellS517(wu,tu,dam,lv)
+            if  lv >= 2
+                damage = damage * 1.4
+            endif
+            IndexGroup g = IndexGroup.create()
+            AddEffectInAreaSetSize(x1,y1,250,0.5,10,"effect_hero_attack1.mdl")
+            GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+
+            SetAbilityCD_AC(wu,'S517',8)
         endif
     endfunction
 
