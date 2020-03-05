@@ -721,7 +721,7 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS513Spell(unit wu)->bool
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  GetUnitTypeId(wu) == 'H013'
-            if  Pu[63] != null
+            if  GetUnitTypeId(Pu[63])!=0
                 return true
             endif
         endif
