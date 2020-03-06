@@ -1112,6 +1112,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real xzsd=360/(qtime/0.03)*0.01745
         real ang=Uang(u,mj)
         real yxtime=0
+        real damage = GetUnitRealState(u,1)
         SaveInteger(ht,GetHandleId(u),sid,1)
         TimerStart(0.02,true)    
         {
@@ -1183,7 +1184,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x1 =0
         real y1 = 0
         real num = 3+GetHeroSummonNum(u)
-        real damage = GetUnitRealState(u,1)
         unit u2 = null
         for i = 1,num
             ang=0.01745*(360/num)*i
@@ -1191,7 +1191,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             y1 = y+10*Sin(ang)
             u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",x1,y1,GetUnitFacing(u),100,1)                                        
             //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-            AroundSystemlei(u,u2,1.5,86400,20,160,damage*num*0.25,'S082')
+            AroundSystemlei(u,u2,1.5,86400,20,160,0,'S082')
         end
         flush locals
     endfunction
@@ -1204,7 +1204,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x1 =0
         real y1 = 0
         real num = 3+GetHeroSummonNum(u)
-        real damage = GetUnitRealState(u,1)
         unit u2 = null
         for i = 1,num
             ang=0.01745*(360/num)*i
@@ -1212,7 +1211,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             y1 = y+10*Sin(ang)    
             u2 = CreateUnit(GetOwningPlayer(u),'eZ18',x1,y1,GetUnitFacing(u))                               
             //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-            AroundSystemlei(u,u2,1.5,86400,20,200,damage*num*0.34,'S086')
+            AroundSystemlei(u,u2,1.5,86400,20,200,0,'S086')
         end
         flush locals
     endfunction
