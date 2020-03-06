@@ -283,24 +283,27 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int num = 8
         effect tx=AddSpecialEffectTarget("effect_blue-shandian-huaban-toushewu.mdl",wu,"origin")
         SpellS006Attack(u1,x1,y1,damage)
-        TimerStart(0.1,true)
+        TimerStart(0.07,true)
         {
             num = num - 1
-            if  num <= 0
-                SetUnitX(u1,ux)
-                SetUnitY(u1,uy)
-                DestroyEffect(tx)
-                endtimer
-            else
-                if  SpellS006Attack(u1,x1,y1,damage) == false
+            if  GetUnitAbilityLevel(u1,'AZ98') == 0 
+                if  num <= 0
                     SetUnitX(u1,ux)
                     SetUnitY(u1,uy)
                     DestroyEffect(tx)
                     endtimer
-                    flush locals
+                else
+                    if  SpellS006Attack(u1,x1,y1,damage) == false
+                        SetUnitX(u1,ux)
+                        SetUnitY(u1,uy)
+                        DestroyEffect(tx)
+                        endtimer
+                    endif
                 endif
+            else
+                DestroyEffect(tx)
+                endtimer
             endif
-            
             flush locals
         }
         flush locals
