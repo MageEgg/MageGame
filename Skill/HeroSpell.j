@@ -1110,12 +1110,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real qtime=qtime1
         real xzsd=360/(qtime/0.03)*0.01745
         real ang=Uang(u,mj)
-<<<<<<< HEAD
-        real yxtime=0
-=======
         real yxtime = 0
         real damage = 0
->>>>>>> 857cbd6d5c94007a2229722f2c6df0a1045668d4
         SaveInteger(ht,GetHandleId(u),sid,1)
         TimerStart(0.02,true)    
         {
@@ -1484,11 +1480,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction  
 
-<<<<<<< HEAD
-    function SpellS104Ex(unit u,real damage)
-=======
     function SpellS104Ex(unit u)
->>>>>>> 857cbd6d5c94007a2229722f2c6df0a1045668d4
         integer pid = GetPlayerId(GetOwningPlayer(u))
         if  PlayerDeathBool == false
             IndexGroup g = IndexGroup.create()
