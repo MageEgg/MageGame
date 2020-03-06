@@ -2174,9 +2174,9 @@ function SpellS116(unit u1,real damage1)
     endfunction
     
     function SpellS235(unit u1)
-        unit u=u1
-        real b=((100-GetUnitLifePercent(u))*0.3)+5
-        AddUnitRealState(u,19,b)
+        unit u = u1
+        real b = (0.02+GetUnitState(u1,UNIT_STATE_LIFE)/GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.2)*100
+        AddUnitRealState(u,19,b)    
         UnitAddAbility(u,'A235')
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-200,1))
         TimerStart(4,false)

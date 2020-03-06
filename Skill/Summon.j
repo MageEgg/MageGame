@@ -64,7 +64,7 @@ library Summon uses AbilityUI,OtherDamageTimer
             for k = 1,num
                 u2 = CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
                 SetUnitRealState(u2,1,GetUnitRealState(u,1))
-                SetUnitRealState(u2,22,100)
+                SetUnitRealState(u2,22,GetUnitRealState(u,22))
                 UnitApplyTimedLife(u2,'BHwe',12)
                 SummonFollow(u,u2)
             end
