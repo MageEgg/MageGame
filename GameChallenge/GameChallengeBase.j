@@ -358,7 +358,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 elseif  num == 3
                     AddUnitRealState(Pu[1],32,t*6)
                 elseif  num == 4
-                    AddUnitRealState(Pu[1],4,t*5)
+                    AddUnitRealState(Pu[1],13,t*50)
                 elseif  num == 5
                     AddUnitRealState(Pu[1],19,t*3)
                 elseif  num == 6
