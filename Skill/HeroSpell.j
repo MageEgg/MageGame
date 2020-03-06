@@ -1096,14 +1096,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
     
-    function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real damage1,int id)
+    function AroundSystemlei(unit u1,unit mj1,real qtime1, real time1,real speed1,real jvli1,real ordam,int id)
         unit u=u1
         unit mj=mj1
         unit uu=null
         real time=time1
         real speed=speed1
         real jvli=jvli1
-        real damage=damage1
         int sid = id
         real x1=GetUnitX(mj)
         real y1=GetUnitY(mj)
@@ -1111,8 +1110,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real qtime=qtime1
         real xzsd=360/(qtime/0.03)*0.01745
         real ang=Uang(u,mj)
-        real yxtime=0
-        real damage = GetUnitRealState(u,1)
+        real yxtime = 0
+        real damage = 0
         SaveInteger(ht,GetHandleId(u),sid,1)
         TimerStart(0.02,true)    
         {
@@ -1125,6 +1124,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 GroupEnumUnitsInRange(g1,x1,y1,800,GroupNormalNoStr(GetOwningPlayer(u),"","",0))  
                 uu = GroupPickRandomUnit(g1)
                 GroupClear(g1)
+                damage = GetAbilityDamage(u,id,GetHeroAbilityLevel(u,sid))
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 if  uu !=null
