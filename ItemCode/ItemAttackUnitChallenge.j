@@ -169,7 +169,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AddAttackUnitChallengeStateStock(pid,210,0)
                 AddAttackUnitChallengeStateStock(pid,220,0)
                 
-                AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力|r"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|n"+AttackUnitChallengeStateTypeString[200][0]
+                AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n"+AttackUnitChallengeStateTypeString[200][0]
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
             endif
@@ -575,7 +575,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         else
                             AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 1000
                         endif
-                        AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力|r"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|n|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
+                        AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
                     else
                         newid = 'uT0L'
                         lumber = 20
