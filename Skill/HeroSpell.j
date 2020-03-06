@@ -1079,13 +1079,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitX(u2,x2+dx)
                     SetUnitY(u2,y2+dy)
                     if  ModuloInteger(time,10) == 0
-                        UnitDamageTarget(u1,u2,damage,b1,b2,ConvertAttackType(attt),ConvertDamageType(damt), WEAPON_TYPE_AXE_MEDIUM_CHOP)
+                        UnitDamageTarget(u1,u2,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     endif
                     GroupRemoveUnit(gg,u2)
                 endloop
             else
                 GroupEnumUnitsInRange(gg,x1,y1,700,GroupNormalNoStr(GetOwningPlayer(u1),"az_heiseguangzhu.mdx","origin",0))
-                UnitDamageGroup(u1,gg,damage,b1,b2,ConvertAttackType(attt),ConvertDamageType(damt), WEAPON_TYPE_AXE_MEDIUM_CHOP)
+                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 RemoveUnit(uu)
                 endtimer
             endif
