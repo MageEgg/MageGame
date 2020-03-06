@@ -1480,28 +1480,29 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction  
 
-    function SpellS104Ex(unit u)
+    function SpellS104Ex(unit u,damage)
         integer pid = GetPlayerId(GetOwningPlayer(u))
         if  PlayerDeathBool == false
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),400,GroupNormalNoStr(GetOwningPlayer(u),"Environment\\LargeBuildingFire\\LargeBuildingFire2.mdl","origin",0))
-            UnitDamageGroup(u,g.ejg,GetUnitRealState(u,5)*0.6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
         endif
         flush locals
     endfunction
 
-    function SpellS104(unit u1)
+    function SpellS104(unit u1,real dam)
         unit u=u1
         effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u,"origin") 
         int time = 0
+        real damage = dam
         UnitAddAbility(u,'S104')
         SpellS104Ex(u)
         TimerStart(1,true)
         {
             if  time < 5
                 time = time + 1
-                SpellS104Ex(u)
+                SpellS104Ex(u,damage)
             else
                 UnitRemoveAbility(u,'S104')
                 DestroyEffect(tx)
@@ -2449,7 +2450,7 @@ endfunction
             elseif  id == 'S101'    
                 SpellS101(u1.u,sx,sy,damage)   
             elseif  id == 'S104'    
-                SpellS104(u1.u) 
+                SpellS104(u1.u,damage) 
             elseif  id == 'S110'    
                 SpellS110(u1.u,sx,sy,damage)
             elseif  id == 'S113'    
