@@ -131,13 +131,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS005(unit wu,real r1,real r2)
+    function SpellS005(unit wu,real r1,real r2,real dam)
         unit u1 = wu
         real x = r1
         real y = r2
         int id = 'S005'
-        real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
         unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ17',x,y,0)
+        real damage = dam
         int time = 0
         UnitTimerAddSkill(wu,'S005',3)
         TimerStart(0.01,true)
@@ -388,10 +388,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS028(unit wu,real x,real y)//冥月流星落
+    function SpellS028(unit wu,real x,real y,real dam)//冥月流星落
         unit u1 = wu
         int id = 'S028'
-        real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
+        real damage = dam
         group g = CreateGroup()
         DestroyEffect(AddSpecialEffect("effect_az_bw_lina_t1-2.mdl",x,y))
         GroupEnumUnitsInRange(g,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"effect_AZ_PotM(1)_T1_Impact.mdl","origin",0))
@@ -410,9 +410,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS030(unit u,real x2,real y2)//三味真火
+    function SpellS030(unit u,real x2,real y2,real damage)//三味真火
         int id = 'S030'
-        real damage = GetAbilityDamage(u,id,GetHeroAbilityLevel(u,id))
         real x1=GetUnitX(u)
         real y1=GetUnitY(u)
         CreateTmEx(u,"effect_by_wood_effect_yuzhiboyou_fire_haohuoqiu.mdx",x1,y1,x2,y2,damage+(GetUnitRealState(u,2)*6),3,12,200,800,0.03,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
@@ -904,10 +903,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS076(unit wu,real x,real y)//连环刺
+    function SpellS076(unit wu,real x,real y,real damage)//连环刺
         unit u=wu
         int id = 'S076'
-        real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -2391,7 +2389,7 @@ endfunction
 
         if  id >= 'S000' and id <= 'S300'
             if  id == 'S005'
-                SpellS005(u1.u,sx,sy)
+                SpellS005(u1.u,sx,sy,damage)
             elseif  id == 'S002'
                 SpellS002(u1.u)
             elseif  id == 'S006'
@@ -2401,9 +2399,9 @@ endfunction
             elseif  id == 'S022'
                 SpellS022(u1.u,sx,sy,damage)
             elseif  id == 'S028'
-                SpellS028(u1.u,sx,sy)
+                SpellS028(u1.u,sx,sy,damage)
             elseif  id == 'S030'
-                SpellS030(u1.u,sx,sy)
+                SpellS030(u1.u,sx,sy,damage)
             elseif  id == 'S033'
                 SpellS033(u1.u)
             elseif  id == 'S046'
@@ -2421,7 +2419,7 @@ endfunction
             elseif  id == 'S074'
                 SpellS074(u1.u,sx,sy,damage)
             elseif  id == 'S076'
-                SpellS076(u1.u,sx,sy)
+                SpellS076(u1.u,sx,sy,damage)
             elseif  id == 'S078'
                 SpellS078(u1.u,sx,sy,damage)
             elseif  id == 'S079'
@@ -2544,6 +2542,7 @@ endfunction
         int i2 = lv
         TimerStart(time,false)
         {
+            
             SpellHeroSkillAction(u1,u2,x,y,i1,i2)
             endtimer
             flush locals
