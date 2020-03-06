@@ -2336,6 +2336,9 @@ endfunction
     function SpellFB47(unit wu)
         if  Chance(wu,4) == true
             IndexGroup g = IndexGroup.create()
+
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),400,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",'A002',1,852149))
+            GroupClear(g.ejg)
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),400,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,1,0))
             
             LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_misaka light.mdl",0.5)
