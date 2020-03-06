@@ -15,6 +15,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
 
     int array AttackUnitChallengePlayerArrayInt[12][680]
 
+    int array AttackUnitChallengeCombat[20][400]
+
     #define AttackUnitChallengeStateGold                    AttackUnitChallengeStatePriceA
     #define AttackUnitChallengeStateLumber                  AttackUnitChallengeStatePriceB
 
@@ -44,6 +46,21 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         AttackUnitChallengeStateTypeValueD[zu][wei] = typed //类型参数 未使用的
 
         AttackUnitChallengeStateTypeString[zu][wei] = s
+    endfunction
+
+    function InitAttackUnitChallengeCombatData(int nandu,int zu,int i1,int i2,int i3,int i4,int i5,int i6,int i7,int i8,int i9,int i10,int i11,int i12)
+        AttackUnitChallengeCombat[nandu][zu+0] = i1
+        AttackUnitChallengeCombat[nandu][zu+1] = i2
+        AttackUnitChallengeCombat[nandu][zu+2] = i3
+        AttackUnitChallengeCombat[nandu][zu+3] = i4
+        AttackUnitChallengeCombat[nandu][zu+4] = i5
+        AttackUnitChallengeCombat[nandu][zu+5] = i6
+        AttackUnitChallengeCombat[nandu][zu+6] = i7
+        AttackUnitChallengeCombat[nandu][zu+7] = i8
+        AttackUnitChallengeCombat[nandu][zu+8] = i9
+        AttackUnitChallengeCombat[nandu][zu+9] = i10
+        AttackUnitChallengeCombat[nandu][zu+10] = i11
+        AttackUnitChallengeCombat[nandu][zu+11] = i12
     endfunction
 
     function InitAttackUnitChallengeState()
@@ -93,6 +110,17 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(220,6,0,0,0,0,Buy_Unit,'AT2G',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【诛仙阵斗法】|r的进入资格。")
         InitAttackUnitChallengeStateData(220,7,0,0,0,0,Buy_Unit,'AT2H',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【收梅山七怪】|r的进入资格。")
 
+
+        InitAttackUnitChallengeCombatData(1,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+
+
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
@@ -140,6 +168,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 end
                 AddAttackUnitChallengeStateStock(pid,210,0)
                 AddAttackUnitChallengeStateStock(pid,220,0)
+                
+                AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n"+AttackUnitChallengeStateTypeString[200][0]
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
             endif
@@ -457,6 +487,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int ran = 0
         int newid = 0
         int lumber = 0
+        int nextlumber = 0
         if  id >= 'AT0A' and id <= 'AT0L'
             challenge = 1
             zu = 200
@@ -526,18 +557,25 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         if  AttackUnitChallengePlayerWeiNum(challenge) >= 9
                             lumber = 20
                         elseif  AttackUnitChallengePlayerWeiNum(challenge) >= 5
-                            lumber = 25
+                            lumber = 15
                         elseif  AttackUnitChallengePlayerWeiNum(challenge) >= 2
                             lumber = 10
                         else
                             lumber = 5
+                        endif
+                        if  AttackUnitChallengePlayerWeiNum(challenge) >= 8
+                            nextlumber = 20
+                        elseif  AttackUnitChallengePlayerWeiNum(challenge) >= 4
+                            nextlumber = 15
+                        else
+                            nextlumber = 10
                         endif
                         if  AttackUnitChallengePlayerWeiNum(challenge) < 5
                             AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 500
                         else
                             AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 1000
                         endif
-                        AttackUnitChallengeStateTypeString[zu][wei] = "|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+"+I2S((AttackUnitChallengePlayerWeiNum(challenge)+1)*5)+"|r"
+                        AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
                     else
                         newid = 'uT0L'
                         lumber = 20
