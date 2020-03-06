@@ -387,9 +387,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.09,0.105)
+        Back2.SetSize(0.09,0.108)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,5
+        for i = 1,6
             CreateButton(167+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
@@ -408,6 +408,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00分裂：|r0%")
         CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00吸血：|r0%")
         CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00伤害加成：|r0%")
+        CreateText(173,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00护甲穿透：|r0%")
 
 
 

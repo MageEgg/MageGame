@@ -402,6 +402,8 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                     DzFrameSetText(BUTTON_Text[171],"|cffffcc00吸血：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 17
                     DzFrameSetText(BUTTON_Text[172],"|cffffcc00伤害加成：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 13
+                    DzFrameSetText(BUTTON_Text[173],"|cffffcc00护甲穿透：|r"+I2S(R2I(showvalue))+"%")
                 endif
 
 

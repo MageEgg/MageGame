@@ -1112,7 +1112,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real xzsd=360/(qtime/0.03)*0.01745
         real ang=Uang(u,mj)
         real yxtime=0
-        real damage = GetUnitRealState(u,1)
         SaveInteger(ht,GetHandleId(u),sid,1)
         TimerStart(0.02,true)    
         {
@@ -1305,12 +1304,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS089(unit u)
-        HeroSpellSummon(u,GetUnitX(u),GetUnitY(u),'z102')
+    function SpellS089(unit u,real damage )
+        HeroSpellSummon(u,GetUnitX(u),GetUnitY(u),'z102',damage)
     endfunction
 
-     function SpellS090(unit u,real x,real y)
-        HeroSpellSummon(u,x,y,'z103')
+     function SpellS090(unit u,real x,real y,real damage)
+        HeroSpellSummon(u,x,y,'z103',damage)
     endfunction
 
     function SpellS094(unit u1,real damage)
@@ -1480,7 +1479,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction  
 
-    function SpellS104Ex(unit u,damage)
+    function SpellS104Ex(unit u,real damage)
         integer pid = GetPlayerId(GetOwningPlayer(u))
         if  PlayerDeathBool == false
             IndexGroup g = IndexGroup.create()
@@ -1497,7 +1496,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int time = 0
         real damage = dam
         UnitAddAbility(u,'S104')
-        SpellS104Ex(u)
+        SpellS104Ex(u,damage)
         TimerStart(1,true)
         {
             if  time < 5
@@ -2442,9 +2441,9 @@ endfunction
             //elseif  id == 'S086'    
             //    SpellS086(u1.u)
             elseif  id == 'S089'    
-                SpellS089(u1.u)
+                SpellS089(u1.u,damage)
             elseif  id == 'S090'    
-                SpellS090(u1.u,sx,sy)
+                SpellS090(u1.u,sx,sy,damage)
             elseif  id == 'S100'    
                 SpellS100(u1.u)
             elseif  id == 'S101'    
