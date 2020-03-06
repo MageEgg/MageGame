@@ -135,7 +135,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u1 = wu
         real x = r1
         real y = r2
-        int id = 'S005'
         unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ17',x,y,0)
         real damage = dam
         int time = 0
@@ -390,7 +389,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS028(unit wu,real x,real y,real dam)//冥月流星落
         unit u1 = wu
-        int id = 'S028'
         real damage = dam
         group g = CreateGroup()
         DestroyEffect(AddSpecialEffect("effect_az_bw_lina_t1-2.mdl",x,y))
@@ -411,7 +409,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS030(unit u,real x2,real y2,real damage)//三味真火
-        int id = 'S030'
         real x1=GetUnitX(u)
         real y1=GetUnitY(u)
         CreateTmEx(u,"effect_by_wood_effect_yuzhiboyou_fire_haohuoqiu.mdx",x1,y1,x2,y2,damage+(GetUnitRealState(u,2)*6),3,12,200,800,0.03,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
@@ -799,7 +796,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS073(unit u)
+    function SpellS073Attack(unit u)
         real x=GetUnitX(u)
         real y=GetUnitY(u)
         real jd=0
@@ -905,7 +902,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS076(unit wu,real x,real y,real damage)//连环刺
         unit u=wu
-        int id = 'S076'
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -919,7 +915,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
 
-    function SpellS075(unit wu,unit tu)//夺命刺
+    function SpellS075Attack(unit wu,unit tu)//夺命刺
         group gg = CreateGroup()
         int id = 'S075'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
@@ -1052,35 +1048,49 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         
     endfunction
 
-    function SpellS081(unit u2,real x1,real y1,real damage1)//真空领域
-        unit u1=u2
-        real damage=damage1 
-        real m=3
-        real x=x1
-        real y=y1
-        integer n = 0
-        real m1=m-0.5
-        LocAddEffectTimer(x,y,"effect_az_blacksmoke.mdl",m)
-        UnitAddAbility(u1,'S081')
+    function SpellS081(unit wu,real r1,real r2,real dam)//真空领域
+        unit u1 = wu
+        unit u2 = null
+        real damage = dam
+        real x1 = r1
+        real y1 = r2
+        int time = 200
+        unit uu = CreateTmUnit(GetOwningPlayer(u1),"effect_az_blacksmoke.mdl",x1,y1,0,50,1.0)
         TimerStart(0.03,true)
         {
-            m = m - 0.03
-            if  m < m1
-                n = n + 1
-                if  m > 0
-                    IndexGroup g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,x,y,600,GroupSetToCenter(GetOwningPlayer(u1),x,y,n,""))
-                    if  n == 16
-                        UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                        n=0
+            group gg = CreateGroup()
+            real x2 = 0
+            real y2 = 0
+            real ang = 0
+            real dx = 0
+            real dy = 0
+            insert BossSkillDamType
+            if  time > 0
+                time = time - 1
+                GroupEnumUnitsInRange(gg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                loop
+                    u2 = FirstOfGroup(gg)
+                    exitwhen u2 == null
+                    x2 = GetUnitX(u2)
+                    y2 = GetUnitY(u2)
+                    ang = Atan2(y1-y2,x1-x2)
+                    dx = 12*Cos(ang)
+                    dy = 12*Sin(ang)
+                    SetUnitX(u2,x2+dx)
+                    SetUnitY(u2,y2+dy)
+                    if  ModuloInteger(time,10) == 0
+                        UnitDamageTarget(u1,u2,damage,b1,b2,ConvertAttackType(attt),ConvertDamageType(damt), WEAPON_TYPE_AXE_MEDIUM_CHOP)
                     endif
-                    g.destroy()
-                else
-                    UnitRemoveAbility(u1,'S081')
-                    endtimer
-                endif
-                
+                    GroupRemoveUnit(gg,u2)
+                endloop
+            else
+                GroupEnumUnitsInRange(gg,x1,y1,700,GroupNormalNoStr(GetOwningPlayer(u1),"az_heiseguangzhu.mdx","origin",0))
+                UnitDamageGroup(u1,gg,damage,b1,b2,ConvertAttackType(attt),ConvertDamageType(damt), WEAPON_TYPE_AXE_MEDIUM_CHOP)
+                RemoveUnit(uu)
+                endtimer
             endif
+            GroupClear(gg)
+            DestroyGroup(gg)
             flush locals
         }
         flush locals
@@ -1300,8 +1310,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         HeroSpellSummon(u,GetUnitX(u),GetUnitY(u),'z102')
     endfunction
 
-     function SpellS090(unit u)
-        HeroSpellSummon(u,GetUnitX(u),GetUnitY(u),'z103')
+     function SpellS090(unit u,real x,real y)
+        HeroSpellSummon(u,x,y,'z103')
     endfunction
 
     function SpellS094(unit u1,real damage)
@@ -1344,7 +1354,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS097(unit wu)
+    function SpellS097Attack(unit wu)
         int id = 'S097'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         int Num = LoadInteger(ht,GetHandleId(wu),id)
@@ -1979,7 +1989,7 @@ function SpellS116(unit u1,real damage1)
         flush locals
     endfunction  
 
-    function SpellS230(unit wu,real r1,real r2)//兽魂1
+    function SpellS230(unit wu,real r1,real r2,real dam)//兽魂1
         unit u1 = wu
         real x1 = GetUnitX(u1)
         real y1 = GetUnitY(u1)
@@ -1987,8 +1997,7 @@ function SpellS116(unit u1,real damage1)
         real y2 = r2
         real ang = Atan2(y2-y1,x2-x1)
         real dis = Pdis(x1,y1,x2,y2)
-        int id = 'S230'
-        real damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
+        real damage = dam
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         unit uu = CreateTmUnit(GetOwningPlayer(u1),"shenshou_shenshou_bian.mdl",x1,y1,0,0,3.5)
@@ -2125,9 +2134,8 @@ function SpellS116(unit u1,real damage1)
 
     endfunction
     
-    function SpellS233(unit u)
-        int id = 'S233'
-        real damage = GetAbilityDamage(u,id,GetHeroAbilityLevel(u,id))
+    function SpellS233(unit u,real dam)
+        real damage = dam
         unit uu = null
         IndexGroup g = IndexGroup.create()
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
@@ -2146,9 +2154,8 @@ function SpellS116(unit u1,real damage1)
         flush locals  
     endfunction
     
-    function SpellS234(unit u,real x,real y)
-        int id = 'S234'
-        real damage = GetAbilityDamage(u,id,GetHeroAbilityLevel(u,id))
+    function SpellS234(unit u,real x,real y,real dam)
+        real damage = dam
         unit UnitAddBuffUnit=null
         unit uu = null
         UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',x,y,0)
@@ -2437,7 +2444,7 @@ endfunction
             elseif  id == 'S089'    
                 SpellS089(u1.u)
             elseif  id == 'S090'    
-                SpellS090(u1.u)
+                SpellS090(u1.u,sx,sy)
             elseif  id == 'S100'    
                 SpellS100(u1.u)
             elseif  id == 'S101'    
@@ -2470,15 +2477,15 @@ endfunction
             elseif   id>='S230' and id<='S237'
                 
                 if  id == 'S230'
-                        SpellS230(u1.u,sx,sy)
+                        SpellS230(u1.u,sx,sy,damage)
                     elseif  id == 'S231'
                         SpellS231(u1.u,damage)
                     elseif  id == 'S232'
                         SpellS232(u1.u)
                     elseif  id == 'S233'
-                        SpellS233(u1.u)
+                        SpellS233(u1.u,damage)
                     elseif  id == 'S234'
-                        SpellS234(u1.u,sx,sy)
+                        SpellS234(u1.u,sx,sy,damage)
                     elseif  id == 'S235'
                         SpellS235(u1.u)
                     elseif  id == 'S236'
