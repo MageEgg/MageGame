@@ -24,7 +24,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     private FRAME Button2 = 0
     private FRAME Back2 = 0
 
-    int MaxHeroLevel = 9
+    int MaxHeroLevel = 10
 
     //通用函数
     function HeroExpFrame(int pid,bool show)
@@ -182,7 +182,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
 
                 if  id == 'IJ10'
-                    DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber10.tga",0)
+                    DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber0.tga",0)
                 else
                     DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
                 endif
@@ -387,9 +387,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.09,0.108)
+        Back2.SetSize(0.09,0.170)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,6
+        for i = 1,11
             CreateButton(167+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
@@ -409,6 +409,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateText(171,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00吸血：|r0%")
         CreateText(172,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00伤害加成：|r0%")
         CreateText(173,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00护甲穿透：|r0%")
+        CreateText(174,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00触发概率：|r0%")
+        CreateText(175,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00生命加成：|r0%")
+        CreateText(176,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒攻击：|r0")
+        CreateText(177,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒业力：|r0")
+        CreateText(178,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒生命：|r0")
 
 
 

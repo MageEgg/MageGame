@@ -404,6 +404,16 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                     DzFrameSetText(BUTTON_Text[172],"|cffffcc00伤害加成：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 13
                     DzFrameSetText(BUTTON_Text[173],"|cffffcc00护甲穿透：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 27
+                    DzFrameSetText(BUTTON_Text[174],"|cffffcc00触发概率：|r"+I2S(R2I(showvalue))+"%")  
+                elseif  StateId == 31
+                    DzFrameSetText(BUTTON_Text[175],"|cffffcc00生命加成：|r"+I2S(R2I(showvalue))+"%")
+                elseif  StateId == 47
+                    DzFrameSetText(BUTTON_Text[176],"|cffffcc00每秒攻击：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 48
+                    DzFrameSetText(BUTTON_Text[177],"|cffffcc00每秒业力：|r"+I2S(R2I(showvalue)))
+                elseif  StateId == 49
+                    DzFrameSetText(BUTTON_Text[177],"|cffffcc00每秒生命：|r"+I2S(R2I(showvalue)))
                 endif
 
 

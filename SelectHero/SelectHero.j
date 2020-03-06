@@ -18,7 +18,6 @@ scope SelectHero
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
         UnitAddAbility(Pu[1],'AG0B')
 
-        UnitAddAbility(Pu[1],'A002')//不知道啥技能
 
         ShowPlayerSignInLastTime(pid) //登陆刷新
 
