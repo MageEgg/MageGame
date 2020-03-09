@@ -513,9 +513,12 @@ library GameChallenge9 uses GameChallengeBase
             if  IsPlaying(pid) == true
                 ShowUnit(GameChallengUnit[90],true)
                 UnitAddEffectOfNPC(GameChallengUnit[90])
+                PingMinimap(GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),3)
             endif
         end
-        BJDebugMsg("ShowGameTeamChallengeNPC")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r成功防守16波，团队副本NPC已激活！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r成功防守16波，团队副本NPC已激活！！！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r成功防守16波，团队副本NPC已激活！！！")
     endfunction
 
     function InitGameChallenge_9()

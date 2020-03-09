@@ -589,6 +589,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     elseif  AttackUnitOrderNum == 14
                         ExecuteFunc("CreateOperaB")
                         BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")
+                    elseif  AttackUnitOrderNum == 16
+                        ExecuteFunc("ShowGameTeamChallengeNPC")
                     elseif  AttackUnitOrderNum == 18
                         ExecuteFunc("CreateOperaC")
                         BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")

@@ -424,10 +424,10 @@ library GameChallenge8 uses GameChallengeBase
                 //奖励
                 PlayerFinishPlotEx(pid,8)
                 GivePlayerMissionPrize(pid,'RR0B')
-                /*if  GameTeamChallengeBool[0] == false
+                if  GameTeamChallengeBool[0] == false
                     GameTeamChallengeBool[0] = true
-                    ExecuteFunc("ShowGameTeamChallengeNPC")
-                endif*/
+                    ShowLeagueUnitNPC(pid)
+                endif
             endif
         elseif  uid == 'uf87'
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败袁洪！！！",0)
