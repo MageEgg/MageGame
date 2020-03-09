@@ -178,6 +178,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         GameChallengLeagueUnit(8) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np98',-7456,-7264,ang)
         for num = 1,8
             EXSetUnitMoveType(GameChallengLeagueUnit(num),0x01)
+            ShowUnit(GameChallengLeagueUnit(num),false)
         end
     endfunction
     
@@ -755,6 +756,17 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     /////////////////////////顺序调整///////////////////////////////////////////////
+
+    function ShowLeagueUnitNPC(int pid)
+        for num = 1,8
+            ShowUnit(GameChallengLeagueUnit(num),true)
+            UnitAddEffectOfNPC(GameChallengLeagueUnit(num))
+        end
+        PingMinimap(GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),5)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
+    endfunction
     
     /*function GameChallenge_GlobalFlushBool(int id,real time)
         int pid = id
