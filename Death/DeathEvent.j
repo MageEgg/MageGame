@@ -604,8 +604,9 @@ scope DeathEvent initializer InitDeathEvent
 
                         GameChallengPlayerDeathEvent(u1)
 
+                        AttackSummonUnitGroupDeathEvent(pid,u2)
                     endif
-                    AttackSummonUnitGroupDeathEvent(pid,u2)
+                    
                 endif
             else
                 if  uid == 'H005'
