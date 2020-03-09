@@ -380,7 +380,7 @@ library GameChallenge9 uses GameChallengeBase
             time = time - 1
             if  IsHasPlayerGoToTeamChalleng() == true
                 if  time == 0
-                    if  GameTeamChallengeInt(0) > 0
+                    if  GameTeamChallengeInt(0) >= 5// > 0
                         if  GameTeamChallengeInt(0) >= 5
                             BJDebugMsg("GameTeamChallengeInt(0)>5")
                             endtimer
