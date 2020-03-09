@@ -1059,6 +1059,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y1 = r2
         int time = 200
         unit uu = CreateTmUnit(GetOwningPlayer(u1),"effect_az_blacksmoke.mdl",x1,y1,0,50,1.0)
+        UnitAddAbility(u1,'S081')
         TimerStart(0.03,true)
         {
             group gg = CreateGroup()
@@ -1090,6 +1091,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 GroupEnumUnitsInRange(gg,x1,y1,700,GroupNormalNoStr(GetOwningPlayer(u1),"az_heiseguangzhu.mdx","origin",0))
                 UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 RemoveUnit(uu)
+                UnitRemoveAbility(u1,'S081')
                 endtimer
             endif
             GroupClear(gg)

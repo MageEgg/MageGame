@@ -65,50 +65,50 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
 
     function InitAttackUnitChallengeState()
         //轮数 次数 金币 玄铁 属性消耗序号 属性消耗值 挑战类型 技能ID 参数1 参数2 说明
-        InitAttackUnitChallengeStateData(0,0,0,0,0,0,Buy_Unit,'ATAA',6,0,0,"|CffBBBBBB历练奖励：|r|n击杀金币|Cffffc926+3|r，分裂攻击|Cffffc926+20%|r")
-        InitAttackUnitChallengeStateData(0,1,0,0,0,0,Buy_Unit,'ATAB',1,0,0,"|CffBBBBBB历练奖励：|r|n练功房怪物|Cffffc926+2|r，攻击吸血|Cffffc926+5%|r")
-        InitAttackUnitChallengeStateData(0,2,0,0,0,0,Buy_Unit,'ATAC',6,0,0,"|CffBBBBBB历练奖励：|r|n金币加成|Cffffc926+20%|r")
-        InitAttackUnitChallengeStateData(0,3,0,0,0,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"|CffBBBBBB历练奖励：|r|n解锁|Cffff0000副本挑战|r")
-        InitAttackUnitChallengeStateData(0,4,0,0,0,0,Buy_Unit,'ATAE',1,0,0,"|CffBBBBBB历练奖励：|r|n攻击速度|Cffffc926+40%|r")
-        InitAttackUnitChallengeStateData(0,5,0,0,0,0,Buy_Unit_Item,'ATAF',12,'IS14',0,"|CffBBBBBB历练奖励：|r|n药品升级为|Cff3399ff明清灵水|r。")
-        InitAttackUnitChallengeStateData(0,6,0,0,0,0,Buy_Unit_Item,'ATAG',8,'IZ0F',0,"|CffBBBBBB历练奖励：|r|n金币|Cffffc926+20000|r")
-        InitAttackUnitChallengeStateData(0,7,0,0,0,0,Buy_Unit_Item,'ATAH',1,'IZ0G',0,"|CffBBBBBB历练奖励：|r|n玄铁|Cffffc926+10|r")
+        InitAttackUnitChallengeStateData(0,0,0,0,0,0,Buy_Unit,'ATAA',6,0,0,"|CffFFD24D历练奖励：|r|n击杀金币|Cffffc926+3|r，分裂攻击|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(0,1,0,0,0,0,Buy_Unit,'ATAB',1,0,0,"|CffFFD24D历练奖励：|r|n练功房怪物|Cffffc926+2|r，攻击吸血|Cffffc926+5%|r")
+        InitAttackUnitChallengeStateData(0,2,0,0,0,0,Buy_Unit,'ATAC',6,0,0,"|CffFFD24D历练奖励：|r|n金币加成|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(0,3,0,0,0,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"|CffFFD24D历练奖励：|r|n解锁|Cffff0000副本挑战|r")
+        InitAttackUnitChallengeStateData(0,4,0,0,0,0,Buy_Unit,'ATAE',1,0,0,"|CffFFD24D历练奖励：|r|n攻击速度|Cffffc926+40%|r")
+        InitAttackUnitChallengeStateData(0,5,0,0,0,0,Buy_Unit_Item,'ATAF',12,'IS14',0,"|CffFFD24D历练奖励：|r|n药品升级为|Cff3399ff明清灵水|r。")
+        InitAttackUnitChallengeStateData(0,6,0,0,0,0,Buy_Unit_Item,'ATAG',8,'IZ0F',0,"|CffFFD24D历练奖励：|r|n金币|Cffffc926+20000|r")
+        InitAttackUnitChallengeStateData(0,7,0,0,0,0,Buy_Unit_Item,'ATAH',1,'IZ0G',0,"|CffFFD24D历练奖励：|r|n玄铁|Cffffc926+10|r")
 
-        InitAttackUnitChallengeStateData(1,0,0,0,0,0,Buy_Unit,'ATAI',8,0,0,"|CffBBBBBB历练奖励：|r|n攻击|Cffffc926+20000|r，业力|Cffffc926+20000|r")
-        InitAttackUnitChallengeStateData(1,1,0,0,0,0,Buy_Unit,'ATAJ',1,0,0,"|CffBBBBBB历练奖励：|r|n攻击伤害|Cffffc926+20%|r，技能伤害|Cffffc926+20%|r")
-        InitAttackUnitChallengeStateData(1,2,0,0,0,0,Buy_Unit,'ATAK',1,0,0,"|CffBBBBBB历练奖励：|r|n生命|Cffffc926+500000|r，防御|Cffffc92650|r")
-        InitAttackUnitChallengeStateData(1,3,0,0,0,0,Buy_Unit_Item,'ATAL',1,'IZ0E',0,"|CffBBBBBB历练奖励：|r|n领悟|Cffff0000觉醒神通【R】|r技能")
-        InitAttackUnitChallengeStateData(1,4,0,0,0,0,Buy_Unit,'ATAM',12,0,0,"|CffBBBBBB历练奖励：|r|n攻击速度|Cffffc926+60%|r")
-        InitAttackUnitChallengeStateData(1,5,0,0,0,0,Buy_Unit_Item,'ATAN',1,'IS14',0,"|CffBBBBBB历练奖励：|r|n药品升级为|Cffffc926九曲灵参丹|r。")
-        InitAttackUnitChallengeStateData(1,6,0,0,0,0,Buy_Unit,'ATAO',15,0,0,"|CffBBBBBB历练奖励：|r|n攻击|Cffffc926+20%|r")
-        InitAttackUnitChallengeStateData(1,7,0,0,0,0,Buy_Unit,'ATAP',20,0,0,"|CffBBBBBB历练奖励：|r|n生命|Cffffc926+20%|r，防御|Cffffc926+100|r")
+        InitAttackUnitChallengeStateData(1,0,0,0,0,0,Buy_Unit,'ATAI',8,0,0,"|CffFFD24D历练奖励：|r|n攻击|Cffffc926+20000|r，业力|Cffffc926+20000|r")
+        InitAttackUnitChallengeStateData(1,1,0,0,0,0,Buy_Unit,'ATAJ',1,0,0,"|CffFFD24D历练奖励：|r|n攻击伤害|Cffffc926+20%|r，技能伤害|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(1,2,0,0,0,0,Buy_Unit,'ATAK',1,0,0,"|CffFFD24D历练奖励：|r|n生命|Cffffc926+500000|r，防御|Cffffc92650|r")
+        InitAttackUnitChallengeStateData(1,3,0,0,0,0,Buy_Unit_Item,'ATAL',1,'IZ0E',0,"|CffFFD24D历练奖励：|r|n领悟|Cffff0000觉醒神通【R】|r技能")
+        InitAttackUnitChallengeStateData(1,4,0,0,0,0,Buy_Unit,'ATAM',12,0,0,"|CffFFD24D历练奖励：|r|n攻击速度|Cffffc926+60%|r")
+        InitAttackUnitChallengeStateData(1,5,0,0,0,0,Buy_Unit_Item,'ATAN',1,'IS14',0,"|CffFFD24D历练奖励：|r|n药品升级为|Cffffc926九曲灵参丹|r。")
+        InitAttackUnitChallengeStateData(1,6,0,0,0,0,Buy_Unit,'ATAO',15,0,0,"|CffFFD24D历练奖励：|r|n攻击|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(1,7,0,0,0,0,Buy_Unit,'ATAP',20,0,0,"|CffFFD24D历练奖励：|r|n生命|Cffffc926+20%|r，防御|Cffffc926+100|r")
 
-        InitAttackUnitChallengeStateData(200,0,1000,0,0,0,Buy_Unit,'AT0A',1,0,0,"|CffBBBBBB挑战奖励：|r|n玄铁|Cffffc926+5|r")
+        InitAttackUnitChallengeStateData(200,0,1000,0,0,0,Buy_Unit,'AT0A',1,0,0,"|CffFFD24D挑战奖励：|r|n玄铁|Cffffc926+5|r")
 
-        InitAttackUnitChallengeStateData(210,0,0,10,0,0,Buy_Unit,'AT1A',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,1,0,10,0,0,Buy_Unit,'AT1B',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,2,0,15,0,0,Buy_Unit,'AT1C',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,3,0,15,0,0,Buy_Unit,'AT1D',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,4,0,20,0,0,Buy_Unit,'AT1E',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,5,0,20,0,0,Buy_Unit,'AT1F',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,6,0,25,0,0,Buy_Unit,'AT1G',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,7,0,25,0,0,Buy_Unit,'AT1H',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,8,0,30,0,0,Buy_Unit,'AT1I',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,9,0,30,0,0,Buy_Unit,'AT1J',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        /*InitAttackUnitChallengeStateData(210,10,0,0,0,0,Buy_Unit,'AT1K',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,11,0,0,0,0,Buy_Unit,'AT1L',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,12,0,0,0,0,Buy_Unit,'AT1M',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,13,0,0,0,0,Buy_Unit,'AT1N',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,14,0,0,0,0,Buy_Unit,'AT1O',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")*/
+        InitAttackUnitChallengeStateData(210,0,0,10,0,0,Buy_Unit,'AT1A',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,1,0,10,0,0,Buy_Unit,'AT1B',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,2,0,15,0,0,Buy_Unit,'AT1C',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,3,0,15,0,0,Buy_Unit,'AT1D',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,4,0,20,0,0,Buy_Unit,'AT1E',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,5,0,20,0,0,Buy_Unit,'AT1F',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,6,0,25,0,0,Buy_Unit,'AT1G',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,7,0,25,0,0,Buy_Unit,'AT1H',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,8,0,30,0,0,Buy_Unit,'AT1I',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,9,0,30,0,0,Buy_Unit,'AT1J',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        /*InitAttackUnitChallengeStateData(210,10,0,0,0,0,Buy_Unit,'AT1K',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,11,0,0,0,0,Buy_Unit,'AT1L',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,12,0,0,0,0,Buy_Unit,'AT1M',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,13,0,0,0,0,Buy_Unit,'AT1N',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,14,0,0,0,0,Buy_Unit,'AT1O',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")*/
 
-        InitAttackUnitChallengeStateData(220,0,0,0,0,0,Buy_Unit,'AT2A',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【半人福祸】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,1,0,0,0,0,Buy_Unit,'AT2B',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【哪吒闹海】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,2,0,0,0,0,Buy_Unit,'AT2C',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【武破四魔将】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,3,0,0,0,0,Buy_Unit,'AT2D',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【九曲黄河阵】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,4,0,0,0,0,Buy_Unit,'AT2E',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【土行孙归伏】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,5,0,0,0,0,Buy_Unit,'AT2F',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【愚孝愚亲】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,6,0,0,0,0,Buy_Unit,'AT2G',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【诛仙阵斗法】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,7,0,0,0,0,Buy_Unit,'AT2H',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【收梅山七怪】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,0,0,0,0,0,Buy_Unit,'AT2A',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【半人福祸】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,1,0,0,0,0,Buy_Unit,'AT2B',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【哪吒闹海】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,2,0,0,0,0,Buy_Unit,'AT2C',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【武破四魔将】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,3,0,0,0,0,Buy_Unit,'AT2D',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【九曲黄河阵】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,4,0,0,0,0,Buy_Unit,'AT2E',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【土行孙归伏】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,5,0,0,0,0,Buy_Unit,'AT2F',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【愚孝愚亲】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,6,0,0,0,0,Buy_Unit,'AT2G',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【诛仙阵斗法】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,7,0,0,0,0,Buy_Unit,'AT2H',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【收梅山七怪】|r的进入资格。")
 
         //山灵
         InitAttackUnitChallengeCombatData(1,0,360,1800,4500,8900,17000,25000,43000,77000,110000,140000,200000,250000)
@@ -126,23 +126,73 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,50,7000,22000,51000,96000,180000,350000,500000,720000,1100000,1500000,0,0)
         InitAttackUnitChallengeCombatData(6,50,9600,30000,69000,140000,240000,470000,680000,970000,1500000,2000000,0,0)
         InitAttackUnitChallengeCombatData(7,50,13000,39000,89000,170000,310000,610000,890000,1300000,1900000,2600000,0,0)
+        //副本解锁
+        InitAttackUnitChallengeCombatData(1,150,270,1600,3600,6900,12000,20000,27000,60000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,150,400,2400,5300,11000,18000,29000,40000,90000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,150,580,3500,7800,16000,26000,43000,58000,140000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,150,840,5100,12000,22000,37000,62000,85000,190000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,150,1200,7000,16000,31000,51000,85000,120000,270000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,150,1600,9600,22000,42000,69000,120000,160000,360000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,150,2100,13000,28000,54000,89000,160000,210000,470000,0,0,0,0)
+        //挑战0
+        InitAttackUnitChallengeCombatData(1,300,140,270,430,670,2600,3800,5600,7600,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,300,210,400,640,1100,3900,5700,8400,12000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,300,310,580,940,1500,5700,8300,13000,17000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,300,450,840,1400,2200,8300,13000,18000,25000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,300,620,1200,1900,3000,12000,17000,25000,34000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,300,840,1600,2600,4100,16000,23000,34000,46000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,300,1100,2100,3400,5300,21000,30000,44000,59000,0,0,0,0)
+        //挑战1
+        InitAttackUnitChallengeCombatData(1,310,11000,19000,24000,31000,51000,81000,110000,140000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,310,17000,28000,35000,46000,76000,130000,170000,210000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,310,25000,40000,52000,68000,120000,180000,240000,300000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,310,36000,58000,75000,98000,170000,260000,350000,430000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,310,49000,80000,110000,140000,230000,360000,480000,590000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,310,66000,110000,140000,190000,310000,490000,650000,810000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,310,86000,150000,190000,240000,400000,630000,850000,1100000,0,0,0,0)
+
 
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
     function GetStockSkillConsume(int zu,int wei)->string
         int id = AttackUnitChallengeStateTypeValueA[zu][wei] 
-        string s = "|cff00ffff挑战消耗：|r"
+        string s = "|CffFFD24D挑战消耗：|r"
+        int combat = 0
+        if  zu == 0 //挑战0
+            combat = 300
+        elseif  zu == 1 //挑战1
+            combat = 310
+        elseif  zu == 200 //山灵
+            combat = 0
+        elseif  zu == 210 //武灵
+            combat = 50
+        elseif  zu == 220 //副本解锁
+            combat = 150
+        endif
         if  AttackUnitChallengeStateGold[zu][wei] > 0
-            s = s + "|n"+"|cffffcc00金币：|r"+ I2S(AttackUnitChallengeStateGold[zu][wei])
+            //s = s + "|n"+"|CffFFD24D金币：|r"+ I2S(AttackUnitChallengeStateGold[zu][wei])
+            s = s + "|n"+I2S(AttackUnitChallengeStateGold[zu][wei])+"金币"
         endif
         if  AttackUnitChallengeStateLumber[zu][wei] > 0
-            s = s + "|n"+"|cffffcc00玄铁：|r"+ I2S(AttackUnitChallengeStateLumber[zu][wei])
+            //s = s + "|n"+"|CffFFD24D玄铁：|r"+ I2S(AttackUnitChallengeStateLumber[zu][wei])
+            s = s + "|n"+I2S(AttackUnitChallengeStateLumber[zu][wei])+"玄铁"
         endif
         if  AttackUnitChallengeStatePriceC[zu][wei] > 0 and AttackUnitChallengeStatePriceD[zu][wei] > 0
-            s = s + "|n"+"|cffffcc00"+StateName[AttackUnitChallengeStatePriceC[zu][wei]]+"：|r" + I2S(AttackUnitChallengeStatePriceD[zu][wei])
+            //s = s + "|n"+"|CffFFD24D"+StateName[AttackUnitChallengeStatePriceC[zu][wei]]+"：|r" + I2S(AttackUnitChallengeStatePriceD[zu][wei])
+            s = s + "|n"+I2S(AttackUnitChallengeStatePriceD[zu][wei])+StateName[AttackUnitChallengeStatePriceC[zu][wei]]
         endif
-        if  s == "|cff00ffff挑战消耗：|r"
+        if  s == "|CffFFD24D挑战消耗：|r"
+            s = ""
+        endif
+        if  AttackUnitChallengeCombat[GameLevel][combat] > 0
+            if  s == ""
+                s = "|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
+            else
+                s = s + "|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
+            endif
+        endif
+        if  s == ""
             return ""
         else
             return s+"|n|n"
@@ -175,7 +225,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AddAttackUnitChallengeStateStock(pid,210,0)
                 AddAttackUnitChallengeStateStock(pid,220,0)
                 
-                AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n|n"+AttackUnitChallengeStateTypeString[200][0]
+                //AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n|n"+AttackUnitChallengeStateTypeString[200][0]
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
             endif
@@ -581,7 +631,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         else
                             AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 1000
                         endif
-                        AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|n|CffBBBBBB挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
+                        //AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|n|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
+                        AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
                     else
                         newid = 'uT0L'
                         lumber = 20
@@ -643,7 +694,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         elseif  itid == 'IZ0E'
             HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
             for num = 1,3
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“[R]技能”|cffffff80！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“"+GetTypeIdString(GetUnitIntState(Pu[1],114),100)+"[R]”|cffffff80！|r")
             end
             GivePlayerMissionPrize(pid,'RR0A')
 
