@@ -95,11 +95,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(210,7,0,25,0,0,Buy_Unit,'AT1H',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
         InitAttackUnitChallengeStateData(210,8,0,30,0,0,Buy_Unit,'AT1I',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
         InitAttackUnitChallengeStateData(210,9,0,30,0,0,Buy_Unit,'AT1J',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,10,0,0,0,0,Buy_Unit,'AT1K',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        /*InitAttackUnitChallengeStateData(210,10,0,0,0,0,Buy_Unit,'AT1K',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
         InitAttackUnitChallengeStateData(210,11,0,0,0,0,Buy_Unit,'AT1L',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
         InitAttackUnitChallengeStateData(210,12,0,0,0,0,Buy_Unit,'AT1M',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
         InitAttackUnitChallengeStateData(210,13,0,0,0,0,Buy_Unit,'AT1N',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
-        InitAttackUnitChallengeStateData(210,14,0,0,0,0,Buy_Unit,'AT1O',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
+        InitAttackUnitChallengeStateData(210,14,0,0,0,0,Buy_Unit,'AT1O',1,0,0,"|Cff00FF7F挑战成功！|r武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")*/
 
         InitAttackUnitChallengeStateData(220,0,0,0,0,0,Buy_Unit,'AT2A',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【半人福祸】|r的进入资格。")
         InitAttackUnitChallengeStateData(220,1,0,0,0,0,Buy_Unit,'AT2B',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【哪吒闹海】|r的进入资格。")
@@ -110,16 +110,22 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(220,6,0,0,0,0,Buy_Unit,'AT2G',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【诛仙阵斗法】|r的进入资格。")
         InitAttackUnitChallengeStateData(220,7,0,0,0,0,Buy_Unit,'AT2H',1,0,0,"|Cff00FF7F挑战成功！|r获得|Cffffc926副本【收梅山七怪】|r的进入资格。")
 
-
-        InitAttackUnitChallengeCombatData(1,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitChallengeCombatData(2,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitChallengeCombatData(3,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitChallengeCombatData(4,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitChallengeCombatData(5,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitChallengeCombatData(6,0,0,0,0,0,0,0,0,0,0,0,0,0)
-        InitAttackUnitChallengeCombatData(7,0,0,0,0,0,0,0,0,0,0,0,0,0)
-
-
+        //山灵
+        InitAttackUnitChallengeCombatData(1,0,360,1800,4500,8900,17000,25000,43000,77000,110000,140000,200000,250000)
+        InitAttackUnitChallengeCombatData(2,0,540,2600,6700,14000,25000,37000,64000,120000,160000,210000,290000,380000)
+        InitAttackUnitChallengeCombatData(3,0,800,3800,9700,20000,37000,55000,94000,170000,240000,300000,430000,550000)
+        InitAttackUnitChallengeCombatData(4,0,1200,5500,15000,29000,54000,79000,140000,250000,340000,430000,620000,800000)
+        InitAttackUnitChallengeCombatData(5,0,1600,7600,20000,39000,73000,110000,190000,340000,470000,590000,850000,1100000)
+        InitAttackUnitChallengeCombatData(6,0,2200,11000,27000,53000,100000,150000,260000,460000,640000,810000,1200000,1500000)
+        InitAttackUnitChallengeCombatData(7,0,2900,14000,35000,69000,130000,200000,340000,600000,830000,1100000,1500000,2000000)
+        //武灵
+        InitAttackUnitChallengeCombatData(1,50,1600,4900,12000,22000,39000,79000,120000,170000,240000,330000,0,0)
+        InitAttackUnitChallengeCombatData(2,50,2400,7400,18000,33000,59000,120000,170000,250000,360000,490000,0,0)
+        InitAttackUnitChallengeCombatData(3,50,3500,11000,26000,48000,86000,180000,250000,360000,520000,710000,0,0)
+        InitAttackUnitChallengeCombatData(4,50,5100,16000,37000,70000,130000,250000,370000,520000,750000,1100000,0,0)
+        InitAttackUnitChallengeCombatData(5,50,7000,22000,51000,96000,180000,350000,500000,720000,1100000,1500000,0,0)
+        InitAttackUnitChallengeCombatData(6,50,9600,30000,69000,140000,240000,470000,680000,970000,1500000,2000000,0,0)
+        InitAttackUnitChallengeCombatData(7,50,13000,39000,89000,170000,310000,610000,890000,1300000,1900000,2600000,0,0)
 
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
