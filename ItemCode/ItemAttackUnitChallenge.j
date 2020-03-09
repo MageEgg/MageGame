@@ -165,7 +165,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
-    function GetStockSkillConsume(int zu,int wei)->string
+    function GetStockSkillConsume(int pid,int zu,int wei)->string
         int id = AttackUnitChallengeStateTypeValueA[zu][wei] 
         string s = "|CffFFD24D挑战消耗：|r"
         int combat = 0
@@ -219,7 +219,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         //BJDebugMsg(YDWEId2S(id))
         UnitAddAbility(Pu[42],id)
         if  GetPlayerTechCount(Player(pid),id+167772160-1,true) > 0 or id == zero
-            s = GetStockSkillConsume(zu,wei)
+            s = GetStockSkillConsume(pid,zu,wei)
             //BJDebugMsg("GetStockSkillConsume")
         endif
         s = s + AttackUnitChallengeStateTypeString[zu][wei]
