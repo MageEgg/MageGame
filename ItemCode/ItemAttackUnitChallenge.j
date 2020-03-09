@@ -198,7 +198,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
         if  AttackUnitChallengeCombat[GameLevel][combat] > 0
             if  s == ""
-                s = "|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat+])+"|r"
+                s = "|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
             else
                 s = s + "|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
             endif
