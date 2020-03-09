@@ -67,8 +67,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
     function InitRegisterPrize()//注册奖励
         RegisterPassCheckPrize(1,'RS01','1000')
         RegisterPassCheckPrize(2,'RY2A','RY2B')
-        RegisterPassCheckPrize(3,'800','IP01')
-        RegisterPassCheckPrize(4,'2','5')
+        RegisterPassCheckPrize(3,800,'IP01')
+        RegisterPassCheckPrize(4,2,5)
         RegisterPassCheckPrize(5,'RS05','RT05')
         RegisterPassCheckPrize(6,'CS23','RT06')
         RegisterPassCheckPrize(7,'RS07','RT07')
@@ -82,7 +82,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(15,'IP01','RT15')
         RegisterPassCheckPrize(16,'RS16','RT16')
         RegisterPassCheckPrize(17,0,'RT17')
-        RegisterPassCheckPrize(18,'5','CS22')
+        RegisterPassCheckPrize(18,5,'CS22')
         RegisterPassCheckPrize(19,0,'RT19')
         RegisterPassCheckPrize(20,'RY3A','RY3B')
     endfunction
