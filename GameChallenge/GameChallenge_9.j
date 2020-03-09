@@ -294,48 +294,19 @@ library GameChallenge9 uses GameChallengeBase
     function GameTeamChallengWin(int pid,int flag,int value)
         int itid = 0
         if  flag == 1
-            if  value == 1
-                UnitAddItemEx(Pu[1],'IP04')
-                itid = 'IP04'
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
-            elseif  value == 2
-                if  GetRandomReal(0,1) == 0
-                    UnitAddItemEx(Pu[1],'IP04')
-                    itid = 'IP04'
-                else
-                    UnitAddItemEx(Pu[1],'IP02')
-                    itid = 'IP02'
-                endif
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
-            elseif  value == 3
-                if  GetRandomReal(0,100) >= 60
-                    if  GetRandomReal(0,1) == 0
-                        UnitAddItemEx(Pu[1],'IP03')
-                        itid = 'IP03'
-                    else
-                        UnitAddItemEx(Pu[1],'IP02')
-                        itid = 'IP02'
-                    endif
-                else
-                    UnitAddItemEx(Pu[1],'IP04')
-                    itid = 'IP04'
-                endif
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
-            elseif  value == 4
-                if  GetRandomReal(0,100) >= 60
-                    if  GetRandomReal(0,1) == 0
-                        UnitAddItemEx(Pu[1],'IP03')
-                        itid = 'IP03'
-                    else
-                        UnitAddItemEx(Pu[1],'IP05')
-                        itid = 'IP05'
-                    endif
-                else
-                    UnitAddItemEx(Pu[1],'IP02')
-                    itid = 'IP02'
-                endif
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！|r奖励"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"！")
+            if  GetRandomReal(0,1) <= 0.8
+                UnitAddItemEx(Pu[1],'IP02')
+                itid = 'IP02'
+            else
+                UnitAddItemEx(Pu[1],'IP03')
+                itid = 'IP03'
             endif
+            UnitAddState(Pu[1],31,3)
+            UnitAddState(Pu[1],32,3)
+            UnitAddState(Pu[1],33,3)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！！！|r")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"随机获得"+GetObjectName(itid)+"！")
         endif
     endfunction
 
