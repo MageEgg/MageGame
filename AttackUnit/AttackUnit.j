@@ -236,6 +236,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             InitAttackUnitData(109,0,0,1,1,1,-6910,-6912,'mb09','mb09','mb09','mb09',-6912,-4704,-4640,-6912,-6912,-9216,-9184,-6912)
             InitAttackUnitData(110,0,0,1,1,1,-1664,-7440,'mb10','mb10','mb10','mb10',-1664,-6144,96,-7440,-1664,-9184,-3392,-7440)*/
         endif
+        ExecuteFunc("InitAttackUnitChallengeState")
     endfunction
     
     function InitAttackUnit()

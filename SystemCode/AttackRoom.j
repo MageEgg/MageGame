@@ -503,8 +503,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
                 Pu[42]=CreateUnit(Player(pid),'np42',x-128,y+512,270)//挑战
 
-                ExecuteFunc("InitAttackUnitChallengeState")
-
                 UnitAddAbility(Pu[27],'Avul')
                 SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,400)
                 SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
