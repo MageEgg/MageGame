@@ -763,9 +763,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             UnitAddEffectOfNPC(GameChallengLeagueUnit(num))
         end
         PingMinimap(GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),5)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
     endfunction
     
     /*function GameChallenge_GlobalFlushBool(int id,real time)
