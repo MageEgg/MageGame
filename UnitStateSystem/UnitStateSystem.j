@@ -403,7 +403,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 elseif  StateId == 17
                     DzFrameSetText(BUTTON_Text[172],"|cffffcc00伤害加成：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 13
-                    DzFrameSetText(BUTTON_Text[173],"|cffffcc00护甲穿透：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[173],"|cffffcc00护甲穿透：|r"+I2S(R2I(showvalue)))
                 elseif  StateId == 27
                     DzFrameSetText(BUTTON_Text[174],"|cffffcc00触发概率：|r"+I2S(R2I(showvalue))+"%")  
                 elseif  StateId == 31
