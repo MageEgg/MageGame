@@ -11,21 +11,22 @@ library Summon uses AbilityUI,OtherDamageTimer
         return num
     endfunction
 
-    function Z103DamageEx(unit wu,unit u)
+    function Z103DamageEx(unit wu,unit u,real damage)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(wu),"Abilities\\Spells\\Human\\Feedback\\ArcaneTowerAttack.mdl","origin",0))
-        UnitDamageGroup(wu,g.ejg,GetUnitRealState(u,1),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
 
-    function Z103Damage(unit wu,unit tu)
+    function Z103Damage(unit wu,unit tu,real dam)
         unit u1 = wu
         unit u2 = tu
-        Z103DamageEx(u1,u2)
+        real damage = dam
+        Z103DamageEx(u1,u2,damage)
         TimerStart(0.5,true)
         {
             if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == 'z103'
-                Z103DamageEx(u1,u2)
+                Z103DamageEx(u1,u2,damage)
             else
                 endtimer
             endif
@@ -76,8 +77,8 @@ library Summon uses AbilityUI,OtherDamageTimer
                 u2 = CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
                 SetUnitRealState(u2,1,damage)
                 UnitApplyTimedLife(u2,'BHwe',4)
-                SummonFollow(u,u2)
-                Z103Damage(u,u2)               
+                //SummonFollow(u,u2)
+                Z103Damage(u,u2,damage)               
             end
         endif
         flush locals
