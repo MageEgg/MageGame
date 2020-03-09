@@ -301,9 +301,9 @@ library GameChallenge9 uses GameChallengeBase
                 UnitAddItemEx(Pu[1],'IP03')
                 itid = 'IP03'
             endif
-            UnitAddRealState(Pu[1],31,3)
-            UnitAddRealState(Pu[1],32,3)
-            UnitAddRealState(Pu[1],33,3)
+            AddUnitRealState(Pu[1],31,3)
+            AddUnitRealState(Pu[1],32,3)
+            AddUnitRealState(Pu[1],33,3)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！！！|r")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"随机获得"+GetObjectName(itid)+"！")
