@@ -419,12 +419,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int time = 0
         real damage = dam/3
         UnitTimerAddSkill(u,'S030',3)
-        CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,800,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,900,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
         TimerStart(0.2,true)
         {
             if  time < 2
                 time = time + 1
-                CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,800,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,900,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
             else
                 endtimer
             endif
