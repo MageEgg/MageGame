@@ -849,12 +849,12 @@ library HeroAbilityFunc uses OtherDamageTimer
         unit u1 = wu
         real sx = x
         real sy = y
-        real danage = dam
+        real damage = dam/4
         int time = 4
         TimerStart(0.15,true)
         {
             time = time - 1
-            SpellS515_2Timer(u1,sx,sy,danage,ModuloInteger(time,2))
+            SpellS515_2Timer(u1,sx,sy,damage,ModuloInteger(time,2))
             if  time <= 0
                 endtimer
             endif
