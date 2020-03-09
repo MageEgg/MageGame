@@ -182,6 +182,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
         if  zu == 200 //山灵
             combat = combat + AttackUnitChallengePlayerWeiNum(1)
+        else
+            combat = combat + wei
         endif
         if  AttackUnitChallengeStateGold[zu][wei] > 0
             //s = s + "|n"+"|CffFFD24D金币：|r"+ I2S(AttackUnitChallengeStateGold[zu][wei])
