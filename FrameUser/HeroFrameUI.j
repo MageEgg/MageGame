@@ -96,7 +96,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     endfunction
 
     function GetExExpMax(int pid)->int
-        return 30000
+        int max = 30000
+        if  GetPlayerTechCount(Player(pid),'RY4A',true) > 0
+            max = max + 2000
+        endif
+        return max
     endfunction
     function HeroAddExp(unit wu,int exp)
         int pid = GetPlayerId(GetOwningPlayer(wu))
