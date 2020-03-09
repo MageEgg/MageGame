@@ -65,24 +65,24 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
 
     function InitRegisterPrize()//注册奖励
-        RegisterPassCheckPrize(1,'RS01','RT01')
+        RegisterPassCheckPrize(1,'RS01','1000')
         RegisterPassCheckPrize(2,'RY2A','RY2B')
-        RegisterPassCheckPrize(3,'RS03','RT03')
-        RegisterPassCheckPrize(4,'RS04','RT04')
+        RegisterPassCheckPrize(3,'800','IP01')
+        RegisterPassCheckPrize(4,'2','5')
         RegisterPassCheckPrize(5,'RS05','RT05')
         RegisterPassCheckPrize(6,'CS23','RT06')
         RegisterPassCheckPrize(7,'RS07','RT07')
         RegisterPassCheckPrize(8,'RY4A','RY4B')
-        RegisterPassCheckPrize(9,'RS09','RT09')
+        RegisterPassCheckPrize(9,'RS09','IP04')
         RegisterPassCheckPrize(10,'RS10','RT10')
         RegisterPassCheckPrize(11,0,'RT11')
-        RegisterPassCheckPrize(12,'RS12','CS21')
+        RegisterPassCheckPrize(12,'RS12','RT12')
         RegisterPassCheckPrize(13,0,'RT13')
         RegisterPassCheckPrize(14,'RY1A','RY1B')
-        RegisterPassCheckPrize(15,0,'RT15')
-        RegisterPassCheckPrize(16,'IP02','RT16')
+        RegisterPassCheckPrize(15,'IP01','RT15')
+        RegisterPassCheckPrize(16,'RS16','RT16')
         RegisterPassCheckPrize(17,0,'RT17')
-        RegisterPassCheckPrize(18,'RS18','IN27')
+        RegisterPassCheckPrize(18,'5','CS22')
         RegisterPassCheckPrize(19,0,'RT19')
         RegisterPassCheckPrize(20,'RY3A','RY3B')
     endfunction
@@ -178,6 +178,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(49,1,14,18,23,0,0)
         RegisterPassCheckDay(50,1,16,17,24,0,0)
         RegisterPassCheckDay(51,1,18,2,26,0,0)
+        
     endfunction
 
     function InitPassCheckMission()
@@ -341,6 +342,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 elseif  id >= 'R000' and id <= 'RZZZ'
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---道具类")
                     SetPlayerTechResearchedEx(Player(pid),id)
+                elseif  id < 500
+                    AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                elseif  id < 1000000
+                    AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                 else
                     CreateItem(id,x-512,y-512)
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---物品类")

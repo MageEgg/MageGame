@@ -2285,7 +2285,7 @@ endfunction
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*7.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+                LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect4_effect_red-dark-qiquan.mdx")
                 g.destroy()
                 AddUnitIntStateTimer(wu,'FC23',1,8)
             endif
@@ -2299,7 +2299,7 @@ endfunction
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*4.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect4_kuosan2_blue.mdl",1.3)
             g.destroy()
         endif
     endfunction
@@ -2315,7 +2315,7 @@ endfunction
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,5)*0.2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_misaka light.mdl",0.5)
+            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect4_chushou_by_wood_effect_ice.mdx",2)
             g.destroy()
         endif
     endfunction

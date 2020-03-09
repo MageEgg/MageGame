@@ -134,6 +134,16 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,150,1200,7000,16000,31000,51000,85000,120000,270000,0,0,0,0)
         InitAttackUnitChallengeCombatData(6,150,1600,9600,22000,42000,69000,120000,160000,360000,0,0,0,0)
         InitAttackUnitChallengeCombatData(7,150,2100,13000,28000,54000,89000,160000,210000,470000,0,0,0,0)
+
+        
+        InitAttackUnitChallengeCombatData(1,250,360,2000,5600,12000,22000,46000,86000,130000,240000,360000,0,0)
+        InitAttackUnitChallengeCombatData(2,250,540,3000,8400,18000,33000,68000,130000,200000,360000,540000,0,0)
+        InitAttackUnitChallengeCombatData(3,250,800,4400,13000,27000,48000,100000,190000,290000,520000,790000,0,0)
+        InitAttackUnitChallengeCombatData(4,250,1200,6300,18000,39000,70000,150000,280000,410000,750000,1200000,0,0)
+        InitAttackUnitChallengeCombatData(5,250,1600,8700,25000,53000,96000,200000,380000,570000,1100000,1600000,0,0)
+        InitAttackUnitChallengeCombatData(6,250,2200,12000,34000,72000,140000,280000,520000,770000,1500000,2200000,0,0)
+        InitAttackUnitChallengeCombatData(7,250,2900,16000,44000,93000,170000,360000,670000,1000000,1900000,2800000,0,0)
+
         //挑战0
         InitAttackUnitChallengeCombatData(1,300,140,270,430,670,2600,3800,5600,7600,0,0,0,0)
         InitAttackUnitChallengeCombatData(2,300,210,400,640,1100,3900,5700,8400,12000,0,0,0,0)
@@ -229,6 +239,16 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
             endif
+        end
+        //改境界战力说明
+        int id = 0
+        for i = 1,10
+            if  i == 10
+                id = 'IT10'
+            else
+                id = 'IT00'+i
+            endif
+            YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][250+i-1]) )
         end
     endfunction
     
