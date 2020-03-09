@@ -411,11 +411,26 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS030(unit u,real x2,real y2,real damage)//三味真火
-        real x1=GetUnitX(u)
-        real y1=GetUnitY(u)
-        CreateTmEx(u,"effect_by_wood_effect_yuzhiboyou_fire_haohuoqiu.mdx",x1,y1,x2,y2,damage+(GetUnitRealState(u,2)*6),3,12,200,800,0.03,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+    function SpellS030(unit u,real x2,real y2,real dam)//三味真火
+        unit u1 = u
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real ang = Atan2(y2-y1,x2-x1)
+        int time = 0
+        real damage = dam/3
         UnitTimerAddSkill(u,'S030',3)
+        CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,800,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        TimerStart(0.1,true)
+        {
+            if  time < 2
+                time = time + 1
+                CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,800,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
     endfunction
 
     function SpellS031(unit u)          //魔茧
