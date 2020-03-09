@@ -695,9 +695,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
         real value = 0
-        value = Pow(1.2,(PlayerChallengeCosNum-1))
+        value = Pow(1.2,PlayerChallengeCosNum)
         SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
         SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
+        
         //if  flag == 0 小怪
         //    value = value * 0.2
         //elseif  flag == 1 精英
