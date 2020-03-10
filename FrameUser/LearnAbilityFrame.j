@@ -389,9 +389,10 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
             endif
         endif
         
-        
+        BJDebugMsg("新技能"+GetTypeIdName(new))
         //删除老技能
         HeroRemoveAbilityByIndex(Pu[1],index)
+
         //添加新技能
         HeroAddAbilityByIndex(Pu[1],index,new)
 

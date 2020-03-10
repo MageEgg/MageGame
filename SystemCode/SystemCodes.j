@@ -725,6 +725,8 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             int max = GetPrizePoolMax(page,pool)
             int index = GetRandomInt(1,max)
             int id = GetPrizeData(page,pool,index)
+            int id2 = GetPrizeData(page,pool,max)
+            BJDebugMsg("max id is "+GetTypeIdName(id2))
             if  rem == true
                 RemPrizeData(page,pool,index)
             endif
@@ -886,26 +888,27 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             end
 
             //炽星魔盒IN31注册
-            RegisterItemPool(17,'IP04',1)
-            RegisterItemPool(17,'IP02',2)
+            RegisterItemPool(17,'IP04',3)
+            RegisterItemPool(17,'IP02',3)
             RegisterItemPool(17,'IP03',1)
             RegisterItemPool(17,'IN08',2)
-            RegisterItemPool(17,'IN13',2)
+            RegisterItemPool(17,'IN13',6)
             RegisterItemPool(17,'IN23',2)
-            RegisterItemPool(17,'IN34',4)
-            RegisterItemPool(17,'IN37',4)
+            RegisterItemPool(17,'IN34',6)
+            RegisterItemPool(17,'IN37',6)
             RegisterItemPool(17,'IN40',4)
             RegisterItemPool(17,'IN18',2)
             RegisterItemPool(17,'IN20',2)
-            RegisterItemPool(17,'I015',1)
+            RegisterItemPool(17,'I015',2)
             RegisterItemPool(17,'CS21',2)
             RegisterItemPool(17,'CS22',1)
             RegisterItemPool(17,'IP01',2)
-                    //幸运星盒IN30注册
-            RegisterItemPool(15,'IN07',5)
+
+            //幸运星盒IN30注册
+            RegisterItemPool(15,'IN07',8)
             RegisterItemPool(15,'IN08',2)
             RegisterItemPool(15,'IN09',5)
-            RegisterItemPool(15,'IN10',3)
+            RegisterItemPool(15,'IN10',4)
             RegisterItemPool(15,'IN11',3)
             RegisterItemPool(15,'IN13',3)
             RegisterItemPool(15,'IN14',5)
@@ -913,20 +916,18 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(15,'IN17',4)
             RegisterItemPool(15,'IN18',2)
             RegisterItemPool(15,'IN20',2)
-            RegisterItemPool(15,'IN21',5)
+            RegisterItemPool(15,'IN21',12)
             RegisterItemPool(15,'IN22',2)
             RegisterItemPool(15,'IN23',1)
-            RegisterItemPool(15,'IN24',6)
+            RegisterItemPool(15,'IN24',12)
             RegisterItemPool(15,'IN33',4)
             RegisterItemPool(15,'IN34',2)
-            RegisterItemPool(15,'IN35',6)
+            RegisterItemPool(15,'IN35',12)
             RegisterItemPool(15,'IN36',4)
             RegisterItemPool(15,'IN37',2)
-            RegisterItemPool(15,'IN38',6)
+            RegisterItemPool(15,'IN38',12)
             RegisterItemPool(15,'IN39',4)
             RegisterItemPool(15,'IN40',2)
-
-
             
         endfunction
 
