@@ -1034,7 +1034,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitY(mj,y1)
                 endif
                 g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))  
+                GroupEnumUnitsInRange(g.ejg,x1,y1,225,GroupHasUnit(GetOwningPlayer(u),g1,""))  
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
             else
@@ -1045,7 +1045,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitX(mj,x1)
                     SetUnitY(mj,y1)
                     g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupHasUnit(GetOwningPlayer(u),g1,""))
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,225,GroupHasUnit(GetOwningPlayer(u),g1,""))
                     UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     g.destroy()
                 else
@@ -1366,7 +1366,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 RemoveUnit(uu)
                 ShowUnit(u1,true)
                 PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
-                
+
                 endtimer
             endif
             flush locals
