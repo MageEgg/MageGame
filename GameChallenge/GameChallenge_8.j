@@ -424,8 +424,8 @@ library GameChallenge8 uses GameChallengeBase
                 //奖励
                 PlayerFinishPlotEx(pid,8)
                 GivePlayerMissionPrize(pid,'RR0B')
-                if  GameTeamChallengeBool[0] == false
-                    GameTeamChallengeBool[0] = true
+                if  GameTeamChallengeBool[10] == false
+                    GameTeamChallengeBool[10] = true
                     ShowLeagueUnitNPC(pid)
                 endif
             endif
