@@ -64,7 +64,7 @@ scope SelectHero
 
         UnitAddAbility(Pu[1],'AG01')
         UnitAddAbility(Pu[1],'AG02')
-        UnitAddAbility(Pu[1],'AG03')
+        //UnitAddAbility(Pu[1],'AG03')
         UnitAddAbility(Pu[1],'AG04')
         UnitAddAbility(Pu[1],'AG05')
 
@@ -76,7 +76,7 @@ scope SelectHero
 
         HeroAddAbilityByIndex(Pu[1],1,'S0Q1')
         HeroAddAbilityByIndex(Pu[1],2,'S0W1')
-        HeroAddAbilityByIndex(Pu[1],3,'S0E1')
+        //HeroAddAbilityByIndex(Pu[1],3,'S0E1')
         HeroAddAbilityByIndex(Pu[1],4,'S0R0')
         
         HeroAddAbilityByIndex(Pu[1],5,'S500'+(GetUnitTypeId(Pu[1])-'H000'))

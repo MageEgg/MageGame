@@ -372,7 +372,7 @@ scope DeathEvent initializer InitDeathEvent
             
             AttackRoomXCNum = AttackRoomXCNum + 1
             if  AttackRoomXCNum > 24
-                AttackRoomXCNum = 1
+                AttackRoomXCNum = 24
             endif
             CreateItem('IN31',GetUnitX(tu),GetUnitY(tu))
             AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
@@ -392,7 +392,7 @@ scope DeathEvent initializer InitDeathEvent
             if  AttackRoomXCUnitNum <= 0
                 AttackRoomXCNum = AttackRoomXCNum + 1
                 if  AttackRoomXCNum > 24
-                    AttackRoomXCNum = 1
+                    AttackRoomXCNum = 24
                 endif
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
                 AdjustPlayerStateBJ( 5 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
