@@ -1,8 +1,103 @@
 library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
-//SpellHeroSkillAction(unit wu,unit tu,real sx,real sy,int id,int lv,int index)
 
+    function CreateSurroundOfUnitEnd(unit wu,int i1)
+        unit u1 = wu
+        int id = i1
+        TimerStart(0.1,false)
+        {  
+            if  id == 'S082'
+                SpellS082.execute(u1)
+            elseif  id == 'S086'
+                SpellS086.execute(u1)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
 
-   function GetUnitAttackNumb(unit wu)->int //S036
+    //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
+    function CreateSurroundOfUnit(unit wu,unit tu,real r1,real r2,real r3,real r4,real r5,int i1,int i2,int i3,int i4)
+        unit u1 = wu
+        unit u2 = tu
+        real orang = r1
+        real r = r2
+        real angspeed = r3
+        real time = r4
+        real overtime = r5
+        int tt = R2I(overtime/time)
+        int id = i1
+        int ornum = i2
+        int num = i3
+        int order = i4
+        real xx = 0
+        real yy = 0
+        BJDebugMsg("总时间"+I2S(tt))
+        BJDebugMsg("一圈时间为"+R2S((360/angspeed)*time))
+        BJDebugMsg("半径"+R2S(r))
+        xx = GetUnitX(u1) + r*Cos(orang*0.01745)
+        yy = GetUnitY(u1) + r*Sin(orang*0.01745)
+        SetUnitXY(u2,xx,yy)
+        SetUnitFacing(u2,orang)
+        TimerStart(time,true)
+        {
+            real damage = 0
+            group gg = null
+            unit uu = null
+            int pid = GetPlayerId(GetOwningPlayer(u1))
+            if  tt > 0 and IsPlayerHasAbility(u1,id) == true
+                tt = tt - 1
+                if  PlayerDeathBool == false
+                    orang = orang + angspeed
+                    xx = GetUnitX(u1) + r*Cos(orang*0.01745)
+                    yy = GetUnitY(u1) + r*Sin(orang*0.01745)
+                    SetUnitXY(u2,xx,yy)
+                    SetUnitFacing(u2,orang)
+                    if  ModuloInteger(tt,R2I(1/time)) == 0
+                        gg = CreateGroup()
+                        GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600+r,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))  
+                        uu = FirstOfGroup(gg)
+                        GroupClear(gg)
+                        if  GetUnitTypeId(uu) != 0
+                            damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
+                            GroupEnumUnitsInRange(gg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                            Ligfunc(u2,uu,AddLightningEx("CLPB",false,GetUnitX(u2),GetUnitY(u2),GetUnitZ(u2),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
+                            DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
+                            UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                        endif
+                        GroupClear(gg)
+                        DestroyGroup(gg)
+                    endif
+                endif
+                if  ornum != num+GetHeroSummonNum(u1)
+                    RemoveUnit(u2)
+                    if  order == ornum
+                        CreateSurroundOfUnitEnd(u1,id)
+                    endif
+                    endtimer
+                endif
+            else
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function TestSurround(unit u)
+        unit u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),50,1) 
+        /*CreateSurroundOfUnit(u,u2,0,200,7.2,0.02,20,'S082',3,)
+        u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),50,1) 
+        CreateSurroundOfUnit(u,u2,90,200,7.2,0.02,20,'S082',3)
+        u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),50,1) 
+        CreateSurroundOfUnit(u,u2,180,200,7.2,0.02,20,'S082',3)
+        u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),50,1) 
+        CreateSurroundOfUnit(u,u2,270,200,7.2,0.02,20,'S082',3)*/
+        u2 = null
+    endfunction
+
+    function GetUnitAttackNumb(unit wu)->int //S036
         int i=1
             if  IsPlayerHasAbility(wu,'S036') == true
                 i=i+1
@@ -1197,27 +1292,22 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
     
     function SpellS082(unit u)
-        real x=GetUnitX(u)
-        real y=GetUnitY(u)
-        real jd=0
-        real ang=0
-        real x1 =0
-        real y1 = 0
-        real num = 3+GetHeroSummonNum(u)
+        real x = GetUnitX(u)
+        real y = GetUnitY(u)
+        real ang = 0
+        int num = 3+GetHeroSummonNum(u)
         unit u2 = null
         for i = 1,num
-            ang=0.01745*(360/num)*i
-            x1 = x+10*Cos(ang)
-            y1 = y+10*Sin(ang)
-            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",x1,y1,GetUnitFacing(u),100,1)                                        
-            //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-            AroundSystemlei(u,u2,1.5,86400,20,160,0,'S082')
+            ang = 360/num
+            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",x,y,i*ang,50,1)  
+            //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
+            CreateSurroundOfUnit(u,u2,i*ang,160,7.2,0.02,86400,'S082',num,3,i)
         end
         flush locals
     endfunction
 
     function SpellS086(unit u)
-        real x=GetUnitX(u)
+        /*real x=GetUnitX(u)
         real y=GetUnitY(u)
         real jd=0
         real ang=0
@@ -1230,8 +1320,20 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             x1 = x+10*Cos(ang)
             y1 = y+10*Sin(ang)    
             u2 = CreateUnit(GetOwningPlayer(u),'eZ18',x1,y1,GetUnitFacing(u))                               
-            //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
+            旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
             AroundSystemlei(u,u2,1.5,86400,20,200,0,'S086')
+        end
+        flush locals*/
+        real x = GetUnitX(u)
+        real y = GetUnitY(u)
+        real ang = 0
+        int num = 3+GetHeroSummonNum(u)
+        unit u2 = null
+        for i = 1,num
+            ang = 360/num
+            u2 = CreateUnit(GetOwningPlayer(u),'eZ18',x,y,i*ang)  
+            //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
+            CreateSurroundOfUnit(u,u2,i*ang,160,7.2,0.02,86400,'S086',num,3,i)
         end
         flush locals
     endfunction
