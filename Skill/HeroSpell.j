@@ -1347,6 +1347,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
                     RemoveUnit(uu)
                     ShowUnit(u1,true)
+                    PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
 
                     endtimer
                 endif
@@ -1364,7 +1365,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
                 RemoveUnit(uu)
                 ShowUnit(u1,true)
-
+                PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
+                
                 endtimer
             endif
             flush locals
