@@ -956,9 +956,9 @@ library HeroAbilityFunc uses OtherDamageTimer
         int lv = GetHeroAbilityLevelByIndex(wu,5)
         if  lv >= 4
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetUnitRealState(wu,2))*7.2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect2_az_magina[2]_v.mdl")
+            LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_az_magina[2]_v.mdl",2)
             g.destroy()
         endif
 

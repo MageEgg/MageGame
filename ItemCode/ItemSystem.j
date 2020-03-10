@@ -80,6 +80,14 @@ scope ItemSystem initializer InitItemSystem
         int uid = GetTypeIdData(id,105)
         int index = 0
         int gl = GetTypeIdData(id,104)//概率
+
+        if  id >= 'E001' and id <= 'E025'
+            BJDebugMsg("强化概率"+I2S(gl)+"+"+I2S(IncEquipAddition1))
+            gl = gl + IncEquipAddition1
+        else
+            BJDebugMsg("强化概率"+I2S(gl)+"+"+I2S(IncEquipAddition2))
+            gl = gl + IncEquipAddition2
+        endif
         if  next > 0
             
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
@@ -119,7 +127,17 @@ scope ItemSystem initializer InitItemSystem
                         UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                         IncEquipModelFunc(pid,1)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：装备升级成功！|r")
+                        if  id >= 'E001' and id <= 'E025'
+                            IncEquipAddition1 = 0
+                        else
+                            IncEquipAddition2 = 0
+                        endif
                     else
+                        if  id >= 'E001' and id <= 'E025'
+                            IncEquipAddition1 = IncEquipAddition1 + 5
+                        else
+                            IncEquipAddition2 = IncEquipAddition2 + 5
+                        endif
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！|r")
                         /*if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
                             AdjustPlayerStateBJ(gold/5, Player(pid), PLAYER_STATE_RESOURCE_GOLD )

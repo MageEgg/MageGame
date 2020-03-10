@@ -464,7 +464,13 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 for y = 1,2
                     id = GetPassCheckPrize(index,y)
                     if  id > 0
-                        DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],GetTypeIdIcon(id),0)
+                        if  id < 500
+                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"ReplaceableTextures\\CommandButtons\\BTNIN17.blp",0)
+                        elseif  id < 1000000
+                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",0)
+                        else
+                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],GetTypeIdIcon(id),0)
+                        endif
                     else
                         DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\alpha.tga",0)
                     endif
