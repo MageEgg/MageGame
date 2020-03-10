@@ -79,7 +79,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         int n = AttackUnitWN+1
         num = GetDzPlayerData(pid,1,10)
         if  GameLevel >= 2
-            if  IsCanChallengeMeridiansInGame < 3
+            if  IsCanChallengeMeridiansInGame[pid] < 3
                 if  num < DzMeridiansDayNum
                     IsCanChallengeMeridiansInGame[pid] = IsCanChallengeMeridiansInGame[pid] + 1
                     u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uJ01',x,y,270)
