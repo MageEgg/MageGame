@@ -1,6 +1,5 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
- //输出代码
 //输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
@@ -50,7 +49,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB46',"|CffBF00FF青牛|r","ReplaceableTextures\\CommandButtons\\BTNFB46.BLP","攻击有4%几率对目标范围造成业力*500%伤害")
         call InitTypeIdStrings('FB47',"|CffFF0000诛仙阵图|r","ReplaceableTextures\\CommandButtons\\BTNFB47.BLP","释放主动技能时，对自身周围400码敌人造成1秒眩晕,并减低护甲20点，持续3秒")
         call InitTypeIdStrings('FB48',"|CffBF00FF风雷双翼|r","ReplaceableTextures\\CommandButtons\\BTNFB48.BLP","每5秒回复最大生命10%")
-        call InitTypeIdStrings('FB49',"|CffFF0000山河社稷图|r","ReplaceableTextures\\CommandButtons\\BTNFB49.BLP","召唤物数量+1")
+        call InitTypeIdStrings('FB49',"|CffFF0000山河社稷图|r","ReplaceableTextures\\CommandButtons\\BTNFB49.BLP","道兵数量+1")
         call InitTypeIdStrings('FB50',"|Cff00BFFF招妖幡|r","ReplaceableTextures\\CommandButtons\\BTNFB50.BLP","")
         call InitTypeIdStrings('FB51',"|Cff00BFFF九曲黄河阵|r","ReplaceableTextures\\CommandButtons\\BTNFB51.BLP","")
         call InitTypeIdStrings('FB52',"|CffBF00FF紫绶仙衣|r","ReplaceableTextures\\CommandButtons\\BTNFB52.BLP","")
@@ -102,9 +101,9 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('CS22',"|CffFF0000技能进化石【完美】|r","ReplaceableTextures\\CommandButtons\\BTNIN04.blp","使|Cffffd24dA级技能|r|Cfff0f0f0品质提升|r|Cffff0000S级|r|Cfff0f0f0。|r")
         call InitTypeIdStrings('CS23',"|Cff00FF7F技能进阶石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN06.blp","|CffFFD24D50%|r几率使指定技能|Cffffd24d品质提升一级|r|Cfff0f0f0。\n\n|r|Cff00ff7f最多可提升至A级。|r")
         call InitTypeIdStrings('CS24',"|CffFFD24D技能进化石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN04.blp","|CffFFD24D50%|r几率使指定|Cffffd24dA级技能|r|Cfff0f0f0品质提升|r|Cffff0000S级|r|Cfff0f0f0。|r")
-        call InitTypeIdStrings('IT01',"境界挑战1","","渡过该劫后可结成|CffCCCCCC低级道果|r。|n|n|CffCCCCCC低级道果：|r|n攻击+5000|n业力+4000|n生命值+100000|n生命回复+2000|n攻击伤害+12%|n技能伤害+10%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
-        call InitTypeIdStrings('IT02',"境界挑战2","","渡过该劫后可结成|CffCCCCCC中级道果|r。|n|n|CffCCCCCC中级道果：|r|n攻击+7500|n业力+6000|n生命值+150000|n生命回复+3000|n攻击伤害+12%|n技能伤害+10%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
-        call InitTypeIdStrings('IT03',"境界挑战3","","渡过该劫后可结成|Cff00ff7f高级道果|r。|n|n|Cff00ff7f高级道果：|r|n攻击+12500|n业力+10000|n生命值+250000|n生命回复+5000|n攻击伤害+12%|n技能伤害+10%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
+        call InitTypeIdStrings('IT01',"境界挑战1","","渡过该劫后可结成|CffCCCCCC低级道果|r。|n|n|CffCCCCCC低级道果：|r|n攻击+5000|n业力+4000|n生命值+100000|n生命回复+2000|n攻击伤害+9%|n技能伤害+8%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
+        call InitTypeIdStrings('IT02',"境界挑战2","","渡过该劫后可结成|CffCCCCCC中级道果|r。|n|n|CffCCCCCC中级道果：|r|n攻击+7500|n业力+6000|n生命值+150000|n生命回复+3000|n攻击伤害+9%|n技能伤害+8%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
+        call InitTypeIdStrings('IT03',"境界挑战3","","渡过该劫后可结成|Cff00ff7f高级道果|r。|n|n|Cff00ff7f高级道果：|r|n攻击+12500|n业力+10000|n生命值+250000|n生命回复+5000|n攻击伤害+9%|n技能伤害+8%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT04',"境界挑战4","","渡过该劫后可结成|Cff00ff7f黄级道果|r。|n|n|Cff00ff7f黄级道果：|r|n攻击+21250|n业力+17000|n生命值+425000|n生命回复+8500|n攻击伤害+18%|n技能伤害+15%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT05',"境界挑战5","","渡过该劫后可结成|Cff00bfff玄级道果|r。|n|n|Cff00bfff玄级道果：|r|n攻击+33750|n业力+27000|n生命值+675000|n生命回复+13500|n攻击伤害+18%|n技能伤害+15%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT06',"境界挑战6","","渡过该劫后可结成|Cff00bfff地级道果|r。|n|n|Cff00bfff地级道果：|r|n攻击+50000|n业力+40000|n生命值+1000000|n生命回复+20000|n攻击伤害+18%|n技能伤害+15%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
@@ -162,7 +161,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1U',"封神礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1U.BLP","生命+20%\n每秒攻击+20\n每秒业力+20\n开局玄铁+5\n装备升级失败返还20%金币")
         call InitTypeIdStrings('RJ1V',"金币礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1V.BLP","开局金币+2000")
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")
-                call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","每秒回血+2%\n业力+20%\n\n解锁宠物|Cffffd24d小狐妖|r\n宠物攻击力=英雄业力\n宠物攻击5%概率造成业力*400%范围伤害")
+        call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","每秒回血+2%\n业力+20%\n\n解锁宠物|Cffffd24d小狐妖|r\n宠物攻击力=英雄业力\n宠物攻击5%概率造成业力*400%范围伤害")
         call InitTypeIdStrings('RC1A',"[隐藏]？？？","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp","???")
         call InitTypeIdStrings('RC1B',"[隐藏]？？？","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp","???")
         call InitTypeIdStrings('RC1C',"[隐藏]？？？","ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn.blp","???")
@@ -205,6 +204,9 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RT16',"封神通行证16级","war3mapImported\\UI_State43.tga","")
         call InitTypeIdStrings('RT17',"封神通行证17级","war3mapImported\\UI_State49.tga","")
         call InitTypeIdStrings('RT19',"封神通行证19级","war3mapImported\\UI_State48.tga","")
+
+
+
         
         BJDebugMsg("init1end")
     endfunction

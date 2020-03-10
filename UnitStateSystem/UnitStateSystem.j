@@ -413,7 +413,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 elseif  StateId == 48
                     DzFrameSetText(BUTTON_Text[177],"|cffffcc00每秒业力：|r"+I2S(R2I(showvalue)))
                 elseif  StateId == 49
-                    DzFrameSetText(BUTTON_Text[177],"|cffffcc00每秒生命：|r"+I2S(R2I(showvalue)))
+                    DzFrameSetText(BUTTON_Text[178],"|cffffcc00每秒生命：|r"+I2S(R2I(showvalue)))
                 endif
 
 

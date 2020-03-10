@@ -893,7 +893,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int last = GetPlayerMagicItemLast(pid)
         int id = GetPlayerMagicItem(pid,last)
         int color = GetTypeIdData(id,101)
-        int give = (5-color) * 10
+        int give = (6-color) * 10
         if  id > 0
             RemPlayerMagicItemByIndex(pid,last)
             SetPlayerMagicItemLast(pid,0)

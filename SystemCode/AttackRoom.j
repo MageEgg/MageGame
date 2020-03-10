@@ -147,6 +147,23 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         
     endfunction
 
+    function AttackUnitTest(int pid)
+        int max = 0
+        max = GetNum(pid,1)
+        BJDebugMsg("回收检测:max"+I2S(max))
+        if  max > 0
+        for i = 1,max
+            BJDebugMsg("回收检测:Rec index"+I2S(i)+" "+GetUnitName(GetUnit(pid,1,i)))
+        end
+        endif
+        max = GetNum(pid,2)
+        BJDebugMsg("刷怪检测:max"+I2S(max))
+        if  max > 0
+        for i = 1,max
+            BJDebugMsg("刷怪检测:Att index"+I2S(i)+" "+GetUnitName(GetUnit(pid,2,i)))
+        end
+        endif
+    endfunction
     //刷一波怪
     function RefreshAttackRoom(int pid)
         int uid = GetAttackRoomUnitId(pid)
@@ -159,7 +176,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 CreateAttackRoomUnit(pid,uid,x,y,GetRandomReal(1,360))
             end
         else
-            BJDebugMsg("错误的刷一波怪 但是被阻止了 max"+I2S(max))
+            BJDebugMsg("错误的刷一波怪 但是被阻止了 max"+I2S(GetPlayerAttackUnitNum(pid))+" num"+I2S(num))
         endif
     endfunction
 

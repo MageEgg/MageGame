@@ -807,6 +807,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         real damage = dam
         int index = id
         real face = Pang(x1,y1,x2,y2)
+        int time = 0
         if  index == 0
             u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_Orb_DarknessX.mdl",x1,y1,90,0,1.0)
         else
@@ -818,8 +819,8 @@ library HeroAbilityFunc uses OtherDamageTimer
         TimerStart(0.03,true)
         {
             real dis = Pdis(x1,y1,x2,y2)
-            
-            if  dis > 50
+            time = time + 1
+            if  dis > 50 or time > 166
                 real ang = GetUnitFacing(u2)*0.01745
                 face = Pang(x1,y1,x2,y2)
                 x1 = x1 + 20 * Cos(ang)
