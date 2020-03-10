@@ -191,7 +191,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_tx_asad (24).mdx",1)
             LocAddEffectSetSize(GetUnitX(u),GetUnitY(u),"effect_az-leiji.mdx",2)
             PauseUnit(u,false)
-            SetUnitAnimation(u,"attack")
+            //SetUnitAnimation(u,"attack")
             endtimer
             flush locals
         }

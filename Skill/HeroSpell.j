@@ -676,77 +676,70 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         damage = damage/num
         for i = 1,num
             ang = 360/num
-            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_fense-lizi-toushewu.mdl",x,y,i*ang,50,1)  
+            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_fense-lizi-toushewu.mdl",x,y,i*ang,50,1.5)  
             //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
             CreateSurroundOfUnitEx(u,u2,i*ang,160,14.4,0.02,1,damage/2)
         end
         flush locals
     endfunction
 
-    function SpellS074_2(unit u,unit mj,real damage1)
-        unit u1=u
-        unit u2=mj
-        real dam=damage1
-        real ang=Uang(u2,u1)
-        real dis=Udis(u2,u1)
-        integer i=0
-        group wg = CreateGroup()
-        TimerStart(0.02,true)
-        {
-            i=i+1
-            if i>20
-                ang=Uang(u2,u1)
-                dis=Udis(u2,u1)
-                group gg = CreateGroup()
-                if  dis>70
-                    SetUnitX(u2,GetUnitX(u2)+70*Cos(ang))
-                    SetUnitY(u2,GetUnitY(u2)+70*Sin(ang))
-                    GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnit(GetOwningPlayer(u1),wg,"")) 
-                    UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                else
-                    SetUnitX(u2,GetUnitX(u1))
-                    SetUnitY(u2,GetUnitY(u1))
-                    GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupHasUnit(GetOwningPlayer(u1),wg,"")) 
-                    UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                    RemoveUnit(u2)
-                    DestroyGroup(wg)
-                    endtimer
-                endif
-
-                GroupClear(gg)
-                DestroyGroup(gg)
-                
-            endif
-            flush locals
-            
-        }
-        flush locals    
-
-    endfunction
-
-    function SpellS074_1(unit u,real ang1,real damage1)
-        unit u1=u
-        real ang=ang1
-        real dam=damage1
-        integer time=18
-        unit u2=CreateTmUnit(GetOwningPlayer(u1),"effect_fense-lizi-toushewu.mdl",GetUnitX(u1),GetUnitY(u1),ang/0.01745,70,1)
-        group wg = CreateGroup()
-        real x=0
-        real y=0
-        TimerStart(0.02,true)
+    //伤害来源,马甲,方向,伤害,伤害范围,最远距离,移动时间间隔,马甲高度,伤害类型4个,马甲序号，最大马甲引索
+    function CreateTmPublicFunc(unit wu,unit m,real Ang,real dam,real rac,real dis,real tt,real high,boolean b1,boolean b2,integer attt,integer damt,group usegroup,int i1,int i2,int i3)
+        real S = 30
+        unit u1 = wu
+        unit u2 = m 
+        real r1 = rac
+        real x1 = GetUnitX(m)
+        real y1 = GetUnitY(m)
+        real x2 = S*Cos(Ang)
+        real y2 = S*Sin(Ang)
+        real damage = dam
+        int time = R2I(dis/S)
+        bool bool1 = b1
+        bool bool2 = b2
+        int atttype = attt
+        int damtype = damt
+        group wg = usegroup
+        int tmorder = i1
+        int maxtm = i2
+        int id = i3
+        int n = 0
+        UnitAddAbility(m,'Amrf')
+        SetUnitFlyHeight(m,high,0)
+        UnitRemoveAbility(m,'Amrf')
+        ////额外判断
+        TimerStart(tt,true)
         {
             group gg = CreateGroup()
+            real dam2 = 0
+            unit uu = null 
             time = time - 1
             if  time > 0
-                x = GetUnitX(u2) + 50*Cos(ang)
-                y = GetUnitY(u2) + 50*Sin(ang)
-                SetUnitPosition(u2,x,y)
-                GroupEnumUnitsInRange(gg,x,y,200,GroupHasUnit(GetOwningPlayer(u1),wg,"")) 
-                UnitDamageGroup(u1,gg,dam,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                x1 = x1 + x2
+                y1 = y1 + y2
+                SetUnitPosition(u2,x1,y1)
+                if  r1 > 0
+                    //GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnitSetXY(GetOwningPlayer(u1),wg,x1,y1,""))
+                    //GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",0,0,0))
+                    
+                    GroupEnumUnitsInRange(gg,x1,y1,r1,GroupHasUnit(GetOwningPlayer(u1),wg,""))
+                    UnitDamageGroup(u1,gg,damage+dam2,bool1,bool2,ConvertAttackType(atttype),ConvertDamageType(damtype),null)
+                endif
             else
-                GroupClear(wg)
-                DestroyGroup(wg)
-                SpellS074_2(u1,u2,dam)
+                //额外判断
+                if  id == 'S074'
+                    GroupClear(wg)
+                    BJDebugMsg("清除wg")
+                    uu = CreateTmUnit(GetOwningPlayer(u1),"effect_fense-lizi-toushewu.mdl",x1,y1,Atan2(GetUnitY(u1)-y1,GetUnitX(u1)-x1)/0.01745,70,1.0)
+                    CreateTmPublicFunc.execute(u1,uu,Atan2(GetUnitY(u1)-y1,GetUnitX(u1)-x1),damage,r1,900,0.025,70,bool1,bool2,atttype,damtype,wg,tmorder,maxtm,0)
+                else
+                    if  tmorder == maxtm
+                        GroupClear(wg)
+                        DestroyGroup(wg)
+                        BJDebugMsg("删除wg")
+                    endif
+                endif
+                KillUnit(u2)
                 endtimer
             endif
             GroupClear(gg)
@@ -755,14 +748,36 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         }
         flush locals
     endfunction
-    
-    function SpellS074(unit u,real x,real y,real damage)
-        real ang=Pang(GetUnitX(u),GetUnitY(u),x,y)
-        ang=ang-0.31
-        for i= 0,2
-            SpellS074_1(u,ang+(I2R(i)*0.31),damage)
+
+    //伤害来源,马甲id,x1,y1,x2,y2,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
+    function CreateTmPublic(unit wu,string model,real x1,real y1,real x2,real y2,real dam,int num,real Ang2,real rac,real dis,real time,real high,bool b1,bool b2,int attt,int damt,int id)
+        real Ang1 = Atan2(y2-y1,x2-x1)
+        real r = 0
+        unit u = null
+        group gg = CreateGroup()
+        Ang2 = Ang2 * 0.01745
+        Ang1 = Ang1 - (((num-1) * Ang2) / 2)
+        for i = 0,num-1
+            r = Ang1 + Ang2 * I2R(i)
+            u = CreateTmUnit(GetOwningPlayer(wu),model,x1,y1,r/0.01745,high,1.0)
+            if  u != null
+                if  dam == 0
+                    CreateTmFuncZero(wu,u,r,rac,dis,time,high)
+                else
+                    CreateTmPublicFunc(wu,u,r,dam,rac,dis,time,high,b1,b2,attt,damt,gg,i,num-1,id)
+                endif
+            endif
         end
-        AddUnitStateExTimer(u,13,20,3)
+        u = null
+        gg = null
+    endfunction
+    
+    function SpellS074(unit u1,real x2,real y2,real damage)
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real ang = Atan2(y2-y1,x2-x1)
+        CreateTmPublic(u1,"effect_fense-lizi-toushewu.mdl",x1,y1,x2,y2,damage,3,15,210,900,0.025,70,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,'S074')
+        AddUnitStateExTimer(u1,13,20,3)
         flush locals
     endfunction
 
@@ -911,7 +926,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
         }
         flush locals
-        
     endfunction
 
     function SpellS081(unit wu,real r1,real r2,real dam)//真空领域
