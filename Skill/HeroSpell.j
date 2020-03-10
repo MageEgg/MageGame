@@ -413,8 +413,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real uy = GetUnitY(wu)
         real x1 = x
         real y1 = y
-        real damage = dam
-        int num = 8
+        real damage = dam/5
+        int num = 5
         effect tx=AddSpecialEffectTarget("effect_blue-shandian-huaban-toushewu.mdl",wu,"origin")
         SpellS006Attack(u1,x1,y1,damage)
         TimerStart(0.07,true)
