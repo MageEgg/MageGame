@@ -48,40 +48,45 @@ library HeroStateFunc uses DamageCode
         endif
         /////////////////////载入属性////////////////////////
         if  GetPlayerTechCount(Player(pid),'RY1D',true) == 1 //星月光环
-            AddUnitRealState(Pu[1],46,(1*lv))
-            AddUnitRealState(Pu[1],45,(5*lv))
-            UnitAddItemEx(Pu[1],'CS01')
+            AddUnitRealState(Pu[1],47,10)
+            AddUnitRealState(Pu[1],22,20)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
-            AddUnitRealState(Pu[1],45,100+(20*lv))
-            AddUnitRealState(Pu[1],47,100+(20*lv))
-            AddUnitRealState(Pu[1],15,50)
-            AddUnitRealState(Pu[1],16,50)
+            AddUnitRealState(Pu[1],31,50)
+            AddUnitRealState(Pu[1],17,30)
+            AddUnitRealState(Pu[1],3,100)
+            AddUnitRealState(Pu[1],50,20)
         endif 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
-            AddUnitRealState(Pu[1],43,30+(5*lv))
-            AddUnitRealState(Pu[1],48,100+(20*lv))
+            AddUnitRealState(Pu[1],32,50)
+            AddUnitRealState(Pu[1],33,50)
             AddUnitRealState(Pu[1],19,10)
-            AddUnitRealState(Pu[1],21,10)
+            AddUnitRealState(Pu[1],17,30)
         endif
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
-            
+            AddUnitRealState(Pu[1],50,188)
+            AddUnitRealState(Pu[1],18,30)
+            AddUnitRealState(Pu[1],17,50)
+            UnitAddItemEx(Pu[1],'I015')
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,28888)
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
-            AddUnitRealState(Pu[1],49,100+(20*lv))
-            AddUnitRealState(Pu[1],48,50+(20*lv))
+            AddUnitRealState(Pu[1],28,2)
+            AddUnitRealState(Pu[1],33,20)
             CreatePet.execute(pid)
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
-            AddUnitRealState(Pu[1],50,10+(3*lv))
-            AddUnitRealState(Pu[1],49,50+(20*lv))
-            UnitAddItemEx(Pu[1],'IN25')
+            AddUnitRealState(Pu[1],31,20)
+            AddUnitRealState(Pu[1],47,20)
+            AddUnitRealState(Pu[1],48,20)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1V',true) == 1 //金币礼包
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1W',true) == 1 //木材礼包
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,1)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
         endif 
 
     endfunction
