@@ -322,7 +322,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台准备战斗！！！|r")
                 endif
             else
-                if  GameTeamChallengeBool[0] == true  
+                if  GameTeamChallengeBool[10] == true  
                     OpenChangeGodStageLeagueUnit(x,y)
                 endif
                 endtimer
