@@ -165,12 +165,14 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     function AddImmortalFruit(unit wu,int id,int move)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
+
         if  num < MaxHeroLevel
+            BJDebugMsg(GetTypeIdIcon(id))
             num = num + 1
             SetUnitIntState(Pu[1],150+num,id)
             SetUnitIntState(Pu[1],150,num)
             SetPlayerTechResearched(Player(pid),'RJ0A'+num - 1,1)
-            //BJDebugMsg("num"+I2S(num))
+            
             AddEquipState(Pu[1],id)
             HeroIncLevel(Pu[1])
             if  GetUnitTypeId(wu) == 'H018'
@@ -183,8 +185,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 */
             if  GetLocalPlayer() == Player(pid)
             
-                DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 0, 0 )
+                DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 1, 0 )
 
+                
                 if  id == 'IJ10'
                     DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber0.tga",0)
                 else
