@@ -18,8 +18,8 @@ library GameFrame uses FRAME
     function CreateModelEx(int id,integer parent,int FrameType,int p1,int pointframe,int p2,real x,real y,string origin)
         BUTTON_Model[id] = DzCreateFrameByTagName("SPRITE","BUTTON_Model"+I2S(id), parent,"template",0)
         DzFrameSetPoint( BUTTON_Model[id], p1, pointframe, p2, x, y)
-        DzFrameSetModel( BUTTON_Model[id], origin, 0, 0 )
-        DzFrameSetSize( BUTTON_Model[id], 0.0000001,0.0000001)
+        DzFrameSetModel( BUTTON_Model[id], origin, 1, 0 )
+        DzFrameSetSize( BUTTON_Model[id], 0.00001,0.00001)
         DzFrameSetAnimate(BUTTON_Model[id],0,true)
         if  FrameType != TYPE_NOT
             FrameSetScriptByExecute( BUTTON_Model[id], 1,id,FrameType)
@@ -30,7 +30,8 @@ library GameFrame uses FRAME
     function CreateModel(int id,integer parent,int FrameType,int p1,int p2,real x,real y,string origin)
         BUTTON_Model[id] = DzCreateFrameByTagName("SPRITE","BUTTON_Model"+I2S(id), parent,"template",0)
         DzFrameSetPoint( BUTTON_Model[id], p1, BUTTON_Back[id][0], p2, x, y)
-        DzFrameSetModel( BUTTON_Model[id], origin, 0, 0 )
+        DzFrameSetModel( BUTTON_Model[id], origin, 1, 0 )
+        DzFrameSetSize( BUTTON_Model[id], 0.00001,0.00001)
         if  FrameType != TYPE_NOT
             FrameSetScriptByExecute( BUTTON_Model[id], 1,id,FrameType)
         endif

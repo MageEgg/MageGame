@@ -63,8 +63,8 @@ library MagicItemCollectFrame uses GameFrame
                 
                 CreateButton(index,Button.frameid,TYPE_BUTTON,0,Button.frameid,0,0.01+x*0.042,-0.035-y*0.042,0.038,0.038,"war3mapImported\\UI_MagicItem_Button1.tga")
                 //CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
-
-
+                CreateModelEx(index,Button.frameid,TYPE_BUTTON,6,BUTTON_Back[index][0],6,0.0,0.0,"")
+                
                 
             end
         end
@@ -78,6 +78,7 @@ library MagicItemCollectFrame uses GameFrame
                 index = y*3+x+9
                 
                 CreateButton(index,Button.frameid,TYPE_BUTTON,0,Back.frameid,0,0.19+x*0.031,-0.035-y*0.031,0.028,0.028,"war3mapImported\\UI_MagicItem_Button1.tga")
+                CreateModelEx(index,Button.frameid,TYPE_BUTTON,6,BUTTON_Back[index][0],6,0.0,0.0,"")
                 //CreateText(index,Button.frameid,"righttext008",8,8,0.0,0.0,I2S(index))
             end
         end
@@ -232,10 +233,16 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int last = GetPlayerMagicItemLast(pid)
         if  GetLocalPlayer() == Player(pid)
             if  last > 0
-                DzFrameSetTexture(BUTTON_Back[last][3],"war3mapImported\\alpha.tga",0)
+                DzFrameSetModel( BUTTON_Model[last], "", 0, 0 )
+                DzFrameSetAnimate(BUTTON_Model[last],0,false)
             endif
             if  index > 0
-                DzFrameSetTexture(BUTTON_Back[index][3],"war3mapImported\\UI_ButtonSelect.tga",0)
+                if  index <= 8
+                    DzFrameSetModel( BUTTON_Model[index], "UI\\Feedback\\Autocast\\UI-ModalButtonOn.mdx", 1, 0 )
+                else
+                    DzFrameSetModel( BUTTON_Model[index], "war3mapImported\\UI-ModalButtonOn028.mdx", 1, 0 )
+                endif
+                DzFrameSetAnimate(BUTTON_Model[index],0,true)
             endif
         endif
         SetUnitIntState(Pu[1],250,index)
