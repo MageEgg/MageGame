@@ -98,7 +98,10 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     function GetExExpMax(int pid)->int
         int max = 30000
         if  GetPlayerTechCount(Player(pid),'RY4A',true) > 0
-            max = max + 2000
+            max = max + 20000
+        endif
+        if  GetPlayerTechCount(Player(pid),'RY1B',true) > 0
+            max = max + 50000
         endif
         return max
     endfunction
@@ -196,6 +199,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 
 
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
+                SetBoardText(3,pid+2,GetTypeIdName('IJ5A'+num))
             endif
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！境界突破成功！")
 

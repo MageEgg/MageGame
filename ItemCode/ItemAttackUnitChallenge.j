@@ -257,7 +257,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             else
                 id = 'IT00'+i
             endif
-            YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][250+i-1]) )
+            if  i <= 7
+                YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][250+i-1]) )
+            else
+                YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n？？？")
+            endif
         end
     endfunction
     
@@ -715,6 +719,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             UnitAddAbility(Pu[1],'AG09')
             UnitMakeAbilityPermanent(Pu[1],true,'AG09')
             ShowUnit(Pu[24],true)
+            CreateUnit(Player(pid),'nc04',GetUnitX(Pu[24]),GetUnitY(Pu[24]),270)//副本入口
             UnitAddEffectOfNPC.execute(Pu[24])
             if  GetLocalPlayer() == Player(pid)
                 DzFrameShow(BUTTON_Back[700+4][0], true)
@@ -725,7 +730,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             for num = 1,3
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cffffff80恭喜"+GetPlayerNameOfColor(pid)+"|cffffff80觉醒了|cffff0080“"+GetTypeIdString(GetUnitIntState(Pu[1],114),100)+"[R]”|cffffff80！|r")
             end
+            /*
             GivePlayerMissionPrize(pid,'RR0A')
+            */
 
             /*ran = GetRandomInt(0,7)
             AddPlayerMonsterSoulState(pid,ran)

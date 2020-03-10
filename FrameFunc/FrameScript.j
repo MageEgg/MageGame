@@ -129,8 +129,10 @@
         elseif  id == 22
             SetTipsData(10,"","|CffCCCCCC锻造法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffff0000鸿蒙结晶|r|Cfff0f0f0，可重置为|r|Cffffd24d高一品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【锻造按钮】。|r")
         elseif  id == 23
+            SetTipsData(1,"","|CffFFD24D补天石|r")
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffffd24d重铸法宝|r|Cfff0f0f0的材料。|r")
         elseif  id == 24
+            SetTipsData(1,"","|CffFF0000鸿蒙结晶|r")
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")
         elseif  id == 25
             SetTipsData(10,"","|CffF0F0F0出售法宝，获得|r|Cffffd24d法宝品质*10|r|Cfff0f0f0玄铁。|n|n|r|Cff00ff7f操作提示：点击指定法宝，再点击出售按钮。|r")
@@ -185,12 +187,20 @@
             ShowTipsUI()
          
         elseif  id > 0
-            DzFrameShow(UI_TipsHead, true)
-            SetTipsData(1,"",GetTypeIdName(id))
-            
-            SetTipsData(10,"",GetTypeIdStateTips(id))
-            SetTipsData(11,"",GetTypeIdTips(id))
-            ShowTipsUI()
+            if  id < 500
+                SetTipsData(1,"","玄铁")
+                SetTipsData(10,"","玄铁+"+I2S(id))
+            elseif  id < 1000000
+                SetTipsData(1,"","金币")
+                SetTipsData(10,"","金币+"+I2S(id))
+            else
+                DzFrameShow(UI_TipsHead, true)
+                SetTipsData(1,"",GetTypeIdName(id))
+                
+                SetTipsData(10,"",GetTypeIdStateTips(id))
+                SetTipsData(11,"",GetTypeIdTips(id))
+                ShowTipsUI()
+            endif
         endif
     endfunction
     function UIDebugShowIndex(int id)

@@ -183,13 +183,13 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[28]="每秒回血"
         StateName[29]="每秒回蓝"
         StateName[30]=""
-        StateName[31]="生命加成"
-        StateName[32]="攻击加成"
+        StateName[31]="生命"
+        StateName[32]="攻击"
 
 
-        StateName[33]="法强%"
-        StateName[34]="攻速%"
-        StateName[35]="冷却%"
+        StateName[33]="法强"
+        StateName[34]="攻速"
+        StateName[35]="冷却"
         StateName[36]=""
         StateName[37]=""
         StateName[38]=""

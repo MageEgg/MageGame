@@ -233,6 +233,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             id = UnlocTechData_TechId[i]
             if  IsPlayerHasTech(Player(pid),id) == true
                 AddEquipState(Pu[1],id)
+                if  id == 'RY4E'
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
+                endif
             endif
         end
     endfunction

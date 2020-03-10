@@ -192,10 +192,10 @@ scope DeathEvent initializer InitDeathEvent
             UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
             if  GetRandomInt(1,100)<= gl
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cff00ff00[系统]：恭喜您！饰品升级成功！")
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾" + GetObjectName(id) + "|cffff0000升级失败！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾！饰品升级失败！")
                 UnitAddItem(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             endif
         endif
@@ -430,10 +430,7 @@ scope DeathEvent initializer InitDeathEvent
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
             AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-
-            if  uid == 'u004'
-                GivePlayerMissionPrize(pid,'RR0C')
-            endif
+            
 
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(pid),'np03',x-512,y-128,270)//兽魂神通
@@ -507,8 +504,9 @@ scope DeathEvent initializer InitDeathEvent
         
         
         //成长类物品
-        PlayerItemGrow(pid)
-        
+        if  PlayerDeathBool == false
+            PlayerItemGrow(pid)
+        endif
         //增加类
         PlayerHeroAddState(pid,uid,tu)
 
