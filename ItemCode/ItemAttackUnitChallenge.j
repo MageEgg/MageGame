@@ -135,7 +135,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(6,150,1600,9600,22000,42000,69000,120000,160000,360000,0,0,0,0)
         InitAttackUnitChallengeCombatData(7,150,2100,13000,28000,54000,89000,160000,210000,470000,0,0,0,0)
 
-        
+        //境界
         InitAttackUnitChallengeCombatData(1,250,360,2000,5600,12000,22000,46000,86000,130000,240000,360000,0,0)
         InitAttackUnitChallengeCombatData(2,250,540,3000,8400,18000,33000,68000,130000,200000,360000,540000,0,0)
         InitAttackUnitChallengeCombatData(3,250,800,4400,13000,27000,48000,100000,190000,290000,520000,790000,0,0)
