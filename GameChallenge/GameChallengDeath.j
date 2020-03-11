@@ -177,7 +177,7 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChallenge_0_C_Death(pid)
 
             if  GetUnitTypeId(Pu[1]) == 'H008' and AttackUnitWN >= 3//彩蛋
-                if  DzPlayerLv(Player(pid)) >= 2
+                if  DzPlayerLv(Player(pid)) >= 4
                     if  GetPlayerTechCount(Player(pid),'RDAV',true) == 0
                         SetDzPlayerData(pid,15,22,22)
                         SetPlayerTechResearchedEx(Player(pid),'RDAV')

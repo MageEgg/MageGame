@@ -31,7 +31,7 @@ library GameChallenge3 uses GameChallengeBase
 
             if  GetUnitTypeId(Pu[1]) == 'H025' //彩蛋
                 if  GetRandomReal(0,1) <= 0.6
-                    if  DzPlayerLv(Player(pid)) >= 2
+                    if  DzPlayerLv(Player(pid)) >= 4
                         if  GameLevel >= 2
                             if  GetPlayerTechCount(Player(pid),'RDAN',true) == 0
                                 SetDzPlayerData(pid,15,14,14)

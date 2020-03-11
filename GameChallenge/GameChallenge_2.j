@@ -33,7 +33,7 @@ library GameChallenge2 uses GameChallengeBase
             PlayerFinishPlotEx(pid,2)
 
             if  GetUnitTypeId(Pu[1]) == 'H012' and IsFinshChallenge(2) == true  //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 2
+                if  DzPlayerLv(Player(pid)) >= 4
                     if  GameLevel >= 2
                         if  GetPlayerTechCount(Player(pid),'RDAI',true) == 0
                             SetDzPlayerData(pid,15,9,9)
@@ -49,15 +49,19 @@ library GameChallenge2 uses GameChallengeBase
             endif
 
             if  GetUnitTypeId(Pu[1]) == 'H026' //彩蛋
-                if  GetPlayerTechCount(Player(pid),'RDAK',true) == 0
-                    SetDzPlayerData(pid,15,11,11)
-                    SetPlayerTechResearchedEx(Player(pid),'RDAK')
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000穿越回来还打你！|r（永久存档）！")
+                if  DzPlayerLv(Player(pid)) >= 2
+                    if  GetPlayerTechCount(Player(pid),'RDAK',true) == 0
+                        SetDzPlayerData(pid,15,11,11)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAK')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000穿越回来还打你！|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000穿越回来还打你|r，但可惜地图等级不够要求！")
                 endif
             endif
 
             if  PlayerChallengeTimeCosNum(2) >= 6 //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 3
+                if  DzPlayerLv(Player(pid)) >= 6
                     if  GetPlayerTechCount(Player(pid),'RDAX',true) == 0
                         SetDzPlayerData(pid,15,24,24)
                         SetPlayerTechResearchedEx(Player(pid),'RDAX')
@@ -191,7 +195,7 @@ library GameChallenge2 uses GameChallengeBase
         PlayerFinishPlotEx(pid,2)
 
         if  GetUnitTypeId(Pu[1]) == 'H018' //彩蛋
-            if  DzPlayerLv(Player(pid)) >= 4
+            if  DzPlayerLv(Player(pid)) >= 8
                 if  GameLevel >= 4
                     if  GetPlayerTechCount(Player(pid),'RDAF',true) == 0
                         SetDzPlayerData(pid,15,6,6)
