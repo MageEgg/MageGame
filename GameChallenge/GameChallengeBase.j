@@ -323,9 +323,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 elseif  time == 1
                     for pid = 0,3
                         if  IsPlaying(pid) == true 
-                            //if  == false
+                            if  IsLocInRect(gg_rct_GameRect2,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
                                 SetUnitXY(Pu[1],-6910,-6950)
-                            //endif
+                            endif
                         endif
                     end
                 endif
