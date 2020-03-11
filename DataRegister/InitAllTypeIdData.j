@@ -150,6 +150,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY4I',"剑血浮生","ReplaceableTextures\\CommandButtons\\BTNRY4I.BLP","")
         call InitTypeIdStrings('RY4J',"传说十席","ReplaceableTextures\\CommandButtons\\BTNRY4J.BLP","")
         call InitTypeIdStrings('RY4K',"勇者百席","ReplaceableTextures\\CommandButtons\\BTNRY4K.BLP","")
+        call InitTypeIdStrings('RY4L',"新称号1","ReplaceableTextures\\CommandButtons\\BTNRY4L.BLP","")
+        call InitTypeIdStrings('RY4M',"新称号2","ReplaceableTextures\\CommandButtons\\BTNRY4M.BLP","")
         call InitTypeIdStrings('RJ1A',"小有成就","ReplaceableTextures\\CommandButtons\\BTNRJ1A.BLP","")
         call InitTypeIdStrings('RJ1B',"老油条","ReplaceableTextures\\CommandButtons\\BTNRJ1B.BLP","")
         call InitTypeIdStrings('RJ1C',"脂肪肝","ReplaceableTextures\\CommandButtons\\BTNRJ1C.BLP","")
