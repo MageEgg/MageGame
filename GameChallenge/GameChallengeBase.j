@@ -320,6 +320,14 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     endif
                 elseif  time <= 10
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台准备战斗！！！|r")
+                elseif  time == 1
+                    for pid = 0,3
+                        if  IsPlaying(pid) == true 
+                            //if  == false
+                                SetUnitXY(Pu[1],-6910,-6950)
+                            //endif
+                        endif
+                    end
                 endif
             else
                 if  GameTeamChallengeBool[10] == true  
