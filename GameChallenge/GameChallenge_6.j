@@ -322,7 +322,7 @@ library GameChallenge6 uses GameChallengeBase
             PlayerFinishPlotEx(pid,6)
 
             if  GetUnitTypeId(Pu[1]) == 'H024' and IsFinshChallenge(6) == true //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 3
+                if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAP',true) == 0
                             SetDzPlayerData(pid,15,16,16)

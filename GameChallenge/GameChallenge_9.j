@@ -309,7 +309,7 @@ library GameChallenge9 uses GameChallengeBase
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"随机获得"+GetObjectName(itid)+"！")
 
             if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 3
+                if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAT',true) == 0
                             SetDzPlayerData(pid,15,20,20)
@@ -325,7 +325,7 @@ library GameChallenge9 uses GameChallengeBase
             endif
 
             if  GetUnitTypeId(Pu[1]) == 'H005' //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 3
+                if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAU',true) == 0
                             SetDzPlayerData(pid,15,21,21)
