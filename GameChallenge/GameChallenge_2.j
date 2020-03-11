@@ -30,6 +30,30 @@ library GameChallenge2 uses GameChallengeBase
             PlayerChallengeCosNum = PlayerChallengeCosNum + 1
             //奖励
             PlayerFinishPlotEx(pid,2)
+
+            if  GetUnitTypeId(Pu[1]) == 'H012' //彩蛋
+                if  DzPlayerLv(Player(pid)) >= 2
+                    if  GameLevel >= 2
+                        if  GetPlayerTechCount(Player(pid),'RDAI',true) == 0
+                            SetDzPlayerData(pid,15,9,9)
+                            SetPlayerTechResearchedEx(Player(pid),'RDAI')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000护犊子|r（永久存档）！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000护犊子|r，但可惜难度不够要求！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000护犊子|r，但可惜地图等级不够要求！")
+                endif
+            endif
+
+            if  GetUnitTypeId(Pu[1]) == 'H026' //彩蛋
+                if  GetPlayerTechCount(Player(pid),'RDAK',true) == 0
+                    SetDzPlayerData(pid,15,11,11)
+                    SetPlayerTechResearchedEx(Player(pid),'RDAK')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000穿越回来还打你！|r（永久存档）！")
+                endif
+            endif
         endif
     endfunction
 
@@ -152,6 +176,22 @@ library GameChallenge2 uses GameChallengeBase
         IsFinshChallenge(2) = true
         //奖励
         PlayerFinishPlotEx(pid,2)
+
+        if  GetUnitTypeId(Pu[1]) == 'H018' //彩蛋
+            if  DzPlayerLv(Player(pid)) >= 4
+                if  GameLevel >= 4
+                    if  GetPlayerTechCount(Player(pid),'RDAF',true) == 0
+                        SetDzPlayerData(pid,15,6,6)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAF')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000我也护犊子|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我也护犊子|r，但可惜难度不够要求！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我也护犊子|r，但可惜地图等级不够要求！")
+            endif
+        endif
     endfunction
 
     function EnRctGameChalleng_2_Water1()
