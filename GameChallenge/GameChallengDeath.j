@@ -175,6 +175,19 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChallenge_0_B_Death(pid)
         elseif  uid2 == 'u021'
             GameChallenge_0_C_Death(pid)
+
+            if  GetUnitTypeId(Pu[1]) == 'H008' and AttackUnitWN >= 3//彩蛋
+                if  DzPlayerLv(Player(pid)) >= 2
+                    if  GetPlayerTechCount(Player(pid),'RDAV',true) == 0
+                        SetDzPlayerData(pid,15,22,22)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAV')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜地图等级不够要求！")
+                endif
+            endif
+
         elseif  uid2 == 'uf10'
             GameChalleng_1_XYDeath(pid,u2)
         elseif  uid2 == 'uf11'

@@ -32,7 +32,7 @@ library GameChallenge2 uses GameChallengeBase
             //奖励
             PlayerFinishPlotEx(pid,2)
 
-            if  GetUnitTypeId(Pu[1]) == 'H012' //彩蛋
+            if  GetUnitTypeId(Pu[1]) == 'H012' and IsFinshChallenge(2) == true  //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 2
                     if  GameLevel >= 2
                         if  GetPlayerTechCount(Player(pid),'RDAI',true) == 0

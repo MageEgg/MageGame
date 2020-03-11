@@ -307,6 +307,39 @@ library GameChallenge9 uses GameChallengeBase
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！！！|r")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"随机获得"+GetObjectName(itid)+"！")
+
+            if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
+                if  DzPlayerLv(Player(pid)) >= 3
+                    if  GameLevel >= 3
+                        if  GetPlayerTechCount(Player(pid),'RDAT',true) == 0
+                            SetDzPlayerData(pid,15,20,20)
+                            SetPlayerTechResearchedEx(Player(pid),'RDAT')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你不行|r（永久存档）！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜难度不够要求！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜地图等级不够要求！")
+                endif
+            endif
+
+            if  GetUnitTypeId(Pu[1]) == 'H005' //彩蛋
+                if  DzPlayerLv(Player(pid)) >= 3
+                    if  GameLevel >= 3
+                        if  GetPlayerTechCount(Player(pid),'RDAU',true) == 0
+                            SetDzPlayerData(pid,15,21,21)
+                            SetPlayerTechResearchedEx(Player(pid),'RDAU')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r（永久存档）！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜难度不够要求！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜地图等级不够要求！")
+                endif
+            endif
+
         endif
     endfunction
 

@@ -604,6 +604,18 @@ scope DeathEvent initializer InitDeathEvent
 
                         AttackSummonUnitGroupDeathEvent(pid,u2)
                     endif
+
+                    if  GetUnitTypeId(u1) == 'H027' and GetUnitTypeId(u2) == 'mc07' //彩蛋
+                        if  GameLevel >= 2
+                            if  GetPlayerTechCount(Player(pid),'RDAC',true) == 0
+                                SetDzPlayerData(pid,15,3,3)
+                                SetPlayerTechResearchedEx(Player(pid),'RDAC')
+                                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000老婆别打了|r（永久存档）！")
+                            endif
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000老婆别打了|r，但可惜难度不够要求！")
+                        endif
+                    endif
                     
                 endif
             else
