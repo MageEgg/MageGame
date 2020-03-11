@@ -876,10 +876,8 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         elseif  color == 5
             TimerMissionAddNumFunc(pid,13,1)//获得通天灵宝
         endif
-
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r恭喜"+GetPlayerColorEx(pid)+GetPN(pid)+"|r获得法宝："+GetMagicItemName(value))
         
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！获得 "+GetMagicItemName(value)+" ,F4查看法宝羁绊效果")
-
     endfunction
 
 

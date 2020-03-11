@@ -214,7 +214,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 
             else
                 if  level >= 4
-                    AddUnitStateExTimer(u1,17,30,3)
+                    AddUnitStateExTimer(u1,20,30,3)
                 endif
                 RemoveUnit(u3)
                 endtimer
@@ -312,7 +312,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  GetUnitTypeId(Pu[1]) == 'H003'
                 if  IsUnitInRangeXY(Pu[1], x, y, 600) == true
                     if  YDWEGetUnitAbilityState(Pu[1], 'AC05', 1) == 0
-                        SpellS503(Pu[1],GetHeroAbilityLevel(Pu[1],'H503'))
+                        SpellS503(Pu[1],GetHeroAbilityLevel(Pu[1],'S503'))
                     endif
                 endif
             endif
@@ -512,7 +512,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         SetUnitAnimation(u2,"attack")
         LocAddEffectSetRotate(x1,y1,ang/0.01745,"effect_az_jingzi_jiansheng01_e1.mdl")
         if  GetHeroAbilityLevel(u1,'S509') >= 4
-            damage = damage * 1.2
+            damage = damage * 1.3
         endif
         TimerStart(0.01,true)
         {
@@ -542,13 +542,13 @@ library HeroAbilityFunc uses OtherDamageTimer
         int lv = level
         AddUnitIntState(wu,'S509',1)
         if  lv >=2 
-            AddUnitIntState(wu,10,15)
+            AddUnitRealState(wu,10,15)
         endif
         TimerStart(3,false)
         {
             AddUnitIntState(u1,'S509',-1)
             if  lv >=2 
-                AddUnitIntState(u1,10,-15)
+                AddUnitRealState(u1,10,-15)
             endif
             endtimer
             flush locals
@@ -831,7 +831,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,x2,y2,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,g.ejg,damage/4,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 if  index == 0
                     LocAddEffect(x1,y1,"effect_tt (56).mdl")
                     LocAddEffect(x1,y1,"effect3_desecrateblack.mdl")
@@ -946,7 +946,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             endif
             IndexGroup g = IndexGroup.create()
             AddEffectInAreaSetSize(x1,y1,250,0.5,10,"effect_hero_attack1.mdl")
-            GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,2,0))
             UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
 
@@ -1027,7 +1027,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             AddUnitIntState(u1,'S520',1)
             TimerStart(6,false)
             {
-                AddUnitIntState(u1,'S520',-0)
+                AddUnitIntState(u1,'S520',-1)
                 endtimer
                 flush locals
             }
@@ -1108,9 +1108,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             
             IndexGroup g = IndexGroup.create()
             if  lv >= 3
-                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',852095,2))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,4,0))
             elseif  lv >= 2
-                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',852095,1))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,4,0))
             else
                 GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             endif
@@ -1325,15 +1325,15 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitAnimationByIndex(wu,4)
             if  lv >= 3
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 2)
                 BJDebugMsg("CD6")
             elseif  lv >= 2
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 7)
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 4)
                 BJDebugMsg("CD7")
             else
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 8)
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
                 BJDebugMsg("CD8")
             endif
             SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage,lv)
@@ -1357,11 +1357,13 @@ library HeroAbilityFunc uses OtherDamageTimer
                 KillUnit(tu)
             endif
             LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
-            g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*3.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            g.destroy()
-            LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
+            if  lv >=4
+                g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*8.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+                LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
+            endif
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
         elseif  Pu[1] == tu
@@ -1376,12 +1378,16 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 KillUnit(tu)
             endif
+
             LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
-            g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*3.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            g.destroy()
-            LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
+
+            if  lv >= 4
+                g = IndexGroup.create()
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*8.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+                LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
+            endif
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然斩杀了队友！")
         else
@@ -1400,7 +1406,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 4
                 ran = 100
             endif
-            if  ChanceEx(wu,'S528',ran) == true
+            if  GetRandomInt(1,100)<=ran
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*10.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
