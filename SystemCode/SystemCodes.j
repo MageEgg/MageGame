@@ -771,7 +771,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         int array UnitDropItemID[3][1000]
         real array UnitDropItemRan[3][1000]
         
-        func UnitRanDropItemData(int u,int i1,real r1,int i2,real r2,int i3,real r3)
+        function UnitRanDropItemData(int u,int i1,real r1,int i2,real r2,int i3,real r3)
             DropUnitNum = DropUnitNum + 1
             DropUnitID[DropUnitNum] = u
             UnitDropItemID[0][DropUnitNum] = i1
@@ -780,7 +780,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitDropItemRan[0][DropUnitNum] = r1
             UnitDropItemRan[1][DropUnitNum] = r2
             UnitDropItemRan[2][DropUnitNum] = r3
-        end
+        endfunction
 
         /*function DropItemTimerFunc()
             timer t = GetExpiredTimer()

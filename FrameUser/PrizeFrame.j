@@ -175,8 +175,10 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
             if  Type == 0
                 for i = 1,3
                     rid = GetUnitIntState(Pu[1],402+i)
-                    if  i != index
-                        RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
+                    if  rid > 0
+                        if  i != index
+                            RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
+                        endif
                     endif
                 end
                 GivePlayerMagicItem(pid,id)

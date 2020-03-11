@@ -898,7 +898,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  lv >= 4
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*15,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
         else
             KillUnit(wu)
@@ -959,7 +959,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  lv >= 4
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetUnitRealState(wu,2))*7.2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetUnitRealState(wu,2))*10.8,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_az_magina[2]_v.mdl",2)
             g.destroy()
         endif
@@ -1047,7 +1047,6 @@ library HeroAbilityFunc uses OtherDamageTimer
         unit u1 = wu
         real damage = dam
         int time = 6
-        effect eff = AddSpecialEffectTarget("effect2_az_cocoguanyu_t2_death.mdl",wu,"origin")
         if  lv >= 3
             damage = damage * 1.8
         elseif  lv >= 2
@@ -1057,12 +1056,12 @@ library HeroAbilityFunc uses OtherDamageTimer
         {
             time = time - 1
             IndexGroup g = IndexGroup.create()
+            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect2_az_cocoguanyu_t2_death.mdl")
             GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             
             if  time <= 0
-                DestroyEffect(eff)
                 endtimer
             endif
             flush locals
@@ -1087,7 +1086,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  lv >= 4
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*15,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect2_az_goods_blink(green).mdl",3)
             g.destroy()
         endif
@@ -1409,7 +1408,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  GetRandomInt(1,100)<=ran
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*10.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*20.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
                 LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_[dz.spell]002.mdl",0.8)
             endif
@@ -1435,7 +1434,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                     if  lv >= 2
                         IndexGroup g = IndexGroup.create()
                         GroupEnumUnitsInRange(g.ejg,GetUnitX(Pu[1]),GetUnitY(Pu[1]),600,GroupNormalNoStr(Player(pid),"","",0))
-                        UnitDamageGroup(Pu[1],g.ejg,GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*3.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                        UnitDamageGroup(Pu[1],g.ejg,GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*1.2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         g.destroy()
                         LocAddEffectSetSize(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect2_zhendi-yinghua.mdl",1.2)
                     endif

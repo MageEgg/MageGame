@@ -371,8 +371,8 @@ scope DeathEvent initializer InitDeathEvent
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
             AttackRoomXCNum = AttackRoomXCNum + 1
-            if  AttackRoomXCNum > 24
-                AttackRoomXCNum = 24
+            if  AttackRoomXCNum > 22
+                AttackRoomXCNum = 22
             endif
             CreateItem('IN31',GetUnitX(tu),GetUnitY(tu))
             AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
@@ -391,8 +391,8 @@ scope DeathEvent initializer InitDeathEvent
 
             if  AttackRoomXCUnitNum <= 0
                 AttackRoomXCNum = AttackRoomXCNum + 1
-                if  AttackRoomXCNum > 24
-                    AttackRoomXCNum = 24
+                if  AttackRoomXCNum > 22
+                    AttackRoomXCNum = 22
                 endif
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
                 AdjustPlayerStateBJ( 5 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
