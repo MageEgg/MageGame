@@ -534,8 +534,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             AttackTimerUIText = "最终大决战"
             if  IsChangeGodStage == false
                 IsChangeGodStage = true
-                CreateChangeGodStage.execute(80)
-                //CreateChangeGodStage.execute(AttackUnitNextTime[i])
+                CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
             if  AttackUnitWN == 5
