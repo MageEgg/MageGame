@@ -18,9 +18,6 @@ scope SelectHero
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
         UnitAddAbility(Pu[1],'AG0B')
 
-
-        ShowPlayerSignInLastTime(pid) //登陆刷新
-
         InitPlayerDzShopState.execute(pid)//商城属性
 
         InitPlayerMeridiansState.execute(pid)//经脉
@@ -84,6 +81,8 @@ scope SelectHero
         InitHeroAddStateAbility.execute(Pu[1])//读取百分比属性技能
         
         InitPlayerMonsterSoulSkill(pid)
+
+        ShowPlayerSignInLastTime(pid) //登陆刷新
     endfunction
 
    

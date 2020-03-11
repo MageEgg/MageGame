@@ -36,6 +36,7 @@ piece DzGameFunc
             BJDebugMsg("刷新！！！！！！！！！！")
         endif
         if  mission != DzMissionWeek
+            BJDebugMsg("通行证刷新")
             DzS[5] = "000000000000000000000000000000000000000000000000000000000000"
             if  DzConA[0] == 1
                 DzAPI_Map_StoreString(Player(pid),"DZ"+I2S(5),DzS[5])
