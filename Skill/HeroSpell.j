@@ -272,7 +272,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ17',x,y,0)
         real damage = dam
         int time = 0
-        UnitTimerAddSkill(wu,'S005',3)
+        UnitTimerAddSkill(wu,'S005',4.5)
         TimerStart(0.01,true)
         {
             group gg = null
@@ -332,8 +332,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u1 = wu
         group gg = CreateGroup()
         if  GetUnitAbilityLevel(wu,id) == 0
-            UnitTimerAddSkill(wu,id,8)
-            AddUnitStateExTimer(wu,32,20,6)
+            UnitTimerAddSkill(wu,id,4.5)
+            AddUnitStateExTimer(wu,32,20,4.5)
         endif
         LocAddEffectSetSize(x2,y2,"effect2_by_wood_leitingyiji.mdl",1.2)
         LocAddEffectSetSize(x2,y2,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",2)
@@ -466,7 +466,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         TimerStart(0.3,false)
         {
             IndexGroup g = IndexGroup.create()
-            AddUnitStateExTimer(u,19,10,3)
+            AddUnitStateExTimer(u,19,10,4.5)
             GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             DestroyEffect(tx) 
@@ -495,8 +495,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         DestroyEffect(AddSpecialEffect("effect_az_bw_lina_t1-2.mdl",x,y))
         GroupEnumUnitsInRange(g,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"effect_AZ_PotM(1)_T1_Impact.mdl","origin",0))
         if  GetUnitAbilityLevel(u1,'S028') == 0
-            UnitTimerAddSkill(u1,'S028',3)
-            AddUnitStateExTimer(u1,81,6,3)
+            UnitTimerAddSkill(u1,'S028',4.5)
+            AddUnitStateExTimer(u1,81,6,4.5)
         endif
         TimerStart(0.426,false)
         {
@@ -516,7 +516,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real ang = Atan2(y2-y1,x2-x1)
         int time = 0
         real damage = dam/3
-        UnitTimerAddSkill(u,'S030',3)
+        UnitTimerAddSkill(u,'S030',4.5)
         CreateTm(u1,'eZ21',x1,y1,ang,damage,1,0,250,900,0,250,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
         TimerStart(0.2,true)
         {
@@ -777,7 +777,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y1 = GetUnitY(u1)
         real ang = Atan2(y2-y1,x2-x1)
         CreateTmPublic(u1,"effect_fense-lizi-toushewu.mdl",x1,y1,x2,y2,damage,3,15,210,900,0.025,70,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,'S074')
-        AddUnitStateExTimer(u1,13,20,3)
+        AddUnitStateExTimer(u1,13,20,4.5)
         flush locals
     endfunction
 
@@ -788,8 +788,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         LocAddEffectSetSize(x,y,"effect_blue-slash-more.mdl",0.5)
         if  GetUnitAbilityLevel(wu,'S076') == 0
-            UnitTimerAddSkill(wu,'S076',3)
-            AddUnitStateExTimer(wu,81,6,3)
+            UnitTimerAddSkill(wu,'S076',4.5)
+            AddUnitStateExTimer(wu,81,6,4.5)
         endif
         g.destroy()
         flush locals
@@ -825,7 +825,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         
     //伤害来源，目标点xy，起始点xy，模型路径，速度，高度，伤害半径，伤害
         effect tx=AddSpecialEffect("effect_az_axe_x.mdl",x,y)
-        UnitTimerAddSkill(u,'S078',3)
+        UnitTimerAddSkill(u,'S078',4.5)
         TimerStart(1.5,false)
         {   
             DestroyEffect(tx)
@@ -1163,7 +1163,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
     
     function SpellS101(unit u,real x,real y,real damage)
-        AddUnitStateExTimer(u,86,6,4)
+        AddUnitStateExTimer(u,86,6,4.5)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_az_zeusking_impact-black.mdl","origin",0))
         LocAddEffect(x,y,"effect_white-shandian-qiquan.mdl")

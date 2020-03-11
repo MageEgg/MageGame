@@ -105,8 +105,13 @@
                 SetTipsData(14,""," - 每点增加1%攻击速度")
                 SetTipsData(15,""," - 最高增加400%")
                 SetTipsData(16,"","冷却：")
+<<<<<<< HEAD
                 SetTipsData(17,""," - 每点降低主动技能冷却时间")
                 SetTipsData(18,""," - 冷却时间最小值为1秒")
+=======
+                call SetTipsData(17,""," - 冷却时间 = 初始冷却时间/(1+冷却缩减)")
+                SetTipsData(18,""," - 技能冷却时间最小值为1秒")
+>>>>>>> ecc1d3e95f580ea55e5ff80321b857cb7d2c2085
                 SetTipsData(19,""," ")
                 ShowTipsUI()
                 ShowNewDzFrameTooltip(0.121)
