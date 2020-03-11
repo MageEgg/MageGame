@@ -895,7 +895,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int last = GetPlayerMagicItemLast(pid)
         int id = GetPlayerMagicItem(pid,last)
         int color = GetTypeIdData(id,101)
-        int give = (6-color) * 10
+        int give = 2
         if  id > 0
             RemPlayerMagicItemByIndex(pid,last)
             SetPlayerMagicItemLast(pid,0)
@@ -907,7 +907,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
     //重置法宝
-    function RecastPlayerMagicItem(int pid)
+    function RecastPlayerMagicItem(int pid) 
         int last = GetPlayerMagicItemLast(pid)
         int id = GetPlayerMagicItem(pid,last)
         int num = 0

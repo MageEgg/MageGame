@@ -188,11 +188,15 @@
          
         elseif  id > 0
             if  id < 500
+                DzFrameShow(UI_TipsHead, true)
                 SetTipsData(1,"","玄铁")
                 SetTipsData(10,"","玄铁+"+I2S(id))
+                ShowTipsUI()
             elseif  id < 1000000
+                DzFrameShow(UI_TipsHead, true)
                 SetTipsData(1,"","金币")
                 SetTipsData(10,"","金币+"+I2S(id))
+                ShowTipsUI()
             else
                 DzFrameShow(UI_TipsHead, true)
                 SetTipsData(1,"",GetTypeIdName(id))
@@ -332,12 +336,14 @@
                         //DzFrameSetAlpha(BUTTON_Back[id][4],120)
                     elseif  id >= 621 and id <= 630
                         boxid = GetPassCheckPrizeId(id-620,1)
+                        //BJDebugMsg("boxid"+I2S(boxid))
                         if  boxid > 0
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                         endif
                     elseif  id >= 631 and id <= 640
                         boxid = GetPassCheckPrizeId(id-630,2)
+                        //BJDebugMsg("boxid"+I2S(boxid))
                         if  boxid > 0
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)

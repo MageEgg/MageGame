@@ -66,7 +66,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
 
     function InitRegisterPrize()//注册奖励
-        RegisterPassCheckPrize(1,'RS01','1000')
+        RegisterPassCheckPrize(1,'RS01',1000)
         RegisterPassCheckPrize(2,'RY2A','RY2B')
         RegisterPassCheckPrize(3,800,'IP01')
         RegisterPassCheckPrize(4,2,5)
