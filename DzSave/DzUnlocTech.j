@@ -386,13 +386,14 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
         //商城
         InitUnlocTechConditions('RY1D',InitCond1(2,ShopList("GH1"),0),0,0,0,0)
-        InitUnlocTechConditions('RY2D',InitCond1(2,Unloc_Type_Shop,"CB1"),0,0,0,0)
-        InitUnlocTechConditions('RY3D',InitCond1(2,Unloc_Type_Shop,"WQ1"),0,0,0,0)
-        InitUnlocTechConditions('RY4D',InitCond1(2,Unloc_Type_Shop,"CH1"),0,0,0,0)
-        InitUnlocTechConditions('RK1A',InitCond1(2,Unloc_Type_Shop,"CW1"),0,0,0,0)
-        InitUnlocTechConditions('RJ1U',InitCond1(2,Unloc_Type_Shop,"LB1"),0,0,0,0)
-        InitUnlocTechConditions('RJ1V',InitCond1(2,Unloc_Type_Shop,"LB2"),0,0,0,0)
-        InitUnlocTechConditions('RJ1W',InitCond1(2,Unloc_Type_Shop,"LB3"),0,0,0,0)
+        InitUnlocTechConditions('RY2D',InitCond1(2,ShopList("CB1"),0),0,0,0,0)
+        InitUnlocTechConditions('RY3D',InitCond1(2,ShopList("WQ1"),0),0,0,0,0)
+        InitUnlocTechConditions('RY4D',InitCond1(2,ShopList("CH1"),0),0,0,0,0)
+        InitUnlocTechConditions('RK1A',InitCond1(2,ShopList("CW1"),0),0,0,0,0)
+        InitUnlocTechConditions('RJ1U',InitCond1(2,ShopList("LB1"),0),0,0,0,0)
+        InitUnlocTechConditions('RJ1V',InitCond1(2,ShopList("LB2"),0),0,0,0,0)
+        InitUnlocTechConditions('RJ1W',InitCond1(2,ShopList("LB3"),0),0,0,0,0)
+
 
 
         //成就  
