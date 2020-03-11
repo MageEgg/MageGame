@@ -103,7 +103,8 @@ library DzDataSetting uses DzBase
             elseif  flag >= 2 //未使用
                 max = 0
             endif
-        //elseif  Group == 5 //不用管
+        elseif  Group == 5 //不用管
+
         elseif  Group == 6 //不用管
             if  flag == 1 //经脉最大上限
                 max = MeridiansDay*DzMeridiansDayNum
@@ -118,8 +119,9 @@ library DzDataSetting uses DzBase
             max = 0
         elseif  Group == 9
             max = 0
-        //elseif  Group == 10-15 //不用管
-        else //未使用
+        elseif  Group >= 10 and Group <= 15 //不用管
+
+        elseif  Group > 15 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)

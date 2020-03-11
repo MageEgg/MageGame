@@ -25,7 +25,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define IsPlayerInTeamChallenge         GameChallengBool[550]
 
     #define PlayerInChallengeNumber         GameChallengInt[500]
-    #define PlayerChallengeCosNum           GameChallengInt[501]
+    #define PlayerChallengeOverCosNum       GameChallengInt[501]
+
+    #define PlayerChallengeTimeCosNum(num)  GameChallengInt[510+num]
 
     #define GameBiaoJI                      GameChallengMapUnit
 
@@ -706,7 +708,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function SetUnitOverStateOfGameChalleng(int pid,unit u,int flag)
         real value = 0
-        value = Pow(1.2,PlayerChallengeCosNum)
+        value = Pow(1.2,PlayerChallengeOverCosNum)
         SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
         SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
         

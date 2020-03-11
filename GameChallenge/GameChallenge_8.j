@@ -449,9 +449,22 @@ library GameChallenge8 uses GameChallengeBase
                 endif
             endif
             GameChallengeFluahAll(pid,1)
-            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
+            PlayerChallengeOverCosNum = PlayerChallengeOverCosNum + 1
+            PlayerChallengeTimeCosNum(8) = PlayerChallengeTimeCosNum(8) + 1
             //奖励
             PlayerFinishPlotEx(pid,8)
+
+            if  GetUnitTypeId(Pu[1]) == 'H013' //彩蛋
+                if  GetRandomReal(0,1) <= 0.4
+                    if  GetPlayerTechCount(Player(pid),'RDAJ',true) == 0
+                        SetDzPlayerData(pid,15,10,10)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAJ')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000真假....猴精..|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000真假....猴精..|r，但可惜运气太差了没激活存档！")
+                endif
+            endif
         endif
     endfunction
 
