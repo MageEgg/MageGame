@@ -135,7 +135,7 @@
             SetTipsData(1,"","|CffFF0000鸿蒙结晶|r")
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")
         elseif  id == 25
-            SetTipsData(10,"","|CffF0F0F0出售法宝，获得|r|Cffffd24d法宝品质*10|r|Cfff0f0f0玄铁。|n|n|r|Cff00ff7f操作提示：点击指定法宝，再点击出售按钮。|r")
+            SetTipsData(10,"","|CffF0F0F0出售法宝，获得|r|Cffffd24d2|r|Cfff0f0f0玄铁。|n|n|r|Cff00ff7f操作提示：点击指定法宝，再点击出售按钮。|r")
             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_MagicItem_Sale0.tga",0)
             
         elseif  id == 652 or id == 653

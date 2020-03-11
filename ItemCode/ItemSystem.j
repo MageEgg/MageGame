@@ -139,6 +139,16 @@ scope ItemSystem initializer InitItemSystem
                             IncEquipAddition2 = IncEquipAddition2 + 5
                         endif
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化|cff00ff00成功率+5%")
+
+                        if  IncEquipAddition1 + IncEquipAddition2 >= 25
+                            if  GetPlayerTechCount(Player(pid),'RDAY',true) == 0
+                                SetDzPlayerData(pid,15,25,25)
+                                SetPlayerTechResearchedEx(Player(pid),'RDAY')
+                                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000今天爆率真高啊|r（永久存档）！")
+                            endif
+
+                        endif
+
                         //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化成功率:|r|cff00ff00"+I2S(gl+5)+"%")
                         /*if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
                             AdjustPlayerStateBJ(gold/5, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
