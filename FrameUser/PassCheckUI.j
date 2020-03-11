@@ -2,6 +2,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
     int MissionDay = 0
     int MaxMissionNum = 4//任务数量
     int MaxPassCheckPrizeNum = 20 //奖励数量
+    int MaxPassCheckDayExp = 6
     
     scope RegisterMission
         int array PassCheckMissionData[1000][8]
@@ -88,45 +89,47 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
     endfunction
 
     function InitRegisterMission()//注册任务
-        //代码输出
-        RegisterPassCheckMission(1,4,1,"","点击右上角【签到】按钮完成签到")
-        RegisterPassCheckMission(2,4,1,"","通关难1或以上")
-        RegisterPassCheckMission(3,4,10000,"","击杀10000个怪物")
-        RegisterPassCheckMission(4,4,9,"","通关9个任意副本")
-        RegisterPassCheckMission(5,4,12,"","抽取12次技能")
-        RegisterPassCheckMission(6,4,2,"","通关2次任意难度")
-        RegisterPassCheckMission(7,4,50,"","击杀50个进攻精英怪")
-        RegisterPassCheckMission(8,4,18,"","击杀18个进攻Boss")
-        RegisterPassCheckMission(9,4,2,"","获得2次|CffFFC926先天神器|r品质的法宝")
-        RegisterPassCheckMission(10,4,1,"","激活1次法宝羁绊")
-        RegisterPassCheckMission(11,4,1,"","组队通关任意难度")
-        RegisterPassCheckMission(12,4,8,"","获得8次|Cff00BFFF后天仙器|r品质的法宝")
-        RegisterPassCheckMission(13,4,8,"","获得8次|Cff00FF7F通天灵宝|r品质的法宝")
-        RegisterPassCheckMission(14,4,30,"","死亡超过30次")
-        RegisterPassCheckMission(15,4,16,"","通关16次任意副本")
-        RegisterPassCheckMission(16,4,6,"","击杀6次送宝金蟾")
-        RegisterPassCheckMission(17,4,10,"","完成10次占星")
-        RegisterPassCheckMission(18,4,1,"","20:00-24:00登陆游戏")
+ //代码输出
+        RegisterPassCheckMission(1,2,1,"","点击右上角【签到】按钮完成签到")
+        RegisterPassCheckMission(2,1,1,"","通关难1或以上")
+        RegisterPassCheckMission(3,1,10000,"","击杀10000个怪物")
+        RegisterPassCheckMission(4,1,9,"","通关9个任意副本")
+        RegisterPassCheckMission(5,1,12,"","抽取12次技能")
+        RegisterPassCheckMission(6,1,2,"","通关2次任意难度")
+        RegisterPassCheckMission(7,1,50,"","击杀50个进攻精英怪")
+        RegisterPassCheckMission(8,1,18,"","击杀18个进攻Boss")
+        RegisterPassCheckMission(9,1,2,"","获得2次|CffBF00FF先天神器|r品质的法宝")
+        RegisterPassCheckMission(10,1,2,"","获得2次|CffFFC926造化至宝|r品质的法宝")
+        RegisterPassCheckMission(11,1,1,"","组队通关任意难度")
+        RegisterPassCheckMission(12,1,8,"","获得8次|Cff00BFFF后天仙器|r品质的法宝")
+        RegisterPassCheckMission(13,1,8,"","获得8次|Cff00FF7F通天灵宝|r品质的法宝")
+        RegisterPassCheckMission(14,1,12,"","完成12次武灵挑战")
+        RegisterPassCheckMission(15,1,16,"","通关16次任意副本")
+        RegisterPassCheckMission(16,1,6,"","击杀6次送宝金蟾")
+        RegisterPassCheckMission(17,1,16,"","完成16次山灵挑战")
+        RegisterPassCheckMission(18,1,1,"","20:00-24:00登陆游戏")
 
 
-        RegisterPassCheckMission(21,8,1,"","20秒内击杀闻太师")
-        RegisterPassCheckMission(22,8,1,"","通关难2或以上")
-        RegisterPassCheckMission(23,8,1,"","通关难3")
-        RegisterPassCheckMission(24,8,1,"","获得1个造化至宝级别的法宝")
-        RegisterPassCheckMission(25,8,1,"","完成2次团队副本-万仙阵")
-        RegisterPassCheckMission(26,8,5,"","获得两颗|CffFF0000混沌道果|r。")
-        RegisterPassCheckMission(27,8,6,"","获得6个|CffFF0000先天神器|r品质的法宝")
+        RegisterPassCheckMission(21,2,1,"","20秒内击杀闻太师")
+        RegisterPassCheckMission(22,2,1,"","通关难2或以上")
+        RegisterPassCheckMission(23,2,1,"","通关难3")
+        RegisterPassCheckMission(24,2,1,"","获得1个|CffFF0000混沌圣器|r品质的法宝")
+        RegisterPassCheckMission(25,2,1,"","完成2次团队副本-万仙阵")
+        RegisterPassCheckMission(26,2,5,"","获得两颗|CffFF0000混沌道果|r。")
+        RegisterPassCheckMission(27,2,6,"","获得6个|CffFF0000造化至宝|r品质的法宝")
 
 
-        RegisterPassCheckMission(30,8,20,"","通关20个任意副本")
-        RegisterPassCheckMission(31,8,100,"","击杀100个【新手任务-精怪】并通关。")
-        RegisterPassCheckMission(32,8,28,"","击杀28个进攻Boss")
-        RegisterPassCheckMission(33,8,20,"","重置20次技能")
-        RegisterPassCheckMission(34,8,8,"","获得8次|CffFFC926先天神器|r品质的法宝")
+        RegisterPassCheckMission(30,2,20,"","通关20个任意副本")
+        RegisterPassCheckMission(31,2,100,"","击杀100个【新手任务-精怪】并通关。")
+        RegisterPassCheckMission(32,2,28,"","击杀28个进攻Boss")
+        RegisterPassCheckMission(33,2,20,"","抽取20次技能")
+        RegisterPassCheckMission(34,2,8,"","获得8次|CffFFC926先天神器|r品质的法宝")
+
     endfunction
 
     function InitRegisterDay()//注册每日任务
-        RegisterPassCheckDay(0,1,4,5,31,0,0)
+
+        //代码输出
         RegisterPassCheckDay(1,1,4,5,31,0,0)
         RegisterPassCheckDay(2,1,6,18,30,0,0)
         RegisterPassCheckDay(3,1,8,9,32,0,0)
@@ -178,7 +181,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(49,1,14,18,23,0,0)
         RegisterPassCheckDay(50,1,16,17,24,0,0)
         RegisterPassCheckDay(51,1,18,2,26,0,0)
-        
+                
     endfunction
 
     function InitPassCheckMission()
@@ -199,7 +202,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         endfunction
         function GetPlayerPassLevel(int pid)->int
             int exp = GetPlayerPassExp(pid)
-            int level = GetDzPlayerData(pid,4,2) + exp / 8
+            int level = GetDzPlayerData(pid,4,2) + exp / MaxPassCheckDayExp
             return level
         endfunction
 
@@ -312,8 +315,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 MissionAddNumFunc(pid,32,1)//进攻boss
             elseif  uid >= 'u001' and uid <= 'u009'
                 MissionAddNumFunc(pid,16,1)//送宝金蟾
-            elseif  uid >= 'u0CA' and uid <= 'u0CZ'
-                MissionAddNumFunc(pid,17,1)//占星
+            elseif  uid >= 'uT0A' and uid <= 'uT0Z'
+                MissionAddNumFunc(pid,17,1)//山灵挑战
             endif
         endfunction
 
@@ -465,9 +468,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
                     id = GetPassCheckPrize(index,y)
                     if  id > 0
                         if  id < 500
-                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"ReplaceableTextures\\CommandButtons\\BTNIN17.blp",0)
+                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\UI_PlayerState2.tga",0)
                         elseif  id < 1000000
-                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",0)
+                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\UI_PlayerState1.tga",0)
                         else
                             DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],GetTypeIdIcon(id),0)
                         endif
@@ -496,9 +499,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 now = PlayerPassData[i]
                 
 
-                if  exp == 4
+                if  exp == 1
                     DzFrameSetTexture(BUTTON_Back[680+i][0],"war3mapImported\\UI_Pass_Text1.tga",0)
-                elseif  exp == 8
+                elseif  exp == 2
                     DzFrameSetTexture(BUTTON_Back[680+i][0],"war3mapImported\\UI_Pass_Text2.tga",0)
                 endif
 
@@ -513,8 +516,8 @@ library PassCheckUI uses GameFrame,PassCheckMission
             end
 
             nowexp = GetPlayerPassExp(pid)
-            nowexp = nowexp - (nowexp /8) * 8
-            for i = 1,8
+            nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
+            for i = 1,MaxPassCheckDayExp
                 if  i <= nowexp
                     DzFrameSetTexture(BUTTON_Back[600+i][0],"war3mapImported\\UI_Pass_Exp1.tga",0)
                 else
@@ -627,7 +630,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateButton(650,Button.frameid,TYPE_NULL,0,BUTTON_Back[653][0],6,0.0,-0.01,0.028,0.028,"war3mapImported\\UI_Pass_LevelText.tga") 
         CreateText(650,Button.frameid,"centertext013",7,7,0.0,0.0,"|cffffcc008|r")
         last = 650
-        for i = 1,8
+        for i = 1,MaxPassCheckDayExp
             CreateButton(600+i,Button.frameid,TYPE_NULL,3,BUTTON_Back[last][0],5,0.002,0.0,0.028,0.0093,"war3mapImported\\UI_Pass_Exp0.tga") 
             last = 600+i
         end
