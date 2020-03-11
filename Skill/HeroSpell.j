@@ -121,7 +121,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     if  ModuloInteger(tt,R2I(ound/time)) == 0
                         BJDebugMsg("伤害"+R2S(damage))
                         gg = CreateGroup()
-                        GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',1,852095))
+                        GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),300,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',1,852095))
                         UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         GroupClear(gg)
                         DestroyGroup(gg)
@@ -676,9 +676,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         damage = damage/num
         for i = 1,num
             ang = 360/num
-            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_fense-lizi-toushewu.mdl",x,y,i*ang,50,1.5)  
+            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_fense-lizi-toushewu.mdl",x,y,i*ang,50,2.2)  
             //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
-            CreateSurroundOfUnitEx(u,u2,i*ang,160,14.4,0.02,1,damage/2)
+            CreateSurroundOfUnitEx(u,u2,i*ang,210,14.4,0.02,1,damage/2)
         end
         flush locals
     endfunction
@@ -1481,22 +1481,17 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     
     function SpellS234(unit u,real x,real y,real dam)
         real damage = dam
-        unit UnitAddBuffUnit=null
         unit uu = null
-        UnitAddBuffUnit=CreateUnit(GetOwningPlayer(u),'e000',x,y,0)
-        UnitApplyTimedLife( UnitAddBuffUnit, 'BHwe', 1.00 )
-        UnitAddAbility(UnitAddBuffUnit,'DB03')
-        SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
-        IssuePointOrderById(UnitAddBuffUnit, 852592,x,y)
-
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",x,y,GetUnitFacing(u),-50,1))
         IndexGroup g = IndexGroup.create()
+        LocAddEffectSetSize(x,y,"effect_tt (57).mdx",1.5)
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
         loop
             uu = FirstOfGroup(g.ejg)
             exitwhen uu == null
             UnitDamageTarget(u,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             AddUnitStateExTimer(uu,1,-GetUnitRealState(uu,1)*0.7,6)
+            UnitTimerAddSkill(uu,'S234',6)
             GroupRemoveUnit(g.ejg,uu)
         endloop
         g.destroy()
