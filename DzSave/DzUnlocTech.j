@@ -383,6 +383,18 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     //科技注册
     function InitAllUnlocTechFunc1()    
 
+
+        //商城
+        InitUnlocTechConditions('RY1D',InitCond1(2,ShopList("GH1"),0),0,0,0,0)
+        InitUnlocTechConditions('RY2D',InitCond1(2,Unloc_Type_Shop,"CB1"),0,0,0,0)
+        InitUnlocTechConditions('RY3D',InitCond1(2,Unloc_Type_Shop,"WQ1"),0,0,0,0)
+        InitUnlocTechConditions('RY4D',InitCond1(2,Unloc_Type_Shop,"CH1"),0,0,0,0)
+        InitUnlocTechConditions('RK1A',InitCond1(2,Unloc_Type_Shop,"CW1"),0,0,0,0)
+        InitUnlocTechConditions('RJ1U',InitCond1(2,Unloc_Type_Shop,"LB1"),0,0,0,0)
+        InitUnlocTechConditions('RJ1V',InitCond1(2,Unloc_Type_Shop,"LB2"),0,0,0,0)
+        InitUnlocTechConditions('RJ1W',InitCond1(2,Unloc_Type_Shop,"LB3"),0,0,0,0)
+
+
         //成就  
         InitUnlocTechConditions('RJ1A',InitCond1(2,Unloc_Type_Level,2),0,0,0,0)
         InitUnlocTechConditions('RJ1B',InitCond1(2,Unloc_Type_Level,3),0,0,0,0)
@@ -410,6 +422,33 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4H',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,1)),0,0,0)
         InitUnlocTechConditions('RY4I',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,1)),0,0,0)
         
+
+        //彩蛋
+        InitUnlocTechConditions('RDAA',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,1,1)),0,0,0)
+        InitUnlocTechConditions('RDAB',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,2,2)),0,0,0)
+        InitUnlocTechConditions('RDAC',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,3,3)),0,0,0)
+        InitUnlocTechConditions('RDAD',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,4,4)),0,0,0)
+        InitUnlocTechConditions('RDAE',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,5,5)),0,0,0)
+        InitUnlocTechConditions('RDAF',InitCond1(1,Unloc_Type_Level,8),InitCond2(0,Unloc_Type_JF,GameDataList(15,6,6)),0,0,0)
+        InitUnlocTechConditions('RDAG',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,7,7)),0,0,0)
+        InitUnlocTechConditions('RDAH',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,8,8)),0,0,0)
+        InitUnlocTechConditions('RDAI',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,9,9)),0,0,0)
+        InitUnlocTechConditions('RDAJ',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,10,10)),0,0,0)
+        InitUnlocTechConditions('RDAK',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,11,11)),0,0,0)
+        InitUnlocTechConditions('RDAL',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,12,12)),0,0,0)
+        InitUnlocTechConditions('RDAM',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,13,13)),0,0,0)
+        InitUnlocTechConditions('RDAN',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,14,14)),0,0,0)
+        InitUnlocTechConditions('RDAO',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,15,15)),0,0,0)
+        InitUnlocTechConditions('RDAP',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,16,16)),0,0,0)
+        InitUnlocTechConditions('RDAQ',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,17,17)),0,0,0)
+        InitUnlocTechConditions('RDAR',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,18,18)),0,0,0)
+        InitUnlocTechConditions('RDAS',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,19,19)),0,0,0)
+        InitUnlocTechConditions('RDAT',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,20,20)),0,0,0)
+        InitUnlocTechConditions('RDAU',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,21,21)),0,0,0)
+        InitUnlocTechConditions('RDAV',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,22,22)),0,0,0)
+        InitUnlocTechConditions('RDAW',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,23,23)),0,0,0)
+        InitUnlocTechConditions('RDAX',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,24,24)),0,0,0)
+        InitUnlocTechConditions('RDAY',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,25,25)),0,0,0)
 
 
 

@@ -91,22 +91,32 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         //RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
 
         
-        RegisterShowSaveFrameData(5,'RC1A','RC1A',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1B','RC1B',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1C','RC1C',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1D','RC1D',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1E','RC1E',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1F','RC1F',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1G','RC1G',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1H','RC1H',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1I','RC1I',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1J','RC1J',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1K','RC1K',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1L','RC1L',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1M','RC1M',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1N','RC1N',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1O','RC1O',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RC1P','RC1P',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAA','RDAA',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAB','RDAB',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAC','RDAC',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAD','RDAD',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAE','RDAE',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAF','RDAF',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAG','RDAG',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAH','RDAH',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAI','RDAI',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAJ','RDAJ',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAK','RDAK',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAL','RDAL',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAM','RDAM',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAN','RDAN',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAO','RDAO',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAP','RDAP',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAQ','RDAQ',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAR','RDAR',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAS','RDAS',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAT','RDAT',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAU','RDAU',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAV','RDAV',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAW','RDAW',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAX','RDAX',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RDAY','RDAY',0,0,0,0)
+
 
 
 
@@ -281,6 +291,15 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     endif
                     h = h + 1
                 end
+            elseif  page == 5
+                if  IsSaveFrameTechUnLock(pid,index) == true
+                    SetTipsData(1,"",GetTypeIdName(id))
+                    SetTipsData(10,"",GetTypeIdStateTips(id))
+                else
+                    SetTipsData(1,"","|cff808080[彩蛋]？？？")
+                    SetTipsData(10,"","|cffffff00需求：|r|n |cff808080- 未知解锁条件|r")
+                    SetTipsData(11,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
+                endif
             else
                 if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
                     SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
