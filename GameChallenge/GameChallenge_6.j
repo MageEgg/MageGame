@@ -316,7 +316,8 @@ library GameChallenge6 uses GameChallengeBase
                 endif
             endif
             GameChallengeFluahAll(pid,1)
-            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
+            PlayerChallengeOverCosNum = PlayerChallengeOverCosNum + 1
+            PlayerChallengeTimeCosNum(6) = PlayerChallengeTimeCosNum(6) + 1
             //奖励
             PlayerFinishPlotEx(pid,6)
 

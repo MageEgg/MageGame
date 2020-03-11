@@ -289,7 +289,8 @@ library GameChallenge7 uses GameChallengeBase
                 endif
             endif
             GameChallengeFluahAll(pid,1)
-            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
+            PlayerChallengeOverCosNum = PlayerChallengeOverCosNum + 1
+            PlayerChallengeTimeCosNum(7) = PlayerChallengeTimeCosNum(7) + 1
             //奖励
             PlayerFinishPlotEx(pid,7)
         endif

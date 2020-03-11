@@ -27,7 +27,8 @@ library GameChallenge2 uses GameChallengeBase
                 SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败四海龙王！！！",0)
             endif
             GameChallengeFluahAll(pid,1)
-            PlayerChallengeCosNum = PlayerChallengeCosNum + 1
+            PlayerChallengeOverCosNum = PlayerChallengeOverCosNum + 1
+            PlayerChallengeTimeCosNum(2) = PlayerChallengeTimeCosNum(2) + 1
             //奖励
             PlayerFinishPlotEx(pid,2)
 
@@ -52,6 +53,18 @@ library GameChallenge2 uses GameChallengeBase
                     SetDzPlayerData(pid,15,11,11)
                     SetPlayerTechResearchedEx(Player(pid),'RDAK')
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000穿越回来还打你！|r（永久存档）！")
+                endif
+            endif
+
+            if  PlayerChallengeTimeCosNum(2) >= 6 //彩蛋
+                if  DzPlayerLv(Player(pid)) >= 3
+                    if  GetPlayerTechCount(Player(pid),'RDAX',true) == 0
+                        SetDzPlayerData(pid,15,24,24)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAX')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000龙王出来喷水|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000龙王出来喷水|r，但可惜地图等级不够要求！")
                 endif
             endif
         endif

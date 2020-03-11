@@ -619,7 +619,8 @@ library GameChallenge4 uses GameChallengeBase
                     endif
                 endif
                 GameChallengeFluahAll(pid,1)
-                PlayerChallengeCosNum = PlayerChallengeCosNum + 1
+                PlayerChallengeOverCosNum = PlayerChallengeOverCosNum + 1
+                PlayerChallengeTimeCosNum(4) = PlayerChallengeTimeCosNum(4) + 1
                 //奖励
                 PlayerFinishPlotEx(pid,4)
             endif
