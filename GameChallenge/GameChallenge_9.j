@@ -513,17 +513,20 @@ library GameChallenge9 uses GameChallengeBase
     endfunction
 
     function ShowGameTeamChallengeNPC()
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                ShowUnit(GameChallengUnit[90],true)
-                UnitAddEffectOfNPC(GameChallengUnit[90])
-                PingMinimap(GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),3)
-            endif
-        end
-        GameTeamChallengeBool[0] = true
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r成功防守16波，团队副本NPC已激活！！！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r成功防守16波，团队副本NPC已激活！！！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r成功防守16波，团队副本NPC已激活！！！")
+        if  GameTeamChallengeBool[0] == false
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    ShowUnit(GameChallengUnit[90],true)
+                    UnitAddEffectOfNPC(GameChallengUnit[90])
+                    PingMinimap(GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),3)
+                    CreateUnit(Player(pid),'nc30',GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),270)
+                endif
+            end
+            GameTeamChallengeBool[0] = true
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本NPC已激活！！！|r")
+        endif
     endfunction
 
     function InitGameChallenge_9()
