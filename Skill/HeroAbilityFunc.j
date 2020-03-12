@@ -893,6 +893,23 @@ library HeroAbilityFunc uses OtherDamageTimer
     endfunction
     
     function SpellS516(unit wu,int lv)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        AddUnitIntState(wu,'RDAB',1)
+        if  GetUnitIntState(wu,'RDAB') == 30
+            if  DzPlayerLv(Player(pid)) >= 2
+                if  GameLevel >= 2
+                    if  GetPlayerTechCount(Player(pid),'RDAB',true) == 0
+                        SetDzPlayerData(pid,15,2,2)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAB')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000我真的知错了|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我真的知错了|r，但可惜难度不够要求！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我真的知错了|r，但可惜地图等级不够要求！")
+            endif
+        endif
 
         LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_az-leiji.mdl")
         if  lv >= 4
@@ -1044,6 +1061,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
     endfunction
     function SpellS521(unit wu,real dam,int lv)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         unit u1 = wu
         real damage = dam
         int time = 6
@@ -1051,6 +1069,19 @@ library HeroAbilityFunc uses OtherDamageTimer
             damage = damage * 1.8
         elseif  lv >= 2
             damage = damage * 1.3
+        endif
+        AddUnitIntState(u1,'S521',1)
+        if  GetUnitIntState(u1,'S521')>=6
+            if  DzPlayerLv(Player(pid)) >= 3
+                if  GetPlayerTechCount(Player(pid),'RDAR',true) == 0
+                    SetDzPlayerData(pid,15,18,18)
+                    SetPlayerTechResearchedEx(Player(pid),'RDAR')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000今晚的月亮好圆啊|r（永久存档）！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000今晚的月亮好圆啊|r，但可惜地图等级不够要求！")
+            endif
+
         endif
         TimerStart(1,true)
         {
@@ -1062,6 +1093,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             g.destroy()
             
             if  time <= 0
+                AddUnitIntState(u1,'S521',-1)
                 endtimer
             endif
             flush locals
@@ -1071,6 +1103,7 @@ library HeroAbilityFunc uses OtherDamageTimer
     endfunction
 
     function SpellS523(unit wu,unit tu,int lv)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         real life = GetUnitState(tu,UNIT_STATE_LIFE)
         real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
         if  lv >= 2
@@ -1091,6 +1124,24 @@ library HeroAbilityFunc uses OtherDamageTimer
             g.destroy()
         endif
         LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_e_buffgreen2a.mdl")
+        int uid = GetUnitTypeId(tu)
+        if  uid == 'H028' or uid == 'H016' or uid == 'H027'
+            if  GetRandomReal(0,1) <= 0.2
+                if  DzPlayerLv(Player(pid)) >= 3
+                    if  GetPlayerTechCount(Player(pid),'RDAQ',true) == 0
+                        SetDzPlayerData(pid,15,17,17)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAQ')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000红颜祸水|r（永久存档）！")
+                    endif
+
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜地图等级不够要求！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜运气太差了没激活存档！")
+            endif
+
+        endif
     endfunction
 
     function SpellS524(unit wu,real sx,real sy,real dam,int level)
@@ -1366,6 +1417,22 @@ library HeroAbilityFunc uses OtherDamageTimer
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
         elseif  Pu[1] == tu
+            AddUnitIntState(wu,'RDAA',1)
+            if  GetUnitIntState(wu,'RDAA') == 20
+                if  DzPlayerLv(Player(pid)) >= 3
+                    if  GameLevel >= 3
+                        if  GetPlayerTechCount(Player(pid),'RDAA',true) == 0
+                            SetDzPlayerData(pid,15,1,1)
+                            SetPlayerTechResearchedEx(Player(pid),'RDAA')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000果然暴君|r（永久存档）！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000果然暴君|r，但可惜难度不够要求！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000果然暴君|r，但可惜地图等级不够要求！")
+                endif
+            endif
 
             AddUnitStateExTimer(wu,1,GetUnitRealState(tu,1)*0.12,8)
 
@@ -1423,6 +1490,14 @@ library HeroAbilityFunc uses OtherDamageTimer
                 if  YDWEGetUnitAbilityState(Pu[1],'AC05', 1) == 0
                     lv = GetHeroAbilityLevel(Pu[1],'S529')
 
+                    AddUnitIntState(Pu[1],'RDAO',1)
+                    if  GetUnitIntState(Pu[1],'RDAO') == 20
+                        if  GetPlayerTechCount(Player(pid),'RDAO',true) == 0
+                            SetDzPlayerData(pid,15,15,15)
+                            SetPlayerTechResearchedEx(Player(pid),'RDAO')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000悬壶济世|r（永久存档）！")
+                        endif
+                    endif
                     
 
                     ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)

@@ -89,7 +89,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
     endfunction
 
     function InitRegisterMission()//注册任务
- //代码输出
+        //代码输出
         RegisterPassCheckMission(1,2,1,"","点击右上角【签到】按钮完成签到")
         RegisterPassCheckMission(2,1,1,"","通关难1或以上")
         RegisterPassCheckMission(3,1,10000,"","击杀10000个怪物")
@@ -116,14 +116,14 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckMission(24,2,1,"","获得1个|CffFF0000混沌圣器|r品质的法宝")
         RegisterPassCheckMission(25,2,1,"","完成2次团队副本-万仙阵")
         RegisterPassCheckMission(26,2,5,"","获得两颗|CffFF0000混沌道果|r。")
-        RegisterPassCheckMission(27,2,6,"","获得6个|CffFF0000造化至宝|r品质的法宝")
+        RegisterPassCheckMission(27,2,6,"","获得6个|CffFFC926造化至宝|r品质的法宝")
 
 
         RegisterPassCheckMission(30,2,20,"","通关20个任意副本")
-        RegisterPassCheckMission(31,2,100,"","击杀100个【新手任务-精怪】并通关。")
+        RegisterPassCheckMission(31,2,100,"","击杀100个【新手任务-妖魅】并通关。")
         RegisterPassCheckMission(32,2,28,"","击杀28个进攻Boss")
         RegisterPassCheckMission(33,2,20,"","抽取20次技能")
-        RegisterPassCheckMission(34,2,8,"","获得8次|CffFFC926先天神器|r品质的法宝")
+        RegisterPassCheckMission(34,2,8,"","获得8次|CffBF00FF先天神器|r的法宝")
 
     endfunction
 

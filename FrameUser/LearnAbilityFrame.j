@@ -470,7 +470,17 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
             HeroIncAbility(Pu[1],index)
             int lv = GetHeroAbilityLevel(Pu[1],id)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+
+            AddUnitIntState(Pu[1],'RDAH',1)
+            if  GetUnitIntState(Pu[1],'RDAH') >= 3
+                if  GetPlayerTechCount(Player(pid),'RDAH',true) == 0
+                    SetDzPlayerData(pid,15,8,8)
+                    SetPlayerTechResearchedEx(Player(pid),'RDAH')
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000太欧了！|r（永久存档）！")
+                endif
+            endif
         else
+            SetUnitIntState(Pu[1],'RDAH',0)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：很遗憾！技能进阶失败！")
         endif
     endfunction

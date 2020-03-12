@@ -371,13 +371,13 @@ scope DeathEvent initializer InitDeathEvent
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
             AttackRoomXCNum = AttackRoomXCNum + 1
-            if  AttackRoomXCNum > 22
-                AttackRoomXCNum = 22
+            if  AttackRoomXCNum > 23
+                AttackRoomXCNum = 23
             endif
             CreateItem('IN31',GetUnitX(tu),GetUnitY(tu))
             AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+20")
-        
+            SetBoardText(4,pid+2,"第|cff00ff00"+I2S(AttackRoomXCNum+1)+"|r星宿")
         else
             /*
             AttackRoomXCNum = AttackRoomXCNum + 1
@@ -391,12 +391,13 @@ scope DeathEvent initializer InitDeathEvent
 
             if  AttackRoomXCUnitNum <= 0
                 AttackRoomXCNum = AttackRoomXCNum + 1
-                if  AttackRoomXCNum > 22
-                    AttackRoomXCNum = 22
+                if  AttackRoomXCNum > 23
+                    AttackRoomXCNum = 23
                 endif
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
                 AdjustPlayerStateBJ( 5 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵挑战成功！奖励幸运星盒x1 玄铁+5")
+                SetBoardText(4,pid+2,"第|cff00ff00"+I2S(AttackRoomXCNum+1)+"|r星宿")
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵("+I2S(10-AttackRoomXCUnitNum)+"/10)")
             endif
