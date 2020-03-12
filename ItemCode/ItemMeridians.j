@@ -3,7 +3,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     int DzMeridiansDayNum = 5
     int MeridiansMaxLv = 5
 
-    int array IsCanChallengeMeridiansInGame
+    //int array IsCanChallengeMeridiansInGame
 
     function GetMeridiansName(int num)->string
         if  num == 1
@@ -79,9 +79,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         int n = AttackUnitWN+1
         num = GetDzPlayerData(pid,1,10)
         if  GameLevel >= 2
-            if  IsCanChallengeMeridiansInGame[pid] < 3
+            //if  IsCanChallengeMeridiansInGame[pid] < 3
                 if  num < DzMeridiansDayNum
-                    IsCanChallengeMeridiansInGame[pid] = IsCanChallengeMeridiansInGame[pid] + 1
+                    //IsCanChallengeMeridiansInGame[pid] = IsCanChallengeMeridiansInGame[pid] + 1
                     u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uJ01',x,y,270)
                     UnitAddAbility(u,'AZ99')
                     SetUnitAbilityLevel(u,'AZ99',pid+1)
@@ -102,9 +102,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r您今日突破经脉次数已达上限！")
                 endif
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r当局游戏挑战次数已达上限！（3次）")
-            endif
+            //else
+            //    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r当局游戏挑战次数已达上限！（3次）")
+            //endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r该挑战难度2或以上才开放哦！")
         endif
