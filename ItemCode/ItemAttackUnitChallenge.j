@@ -247,6 +247,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 //AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n|n"+AttackUnitChallengeStateTypeString[200][0]
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
+
+                UnitAddAbility(Pu[42],'AZ40')
             endif
         end
         //改境界战力说明

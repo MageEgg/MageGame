@@ -1,5 +1,6 @@
 library DzDataSetting uses DzBase
 
+    #define MaxGameLevel 5
     ///////////////////////////////////////////////////////////
     
     //请在这里记录注释存档数据
@@ -92,9 +93,9 @@ library DzDataSetting uses DzBase
         elseif  Group == 3
             if  flag == 1 //总通关次数
                 max = DzPlayerGames(Player(pid))
-            elseif  flag >= 2 and flag <= 6 //通关难度
+            elseif  flag >= 2 and flag <= MaxGameLevel+1 //通关难度
                 max = DzPlayerInitTGCos
-            elseif  flag >= 7 //未开启的难度
+            elseif  flag >= MaxGameLevel+2 //未开启的难度
                 max = 0
             endif
         elseif  Group == 4
