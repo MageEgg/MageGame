@@ -82,10 +82,11 @@ library ItemMeridians uses DamageCode,ItemGameFunc
             //if  IsCanChallengeMeridiansInGame[pid] < 3
                 if  num < DzMeridiansDayNum
                     //IsCanChallengeMeridiansInGame[pid] = IsCanChallengeMeridiansInGame[pid] + 1
-                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uJ01',x,y,270)
+                    u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uJ01',x-440,y+440,270)
                     UnitAddAbility(u,'AZ99')
                     SetUnitAbilityLevel(u,'AZ99',pid+1)
                     AddAttackSummonUnit.execute(pid,u)
+                    IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     if  n >= 30
                         n = 30
                     endif
