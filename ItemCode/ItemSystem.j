@@ -138,7 +138,8 @@ scope ItemSystem initializer InitItemSystem
                         else
                             IncEquipAddition2 = IncEquipAddition2 + 5
                         endif
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化|cff00ff00成功率+5%")
+                        
+
 
                         if  IncEquipAddition1 + IncEquipAddition2 >= 25
                             if  GetPlayerTechCount(Player(pid),'RDAY',true) == 0
@@ -149,13 +150,13 @@ scope ItemSystem initializer InitItemSystem
 
                         endif
 
-                        //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化成功率:|r|cff00ff00"+I2S(gl+5)+"%")
-                        /*if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
+                        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
                             AdjustPlayerStateBJ(gold/5, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备|r"+GetObjectName(id)+"|cffff0000升级失败！返还"+I2S(gold/5)+"金币|r")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化|cff00ff00成功率+5%")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：拥有封神礼包！返还|cffffcc00"+I2S(gold/5)+"金币|r")
                         else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备|r"+GetObjectName(id)+"|cffff0000升级失败！|r")
-                        endif*/
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化|cff00ff00成功率+5%")
+                        endif
                         IncEquipModelFunc(pid,2)
                         
                     endif
@@ -678,4 +679,5 @@ scope ItemSystem initializer InitItemSystem
         trig = null
     end
 endscope
+
 

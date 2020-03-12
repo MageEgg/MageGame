@@ -57,8 +57,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
         if  chi == 1
             r1 = r1 * GetUnitAttack(wu)
+        elseif  chi == 2
+            r1 = r1 * GetHeroStr(wu,true)
         elseif  chi == 99
-            r1 = r1 * (GetUnitAttack(wu)+GetUnitRealState(wu,2))
+            r1 = r1 * (GetUnitAttack(wu)+GetHeroStr(wu,true))
         elseif  chi != 0
             r1 =  r1 * GetUnitRealState(wu,chi)
         endif

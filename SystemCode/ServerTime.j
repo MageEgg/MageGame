@@ -145,7 +145,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             DzPuTime = 1578412800
             ServerTime = DzAPI_Map_GetGameStartTime()
             if  ServerTime < DzPuTime
-                ServerTime = DzPuTime + 86400 * 6
+                ServerTime = DzPuTime + 86400 * 7
             endif
             
             ServerTime = ServerTime + GetRandomInt(1,10)
