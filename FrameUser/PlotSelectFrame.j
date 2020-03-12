@@ -316,7 +316,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function PlayerFinishPlot(int pid,int index)
         int Type = GetPlayerPlotStateByIndex(pid,index)
         
-        LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effectex_MissionComplete.mdl")
+        //LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effectex_MissionComplete.mdl")
         if  Type == 1
             
             
