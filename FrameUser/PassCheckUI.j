@@ -115,7 +115,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckMission(23,2,1,"","通关难3")
         RegisterPassCheckMission(24,2,1,"","获得1个|CffFF0000混沌圣器|r品质的法宝")
         RegisterPassCheckMission(25,2,1,"","完成2次团队副本-万仙阵")
-        RegisterPassCheckMission(26,2,5,"","获得两颗|CffFF0000混沌道果|r。")
+        RegisterPassCheckMission(26,2,2,"","获得两颗|CffFF0000混沌道果|r。")
         RegisterPassCheckMission(27,2,6,"","获得6个|CffFFC926造化至宝|r品质的法宝")
 
 
@@ -317,6 +317,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 MissionAddNumFunc(pid,16,1)//送宝金蟾
             elseif  uid >= 'uT0A' and uid <= 'uT0Z'
                 MissionAddNumFunc(pid,17,1)//山灵挑战
+            elseif  uid >= 'uT1A' and uid <= 'uT1Z'
+                MissionAddNumFunc(pid,14,1)//武灵挑战
+            elseif  uid == 'u020'
+                MissionAddNumFunc(pid,31,1)//-妖魅
             endif
         endfunction
 

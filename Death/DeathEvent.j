@@ -419,6 +419,8 @@ scope DeathEvent initializer InitDeathEvent
         real y = AttackRoomPostion[pid][2] 
         
         
+        MissionKillUnit(pid,uid)
+
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
         elseif  uid == 'u020'

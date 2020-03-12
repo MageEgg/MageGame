@@ -327,12 +327,17 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                 h = h + 1
 
                 if  page == 6 and  unlock == 0//商城分页
-                    SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
-                else
-                    SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
+                    if  GetTypeIdTips(id) != ""
+                        if  unlock == 1
+                            SetTipsData(h,"",GetTypeIdTips(id))
+                        else
+                            SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
+                        endif
+                        h = h + 1
+                    endif
                 endif
 
-                h = h + 1
+                
                 if  IsSaveIdCanShow(id,page) == true
                     if  unlock == 1
                         SetTipsData(h,"","|cffffcc00所有内容属性均叠加|r\n|cff00ff00（点击激活/隐藏外观）|r")

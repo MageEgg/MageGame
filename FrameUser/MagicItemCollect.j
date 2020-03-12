@@ -957,6 +957,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     RemPlayerMagicItemByIndex(pid,last)
                     SetPlayerMagicItem(pid,last,newid)
 
+                    
+                    if  GetTypeIdData(newid,101) == 1
+                        TimerMissionAddNumFunc(pid,24,1)//获得混沌圣器
+                    endif
+
                     //重置玩家选择
                     SetPlayerMagicItemLast(pid,0)
                 else
