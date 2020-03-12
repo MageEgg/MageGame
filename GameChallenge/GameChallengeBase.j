@@ -322,14 +322,15 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     endif
                 elseif  time <= 10
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台准备战斗！！！|r")
-                elseif  time == 1
-                    for pid = 0,3
-                        if  IsPlaying(pid) == true 
-                            if  IsLocInRect(gg_rct_GameRect2,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
-                                SetUnitXY(Pu[1],-6910,-6950)
+                    if  time == 1
+                        for pid = 0,3
+                            if  IsPlaying(pid) == true 
+                                if  IsLocInRect(gg_rct_GameRect2,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
+                                    SetUnitXY(Pu[1],-6910,-6950)
+                                endif
                             endif
-                        endif
-                    end
+                        end
+                    endif
                 endif
             else
                 if  GameTeamChallengeBool[10] == true  
@@ -775,9 +776,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             UnitAddEffectOfNPC(GameChallengLeagueUnit(num))
         end
         PingMinimap(GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),5)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffff8000率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffffff00率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffffff00率先完成了8个副本，时渊盟军加入战场！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r"+GetPlayerNameOfColor(pid)+"|cffffff00率先完成了8个副本，时渊盟军加入战场！！！|r")
     endfunction
     
     /*function GameChallenge_GlobalFlushBool(int id,real time)

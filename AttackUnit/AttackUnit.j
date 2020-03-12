@@ -534,6 +534,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             AttackTimerUIText = "最终大决战"
             if  IsChangeGodStage == false
                 IsChangeGodStage = true
+                //CreateChangeGodStage.execute(80)
                 CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
@@ -552,6 +553,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     IsGameOperaC = true
                     CreateGameOperaC.execute(AttackUnitNextTime[i])
                 endif
+            elseif  AttackUnitWN == 15
+                ExecuteFunc("ShowGameTeamChallengeNPC")
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
         endif
@@ -580,7 +583,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 if  AttackUnitType[AttackUnitOrderNum] == 0
                     AttackUnitWN = AttackUnitWN + 1
                     CreateUnitTimer(AttackUnitOrderNum)
-                else
+                /*else
                     if  AttackUnitOrderNum == 7
                         ExecuteFunc("CreateOperaA")
                         BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")
@@ -592,7 +595,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     elseif  AttackUnitOrderNum == 18
                         ExecuteFunc("CreateOperaC")
                         BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")
-                    endif
+                    endif*/
                 endif
             endif
             if  AttackUnitWN < AttackUnitWNOver
