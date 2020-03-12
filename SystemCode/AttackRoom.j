@@ -121,6 +121,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         //BJDebugMsg("创建单位 max"+I2S(max))
         if  max == 0
             u = CreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), unitid, x, y,face)
+            UnitAddAbility(u,'AZ95')
             SetPlayerOnlyDamage(u,pid)
             RecUnit(pid,2,u)//将单位存入组2
         else
@@ -130,7 +131,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 //BJDebugMsg("重新创建")
                 CreateAttackRoomUnit(pid,unitid,x,y,face)
             else
-                
+                UnitAddAbility(u,'AZ95')
                 SetUnitPathing( u, true )
                 SetUnitInvulnerable( u, false )
                 PauseUnit(u,false)
@@ -391,6 +392,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             OutAttackRoomUnitByHandle(pid,2,u)//从组2中移除
             if  IsAttackRoomUnit(pid,1,u) == false
                 RecUnit(pid,1,u)//将单位存入组1
+                UnitRemoveAbility(u,'AZ95')
                 ShowUnit(u,false)
                 UnitRemoveBuffs(u, true, true)
                 SetUnitPathing( u, false )
