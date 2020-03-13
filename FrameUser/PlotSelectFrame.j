@@ -185,6 +185,18 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
 
 
+    function GetNotNullPrize(int id)->int
+        int max = GetPrizePoolMax(pid,id)
+        if  max == 0
+            if  id == 12
+                return GetNotNullPrize(14)
+            else
+                return GetNotNullPrize(id - 1)
+            endif
+        endif
+        return id
+    endfunction
+
     //读取时渊奖励法宝池序号
     function GetExPlotPrizeMagicIndex(int pid)->int
         int ran = GetRandomInt(1,100)
@@ -197,16 +209,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             prizeid = 12
         endif
 
-        if  prizeid == 14
-            if  GetPrizePoolMax(pid,14) == 0
-                prizeid = 13
-            endif
-        endif
-        if  prizeid == 13
-            if  GetPrizePoolMax(pid,13) == 0
-                prizeid = 12
-            endif
-        endif
+        prizeid = GetNotNullPrize(prizeid)
 
         return prizeid
     endfunction
