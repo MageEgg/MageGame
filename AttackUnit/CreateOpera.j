@@ -272,7 +272,7 @@ library CreateOpera uses DamageCode
                 if  IsPlaying(pid) == true
                     MissionAddNumFunc(pid,20,1)
                 endif
-            endif
+            end
         endif
         FlushChildHashtable(ht,GetHandleId(OperaTimer))
         DestroyTimer(OperaTimer)
