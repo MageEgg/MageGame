@@ -1161,15 +1161,20 @@ library HeroAbilityFunc uses OtherDamageTimer
         real damage = dam
         int time = 4
         int lv = level
-        TimerStart(1.0,true)
+        real timeout = 1.0
+
+        if  lv >= 3
+            time = 8
+            timeout = 0.5
+        endif
+
+        TimerStart(timeout,true)
         {
             time = time - 1
 
             
             IndexGroup g = IndexGroup.create()
-            if  lv >= 3
-                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'A003',2,852095))
-            elseif  lv >= 2
+            if  lv >= 2
                 GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'A003',1,852095))
             else
                 GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))

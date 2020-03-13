@@ -1,7 +1,7 @@
 library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengDeath
     
     real array AttackRoomPostion[12][600] 
-
+    bool array AttackRoomUnitBool
     texttag array AttackTexttag
 
     //设置刷怪id
@@ -184,12 +184,17 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     //延迟刷一波怪
     function RefreshAttackRoomTimer(int p,real time)
         int pid = p
-        TimerStart(time,false)
-        {
-            RefreshAttackRoom(pid)
-            endtimer
-            flush locals
-        }
+        if  AttackRoomUnitBool[pid] == false
+            AttackRoomUnitBool[pid] = true
+            TimerStart(time,false)
+            {
+                
+                RefreshAttackRoom(pid)
+                AttackRoomUnitBool[pid] = false
+                endtimer
+                flush locals
+            }
+        endif
         flush locals
     endfunction
 
@@ -534,7 +539,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 SetUnitVertexColor(Pu[27],255,255,255,50)
                 PauseUnit(Pu[27],true)
                 
-
+                AttackRoomUnitBool[pid] = false
                 AttackTexttag[pid] = CreateTextTag()
                 SetTextTagText(AttackTexttag[pid],"0/400",0.03)
                 SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)
