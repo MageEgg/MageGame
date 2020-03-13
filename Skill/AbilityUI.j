@@ -321,9 +321,19 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         
         if  GetLocalPlayer() == GetOwningPlayer(wu)
             if  id > 0
-                YDWESetUnitAbilityDataString(wu, sid1,1, 204, GetTypeIdString(id,101))
-                YDWESetUnitAbilityDataString(wu, sid2,1, 204, GetTypeIdString(id,101))
-                YDWESetUnitAbilityDataString(wu, sid3,1, 204, GetTypeIdString(id,101))
+                if  id == 'S510'
+                    if  GetUnitIntState(wu,'S510') == 0
+                        YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_1.blp")
+                    elseif  GetUnitIntState(wu,'S510') == 0
+                        YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_2.blp")
+                    else
+                        YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_3.blp")
+                    endif
+                else
+                    YDWESetUnitAbilityDataString(wu, sid1,1, 204, GetTypeIdString(id,101))
+                    YDWESetUnitAbilityDataString(wu, sid2,1, 204, GetTypeIdString(id,101))
+                    YDWESetUnitAbilityDataString(wu, sid3,1, 204, GetTypeIdString(id,101))
+                endif
                 YDWESetUnitAbilityDataString(wu, sid1,Type, 215, GetSkillNameEx(id,index,level) )
                 YDWESetUnitAbilityDataString(wu, sid2,Type, 215, GetSkillNameEx(id,index,level) )
                 YDWESetUnitAbilityDataString(wu, sid3,Type, 215, GetSkillNameEx(id,index,level) )
