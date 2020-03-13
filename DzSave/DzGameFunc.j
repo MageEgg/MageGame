@@ -28,8 +28,6 @@ piece DzGameFunc
     endfunction
 
     function DzPalyerSignInRefresh(int pid,int week,int mission)
-        int Group = 5
-        int MaxMember = 0
         BJDebugMsg("week:"+I2S(week)+" @@ TimeWeek:"+I2S(TimeWeek))
         if  week != TimeWeek
             SetDzPlayerData(pid,1,5,0) //今日签到
@@ -39,25 +37,7 @@ piece DzGameFunc
         endif
         if  mission != DzMissionWeek
             BJDebugMsg("通行证刷新")
-            MaxMember = GetDzDataGroupMaxMember(Group)
-            for flag = 1,MaxMember
-                if  pid == 0
-                    DzArrayPlayerInt0[Group][flag] = 0
-                elseif  pid == 1
-                    DzArrayPlayerInt1[Group][flag] = 0
-                elseif  pid == 2
-                    DzArrayPlayerInt2[Group][flag] = 0
-                elseif  pid == 3
-                    DzArrayPlayerInt3[Group][flag] = 0
-                elseif  pid == 4
-                    DzArrayPlayerInt4[Group][flag] = 0
-                elseif  pid == 5
-                    DzArrayPlayerInt5[Group][flag] = 0
-                endif
-            end
-            if  DzConA[0] == 1
-                DzAPI_Map_StoreString(Player(pid),"DZ"+I2S(Group),DzS[Group])
-            endif
+            DzFlushOfGroupZero(pid,5)
         endif
     endfunction
     
