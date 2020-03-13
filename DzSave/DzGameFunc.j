@@ -39,6 +39,7 @@ piece DzGameFunc
         endif
         if  mission != DzMissionWeek
             BJDebugMsg("通行证刷新")
+            DzS[Group] = "000000000000000000000000000000000000000000000000000000000000"
             MaxMember = GetDzDataGroupMaxMember(Group)
             for flag = 1,MaxMember
                 if  pid == 0
