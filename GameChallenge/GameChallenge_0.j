@@ -69,7 +69,9 @@ library GameChallenge0 uses GameChallengeBase
     endfunction
 
     function SendPlyaerToGameChalleng0(unit u)
-        SetUnitXY(u,GetUnitX(GameChalleng_0_JZY),GetUnitY(GameChalleng_0_JZY))
+        if  GameChallengBool[0] == false
+            SetUnitXY(u,GetUnitX(GameChalleng_0_JZY),GetUnitY(GameChalleng_0_JZY))
+        endif
     endfunction
 
     function EnRctGameChalleng_0_JZY()
