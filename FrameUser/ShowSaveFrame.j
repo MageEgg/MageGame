@@ -326,15 +326,13 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
                 h = h + 1
 
-                if  page == 6 and  unlock == 0//商城分页
-                    if  GetTypeIdTips(id) != ""
-                        if  unlock == 1
-                            SetTipsData(h,"",GetTypeIdTips(id))
-                        else
-                            SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
-                        endif
-                        h = h + 1
+                if  GetTypeIdTips(id) != ""
+                    if  unlock == 1
+                        SetTipsData(h,"",GetTypeIdTips(id))
+                    else
+                        SetTipsData(h,"","|cff808080"+GetTypeIdTips(id))
                     endif
+                    h = h + 1
                 endif
 
                 
