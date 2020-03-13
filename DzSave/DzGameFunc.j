@@ -60,6 +60,7 @@ piece DzGameFunc
             DzPalyerSignInRefresh(pid,week,mission)
             DzSaveDzTime(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[上次登录游戏日期]：|r"+I2S(mon)+"月"+I2S(day)+"日|cffffcc00[|r星期"+DayStr[week]+"|cffffcc00]|r")
+            BJDebugMsg("ShowPlayerSignInLastTime")
         endif
     endfunction
 

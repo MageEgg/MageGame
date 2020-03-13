@@ -632,7 +632,6 @@ scope DeathEvent initializer InitDeathEvent
             GameOver()
         elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
             AttackOperaBEnding(1)
-            MissionAddNumFunc(pid,20,1)
             if  GetUnitTypeId(u2) == 'H028' //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 2
                     if  GetPlayerTechCount(Player(pid2),'RDAW',true) == 0

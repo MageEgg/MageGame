@@ -267,6 +267,13 @@ library CreateOpera uses DamageCode
     function AttackOperaBEnding(int flag)
         int time = 0
         unit uu = null
+        if  LoadInteger(ht,GetHandleId(OperaTimer),1) <= 20
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    MissionAddNumFunc(pid,20,1)
+                endif
+            endif
+        endif
         FlushChildHashtable(ht,GetHandleId(OperaTimer))
         DestroyTimer(OperaTimer)
         OperaTimer = null
