@@ -197,7 +197,7 @@ library SystemCodes uses ServerTime,Define1
         if  value > 0
             s = s + "," + StateName[5] + "+" + I2S(R2I(value)) + StateName[5+1000]
         endif
-        for i = 1,60
+        for i = 1,70
             if  i != 5
                 value = GetTypeIdReal(id,i)
                 if  value > 0
@@ -217,7 +217,7 @@ library SystemCodes uses ServerTime,Define1
         if  value > 0
             s = s + "\n" + StateName[5] + "+" + I2S(R2I(value)) + StateName[5+1000]
         endif
-        for i = 1,60
+        for i = 1,70
             if  i != 5
                 value = GetTypeIdReal(id,i)
                 if  value > 0
@@ -726,7 +726,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             int index = GetRandomInt(1,max)
             int id = GetPrizeData(page,pool,index)
             int id2 = GetPrizeData(page,pool,max)
-            BJDebugMsg("max id is "+GetTypeIdName(id2))
+            BJDebugMsg("max id is "+GetTypeIdName(id2)+" max"+I2S(max))
             if  rem == true
                 RemPrizeData(page,pool,index)
             endif

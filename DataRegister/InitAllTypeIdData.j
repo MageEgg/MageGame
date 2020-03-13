@@ -6,7 +6,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","")
         call InitTypeIdStrings('FB04',"|Cff00BFFF三尖两刃刀|r","ReplaceableTextures\\CommandButtons\\BTNFB04.BLP","")
         call InitTypeIdStrings('FB05',"|Cff00BFFF八爪龙纹黄袍|r","ReplaceableTextures\\CommandButtons\\BTNFB05.BLP","")
-        call InitTypeIdStrings('FB06',"|Cff00BFFF缚妖索|r","ReplaceableTextures\\CommandButtons\\BTNFB06.BLP","")
+        call InitTypeIdStrings('FB06',"|Cff00BFFF捆仙绳|r","ReplaceableTextures\\CommandButtons\\BTNFB06.BLP","")
         call InitTypeIdStrings('FB07',"|CffFFD24D哮天犬|r","ReplaceableTextures\\CommandButtons\\BTNFB07.BLP","使用药品时，增加攻击力12%，持续4秒")
         call InitTypeIdStrings('FB08',"|CffFFD24D乾坤弓|r","ReplaceableTextures\\CommandButtons\\BTNFB08.BLP","被动触发几率增加6%")
         call InitTypeIdStrings('FB09',"|Cff00BFFF震天箭|r","ReplaceableTextures\\CommandButtons\\BTNFB09.BLP","")

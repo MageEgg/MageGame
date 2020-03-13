@@ -185,7 +185,31 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
 
 
+    //读取时渊奖励法宝池序号
+    function GetExPlotPrizeMagicIndex(int pid)->int
+        int ran = GetRandomInt(1,100)
+        int prizeid = 0
+        if  ran <= 30
+            prizeid = 14
+        elseif  ran <= 80
+            prizeid = 13
+        else
+            prizeid = 12
+        endif
 
+        if  prizeid == 14
+            if  GetPrizePoolMax(pid,14) == 0
+                prizeid = 13
+            endif
+        endif
+        if  prizeid == 13
+            if  GetPrizePoolMax(pid,13) == 0
+                prizeid = 12
+            endif
+        endif
+
+        return prizeid
+    endfunction
     //刷新深渊模式奖励
     function RePlayerExPlotPrizeId(int pid,int index)
         int id1 = 0
@@ -198,13 +222,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
         endif
 
-        if  ran <= 30
-            id1 = GetPrize(pid,14,true)
-        elseif  ran <= 80
-            id1 = GetPrize(pid,13,true)
-        else
-            id1 = GetPrize(pid,12,true)
-        endif
+        id1 = GetPrize(pid,GetExPlotPrizeMagicIndex(pid),true)
         
         
         SetPlayerPlotStateByIndex(pid,index,3)
@@ -263,17 +281,36 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     
 
     //读取奖励法宝池序号
-    function GetPlotPrizeMagicIndex(int index)->int
+    function GetPlotPrizeMagicIndex(int pid,int index)->int
         int ran = GetRandomInt(1,100)
         int green = 60
         int blue = 100 - 3 * index
+        int prizeid = 0
         if  ran <= green
-            return 15
+            prizeid = 15
         elseif  ran <= blue
-            return 14
+            prizeid = 14
         else
-            return 13
+            prizeid = 13
         endif
+
+        if  prizeid == 15
+            if  GetPrizePoolMax(pid,15) == 0
+                prizeid = 14
+            endif
+        endif
+        if  prizeid == 14
+            if  GetPrizePoolMax(pid,14) == 0
+                prizeid = 13
+            endif
+        endif
+        if  prizeid == 13
+            if  GetPrizePoolMax(pid,13) == 0
+                prizeid = 12
+            endif
+        endif
+
+        return prizeid
     endfunction
 
     //给玩家副本奖励
@@ -295,10 +332,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             BJDebugMsg("普通奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             //id2 = GetPlayerPlotPrizeId(pid,index,2)
-            id3 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
-            id4 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
+            id3 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+            id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
             if  GameLevel >= 3
-                id5 = GetPrize(pid,GetPlotPrizeMagicIndex(index),true)
+                id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
             endif
         endif
 

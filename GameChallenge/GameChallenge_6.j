@@ -264,6 +264,7 @@ library GameChallenge6 uses GameChallengeBase
                     SetUnitVertexColor(GameChallengUnit[61],255,255,255,0)
                     SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
                     GameChallengUnit[69] = CreateUnit(Player(9),'np07',GetUnitX(Pu[1]),GetUnitY(Pu[1]),45)
+                    CreateUnit(Player(9),'nc07',GetUnitX(Pu[1]),GetUnitY(Pu[1]),data100)
                     ShowUnitOfOnlyPlayer(pid,GameChallengUnit[69],UnitAPOfPlayer)
                     UnitAddAbility(GameChallengUnit[69],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[69],'AZ99',pid+1)

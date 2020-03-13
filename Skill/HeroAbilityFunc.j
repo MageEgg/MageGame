@@ -183,9 +183,12 @@ library HeroAbilityFunc uses OtherDamageTimer
         real y1 = GetUnitY(wu)
         unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_dark-xuanfen.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
         real damage = dam
-        int num = 2 + R2I(GetUnitRealState(u1,9)+1)/10000
+        int num = 2
         int level = lv
         effect eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
+        if  GetUnitIntState(u1,'FB06') > 0
+            num = num  + R2I(GetUnitRealState(u1,9)+1)/7500
+        endif
         EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
         if  lv >= 3
             damage = damage * 1.5
@@ -352,12 +355,12 @@ library HeroAbilityFunc uses OtherDamageTimer
                 CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,f/0.01745,75,1),f,damage,200,600,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                 SetUnitAnimationByIndex(u1,2)
                 if  time == 1
-                    if  GetUnitBjState(u1)<40
+                    if  GetUnitIntState(u1,'FB11') == 0
                         time = 0
                     endif
                 endif
             else
-                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1.5),ang,damage*1.5625,300,900,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1.5),ang,damage*3.125,300,900,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
             endif
             SetUnitPosition(u1,x1,y1)
             EXSetUnitFacing( u1, f/0.01745 )
@@ -448,6 +451,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             num = 4
         elseif  lv >= 2
             num = 3
+        endif
+        if  GetUnitIntState(wu,'FB42') > 0
+            num = num + 1
         endif
         SetUnitIntState(wu,'S505',0)
         for i = 1,num
@@ -692,7 +698,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         elseif  lv >= 2
             damage = damage * 1.2
         endif
-        if  GetUnitBjState(u1)>=30
+        if  GetUnitIntState(u1,'FB10') > 0
             damage = damage * 2
         endif
         LocAddEffectSetSize(x1,y1,"effect_yellow-guangzhu-new2.mdl",3)
@@ -791,8 +797,8 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
 
         g.destroy()
-        if  GetUnitLsState(wu) >= 100
-            SpellS514Timer(wu,damage*2.67,x,y,lv)
+        if  GetUnitIntState(wu,'FB27') > 0
+            SpellS514Timer(wu,damage*0.868,x,y,lv)
         endif
     endfunction
 
@@ -1312,6 +1318,9 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
         if  lv >= 2
             AddUnitStateExTimer(wu,16,15,3)
+        endif
+        if  GetUnitIntState(u1,'FB20') > 0
+            damage = damage * 1.25
         endif
 
         AddUnitStateExTimer(wu,13,30,4)

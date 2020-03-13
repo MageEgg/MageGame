@@ -187,7 +187,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[32]="攻击"
 
 
-        StateName[33]="法强"
+        StateName[33]="业力"
         StateName[34]="攻速"
         StateName[35]="冷却"
         StateName[36]=""
@@ -270,6 +270,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[1049]=""
         StateName[1050]=""
         StateName[1051]=""
+        StateName[1064]="%"
                 
     endfunction
     

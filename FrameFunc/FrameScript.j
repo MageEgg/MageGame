@@ -198,6 +198,7 @@
                 SetTipsData(10,"","金币+"+I2S(id))
                 ShowTipsUI()
             else
+                BJDebugMsg(YDWEId2S(id))
                 DzFrameShow(UI_TipsHead, true)
                 SetTipsData(1,"",GetTypeIdName(id))
                 
