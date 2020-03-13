@@ -566,9 +566,10 @@ library HeroAbilityFunc uses OtherDamageTimer
 
     function SpellS510Spell2(unit wu)
         unit u1 = wu
-        if  GetHeroAbilityIndex(wu,5) >= 4
+        BJDebugMsg("杨戬lv4")
+        if  GetHeroAbilityLevel(wu,'S510') >= 4
             if  GetUnitIntState(wu,'S512') == 0
-
+                BJDebugMsg("杨戬lv4damage")
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*8.75,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -590,15 +591,18 @@ library HeroAbilityFunc uses OtherDamageTimer
 
     function SpellS510Spell1(unit wu)
         unit u1 = wu
-        if  GetHeroAbilityIndex(wu,5) >= 3
+        BJDebugMsg("杨戬lv3")
+        if  GetHeroAbilityLevel(wu,'S510') >= 3
             if  GetUnitIntState(wu,'S511') == 0
 
+                BJDebugMsg("杨戬lv3damage")
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_green-texiao-shandian.mdl")
                 g.destroy()
 
+                
                 
 
                 SetUnitIntState(wu,'S511',1)

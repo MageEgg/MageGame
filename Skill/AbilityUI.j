@@ -324,7 +324,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 if  id == 'S510'
                     if  GetUnitIntState(wu,'S510') == 0
                         YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_1.blp")
-                    elseif  GetUnitIntState(wu,'S510') == 0
+                    elseif  GetUnitIntState(wu,'S510') == 1
                         YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_2.blp")
                     else
                         YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_3.blp")
@@ -468,7 +468,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             elseif  uid == 'H010'
                 if  newlv == 2
                     if  GetUnitIntState(wu,'S510') == 1
-                        SetUnitState(wu,ConvertUnitState(0x25),GetUnitState(wu,ConvertUnitState(0x25))-0.1)
+                        AddUnitRealState(wu,9,40)
                     endif
                 endif
 
