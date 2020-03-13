@@ -69,6 +69,7 @@ library GameChallenge0 uses GameChallengeBase
     endfunction
 
     function SendPlyaerToGameChalleng0(unit u)
+        int pid = GetPlayerId(GetOwningPlayer(u))
         if  GameChallengBool[0] == false
             SetUnitXY(u,GetUnitX(GameChalleng_0_JZY),GetUnitY(GameChalleng_0_JZY))
         endif
