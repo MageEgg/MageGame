@@ -254,6 +254,29 @@ library DzSave initializer InitDzData uses DzDataSetting
         endif
     endfunction
 
+    function DzFlushOfGroupZero(int pid,int Group)
+        int MaxMember = GetDzDataGroupMaxMember(Group)
+        DzS[Group] = "000000000000000000000000000000000000000000000000000000000000"
+        for flag = 1,MaxMember
+            if  pid == 0
+                DzArrayPlayerInt0[Group][flag] = 0
+            elseif  pid == 1
+                DzArrayPlayerInt1[Group][flag] = 0
+            elseif  pid == 2
+                DzArrayPlayerInt2[Group][flag] = 0
+            elseif  pid == 3
+                DzArrayPlayerInt3[Group][flag] = 0
+            elseif  pid == 4
+                DzArrayPlayerInt4[Group][flag] = 0
+            elseif  pid == 5
+                DzArrayPlayerInt5[Group][flag] = 0
+            endif
+        end
+        if  DzConA[0] == 1
+            DzAPI_Map_StoreString(Player(pid),"DZ"+I2S(Group),DzS[Group])
+        endif
+    endfunction
+
     function DzFlushOfGroup(int pid,int Group)
         int MaxMember = GetDzDataGroupMaxMember(Group)
         for flag = 1,MaxMember
