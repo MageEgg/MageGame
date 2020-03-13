@@ -54,12 +54,12 @@
                     r1 = (r1*0.01)/(r1*0.01+1)*100
                 endif
                 SetTipsData(12,"","|cff808080伤害减少："+R2SI(r1)+"%|r")
-                SetTipsData(13,""," ")
-                SetTipsData(14,"","物理抵抗："+R2SI(GetUnitRealState(Pu[5],18))+"%|r")
-                SetTipsData(15,"","法术抵抗："+R2SI(GetUnitRealState(Pu[5],4))+"%|r")
-                SetTipsData(16,""," ")
+                //SetTipsData(13,""," ")
+                //SetTipsData(14,"","物理抵抗："+R2SI(GetUnitRealState(Pu[5],18))+"%|r")
+                //SetTipsData(15,"","法术抵抗："+R2SI(GetUnitRealState(Pu[5],4))+"%|r")
+                //SetTipsData(16,""," ")
                 ShowTipsUI()
-                ShowNewDzFrameTooltip(0.088)
+                ShowNewDzFrameTooltip(0.049)//(0.055)-0.006
             endif
         endif
     endfunction
@@ -82,13 +82,13 @@
                 SetTipsData(13,""," ")
                 SetTipsData(14,"","攻击伤害："+R2SI(GetUnitRealState(Pu[5],15))+"%|r")
                 SetTipsData(15,"","技能伤害："+R2SI(GetUnitRealState(Pu[5],16))+"%|r")
-                SetTipsData(16,""," ")
+                //SetTipsData(16,""," ")
                 //SetTipsData(15,"","物理穿透："+R2SI(GetUnitRealState(Pu[5],13))+"%|r")
                 
                 //SetTipsData(17,"","法术穿透："+R2SI(GetUnitRealState(Pu[5],14))+"%|r")
                 
                 ShowTipsUI()
-                ShowNewDzFrameTooltip(0.11)
+                ShowNewDzFrameTooltip(0.082)//(0.088)-0.006  一个字0.011
             endif
         endif
     endfunction
