@@ -895,6 +895,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int color = GetTypeIdData(id,101)
         int give = 2
         if  id > 0
+            RecoveryPrizePoolData(pid,10+color,id)//回收法宝
             RemPlayerMagicItemByIndex(pid,last)
             SetPlayerMagicItemLast(pid,0)
             AdjustPlayerStateBJ(give, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )

@@ -568,11 +568,11 @@ library HeroAbilityFunc uses OtherDamageTimer
         unit u1 = wu
         BJDebugMsg("杨戬lv4")
         if  GetHeroAbilityLevel(wu,'S510') >= 4
-            if  GetUnitIntState(wu,'S512') == 0
+            if  GetUnitIntState(wu,'S512') == 0 and GetUnitIntState(wu,'S510') == 0
                 BJDebugMsg("杨戬lv4damage")
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-                UnitDamageGroup(wu,g.ejg,GetUnitRealState(wu,2)*8.75,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(wu,g.ejg,GetHeroStr(wu,true)*8.75,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_fire-boom-new.mdl")
                 g.destroy()
 
@@ -593,7 +593,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         unit u1 = wu
         BJDebugMsg("杨戬lv3")
         if  GetHeroAbilityLevel(wu,'S510') >= 3
-            if  GetUnitIntState(wu,'S511') == 0
+            if  GetUnitIntState(wu,'S511') == 0 and GetUnitIntState(wu,'S510') == 2
 
                 BJDebugMsg("杨戬lv3damage")
                 IndexGroup g = IndexGroup.create()
@@ -986,7 +986,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         if  lv >= 4
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetUnitRealState(wu,2))*5.4,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetHeroStr(wu,true))*5.4,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_az_magina[2]_v.mdl",2)
             g.destroy()
         endif
@@ -1557,7 +1557,7 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS531Spell(unit wu,unit tu)
         int lv = GetHeroAbilityLevel(wu,'S531')
         int jj = GetUnitIntState(wu,150)
-        real damage = GetUnitRealState(wu,2) * jj
+        real damage = GetHeroStr(wu,true) * jj
         if  lv >= 4
             if  ChanceEx(wu,'S531',10) == true
                 LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_blue-guagnzhu-special.mdl",0.5)
