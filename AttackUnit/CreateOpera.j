@@ -271,7 +271,7 @@ library CreateOpera uses DamageCode
             BJDebugMsg("闻太师任务")
             for pid = 0,3
                 if  IsPlaying(pid) == true
-                    MissionAddNumFunc.execute(pid,20,1)
+                    MissionAddNumFunc.execute(pid,21,1)
                 endif
             end
         endif

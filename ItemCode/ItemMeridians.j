@@ -70,6 +70,22 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         end
     endfunction
 
+    function SetMeridiansColdTimer(int id)
+        int pid = id
+        int time = 0
+        TimerStart(1,true)
+        {
+            if  time < 300
+                time = time + 1
+                YDWESetUnitAbilityState(Pu[42],'AZ40',1,300)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function OpenMeridiansChallenge(int pid)
         int num = 0
         unit u = null
@@ -109,6 +125,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[存档挑战-经脉]：|r该挑战难度2或以上才开放哦！")
         endif
+        SetMeridiansColdTimer(pid)
         flush locals
     endfunction
 
