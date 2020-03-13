@@ -305,7 +305,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         unit u1 = wu
         int time = 0
         damage = damage / 10
-        AddUnitStateExTimer(wu,73,20,6)
+        AddUnitStateExTimer(wu,72,20,6)
         TimerStart(0.03,true)
         {
             group gg = CreateGroup()
@@ -1164,7 +1164,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
     
     function SpellS101(unit u,real x,real y,real damage)
-        AddUnitStateExTimer(u,86,6,4.5)
+        AddUnitStateExTimer(u,82,6,4.5)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_az_zeusking_impact-black.mdl","origin",0))
         LocAddEffect(x,y,"effect_white-shandian-qiquan.mdl")

@@ -207,6 +207,20 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[51]="攻击距离"
         StateName[64]="经验加成"
 
+
+        StateName[71]="刺杀系"
+        StateName[72]="仙术系"
+        StateName[73]="妖魔系"
+        StateName[74]="佛门系"
+        StateName[75]="道兵系"
+
+
+        StateName[81]="刺杀系概率"
+        StateName[82]="仙术系概率"
+        StateName[83]="妖魔系概率"
+        StateName[84]="佛门系概率"
+        StateName[85]="道兵系概率"
+
         StateName[99]="(攻击+业力)"
 
         StateName[108]="灵力"

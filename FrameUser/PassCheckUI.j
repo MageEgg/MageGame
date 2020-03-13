@@ -354,7 +354,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 elseif  id < 1000000
                     AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                 else
-                    CreateItem(id,x-512,y-512)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cff00ff00[通行证奖励]：|r"+GetItemName(CreateItem(id,x-512,y-512))+"已创建至练功房左下角!")
+                    
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---物品类")
                 endif
             endif

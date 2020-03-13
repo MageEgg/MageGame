@@ -65,7 +65,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             r1 =  r1 * GetUnitRealState(wu,chi)
         endif
 
+
+        BJDebugMsg("class"+I2S(class))
         r2 = GetUnitRealState(wu,class + 71)
+        BJDebugMsg("class r2 "+R2S(r2))
         if  r2 > 0
             BJDebugMsg(StateName[class+71]+R2S(r2)+"%")
             r1 = r1 * (1+r2*0.01)
