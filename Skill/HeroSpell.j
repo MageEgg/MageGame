@@ -54,7 +54,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     yy = GetUnitY(u1) + r*Sin(orang*0.01745)
                     SetUnitXY(u2,xx,yy)
                     SetUnitFacing(u2,orang)
-                    if  ModuloInteger(tt,R2I(ound/time)) == 0
+                    if  ModuloInteger(tt,R2I(ound/time)/2) == 0
                         gg = CreateGroup()
                         GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600+r,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))  
                         uu = FirstOfGroup(gg)
