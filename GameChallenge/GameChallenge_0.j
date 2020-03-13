@@ -68,6 +68,10 @@ library GameChallenge0 uses GameChallengeBase
         flush locals
     endfunction
 
+    function SendPlyaerToGameChalleng0(unit u)
+        SetUnitXY(u,GetUnitX(GameChalleng_0_JZY),GetUnitY(GameChalleng_0_JZY))
+    endfunction
+
     function EnRctGameChalleng_0_JZY()
         unit u1 = GetTriggerUnit()
         int pid = GetPlayerId(GetOwningPlayer(u1))

@@ -621,6 +621,21 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 if  itemid > 0
                     UnitAddItemEx(Pu[1],itemid)
                 endif
+                if  zu == 0 and wei == 3 //4
+                    PlayerUnLockPlot.execute(pid,1)
+                    PlayerUnLockPlot.execute(pid,2)
+                    PlayerUnLockPlot.execute(pid,3)
+                elseif  zu == 0 and wei == 6 //7
+                    PlayerUnLockPlot.execute(pid,4)
+                elseif  zu == 0 and wei == 7 //8
+                    PlayerUnLockPlot.execute(pid,5)
+                elseif  zu == 1 and wei == 1 //10
+                    PlayerUnLockPlot.execute(pid,6)
+                elseif  zu == 1 and wei == 3 //12
+                    PlayerUnLockPlot.execute(pid,7)
+                elseif  zu == 1 and wei == 4 //13
+                    PlayerUnLockPlot.execute(pid,8)
+                endif
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+SubString(AttackUnitChallengeStateTypeString[zu][wei],29,StringLength(AttackUnitChallengeStateTypeString[zu][wei]))+"！")
                 AddAttackUnitChallengeStateLevel(pid,challenge)
                 IsPlayerInAttackUnitChallenge(challenge) = 0
@@ -703,7 +718,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     AddAttackUnitChallengeStateLevel(pid,challenge)
                     ///////////////////////分割判断/////////////////////
                     if  challenge == 3
-                        PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
+                        //PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
                         //if  AttackUnitChallengePlayerWeiNum(challenge) == 8
                         //    AddAttackUnitChallengeStateStock(pid,230,0)
                         //endif
