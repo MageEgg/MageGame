@@ -58,13 +58,14 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                         gg = CreateGroup()
                         GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600+r,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))  
                         uu = FirstOfGroup(gg)
-                        GroupClear(gg)
+                        //GroupClear(gg)
                         if  GetUnitTypeId(uu) != 0
                             damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
-                            GroupEnumUnitsInRange(gg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                            //GroupEnumUnitsInRange(gg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                             Ligfunc(u2,uu,AddLightningEx("CLPB",false,GetUnitX(u2),GetUnitY(u2),GetUnitZ(u2),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
                             DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
-                            UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                            //UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                            UnitDamageTarget(u1,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         endif
                         GroupClear(gg)
                         DestroyGroup(gg)

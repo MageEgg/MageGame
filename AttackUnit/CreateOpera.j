@@ -270,7 +270,7 @@ library CreateOpera uses DamageCode
         if  LoadInteger(ht,GetHandleId(OperaTimer),1) <= 20
             for pid = 0,3
                 if  IsPlaying(pid) == true
-                    MissionAddNumFunc(pid,20,1)
+                    MissionAddNumFunc.execute(pid,20,1)
                 endif
             end
         endif
