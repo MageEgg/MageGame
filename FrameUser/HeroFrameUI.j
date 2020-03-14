@@ -380,11 +380,6 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             CreateButton(190+i,Button.frameid,TYPE_NULL,0,BUTTON_Back[150+i][0],8,-0.005,0.005,0.01,0.01,"war3mapImported\\alpha.tga")
         end
         
-        for i = 1,7
-            CreateButton(160+i,Button.frameid,TYPE_NOT,0,Button.frameid,0,-0.165,-0.015*(i-1)-0.008,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
-        end
-        
-        
         
         
         Button2.frameid = FRAME.Tag("BUTTON","Hero",origin,Button2)
@@ -392,29 +387,22 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         Button2.SetSize(0.1,0.01)
 
 
-        
-        
-        
-        
-
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.09,0.170)
+        Back2.SetSize(0.09,0.28)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,11
-            CreateButton(167+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
+        for i = 1,18
+            CreateButton(160+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
 
-        CreateText(161,origin,"text009",3,5,0.003,0,"|cffffcc00攻击加成：|r0%")
-        CreateText(162,origin,"text009",3,5,0.003,0,"|cffffcc00业力加成：|r0%")
-        CreateText(163,origin,"text009",3,5,0.003,0,"|cffffcc00攻击伤害：|r0%")
-        CreateText(164,origin,"text009",3,5,0.003,0,"|cffffcc00技能伤害：|r0%")
-        CreateText(165,origin,"text009",3,5,0.003,0,"|cffffcc00暴击概率：|r0%")
-        CreateText(166,origin,"text009",3,5,0.003,0,"|cffffcc00暴击伤害：|r0%")
-        CreateText(167,origin,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
-
-        
+        CreateText(161,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00攻击加成：|r0%")
+        CreateText(162,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00业力加成：|r0%")
+        CreateText(163,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00攻击伤害：|r0%")
+        CreateText(164,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00技能伤害：|r0%")
+        CreateText(165,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴击概率：|r0%")
+        CreateText(166,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00暴击伤害：|r0%")
+        CreateText(167,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00金币加成：|r0%")
         CreateText(168,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00闪避：|r0%")
         CreateText(169,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00减伤：|r0%")
         CreateText(170,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00分裂：|r0%")

@@ -151,13 +151,16 @@ library GameUIInit initializer init uses OriginGameFrame
             DzFrameSetSize( DzFrameGetItemBarButton(i), 0.03,0.03 )
         end
         
+
         
+
         for x = 0,3
             for y = 0,2
                 call DzFrameClearAllPoints(DzFrameGetCommandBarButton(y,x))
                 call DzFrameSetSize(DzFrameGetCommandBarButton(y,x),.033,.033)
             end
         end
+        
         call DzFrameSetPoint(DzFrameGetCommandBarButton(0,3),8,DzGetGameUI(),5,-.0121,-.218)
         call DzFrameSetPoint(DzFrameGetCommandBarButton(1,3),8,DzGetGameUI(),5,-.0121,-.218-.039)
         call DzFrameSetPoint(DzFrameGetCommandBarButton(2,3),8,DzGetGameUI(),5,-.0121,-.218-.078)
@@ -232,10 +235,12 @@ library GameUIInit initializer init uses OriginGameFrame
         
         ExecuteFunc("InitAttackFrameUI")
 
+        ExecuteFunc("InitExNativeFrame")
+
         ExecuteFunc("InitAttackTipUI")
         ExecuteFunc("TipsToolInit")
 
-        ExecuteFunc("InitExNativeFrame")
+        
         
         
         DestroyTrigger(GetTriggeringTrigger())

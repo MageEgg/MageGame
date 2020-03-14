@@ -1,4 +1,4 @@
-library MagicItemCollectFrame uses GameFrame
+library MagicItemCollectFrame uses GameFrame,ExNativeFrame
 
     /*按钮序号
     1-8    法宝按钮
@@ -462,7 +462,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 SetTipsData(12,"","|cff999999基础属性：|r" + GetMagicStateTips(id,lv))
                 h = 13
             else
-                SetTipsData(12,"","|cff999999基础属性：|r" + GetMagicStateTips(id,lv)+"\n"+GetTypeIdTips(id))
+                SetTipsData(12,"","|cff999999基础属性：|r" + GetMagicStateTips(id,lv)+"\n|cffD9A300"+GetTypeIdTips(id))
                 h = 13
             endif
             
@@ -789,6 +789,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             RemMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,-1)
+
+            if  GetTypeIdData(id,101) == 1//红装+2
+                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),-2)
+            else    
+                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),-1)
+            endif
+            ReRuneFrame(pid)
             /*RePlayerMagicOtherState(pid,id,-1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)
@@ -810,6 +817,13 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             AddMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,1)
+
+            if  GetTypeIdData(id,101) == 1//红装+2
+                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),2)
+            else    
+                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),1)
+            endif
+            ReRuneFrame(pid)
             /*RePlayerMagicOtherState(pid,id,1)
             for i = 1,10
                 value = GetTypeIdData(id,110+i)

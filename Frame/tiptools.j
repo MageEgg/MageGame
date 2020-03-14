@@ -31,6 +31,115 @@ library TipsTool uses GameUIInit
         UI_TipsString[dataid]=str
     end
 
+    function SetTiptoolPosition(real r1,real r2)
+
+        real x = DzGetMouseXRelative()
+        real x2 = I2R(DzGetWindowWidth())
+        real y = DzGetMouseYRelative()
+        real y2 = I2R(DzGetWindowHeight())
+        int ma = 0
+        int last = UI_LongLast
+
+        if  last > 0
+            if x2 == 0
+                x2 = 0.001
+            endif
+            if y2 == 0
+                y2 = 0.001
+            endif
+            x = x/x2
+            y = y/y2
+
+
+
+            DzFrameClearAllPoints( UI_TipsFoot )
+            DzFrameSetPoint( UI_TipsFoot , 7,UI_TipsTEXT[last],7 , 0.0,0.0)
+
+            DzFrameClearAllPoints( UI_TipsHead)
+
+            if  y > 0.5
+                if  x > 0.5
+                    DzFrameSetPoint( UI_TipsHead , 2, DzGetGameUI(), 0, x*.8-0.01+r1, -y*.6+r2)
+                else
+                    DzFrameSetPoint( UI_TipsHead , 0, DzGetGameUI(), 0, x*.8+0.025+r1, -y*.6+r2)
+                endif
+            else
+                if  x > 0.5
+                    DzFrameSetPoint( UI_TipsHead , 2, DzGetGameUI(), 0, x*.8-0.01+r1, -y*.6+r2)
+                else
+                    DzFrameSetPoint( UI_TipsHead , 0, DzGetGameUI(), 0, x*.8+0.025+r1, -y*.6+r2)
+                endif
+            endif
+            
+            
+        endif
+
+    endfunction
+    func ShowTipsUISetPosition(real r1,real r2)
+        int last = 10
+
+        DzFrameSetText(UI_TipsName ,UI_TipsString[1])
+
+        for i = 2,5
+            if  UI_TipsTexture[i] != ""
+                DzFrameSetSize( UI_TipsBACK[i], 0.011, 0.011)
+                DzFrameSetTexture(UI_TipsBACK[i] ,UI_TipsTexture[i], 0)
+            else
+                DzFrameSetSize( UI_TipsBACK[i], 0.0001, 0.011)
+                DzFrameSetTexture(UI_TipsBACK[i] ,"war3mapImported\\alpha.tga", 0)        
+            endif
+            
+            
+            if  UI_TipsString[i] != ""
+                if  UI_TipsTexture[i] != ""
+                    DzFrameSetSize( UI_TipsBACK[i], 0.011,0.011)
+                else
+                    DzFrameSetSize( UI_TipsBACK[i], 0.0001, 0.011)
+                    DzFrameSetTexture(UI_TipsBACK[i] ,"war3mapImported\\alpha.tga", 0)        
+                endif
+            else
+                DzFrameSetSize( UI_TipsBACK[i], 0.0001, 0.011)
+                DzFrameSetTexture(UI_TipsBACK[i] ,"war3mapImported\\alpha.tga", 0)        
+            endif
+            
+            DzFrameSetText(UI_TipsTEXT[i] ,UI_TipsString[i])
+        end
+        
+        
+        for i = 10,50
+            
+            if  UI_TipsTexture[i] != ""
+                DzFrameSetSize( UI_TipsBACK[i], 0.011, 0.011)
+                DzFrameSetTexture(UI_TipsBACK[i] ,UI_TipsTexture[i], 0)
+                last = i
+            else
+
+                if  UI_TipsString[i] == ""
+                    DzFrameSetSize( UI_TipsBACK[i], 0.0001, 0.0001)
+                    DzFrameSetTexture(UI_TipsBACK[i] ,"war3mapImported\\alpha.tga", 0)
+                else
+                    DzFrameSetSize( UI_TipsBACK[i], 0.0001, 0.011)
+                    DzFrameSetTexture(UI_TipsBACK[i] ,"war3mapImported\\alpha.tga", 0)       
+                    last = i   
+                endif
+                
+            endif
+            
+            DzFrameSetText(UI_TipsTEXT[i] ,UI_TipsString[i])
+        end
+
+        for i = 0,50
+            UI_TipsTexture[i]=""
+            UI_TipsString[i]=""
+        end
+
+        
+        UI_LongLast = last
+
+        SetTiptoolPosition(r1,r2)
+    end
+
+
     function SetTiptoolPostionAsMouse()
         real x = DzGetMouseXRelative()
         real x2 = I2R(DzGetWindowWidth())
@@ -73,6 +182,8 @@ library TipsTool uses GameUIInit
 
 
     endfunction
+
+    
 
     func ShowTipsUI()
         int last = 10

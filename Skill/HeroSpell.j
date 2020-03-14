@@ -1279,9 +1279,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(u1)
         real damage = GetHeroStr(u,true)
 
-        if  GetUnitIntState(u,'FB21') > 0
+        /*
+        //if  GetUnitIntState(u,'FB21') > 0
             damage = damage * 1.5
         endif
+        */
         IndexGroup g 
         if  GetUnitAbilityLevel(u,'AZ15') > 0 and ChanceEx(u,'S109',10) == true
             g = IndexGroup.create()

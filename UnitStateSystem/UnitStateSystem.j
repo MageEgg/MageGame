@@ -45,7 +45,6 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     end
     
     
-    
     func InitTypeIdData(int id,int Type,int color,int data1,int data2,int data3,int data4,int data5,int data6,int data7,int data8,int data9,int data10)
         SetTypeIdData(id,100,Type)
         SetTypeIdData(id,101,color)

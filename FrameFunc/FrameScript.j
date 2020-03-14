@@ -351,13 +351,19 @@
                         endif
                     elseif  id == 652 or id == 653
                         BoxShowResources(pid,id)
+                    elseif  id >= 901 and id <= 908
+                        BoxShowRuneFrame(pid,id-900)
                     else
                         //UIDebugShowIndex(id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                     endif
                 endif
             elseif  Type == TYPE_BUTTON
-                SetTiptoolPostionAsMouse()
+                if  id >= 901 and id <= 908
+                    SetTiptoolPosition(0.0,0.1)
+                else
+                    SetTiptoolPostionAsMouse()
+                endif
             elseif  Type == TYPE_FUNC
 
             elseif  Type == TYPE_CLOSE

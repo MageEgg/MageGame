@@ -5,9 +5,11 @@ library Summon uses AbilityUI,OtherDamageTimer
         if  IsPlayerHasAbility(u,'S088') == true
             num = num + 2
         endif
-        if  GetUnitIntState(u,'FB49') > 0
+        /*
+        //if  GetUnitIntState(u,'FB49') > 0
             num = num + 1
         endif
+        */
         return num
     endfunction
 
