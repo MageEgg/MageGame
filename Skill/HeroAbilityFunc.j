@@ -906,7 +906,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         int pid = GetPlayerId(GetOwningPlayer(wu))
         AddUnitIntState(wu,'RDAB',1)
         if  GetUnitIntState(wu,'RDAB') == 30
-            if  DzPlayerLv(Player(pid)) >= 2
+            if  DzPlayerLv(Player(pid)) >= 4
                 if  GameLevel >= 2
                     if  GetPlayerTechCount(Player(pid),'RDAB',true) == 0
                         SetDzPlayerData(pid,15,2,2)
@@ -1081,8 +1081,8 @@ library HeroAbilityFunc uses OtherDamageTimer
             damage = damage * 1.3
         endif
         AddUnitIntState(u1,'S521',1)
-        if  GetUnitIntState(u1,'S521')>=6
-            if  DzPlayerLv(Player(pid)) >= 3
+        /*if  GetUnitIntState(u1,'S521')>=6
+            if  DzPlayerLv(Player(pid)) >= 6
                 if  GetPlayerTechCount(Player(pid),'RDAR',true) == 0
                     SetDzPlayerData(pid,15,18,18)
                     SetPlayerTechResearchedEx(Player(pid),'RDAR')
@@ -1091,8 +1091,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000今晚的月亮好圆啊|r，但可惜地图等级不够要求！")
             endif
-
-        endif
+        endif*/
         TimerStart(1,true)
         {
             time = time - 1
@@ -1136,21 +1135,19 @@ library HeroAbilityFunc uses OtherDamageTimer
         LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_e_buffgreen2a.mdl")
         int uid = GetUnitTypeId(tu)
         if  uid == 'H028' or uid == 'H016' or uid == 'H027'
-            if  GetRandomReal(0,1) <= 0.2
-                if  DzPlayerLv(Player(pid)) >= 3
+            if  DzPlayerLv(Player(pid)) >= 6
+                if  GetRandomReal(0,1) <= 0.2
                     if  GetPlayerTechCount(Player(pid),'RDAQ',true) == 0
                         SetDzPlayerData(pid,15,17,17)
                         SetPlayerTechResearchedEx(Player(pid),'RDAQ')
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000红颜祸水|r（永久存档）！")
                     endif
-
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜地图等级不够要求！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜运气太差了没激活存档！")
                 endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜运气太差了没激活存档！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜地图等级不够要求！")
             endif
-
         endif
     endfunction
 
@@ -1437,7 +1434,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         elseif  Pu[1] == tu
             AddUnitIntState(wu,'RDAA',1)
             if  GetUnitIntState(wu,'RDAA') == 20
-                if  DzPlayerLv(Player(pid)) >= 3
+                if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAA',true) == 0
                             SetDzPlayerData(pid,15,1,1)
@@ -1510,10 +1507,14 @@ library HeroAbilityFunc uses OtherDamageTimer
 
                     AddUnitIntState(Pu[1],'RDAO',1)
                     if  GetUnitIntState(Pu[1],'RDAO') == 20
-                        if  GetPlayerTechCount(Player(pid),'RDAO',true) == 0
-                            SetDzPlayerData(pid,15,15,15)
-                            SetPlayerTechResearchedEx(Player(pid),'RDAO')
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000悬壶济世|r（永久存档）！")
+                        if  DzPlayerLv(Player(pid)) >= 2
+                            if  GetPlayerTechCount(Player(pid),'RDAO',true) == 0
+                                SetDzPlayerData(pid,15,15,15)
+                                SetPlayerTechResearchedEx(Player(pid),'RDAO')
+                                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000悬壶济世|r（永久存档）！")
+                            endif
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000悬壶济世|r，但可惜地图等级不够要求！")
                         endif
                     endif
                     

@@ -304,22 +304,22 @@ library GameChallenge1 uses GameChallengeBase
             PlayerFinishPlotEx(pid,1)
 
             if  GetUnitTypeId(Pu[1]) == 'H022' //彩蛋
-                if  GetRandomReal(0,1) <= 0.4
-                    if  DzPlayerLv(Player(pid)) >= 6
-                        if  GameLevel >= 3
+                if  DzPlayerLv(Player(pid)) >= 6
+                    if  GameLevel >= 3
+                        if  GetRandomReal(0,1) <= 0.4
                             if  GetPlayerTechCount(Player(pid),'RDAG',true) == 0
                                 SetDzPlayerData(pid,15,7,7)
                                 SetPlayerTechResearchedEx(Player(pid),'RDAG')
                                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000爸，我回来了|r（永久存档）！")
                             endif
                         else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜难度不够要求！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜运气太差了没激活存档！")
                         endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜地图等级不够要求！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜难度不够要求！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜运气太差了没激活存档！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜地图等级不够要求！")
                 endif
             endif
         endif

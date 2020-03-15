@@ -306,7 +306,7 @@ library GameChallenge9 uses GameChallengeBase
             AddUnitRealState(Pu[1],33,3)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！！！|r")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+GetObjectName(itid)+"随机获得"+GetObjectName(itid)+"！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+"随机获得"+GetObjectName(itid)+"！")
 
             if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 6

@@ -162,22 +162,22 @@ library GameChallenge5 uses GameChallengeBase
                 PlayerFinishPlotEx(pid,5)
 
                 if  GetUnitTypeId(Pu[1]) == 'H002' //彩蛋
-                    if  GetRandomReal(0,1) <= 0.6
-                        if  DzPlayerLv(Player(pid)) >= 4
-                            if  GameLevel >= 2
+                    if  DzPlayerLv(Player(pid)) >= 4
+                        if  GameLevel >= 2
+                            if  GetRandomReal(0,1) <= 0.6
                                 if  GetPlayerTechCount(Player(pid),'RDAM',true) == 0
                                     SetDzPlayerData(pid,15,13,13)
                                     SetPlayerTechResearchedEx(Player(pid),'RDAM')
                                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000我自己来|r（永久存档）！")
                                 endif
                             else
-                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我自己来|r，但可惜难度不够要求！")
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我自己来|r，但可惜运气太差了没激活存档！")
                             endif
                         else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我自己来|r，但可惜地图等级不够要求！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我自己来|r，但可惜难度不够要求！")
                         endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我自己来|r，但可惜运气太差了没激活存档！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我自己来|r，但可惜地图等级不够要求！")
                     endif
                 endif
             endif
@@ -363,7 +363,7 @@ library GameChallenge5 uses GameChallengeBase
                     //奖励
                     PlayerFinishPlotEx(pid,5)
 
-                    if  GetUnitTypeId(u1) == 'H011' //彩蛋
+                    if  GetUnitTypeId(Pu[1]) == 'H011' //彩蛋
                         if  DzPlayerLv(Player(pid)) >= 6
                             if  GameLevel >= 3
                                 if  GetPlayerTechCount(Player(pid),'RDAE',true) == 0
@@ -378,7 +378,7 @@ library GameChallenge5 uses GameChallengeBase
                             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我救我自己|r，但可惜地图等级不够要求！")
                         endif
                     endif
-                    if  GetUnitTypeId(u1) == 'H002' //彩蛋
+                    if  GetUnitTypeId(Pu[1]) == 'H002' //彩蛋
                         if  DzPlayerLv(Player(pid)) >= 2
                             if  GetPlayerTechCount(Player(pid),'RDAL',true) == 0
                                 SetDzPlayerData(pid,15,12,12)
