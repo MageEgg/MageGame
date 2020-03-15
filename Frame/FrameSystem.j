@@ -220,7 +220,7 @@ library GameUIInit initializer init uses OriginGameFrame
         ExecuteFunc("HeroPowerFrameInit")
         ExecuteFunc("PassCheckUIInit")
         ExecuteFunc("InitShowSaveFrame")
-        ExecuteFunc("HeroFrameUIInit")
+        
         ExecuteFunc("MagicItemFrameInit")
         ExecuteFunc("PlotSelectFrameInit")
         ExecuteFunc("PrizeFrameInit")
@@ -230,7 +230,8 @@ library GameUIInit initializer init uses OriginGameFrame
 
         
 
-    
+        ExecuteFunc("HeroFrameUIInit")
+        
         ExecuteFunc("BossLifeBarFrameInit")
         
         ExecuteFunc("InitAttackFrameUI")

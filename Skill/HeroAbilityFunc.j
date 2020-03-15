@@ -168,7 +168,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             SpellS501_1(wu,x1,y1,damage,lv)
             SetUnitIntState(wu,'S501',0)
             SetUnitAnimationByIndex(wu,8)
-            SetAbilityCD_AG(wu,'AG05',10)
+            SetAbilityCD_AG(wu,'AG05',12)
             YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
         endif
 
@@ -1387,7 +1387,7 @@ library HeroAbilityFunc uses OtherDamageTimer
     endfunction
     function SpellS526(unit wu,unit tu,real damage,int lv)
         if  YDWEGetUnitAbilityState(wu,'AC05', 1) == 0
-            SetUnitAnimationByIndex(wu,4)
+            SetUnitAnimationByIndex(wu,3)
             if  lv >= 3
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 2)

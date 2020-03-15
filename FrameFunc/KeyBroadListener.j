@@ -64,6 +64,8 @@ scope KeyEvent initializer InitKeyBroadListener
                     CloseLearnFrame(pid)
                 elseif  GetUnitIntState(Pu[1],401) > 0
                     PlayerClickPrize(pid,0)
+                elseif  GetUnitIntState(Pu[1],911) > 0
+                    PlayerClickRunePrize(pid,1)
                 else
                     if  GetLocalPlayer() == Player(pid)
                         if  GetPlotFrameShow() ==  true

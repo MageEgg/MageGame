@@ -383,16 +383,19 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         
         
         Button2.frameid = FRAME.Tag("BUTTON","Hero",origin,Button2)
-        Button2.SetPoint(0,origin,0,-0.165,0.0)
-        Button2.SetSize(0.1,0.01)
+        Button2.SetPoint(0,origin,0,-0.167,0.0)
+        Button2.SetSize(0.1,0.02)
 
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.09,0.28)
+        Back2.SetSize(0.19,0.15)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
-        for i = 1,18
-            CreateButton(160+i,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(i-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
+        for p = 1,2
+            for m = 1,9
+                CreateButton(160+m,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(m-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
+                CreateButton(169+m,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.1,-0.015*(m-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
+            end
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
 
@@ -431,8 +434,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         //CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
 
 
-        for i = 2,4
-            DzFrameShow(BUTTON_Back[700+i][0], false)
+        for i2 = 2,4
+            DzFrameShow(BUTTON_Back[700+i2][0], false)
         end
 
         

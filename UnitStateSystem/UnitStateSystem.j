@@ -546,7 +546,40 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         }
         flush locals
     end
+    func AddUnitRealStateTimer(unit wu,int id,real v,real t)
+        unit u1 = wu
+        int StateId = id
+        real value = v
+        real time = t
+        AddUnitRealState(u1,StateId,value)
+        TimerStart(time,false)
+        {
+            AddUnitRealState(u1,StateId,-value)
+            endtimer
+            flush locals
+        }
+        flush locals
+    end
     
+    func AddUnitRealStateTimerFlush(unit wu,int id,real v,real t)
+        unit u1 = wu
+        int StateId = id
+        real value = v
+        real time = t
+        if  id == 'FD05'
+            BJDebugMsg("护盾+"+R2S(v))
+        endif
+        UnitAddAbility(u1,StateId)
+        AddUnitRealState(u1,StateId,value)
+        TimerStart(time,false)
+        {   
+            UnitRemoveAbility(u1,StateId)
+            SetUnitRealState(u1,StateId,0)
+            endtimer
+            flush locals
+        }
+        flush locals
+    end
     
 endlibrary
 

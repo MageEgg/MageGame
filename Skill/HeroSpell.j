@@ -153,7 +153,16 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
         return i
     endfunction
-    
+
+    function GetUnitBeAttackedNumb(unit wu)->int //被攻击
+        int i = 1
+        if  GetUnitIntState(wu,'FY05')>=3
+            i = i + 1
+        endif
+        return i
+    endfunction
+
+
     function SpellS013Attack(unit wu,unit tu)
         group gg = null
         int id = 'S013'
@@ -1149,8 +1158,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS097Attack(unit wu)
         int id = 'S097'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
-        int Num = LoadInteger(ht,GetHandleId(wu),id)
-        Num = Num + 1
+        
+        int Num = LoadInteger(ht,GetHandleId(wu),id) + GetUnitBeAttackedNumb(wu)
+        
         SaveInteger(ht,GetHandleId(wu),id,Num)
         if  Num >= 16
             IndexGroup g = IndexGroup.create()

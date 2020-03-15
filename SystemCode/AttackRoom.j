@@ -194,6 +194,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 endtimer
                 flush locals
             }
+        else    
+            BJDebugMsg("限制了一波计时器刷怪")
         endif
         flush locals
     endfunction
@@ -470,7 +472,11 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 ////BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
-                RefreshAttackRoom(pid)
+                if  AttackRoomUnitBool[pid] == false
+                    RefreshAttackRoom(pid)
+                else
+                    BJDebugMsg("阻止F3刷怪")
+                endif
 
                 if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
                     GameChallengPlayerBool[pid][4] = true

@@ -791,9 +791,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             AddUnitIntState(Pu[1],id,-1)
 
             if  GetTypeIdData(id,101) == 1//红装+2
-                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),-2)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),-2)
             else    
-                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),-1)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),-1)
             endif
             ReRuneFrame(pid)
             /*RePlayerMagicOtherState(pid,id,-1)
@@ -819,9 +819,10 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             AddUnitIntState(Pu[1],id,1)
 
             if  GetTypeIdData(id,101) == 1//红装+2
-                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),2)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
             else    
-                AddUnitIntState(Pu[1],900+GetTypeIdData(id,100),1)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
             endif
             ReRuneFrame(pid)
             /*RePlayerMagicOtherState(pid,id,1)

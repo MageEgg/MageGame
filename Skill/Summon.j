@@ -2,14 +2,19 @@ library Summon uses AbilityUI,OtherDamageTimer
 
     function GetHeroSummonNum(unit u)->int
         int num = 0
+        int i1 = 0
         if  IsPlayerHasAbility(u,'S088') == true
             num = num + 2
         endif
-        /*
-        //if  GetUnitIntState(u,'FB49') > 0
+
+        i1 = GetUnitIntState(u,'FY03')
+        if  i1 >= 3
             num = num + 1
+            if  i1 >= 6
+                num = num + 2
+            endif
         endif
-        */
+        
         return num
     endfunction
 

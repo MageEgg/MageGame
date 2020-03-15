@@ -185,7 +185,35 @@
 
             SetTipsData(10,"",GetTypeIdStateTips(id))
             ShowTipsUI()
-         
+        elseif  id >= 'FY01' and id <= 'FY08'
+            int lv = GetUnitIntState(Pu[1],id)
+            DzFrameShow(UI_TipsHead, true)
+                
+            if  lv > 0
+                SetTipsData(1,"","|cffff0000"+GetTypeIdName(id)+"|rx"+I2S(lv))
+            else
+                SetTipsData(1,"","|cffff0000"+GetTypeIdName(id)+"|cff808080(未拥有)")
+            endif
+            
+            SetTipsData(10,"",GetTypeIdTips(id))
+            
+            if  lv >= 3
+                SetTipsData(11,"","\n|cff00ff00"+GetTypeIdName(id)+"x3\n"+GetTypeIdString(id,131))
+            else
+                SetTipsData(11,"","\n|cff808080"+GetTypeIdName(id)+"x3\n"+GetTypeIdString(id,131))
+            endif
+
+            if  lv >= 6
+                SetTipsData(12,"","\n|cff00ff00"+GetTypeIdName(id)+"x6\n"+GetTypeIdString(id,132))
+            else
+                SetTipsData(12,"","\n|cff808080"+GetTypeIdName(id)+"x6\n"+GetTypeIdString(id,132))
+            endif
+
+
+            if  GetTypeIdString(id,133)!=""
+                SetTipsData(13,"","\n|cff808080"+GetTypeIdString(id,133))
+            endif
+            ShowTipsUI()
         elseif  id > 0
             if  id < 500
                 DzFrameShow(UI_TipsHead, true)
@@ -353,6 +381,17 @@
                         BoxShowResources(pid,id)
                     elseif  id >= 901 and id <= 908
                         BoxShowRuneFrame(pid,id-900)
+                    elseif  id >= 911 and id <= 913
+                        boxid = GetUnitIntState(Pu[1],id)
+                        if  boxid > 0
+                            BoxShowTips(pid,boxid)
+                        endif
+                    elseif  id >= 921 and id <= 923
+                        boxid = GetUnitIntState(Pu[1],id-10)
+                        if  boxid > 0
+                            BoxShowTips(pid,boxid)
+                        endif
+
                     else
                         //UIDebugShowIndex(id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)

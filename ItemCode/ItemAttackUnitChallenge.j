@@ -718,6 +718,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     AddAttackUnitChallengeStateLevel(pid,challenge)
                     ///////////////////////分割判断/////////////////////
                     if  challenge == 3 //这里写符印奖励
+                        GivePlayerRunePrizeFrame(pid)
                         //PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
                         //if  AttackUnitChallengePlayerWeiNum(challenge) == 8
                         //    AddAttackUnitChallengeStateStock(pid,230,0)

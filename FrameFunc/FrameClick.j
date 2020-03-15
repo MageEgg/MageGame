@@ -9,7 +9,7 @@ scope FrameButton
         
         if  eventId == 1
             if  Pu[1] != null
-                //BJDebugMsg(I2S(id))
+                BJDebugMsg(I2S(id))
                 if  Type == TYPE_BUTTON
                     if  id >= 1 and id <= 17//法宝
                         SelectPlayerMagicItem(pid,id)
@@ -68,6 +68,10 @@ scope FrameButton
                         ClickShowSaveFrame(pid)
                     elseif  id == 706 //F6
                         ClickPassFrame(pid)
+                    elseif  id >= 911 and id <=913//符印奖励
+                        PlayerClickRunePrize(pid,id-910)
+                    elseif  id >= 921 and id <=923//符印奖励
+                        PlayerClickRunePrize(pid,id-920)
                     endif
                 elseif  Type == TYPE_FUNC
                     if  id >= 301 and id <= 308//选择副本按钮
@@ -81,6 +85,8 @@ scope FrameButton
                 elseif  Type == TYPE_CLOSE
                     if  id == 410
                         PlayerClickPrize(pid,0)
+                    elseif  id == 910
+                        PlayerClickRunePrize(pid,1)
                     endif
                 endif
             endif
@@ -233,3 +239,14 @@ endscope
 //! runtextmacro AddFrameFunc("706")
 //! runtextmacro AddFrameFunc("707")
 //! runtextmacro AddFrameFunc("708")
+
+
+//! runtextmacro AddFrameFunc("910")
+//! runtextmacro AddFrameFunc("911")
+//! runtextmacro AddFrameFunc("912")
+//! runtextmacro AddFrameFunc("913")
+
+//! runtextmacro AddFrameFunc("921")
+//! runtextmacro AddFrameFunc("922")
+//! runtextmacro AddFrameFunc("923")
+
