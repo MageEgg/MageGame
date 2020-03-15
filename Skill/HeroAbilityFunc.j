@@ -905,6 +905,7 @@ library HeroAbilityFunc uses OtherDamageTimer
     function SpellS516(unit wu,int lv)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         AddUnitIntState(wu,'RDAB',1)
+        if  GetUnitIntState(wu,'RDAB') == 30
             if  DzPlayerLv(Player(pid)) >= 4
                 if  GameLevel >= 2
                     if  GetPlayerTechCount(Player(pid),'RDAB',true) == 0
