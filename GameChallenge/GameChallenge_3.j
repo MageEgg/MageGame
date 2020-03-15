@@ -30,22 +30,22 @@ library GameChallenge3 uses GameChallengeBase
             PlayerFinishPlotEx(pid,3)
 
             if  GetUnitTypeId(Pu[1]) == 'H025' //彩蛋
-                if  GetRandomReal(0,1) <= 0.6
-                    if  DzPlayerLv(Player(pid)) >= 4
-                        if  GameLevel >= 2
+                if  DzPlayerLv(Player(pid)) >= 4
+                    if  GameLevel >= 2
+                        if  GetRandomReal(0,1) <= 0.6
                             if  GetPlayerTechCount(Player(pid),'RDAN',true) == 0
                                 SetDzPlayerData(pid,15,14,14)
                                 SetPlayerTechResearchedEx(Player(pid),'RDAN')
                                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000报仇雪恨|r（永久存档）！")
                             endif
                         else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000报仇雪恨|r，但可惜难度不够要求！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000报仇雪恨|r，但可惜运气太差了没激活存档！")
                         endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000报仇雪恨|r，但可惜地图等级不够要求！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000报仇雪恨|r，但可惜难度不够要求！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000报仇雪恨|r，但可惜运气太差了没激活存档！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000报仇雪恨|r，但可惜地图等级不够要求！")
                 endif
             endif
         endif
