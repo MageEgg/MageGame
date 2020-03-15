@@ -101,14 +101,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(210,13,0,0,0,0,Buy_Unit,'AT1N',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")
         InitAttackUnitChallengeStateData(210,14,0,0,0,0,Buy_Unit,'AT1O',1,0,0,"|CffFFD24D挑战奖励：|r|n武灵等级|Cffffc926+1|r。|Cffcccccc点击法宝|r【F4】|Cffcccccc查看。|r")*/
 
-        InitAttackUnitChallengeStateData(220,0,0,0,0,0,Buy_Unit,'AT2A',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【半人福祸】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,1,0,0,0,0,Buy_Unit,'AT2B',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【哪吒闹海】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,2,0,0,0,0,Buy_Unit,'AT2C',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【武破四魔将】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,3,0,0,0,0,Buy_Unit,'AT2D',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【九曲黄河阵】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,4,0,0,0,0,Buy_Unit,'AT2E',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【土行孙归伏】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,5,0,0,0,0,Buy_Unit,'AT2F',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【愚孝愚亲】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,6,0,0,0,0,Buy_Unit,'AT2G',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【诛仙阵斗法】|r的进入资格。")
-        InitAttackUnitChallengeStateData(220,7,0,0,0,0,Buy_Unit,'AT2H',1,0,0,"|CffFFD24D挑战奖励：|r|n获得|Cffffc926副本【收梅山七怪】|r的进入资格。")
+        InitAttackUnitChallengeStateData(220,0,0,10,0,0,Buy_Unit,'AT2A',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        InitAttackUnitChallengeStateData(220,1,0,10,0,0,Buy_Unit,'AT2B',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        InitAttackUnitChallengeStateData(220,2,0,10,0,0,Buy_Unit,'AT2C',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        InitAttackUnitChallengeStateData(220,3,0,10,0,0,Buy_Unit,'AT2D',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        /*InitAttackUnitChallengeStateData(220,4,0,10,0,0,Buy_Unit,'AT2E',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        InitAttackUnitChallengeStateData(220,5,0,10,0,0,Buy_Unit,'AT2F',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        InitAttackUnitChallengeStateData(220,6,0,10,0,0,Buy_Unit,'AT2G',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        InitAttackUnitChallengeStateData(220,7,0,10,0,0,Buy_Unit,'AT2H',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")*/
 
         //山灵
         InitAttackUnitChallengeCombatData(1,0,360,1800,4500,8900,17000,25000,43000,77000,110000,140000,200000,250000)
