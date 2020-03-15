@@ -778,7 +778,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y1 = GetUnitY(u1)
         real ang = Atan2(y2-y1,x2-x1)
         CreateTmPublic(u1,"effect_fense-lizi-toushewu.mdl",x1,y1,x2,y2,damage,3,15,210,900,0.025,70,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,'S074')
-        AddUnitStateExTimer(u1,13,20,4.5)
+        AddUnitStateExTimer(u1,16,10,4.5)
         flush locals
     endfunction
 
