@@ -242,7 +242,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     AddAttackUnitChallengeStateStock(pid,0,num)
                 end
                 AddAttackUnitChallengeStateStock(pid,210,0)
-                //AddAttackUnitChallengeStateStock(pid,220,0)
+                AddAttackUnitChallengeStateStock(pid,220,0)
                 
                 //AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n|n"+AttackUnitChallengeStateTypeString[200][0]
                 AddAttackUnitChallengeStateStock(pid,200,0)
