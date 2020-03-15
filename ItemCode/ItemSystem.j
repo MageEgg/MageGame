@@ -402,10 +402,14 @@ scope ItemSystem initializer InitItemSystem
              
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
-                if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 2000
-                    OpenGameTeamChallenge(pid,1,20)
+                if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 30000
+                    if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 20
+                        OpenGameTeamChallenge(pid,1,20)
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r玄铁不足20！")
+                    endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r玄铁不足2000！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r金币不足30000！")
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
