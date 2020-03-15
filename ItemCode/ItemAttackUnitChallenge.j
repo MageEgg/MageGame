@@ -126,7 +126,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,50,7000,22000,51000,96000,180000,350000,500000,720000,1100000,1500000,0,0)
         InitAttackUnitChallengeCombatData(6,50,9600,30000,69000,140000,240000,470000,680000,970000,1500000,2000000,0,0)
         InitAttackUnitChallengeCombatData(7,50,13000,39000,89000,170000,310000,610000,890000,1300000,1900000,2600000,0,0)
-        //副本解锁
+        //符印
         InitAttackUnitChallengeCombatData(1,150,270,1600,3600,6900,12000,20000,27000,60000,0,0,0,0)
         InitAttackUnitChallengeCombatData(2,150,400,2400,5300,11000,18000,29000,40000,90000,0,0,0,0)
         InitAttackUnitChallengeCombatData(3,150,580,3500,7800,16000,26000,43000,58000,140000,0,0,0,0)
@@ -177,7 +177,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             combat = 0
         elseif  zu == 210 //武灵
             combat = 50
-        elseif  zu == 220 //副本解锁
+        elseif  zu == 220 //符印
             combat = 150
         endif
         if  zu == 200 //山灵
@@ -647,7 +647,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             elseif  challenge == 2
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[器灵挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             elseif  challenge == 3
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[副本解锁挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[符印挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             elseif  challenge == 6
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[资源挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             endif
@@ -717,7 +717,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetObjectName(id)+"！")
                     AddAttackUnitChallengeStateLevel(pid,challenge)
                     ///////////////////////分割判断/////////////////////
-                    if  challenge == 3
+                    if  challenge == 3 //这里写符印奖励
                         //PlayerUnLockPlot.execute(pid,AttackUnitChallengePlayerWeiNum(challenge))
                         //if  AttackUnitChallengePlayerWeiNum(challenge) == 8
                         //    AddAttackUnitChallengeStateStock(pid,230,0)

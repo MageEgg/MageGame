@@ -548,6 +548,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                     IsGameOperaB = true
                     CreateGameOperaB.execute(AttackUnitNextTime[i])
                 endif
+                for pid = 0,3
+                    if  IsPlaying(pid) == true
+                        AddPlayerTechResearched(Player(pid),'RZ00',1)
+                    endif
+                end
             elseif  AttackUnitWN == 14
                 if  IsGameOperaC == false
                     IsGameOperaC = true
