@@ -108,7 +108,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(5,'RDAO','RDAO',0,0,0,0)
         RegisterShowSaveFrameData(5,'RDAP','RDAP',0,0,0,0)
         RegisterShowSaveFrameData(5,'RDAQ','RDAQ',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAR','RDAR',0,0,0,0)
+        //RegisterShowSaveFrameData(5,'RDAR','RDAR',0,0,0,0)
         RegisterShowSaveFrameData(5,'RDAS','RDAS',0,0,0,0)
         RegisterShowSaveFrameData(5,'RDAT','RDAT',0,0,0,0)
         RegisterShowSaveFrameData(5,'RDAU','RDAU',0,0,0,0)
