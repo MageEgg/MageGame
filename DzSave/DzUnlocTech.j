@@ -471,10 +471,10 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     //物品兑换注册
     function InitAllUnlocTechFuncItem()
 
-        ExChangeList('IY1C',4,2,1,1200,11,3,3)
-        ExChangeList('IY2C',3,2,1,300,12,3,3)
-        ExChangeList('IY3C',6,2,1,6000,13,3,3)
-        ExChangeList('IY4C',3,2,1,800,14,3,3)
+        ExChangeList('IY1C',4,2,1,2000,11,3,3)
+        ExChangeList('IY2C',3,2,1,200,12,3,3)
+        ExChangeList('IY3C',6,2,1,3000,13,3,3)
+        ExChangeList('IY4C',3,2,1,1200,14,3,3)
 
     endfunction
 
