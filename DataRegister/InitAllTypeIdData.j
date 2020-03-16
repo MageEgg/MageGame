@@ -150,7 +150,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY4A',"君临天下","ReplaceableTextures\\CommandButtons\\BTNRY4A.BLP","储存经验+20000")
         call InitTypeIdStrings('RY4B',"精英玩家","ReplaceableTextures\\CommandButtons\\BTNRY4B.BLP","")
         call InitTypeIdStrings('RY4C',"俯瞰寰宇","ReplaceableTextures\\CommandButtons\\BTNRY4C.BLP","")
-        call InitTypeIdStrings('RY4D',"金鼠送福","ReplaceableTextures\\CommandButtons\\BTNRY4D.BLP","每秒金币+188\n开局金币+28888\n伤害减免+30%\n伤害加成+50%\n开局获得招魂旛Lv5一个")
+        call InitTypeIdStrings('RY4D',"鼠年大吉","ReplaceableTextures\\CommandButtons\\BTNRY4D.BLP","每秒金币+188\n开局金币+28888\n伤害减免+30%\n伤害加成+50%\n开局获得招魂旛Lv5一个")
         call InitTypeIdStrings('RY4E',"铜皮锻骨","ReplaceableTextures\\CommandButtons\\BTNRY4E.BLP","开局金币+500")
         call InitTypeIdStrings('RY4F',"名将良才","ReplaceableTextures\\CommandButtons\\BTNRY4F.BLP","")
         call InitTypeIdStrings('RY4G',"绝世高人","ReplaceableTextures\\CommandButtons\\BTNRY4G.BLP","")
