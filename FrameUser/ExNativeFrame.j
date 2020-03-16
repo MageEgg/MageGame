@@ -1,5 +1,5 @@
 library ExNativeFrame uses GameFrame
-    FRAME IncEquipModel = 0
+    
     private FRAME Button = 0
 
     private FRAME Back = 0
@@ -9,24 +9,7 @@ library ExNativeFrame uses GameFrame
     private int origin = 0
 
 
-    //升级装备显示
-    function IncEquipModelFunc(int pid,int index)
-        if  GetLocalPlayer() == Player(pid)
-            if  index == 1
-                IncEquipModel.SetModel("war3mapImported\\ui_win.mdx",1,0)
-            else
-                IncEquipModel.SetModel("war3mapImported\\ui_lose.mdx",1,0)
-            endif
-            IncEquipModel.SetAnimate(0,true)
-        endif
-    endfunction
-    //给物品快速闪烁
-    function GiveItemShowModel(int pid,int index)
-        if  GetLocalPlayer() == Player(pid)
-            DzFrameSetModel( BUTTON_Model[701+index], "war3mapImported\\UI-ModalButtonOn.mdx", 0, 0 )
-            DzFrameSetAnimate(BUTTON_Model[701+index],0,true)
-        endif
-    endfunction
+    
       
     //鼠标显示符印
     function BoxShowRuneFrame(int pid,int index)
@@ -104,7 +87,7 @@ library ExNativeFrame uses GameFrame
     function AddUnitRune(unit wu,int id,int num)
         
         if  id == 'FY02'
-            AddUnitRealState(wu,31,4*num)
+            AddUnitRealState(wu,31,2.5*num)
         elseif  id == 'FY03'
             AddUnitRealState(wu,75,5*num)
             if  num == 1
@@ -168,21 +151,12 @@ library ExNativeFrame uses GameFrame
 
 
     function InitExNativeFrame()
-        IncEquipModel = FRAME.create()
-
-        IncEquipModel.frameid = FRAME.Tag("SPRITE","IncEquipModel",GameUI,IncEquipModel)
-        IncEquipModel.SetPoint(4,DzFrameGetItemBarButton(0),2,0.01,-0.02)
-        IncEquipModel.SetSize(0.000001,0.000001)
+        int index = 0
         
 
 
-        for i = 0,5
-            CreateModelEx(801+i,GameUI,TYPE_NOT,4,DzFrameGetItemBarButton(i),6,-0.004,-0.004,"")
-        end
 
-
-
-        int index = 0
+        
         for x = 0,2
             for y = 0,2
                 index = y * 3 + x + 1
