@@ -254,10 +254,12 @@ scope ItemSystem initializer InitItemSystem
             id = GetItemTypeId(it)
             if  id >= 'E101' and id <= 'E110'
                 use = 10000
-            elseif  id >= 'E111' and id <= 'E120'
+            elseif  id >= 'E111' and id <= 'E115'
                 use = 20000
-            else
+            elseif  id >= 'E116' and id <= 'E120'
                 use = 50000
+            else
+                use = 100000
             endif
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use
                 AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
