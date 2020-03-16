@@ -255,6 +255,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             name = "|cffff0000"+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name + "\n神通"
         else
+            name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name +"\n" +GetSkillGrade(level)
         endif
         
