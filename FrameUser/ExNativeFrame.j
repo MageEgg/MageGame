@@ -88,8 +88,6 @@ library ExNativeFrame uses GameFrame
         
         if  id == 'FY02'
             AddUnitRealState(wu,31,2.5*num)
-        elseif  id == 'FY03'
-            AddUnitRealState(wu,75,5*num)
             if  num == 1
                 if  GetUnitIntState(wu,id) == 2
                     AddUnitRealState(wu,27,6)
@@ -99,6 +97,8 @@ library ExNativeFrame uses GameFrame
                     AddUnitRealState(wu,27,-6)
                 endif
             endif
+        elseif  id == 'FY03'
+            AddUnitRealState(wu,75,5*num)
         endif
 
         AddUnitIntState(wu,id,num)
