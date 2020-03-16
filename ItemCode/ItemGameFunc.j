@@ -747,6 +747,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
 
     function PlayerUsesstrangeItem(int pid,int itid)
         int ran = 0
+        int i1 = 0
         if  itid == 'IN07'
             UnitItemIN07(pid)
         elseif  itid == 'IN08'
@@ -779,11 +780,12 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             AddUnitStateExTimer(Pu[1],46,25,30)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在30秒内增加25点杀敌金币！")
         elseif  itid == 'IN21'
-            if  GetRandomInt(1,100)<=20
+            i1 = GetRandomInt(1,100) 
+            if  i1 <= 20
                 ran = 888
-            elseif  GetRandomInt(1,100)<=62
+            elseif  i1 <= 70
                 ran = 2888
-            elseif  GetRandomInt(1,100)<=33
+            elseif  i1 <= 95
                 ran = 4888
             else
                 ran = 8888
@@ -791,34 +793,30 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN22'
-            if  AttackUnitWN >=5
-                if  GetRandomInt(1,100)<=20
-                    ran = 2888
-                elseif  GetRandomInt(1,100)<=62
-                    ran = 6888
-                elseif  GetRandomInt(1,100)<=33
-                    ran = 9888
-                else
-                    ran = 18888
-                endif
-            else
+            i1 = GetRandomInt(1,100) 
+            
+            if  i1 <= 20
+                ran = 2888
+            elseif  i1 <= 70
+                ran = 6888
+            elseif  i1 <= 95
                 ran = 9888
+            else
+                ran = 18888
             endif
+
             AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN23'
-            if  AttackUnitWN >=5
-                if  GetRandomInt(1,100)<=20
-                    ran = 8888
-                elseif  GetRandomInt(1,100)<=62
-                    ran = 28888
-                elseif  GetRandomInt(1,100)<=33
-                    ran = 48888
-                else
-                    ran = 88888
-                endif
-            else
+            i1 = GetRandomInt(1,100) 
+            if  i1 <= 20
+                ran = 8888
+            elseif  i1 <= 70
                 ran = 28888
+            elseif  i1 <= 95
+                ran = 48888
+            else
+                ran = 88888
             endif
             AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
