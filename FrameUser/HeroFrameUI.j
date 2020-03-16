@@ -20,11 +20,32 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     private FRAME ExpName = 0
 
     FRAME ExpModel = 0
+    FRAME IncEquipModel = 0
 
     private FRAME Button2 = 0
     private FRAME Back2 = 0
 
     int MaxHeroLevel = 10
+
+    //升级装备显示
+    function IncEquipModelFunc(int pid,int index)
+        if  GetLocalPlayer() == Player(pid)
+            if  index == 1
+                IncEquipModel.SetModel("war3mapImported\\ui_win.mdx",1,0)
+            else
+                IncEquipModel.SetModel("war3mapImported\\ui_lose.mdx",1,0)
+            endif
+            IncEquipModel.SetAnimate(0,true)
+        endif
+    endfunction
+    //给物品快速闪烁
+    function GiveItemShowModel(int pid,int index)
+        if  GetLocalPlayer() == Player(pid)
+            DzFrameSetModel( BUTTON_Model[801+index], "war3mapImported\\UI-ModalButtonOn.mdx", 0, 0 )
+            DzFrameSetAnimate(BUTTON_Model[801+index],0,true)
+        endif
+    endfunction
+
 
     //通用函数
     function HeroExpFrame(int pid,bool show)
@@ -430,6 +451,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateButton(702,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.048,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI001.blp")
         CreateButton(703,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.096,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI002.blp")
         CreateButton(704,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.144,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI006.blp")
+        CreateModelEx(704,BUTTON_Back[704][0],TYPE_NOT,6,BUTTON_Back[704][0],6,-0.004,-0.004,"")
         //CreateButton(705,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI003.blp")
         //CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
 
@@ -442,6 +464,35 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         Back2.show = false
 
         Button.show = false
+
+
+
+
+
+
+
+
+
+
+        int index = 0
+        IncEquipModel = FRAME.create()
+
+        IncEquipModel.frameid = FRAME.Tag("SPRITE","IncEquipModel",GameUI,IncEquipModel)
+        IncEquipModel.SetPoint(4,DzFrameGetItemBarButton(0),2,0.01,-0.02)
+        IncEquipModel.SetSize(0.000001,0.000001)
+        
+
+
+        for i2 = 0,5
+            CreateModelEx(801+i2,origin,TYPE_NOT,4,DzFrameGetItemBarButton(i2),6,-0.004,-0.004,"")
+        end
+        for jx = 0,3
+            for jy = 0,2
+                index = 810+jy * 4 + jx + 1
+                CreateModelEx(801+index,origin,TYPE_NOT,6,DzFrameGetCommandBarButton(jy, jx),6,-0.004,-0.004,"")
+            end
+        end
+
     endfunction
 
 

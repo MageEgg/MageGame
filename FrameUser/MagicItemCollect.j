@@ -893,6 +893,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r恭喜"+GetPlayerColorEx(pid)+GetPN(pid)+"|r获得法宝："+GetMagicItemName(value))
         
+        if  GetLocalPlayer() == Player(pid)
+            DzFrameSetModel( BUTTON_Model[704], "war3mapImported\\UI-ModalButtonOn.mdx", 0, 0 )
+            DzFrameSetAnimate(BUTTON_Model[704],0,true)
+        endif
+        
     endfunction
 
 

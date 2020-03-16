@@ -295,10 +295,12 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                 if  IsSaveFrameTechUnLock(pid,index) == true
                     SetTipsData(1,"",GetTypeIdName(id))
                     SetTipsData(10,"",GetTypeIdStateTips(id))
+                    SetTipsData(11,"",GetTypeIdTips(id))
                 else
                     SetTipsData(1,"","|cff808080[彩蛋]？？？")
                     SetTipsData(10,"","|cffffff00需求：|r|n |cff808080- 未知解锁条件|r")
                     SetTipsData(11,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
+                    SetTipsData(12,"","|cff808080"+GetTypeIdTips(id))
                 endif
             else
                 if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0

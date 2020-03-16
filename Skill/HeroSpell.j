@@ -156,9 +156,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function GetUnitBeAttackedNumb(unit wu)->int //被攻击
         int i = 1
-        if  GetUnitIntState(wu,'FY05')>=3
-            i = i + 1
-        endif
         return i
     endfunction
 
@@ -1159,7 +1156,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int id = 'S097'
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         
-        int Num = LoadInteger(ht,GetHandleId(wu),id) + GetUnitBeAttackedNumb(wu)
+        int Num = LoadInteger(ht,GetHandleId(wu),id) + 1
         
         SaveInteger(ht,GetHandleId(wu),id,Num)
         if  Num >= 16
