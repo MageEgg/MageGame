@@ -122,7 +122,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     if  ModuloInteger(tt,R2I(ound/time)) == 0
                         BJDebugMsg("伤害"+R2S(damage))
                         gg = CreateGroup()
-                        GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),200,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',1,852095))
+                        GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),350,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',1,852095))
                         UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         GroupClear(gg)
                         DestroyGroup(gg)
@@ -683,9 +683,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         damage = damage/num
         for i = 1,num
             ang = 360/num
-            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_fense-lizi-toushewu.mdl",x,y,i*ang,50,1.5)  
+            u2 = CreateTmUnit(GetOwningPlayer(u),"effect_fense-lizi-toushewu.mdl",x,y,i*ang,50,2)  
             //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
-            CreateSurroundOfUnitEx(u,u2,i*ang,160,14.4,0.02,1,damage/2)
+            CreateSurroundOfUnitEx(u,u2,i*ang,200,14.4,0.02,2,damage/4)
         end
         flush locals
     endfunction
