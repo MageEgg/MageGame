@@ -7,10 +7,12 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int gid=0
         int cid=0
         for sid = 1,AbilityUIMax
-            gid=sid+'AG00'
-            cid=sid+'AC00'
-            YDWESetUnitAbilityState(u, gid, 1,0)
-            YDWESetUnitAbilityState(u, cid, 1,0)
+            if  sid != 4
+                gid=sid+'AG00'
+                cid=sid+'AC00'
+                YDWESetUnitAbilityState(u, gid, 1,0)
+                YDWESetUnitAbilityState(u, cid, 1,0)
+            endif
         end
        
 

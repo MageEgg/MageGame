@@ -646,7 +646,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         elseif  index == 1
 
             AddUnitRealState(wu,19,-10)
-            AddUnitRealState(wu,9,45)
+            AddUnitRealState(wu,9,30)
             if  lv >= 2
                 AddUnitRealState(wu,9,-40)
             endif
@@ -661,7 +661,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             endif
         elseif  index == 2
 
-            AddUnitRealState(wu,9,-45)
+            AddUnitRealState(wu,9,-30)
             AddUnitRealState(wu,25,10)
   
             SetUnitIntState(wu,'S510',0)

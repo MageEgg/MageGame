@@ -65,7 +65,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
 
     function InitAttackUnitChallengeState()
         //轮数 次数 金币 玄铁 属性消耗序号 属性消耗值 挑战类型 技能ID 参数1 参数2 说明
-        InitAttackUnitChallengeStateData(0,0,0,0,0,0,Buy_Unit,'ATAA',6,0,0,"|CffFFD24D历练奖励：|r|n击杀金币|Cffffc926+3|r，分裂攻击|Cffffc926+20%|r")
+        InitAttackUnitChallengeStateData(0,0,0,0,0,0,Buy_Unit,'ATAA',6,0,0,"|CffFFD24D历练奖励：|r|n杀敌金币|Cffffc926+3|r，分裂攻击|Cffffc926+20%|r")
         InitAttackUnitChallengeStateData(0,1,0,0,0,0,Buy_Unit,'ATAB',1,0,0,"|CffFFD24D历练奖励：|r|n练功房怪物|Cffffc926+2|r，攻击吸血|Cffffc926+5%|r")
         InitAttackUnitChallengeStateData(0,2,0,0,0,0,Buy_Unit,'ATAC',6,0,0,"|CffFFD24D历练奖励：|r|n金币加成|Cffffc926+20%|r")
         InitAttackUnitChallengeStateData(0,3,0,0,0,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"|CffFFD24D历练奖励：|r|n解锁|Cffff0000副本挑战|r")
