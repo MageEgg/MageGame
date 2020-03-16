@@ -1219,162 +1219,162 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real attack = GetUnitState(u1,ConvertUnitState(0x12))+GetUnitState(u1,ConvertUnitState(0x13))
         BJDebugMsg("BossFuncSpell"+YDWEId2S(id))
         if  id == 'AZ0A'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_A,ang,damage,1.5,"BossFuncSpell1")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_A,ang,damage,2,"BossFuncSpell1")
         elseif  id == 'AZ0B'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell2")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,2,"BossFuncSpell2")
         elseif  id == 'AZ0C'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell3")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell3")
         elseif  id == 'AZ0D'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell4")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell4")
         elseif  id == 'AZ0E'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.1,"BossFuncSpell5")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.6,"BossFuncSpell5")
         elseif  id == 'AZ0F'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell6")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell6")
         elseif  id == 'AZ0G'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell7")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell7")
         elseif  id == 'AZ0H'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell8")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_B,ang,damage,2,"BossFuncSpell8")
         elseif  id == 'AZ0I'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell9")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,2,"BossFuncSpell9")
         elseif  id == 'AZ0J'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell10")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,2,"BossFuncSpell10")
         elseif  id == 'AZ0K'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell11")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell11")
         elseif  id == 'AZ0L'
-            damage = attack*8
+            damage = attack*12
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.3,"BossFuncSpell12")
         elseif  id == 'AZ0M'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell13")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_B,ang,damage,2,"BossFuncSpell13")
         elseif  id == 'AZ0N'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell14")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell14")
         elseif  id == 'AZ0O'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell15")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell15")
         elseif  id == 'AZ0P'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell16")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell16")
         elseif  id == 'AZ0Q'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell17")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_B,ang,damage,2,"BossFuncSpell17")
         elseif  id == 'AZ0R'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.5,"BossFuncSpell18")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,2,"BossFuncSpell18")
         elseif  id == 'AZ0S'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_500,ang,damage,1.5,"BossFuncSpell19")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_500,ang,damage,2,"BossFuncSpell19")
         elseif  id == 'AZ0T'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell20")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell20")
         elseif  id == 'AZ0U'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell21")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell21")
         elseif  id == 'AZ0V'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.3,"BossFuncSpell22")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_A2,ang,damage,1.8,"BossFuncSpell22")
         elseif  id == 'AZ0W'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_300,ang,damage,1.5,"BossFuncSpell23")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_300,ang,damage,2,"BossFuncSpell23")
         elseif  id == 'AZ0X'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell24")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_B,ang,damage,2,"BossFuncSpell24")
         elseif  id == 'AZ0Y'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.2,"BossFuncSpell25")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.7,"BossFuncSpell25")
         elseif  id == 'AZ0Z'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell26")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_B,ang,damage,2,"BossFuncSpell26")
         ////////////////////////////分割线////////////////////////////////
         elseif  id == 'AZ1A'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.3,"BossFuncSpell27")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.8,"BossFuncSpell27")
         elseif  id == 'AZ1B'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.5,"BossFuncSpell28")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,2,"BossFuncSpell28")
         elseif  id == 'AZ1C'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell29")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell29")
         elseif  id == 'AZ1D'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell30")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell30")
         elseif  id == 'AZ1E'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,0.8,"BossFuncSpell31")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.3,"BossFuncSpell31")
         elseif  id == 'AZ1F'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell32")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell32")
         elseif  id == 'AZ1G'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.3,"BossFuncSpell33")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.8,"BossFuncSpell33")
         elseif  id == 'AZ1H'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell34")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell34")
         elseif  id == 'AZ1I'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell35")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell35")
         elseif  id == 'AZ1J'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell36")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell36")
         elseif  id == 'AZ1K'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell37")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell37")
         elseif  id == 'AZ1L'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell38")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell38")
         elseif  id == 'AZ1M'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.4,"BossFuncSpell39")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.9,"BossFuncSpell39")
         elseif  id == 'AZ1N'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell40")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell40")
         elseif  id == 'AZ1O'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell41")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell41")
         elseif  id == 'AZ1P'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,0.8,"BossFuncSpell42")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.3,"BossFuncSpell42")
         elseif  id == 'AZ1Q'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.3,"BossFuncSpell43")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.8,"BossFuncSpell43")
         elseif  id == 'AZ1R'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell44")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell44")
         elseif  id == 'AZ1S'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell45")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell45")
         elseif  id == 'AZ1T'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.4,"BossFuncSpell46")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.9,"BossFuncSpell46")
         elseif  id == 'AZ1U'
-            damage = attack*8
-            BossFuncStart(u1,u2,LINE_B,ang,damage,1.5,"BossFuncSpell47")
+            damage = attack*12
+            BossFuncStart(u1,u2,LINE_B,ang,damage,2,"BossFuncSpell47")
         elseif  id == 'AZ1V'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell48")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell48")
         elseif  id == 'AZ1W'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell49")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell49")
         elseif  id == 'AZ1X'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell50")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell50")
         elseif  id == 'AZ1Y'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.5,"BossFuncSpell51")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell51")
         elseif  id == 'AZ1Z'
-            damage = attack*8
-            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.2,"BossFuncSpell52")
+            damage = attack*12
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell52")
 
         ////////////////////////////分割线////////////////////////////////
 
