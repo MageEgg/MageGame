@@ -64,10 +64,16 @@ scope DeathEvent initializer InitDeathEvent
     endfunction
     function RevivePlayerHeroTimer()
         int pid = GetHandleData(GetExpiredTimer())
+        real x = PlayerReviveX
+        real y = PlayerReviveY
         if  GameOverBoolJu == false
             //BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
-            ReviveHero(Pu[1],PlayerReviveX,PlayerReviveY,true)
-            SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
+            if  GameChallengPlayerBool[pid][4] == true
+                x = AttackRoomPostion[pid][1]
+                y = AttackRoomPostion[pid][2]
+            endif
+            ReviveHero(Pu[1],x,y,true)
+            SendPlayerUnit(pid,x,y)
             AddUnitStateExTimer(Pu[1],11,100,2)
             PlayerDeathBool = false
         endif
