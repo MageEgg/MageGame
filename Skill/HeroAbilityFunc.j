@@ -1093,7 +1093,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             damage = damage * 1.3
         endif
         AddUnitIntState(u1,'S521',1)
-        /*if  GetUnitIntState(u1,'S521')>=6
+        if  GetUnitIntState(u1,'S521')>=6
             if  DzPlayerLv(Player(pid)) >= 6
                 if  GetPlayerTechCount(Player(pid),'RDAR',true) == 0
                     SetDzPlayerData(pid,15,18,18)
@@ -1103,7 +1103,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000今晚的月亮好圆啊|r，但可惜地图等级不够要求！")
             endif
-        endif*/
+        endif
         TimerStart(1,true)
         {
             time = time - 1
