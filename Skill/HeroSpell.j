@@ -1099,7 +1099,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             bj_lastCreatedUnit=CreateTmUnit(GetOwningPlayer(u),"effect_az_kaer_x1.mdl",x1,y1,GetUnitFacing(u),100,1)                                        
             UnitAddEffectTimer(u,"effect_az_goods_tp_target(3).mdl",Num*0.75)
             //旋转中心单位，马甲，每圈时间，持续时间，经向速度,最远距离,伤害
-            AroundSystemfeng(u,bj_lastCreatedUnit,0.75,Num*0.75,20,320,damage)
+            AroundSystemfeng(u,bj_lastCreatedUnit,0.75,Num*0.75,20,320,damage/2)
         end
         flush locals
     endfunction

@@ -141,11 +141,14 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             GetDate(ServerTime)
         endfunction
         function UpdateTimeAll() //初始化
+        
+            int ttttime = 1584288000
+
             InitArray()
-            DzPuTime = 1578412800
+            DzPuTime = ttttime
             ServerTime = DzAPI_Map_GetGameStartTime()
             if  ServerTime < DzPuTime
-                ServerTime = DzPuTime + 86400 * 3
+                ServerTime = DzPuTime //+ 86400 * 3
             endif
             
             ServerTime = ServerTime + GetRandomInt(1,10)
@@ -170,7 +173,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
                 GamePuOverDay = 0
             endif
 
-            MeridiansDay = (ServerTime-1578412800)/86400 //经脉日
+            MeridiansDay = (ServerTime-ttttime)/86400 //经脉日
             if  MeridiansDay < 0
                 MeridiansDay = 0
             endif
