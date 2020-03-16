@@ -247,17 +247,17 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         int color = GetTypeIdData(id,101)
         string name = ""
 
-        
-        if  index == 5
+         if  index == 5
             name = "|cffffff00"+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name + "\n天赋"
         elseif  index == 4
             name = "|cffff0000"+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name + "\n神通"
         else
-            name = GetSkillNameColor(color)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
+            name = GetSkillNameColor(level)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name +"\n" +GetSkillGrade(level)
         endif
+
         
         
         if  GetTypeIdData(id,100) == 1
