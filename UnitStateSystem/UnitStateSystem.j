@@ -62,6 +62,11 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         
     end
     
+    function InitTypeStateEx(int id,real r1,real r5)
+        SetTypeIdReal(id,1,r1)
+        SetTypeIdReal(id,5,r5)
+    endfunction
+
     function InitTypeState1(int id,real data1,real data2,real data3,real data4,real data5,real data6,real data7,real data8,real data9,real data10)
         SetTypeIdReal(id,1,data1)
         SetTypeIdReal(id,2,data2)

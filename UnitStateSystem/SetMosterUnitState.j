@@ -218,26 +218,14 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
 
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
-            
-                if  i == 5
-                    value = value * GameReal[GameLevel][1]
-                elseif  i == 1
-                    value = value * GameReal[GameLevel][2]
-                elseif  i == 3
-                    value = value * GameReal[GameLevel][3]
-                elseif  i == 19
-                    value = value * GameReal[GameLevel][4]
-                elseif  i == 20
-                    value = value + GameReal[GameLevel][5]
-                elseif  i == 15
-                    value = value + GameReal[GameLevel][6]
-                elseif  i == 16
-                    value = value + GameReal[GameLevel][7]
+
+                 if  i == 17
+                    value = value + GameReal[GameLevel][1]
                 elseif  i == 18
-                    value = value + GameReal[GameLevel][8]
-                elseif  i == 4
-                    value = value + GameReal[GameLevel][9]
+                    value = value + GameReal[GameLevel][2]
                 endif
+
+                
             endif
             
             
@@ -330,25 +318,11 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
     
 
 
-    function InitMostetStateRatio(int level,real life,real attack,real def,real bj,real bs,real ws,real fs,real wk,real fk,real r1,real r2)
-        GameReal[level][1] = life
-        GameReal[level][2] = attack
-        GameReal[level][3] = def
-        GameReal[level][4] = bj
-        GameReal[level][5] = bs
-        GameReal[level][6] = ws
-        GameReal[level][7] = fs
-        GameReal[level][8] = wk
-        GameReal[level][9] = fk
-        GameReal[level][10] = r1
-        GameReal[level][11] = r2
+    function InitMostetStateRatio(int level,real r1,real r2)
+        GameReal[level][1] = r1
+        GameReal[level][2] = r2
     endfunction
     function UnitStateSetInit()
-        InitMostetStateRatio(1,1,1,1,1,1,0,0,0,0,0,0)
-        InitMostetStateRatio(2,1.6,1.6,1,1,1,0,0,0,0,0,0)
-        InitMostetStateRatio(3,2.3,2.3,1.2,1.1,1,0,0,0,0,0,0)
-        InitMostetStateRatio(4,3.1,3.1,1.4,1.1,1,0,0,0,0,0,0)
-        InitMostetStateRatio(5,4,4,1.6,1.2,1,0,0,0,0,0,0)
     endfunction
 endlibrary
 

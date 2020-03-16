@@ -154,7 +154,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S501',index+1)
             SetAbilityCD_AG(wu,'AG05',0.5 )
             SetUnitAnimationByIndex(wu,3)
-            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_2.blp")
+            if  GetLocalPlayer() == GetOwningPlayer(wu)
+                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_2.blp")
+            endif
         elseif  index == 1
             if  lv >= 3
                 damage = damage * 2
@@ -163,13 +165,17 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S501',index+1)
             SetAbilityCD_AG(wu,'AG05',0.1)
             SetUnitAnimationByIndex(wu,4)
-            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_3.blp")
+            if  GetLocalPlayer() == GetOwningPlayer(wu)
+                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_3.blp")
+            endif
         elseif  index == 2
             SpellS501_1(wu,x1,y1,damage,lv)
             SetUnitIntState(wu,'S501',0)
             SetUnitAnimationByIndex(wu,8)
             SetAbilityCD_AG(wu,'AG05',12)
-            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
+            if  GetLocalPlayer() == GetOwningPlayer(wu)
+                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
+            endif
         endif
 
         flush locals
@@ -633,7 +639,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             DzSetUnitModel( wu, "Hero_yangjian_Dragon.mdl" )
             SetUnitScale(wu,0.3,0.3,0.3)
 
-            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_2.blp")
+            if  GetLocalPlayer() == GetOwningPlayer(wu)
+                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_2.blp")
+            endif
             
         elseif  index == 1
 
@@ -648,7 +656,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S510',2)
             DzSetUnitModel( wu, "Hero_yangjian_Tiger.mdl" )
             SetUnitScale(wu,1.5,1.5,1.5)
-            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_3.blp")
+            if  GetLocalPlayer() == GetOwningPlayer(wu)
+                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_3.blp")
+            endif
         elseif  index == 2
 
             AddUnitRealState(wu,9,-45)
@@ -657,7 +667,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             SetUnitIntState(wu,'S510',0)
             DzSetUnitModel( wu, "H010.mdl" )
             SetUnitScale(wu,1.0,1.0,1.0)
-            YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_1.blp")
+            if  GetLocalPlayer() == GetOwningPlayer(wu)
+                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS510_1.blp")
+            endif
         endif
     endfunction
 
