@@ -1826,7 +1826,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int n = num
         TimerStart(time,true)
         {
-
+            LocAddNewDamageTextEffect(GetUnitX(u1),GetUnitY(u1),0,"多重施法",1.2)
             SpellHeroSkillAction(u1,u2,x,y,i1,i2)
             n = n - 1
             if  n <= 0
