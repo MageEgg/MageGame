@@ -893,7 +893,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(17,'IP03',1)
             RegisterItemPool(17,'IN08',2)
             RegisterItemPool(17,'IN13',6)
-            RegisterItemPool(17,'IN23',2)
+            RegisterItemPool(17,'IN23',2)//大金矿
             RegisterItemPool(17,'IN34',6)
             RegisterItemPool(17,'IN37',6)
             RegisterItemPool(17,'IN40',4)

@@ -791,26 +791,34 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN22'
-            if  GetRandomInt(1,100)<=20
-                ran = 2888
-            elseif  GetRandomInt(1,100)<=62
-                ran = 6888
-            elseif  GetRandomInt(1,100)<=33
-                ran = 9888
+            if  AttackUnitWN >=5
+                if  GetRandomInt(1,100)<=20
+                    ran = 2888
+                elseif  GetRandomInt(1,100)<=62
+                    ran = 6888
+                elseif  GetRandomInt(1,100)<=33
+                    ran = 9888
+                else
+                    ran = 18888
+                endif
             else
-                ran = 18888
+                ran = 9888
             endif
             AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
         elseif  itid == 'IN23'
-            if  GetRandomInt(1,100)<=20
-                ran = 8888
-            elseif  GetRandomInt(1,100)<=62
-                ran = 28888
-            elseif  GetRandomInt(1,100)<=33
-                ran = 48888
+            if  AttackUnitWN >=5
+                if  GetRandomInt(1,100)<=20
+                    ran = 8888
+                elseif  GetRandomInt(1,100)<=62
+                    ran = 28888
+                elseif  GetRandomInt(1,100)<=33
+                    ran = 48888
+                else
+                    ran = 88888
+                endif
             else
-                ran = 88888
+                ran = 28888
             endif
             AdjustPlayerStateBJ(ran, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，金币|cff00ff00+"+I2S(ran))
