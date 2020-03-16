@@ -262,7 +262,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                     SetUnitFacing(u3,ang/0.01745)
                     IndexGroup g = IndexGroup.create()
                     if  level >= 2
-                        GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,4,0))
+                        GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,1,0))
                     else
                         GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
                     endif
