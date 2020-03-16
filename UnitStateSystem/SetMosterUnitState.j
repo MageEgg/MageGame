@@ -253,6 +253,14 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         GameReal[level][2] = r2
     endfunction
     function UnitStateSetInit()
+        InitMostetStateRatio(1,0,0)
+        InitMostetStateRatio(2,50,33)
+        InitMostetStateRatio(3,120,54)
+        InitMostetStateRatio(4,220,68)
+        InitMostetStateRatio(5,340,77)
+        InitMostetStateRatio(6,500,83)
+        InitMostetStateRatio(7,680,87)
+
     endfunction
 endlibrary
 
