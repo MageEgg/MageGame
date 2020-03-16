@@ -451,14 +451,15 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateButton(702,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.048,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI001.blp")
         CreateButton(703,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.096,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI002.blp")
         CreateButton(704,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.144,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI006.blp")
-        CreateModelEx(704,BUTTON_Back[704][0],TYPE_NOT,6,BUTTON_Back[704][0],6,-0.004,-0.004,"")
+        CreateModelEx(704,BUTTON_Back[704][0],TYPE_NOT,4,BUTTON_Back[704][0],4,-0.0185,-0.0185,"war3mapImported\\UI-ModalButtonOn.mdx")
         //CreateButton(705,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI003.blp")
         //CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
 
-
+        /*
         for i2 = 2,4
             DzFrameShow(BUTTON_Back[700+i2][0], false)
         end
+        */
 
         
         Back2.show = false
