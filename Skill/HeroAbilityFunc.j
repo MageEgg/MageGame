@@ -1403,15 +1403,12 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 3
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 2)
-                BJDebugMsg("CD6")
             elseif  lv >= 2
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 4)
-                BJDebugMsg("CD7")
             else
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
-                BJDebugMsg("CD8")
             endif
             SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage,lv)
         //DAMAGE_TYPE_ENHANCED
