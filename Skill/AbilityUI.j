@@ -246,14 +246,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function GetSkillNameEx(int id,int index,int level)->string
         int color = GetTypeIdData(id,101)
         string name = ""
+
+        
         if  index == 5
-            name = GetSkillNameColor(level)+GetTypeIdString(id,100)+"|r Lv."+I2S(level)+StateName[300+index]
-        else
-            name = GetSkillNameColor(level)+GetTypeIdString(id,100)+"|r"+StateName[300+index]
-        endif
-        if  index == 5
+            name = "|cffffff00"+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name + "\n天赋"
         elseif  index == 4
+            name = "|cffff0000"+GetTypeIdString(id,100)+"|r"+StateName[300+index]
             name = name + "\n神通"
         else
             name = name +"\n" +GetSkillGrade(level)

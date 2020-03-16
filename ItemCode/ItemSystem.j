@@ -458,6 +458,11 @@ scope ItemSystem initializer InitItemSystem
                 endif
 
             endif
+        elseif  itemid == 'IY00'
+            if  GetLocalPlayer() == Player(pid) 
+                ClearSelection()
+                SelectUnit(Pu[41],true)
+            endif
         elseif  itemid >= 'IY1A' and itemid <= 'IY5Z'//积分兑换
             if  IsCanExChange(pid,itemid) == true
                 ExChangeItem(pid,itemid)
