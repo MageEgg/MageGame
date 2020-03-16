@@ -11,24 +11,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = value * valv
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 5
-                    value = value * GameReal[GameLevel][1]
-                elseif  i == 1
-                    value = value * GameReal[GameLevel][2]
-                elseif  i == 3
-                    value = value * GameReal[GameLevel][3]
-                elseif  i == 19
-                    value = value * GameReal[GameLevel][4]
-                elseif  i == 20
-                    value = value + GameReal[GameLevel][5]
-                elseif  i == 15
-                    value = value + GameReal[GameLevel][6]
-                elseif  i == 16
-                    value = value + GameReal[GameLevel][7]
+                if  i == 17
+                    value = value + GameReal[GameLevel][1]
                 elseif  i == 18
-                    value = value + GameReal[GameLevel][8]
-                elseif  i == 4
-                    value = value + GameReal[GameLevel][9]
+                    value = value + GameReal[GameLevel][2]
                 endif
             endif
 
@@ -52,24 +38,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
 
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 5
-                    value = value * GameReal[GameLevel][1]
-                elseif  i == 1
-                    value = value * GameReal[GameLevel][2]
-                elseif  i == 3
-                    value = value * GameReal[GameLevel][3]
-                elseif  i == 19
-                    value = value * GameReal[GameLevel][4]
-                elseif  i == 20
-                    value = value + GameReal[GameLevel][5]
-                elseif  i == 15
-                    value = value + GameReal[GameLevel][6]
-                elseif  i == 16
-                    value = value + GameReal[GameLevel][7]
+                if  i == 17
+                    value = value + GameReal[GameLevel][1]
                 elseif  i == 18
-                    value = value + GameReal[GameLevel][8]
-                elseif  i == 4
-                    value = value + GameReal[GameLevel][9]
+                    value = value + GameReal[GameLevel][2]
                 endif
             endif
 
@@ -91,24 +63,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 5
-                    value = value * GameReal[GameLevel][1]
-                elseif  i == 1
-                    value = value * GameReal[GameLevel][2]
-                elseif  i == 3
-                    value = value * GameReal[GameLevel][3]
-                elseif  i == 19
-                    value = value * GameReal[GameLevel][4]
-                elseif  i == 20
-                    value = value + GameReal[GameLevel][5]
-                elseif  i == 15
-                    value = value + GameReal[GameLevel][6]
-                elseif  i == 16
-                    value = value + GameReal[GameLevel][7]
+                if  i == 17
+                    value = value + GameReal[GameLevel][1]
                 elseif  i == 18
-                    value = value + GameReal[GameLevel][8]
-                elseif  i == 4
-                    value = value + GameReal[GameLevel][9]
+                    value = value + GameReal[GameLevel][2]
                 endif
             endif
             if  value != 0
@@ -138,24 +96,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 5
-                    value = value * GameReal[GameLevel][1]
-                elseif  i == 1
-                    value = value * GameReal[GameLevel][2]
-                elseif  i == 3
-                    value = value * GameReal[GameLevel][3]
-                elseif  i == 19
-                    value = value * GameReal[GameLevel][4]
-                elseif  i == 20
-                    value = value + GameReal[GameLevel][5]
-                elseif  i == 15
-                    value = value + GameReal[GameLevel][6]
-                elseif  i == 16
-                    value = value + GameReal[GameLevel][7]
+                if  i == 17
+                    value = value + GameReal[GameLevel][1]
                 elseif  i == 18
-                    value = value + GameReal[GameLevel][8]
-                elseif  i == 4
-                    value = value + GameReal[GameLevel][9]
+                    value = value + GameReal[GameLevel][2]
                 endif
             endif
             if  value != 0
@@ -176,24 +120,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 5
-                    value = value * GameReal[GameLevel][1]
-                elseif  i == 1
-                    value = value * GameReal[GameLevel][2]
-                elseif  i == 3
-                    value = value * GameReal[GameLevel][3]
-                elseif  i == 19
-                    value = value * GameReal[GameLevel][4]
-                elseif  i == 20
-                    value = value + GameReal[GameLevel][5]
-                elseif  i == 15
-                    value = value + GameReal[GameLevel][6]
-                elseif  i == 16
-                    value = value + GameReal[GameLevel][7]
+                if  i == 17
+                    value = value + GameReal[GameLevel][1]
                 elseif  i == 18
-                    value = value + GameReal[GameLevel][8]
-                elseif  i == 4
-                    value = value + GameReal[GameLevel][9]
+                    value = value + GameReal[GameLevel][2]
                 endif
             endif
             if  value != 0
@@ -219,7 +149,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
 
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
 
-                 if  i == 17
+                if  i == 17
                     value = value + GameReal[GameLevel][1]
                 elseif  i == 18
                     value = value + GameReal[GameLevel][2]
