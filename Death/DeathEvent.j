@@ -112,6 +112,7 @@ scope DeathEvent initializer InitDeathEvent
     function PlayerUseGoldBox(int pid,int itemid)
         //使用招魂幡
         int gold = 0
+        int exp = 0
         int i1 = 0
         int i2 = 0
         int i3 = 0
@@ -120,53 +121,32 @@ scope DeathEvent initializer InitDeathEvent
             gold = GetRandomInt(3000,6000)
         elseif  itemid == 'I011'
             gold = GetRandomInt(7000,12000)
+            exp = 1000
         elseif  itemid == 'I012'
             gold = GetRandomInt(8000,13000)
+            exp = 2000
         elseif  itemid == 'I013'
             gold = GetRandomInt(9000,14000)
+            exp = 4000
         elseif  itemid == 'I014'
             gold = GetRandomInt(10000,15000)
+            exp = 7000
         elseif  itemid == 'I015'
             gold = GetRandomInt(12000,17000)
+            exp = 10000
+        endif
+
+
+        AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+        if  exp > 0
+            HeroAddExp( Pu[1], exp)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold)+"|cff00ff7f经验+"+I2S(exp))
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold))
         endif
         
-        AddUnitRealState(Pu[1],2,i1)
-        AdjustPlayerStateBJ( gold , Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用"+GetObjectName(itemid)+" |cffffcc00金币+"+I2S(gold))
-        if  GetRandomInt(1,100) <= 40
-            if  itemid == 'I010'
-                i1 = GetRandomInt(300,700)
-                i2 = GetRandomInt(300,500)
-                i3 = GetRandomInt(7000,13000)
-            elseif  itemid == 'I011'
-                i1 = GetRandomInt(1000,2000)
-                i2 = GetRandomInt(900,1500)
-                i3 = GetRandomInt(20000,40000)
-            elseif  itemid == 'I012'
-                i1 = GetRandomInt(1500,3500)
-                i2 = GetRandomInt(1500,2500)
-                i3 = GetRandomInt(40000,60000)
-            elseif  itemid == 'I013'
-                i1 = GetRandomInt(3000,7000)
-                i2 = GetRandomInt(3000,5000)
-                i3 = GetRandomInt(70000,130000)
-            elseif  itemid == 'I014'
-                i1 = GetRandomInt(7000,13000)
-                i2 = GetRandomInt(6000,10000)
-                i3 = GetRandomInt(150000,250000)
-            elseif  itemid == 'I015'
-                i1 = GetRandomInt(15000,25000)
-                i2 = GetRandomInt(12000,20000)
-                i3 = GetRandomInt(300000,500000)   
-            endif
-            AddUnitRealState(Pu[1],1,i1)
-            AddUnitRealState(Pu[1],2,i2)
-            AddUnitRealState(Pu[1],5,i3)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：|r人品爆发！获得了额外属性奖励：|r")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"攻击+"+I2S(i1))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"业力+"+I2S(i2))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"生命+"+I2S(i3))
-        endif
+        
+        
     endfunction
 
     function PlayerItemGrowFunc(int pid,item it,int exp)->bool
@@ -441,8 +421,6 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'u001' and uid <= 'u004'
             SetAttackRoomUnitId(pid,'g00A'+ (uid - 'u000'))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！练功房内资源怪提升！")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r送宝金蟾挑战成功！奖励 金币x"+I2S((uid-'u000')*1000))
-            AdjustPlayerStateBJ( (uid-'u000')*1000 ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
             
 
             if  uid == 'u001'//占星NPC
@@ -611,7 +589,7 @@ scope DeathEvent initializer InitDeathEvent
         int pid2 = GetPlayerId(GetOwningPlayer(u2))
         int uid = GetUnitTypeId(u1)
         int uid2 = GetUnitTypeId(u2)
-        if  pid <= 5//玩家类型死亡
+        if  pid <= 3//玩家类型死亡
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
                     if  SpellS529Spell(u1) == false
