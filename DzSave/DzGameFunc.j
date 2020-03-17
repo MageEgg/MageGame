@@ -216,7 +216,7 @@ piece DzGameFunc
         end
         BJDebugMsg("玩家Pid"+I2S(pid)+"当前所有英雄熟练度经验总和为:"+I2S(allexp)+"")
         if  allexp > maxexp
-            a
+            
         endif
         InitDzHeroExpDataEx(pid)
     endfunction
