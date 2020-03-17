@@ -84,7 +84,7 @@ call InitAbilityData('S509',2,0,1,0.8,0,0,0,0,0,6,0,"奕剑之道","使用后|Cf
 call InitAbilityData('S510',2,0,0,0,0,0,0,0,0,2,1,"八九玄功","使用后依次|Cffffc926变幻形态|r，并获得相应加成：\n幽冥龙形态：暴击|Cffffc926+10%|r|Cfff0f0f0|r\n赤炎虎形态：攻速|Cffffc926+30%|r|Cfff0f0f0|r\n人形态：|Cfff0f0f0冷却缩减|r|Cffffc926+10%|r","ReplaceableTextures\\CommandButtons\\BTNS510_1.blp")
 call InitAbilityData('S511',1,0,0,0,0,0,0,0,0,0,1,"命途多舛","释放主动技能|Cffffc92630%|r几率大成功，该伤害提高|Cffffc92670%|r。","ReplaceableTextures\\CommandButtons\\BTNS511.blp")
 call InitAbilityData('S512',7,0,1,6.25,0,0,0,0,2,8,1,"天王宝塔","掷出天王宝塔镇压目标，造成|Cffffc926攻击*625%|r伤害。\n\n拥有法宝|Cffff0000玲珑黄金塔|r时，|Cffffc926伤害翻倍|r。","ReplaceableTextures\\CommandButtons\\BTNS512.blp")
-call InitAbilityData('S513',3,0,0,0,0,0,0,0,0,12,1,"身外法身","使用毫毛在目标地点|Cffffc926幻化一个法身|r，可|Cffffc926模仿你施放|r的|Cffffc926主动伤害技能|r，但只造成|Cffffd24d50%|r|Cfff0f0f0伤害|r。\n\n|Cffbbbbbb法身无法攻击，不可选取，不受攻击。|r","ReplaceableTextures\\CommandButtons\\BTNS513.blp")
+call InitAbilityData('S513',3,0,0,0,0,0,0,0,0,10,1,"身外法身","使用毫毛在目标地点|Cffffc926幻化一个法身|r，可|Cffffc926模仿你施放|r的|Cffffc926主动伤害技能|r，但只造成|Cffffd24d50%|r|Cfff0f0f0伤害|r。\n\n|Cffbbbbbb法身无法攻击，不可选取，不受攻击。|r","ReplaceableTextures\\CommandButtons\\BTNS513.blp")
 call InitAbilityData('S514',2,0,2,7.2,0,0,0,0,2,8,1,"冰封万里","对自身周围发动一次冰封术，造成|Cffffd24d业力*720%|r伤害\n\n|Cfff0f0f0拥有法宝|r|Cffffc926四海瓶|r|Cfff0f0f0时，|r额外发动一次冰暴，造成|Cffffd24d业力*625%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS514.blp")
 call InitAbilityData('S515',1,0,1,11.5,0,0,0,0,2,0,2,"日月珠","|CffFFC926每次施法|r凝聚|Cffffc9261|r颗|Cffffc926日月珠|r环绕自身，数量达到|Cffffc9264颗|r时，向攻击目标造成|Cffffc926攻击*1150%|r范围伤害。","ReplaceableTextures\\CommandButtons\\BTNS515.blp")
 call InitAbilityData('S516',2,0,0,0,0,0,0,0,0,15,0,"悔悟","|CffFFD24D自裁|r悔过，英雄立即死亡，所有人回复|Cffffd24d50%|r生命，|Cffffd24d6|r秒内提高|Cffffd24d30%|r技能伤害。","ReplaceableTextures\\CommandButtons\\BTNS516.blp")
@@ -107,13 +107,8 @@ call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9
 
 
 
-
-
-
-
-
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
-InitAbilityStringEx('S502',"附带2秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
+InitAbilityStringEx('S502',"附带1秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
 InitAbilityStringEx('S503',"冷却时间4秒","冷却时间2秒","冷却时间移除","","")
 InitAbilityStringEx('S504',"刺击次数+1","刺击次数+1","刺击次数+2","","")
 InitAbilityStringEx('S505',"幻化3个分身","幻化4个分身","幻化6个分身","","")
@@ -121,7 +116,7 @@ InitAbilityStringEx('S506',"斩杀血限提高至8%","斩杀血限提高至10%",
 InitAbilityStringEx('S507',"元素体继承100%攻速加成。","元素体继承攻击特效。","元素继承120%攻击力","元素体属于召唤物机制：类同魔兽的幽灵狼,重复触发和主动召唤都会替换场上已存在的召唤物。数量只受召唤物数量影响。（即法宝上召唤物数量+2，女娲这个技能就召3个）","")
 InitAbilityStringEx('S508',"每层妖狐印记提高9%攻速","每层妖狐印记提高12%攻速","镜花之舞伤害+80%","","")
 InitAbilityStringEx('S509',"心剑状态下闪避额外提高15%","攻击速度+40%","残影伤害+30%","","")
-InitAbilityStringEx('S510',"幽冥龙形态下，攻击速度+40%","赤炎虎形态下触发暴击时，对周围造成攻击*300%技能伤害，内置冷却2秒","人形态下，施放Q技能时对周围造成业力*875%伤害，内置冷却6秒","","")
+InitAbilityStringEx('S510',"幽冥龙形态下，攻击速度+45%","赤炎虎形态下触发暴击时，对周围造成攻击*300%技能伤害，内置冷却2秒","人形态下，施放Q技能时对周围造成业力*875%伤害，内置冷却6秒","","")
 InitAbilityStringEx('S511',"大成功几率+10%","大成功伤害+50%","大成功几率+20%","","")
 InitAbilityStringEx('S512',"宝塔伤害+20%","宝塔伤害+30%","宝塔伤害+40%，附带2秒眩晕效果","","")
 InitAbilityStringEx('S513',"法身释放技能造成60%伤害","法身释放技能造成70%伤害","法身释放技能造成100%伤害","","")
@@ -135,15 +130,13 @@ InitAbilityStringEx('S520',"持续时间内，每次攻击附加自身最大生�
 InitAbilityStringEx('S521',"月盈伤害+30%","月盈伤害+50%","攻击3%概率重置月盈冷却。","","")
 InitAbilityStringEx('S522',"攻击速度提高70%","攻击速度提高90%","攻击速度提高150%","","")
 InitAbilityStringEx('S523',"回复50%生命","攻击加成效果+30%","对目标周围单位造成攻击*750%技能伤害","","")
-InitAbilityStringEx('S524',"蛊惑造成伤害时，眩晕目标0.4秒","蛊惑造成伤害时，眩晕目标0.8秒","被眩晕的单位3秒内承受伤害+30%","","")
+InitAbilityStringEx('S524',"蛊惑造成伤害时，眩晕目标0.2秒","蛊惑间隔降低至0.5秒。","被眩晕的单位3秒内承受伤害+30%","","")
 InitAbilityStringEx('S525',"释放攒心钉时,3秒内增加自身15%技能伤害加成。","基础冷却降低2秒。","攒心钉数量+3","","")
 InitAbilityStringEx('S526',"冷却时间降低至4秒","冷却时间降低至2秒","当头棒击必定触发暴击","","")
 InitAbilityStringEx('S527',"处决目标获得神仙搭救，立即原地复活。","被处决队友8秒内提高24%攻击。","对处决目标600码范围内造成攻击*800%技能伤害","","")
 InitAbilityStringEx('S528',"勇猛：施放Q技能时，50%概率对周围造成攻击*1000%伤害。","技能伤害+15%","勇猛必定触发","","")
 InitAbilityStringEx('S529',"触发时对自身周围600码造成生命*60%伤害","被复活单位5s内攻击速度+30%，暴击率+10%。","冷却时间降低至10秒","","")
 InitAbilityStringEx('S530',"攻击必定命中。","触发致命一击时回复自身3%最大生命值","领悟三重射，可触发攻击特效","","")
-
-
 
 
 endfunction
