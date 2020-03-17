@@ -214,7 +214,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
                 IndexGroup g = IndexGroup.create()
                 if  level >= 2
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
                 else
                     GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 endif

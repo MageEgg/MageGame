@@ -918,7 +918,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(15,'IN20',2)
             RegisterItemPool(15,'IN21',12)
             RegisterItemPool(15,'IN22',2)
-            RegisterItemPool(15,'IN23',1)
+
             RegisterItemPool(15,'IN24',12)
             RegisterItemPool(15,'IN33',4)
             RegisterItemPool(15,'IN34',2)

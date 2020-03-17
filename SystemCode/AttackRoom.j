@@ -210,9 +210,9 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             RemoveUnit(Pu[27])
             
             Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np28',x+512,y+512,270)
-            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,1000)
+            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,800)
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-            SetTextTagText(AttackTexttag[pid],"0/1000",0.03)
+            SetTextTagText(AttackTexttag[pid],"0/800",0.03)
             SetTextTagPos(AttackTexttag[pid],x+432,y+412,0)
             UnitAddEffectOfNPC(Pu[27])
             
@@ -369,14 +369,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
-                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life+0.001))+"/1000",0.03)
+                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life+0.001))+"/800",0.03)
                     
                     //SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
                 
                     if  life+0.5 >= maxlife
                         
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-                        SetTextTagText(AttackTexttag[pid],"0/1000",0.03)
+                        SetTextTagText(AttackTexttag[pid],"0/800",0.03)
                         LocAddEffect(GetUnitX(Pu[27]),GetUnitY(Pu[27]),"effect_az_bw_lina_t1-2.mdl")
                         SoulTimer2FuncGivePrize(pid)
                     endif

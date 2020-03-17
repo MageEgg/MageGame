@@ -505,7 +505,7 @@ library GameChallenge9 uses GameChallengeBase
         if  GameTeamChallengeBool[1] == false and GameTeamChallengeBool[2] == false
             OpenGameTeamChallengeEx(pid,flag,time)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-30000)
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-20)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-10)
         elseif  GameTeamChallengeBool[1] == true and GameTeamChallengeBool[2] == false
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前已激活副本，可进入副本集合！")
         elseif  GameTeamChallengeBool[1] == false and GameTeamChallengeBool[2] == true
