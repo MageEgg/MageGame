@@ -268,7 +268,7 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(wu,CreateItem(next,GetUnitX(wu),GetUnitY(wu)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
             else    
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r附魔失败！金币不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r强化失败！金币不足"+I2S(use))
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包内没有可升级的饰品！")

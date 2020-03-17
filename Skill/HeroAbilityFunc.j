@@ -296,8 +296,12 @@ library HeroAbilityFunc uses OtherDamageTimer
         real y = GetUnitY(wu)
         LocAddEffectSetSize(x,y,"effect_tx_asad (24).mdl",1.8)
 
-        if  lv <=3
-            SetAbilityCD_AC(u1,'S503',8 - lv * 2)
+        if  lv == 3
+            SetAbilityCD_AC(u1,'S503',1)
+        elseif  lv == 2
+            SetAbilityCD_AC(u1,'S503',3)
+        elseif  lv== 1
+            SetAbilityCD_AC(u1,'S503',4)
         endif
 
         TimerStart(0.5,false)
