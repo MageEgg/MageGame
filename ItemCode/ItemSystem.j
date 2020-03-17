@@ -342,12 +342,7 @@ scope ItemSystem initializer InitItemSystem
             PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
         elseif  itemid == 'IP01'
             SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
-        elseif  itemid == 'IP02'
-            SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
-            ReCollectFrameResources(pid)
-        elseif  itemid == 'IP03'
-            SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
-            ReCollectFrameResources(pid)
+        
         elseif  itemid >= 'I021' and itemid <= 'I024'
             if  itemid == 'I021'
                 if  GetUnitIntState(Pu[1],108)>=10
@@ -527,8 +522,14 @@ scope ItemSystem initializer InitItemSystem
             PlayerHeroSkillMagic(u1,itemid - 'IS20',1,itemid)
         elseif  itemid >= 'IS24' and itemid <= 'IS26'
             PlayerHeroSkillMagic(u1,itemid - 'IS23',2,itemid)
-
-
+        elseif  itemid == 'IP02'//鸿蒙结晶补天石
+            SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+1)
+            ReCollectFrameResources(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用道具补天石，F4内查看！")
+        elseif  itemid == 'IP03'
+            SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
+            ReCollectFrameResources(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用道具鸿蒙结晶，F4内查看！")
         elseif  itemid >= 'E001' and itemid <= 'E024'
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid >= 'E201' and itemid <= 'E224'

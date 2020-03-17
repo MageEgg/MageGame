@@ -94,12 +94,14 @@ scope SelectHero
         if  dzlv >= 3
             AddUnitRealState(Pu[1],18,4)
         endif
+        /*
         if  dzlv >= 4
             AddUnitRealState(Pu[1],17,10)
         endif
         if  dzlv >= 5
             AddUnitRealState(Pu[1],19,5)
         endif
+        */
     endfunction
 
    
