@@ -91,35 +91,63 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         //RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
 
         
-        RegisterShowSaveFrameData(5,'RDAA','RDAA',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAB','RDAB',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAC','RDAC',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAD','RDAD',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAE','RDAE',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAF','RDAF',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAG','RDAG',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAH','RDAH',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAI','RDAI',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAJ','RDAJ',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAK','RDAK',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAL','RDAL',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAM','RDAM',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAN','RDAN',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAO','RDAO',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAP','RDAP',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAQ','RDAQ',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAR','RDAR',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RDAS','RDAS',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAT','RDAT',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAU','RDAU',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAV','RDAV',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAW','RDAW',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAX','RDAX',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RDAY','RDAY',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAA','RDAA',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAB','RDAB',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAC','RDAC',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAD','RDAD',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAE','RDAE',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAF','RDAF',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAG','RDAG',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAH','RDAH',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAI','RDAI',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAJ','RDAJ',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAK','RDAK',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAL','RDAL',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAM','RDAM',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAN','RDAN',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAO','RDAO',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAP','RDAP',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAQ','RDAQ',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAR','RDAR',0,0,0,0)
+        //RegisterShowSaveFrameData(0,'RDAS','RDAS',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAT','RDAT',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAU','RDAU',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAV','RDAV',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAW','RDAW',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAX','RDAX',0,0,0,0)
+        RegisterShowSaveFrameData(0,'RDAY','RDAY',0,0,0,0)
 
 
+        RegisterShowSaveFrameData(5,'RH01','RH01',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH02','RH02',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH03','RH03',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH04','RH04',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH05','RH05',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH06','RH06',0,0,0,0)
 
-
+        RegisterShowSaveFrameData(5,'RH08','RH08',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH09','RH09',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH10','RH10',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH11','RH11',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH12','RH12',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH13','RH13',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH14','RH14',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH15','RH15',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH16','RH16',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH17','RH17',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH18','RH18',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH19','RH19',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH20','RH20',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH21','RH21',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH22','RH22',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH23','RH23',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH24','RH24',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH25','RH25',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH26','RH26',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH27','RH27',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH28','RH28',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH29','RH29',0,0,0,0)
+        RegisterShowSaveFrameData(5,'RH30','RH30',0,0,0,0)
         
         RegisterShowSaveFrameData(6,'RJ1V','RJ1V',0,0,0,0)
         RegisterShowSaveFrameData(6,'RJ1W','RJ1W',0,0,0,0)
@@ -256,7 +284,13 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         endif
     endfunction
 
-    
+    function GetShowLevelTip(int lv,int now)->string
+        if  now >= lv
+            return "Lv."+I2S(lv)
+        else
+            return "|cff808080Lv."+I2S(lv)
+        endif
+    endfunction
 
     //显示说明
     function BoxShowSaveFrame(int pid,int index)
@@ -268,6 +302,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         int unlock = 0
         string tech = ""
         int lv = 0
+        int uid = 0
+        int exp = 0
+        int use = 0
         //BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
@@ -292,6 +329,42 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     h = h + 1
                 end
             elseif  page == 5
+                uid = id-'RH00'+'H000'
+                lv = GetDzHeroExpLevel(pid,uid)
+                use = (lv+1) * 12
+                exp = GetDzHeroExp(pid,uid)
+                if  use > 96
+                    use = 96
+                endif
+                if  exp > 96
+                    exp = 96
+                endif
+
+                
+                if  lv == 5
+                    SetTipsData(1,"",GetTypeIdName(id)+" Lv.Max")
+                else
+                    SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
+                endif
+
+                SetTipsData(10,"","|cff808080熟练度：|r")
+
+                SetTipsData(11,"","|cff00ff00"+I2S(exp*10)+"|r/"+I2S(use*10)+"\n ")
+
+
+                SetTipsData(12,"",GetShowLevelTip(1,lv)+"：提高该英雄5%伤害加成")
+                SetTipsData(13,"",GetShowLevelTip(2,lv)+"：提高该英雄3%伤害减免")
+                SetTipsData(14,"",GetShowLevelTip(3,lv)+"：提高该英雄4%伤害减免")
+                SetTipsData(15,"",GetShowLevelTip(4,lv)+"：提高该英雄10%伤害加成")
+                SetTipsData(16,"",GetShowLevelTip(5,lv)+"：提高该英雄5%暴击率")
+
+                SetTipsData(17,"","")
+                SetTipsData(18,"","|Cff00FF7F15波后游戏失败时增加难度*10熟练度。|r\n|Cff00FF7F每次通关增加难度*20熟练度。|r")
+                
+                
+                
+                
+            elseif  id >= 'RDAA' and id <= 'RDAZ'
                 if  IsSaveFrameTechUnLock(pid,index) == true
                     SetTipsData(1,"",GetTypeIdName(id))
                     SetTipsData(10,"",GetTypeIdStateTips(id))
@@ -389,7 +462,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                             endif
                         end
 
-                        if  page != 7
+                        if  page != 7 and page != 5
                             if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
                                 DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
                             endif
@@ -540,7 +613,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"光环")
         CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"翅膀")
         CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"神器")
-        CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"彩蛋")
+        CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
         CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
         CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"经脉")
 

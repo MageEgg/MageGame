@@ -83,6 +83,23 @@ scope SelectHero
         InitPlayerMonsterSoulSkill(pid)
 
         ShowPlayerSignInLastTime(pid) //登陆刷新
+
+        int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
+        if  dzlv >= 1
+            AddUnitRealState(Pu[1],17,5)
+        endif
+        if  dzlv >= 2
+            AddUnitRealState(Pu[1],18,3)
+        endif
+        if  dzlv >= 3
+            AddUnitRealState(Pu[1],18,4)
+        endif
+        if  dzlv >= 4
+            AddUnitRealState(Pu[1],17,10)
+        endif
+        if  dzlv >= 5
+            AddUnitRealState(Pu[1],19,5)
+        endif
     endfunction
 
    

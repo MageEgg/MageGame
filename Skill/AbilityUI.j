@@ -6,14 +6,21 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     function RefreshUnitSkill(unit u) //刷新所有技能CD
         int gid=0
         int cid=0
+
+        YDWESetUnitAbilityState(u, 'AG01', 1,0)
+        YDWESetUnitAbilityState(u, 'AC01', 1,0)
+        YDWESetUnitAbilityState(u, 'AG05', 1,0)
+        YDWESetUnitAbilityState(u, 'AC05', 1,0)
+        /*
         for sid = 1,AbilityUIMax
-            if  sid != 4
+            if  sid != 4 and sid != 6
                 gid=sid+'AG00'
                 cid=sid+'AC00'
                 YDWESetUnitAbilityState(u, gid, 1,0)
                 YDWESetUnitAbilityState(u, cid, 1,0)
             endif
         end
+        */
        
 
         u = null

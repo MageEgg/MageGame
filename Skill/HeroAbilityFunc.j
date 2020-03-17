@@ -842,7 +842,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         {
             real dis = Pdis(x1,y1,x2,y2)
             time = time + 1
-            if  dis > 50 or time > 166
+            if  dis > 50 and time < 166
                 real ang = GetUnitFacing(u2)*0.01745
                 face = Pang(x1,y1,x2,y2)
                 x1 = x1 + 20 * Cos(ang)
