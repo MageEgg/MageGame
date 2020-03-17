@@ -529,4 +529,3 @@ library DamageCode uses UnitStateSet
         endif
     endfunction
 endlibrary
-

@@ -331,7 +331,18 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             elseif  page == 5
                 uid = id-'RH00'+'H000'
                 lv = GetDzHeroExpLevel(pid,uid)
-                use = (lv+1) * 12
+                if  lv == 0
+                    use = 12
+                elseif  lv == 1
+                    use = 24
+                elseif  lv == 2
+                    use = 36
+                elseif  lv == 3
+                    use = 72
+                else
+                    use = 96
+                endif
+
                 exp = GetDzHeroExp(pid,uid)
                 if  use > 96
                     use = 96
@@ -343,13 +354,15 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                 
                 if  lv == 5
                     SetTipsData(1,"",GetTypeIdName(id)+" Lv.Max")
+                    SetTipsData(10,"","|cff808080熟练度：|r")
+                    SetTipsData(11,"","|cff00ff000|r/0\n ")
                 else
                     SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
+                    SetTipsData(10,"","|cff808080熟练度：|r")
+                    SetTipsData(11,"","|cff00ff00"+I2S(exp*10)+"|r/"+I2S(use*10)+"\n ")
                 endif
 
-                SetTipsData(10,"","|cff808080熟练度：|r")
-
-                SetTipsData(11,"","|cff00ff00"+I2S(exp*10)+"|r/"+I2S(use*10)+"\n ")
+                
 
 
                 SetTipsData(12,"",GetShowLevelTip(1,lv)+"：提高该英雄5%伤害加成")
@@ -434,6 +447,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         int id = 0
         int index = 0
         int techid = 0
+        int lv = 0
         if  GetLocalPlayer() == Player(pid)
 
             for x = 0,3 
@@ -447,25 +461,37 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
                     if  id > 0
                         
-                        for i = 1,5
-                            techid = GetShowSaveTech(page,index+step*4,i)
-                            if  techid == 0
-                                DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\alpha.tga",0)
-                                exitwhen true
-                            else
-                                if  GetPlayerTechCount(Player(pid),techid,true) > 0
-                                    DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\alpha.tga",0)
-                                else
-                                    DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_DisBack.tga",0)
-                                    exitwhen true
-                                endif
-                            endif
-                        end
 
+                        if  page == 5
+                            lv = GetDzHeroExpLevel(pid,id-'RH00'+'H000')
+                            if  lv > 0
+                                DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Hero_SaveLevel_"+I2S(lv)+".tga",0)
+                            else
+                                DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_DisBack.tga",0)
+                            endif
+                        else
+                            for i = 1,5
+                                techid = GetShowSaveTech(page,index+step*4,i)
+                                if  techid == 0
+                                    DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\alpha.tga",0)
+                                    exitwhen true
+                                else
+                                    if  GetPlayerTechCount(Player(pid),techid,true) > 0
+                                        DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\alpha.tga",0)
+                                    else
+                                        DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_DisBack.tga",0)
+                                        exitwhen true
+                                    endif
+                                endif
+                            end
+                        endif
+
+         
                         if  page != 7 and page != 5
                             if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
                                 DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
                             endif
+                        
                         endif
                         DzFrameSetTexture(BUTTON_Back[500+index][1],GetTypeIdIcon(id),0)
                         DzFrameSetText(BUTTON_Text[500+index],GetTypeIdColor(id)+GetTypeIdName(id))
