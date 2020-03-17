@@ -128,6 +128,119 @@ piece DzGameFunc
     endfunction
 
     //英雄熟练度
+    function FlushDzHeroExp(int pid,int uid) //清空
+        int id = GetDataBinaryConversion(uid,'H000')
+        //BJDebugMsg("清空的 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        int zu = 7
+        int wei = id
+        if  id > 30
+            zu = 8
+            wei = wei - 30
+        endif
+        SetDzPlayerData(pid,zu,wei,0)
+        SetDzPlayerData(pid,9,id,0)
+    endfunction
+
+    function GetDzHeroExp(int pid,int uid)->int //获取英雄经验
+        int id = GetDataBinaryConversion(uid,'H000')
+        //BJDebugMsg("GetDzHeroExp 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        int zu = 7
+        int wei = id
+        if  id > 30
+            zu = 8
+            wei = wei - 30
+        endif
+        if  id > 0
+            return GetDzPlayerData(pid,zu,wei)
+        else
+            return 0
+        endif
+    endfunction
+
+    function GetDzHeroExpLevel(int pid,int uid)->int
+        int id = GetDataBinaryConversion(uid,'H000')
+        //BJDebugMsg("GetDzHeroExpLevel 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        if  id > 0
+            return GetDzPlayerData(pid,9,id)
+        else
+            return 0
+        endif
+    endfunction
+
+    function GetDzHeroExpLevelCount(int pid,int level)->int
+        int cos = 0
+        for k = 0,5
+            for num = 0,9
+                if  GetDzHeroExpLevel(pid,'H000' + num + k * 256) == level
+                    cos = cos + 1
+                endif
+            end
+        end
+        return cos
+    endfunction
+
+    function GetDzHeroNeedExp(int level)->int
+        if  level == 1
+            return MaxHeroNeedExp0
+        elseif  level == 2
+            return MaxHeroNeedExp0 + MaxHeroNeedExp1 
+        elseif  level == 3
+            return MaxHeroNeedExp0 + MaxHeroNeedExp1 + MaxHeroNeedExp2
+        elseif  level == 4
+            return MaxHeroNeedExp0 + MaxHeroNeedExp1 + MaxHeroNeedExp2 + MaxHeroNeedExp3
+        elseif  level == 5
+            return MaxHeroNeedExp0 + MaxHeroNeedExp1 + MaxHeroNeedExp2 + MaxHeroNeedExp3 + MaxHeroNeedExp4
+        else
+            return 0
+        endif
+    endfunction
+
+    function InitDzHeroExpDataEx(int pid)
+        for level = 1,MaxHeroExpLevel
+            DzHeroExpLevelCount[level] = GetDzHeroExpLevelCount(pid,level)
+            DzHeroExpLevelCount[0] = DzHeroExpLevelCount[0] + DzHeroExpLevelCount[level]
+        end
+    endfunction
+    //初始化熟练度
+    function InitDzHeroExpData(int pid)
+        int game = DzPlayerGames(Player(pid))//局数
+        int maxexp = 2*MaxGameLevel*game //最大经验
+        int allexp = 0
+        int levelexp = 0
+        int nowexp = 0
+        BJDebugMsg("玩家Pid"+I2S(pid)+"当前局数最大经验为"+I2S(maxexp))
+        for k = 0,5
+            for num = 0,9
+                levelexp = GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H000' + num + k * 256))
+                nowexp = GetDzHeroExp(pid,'H000' + num + k * 256)
+                allexp = levelexp + nowexp
+                if  maxexp > 0
+                    maxexp = maxexp - allexp
+                    if  maxexp < 0
+                        if  k >= 3
+                            SetDzPlayerDataOnlyValue(pid,8,num + (k-3) * 10,0)
+                        else
+                            SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
+                        endif
+                        SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
+                    endif
+                else    
+                    if  k >= 3
+                        SetDzPlayerDataOnlyValue(pid,8,num + (k-3) * 10,0)
+                    else
+                        SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
+                    endif
+                    SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
+                endif
+            end
+        end
+        SaveDzPlayerDataOfGroup.execute(pid,7)
+        SaveDzPlayerDataOfGroup.execute(pid,8)
+        SaveDzPlayerDataOfGroup.execute(pid,9)
+        InitDzHeroExpDataEx(pid)
+    endfunction
+
+    //单英雄增加熟练度
     function AddDzHeroExp(unit u,int num)
         int pid = GetPlayerId(GetOwningPlayer(u))
         int id = GetDataBinaryConversion(GetUnitTypeId(u),'H000')
@@ -176,56 +289,7 @@ piece DzGameFunc
             SetDzPlayerData(pid,zu,wei,exp)
         endif
         BJDebugMsg("增加后熟练度等级为"+I2S(GetDzPlayerData(pid,9,id))+"级，经验为"+I2S(GetDzPlayerData(pid,zu,wei)))
-    endfunction
-
-    function GetDzHeroExp(int pid,int uid)->int
-        int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
-        int zu = 7
-        int wei = id
-        if  id > 30
-            zu = 8
-            wei = wei - 30
-        endif
-        return GetDzPlayerData(pid,zu,wei)
-    endfunction
-
-    function GetDzHeroExpLevel(int pid,int uid)->int
-        int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
-        return GetDzPlayerData(pid,9,id)
-    endfunction
-
-    function GetDzHeroExpLevelCount(int pid,int level)->int
-        int cos = 0
-        for num = 0,9
-            if  GetDzHeroExpLevel(pid,'H000'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H010'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H020'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H030'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H040'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H050'+num) == level
-                cos = cos + 1
-            endif
-        end
-        return cos
-    endfunction
-
-    function InitDzHeroExpData(int pid)
-        for level = 1,MaxHeroExpLevel
-            DzHeroExpLevelCount[level] = GetDzHeroExpLevelCount(pid,level)
-            DzHeroExpLevelCount[0] = DzHeroExpLevelCount[0] + DzHeroExpLevelCount[level]
-        end
+        InitDzHeroExpDataEx(pid)
     endfunction
 
 endpiece
