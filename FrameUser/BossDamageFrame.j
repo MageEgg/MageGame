@@ -214,6 +214,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
         real ch = 0
         int b = 1
         int gold = 0
+        real alldam = GetAllDamage()
         ShowBossDamageStringEx()
         for n = 1,4
             min = 0
@@ -226,16 +227,21 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
                 endif
             end
             if  hat != -1
+                gold = R2I((((PlayerBossDamageCos[hat]/alldam)*1400*PlayerNum)*(1+0.4*AttackUnitOperaBossDamageNum))+0.001)
                 PlayerBossDamageCos[hat] = 0
                 if  b == 1
                     UnitAddItemEx(PlayerUnit[hat][1],'IN31')
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN31')+"|r")
+                    AddPlayerState(hat,PLAYER_STATE_RESOURCE_GOLD,gold)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN31')+"和"+I2S(gold)+"金币|r")
                 else
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min))
+                    UnitAddItemEx(PlayerUnit[hat][1],'IN30')
+                    AddPlayerState(hat,PLAYER_STATE_RESOURCE_GOLD,gold)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,30,"|cffffcc00[伤害排行]：|r第"+I2S(b)+"名："+GetPlayerNameOfColor(hat)+" 伤害值:"+GetPlayerBossDamageShow(min)+"  |cffffff80奖励"+GetObjectName('IN30')+"和"+I2S(gold)+"金币|r")
                 endif
                 b = b + 1
             endif
         end
+        AttackUnitOperaBossDamageNum = 0
     endfunction
 
     function ShowBossDamageStringOperaB()

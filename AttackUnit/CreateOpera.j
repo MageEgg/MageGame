@@ -5,6 +5,7 @@ library CreateOpera uses DamageCode
     group AttackOperaGroup_C_1 = null
     
     real AttackUnitOperaBossDamage = 0
+    int AttackUnitOperaBossDamageNum = 0
 
     function KillAttackUnitGroupFunc()
         bool UI = false
@@ -68,16 +69,17 @@ library CreateOpera uses DamageCode
         real x = 1685
         real y = -3104
         real rac = 400
+        AttackUnitOperaBossDamageNum = AttackUnitOperaBossDamageNum + 1
         AddEffectInAreaSetSize(x,y,rac,1.5,8,"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl")
         for num = 1,5
             angle = GetRandomReal(0, 6.283) 
             distance = SquareRoot(GetRandomReal(1.0, rac * rac)) 
-            CreateItem('I00A',x + Cos(angle) * distance,y + Sin(angle) * distance)
+            //CreateItem('I00A',x + Cos(angle) * distance,y + Sin(angle) * distance)
         end
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  IsLocInRect(gg_rct_AttackOpera_A,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true
-                    DisplayTimedTextToPlayer(Player(pid),0,0,6,"|cffffcc00[新春]：|r|cffff3737运气太好了，年兽掉落了大量金币！！！|r")
+                    //DisplayTimedTextToPlayer(Player(pid),0,0,6,"|cffffcc00[新春]：|r|cffff3737运气太好了，年兽掉落了大量金币！！！|r")
                 endif
             endif
         end
@@ -131,6 +133,7 @@ library CreateOpera uses DamageCode
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[新春]：|r|cff00ff00成功把年兽赶跑了！！！")
+            AttackUnitOperaBossDamageNum = 10
         endif
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua1.mdx")
         AddEffectInArea(1685,-3104,480,18,"effect_yanhua2.mdx")
