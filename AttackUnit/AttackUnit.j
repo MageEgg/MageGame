@@ -622,7 +622,7 @@ library AttackUnit uses DamageCode,PassCheckMission
 
                         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1
                             AddUnitRealState(Pu[1],50,16)
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[鼠年大吉]：|r进攻怪来袭，奖励|cffffff80每秒金币+16|r+！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[鼠年大吉]：|r进攻怪来袭，奖励|cffffff80每秒金币+16|r！")
                         endif
                     endif
                 end     
