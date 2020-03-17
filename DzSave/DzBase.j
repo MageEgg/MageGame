@@ -48,4 +48,32 @@ library DzBase uses SystemCodes,DzAPI
         return data
     endfunction
 
+    function GetDataBinaryConversion(int data,int id)->int
+        int re = data - id
+        int cos = 9
+        if  re >= 0 and re <= 9
+            return re
+        elseif  re >= 256 and re <= 256+cos
+            return re-256+10
+        elseif  re >= 512 and re <= 512+cos
+            return re-512+20
+        elseif  re >= 768 and re <= 768+cos
+            return re-768+30
+        elseif  re >= 1024 and re <= 1024+cos
+            return re-1024+40
+        elseif  re >= 1280 and re <= 1280+cos
+            return re-1280+50
+        elseif  re >= 1536 and re <= 1536+cos
+            return re-1536+60
+        elseif  re >= 1792 and re <= 1792+cos
+            return re-1792+70
+        elseif  re >= 2048 and re <= 2048+cos
+            return re-2048+80
+        elseif  re >= 2304 and re <= 2304+cos
+            return re-2304+90
+        else
+            return 0
+        endif
+    endfunction
+
 endlibrary

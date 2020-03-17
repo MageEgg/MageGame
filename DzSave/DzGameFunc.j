@@ -127,5 +127,106 @@ piece DzGameFunc
         flush locals
     endfunction
 
+    //英雄熟练度
+    function AddDzHeroExp(unit u,int num)
+        int pid = GetPlayerId(GetOwningPlayer(u))
+        int id = GetDataBinaryConversion(GetUnitTypeId(u),'H000')
+        BJDebugMsg("英雄为："+YDWEId2S(GetUnitTypeId(u))+"，英雄熟练度引索："+I2S(id))
+        int exp = 0
+        int level = 0
+        int zu = 7
+        int wei = id
+        if  id > 30
+            zu = 8
+            wei = wei - 30
+        endif
+        exp = GetDzPlayerData(pid,zu,wei)
+        level = GetDzPlayerData(pid,9,id)
+        BJDebugMsg("当前熟练度等级为"+I2S(level)+"级，经验为"+I2S(exp))
+        exp = exp + num
+        if  level == 4
+            if  exp >= MaxHeroNeedExp4
+                exp = exp-MaxHeroNeedExp4
+                AddDzPlayerData(pid,9,id,1)
+            endif
+            SetDzPlayerData(pid,zu,wei,exp)
+        elseif  level == 3
+            if  exp >= MaxHeroNeedExp3
+                exp = exp-MaxHeroNeedExp3
+                AddDzPlayerData(pid,9,id,1)
+            endif
+            SetDzPlayerData(pid,zu,wei,exp)
+        elseif  level == 2
+            if  exp >= MaxHeroNeedExp2
+                exp = exp-MaxHeroNeedExp2
+                AddDzPlayerData(pid,9,id,1)
+            endif
+            SetDzPlayerData(pid,zu,wei,exp)
+        elseif  level == 1
+            if  exp >= MaxHeroNeedExp1
+                exp = exp-MaxHeroNeedExp1
+                AddDzPlayerData(pid,9,id,1)
+            endif
+            SetDzPlayerData(pid,zu,wei,exp)
+        elseif  level == 0
+            if  exp >= MaxHeroNeedExp0
+                exp = exp-MaxHeroNeedExp0
+                AddDzPlayerData(pid,9,id,1)
+            endif
+            SetDzPlayerData(pid,zu,wei,exp)
+        endif
+        BJDebugMsg("增加后熟练度等级为"+I2S(GetDzPlayerData(pid,9,id))+"级，经验为"+I2S(GetDzPlayerData(pid,zu,wei)))
+    endfunction
+
+    function GetDzHeroExp(int pid,int uid)->int
+        int id = GetDataBinaryConversion(uid,'H000')
+        BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        int zu = 7
+        int wei = id
+        if  id > 30
+            zu = 8
+            wei = wei - 30
+        endif
+        return GetDzPlayerData(pid,zu,wei)
+    endfunction
+
+    function GetDzHeroExpLevel(int pid,int uid)->int
+        int id = GetDataBinaryConversion(uid,'H000')
+        BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        return GetDzPlayerData(pid,9,id)
+    endfunction
+
+    function GetDzHeroExpLevelCount(int pid,int level)->int
+        int cos = 0
+        for num = 0,9
+            if  GetDzHeroExpLevel(pid,'H000'+num) == level
+                cos = cos + 1
+            endif
+            if  GetDzHeroExpLevel(pid,'H010'+num) == level
+                cos = cos + 1
+            endif
+            if  GetDzHeroExpLevel(pid,'H020'+num) == level
+                cos = cos + 1
+            endif
+            if  GetDzHeroExpLevel(pid,'H030'+num) == level
+                cos = cos + 1
+            endif
+            if  GetDzHeroExpLevel(pid,'H040'+num) == level
+                cos = cos + 1
+            endif
+            if  GetDzHeroExpLevel(pid,'H050'+num) == level
+                cos = cos + 1
+            endif
+        end
+        return cos
+    endfunction
+
+    function InitDzHeroExpData(int pid)
+        for level = 1,MaxHeroExpLevel
+            DzHeroExpLevelCount[level] = GetDzHeroExpLevelCount(pid,level)
+            DzHeroExpLevelCount[0] = DzHeroExpLevelCount[0] + DzHeroExpLevelCount[level]
+        end
+    endfunction
+
 endpiece
 

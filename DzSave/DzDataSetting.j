@@ -1,6 +1,20 @@
 library DzDataSetting uses DzBase
 
+    //////////////////////////////////////////////////////////
+    //使用的宏定义
     #define MaxGameLevel 5
+
+    #define MaxHeroExp 96 //最大经验
+    #define MaxHeroExpLevel 5 //最大等级
+    #define MaxHeroNeedExp0 12 //经验需求
+    #define MaxHeroNeedExp1 24 //经验需求
+    #define MaxHeroNeedExp2 36 //经验需求
+    #define MaxHeroNeedExp3 72 //经验需求
+    #define MaxHeroNeedExp4 96 //经验需求
+
+    int array DzHeroUseArrayInt[12][680]
+    #define DzHeroUseInt                DzHeroUseArrayInt[pid]
+    #define DzHeroExpLevelCount         DzHeroUseInt
     ///////////////////////////////////////////////////////////
     
     //请在这里记录注释存档数据
@@ -11,15 +25,15 @@ library DzDataSetting uses DzBase
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
     // 组6 20组 1经脉最大上限 2-9经脉 10+未使用
-    // 组7 未使用 12组
-    // 组8 未使用 12组
-    // 组9 未使用 12组
-    //组10 成就	30组							
-    //组11 光环	30组
-    //组12 翅膀	30组
-    //组13 神器	30组
-    //组14 称号	30组
-    //组15 彩蛋 30组
+    // 组7 英雄熟练度 30组
+    // 组8 英雄熟练度 30组
+    // 组9 熟练度等级 60组
+    // 组10 成就	30组							
+    // 组11 光环	30组
+    // 组12 翅膀	30组
+    // 组13 神器	30组
+    // 组14 称号	30组
+    // 组15 彩蛋    30组
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -34,9 +48,9 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(4) = 5
         DzDataGroupLength(5) = 6
         DzDataGroupLength(6) = 3
-        DzDataGroupLength(7) = 5
-        DzDataGroupLength(8) = 5
-        DzDataGroupLength(9) = 5
+        DzDataGroupLength(7) = 2
+        DzDataGroupLength(8) = 2
+        DzDataGroupLength(9) = 1
         DzDataGroupLength(10) = 2
         DzDataGroupLength(11) = 2
         DzDataGroupLength(12) = 2
@@ -115,11 +129,11 @@ library DzDataSetting uses DzBase
                 max = 0
             endif
         elseif  Group == 7
-            max = 0
+            max = MaxHeroExp
         elseif  Group == 8
-            max = 0
+            max = MaxHeroExp
         elseif  Group == 9
-            max = 0
+            max = MaxHeroExpLevel
         elseif  Group >= 10 and Group <= 15 //不用管
 
         elseif  Group > 15 //未使用
