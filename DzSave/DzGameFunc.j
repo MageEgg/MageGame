@@ -130,7 +130,7 @@ piece DzGameFunc
     //英雄熟练度
     function FlushDzHeroExp(int pid,int uid) //清空
         int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("清空的 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        //BJDebugMsg("清空的 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         int zu = 7
         int wei = id
         if  id > 30
@@ -143,7 +143,7 @@ piece DzGameFunc
 
     function GetDzHeroExp(int pid,int uid)->int //获取英雄经验
         int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        //BJDebugMsg("GetDzHeroExp 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         int zu = 7
         int wei = id
         if  id > 30
@@ -159,7 +159,7 @@ piece DzGameFunc
 
     function GetDzHeroExpLevel(int pid,int uid)->int
         int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        //BJDebugMsg("GetDzHeroExpLevel 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         if  id > 0
             return GetDzPlayerData(pid,9,id)
         else
@@ -208,24 +208,28 @@ piece DzGameFunc
         int allexp = 0
         int levelexp = 0
         int nowexp = 0
-        int zu = 7
         BJDebugMsg("玩家Pid"+I2S(pid)+"当前局数最大经验为"+I2S(maxexp))
         for k = 0,5
             for num = 0,9
                 levelexp = GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H000' + num + k * 256))
                 nowexp = GetDzHeroExp(pid,'H000' + num + k * 256)
                 allexp = levelexp + nowexp
-                if  k >= 3
-                    zu = 8
-                endif
                 if  maxexp > 0
                     maxexp = maxexp - allexp
                     if  maxexp < 0
-                        SetDzPlayerDataOnlyValue(pid,zu,num + k * 10,0)
+                        if  k >= 3
+                            SetDzPlayerDataOnlyValue(pid,8,num + (k-3) * 10,0)
+                        else
+                            SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
+                        endif
                         SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
                     endif
                 else    
-                    SetDzPlayerDataOnlyValue(pid,zu,num + k * 10,0)
+                    if  k >= 3
+                        SetDzPlayerDataOnlyValue(pid,8,num + (k-3) * 10,0)
+                    else
+                        SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
+                    endif
                     SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
                 endif
             end
