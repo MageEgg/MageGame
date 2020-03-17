@@ -683,6 +683,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
         if  GetRandomInt(1,100)<= ran
             BJDebugMsg("命途多舛 成功")
+            UnitAddTextPlayer(wu,GetOwningPlayer(wu),"大成功",0,255,0,255,90,0.023)
             return true
         else
             BJDebugMsg("命途多舛 失败")
