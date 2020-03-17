@@ -828,7 +828,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitPoolAddUnitType(HeroPool, 'H003', 1 )
             UnitPoolAddUnitType(HeroPool, 'H004', 1 )
             UnitPoolAddUnitType(HeroPool, 'H005', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H006', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H006', 1 )
             //UnitPoolAddUnitType(HeroPool, 'H007', 1 )
             UnitPoolAddUnitType(HeroPool, 'H008', 1 )
             UnitPoolAddUnitType(HeroPool, 'H009', 1 )
@@ -838,11 +838,11 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             UnitPoolAddUnitType(HeroPool, 'H013', 1 )
             UnitPoolAddUnitType(HeroPool, 'H014', 1 )
             UnitPoolAddUnitType(HeroPool, 'H015', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H016', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H017', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H016', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H017', 1 )
             UnitPoolAddUnitType(HeroPool, 'H018', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H019', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H020', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H019', 1 )
+            //UnitPoolAddUnitType(HeroPool, 'H020', 1 )
             UnitPoolAddUnitType(HeroPool, 'H021', 1 )
             UnitPoolAddUnitType(HeroPool, 'H022', 1 )
             UnitPoolAddUnitType(HeroPool, 'H023', 1 )
@@ -902,7 +902,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(17,'CS21',2)
             RegisterItemPool(17,'CS22',2)
             RegisterItemPool(17,'IP01',2)     
-                   
+
             //幸运星盒IN30注册
             RegisterItemPool(15,'IN07',3)
             RegisterItemPool(15,'IN08',1)
