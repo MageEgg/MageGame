@@ -107,7 +107,7 @@ call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
 InitAbilityStringEx('S502',"附带1秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
-InitAbilityStringEx('S503',"冷却时间4秒","冷却时间2秒","冷却时间移除","","")
+InitAbilityStringEx('S503',"冷却时间3秒","冷却时间1秒","冷却时间移除","","")
 InitAbilityStringEx('S504',"刺击次数+1","刺击次数+1","刺击次数+2","","")
 InitAbilityStringEx('S505',"幻化3个分身","幻化4个分身","幻化6个分身","","")
 InitAbilityStringEx('S506',"斩杀血限提高至8%","斩杀血限提高至10%","斩杀血限提高至15%","","")
