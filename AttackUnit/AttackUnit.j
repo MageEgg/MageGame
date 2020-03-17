@@ -619,8 +619,12 @@ library AttackUnit uses DamageCode,PassCheckMission
                         endif
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,cos)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r敌军发起进攻，每人获得"+I2S(cos)+"金币奖励。")
+
+                        if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1
+                            AddUnitRealState(Pu[1],50,16)
+                        endif
                     endif
-                end
+                end     
             else
                 for pid = 0,5
                     if  IsPlaying(pid) == true

@@ -425,6 +425,7 @@ library DzSave initializer InitDzData uses DzDataSetting
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         SaveDzServerTime(pid) //更新版本
+                        InitDzPlayerTG(pid) //加载通关
                         InitDzHeroExpData.execute(pid) //加载熟练度
                     endif
                 end

@@ -291,6 +291,29 @@ piece DzGameFunc
         BJDebugMsg("增加后熟练度等级为"+I2S(GetDzPlayerData(pid,9,id))+"级，经验为"+I2S(GetDzPlayerData(pid,zu,wei)))
         InitDzHeroExpDataEx(pid)
     endfunction
+    
+    //通关刷新
+    function InitDzPlayerTG(int pid)
+        int TGcos = GetDzPlayerData(pid,3,1) //通关总次数
+        int PGcos = DzPlayerGames(Player(pid)) //局数
+        int ndtg = 0
+        if  PGcos < TGcos
+            TGcos = PGcos
+            SetDzPlayerData(pid,3,1,TGcos)
+        endif
+        for NanDu = 1,MaxGameLevel
+            if  TGcos > 0
+                if  TGcos >= GetDzPlayerData(pid,3,NanDu+1)
+                    TGcos = TGcos - GetDzPlayerData(pid,3,NanDu+1)
+                else
+                    SetDzPlayerData(pid,3,NanDu+1,TGcos)
+                    TGcos = 0
+                endif
+            else
+                SetDzPlayerData(pid,3,NanDu+1,0)
+            endif
+        end
+    endfunction
 
 endpiece
 
