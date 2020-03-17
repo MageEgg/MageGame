@@ -585,7 +585,8 @@ scope DeathEvent initializer InitDeathEvent
 
         for pid = 0,3
             if  IsPlaying(pid) == true
-                AddDzHeroExp(Pu[1],1) //熟练度
+                AddDzHeroExp(Pu[1],2)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00增加"+GetUnitName(Pu[1])+"20点熟练度！|r")
             endif
         end
         
