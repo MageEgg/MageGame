@@ -585,12 +585,17 @@ scope DeathEvent initializer InitDeathEvent
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
+
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                AddDzHeroExp(Pu[1],1) //熟练度
+            endif
+        end
         
         TimerStart(5,false)
         {
-            for i = 0,5
-                CustomDefeatBJ(Player(i), "游戏结束！" )
-                
+            for pid = 0,3
+                CustomDefeatBJ(Player(pid), "游戏结束！" )
             end
             endtimer
         }
