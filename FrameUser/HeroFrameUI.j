@@ -220,8 +220,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 
 
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
-                SetBoardText(3,pid+2,GetTypeIdName('IJ5A'+num))
+                
             endif
+            SetBoardText(3,pid+2,GetTypeIdName('IJ5A'+num))
             //LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effectex_TParchive.mdl")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！境界突破成功！")
 
