@@ -709,7 +709,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 if  PlayerDeathBool == false
                     AddUnitStateExTimer(Pu[1],18,20,15)
                     
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加20%伤害减免！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在15秒内增加20%伤害减免！|r")
                 endif
             endif
         end

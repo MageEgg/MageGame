@@ -158,6 +158,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(6,'RY4D','RY4D',0,0,0,0)//238
         RegisterShowSaveFrameData(6,'RY3D','RY3D',0,0,0,0)//298
 
+        /*
         RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)
         RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)
         RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)
@@ -166,6 +167,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)
         RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)
         RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)
+        */
         
     endfunction
 
@@ -643,7 +645,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"神器")
         CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
         CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
-        CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"经脉")
+        CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
 
     endfunction
 
