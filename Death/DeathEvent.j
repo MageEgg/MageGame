@@ -568,10 +568,7 @@ scope DeathEvent initializer InitDeathEvent
                 AttackUnitWin()
             endif
         endif
-        ran = GetRandomInt(1,2)
-        for num = 1,ran
-            CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
-        end
+        CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
