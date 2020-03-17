@@ -247,7 +247,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
 
-                UnitAddAbility(Pu[42],'AZ40')
+                //UnitAddAbility(Pu[42],'AZ40')
             endif
         end
         //改境界战力说明
