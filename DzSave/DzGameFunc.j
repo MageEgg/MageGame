@@ -203,7 +203,7 @@ piece DzGameFunc
     endfunction
     //初始化熟练度
     function InitDzHeroExpData(int pid)
-        int game = DzPlayerGames(Player(pid))//局数
+        int game = DzPlayerGames(Player(pid))+1//局数
         int maxexp = 2*MaxGameLevel*game //最大经验
         int allexp = 0
         int levelexp = 0

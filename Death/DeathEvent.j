@@ -546,10 +546,7 @@ scope DeathEvent initializer InitDeathEvent
                 AttackUnitWin()
             endif
         endif
-        ran = GetRandomInt(1,2)
-        for num = 1,ran
-            CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
-        end
+        CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
@@ -565,8 +562,11 @@ scope DeathEvent initializer InitDeathEvent
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
 
         for pid = 0,3
-            if  IsPlaying(pid) == true
-                AddDzHeroExp(Pu[1],1) //熟练度
+            if  IsPlaying(pid) == true 
+                if  AttackUnitWN >= 15
+                    AddDzHeroExp(Pu[1],2)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00增加"+GetUnitName(Pu[1])+"20点熟练度！|r")
+                endif
             endif
         end
         
