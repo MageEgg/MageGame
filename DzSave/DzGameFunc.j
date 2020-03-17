@@ -128,6 +128,19 @@ piece DzGameFunc
     endfunction
 
     //英雄熟练度
+    function FlushDzHeroExp(int pid,int uid) //清空
+        int id = GetDataBinaryConversion(uid,'H000')
+        BJDebugMsg("清空的 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        int zu = 7
+        int wei = id
+        if  id > 30
+            zu = 8
+            wei = wei - 30
+        endif
+        SetDzPlayerData(pid,zu,wei,0)
+        SetDzPlayerData(pid,9,id,0)
+    endfunction
+
     function GetDzHeroExp(int pid,int uid)->int //获取英雄经验
         int id = GetDataBinaryConversion(uid,'H000')
         BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
@@ -137,36 +150,31 @@ piece DzGameFunc
             zu = 8
             wei = wei - 30
         endif
-        return GetDzPlayerData(pid,zu,wei)
+        if  id > 0
+            return GetDzPlayerData(pid,zu,wei)
+        else
+            return 0
+        endif
     endfunction
 
     function GetDzHeroExpLevel(int pid,int uid)->int
         int id = GetDataBinaryConversion(uid,'H000')
         BJDebugMsg("英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
-        return GetDzPlayerData(pid,9,id)
+        if  id > 0
+            return GetDzPlayerData(pid,9,id)
+        else
+            return 0
+        endif
     endfunction
 
     function GetDzHeroExpLevelCount(int pid,int level)->int
         int cos = 0
-        for num = 0,9
-            if  GetDzHeroExpLevel(pid,'H000'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H010'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H020'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H030'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H040'+num) == level
-                cos = cos + 1
-            endif
-            if  GetDzHeroExpLevel(pid,'H050'+num) == level
-                cos = cos + 1
-            endif
+        for k = 0,5
+            for num = 0,9
+                if  GetDzHeroExpLevel(pid,'H000' + num + k * 256) == level
+                    cos = cos + 1
+                endif
+            end
         end
         return cos
     endfunction
@@ -198,26 +206,33 @@ piece DzGameFunc
         int game = DzPlayerGames(Player(pid))//局数
         int maxexp = 2*MaxGameLevel*game //最大经验
         int allexp = 0
-        for num = 1,9 //英雄等级所有的经验
-            allexp = allexp + GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H000'+num))
-            allexp = allexp + GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H010'+num))
-            allexp = allexp + GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H020'+num))
-            allexp = allexp + GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H030'+num))
-            allexp = allexp + GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H040'+num))
-            allexp = allexp + GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H050'+num))
+        int levelexp = 0
+        int nowexp = 0
+        int zu = 7
+        BJDebugMsg("玩家Pid"+I2S(pid)+"当前局数最大经验为"+I2S(maxexp))
+        for k = 0,5
+            for num = 0,9
+                levelexp = GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H000' + num + k * 256))
+                nowexp = GetDzHeroExp(pid,'H000' + num + k * 256)
+                allexp = levelexp + nowexp
+                if  k >= 3
+                    zu = 8
+                endif
+                if  maxexp > 0
+                    maxexp = maxexp - allexp
+                    if  maxexp < 0
+                        SetDzPlayerDataOnlyValue(pid,zu,num + k * 10,0)
+                        SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
+                    endif
+                else    
+                    SetDzPlayerDataOnlyValue(pid,zu,num + k * 10,0)
+                    SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
+                endif
+            end
         end
-        for num = 0,9 //英雄当前经验
-            allexp = allexp + GetDzHeroExp(pid,'H000'+num)
-            allexp = allexp + GetDzHeroExp(pid,'H010'+num)
-            allexp = allexp + GetDzHeroExp(pid,'H020'+num)
-            allexp = allexp + GetDzHeroExp(pid,'H030'+num)
-            allexp = allexp + GetDzHeroExp(pid,'H040'+num)
-            allexp = allexp + GetDzHeroExp(pid,'H050'+num)
-        end
-        BJDebugMsg("玩家Pid"+I2S(pid)+"当前所有英雄熟练度经验总和为:"+I2S(allexp)+"")
-        if  allexp > maxexp
-            
-        endif
+        SaveDzPlayerDataOfGroup.execute(pid,7)
+        SaveDzPlayerDataOfGroup.execute(pid,8)
+        SaveDzPlayerDataOfGroup.execute(pid,9)
         InitDzHeroExpDataEx(pid)
     endfunction
 

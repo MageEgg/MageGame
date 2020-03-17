@@ -42,7 +42,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 if  GetDzPlayerData(pid,1,21) == 0
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
-                        SaveDzPlayerData(pid,1,21,1)
+                        SetDzPlayerData(pid,1,21,1)
                         AddUnitRealState(Pu[1],46,3)
                         AddUnitRealState(Pu[1],43,1)
                         AddUnitRealState(Pu[1],48,1)
@@ -66,7 +66,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 if  GetDzPlayerData(pid,1,22) == 0
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
-                        SaveDzPlayerData(pid,1,22,1)
+                        SetDzPlayerData(pid,1,22,1)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
                         AddUnitRealState(Pu[1],47,2)
                         AddUnitRealState(Pu[1],48,2)

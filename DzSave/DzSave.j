@@ -181,6 +181,48 @@ library DzSave initializer InitDzData uses DzDataSetting
         SaveDzPlayerData(pid,Group,flag,data)
     endfunction
 
+    ////////////////////////OnlyValue分割//////////////////////////////
+    function SaveDzPlayerDataOnlyValue(int pid,int Group,int flag,int num) //存储玩家数据
+        int data = 0
+        if  DzDataGroupLength(Group) != 0
+            if  flag <= GetDzDataGroupMaxMember(Group)
+                data = GetDzDataMaxValue(pid,Group,flag,num)
+                if  pid == 0
+                    DzArrayPlayerInt0[Group][flag] = data
+                elseif  pid == 1
+                    DzArrayPlayerInt1[Group][flag] = data
+                elseif  pid == 2
+                    DzArrayPlayerInt2[Group][flag] = data
+                elseif  pid == 3
+                    DzArrayPlayerInt3[Group][flag] = data
+                elseif  pid == 4
+                    DzArrayPlayerInt4[Group][flag] = data
+                elseif  pid == 5
+                    DzArrayPlayerInt5[Group][flag] = data
+                endif
+            else
+                BJDebugMsg("超过第"+I2S(Group)+"存档位")
+            endif
+        else
+            BJDebugMsg("第"+I2S(Group)+"存档未使用")
+        endif
+    endfunction
+
+    function AddDzPlayerDataOnlyValue(int pid,int Group,int flag,int num) //增加存储数据：玩家，组，位 数
+        int data = GetDzPlayerData(pid,Group,flag)+num
+        SaveDzPlayerDataOnlyValue(pid,Group,flag,data)
+    endfunction
+    
+    function ReduceDzPlayerDataOnlyValue(int pid,int Group,int flag,int num) //减少存储数据：玩家，组，位 数
+        int data = GetDzPlayerData(pid,Group,flag)+num
+        SaveDzPlayerDataOnlyValue(pid,Group,flag,data)
+    endfunction
+    
+    function SetDzPlayerDataOnlyValue(int pid,int Group,int flag,int num) //设置存储数据：玩家，组，位 数
+        int data = num
+        SaveDzPlayerDataOnlyValue(pid,Group,flag,data)
+    endfunction
+    ////////////////////////OnlyValue分割//////////////////////////////
 
     //兼容函数开始
     function SaveData(int pid,int Group,int flag,int num) //存储玩家数据
