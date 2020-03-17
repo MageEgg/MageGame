@@ -1557,7 +1557,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     
     function SpellS235(unit u1)
         unit u = u1
-        real b = (0.02+GetUnitState(u1,UNIT_STATE_LIFE)/GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.2)*100
+        real b = (0.05+(1-GetUnitState(u1,UNIT_STATE_LIFE))/GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.2)*100
         AddUnitRealState(u,19,b)    
         UnitAddAbility(u,'A235')
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-200,1))
@@ -1578,10 +1578,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SetUnitY(u,GetUnitY(u1))
         AddUnitStateExTimer(u,9,75,6)
         UnitAddEffectTimer(u,"Abilities\\Spells\\Orc\\CommandAura\\CommandAura.mdl",3)
-        
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),0,1))
         UnitDamageTarget(u,u1,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl")
+        LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl",2.5)
         flush locals
     endfunction
 
