@@ -308,7 +308,7 @@ library GameChallenge9 uses GameChallengeBase
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+"随机获得"+GetObjectName(itid)+"！")
 
-            if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
+            /*if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAT',true) == 0
@@ -322,9 +322,9 @@ library GameChallenge9 uses GameChallengeBase
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜地图等级不够要求！")
                 endif
-            endif
+            endif*/
 
-            if  GetUnitTypeId(Pu[1]) == 'H005' //彩蛋
+            /*if  GetUnitTypeId(Pu[1]) == 'H005' //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAU',true) == 0
@@ -338,7 +338,7 @@ library GameChallenge9 uses GameChallengeBase
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜地图等级不够要求！")
                 endif
-            endif
+            endif*/
 
         endif
     endfunction

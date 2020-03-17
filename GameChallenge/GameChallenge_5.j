@@ -363,7 +363,7 @@ library GameChallenge5 uses GameChallengeBase
                     //奖励
                     PlayerFinishPlotEx(pid,5)
 
-                    if  GetUnitTypeId(Pu[1]) == 'H011' //彩蛋
+                    /*if  GetUnitTypeId(Pu[1]) == 'H011' //彩蛋
                         if  DzPlayerLv(Player(pid)) >= 6
                             if  GameLevel >= 3
                                 if  GetPlayerTechCount(Player(pid),'RDAE',true) == 0
@@ -377,7 +377,7 @@ library GameChallenge5 uses GameChallengeBase
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我救我自己|r，但可惜地图等级不够要求！")
                         endif
-                    endif
+                    endif*/
                     if  GetUnitTypeId(Pu[1]) == 'H002' //彩蛋
                         if  DzPlayerLv(Player(pid)) >= 2
                             if  GetPlayerTechCount(Player(pid),'RDAL',true) == 0

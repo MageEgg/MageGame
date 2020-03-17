@@ -321,7 +321,7 @@ library GameChallenge6 uses GameChallengeBase
             //奖励
             PlayerFinishPlotEx(pid,6)
 
-            if  GetUnitTypeId(Pu[1]) == 'H024' and IsFinshChallenge(6) == true //彩蛋
+            /*if  GetUnitTypeId(Pu[1]) == 'H024' and IsFinshChallenge(6) == true //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAP',true) == 0
@@ -335,7 +335,7 @@ library GameChallenge6 uses GameChallengeBase
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000销售精英|r，但可惜地图等级不够要求！")
                 endif
-            endif
+            endif*/
         endif
     endfunction
 

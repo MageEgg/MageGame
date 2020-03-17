@@ -60,7 +60,7 @@ library GameChallenge2 uses GameChallengeBase
                 endif
             endif
 
-            if  PlayerChallengeTimeCosNum(2) >= 6 //彩蛋
+            /*if  PlayerChallengeTimeCosNum(2) >= 6 //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GetPlayerTechCount(Player(pid),'RDAX',true) == 0
                         SetDzPlayerData(pid,15,24,24)
@@ -70,7 +70,7 @@ library GameChallenge2 uses GameChallengeBase
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000龙王出来喷水|r，但可惜地图等级不够要求！")
                 endif
-            endif
+            endif*/
         endif
     endfunction
 
@@ -194,7 +194,7 @@ library GameChallenge2 uses GameChallengeBase
         //奖励
         PlayerFinishPlotEx(pid,2)
 
-        if  GetUnitTypeId(Pu[1]) == 'H018' //彩蛋
+        /*if  GetUnitTypeId(Pu[1]) == 'H018' //彩蛋
             if  DzPlayerLv(Player(pid)) >= 8
                 if  GameLevel >= 4
                     if  GetPlayerTechCount(Player(pid),'RDAF',true) == 0
@@ -208,7 +208,7 @@ library GameChallenge2 uses GameChallengeBase
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000我也护犊子|r，但可惜地图等级不够要求！")
             endif
-        endif
+        endif*/
     endfunction
 
     function EnRctGameChalleng_2_Water1()

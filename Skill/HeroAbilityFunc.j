@@ -1098,7 +1098,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             damage = damage * 1.3
         endif
         AddUnitIntState(u1,'S521',1)
-        if  GetUnitIntState(u1,'S521')>=6
+        /*if  GetUnitIntState(u1,'S521')>=6
             if  DzPlayerLv(Player(pid)) >= 6
                 if  GetPlayerTechCount(Player(pid),'RDAR',true) == 0
                     SetDzPlayerData(pid,15,18,18)
@@ -1108,7 +1108,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000今晚的月亮好圆啊|r，但可惜地图等级不够要求！")
             endif
-        endif
+        endif*/
         TimerStart(1,true)
         {
             time = time - 1
@@ -1151,7 +1151,7 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
         LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_e_buffgreen2a.mdl")
         int uid = GetUnitTypeId(tu)
-        if  uid == 'H028' or uid == 'H016' or uid == 'H027'
+        /*if  uid == 'H028' or uid == 'H016' or uid == 'H027'
             if  DzPlayerLv(Player(pid)) >= 6
                 if  GetRandomReal(0,1) <= 0.2
                     if  GetPlayerTechCount(Player(pid),'RDAQ',true) == 0
@@ -1165,7 +1165,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000红颜祸水|r，但可惜地图等级不够要求！")
             endif
-        endif
+        endif*/
     endfunction
 
     function SpellS524(unit wu,real sx,real sy,real dam,int level)
@@ -1447,7 +1447,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
         elseif  Pu[1] == tu
             AddUnitIntState(wu,'RDAA',1)
-            if  GetUnitIntState(wu,'RDAA') == 20
+            /*if  GetUnitIntState(wu,'RDAA') == 20
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAA',true) == 0
@@ -1461,7 +1461,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000果然暴君|r，但可惜地图等级不够要求！")
                 endif
-            endif
+            endif*/
 
             AddUnitStateExTimer(wu,1,GetUnitRealState(tu,1)*0.12,8)
 
