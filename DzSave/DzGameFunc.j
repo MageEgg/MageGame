@@ -175,7 +175,7 @@ piece DzGameFunc
         if  level == 1
             return MaxHeroNeedExp0
         elseif  level == 2
-            return MaxHeroNeedExp0 + MaxHeroNeedEx1 
+            return MaxHeroNeedExp0 + MaxHeroNeedExp1 
         elseif  level == 3
             return MaxHeroNeedExp0 + MaxHeroNeedExp1 + MaxHeroNeedExp2
         elseif  level == 4
@@ -195,7 +195,7 @@ piece DzGameFunc
     endfunction
     //初始化熟练度
     function InitDzHeroExpData(int pid)
-        int game = DzPlayerGames(Player(p))//局数
+        int game = DzPlayerGames(Player(pid))//局数
         int maxexp = 2*MaxGameLevel*game //最大经验
         int allexp = 0
         for num = 1,9 //英雄等级所有的经验
@@ -216,7 +216,7 @@ piece DzGameFunc
         end
         BJDebugMsg("玩家Pid"+I2S(pid)+"当前所有英雄熟练度经验总和为:"+I2S(allexp)+"")
         if  allexp > maxexp
-            
+            a
         endif
         InitDzHeroExpDataEx(pid)
     endfunction
