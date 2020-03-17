@@ -688,28 +688,28 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  PlayerDeathBool == false
-                    AddUnitStateExTimer(Pu[1],16,30,10)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加30%技能伤害！|r")
+                    AddUnitStateExTimer(Pu[1],16,50,15)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在15秒内增加50%技能伤害！|r")
                 endif
             endif
         end
     endfunction
 
     function UnitItemIN14(int pid,int itid)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得5秒无敌！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得5秒无敌！！！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得5秒无敌！！！|r")
-        UnitTimerAddSkill(GameDefendUnit,'AZ08',5)
-        UnitTimerAddSkill(GameDefendUnit,'Avul',5)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得10秒无敌！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得10秒无敌！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00主城获得10秒无敌！！！|r")
+        UnitTimerAddSkill(GameDefendUnit,'AZ08',10)
+        UnitTimerAddSkill(GameDefendUnit,'Avul',10)
     endfunction
 
     function UnitItemIN15(int n,int itid)
         for pid = 0,3
             if  IsPlaying(pid) == true
                 if  PlayerDeathBool == false
-                    AddUnitStateExTimer(Pu[1],18,20,10)
-                    AddUnitStateExTimer(Pu[1],4,20,10)
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加20%伤害抵抗！|r")
+                    AddUnitStateExTimer(Pu[1],18,20,15)
+                    
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(n)+"使用了"+GetObjectName(itid)+"，|cffffff00为您在10秒内增加20%伤害减免！|r")
                 endif
             endif
         end
@@ -756,8 +756,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             //死亡复活
         elseif  itid == 'IN10' //写在释放技能
         elseif  itid == 'IN11'
-            AddUnitStateExTimer(Pu[1],15,100,5)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在5秒内增加100%攻击伤害！")
+            AddUnitStateExTimer(Pu[1],15,100,10)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您在10秒内增加100%攻击伤害！")
         elseif  itid == 'IN12'
             UnitItemIN12(pid,itid)
         elseif  itid == 'IN13'

@@ -75,7 +75,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)
+        //RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)
         //RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)
