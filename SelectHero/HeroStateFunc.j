@@ -57,30 +57,26 @@ library HeroStateFunc uses DamageCode
             AddUnitRealState(Pu[1],17,30)
             AddUnitRealState(Pu[1],3,100)
             AddUnitRealState(Pu[1],50,20)
-            AddUnitRealState(Pu[1],2,5000)
         endif 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
             AddUnitRealState(Pu[1],32,30)
             AddUnitRealState(Pu[1],33,30)
-            AddUnitRealState(Pu[1],1,5000)
+            AddUnitRealState(Pu[1],19,10)
             AddUnitRealState(Pu[1],17,30)
-            AddUnitRealState(Pu[1],7,2000)
         endif
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,28888)
+            UnitAddItemEx(Pu[1],'IP01')
             AddUnitRealState(Pu[1],18,20)
             AddUnitRealState(Pu[1],17,30)
             UnitAddItemEx(Pu[1],'I015')
-            AddUnitRealState(Pu[1],5,100000)
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
-            AddUnitRealState(Pu[1],28,2)
+            AddUnitRealState(Pu[1],28,1)
             AddUnitRealState(Pu[1],33,20)
-            AddUnitRealState(Pu[1],1,1000)
             CreatePet.execute(pid)
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
-            AddUnitRealState(Pu[1],31,20)
+            AddUnitRealState(Pu[1],31,10)
             AddUnitRealState(Pu[1],47,20)
             AddUnitRealState(Pu[1],48,20)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
