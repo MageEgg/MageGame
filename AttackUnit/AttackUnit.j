@@ -235,10 +235,10 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
         AttackBOSSLastCos = 1
-        if  GameLevel >= 7
-            AttackUnitWNOver = 27  //最终波
-        else
+        if  GameLevel > 2
             AttackUnitWNOver = 24  //最终波
+        else
+            AttackUnitWNOver = 21  //最终波
         endif
         
         //序号 进攻类型（事件） 下一波时间 创建数量 创建次数 刷新时间 进攻坐标 单位id 1-4 创建坐标1-4
