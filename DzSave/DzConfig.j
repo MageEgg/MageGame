@@ -55,13 +55,13 @@ library DzConfig uses SystemCodes
             //BJDebugMsg(DzConA[n])
         end
         if  DzConA[1] == 1
-            QQNumber = "689398219"
+            QQNumber = "735968074"
         elseif  DzConA[1] == 2
-            QQNumber = "689398219"
+            QQNumber = "735968074"
         elseif  DzConA[1] == 3
-            QQNumber = "689398219"
+            QQNumber = "735968074"
         elseif  DzConA[1] == 4
-            QQNumber = "689398219"
+            QQNumber = "735968074"
         endif
         if  DzCon("TEST") == "1"
             DzBool = true
