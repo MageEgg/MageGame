@@ -953,7 +953,7 @@ InitTypeState7('KT1G',0,0,212,0,0,0,0,0,0,0)
 InitTypeState7('KT1H',0,0,286,0,0,0,0,0,0,0)
 InitTypeState7('KT1I',0,0,386,0,0,0,0,0,0,0)
 InitTypeState7('KT1J',0,0,521,0,0,0,0,0,0,0)
-InitTypeState7('KTAB',2,0,0,0,0,0,0,0,0,0)
+InitTypeState7('KTAB',1,0,0,0,0,0,0,0,0,0)
 endfunction
 function InitMapEquipState()
 ExecuteFunc("InitStateData1")
