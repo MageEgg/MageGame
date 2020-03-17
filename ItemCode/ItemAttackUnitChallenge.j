@@ -184,7 +184,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             if  AttackUnitChallengePlayerWeiNum(1) < 12
                 combat = combat + AttackUnitChallengePlayerWeiNum(1)
             else
-                combat = combat + 12
+                combat = combat + 11
             endif
         else
             combat = combat + wei

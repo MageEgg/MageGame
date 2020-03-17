@@ -53,34 +53,37 @@ library HeroStateFunc uses DamageCode
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
-            AddUnitRealState(Pu[1],31,50)
+            AddUnitRealState(Pu[1],31,30)
             AddUnitRealState(Pu[1],17,30)
             AddUnitRealState(Pu[1],3,100)
             AddUnitRealState(Pu[1],50,20)
+            AddUnitRealState(Pu[1],2,5000)
         endif 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
-            AddUnitRealState(Pu[1],32,50)
-            AddUnitRealState(Pu[1],33,50)
-            AddUnitRealState(Pu[1],19,10)
+            AddUnitRealState(Pu[1],32,30)
+            AddUnitRealState(Pu[1],33,30)
+            AddUnitRealState(Pu[1],1,5000)
             AddUnitRealState(Pu[1],17,30)
+            AddUnitRealState(Pu[1],7,2000)
         endif
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
-            AddUnitRealState(Pu[1],50,188)
-            AddUnitRealState(Pu[1],18,30)
-            AddUnitRealState(Pu[1],17,50)
-            UnitAddItemEx(Pu[1],'I015')
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,28888)
+            AddUnitRealState(Pu[1],18,20)
+            AddUnitRealState(Pu[1],17,30)
+            UnitAddItemEx(Pu[1],'I015')
+            AddUnitRealState(Pu[1],5,100000)
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
             AddUnitRealState(Pu[1],28,2)
             AddUnitRealState(Pu[1],33,20)
+            AddUnitRealState(Pu[1],1,1000)
             CreatePet.execute(pid)
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
             AddUnitRealState(Pu[1],31,20)
             AddUnitRealState(Pu[1],47,20)
             AddUnitRealState(Pu[1],48,20)
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1V',true) == 1 //金币礼包
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
