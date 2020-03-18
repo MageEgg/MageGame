@@ -34,8 +34,9 @@ scope SelectHero
 
         
 
-        
-        
+        if  Player(pid)==GetLocalPlayer()
+            ReHeroButton.show = false
+        endif
                 
 
     endfunction
@@ -50,7 +51,7 @@ scope SelectHero
             SetCameraField( CAMERA_FIELD_FARZ, 10000.00, 2.0 )
             ClearSelection()
             SelectUnit(Pu[1],true)
-
+            ReHeroButton.show = true
             DzFrameShow(BUTTON_Back[702][0], true)
         endif
 
@@ -82,7 +83,7 @@ scope SelectHero
         
         InitPlayerMonsterSoulSkill(pid)
 
-        ShowPlayerSignInLastTime(pid) //登陆刷新
+        
 
         int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
         if  dzlv >= 1
@@ -106,11 +107,11 @@ scope SelectHero
 
    
     //正常选英雄
-    function SelectHeroPrePareFunc(int pid,unit hero)
+    function SelectHeroPrePareFunc(int pid)
         if  IsPlaying(pid) == true
             
             
-            Pu[1] = hero
+            Pu[1] = CreateUnit(Player(pid),GetHeroPoolType(),PlayerReviveX,PlayerReviveY,0)
             
             Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             
@@ -122,6 +123,8 @@ scope SelectHero
 
             ReTechFuncItemTips.execute(pid)//刷新道具兑换说明
 
+            ShowPlayerSignInLastTime(pid) //登陆刷新
+
             for i = 1,GameLevel
                 SetPlayerTechResearched(Player(pid),'KNDA'+i-1,1)
             end
@@ -131,6 +134,8 @@ scope SelectHero
             if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
                 HeroReNumber = HeroReNumber + 1
             endif
+
+            ReHeroFrameUI(pid)
 
             
         endif
@@ -156,6 +161,24 @@ scope SelectHero
             
         endif
     endfunction
+
+    //重随
+    function ReHeroPrePare(int pid)
+        int id = GetUnitTypeId(Pu[1])
+        if  id > 0
+            if  GameChallengBool[0] == false
+                if  HeroReNumber > 0
+                    ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))
+                    HeroReNumber = HeroReNumber - 1
+                    ReHeroFrameUI(pid)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：剩余次数不足！无法重随英雄！")
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：当前无法重随英雄！")
+            endif
+        endif
+    endfunction
     
     
     function InitSelectHero()
@@ -163,7 +186,7 @@ scope SelectHero
             if  IsPlaying(pid) == true
                 PlayerReviveX = -4896
                 PlayerReviveY = -3168
-                SelectHeroPrePareFunc(pid,PlaceRandomUnit( HeroPool, Player(pid),PlayerReviveX,PlayerReviveY,0 ))
+                SelectHeroPrePareFunc(pid)
             endif
         end
     endfunction

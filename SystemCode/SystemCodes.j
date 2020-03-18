@@ -819,41 +819,63 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     endscope
 
     scope UnitPool
-        unitpool HeroPool = CreateUnitPool() 
+
+        int array HeroPool
+        int HeroPoolMax = 0
+
+        function GetHeroPoolType()->int
+            return HeroPool[GetRandomInt(1,HeroPoolMax)]
+        endfunction
+
+        function GetHeroPoolTypeNew(int id)->int
+            int newid = GetHeroPoolType() 
+            if  newid == id
+                BJDebugMsg("重复递归")
+                return GetHeroPoolTypeNew(id)
+            endif
+            return newid
+        endfunction
+
+        
+
+        function HeroPoolAddType(int id)
+            HeroPoolMax = HeroPoolMax + 1
+            HeroPool[HeroPoolMax] = id
+        endfunction
 
         function InitHeroPoolFunc()
             
-            UnitPoolAddUnitType(HeroPool, 'H001', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H002', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H003', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H004', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H005', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H006', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H007', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H008', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H009', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H010', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H011', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H012', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H013', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H014', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H015', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H016', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H017', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H018', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H019', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H020', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H021', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H022', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H023', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H024', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H025', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H026', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H027', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H028', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H029', 1 )
-            UnitPoolAddUnitType(HeroPool, 'H030', 1 )
-            //UnitPoolAddUnitType(HeroPool, 'H031', 1 )
+            HeroPoolAddType('H001')
+            HeroPoolAddType('H002')
+            HeroPoolAddType('H003')
+            HeroPoolAddType('H004')
+            HeroPoolAddType('H005')
+            //HeroPoolAddType('H006')
+            //HeroPoolAddType('H007')
+            HeroPoolAddType('H008')
+            HeroPoolAddType('H009')
+            HeroPoolAddType('H010')
+            HeroPoolAddType('H011')
+            HeroPoolAddType('H012')
+            HeroPoolAddType('H013')
+            HeroPoolAddType('H014')
+            HeroPoolAddType('H015')
+            //HeroPoolAddType('H016')
+            //HeroPoolAddType('H017')
+            HeroPoolAddType('H018')
+            //HeroPoolAddType('H019')
+            //HeroPoolAddType('H020')
+            HeroPoolAddType('H021')
+            HeroPoolAddType('H022')
+            HeroPoolAddType('H023')
+            HeroPoolAddType('H024')
+            HeroPoolAddType('H025')
+            HeroPoolAddType('H026')
+            HeroPoolAddType('H027')
+            HeroPoolAddType('H028')
+            HeroPoolAddType('H029')
+            HeroPoolAddType('H030')
+            //HeroPoolAddType('H031')
 
         endfunction
 
