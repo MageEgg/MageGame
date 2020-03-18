@@ -168,13 +168,13 @@ library ExNativeFrame uses GameFrame
 
         //控件设置
         ReHeroButton.frameid = FRAME.Tag("BUTTON","ReHero",GameUI,ReHeroButton)
-        ReHeroButton.SetPoint(1,GameUI,4,0.0,-0.01)
-        ReHeroButton.SetSize(0.134,0.1)
+        ReHeroButton.SetPoint(1,GameUI,4,0.0,0.0)
+        ReHeroButton.SetSize(0.134,0.095)
 
         //背景设置
         ReHeroBack.frameid = FRAME.Tag("BACKDROP","ReHero",ReHeroButton.frameid,ReHeroBack)
         ReHeroBack.SetPoint(4,ReHeroButton.frameid,4,0,0)
-        ReHeroBack.SetSize(0.134,0.10)
+        ReHeroBack.SetSize(0.134,0.095)
         ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
 
         ReHeroNumber.frameid = FRAME.Fdf("text015",ReHeroButton.frameid,ReHeroNumber)

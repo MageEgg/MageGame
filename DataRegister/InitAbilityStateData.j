@@ -99,7 +99,7 @@ call InitAbilityData('S524',8,0,2,1.5,0,0,0,0,2,10,3,"道友请留步","对目�
 call InitAbilityData('S525',3,0,1,2.4,0,0,0,0,2,8,0,"攒心钉","发射|Cffffd24d3枚|r攒心钉，造成|Cffffd24d攻击*240%|r伤害。\n\n拥有法宝|Cffffc926攒心钉|r时，造成伤害|Cffffc926+25%|r\n","ReplaceableTextures\\CommandButtons\\BTNS525.blp")
 call InitAbilityData('S526',1,0,1,6,0,0,0,0,2,6,0,"当头棒击","每6秒攻击对直线范围造成|Cffff8000攻击*600%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS526.blp")
 call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处决|r一名队友，|Cffffd24d8|r秒内增加你的攻击力，增加量为|Cffffd24d该队友攻击的12%|r|Cfff0f0f0。|r\n|Cff00ff7f处决自己获得一半加成。|r\n|Cff00ff7f施法距离全图|r","ReplaceableTextures\\CommandButtons\\BTNS527.blp")
-call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d30%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
+call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d20%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9265%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
 
@@ -130,10 +130,9 @@ InitAbilityStringEx('S524',"蛊惑造成伤害时，眩晕目标0.2秒","蛊惑�
 InitAbilityStringEx('S525',"释放攒心钉时,3秒内增加自身15%技能伤害加成。","基础冷却降低2秒。","攒心钉数量+3","","")
 InitAbilityStringEx('S526',"冷却时间降低至4秒","冷却时间降低至2秒","当头棒击必定触发暴击","","")
 InitAbilityStringEx('S527',"处决目标获得神仙搭救，立即原地复活。","对处决目标600码范围内造成攻击*1200%伤害。","被处决队友8秒内提高24%攻击。","","")
-InitAbilityStringEx('S528',"勇猛：施放Q技能时，50%概率对周围造成攻击*1000%伤害。","技能伤害+15%","勇猛必定触发","","")
+InitAbilityStringEx('S528',"勇猛：施放Q技能时，50%概率对周围造成攻击*1200%伤害。","技能伤害+25%","勇猛必定触发","","")
 InitAbilityStringEx('S529',"触发时对自身周围600码造成生命*60%伤害","被复活单位5s内攻击速度+30%，暴击率+10%。","冷却时间降低至10秒","","")
 InitAbilityStringEx('S530',"攻击必定命中。","触发致命一击时回复自身3%最大生命值","领悟三重射，可触发攻击特效","","")
-
 
 
 endfunction

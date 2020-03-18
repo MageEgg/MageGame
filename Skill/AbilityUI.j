@@ -507,8 +507,8 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 endif
             elseif  uid == 'H028'
                 if  newlv == 3
-                    AddUnitRealState(wu,16,30)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，技能伤害|Cffff8000+30%|r")
+                    AddUnitRealState(wu,16,25)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：纣王尚武乏谋，技能伤害|Cffff8000+25%|r")
                 endif
             elseif  uid == 'H030'
                 
