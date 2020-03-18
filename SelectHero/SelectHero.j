@@ -15,6 +15,7 @@ scope SelectHero
     //存档读属性的都放这里  找完姜子牙加载
     function SelectHeroAddSaveState(int pid)
 
+        SetPlayerTechResearched(Player(pid),'R000',1)
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
         UnitAddAbility(Pu[1],'AG0B')
 
