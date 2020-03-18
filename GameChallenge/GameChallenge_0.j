@@ -122,14 +122,14 @@ library GameChallenge0 uses GameChallengeBase
 
     function InitGameChallenge_0()
         trigger tig = null
-        GameChalleng_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-4768,-3264,180)
+        GameChalleng_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-5696,-3360,180)
         EXSetUnitMoveType(GameChalleng_0_JZY,0x01)
-        GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-4768,-3264,0)
-        CreateUnit(Player(9),'nc07',-4768,-3264,0)
+        GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-5696,-3360,0)
+        CreateUnit(Player(9),'nc07',-5696,-3360,0)
         
-        GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',-5364.000,-3279.500,155.655)
-        GameBiaoJI[2] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',-5611.750,-3175.250,155.655)
-        GameBiaoJI[3] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',-5875.500,-3071.750,155.655)
+        GameBiaoJI[1] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5364.000,-3279.500,155.655)
+        GameBiaoJI[2] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5611.750,-3175.250,155.655)
+        GameBiaoJI[3] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5875.500,-3071.750,155.655)
 
         GameBiaoJI[4] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',-5800.000,-2487.750,31.256)
         GameBiaoJI[5] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',-5572.500,-2355.500,31.256)

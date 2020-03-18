@@ -122,7 +122,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     if  ModuloInteger(tt,R2I(ound/time)) == 0
                         BJDebugMsg("伤害"+R2S(damage))
                         gg = CreateGroup()
-                        GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),350,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'DB02',1,852095))
+                        GroupEnumUnitsInRange(gg,GetUnitX(u2),GetUnitY(u2),350,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                         UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                         GroupClear(gg)
                         DestroyGroup(gg)
