@@ -242,7 +242,8 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             SetHeroUnitState(wu)
         endif
 
-        AddUnitRealState(wu,20,200)
+        //AddUnitRealState(wu,20,200)
+        
     endfunction
     
     

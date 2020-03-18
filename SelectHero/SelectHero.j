@@ -31,7 +31,26 @@ scope SelectHero
             AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
         endif*/
 
-
+        int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
+        
+        if  dzlv >= 1
+            AddUnitRealState(Pu[1],17,5)
+        endif
+        /*
+        if  dzlv >= 2
+            AddUnitRealState(Pu[1],18,3)
+        endif
+        if  dzlv >= 3
+            AddUnitRealState(Pu[1],18,4)
+        endif
+        
+        if  dzlv >= 4
+            AddUnitRealState(Pu[1],17,10)
+        endif
+        if  dzlv >= 5
+            AddUnitRealState(Pu[1],19,5)
+        endif
+        */
         
 
         if  Player(pid)==GetLocalPlayer()
@@ -85,24 +104,7 @@ scope SelectHero
 
         
 
-        int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
-        if  dzlv >= 1
-            AddUnitRealState(Pu[1],17,5)
-        endif
-        if  dzlv >= 2
-            AddUnitRealState(Pu[1],18,3)
-        endif
-        if  dzlv >= 3
-            AddUnitRealState(Pu[1],18,4)
-        endif
-        /*
-        if  dzlv >= 4
-            AddUnitRealState(Pu[1],17,10)
-        endif
-        if  dzlv >= 5
-            AddUnitRealState(Pu[1],19,5)
-        endif
-        */
+        
     endfunction
 
    
@@ -130,7 +132,7 @@ scope SelectHero
             end
 
             //重随次数
-            HeroReNumber = 1
+            HeroReNumber = 2
             if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
                 HeroReNumber = HeroReNumber + 1
             endif
@@ -143,13 +145,53 @@ scope SelectHero
 
     //重新选英雄
     function ReHeroPrePareFunc(int pid,int id)
+        real showvalue = 0
         if  IsPlaying(pid) == true
 
             Pu[7] = Pu[1]
             Pu[1] = CreateUnit(Player(pid),id,PlayerReviveX,PlayerReviveY,0)
             
-            for n = 10,41
-                SetUnitRealState(Pu[1],n,GetUnitRealState(Pu[1],n))
+            for StateId = 10,41
+                if  GetLocalPlayer() == Player(pid)
+                    showvalue = GetUnitRealState(Pu[1],StateId)
+                    if  StateId == 32
+                        DzFrameSetText(BUTTON_Text[161],"|cffffcc00攻击加成：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 33
+                        DzFrameSetText(BUTTON_Text[162],"|cffffcc00业力加成：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 15
+                        DzFrameSetText(BUTTON_Text[163],"|cffffcc00攻击伤害：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 16
+                        DzFrameSetText(BUTTON_Text[164],"|cffffcc00技能伤害：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 19
+                        DzFrameSetText(BUTTON_Text[165],"|cffffcc00暴击概率：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 20
+                        DzFrameSetText(BUTTON_Text[166],"|cffffcc00暴击伤害：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 41
+                        DzFrameSetText(BUTTON_Text[167],"|cffffcc00金币加成：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 10
+                        DzFrameSetText(BUTTON_Text[168],"|cffffcc00闪避：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 18
+                        DzFrameSetText(BUTTON_Text[169],"|cffffcc00减伤：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 22
+                        DzFrameSetText(BUTTON_Text[170],"|cffffcc00分裂：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 21
+                        DzFrameSetText(BUTTON_Text[171],"|cffffcc00吸血：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 17
+                        DzFrameSetText(BUTTON_Text[172],"|cffffcc00伤害加成：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 13
+                        DzFrameSetText(BUTTON_Text[173],"|cffffcc00护甲穿透：|r"+I2S(R2I(showvalue)))
+                    elseif  StateId == 27
+                        DzFrameSetText(BUTTON_Text[174],"|cffffcc00触发概率：|r"+I2S(R2I(showvalue))+"%")  
+                    elseif  StateId == 31
+                        DzFrameSetText(BUTTON_Text[175],"|cffffcc00生命加成：|r"+I2S(R2I(showvalue))+"%")
+                    elseif  StateId == 47
+                        DzFrameSetText(BUTTON_Text[176],"|cffffcc00每秒攻击：|r"+I2S(R2I(showvalue)))
+                    elseif  StateId == 48
+                        DzFrameSetText(BUTTON_Text[177],"|cffffcc00每秒业力：|r"+I2S(R2I(showvalue)))
+                    elseif  StateId == 49
+                        DzFrameSetText(BUTTON_Text[178],"|cffffcc00每秒生命：|r"+I2S(R2I(showvalue)))
+                    endif
+                endif
             end
             for i = 0,5
                 UnitAddItem(Pu[1],UnitItemInSlot(Pu[7],i))
@@ -166,16 +208,20 @@ scope SelectHero
     function ReHeroPrePare(int pid)
         int id = GetUnitTypeId(Pu[1])
         if  id > 0
-            if  GameChallengBool[0] == false
-                if  HeroReNumber > 0
-                    ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))
-                    HeroReNumber = HeroReNumber - 1
-                    ReHeroFrameUI(pid)
+            if  PlayerDeathBool == false
+                if  GameChallengBool[0] == false
+                    if  HeroReNumber > 0
+                        ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))
+                        HeroReNumber = HeroReNumber - 1
+                        ReHeroFrameUI(pid)
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：剩余次数不足！无法重随英雄！")
+                    endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：剩余次数不足！无法重随英雄！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：当前无法重随英雄！")
                 endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：当前无法重随英雄！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：死亡状态无法重随英雄！")
             endif
         endif
     endfunction

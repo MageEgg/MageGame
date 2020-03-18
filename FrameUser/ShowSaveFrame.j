@@ -353,7 +353,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     exp = 96
                 endif
 
-                
+                /*
                 if  lv == 3
                     SetTipsData(1,"",GetTypeIdName(id)+" Lv.Max")
                     SetTipsData(10,"","|cff808080熟练度：|r")
@@ -363,20 +363,32 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     SetTipsData(10,"","|cff808080熟练度：|r")
                     SetTipsData(11,"","|cff00ff00"+I2S(exp*10)+"|r/"+I2S(use*10)+"\n ")
                 endif
+                */
+                if  lv == 1
+                    SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
+                    SetTipsData(10,"","|cff808080熟练度：|r")
+                    SetTipsData(11,"","|cff00ff00120|r/120\n ")
+                    SetTipsData(12,"","提高该英雄5%伤害加成")
+                else
+                    SetTipsData(1,"",GetTypeIdName(id)+" - |cff808080未激活|r")
+                    SetTipsData(10,"","|cff808080熟练度：|r")
+                    SetTipsData(11,"","|cff00ff00"+I2S(exp*10)+"|r/120\n ")
+                    SetTipsData(12,"","|cff808080提高该英雄5%伤害加成")
+                endif
 
                 
 
-
+                /*
                 SetTipsData(12,"",GetShowLevelTip(1,lv)+"：提高该英雄5%伤害加成")
                 SetTipsData(13,"",GetShowLevelTip(2,lv)+"：提高该英雄3%伤害减免")
                 SetTipsData(14,"",GetShowLevelTip(3,lv)+"：提高该英雄4%伤害减免")
-                /*
+                
                 SetTipsData(15,"",GetShowLevelTip(4,lv)+"：提高该英雄10%伤害加成")
                 SetTipsData(16,"",GetShowLevelTip(5,lv)+"：提高该英雄5%暴击率")
                 */
 
-                SetTipsData(15,"","")
-                SetTipsData(16,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
+                SetTipsData(13,"","")
+                SetTipsData(14,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
                 
                 
                 
