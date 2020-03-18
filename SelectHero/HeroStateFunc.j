@@ -54,11 +54,7 @@ library HeroStateFunc uses DamageCode
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
             AddUnitRealState(Pu[1],31,30)
             AddUnitRealState(Pu[1],17,30)
-            /*num = 40+DzPlayerLevel(Player(pid))*3
-            if  num >= 100
-                num = 100
-            endif*/
-            AddUnitRealState(Pu[1],3,num)
+            AddUnitRealState(Pu[1],9,30)
             AddUnitRealState(Pu[1],50,20)
         endif 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
