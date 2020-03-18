@@ -88,6 +88,7 @@ library GameChallenge0 uses GameChallengeBase
                     for n = 1,3
                         SetUnitAPOfBool(GameBiaoJI[n],1)
                     end
+                    SaveInteger(ht,GetHandleId(Pu[1]),'AT0A',1000)
                     SelectHeroAddSaveState.execute(pid)//读取属性
                 endif
             endif

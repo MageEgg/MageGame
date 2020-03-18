@@ -193,7 +193,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
         if  AttackUnitChallengeStateGold[zu][wei] > 0
             //s = s + "|n"+"|CffFFD24D金币：|r"+ I2S(AttackUnitChallengeStateGold[zu][wei])
-            s = s + "|n"+I2S(AttackUnitChallengeStateGold[zu][wei])+"金币"
+            if  zu == 200
+                if  AttackUnitChallengePlayerWeiNum(1) == 0
+                    s = s + "|n"+I2S(AttackUnitChallengeStateGold[zu][wei])+"金币"
+                else
+                    s = s + "|n"+I2S(LoadInteger(ht,GetHandleId(Pu[1]),'AT0A'))+"金币"
+                endif
+            else
+                s = s + "|n"+I2S(AttackUnitChallengeStateGold[zu][wei])+"金币"
+            endif
         endif
         if  AttackUnitChallengeStateLumber[zu][wei] > 0
             //s = s + "|n"+"|CffFFD24D玄铁：|r"+ I2S(AttackUnitChallengeStateLumber[zu][wei])
@@ -294,6 +302,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         lumber = AttackUnitChallengeStateLumber[zu][wei]
         othertype = AttackUnitChallengeStatePriceC[zu][wei]
         othervalue = AttackUnitChallengeStatePriceD[zu][wei]
+        if  zu == 200 and AttackUnitChallengePlayerWeiNum(1) > 0
+            gold = LoadInteger(ht,GetHandleId(Pu[1]),'AT0A')
+        endif
         if  othertype > 0 and othervalue > 0
             other = othervalue
         endif
@@ -679,13 +690,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                             nextlumber = 10
                         endif
                         if  AttackUnitChallengePlayerWeiNum(challenge) < 5
-                            if  Player(pid) == GetLocalPlayer()
-                                AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 500
-                            endif
+                            SaveInteger(ht,GetHandleId(Pu[1]),'AT0A',LoadInteger(ht,GetHandleId(Pu[1]),'AT0A')+500)
                         else
-                            if  Player(pid) == GetLocalPlayer()
-                                AttackUnitChallengeStateGold[zu][wei] = AttackUnitChallengeStateGold[zu][wei] + 1000
-                            endif
+                            SaveInteger(ht,GetHandleId(Pu[1]),'AT0A',LoadInteger(ht,GetHandleId(Pu[1]),'AT0A')+1000)
                         endif
                         //AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|n|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
                         AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
