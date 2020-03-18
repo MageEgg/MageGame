@@ -206,7 +206,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     
     function InitAttackUnitOfLevelEx(int lv)
         ExecuteFunc("InitGameChallengeLeagueUnit")
-        if  lv > 2
+        if  lv > 1
             InitAttackUnitData(18,0,120,2,30,0.6,-6910,-6912,'m018','m018','m018','m018',-6912,-4800,-4750,-6912,-6912,-9110,-9080,-6912)
             InitAttackUnitData(19,0,120,3,30,0.6,-6910,-6912,'m019','m019','m019','m019',-6912,-4800,-4750,-6912,-6912,-9110,-9080,-6912)
             InitAttackUnitData(20,0,120,3,30,0.6,-6910,-6912,'m020','m020','m020','m020',-6912,-4800,-4750,-6912,-6912,-9110,-9080,-6912)
@@ -235,7 +235,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
         AttackBOSSLastCos = 1
-        if  GameLevel > 2
+        if  GameLevel > 1
             AttackUnitWNOver = 24  //最终波
         else
             AttackUnitWNOver = 21  //最终波
