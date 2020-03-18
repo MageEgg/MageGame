@@ -324,18 +324,20 @@ scope ItemSystem initializer InitItemSystem
 
 
         if  GetItemType(GetManipulatedItem()) == ITEM_TYPE_ARTIFACT
-            AddEquipState(u1,itemid)
-            FormulaVerify()
+            //FormulaVerify()
 
-            if  IsUnitHasItemLevel(u1,GetManipulatedItem(),level) == true
-                UnitRemoveItem(u1,GetManipulatedItem())
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：无法携带相同类型物品！|r")
+            if  u1 == Pu[1]
+                AddEquipState(u1,itemid)
+                if  IsUnitHasItemLevel(u1,GetManipulatedItem(),level) == true
+                    UnitRemoveItem(u1,GetManipulatedItem())
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：无法携带相同类型物品！|r")
+                endif
             endif
 
         elseif  GetItemType(GetManipulatedItem()) == ITEM_TYPE_CHARGED
             AddItemCharges(u1,GetManipulatedItem())
         else
-            FormulaVerify()
+            //FormulaVerify()
         endif
         
         if  itemid == 'IN30'
