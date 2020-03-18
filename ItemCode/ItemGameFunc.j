@@ -650,7 +650,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitTypeId(u2) >= 'g00A' and GetUnitTypeId(u2) <= 'g00F'
             if  pid == GetUnitAbilityLevel(u2,'AZ99')-1
-                gold = GetTypeIdData(GetUnitTypeId(u2),103)*100
+                gold = GetTypeIdData(GetUnitTypeId(u2),103)*300
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
                 LocAddText(GetUnitX(u2),GetUnitY(u2),"+"+I2S(gold),255,202,0,255,90,0.023)
                 LocAddEffectSetSize(GetUnitX(u2),GetUnitY(u2),"Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl",1.5)
