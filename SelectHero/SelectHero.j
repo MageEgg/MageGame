@@ -161,8 +161,8 @@ scope SelectHero
     function InitSelectHero()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                PlayerReviveX = -5120
-                PlayerReviveY = -2976
+                PlayerReviveX = -4896
+                PlayerReviveY = -3168
                 SelectHeroPrePareFunc(pid,PlaceRandomUnit( HeroPool, Player(pid),PlayerReviveX,PlayerReviveY,0 ))
             endif
         end
