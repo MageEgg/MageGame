@@ -9,9 +9,26 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int Unloc_Type_API   = 7
     int Unloc_Type_Dad   = 8
     
+    int Unloc_Type_LvRank = 12
+    
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
-        
+    
+
+
+    function IsPlayerInRank(int pid,int data)->bool
+        int n = DzAPI_Map_GetMapLevelRank(Player(pid))
+        if  n <= data
+            if  n == 0
+                return false
+            else
+                return true
+            endif
+        endif
+        return false
+    endfunction
+
+
     scope UnlocTechGameData
         private int array Data_list
         private int array Data_pos
@@ -150,8 +167,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     
     
     function IsConditionsUnloc(int pid,int Type,int data)->bool
-        
-
+        if  savebool == true
+            return true
+        endif
         if  Type == Unloc_Type_Level
             BJDebugMsg("等级判断 需求："+I2S(data))
             return DzPlayerLv(Player(pid))>= data
@@ -170,6 +188,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return DzConA[data] == 1
         elseif  Type == Unloc_Type_Dad
             return AllShopUnloc(pid)==true
+        elseif  Type == Unloc_Type_LvRank
+            return IsPlayerInRank(pid,data)
         endif
         return false
     endfunction
@@ -420,10 +440,13 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4G',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,4,1)),0,0,0)
         InitUnlocTechConditions('RY4H',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,5,1)),0,0,0)
         //InitUnlocTechConditions('RY4I',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,1)),0,0,0)
-        //InitUnlocTechConditions('RY4J',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,1)),0,0,0)
-        //InitUnlocTechConditions('RY4K',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,1)),0,0,0)
+        
         //InitUnlocTechConditions('RY4L',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,1)),0,0,0)
         //InitUnlocTechConditions('RY4M',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,1)),0,0,0)
+
+        //等级排行
+        InitUnlocTechConditions('RY4J',InitCond1(2,Unloc_Type_LvRank,10),0,0,0,0)
+        InitUnlocTechConditions('RY4K',InitCond1(2,Unloc_Type_LvRank,100),0,0,0,0)
         
 
         //	InitUnlocTechConditions('RDAA',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,1,1)),0,0,0)
