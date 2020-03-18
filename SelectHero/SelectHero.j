@@ -133,7 +133,7 @@ scope SelectHero
             end
 
             //重随次数
-            HeroReNumber = 2
+            HeroReNumber = 1
             if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
                 HeroReNumber = HeroReNumber + 1
             endif
