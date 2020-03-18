@@ -1446,7 +1446,7 @@ library HeroAbilityFunc uses OtherDamageTimer
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*8.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
-                LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
+                LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
             endif
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
@@ -1472,7 +1472,7 @@ library HeroAbilityFunc uses OtherDamageTimer
 
             if  lv >= 2
                 SetUnitState(tu,UNIT_STATE_LIFE,GetUnitState(tu,UNIT_STATE_MAX_LIFE))
-                if  lv >= 3
+                if  lv >= 4
                     AddUnitStateExTimer(tu,32,24,8)
                 endif
             else
@@ -1481,12 +1481,12 @@ library HeroAbilityFunc uses OtherDamageTimer
 
             LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_zhan.mdl")
 
-            if  lv >= 4
+            if  lv >= 3
                 g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*8.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
-                LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
+                LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
             endif
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然斩杀了队友！")

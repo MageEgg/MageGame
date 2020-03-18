@@ -238,12 +238,12 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         unit u1 = wu
         real x1 = sx
         real y1 = sy
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"Abilities\\Spells\\Human\\CloudOfFog\\CloudOfFog.mdl",x1,y1,0,30,1.0)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"Abilities\\Spells\\Human\\CloudOfFog\\CloudOfFog.mdl",x1,y1,0,30,2.0)
         int time = 10
         TimerStart(1,true)
         {
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupAddBuffEx(GetOwningPlayer(u1),"",'AZ06',1,852190,100))
+            GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupAddBuffEx(GetOwningPlayer(u1),"",'AZ06',1,852190,100))
             GroupClear(g.ejg)
             g.destroy()
             time = time - 1

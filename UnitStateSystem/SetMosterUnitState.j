@@ -257,6 +257,7 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         InitMostetStateRatio(2,0,0)
         InitMostetStateRatio(3,50,33)
         InitMostetStateRatio(4,120,54)
+        
         InitMostetStateRatio(5,220,68)
         InitMostetStateRatio(6,340,77)
         InitMostetStateRatio(7,500,83)
