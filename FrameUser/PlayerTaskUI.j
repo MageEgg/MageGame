@@ -11,7 +11,7 @@ library PlayerTaskUI uses GameFrame
     FRAME PlayerTaskUI_TaskTitle
     FRAME PlayerTaskUI_TaskText
 
-    function ClosePlayerTaskUI()
+    /*function ClosePlayerTaskUI()
         int hp = 255
         int time = 0
         PlayerTaskUI_Back.alpha = hp
@@ -66,6 +66,17 @@ library PlayerTaskUI uses GameFrame
             flush locals
         }
         flush locals
+    endfunction*/
+
+    function ClosePlayerTaskUIOfPlayerEx(int id)
+        int pid = id
+        TimerStart(0.01,false)
+        {
+            SetPlayerZDLPoint(pid,0)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
 
     function ClosePlayerTaskUIOfPlayer(int id)
@@ -89,6 +100,7 @@ library PlayerTaskUI uses GameFrame
                     PlayerTaskUI_Back.alpha = 0
                     PlayerTaskUI_Back.show = false
                 endif
+                BJDebugMsg("关闭任务")
                 SetPlayerZDLPoint(pid,0)
                 endtimer    
             endif
@@ -105,20 +117,42 @@ library PlayerTaskUI uses GameFrame
             PlayerTaskUI_Back.alpha = hp
             PlayerTaskUI_Back.show = true
         endif
+        SetPlayerZDLPoint(pid,1)
         TimerStart(0.004,true)
         {
             if  time < 50
                 time = time + 1
-                if  Player(pid) == GetLocalPlayer()
-                    hp = hp + 5
-                    PlayerTaskUI_Back.alpha = hp
+                if  GameChallengPlayerBool[pid][4] == false
+                    if  Player(pid) == GetLocalPlayer()
+                        hp = hp + 5
+                        PlayerTaskUI_Back.alpha = hp
+                    endif
+                else
+                    if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
+                        if  Player(pid) == GetLocalPlayer()
+                            hp = hp + 5
+                            PlayerTaskUI_Back.alpha = hp
+                        endif
+                    endif
                 endif
             else
-                if  Player(pid) == GetLocalPlayer()
-                    PlayerTaskUI_Back.alpha = 255
-                    PlayerTaskUI_Back.show = true
+                if  GameChallengPlayerBool[pid][4] == false
+                    if  Player(pid) == GetLocalPlayer()
+                        PlayerTaskUI_Back.alpha = 255
+                        PlayerTaskUI_Back.show = true
+                    endif
+                    SetPlayerZDLPoint(pid,1)
+                    BJDebugMsg("任务前  开")
+                else
+                    if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
+                        if  Player(pid) == GetLocalPlayer()
+                            PlayerTaskUI_Back.alpha = 255
+                            PlayerTaskUI_Back.show = true
+                        endif
+                        SetPlayerZDLPoint(pid,1)
+                        BJDebugMsg("任务后  开")
+                    endif
                 endif
-                SetPlayerZDLPoint(pid,1)
                 endtimer    
             endif
             flush locals

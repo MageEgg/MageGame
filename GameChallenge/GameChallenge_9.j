@@ -22,6 +22,7 @@ library GameChallenge9 uses GameChallengeBase
                 PlayerTaskUI_Back.alpha = 0
                 PlayerTaskUI_Back.show = false
             endif
+            ClosePlayerTaskUIOfPlayerEx(pid)
         else
             ShowPlayerTaskUIOfPlayer(pid,false,time)
         endif

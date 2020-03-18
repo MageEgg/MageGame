@@ -806,6 +806,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 PlayerTaskUI_Back.alpha = 0
                 PlayerTaskUI_Back.show = false
             endif
+            ClosePlayerTaskUIOfPlayerEx(pid)
         else
             ShowPlayerTaskUIOfPlayer(pid,false,time)
         endif
