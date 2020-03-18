@@ -258,29 +258,45 @@ piece DzGameFunc
         BJDebugMsg("当前熟练度等级为"+I2S(level)+"级，经验为"+I2S(exp))
         exp = exp + num
         if  level == 4
-            if  exp >= MaxHeroNeedExp4
-                exp = exp-MaxHeroNeedExp4
-                AddDzPlayerData(pid,9,id,1)
+            if  MaxHeroExpLevel != level
+                if  exp >= MaxHeroNeedExp4
+                    exp = exp-MaxHeroNeedExp4
+                    AddDzPlayerData(pid,9,id,1)
+                endif
+                SetDzPlayerData(pid,zu,wei,exp)
+            else
+                SetDzPlayerData(pid,zu,wei,0)
             endif
-            SetDzPlayerData(pid,zu,wei,exp)
         elseif  level == 3
-            if  exp >= MaxHeroNeedExp3
-                exp = exp-MaxHeroNeedExp3
-                AddDzPlayerData(pid,9,id,1)
+            if  MaxHeroExpLevel != level
+                if  exp >= MaxHeroNeedExp3
+                    exp = exp-MaxHeroNeedExp3
+                    AddDzPlayerData(pid,9,id,1)
+                endif
+                SetDzPlayerData(pid,zu,wei,exp)
+            else
+                SetDzPlayerData(pid,zu,wei,0)
             endif
-            SetDzPlayerData(pid,zu,wei,exp)
         elseif  level == 2
-            if  exp >= MaxHeroNeedExp2
-                exp = exp-MaxHeroNeedExp2
-                AddDzPlayerData(pid,9,id,1)
+            if  MaxHeroExpLevel != level
+                if  exp >= MaxHeroNeedExp2
+                    exp = exp-MaxHeroNeedExp2
+                    AddDzPlayerData(pid,9,id,1)
+                endif
+                SetDzPlayerData(pid,zu,wei,exp)
+            else
+                SetDzPlayerData(pid,zu,wei,0)
             endif
-            SetDzPlayerData(pid,zu,wei,exp)
         elseif  level == 1
-            if  exp >= MaxHeroNeedExp1
-                exp = exp-MaxHeroNeedExp1
-                AddDzPlayerData(pid,9,id,1)
+            if  MaxHeroExpLevel != level
+                if  exp >= MaxHeroNeedExp1
+                    exp = exp-MaxHeroNeedExp1
+                    AddDzPlayerData(pid,9,id,1)
+                endif
+                SetDzPlayerData(pid,zu,wei,exp)
+            else
+                SetDzPlayerData(pid,zu,wei,0)
             endif
-            SetDzPlayerData(pid,zu,wei,exp)
         elseif  level == 0
             if  exp >= MaxHeroNeedExp0
                 exp = exp-MaxHeroNeedExp0
