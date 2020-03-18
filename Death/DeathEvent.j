@@ -68,7 +68,7 @@ scope DeathEvent initializer InitDeathEvent
         real y = PlayerReviveY
         if  GameOverBoolJu == false
             //BJDebugMsg(I2S(pid)+"fh"+GetUnitName(Pu[1]))
-            if  GameChallengPlayerBool[pid][4] == true
+            if  GameChallengPlayerBool[pid][4] == true and GetUnitAbilityLevel(Pu[1],'AZ96') != 5
                 x = AttackRoomPostion[pid][1]
                 y = AttackRoomPostion[pid][2]
             endif
