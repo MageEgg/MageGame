@@ -43,20 +43,20 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
                         SetDzPlayerData(pid,1,21,1)
-                        AddUnitRealState(Pu[1],46,3)
-                        AddUnitRealState(Pu[1],43,1)
+                        AddUnitRealState(Pu[1],50,3)
+                        AddUnitRealState(Pu[1],47,1)
                         AddUnitRealState(Pu[1],48,1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，杀敌金币+3、杀敌攻击+1、每秒业力+1！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒金币+3、每秒攻击+1、每秒业力+1！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
                 else
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
-                        AddUnitRealState(Pu[1],46,3)
-                        AddUnitRealState(Pu[1],43,1)
+                        AddUnitRealState(Pu[1],50,3)
+                        AddUnitRealState(Pu[1],47,1)
                         AddUnitRealState(Pu[1],48,1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，杀敌金币+3、杀敌攻击+1、每秒业力+1！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒金币+3、每秒攻击+1、每秒业力+1！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
@@ -133,8 +133,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                         GameGiftBool[num] = true
                         AddUnitRealState(Pu[1],49,50)
                         AddUnitRealState(Pu[1],27,1)
-                        AddUnitRealState(Pu[1],25,5)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+50、被动触发概率+1%、技能冷却-5%！") 
+                        AddUnitRealState(Pu[1],25,10)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+50、被动触发概率+1%、冷却缩减+10%！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
@@ -150,7 +150,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                         AddUnitRealState(Pu[1],48,10)
                         AddUnitRealState(Pu[1],27,2)
                         AddUnitRealState(Pu[1],25,10)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+200、每秒业力+10、被动触发概率+2%、技能冷却-10%！") 
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+200、每秒业力+10、被动触发概率+2%、冷却缩减+10%！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
