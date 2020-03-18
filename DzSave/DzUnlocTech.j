@@ -167,8 +167,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     
     
     function IsConditionsUnloc(int pid,int Type,int data)->bool
-        
-
+        if  savebool == true
+            return true
+        endif
         if  Type == Unloc_Type_Level
             BJDebugMsg("等级判断 需求："+I2S(data))
             return DzPlayerLv(Player(pid))>= data
