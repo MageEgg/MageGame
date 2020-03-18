@@ -125,6 +125,13 @@ scope SelectHero
             for i = 1,GameLevel
                 SetPlayerTechResearched(Player(pid),'KNDA'+i-1,1)
             end
+
+            //重随次数
+            HeroReNumber = 1
+            if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
+                HeroReNumber = HeroReNumber + 1
+            endif
+
             
         endif
     endfunction

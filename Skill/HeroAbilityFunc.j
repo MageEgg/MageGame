@@ -1444,7 +1444,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >=3
                 g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*8.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
                 LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
             endif
@@ -1484,7 +1484,7 @@ library HeroAbilityFunc uses OtherDamageTimer
             if  lv >= 3
                 g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*8.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()
                 LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",3)
             endif
