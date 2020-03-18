@@ -1149,9 +1149,11 @@ library HeroAbilityFunc uses OtherDamageTimer
         endif
         if  lv >= 3
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),300,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*7.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            LocAddEffectSetSize(GetUnitX(tu),GetUnitY(tu),"effect2_az_goods_blink(green).mdl",3)
+            // x = x坐标；y = y坐标；r = 半径；n = 特效数量；path = 特效路径 
+            AddEffectInAreaSetSize(GetUnitX(tu),GetUnitY(tu),550,2,6,"effect2_az_goods_blink(green).mdl")
+            
             g.destroy()
         endif
         LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_e_buffgreen2a.mdl")
