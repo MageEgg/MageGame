@@ -103,7 +103,12 @@ scope SelectHero
         
         InitPlayerMonsterSoulSkill(pid)
 
-        
+        if  SubString(GetPlayerName(Player(pid)),0,6) == "星耀"
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r检测到"+GetPlayerNameOfColor(pid)+"名称中带有星耀，奖励每秒金币+1、每秒攻击+1、每秒生命+5！")
+            AddUnitRealState(Pu[1],47,1)
+            AddUnitRealState(Pu[1],49,5)
+            AddUnitRealState(Pu[1],50,1)
+        endif 
 
         
     endfunction
@@ -118,7 +123,7 @@ scope SelectHero
             
             Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerColorEx(pid)+GetPN(pid)+"|r选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
             
             SelectHeroInitSkill(pid)//加载必要技能
 
