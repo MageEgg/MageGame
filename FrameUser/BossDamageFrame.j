@@ -227,7 +227,7 @@ library BossDamageFrame uses GameFrame,System,SystemCodes
                 endif
             end
             if  hat != -1
-                gold = R2I((((PlayerBossDamageCos[hat]/alldam)*1400*PlayerNum)*(1+0.4*AttackUnitOperaBossDamageNum))+0.001)
+                gold = R2I((((PlayerBossDamageCos[hat]/alldam)*2800*PlayerNum)*(1+0.4*AttackUnitOperaBossDamageNum))+0.001)
                 PlayerBossDamageCos[hat] = 0
                 if  b == 1
                     UnitAddItemEx(PlayerUnit[hat][1],'IN31')
