@@ -173,7 +173,7 @@ library ExNativeFrame uses GameFrame
         ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
 
         ReHeroNumber.frameid = FRAME.Fdf("text015",ReHeroButton.frameid,ReHeroNumber)
-        ReHeroNumber.SetPoint(0,ReHeroButton.frameid,0,0.09,-0.015)
+        ReHeroNumber.SetPoint(0,ReHeroButton.frameid,0,0.09,-0.013)
         ReHeroNumber.SetText("1")
 
         CreateButton(951,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.032,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
