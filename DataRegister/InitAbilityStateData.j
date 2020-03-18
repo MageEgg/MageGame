@@ -33,7 +33,7 @@ call InitAbilityData('S001',1,3,2,0,0,7.1,8.3,9.4,2,0,2,"南明离火","每|Cff0
 call InitAbilityData('S005',8,5,2,9,10.8,12.6,15.3,18,2,8,2,"焚心咒","施动焚心咒术对目标范围造成伤害。\n\n|Cff00ff7f4.5秒内|r|Cffffc926每次攻击|r|Cff00ff7f视为|r|Cffffc9262次攻击计数|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS005.blp")
 call InitAbilityData('S035',1,5,1,4.6,5.2,5.9,6.8,7.7,2,0,2,"业火咒","每|Cff00bfff16|r次攻击施动业火咒术，对目标范围造成伤害","ReplaceableTextures\\CommandButtons\\BTNS035.blp")
 call InitAbilityData('S030',3,3,1,0,0,10.1,12.2,14.4,2,8,2,"三昧真火","施动业三昧真火对目标范围造成伤害。\n\n|Cff00ff7f4.5秒内|r|Cffffc926每次攻击|r|Cff00ff7f视为|r|Cffffc9262次攻击计数|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS030.blp")
-call InitAbilityData('S073',1,4,1,0,6.8,7.6,8.8,10,2,0,2,"混元珠","攻击|Cffffc9266%|r概率掷出混元宝珠，|Cffffc926每次碰撞|r到怪物时造成伤害并|Cffffc926眩晕0.1秒|r。","ReplaceableTextures\\CommandButtons\\BTNS073.blp")
+call InitAbilityData('S073',1,4,1,0,6.8,7.6,8.8,10,2,0,2,"混元珠","攻击|Cffffc9266%|r概率掷出混元宝珠，|Cffffc926每次碰撞|r到怪物时造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS073.blp")
 call InitAbilityData('S074',3,5,1,6.4,7.7,9,10.9,12.8,2,8,2,"戮目珠","对目标范围掷出戮目宝珠，碰撞怪物时造成伤害，\n\n|Cff00ff7f4.5秒内增加|r|Cffffc92610%技能伤害|r|Cff00ff7f。|r\n|Cff00ff7f效果可叠加|r","ReplaceableTextures\\CommandButtons\\BTNS074.blp")
 call InitAbilityData('S013',1,2,99,0,0,0,4.2,4.8,2,0,2,"轮回之狱","每|Cffffc92624次|r攻击对目标范围造成伤害并|Cffffc926眩晕1秒|r。","ReplaceableTextures\\CommandButtons\\BTNS013.blp")
 call InitAbilityData('S022',8,2,5,0,0,0.51,0.62,0.73,2,8,2,"强攻阵","火莲降世，对周围怪物造成伤害。\n\n|Cff00ff7f4.5s内增加|r|Cffffc92610%暴击|r|Cff00ff7f。\n效果可叠加|r","ReplaceableTextures\\CommandButtons\\BTNS022.blp")
@@ -99,10 +99,9 @@ call InitAbilityData('S524',8,0,2,1.5,0,0,0,0,2,10,3,"道友请留步","对目�
 call InitAbilityData('S525',3,0,1,2.4,0,0,0,0,2,8,0,"攒心钉","发射|Cffffd24d3枚|r攒心钉，造成|Cffffd24d攻击*240%|r伤害。\n\n拥有法宝|Cffffc926攒心钉|r时，造成伤害|Cffffc926+25%|r\n","ReplaceableTextures\\CommandButtons\\BTNS525.blp")
 call InitAbilityData('S526',1,0,1,6,0,0,0,0,2,6,0,"当头棒击","每6秒攻击对直线范围造成|Cffff8000攻击*600%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS526.blp")
 call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处决|r一名队友，|Cffffd24d8|r秒内增加你的攻击力，增加量为|Cffffd24d该队友攻击的12%|r|Cfff0f0f0。|r\n|Cff00ff7f处决自己获得一半加成。|r\n|Cff00ff7f施法距离全图|r","ReplaceableTextures\\CommandButtons\\BTNS527.blp")
-call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d15%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
+call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d30%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9265%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
-
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
 InitAbilityStringEx('S502',"附带1秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")

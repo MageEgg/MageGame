@@ -77,6 +77,11 @@ scope KeyEvent initializer InitKeyBroadListener
                         elseif  GetPassFrameShow() == true
                             ClosePassFrame(pid)
                         endif
+                        
+                        if  ReHeroButton.show == true    
+                            ReHeroButton.show = false
+                        endif
+                        
                     endif
                 endif
             elseif  key == 9 //Tab

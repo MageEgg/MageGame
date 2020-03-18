@@ -8,7 +8,9 @@ library ExNativeFrame uses GameFrame
     
     private int origin = 0
 
-
+    FRAME ReHeroBack = 0
+    FRAME ReHeroButton = 0
+    FRAME ReHeroNumber = 0
     
       
     //鼠标显示符印
@@ -147,16 +149,41 @@ library ExNativeFrame uses GameFrame
         endif
     endfunction
 
-
+    function ReHeroFrameUI(int pid)
+        if  GetLocalPlayer() == Player(pid)
+            ReHeroNumber.SetText( I2S(HeroReNumber))
+        endif
+    endfunction
 
 
     function InitExNativeFrame()
+        ReHeroBack = FRAME.create() //背景注册
+        ReHeroButton = FRAME.create() //背景注册
+        ReHeroNumber = FRAME.create() //背景注册
+
+        //控件设置
+        ReHeroButton.frameid = FRAME.Tag("BUTTON","ReHero",GameUI,ReHeroButton)
+        ReHeroButton.SetPoint(1,GameUI,4,0.0,-0.01)
+        ReHeroButton.SetSize(0.134,0.1)
+
+        //背景设置
+        ReHeroBack.frameid = FRAME.Tag("BACKDROP","ReHero",ReHeroButton.frameid,ReHeroBack)
+        ReHeroBack.SetPoint(4,ReHeroButton.frameid,4,0,0)
+        ReHeroBack.SetSize(0.134,0.10)
+        ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
+
+        ReHeroNumber.frameid = FRAME.Fdf("text015",ReHeroButton.frameid,ReHeroNumber)
+        ReHeroNumber.SetPoint(0,ReHeroButton.frameid,0,0.09,-0.015)
+        ReHeroNumber.SetText("1")
+
+        CreateButton(951,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.032,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
+        ReHeroButton.show = false
+
+
+
+
+
         int index = 0
-        
-
-
-
-        
         for x = 0,2
             for y = 0,2
                 index = y * 3 + x + 1
@@ -175,13 +202,13 @@ library ExNativeFrame uses GameFrame
         Back = FRAME.create()   //注册主背景
 
         //控件设置
-        Button.frameid = FRAME.Tag("BUTTON","Prize",GameUI,Button)
+        Button.frameid = FRAME.Tag("BUTTON","Prize2",GameUI,Button)
         Button.SetPoint(4,GameUI,4,0,0)
         Button.SetSize(0.134,0.12)
         origin = Button.frameid
 
         //背景设置
-        Back.frameid = FRAME.Tag("BACKDROP","Prize",origin,Back)
+        Back.frameid = FRAME.Tag("BACKDROP","Prize2",origin,Back)
         Back.SetPoint(4,origin,4,0,0)
         Back.SetSize(0.134,0.12)
         Back.SetTexture("war3mapImported\\UI_Prize_Back2.tga",0)
