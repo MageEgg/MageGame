@@ -151,8 +151,13 @@ library ExNativeFrame uses GameFrame
 
     function ReHeroFrameUI(int pid)
         if  GetLocalPlayer() == Player(pid)
-            ReHeroNumber.SetText( I2S(HeroReNumber))
+            if  HeroReNumber > 0
+                ReHeroNumber.SetText( I2S(HeroReNumber))
+            else
+                ReHeroButton.show = false
+            endif
         endif
+
     endfunction
 
 
