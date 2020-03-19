@@ -938,10 +938,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS081(unit wu,real r1,real r2,real dam)//真空领域
         unit u1 = wu
         unit u2 = null
-        real damage = dam/20
+        real damage = dam/8
         real x1 = r1
         real y1 = r2
-        int time = 200
+        int time = 130
         unit uu = CreateTmUnit(GetOwningPlayer(u1),"effect_az_blacksmoke.mdl",x1,y1,0,50,1.0)
         UnitAddAbility(u1,'S081')
         TimerStart(0.03,true)
@@ -952,28 +952,26 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             real ang = 0
             real dx = 0
             real dy = 0
-            insert BossSkillDamType
-            if  time > 0
-                time = time - 1
-                GroupEnumUnitsInRange(gg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                loop
-                    u2 = FirstOfGroup(gg)
-                    exitwhen u2 == null
-                    x2 = GetUnitX(u2)
-                    y2 = GetUnitY(u2)
-                    ang = Atan2(y1-y2,x1-x2)
-                    dx = 12*Cos(ang)
-                    dy = 12*Sin(ang)
-                    SetUnitX(u2,x2+dx)
-                    SetUnitY(u2,y2+dy)
-                    if  ModuloInteger(time,10) == 0
-                        UnitDamageTarget(u1,u2,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                    endif
-                    GroupRemoveUnit(gg,u2)
-                endloop
-            else
-                GroupEnumUnitsInRange(gg,x1,y1,700,GroupNormalNoStr(GetOwningPlayer(u1),"az_heiseguangzhu.mdx","origin",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            time = time - 1
+
+            GroupEnumUnitsInRange(gg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            loop
+                u2 = FirstOfGroup(gg)
+                exitwhen u2 == null
+                x2 = GetUnitX(u2)
+                y2 = GetUnitY(u2)
+                ang = Atan2(y1-y2,x1-x2)
+                dx = 8*Cos(ang)
+                dy = 8*Sin(ang)
+                SetUnitX(u2,x2+dx)
+                SetUnitY(u2,y2+dy)
+                if  ModuloInteger(time,17) == 0
+                    UnitDamageTarget(u1,u2,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                endif
+                GroupRemoveUnit(gg,u2)
+            endloop
+
+            if  time <= 0
                 RemoveUnit(uu)
                 UnitRemoveAbility(u1,'S081')
                 endtimer
