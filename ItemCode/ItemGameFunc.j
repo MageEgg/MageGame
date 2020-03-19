@@ -858,8 +858,9 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     ///////////////////////////////拾取函数///////////////////////////////////////////
 
     function PickUpItemOfIP07Func()
-        int num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IP07')
+        int num = 0
         if  GetItemTypeId(GetEnumItem()) == 'IP07'
+            num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IP07')
             RemoveItem(GetEnumItem())
             SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
         endif
@@ -876,8 +877,9 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     endfunction
 
     function PickUpItemOfIN30Func()
-        int num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IN30')
+        int num = 0
         if  GetItemTypeId(GetEnumItem()) == 'IN30'
+            num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IN30')
             RemoveItem(GetEnumItem())
             SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
         endif
