@@ -38,9 +38,6 @@ library DamageCode uses UnitStateSet
     //闪避
     function GetUnitSbState(unit wu)->real
         real s = GetUnitRealState(wu,10)
-        if  GetUnitAbilityLevel(wu,'BZ8B') > 0
-            s = s + 15
-        endif
         if  s > 70
             s = 70
         endif
@@ -88,9 +85,6 @@ library DamageCode uses UnitStateSet
     //物理穿透
     function GetUnitWcState(unit wu)->real
         real s = GetUnitRealState(wu,13)
-        if  GetUnitAbilityLevel(wu, 'BZ8D')>0
-            s = s + 100
-        endif
         return s
     endfunction
 
@@ -165,12 +159,6 @@ library DamageCode uses UnitStateSet
     //获取抵抗加成结算
     function GetUnitDkState(unit wu)->real
         real s = GetUnitRealState(wu,18)
-        if  GetUnitAbilityLevel(wu, 'BZ8A')>0
-            s = s + 10
-        endif
-        if  GetUnitAbilityLevel(wu, 'BZ8H')>0
-            s = s + -15
-        endif
         if  s > 90
             s = 90
         endif
@@ -198,9 +186,6 @@ library DamageCode uses UnitStateSet
     //暴击
     function GetUnitBjState(unit wu)->real
         real s = GetUnitRealState(wu,19)
-        if  GetUnitAbilityLevel(wu,'BZ8E') > 0
-            s = s + 10
-        endif
         if  s > 100
             s = 100
         endif

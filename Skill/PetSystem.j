@@ -43,6 +43,7 @@ library PetSystem uses AbilityUI,OtherDamageTimer
             Pu[200] = null
         endif
         Pu[200] = CreateUnit(Player(pid),'hC01',GetUnitX(Pu[1]),GetUnitY(Pu[1]),0)
+        AddUnitRealState(Pu[200],19,20)
         IssuePointOrderById(Pu[200],851983,(GetUnitX(Pu[1])+GetRandomReal(-500,500)),(GetUnitY(Pu[1])+GetRandomReal(-500,500)))
     endfunction
 

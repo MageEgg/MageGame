@@ -1,7 +1,7 @@
 library GameChallenge0 uses GameChallengeBase
     
     function GameChallenge_0_C_Death(int pid)
-        if  GameChallengBool[0] == true and GameChallengBool[1] == true
+        if  GameChallengBool[0] == true and GameChallengBool[1] == true and GameChallengBool[2] == false
             GameChallengBool[2] = true
             for n = 4,5
                 SetUnitAPOfBool(GameBiaoJI[n],2)
