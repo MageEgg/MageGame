@@ -265,13 +265,18 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             if  CrazyAttackBool == false
                 if  AttackUnitStopNum < num 
                     if  AttackUnitWN < AttackUnitWNOver
-                        if  StopAttackBool == false
-                            AttackUnitStopNum = AttackUnitStopNum + 1
-                            FuncStopAttack(time)
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"使用了暂停刷怪"+I2S(R2I(time/60))+"分钟（"+I2S(AttackUnitStopNum)+"/"+I2S(num)+"）" )
-                        else
+                        if  AttackUnitWN >= AttackUnitWNOver - 3
                             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
-                            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前已处于暂停刷怪！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段，无法暂停刷怪！|r")
+                        else
+                            if  StopAttackBool == false
+                                AttackUnitStopNum = AttackUnitStopNum + 1
+                                FuncStopAttack(time)
+                                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"使用了暂停刷怪"+I2S(R2I(time/60))+"分钟（"+I2S(AttackUnitStopNum)+"/"+I2S(num)+"）" )
+                            else
+                                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
+                                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前已处于暂停刷怪！")
+                            endif
                         endif
                     endif
                 else

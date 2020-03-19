@@ -18,6 +18,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     #define AttackUnitWNOver            AttackUnitInt[0][3]     //最终波数
     #define AttackUnitTXWN              AttackUnitInt[0][3]     //偷袭波数
     #define AttackUnitStopNum           AttackUnitInt[0][4]     //停怪次数
+    #define LastAttackBossId            AttackUnitInt[0][5]     //最终BOSS
     
     #define AttackUnitWNBoss            AttackUnitInt[0][10]    //Boss次数
     
@@ -237,8 +238,10 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackBOSSLastCos = 1
         if  GameLevel > 1
             AttackUnitWNOver = 24  //最终波
+            LastAttackBossId = 'mb08'
         else
             AttackUnitWNOver = 21  //最终波
+            LastAttackBossId = 'mb07'
         endif
         
         //序号 进攻类型（事件） 下一波时间 创建数量 创建次数 刷新时间 进攻坐标 单位id 1-4 创建坐标1-4
