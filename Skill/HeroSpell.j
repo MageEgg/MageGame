@@ -1557,7 +1557,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     
     function SpellS235(unit u1)
         unit u = u1
-        real b = (0.05+(1-GetUnitState(u1,UNIT_STATE_LIFE))/GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.2)*100
+        real b = (0.05+(GetUnitState(u1,UNIT_STATE_MAX_LIFE)-GetUnitState(u1,UNIT_STATE_LIFE))/GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.2)*100
         AddUnitRealState(u,19,b)    
         UnitAddAbility(u,'A235')
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-200,1))
