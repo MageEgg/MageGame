@@ -358,47 +358,15 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         TimerStart(CreateTimer(),time,false,function CreateChangeGodStageFunc)
     endfunction
 
-    function SetPlayerLeagueState(int num,bool b)
-        int t = 1
-        if  b == false
-            t = -1
-        endif
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                if  num == 1
-                    AddUnitRealState(Pu[1],18,t*5)
-                elseif  num == 2
-                    AddUnitRealState(Pu[1],10,t*5)
-                elseif  num == 3
-                    AddUnitRealState(Pu[1],32,t*6)
-                elseif  num == 4
-                    AddUnitRealState(Pu[1],13,t*50)
-                elseif  num == 5
-                    AddUnitRealState(Pu[1],19,t*3)
-                elseif  num == 6
-                    AddUnitRealState(Pu[1],9,t*30)
-                elseif  num == 7
-                    AddUnitRealState(Pu[1],31,t*10)
-                elseif  num == 8
-                    AddUnitRealState(Pu[1],25,t*5)
-                endif
-            endif
-        end
-    endfunction
-
     function SetLeagueUnit(int num,bool flag)
         if  flag == true
             SetUnitOwner(GameChallengLeagueUnit(num),Player(9),true)
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ20')
-            UnitAddAbility(GameChallengLeagueUnit(num),'AZ7A'+num-1)
-            SetPlayerLeagueState(num,true)
         else
             SetUnitOwner(GameChallengLeagueUnit(num),Player(11),true)
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
-            UnitAddAbility(GameChallengLeagueUnit(num),'AZ8A'+num-1)
-            UnitAddAbility(GameChallengLeagueUnit(num),'AZ8A'+num-1+8)
         endif
     endfunction
 

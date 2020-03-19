@@ -220,10 +220,6 @@ library GameChallengDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Game
             GameChallenge_7_Death(pid,u2)
         elseif  uid2 >= 'uf80' and uid2 <= 'uf87'
             GameChallenge_8_Death(pid,u2)
-        elseif  uid2 >= 'md01' and uid2 <= 'md08'
-            if  GetUnitAbilityLevel(u2,'AZ20') > 0
-                SetPlayerLeagueState(uid2-'md01'+1,false)
-            endif
         endif
         if  uid2 >= 'ut00' and uid2 <= 'ut09'
             GameTeamChallengDeath(u2)
