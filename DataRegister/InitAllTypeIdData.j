@@ -171,7 +171,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1U',"封神礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1U.BLP","生命+10%\n每秒攻击+20\n每秒业力+20\n开局玄铁+15\n装备升级失败返还20%金币")
         call InitTypeIdStrings('RJ1V',"金币礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1V.BLP","开局金币+2000")
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")
-        call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","每秒回血+1%\n业力+20%\n\n宠物攻击力=英雄业力\n宠物攻击5%概率造成业力*400%范围伤害\n解锁宠物|Cffffd24d小狐妖|r")
+        call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","每秒回血+1%\n业力+20%\n每秒生命+300\n\n宠物攻击力=英雄业力\n小狐狸攻击间隔1秒，暴击率20%，继承英雄暴击伤害。\n拥有技能-狐剑：造成100000+业力*400%范围伤害，冷却6秒。\n解锁宠物|Cffffd24d小狐妖|r")
         call InitTypeIdStrings('RDAA',"果然暴君","ReplaceableTextures\\CommandButtons\\BTNCD01.blp","")
         call InitTypeIdStrings('RDAB',"我真的知错了","ReplaceableTextures\\CommandButtons\\BTNCD02.blp","")
         call InitTypeIdStrings('RDAC',"老婆别打了","ReplaceableTextures\\CommandButtons\\BTNCD03.blp","")
