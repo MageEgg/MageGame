@@ -234,46 +234,49 @@ scope ItemSystem initializer InitItemSystem
     
 
     //读取饰品
-    function GetHeroOrnamentsItem(unit wu)->item
+    function GetHeroOrnamentsItem(int pid)->item
         int id = 0
         for n = 0,5
-            id = GetItemTypeId(UnitItemInSlot(wu,n))
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
             if  id >= 'E101' and id <= 'E124'
-                return UnitItemInSlot(wu,n)
+                return UnitItemInSlot(Pu[1],n)
             endif
         end
         return null
     endfunction
     //手动升级饰品
     function IncOrnaments(int pid,unit wu)
-        item it = GetHeroOrnamentsItem(wu)
+        item it = GetHeroOrnamentsItem(pid)
         int next = 0
         int id = 0
         int use = 0
-        if  it != null
-            id = GetItemTypeId(it)
-            if  id >= 'E101' and id <= 'E110'
-                use = 10000
-            elseif  id >= 'E111' and id <= 'E115'
-                use = 20000
-            elseif  id >= 'E116' and id <= 'E120'
-                use = 50000
+        if  PlayerDeathBool == false
+            if  it != null
+                id = GetItemTypeId(it)
+                if  id >= 'E101' and id <= 'E110'
+                    use = 10000
+                elseif  id >= 'E111' and id <= 'E115'
+                    use = 20000
+                elseif  id >= 'E116' and id <= 'E120'
+                    use = 50000
+                else
+                    use = 100000
+                endif
+                if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use
+                    AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                    next = GetTypeIdData(id,106)
+                    RemoveItem(it)
+                    UnitAddItem(wu,CreateItem(next,GetUnitX(wu),GetUnitY(wu)))
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
+                else    
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r强化失败！金币不足"+I2S(use))
+                endif
             else
-                use = 100000
-            endif
-            if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use
-                AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                next = GetTypeIdData(id,106)
-                RemoveItem(it)
-                UnitAddItem(wu,CreateItem(next,GetUnitX(wu),GetUnitY(wu)))
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
-            else    
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r强化失败！金币不足"+I2S(use))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包内没有可升级的饰品！")
             endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包内没有可升级的饰品！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r死亡状态无法升级饰品！")
         endif
-
         flush locals
     endfunction
 
