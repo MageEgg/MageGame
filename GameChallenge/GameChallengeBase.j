@@ -398,6 +398,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             UnitRemoveAbility(GameChallengLeagueUnit(num),'AZ19')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ21')
             UnitAddAbility(GameChallengLeagueUnit(num),'AZ8A'+num-1)
+            UnitAddAbility(GameChallengLeagueUnit(num),'AZ8A'+num-1+8)
         endif
     endfunction
 
