@@ -57,8 +57,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
         RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
-        RegisterShowSaveFrameData(2,'RY1D','RY1D',0,0,0,0)//星月光环
-        
+        RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0)//星月光环
+        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
 //        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//存档光环
         RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
@@ -467,7 +467,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     if  id > 0
                         
 
-                        if  page == 5
+                        if  page == 3
                             lv = GetDzHeroExpLevel(pid,id-'RH00'+'H000')
                             if  lv > 0
                                 DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Hero_SaveLevel_"+I2S(lv)+".tga",0)
