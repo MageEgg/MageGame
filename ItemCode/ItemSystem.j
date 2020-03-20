@@ -253,12 +253,16 @@ scope ItemSystem initializer InitItemSystem
         if  PlayerDeathBool == false
             if  it != null
                 id = GetItemTypeId(it)
-                if  id >= 'E101' and id <= 'E110'
+                if  id >= 'E101' and id <= 'E105'
+                    use = 5000
+                elseif  id >= 'E106' and id <= 'E110'
                     use = 10000
                 elseif  id >= 'E111' and id <= 'E115'
                     use = 20000
                 elseif  id >= 'E116' and id <= 'E120'
-                    use = 50000
+                    use = 40000
+                elseif  id >= 'E121' and id <= 'E125'
+                    use = 60000
                 else
                     use = 100000
                 endif
