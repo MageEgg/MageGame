@@ -263,7 +263,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS002(unit wu)
         SetUnitIntState(wu,'S002',1)
-        UnitAddEffectSetSize(wu,"Abilities\\Spells\\NightElf\\BattleRoar\\RoarCaster.mdl",2)
+        UnitAddEffectSetSize(wu,"effect_blue-dao-mofa.mdl",1)
     endfunction
 
     function SpellS014Attack(unit wu)
@@ -538,8 +538,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             UnitTimerAddSkill(u1,'S028',4.5)
             AddUnitStateExTimer(u1,81,6,4.5)
         endif
-        damage = damage / 8
-        CreateEffectArea(u1,x,y,400,damage,9,0.3,25,0.4,"effect2_az_potm(1)_t1_impact.mdl",false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        damage = damage / 4
+        CreateEffectArea(u1,x,y,400,damage,5,0.2,25,0.4,"effect2_az_potm(1)_t1_impact.mdl",false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
     endfunction
 
     function SpellS030(unit u,real x2,real y2,real dam)//三味真火
@@ -1314,7 +1314,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         integer pid = GetPlayerId(GetOwningPlayer(u))
         if  PlayerDeathBool == false
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),400,GroupNormalNoStr(GetOwningPlayer(u),"Environment\\LargeBuildingFire\\LargeBuildingFire2.mdl","origin",0))
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),400,GroupNormalNoStr(GetOwningPlayer(u),"Abilities\\Spells\\Items\\AIfb\\AIfbSpecialArt.mdl","origin",0))
             UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
         endif
@@ -1602,41 +1602,36 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y2 = r2
         real ang = Atan2(y2-y1,x2-x1)
         real damage = dam
-        unit u2 = CreateUnit(GetOwningPlayer(u1),'e000',x1,y1,ang/0.01745)
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ2H',x1,y1,ang/0.0175)
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
-        int time = R2I(1000/30)
-        group wg = CreateGroup()
-        group ug = CreateGroup()
-        GroupAddUnit(ug,u2)
+        int time = R2I(Pdis(x1,y1,x2,y2)/30)
+        real size = GetUnitScaleSize(u1)
+        LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+        SetUnitScale(u1,0.01,0.01,0.01)
         AddUnitStateExTimer(u1,9,75,6)
         shenshou(CreateTmUnit(GetOwningPlayer(u1),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u1),0,1))
-        TimerStart(0.002,true)
+        TimerStart(0.01,true)
         {
-            group gg = CreateGroup()
             time = time - 1
-            if  time > 0
+            if  time > 0 and GetUnitAbilityLevel(u1,'AZ98') == 0
                 x1 = x1 + xx
                 y1 = y1 + yy
+                SetUnitXY(u1,x1,y1)
                 SetUnitXY(u2,x1,y1)
-                if  ModuloInteger(time,6) == 0
-                    LocAddEffectSetSize(x1,y1,"effect3_az_heiseguangzhu.mdl",1)
-                    LocAddEffectSetSize(x1,y1,"effect3_red-zhendi.mdl",1)
-                    LocAddEffectSetSize(x1,y1,"effect_az-leiji.mdl",1.5)
-                endif
-                GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",Buffxy,1,0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
                 RemoveUnit(u2)
-                GroupClear(wg)
-                GroupClear(ug)
-                DestroyGroup(wg)
-                DestroyGroup(ug)
-                //SetUnitXY(u1,x2,y2)
+                SetUnitXY(u1,x1,y1)
+                SetUnitScale(u1,size,size,size)
+                SetUnitAnimation(u1,"attack")
+                LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+                AddEffectInAreaSetSizeTimer(x1,y1,290,1.5,6,"effect3_impalehittarget.mdl",0.8)
+                LocAddEffectSetSize(x1,y1,"effect3_az_heiseguangzhu.mdl",2.5)
+                LocAddEffectSetSize(x1,y1,"effect3_red-zhendi.mdl",2.5)
+                LocAddEffectSetSize(x1,y1,"effect_az-leiji.mdl",3)
+                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffxy,1,0)
                 endtimer
             endif
-            GroupClear(gg)
-            DestroyGroup(gg)
             flush locals
         }
         flush locals
