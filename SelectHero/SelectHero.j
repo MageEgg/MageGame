@@ -27,10 +27,12 @@ scope SelectHero
 
         PlayerLoadPassCheck.execute(pid)//读取通行证
 
-        /*if  SubString(GetPlayerName(Player(pid)),0,9) == "星耀丶"
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r欢迎星耀成员"+GetPlayerColorEx(pid)+GetPN(pid)+"，奖励木材1000！")
-            AdjustPlayerStateBJ(1000, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-        endif*/
+        if  SubString(GetPlayerName(Player(pid)),0,6) == "星耀"
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r检测到"+GetPlayerNameOfColor(pid)+"名称中带有星耀，奖励每秒金币+1、每秒攻击+1、每秒生命+5！")
+            AddUnitRealState(Pu[1],47,1)
+            AddUnitRealState(Pu[1],49,5)
+            AddUnitRealState(Pu[1],50,1)
+        endif 
 
         int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
         
@@ -103,12 +105,7 @@ scope SelectHero
         
         InitPlayerMonsterSoulSkill(pid)
 
-        if  SubString(GetPlayerName(Player(pid)),0,6) == "星耀"
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r检测到"+GetPlayerNameOfColor(pid)+"名称中带有星耀，奖励每秒金币+1、每秒攻击+1、每秒生命+5！")
-            AddUnitRealState(Pu[1],47,1)
-            AddUnitRealState(Pu[1],49,5)
-            AddUnitRealState(Pu[1],50,1)
-        endif 
+        
 
         
     endfunction

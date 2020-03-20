@@ -89,7 +89,7 @@ library ExNativeFrame uses GameFrame
     function AddUnitRune(unit wu,int id,int num)
         
         if  id == 'FY02'
-            AddUnitRealState(wu,31,2.5*num)
+            AddUnitRealState(wu,31,5*num)
             if  num == 1
                 if  GetUnitIntState(wu,id) == 2
                     AddUnitRealState(wu,27,6)

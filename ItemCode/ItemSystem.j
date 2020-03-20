@@ -518,6 +518,12 @@ scope ItemSystem initializer InitItemSystem
         int i2 = 0
         int attacklv = AttackUnitWN + 1
 
+        if  GetItemType(GetManipulatedItem()) == ITEM_TYPE_CHARGED
+            if  GetItemCharges(GetManipulatedItem()) == 0
+                RemoveItem(GetManipulatedItem())
+            endif
+        endif
+
         if  itemid == 'CS01'
             PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
             AddPlayerDrawNum(pid,1)

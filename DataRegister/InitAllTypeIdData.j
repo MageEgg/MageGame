@@ -54,7 +54,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB51',"|Cff00BFFF九曲黄河阵|r","ReplaceableTextures\\CommandButtons\\BTNFB51.BLP","光之符印+1")
         call InitTypeIdStrings('FB52',"|CffBF00FF紫绶仙衣|r","ReplaceableTextures\\CommandButtons\\BTNFB52.BLP","")
         call InitTypeIdStrings('FY01',"金之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_01.blp","触发致命一击时，攻击速度提高|Cffffc9267%*金之符印数量|r，持续3秒，冷却5秒。")
-        call InitTypeIdStrings('FY02',"木之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_02.blp","最大生命值提高|Cffffc9262.5%*木之符印数量|r。")
+        call InitTypeIdStrings('FY02',"木之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_02.blp","最大生命值提高|Cffffc9265%*木之符印数量|r。")
         call InitTypeIdStrings('FY03',"水之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_03.blp","道兵伤害提高|Cffffc9265%*水之符印数量|r")
         call InitTypeIdStrings('FY04',"火之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_04.blp","释放主动技能时，攻击速度提高|Cffffc9265%*火之符印数量|r，持续3秒")
         call InitTypeIdStrings('FY05',"土之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_05.blp","每10秒为自身施加护盾，抵挡伤害量为|Cffffc926最大生命值4%*土之符印|r数量，持续4秒。")
