@@ -1180,14 +1180,24 @@ library HeroAbilityFunc uses OtherDamageTimer
         real x1 = sx
         real y1 = sy
         real damage = dam
-        int time = 4
+        int time = 3
         int lv = level
         real timeout = 1.0
 
         if  lv >= 3
-            time = 8
+            time = 7
             timeout = 0.5
         endif
+
+        IndexGroup g = IndexGroup.create()
+        if  lv >= 2
+            GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"effect_az_jugg_e2.mdl",'A003',1,852095))
+        else
+            GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"effect_az_jugg_e2.mdl","origin",0))
+        endif
+        UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        LocAddEffect(x1,y1,"effect_fubuglow.mdl")
+        g.destroy()
 
         TimerStart(timeout,true)
         {
@@ -1196,9 +1206,9 @@ library HeroAbilityFunc uses OtherDamageTimer
             
             IndexGroup g = IndexGroup.create()
             if  lv >= 2
-                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",'A003',1,852095))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"effect_az_jugg_e2.mdl",'A003',1,852095))
             else
-                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"effect_az_jugg_e2.mdl","origin",0))
             endif
             UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             LocAddEffect(x1,y1,"effect_fubuglow.mdl")

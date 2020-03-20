@@ -21,7 +21,7 @@ call InitAbilityData('S004',1,5,0,2.4,2.7,3,3.5,4,0,0,0,"无情","攻击|Cffffc9
 call InitAbilityData('S006',8,4,1,0,9.6,11.2,13.6,16,2,8,0,"无影杀","对目标范围内怪物进行5次攻击，附带|Cffffc926普攻效果|r。","ReplaceableTextures\\CommandButtons\\BTNS006.blp")
 call InitAbilityData('S070',8,2,1,0,0,0,1.36,1.6,2,8,0,"暴风剑雨","对目标范围内怪物造成多次伤害。\n\n|Cff00ff7f可触发致命一击效果。|r","ReplaceableTextures\\CommandButtons\\BTNS070.blp")
 call InitAbilityData('S052',1,5,2,9.5,11.4,13.3,16.2,19,2,0,1,"神火天降","每|Cffffc92616|r次攻击施动神火天降，对目标范围内敌人造成伤害。\n\n|Cff00ff7f命中时|r|Cffffc926所有技能冷却-0.5秒|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS052.blp")
-call InitAbilityData('S053',2,5,2,2.75,3.26,4,4.7,5.5,2,2,1,"落魂咒","对周围单位造成伤害。\n\n|Cffffc92630%几率|r|Cff00ff7f造成|r|Cffffc926双倍|r|Cff00ff7f伤害。|r\n|Cff00ff7f不受冷却缩减影响。|r","ReplaceableTextures\\CommandButtons\\BTNS053.blp")
+call InitAbilityData('S053',2,5,2,3,4,5,6,7,2,2,1,"落魂咒","对周围单位造成伤害。\n\n|Cffffc92630%几率|r|Cff00ff7f造成|r|Cffffc926双倍|r|Cff00ff7f伤害。|r\n|Cff00ff7f不受冷却缩减影响。|r","ReplaceableTextures\\CommandButtons\\BTNS053.blp")
 call InitAbilityData('S080',3,2,1,0,0,0,13.6,16,2,8,1,"剑灵诛仙式","万剑出鞘，对目标范围造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
 call InitAbilityData('S007',1,2,99,0,0,0,4.4,5,2,0,1,"太清妙术","攻击|Cffffc9266%|r概率对目标范围造成伤害。\n\n|Cff00ff7f触发后|r|Cffffc926仙术系技能|r|Cff00ff7f伤害|r|Cffffc926+20%|r|Cff00ff7f，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS007.blp")
 call InitAbilityData('S011',1,4,99,0,3.2,3.6,4.2,4.8,2,0,1,"玄灵诀","攻击|Cffffc9266%|r概率对目标范围造成伤害。\n\n|Cff00ff7f触发后|r|Cffffc926所有技能冷却-0.5秒|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS011.blp")
@@ -46,10 +46,10 @@ call InitAbilityData('S014',1,5,2,9,10.2,11.4,13.2,15,2,0,3,"后发制人","|Cff
 call InitAbilityData('S096',1,2,1,7.2,8.2,9.1,10.6,12,2,0,3,"酒仙剑舞","|CffFFC926闪避|r时对周围敌人伤害。","ReplaceableTextures\\CommandButtons\\BTNS096.blp")
 call InitAbilityData('S097',1,3,5,0,0,0.36,0.41,0.47,2,0,3,"佛怒","被攻击|Cffffc92616次|r对自身范围内敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS097.blp")
 call InitAbilityData('S101',7,5,5,0.5,0.6,0.7,0.85,1,2,8,3,"雷光破","对目标范围造成造成伤害。\n\n|Cff00ff7f4.5秒内|r|Cffffc926佛门系技能|r|Cff00ff7f触发概率|r|Cffffc926+6%|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS101.blp")
-call InitAbilityData('S104',2,4,5,0,0.15,0.18,0.21,0.5,2,8,3,"熔炉之身","每秒对自身范围内敌人造成伤害。\n\n|Cff00ff7f攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
+call InitAbilityData('S104',2,4,5,0,0.15,0.2,0.25,0.4,2,8,3,"熔炉之身","每秒对自身范围内敌人造成伤害。\n\n|Cff00ff7f攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
 call InitAbilityData('S082',1,2,99,0,0,0,0.2,0.25,2,0,4,"雷神之子","召唤|Cffffc9263朵|r雷云环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
 call InitAbilityData('S086',1,5,1,0.2,0.26,0.32,0.4,0.5,2,0,4,"幻影剑阵","召唤|Cffffc9263把|r飞剑环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS086.blp")
-call InitAbilityData('S089',2,4,99,0,0.24,0.28,0.34,0.4,2,16,4,"天神道兵","召唤|Cffffc9261|r个天神道兵，持续12秒。\n|Cff00ff7f道兵拥有致命一击和分裂|r","ReplaceableTextures\\CommandButtons\\BTNS089.blp")
+call InitAbilityData('S089',2,4,99,0,0.24,0.28,0.32,0.4,2,8,4,"天神道兵","召唤|Cffffc9261|r个天神道兵，持续6秒。\n|Cff00ff7f道兵拥有致命一击和分裂|r","ReplaceableTextures\\CommandButtons\\BTNS089.blp")
 call InitAbilityData('S090',8,3,2,0,0,1.8,2.1,2.5,2,10,4,"噬魂龙魄","召唤1个噬魂龙魄，使其周围600码单位生机骤减，每|Cffffc9260.5|r秒造成伤害，持续|Cffffc9264秒|r。\n|Cff00ff7f多个噬魂灵魄伤害可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS090.blp")
 
 
@@ -69,7 +69,7 @@ call InitAbilityData('S232',2,0,5,0.15,0,0,0,0,2,30,9,"八荒斗神","|CffFFC926
 call InitAbilityData('S233',2,0,1,10,0,0,0,0,2,30,9,"冰封之域","对自身周围敌人造成大量伤害，受影响单位|Cffffc9266秒|r内承受|Cffffc926物理伤害+40%|r，3秒后进入|Cffffc926极冻状态|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH04.blp")
 call InitAbilityData('S234',7,0,2,12.5,0,0,0,0,2,30,9,"离魂秘术","对目标范围内的单位造成大量伤害，使其|Cffffc9266s|r内攻击力降低70%，|Cffffc926承受技能伤害+40%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH05.blp")
 call InitAbilityData('S235',2,0,0,0,0,0,0,0,0,30,9,"修罗之怒","释放时根据当前血量增加自身|Cffffc9265%~25%暴击概率|r，|Cffffc9264秒|r内|Cffffc926每次暴击|r增加自身|Cffffc92620%|r暴击伤害。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH06.blp")
-call InitAbilityData('S236',5,0,99,10,0,0,0,0,2,30,9,"神威一击","突刺至目标身后并造成伤害。随后|Cffffc9266秒|r内|Cffffc926攻击速度+75%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH07.blp")
+call InitAbilityData('S236',3,0,99,10,0,0,0,0,2,30,9,"神威一击","突刺至目标身后并造成伤害。随后|Cffffc9266秒|r内|Cffffc926攻击速度+75%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH07.blp")
 call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,9,"道法自然","|CffFFC9266|r秒内|Cffffc926冷却缩减+100%|r，|Cffffc926伤害加成+10%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH08.blp")
 
 call InitAbilityData('S501',2,0,1,3.33,0,0,0,0,2,12,0,"天罚连击","突刺至目标区域并挥砍|Cffffc9263|r次，每次造成|Cffffc926攻击*333%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
@@ -102,7 +102,6 @@ call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处
 call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d20%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9265%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
-
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
 InitAbilityStringEx('S502',"附带1秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
