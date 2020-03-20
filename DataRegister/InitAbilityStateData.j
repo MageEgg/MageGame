@@ -46,9 +46,9 @@ call InitAbilityData('S014',1,5,2,9,10.2,11.4,13.2,15,2,0,3,"后发制人","|Cff
 call InitAbilityData('S096',1,2,1,7.2,8.2,9.1,10.6,12,2,0,3,"酒仙剑舞","|CffFFC926闪避|r时对周围敌人伤害。","ReplaceableTextures\\CommandButtons\\BTNS096.blp")
 call InitAbilityData('S097',1,3,5,0,0,0.36,0.41,0.47,2,0,3,"佛怒","被攻击|Cffffc92616次|r对自身范围内敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS097.blp")
 call InitAbilityData('S101',7,5,5,0.5,0.6,0.7,0.85,1,2,8,3,"雷光破","对目标范围造成造成伤害。\n\n|Cff00ff7f4.5秒内|r|Cffffc926佛门系技能|r|Cff00ff7f触发概率|r|Cffffc926+6%|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS101.blp")
-call InitAbilityData('S104',2,4,5,0,0.12,0.15,0.18,0.21,2,8,3,"熔炉之身","每秒对自身范围内敌人造成伤害。\n\n|Cff00ff7f攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
-call InitAbilityData('S082',1,2,99,0,0,0,0.13,0.15,2,0,4,"雷神之子","召唤|Cffffc9263朵|r雷云环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
-call InitAbilityData('S086',1,5,1,0.18,0.2,0.23,0.26,0.3,2,0,4,"幻影剑阵","召唤|Cffffc9263把|r飞剑环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS086.blp")
+call InitAbilityData('S104',2,4,5,0,0.15,0.18,0.21,0.5,2,8,3,"熔炉之身","每秒对自身范围内敌人造成伤害。\n\n|Cff00ff7f攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
+call InitAbilityData('S082',1,2,99,0,0,0,0.2,0.25,2,0,4,"雷神之子","召唤|Cffffc9263朵|r雷云环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
+call InitAbilityData('S086',1,5,1,0.2,0.26,0.32,0.4,0.5,2,0,4,"幻影剑阵","召唤|Cffffc9263把|r飞剑环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS086.blp")
 call InitAbilityData('S089',2,4,99,0,0.24,0.28,0.34,0.4,2,16,4,"天神道兵","召唤|Cffffc9261|r个天神道兵，持续12秒。\n|Cff00ff7f道兵拥有致命一击和分裂|r","ReplaceableTextures\\CommandButtons\\BTNS089.blp")
 call InitAbilityData('S090',8,3,2,0,0,1.8,2.1,2.5,2,10,4,"噬魂龙魄","召唤1个噬魂龙魄，使其周围600码单位生机骤减，每|Cffffc9260.5|r秒造成伤害，持续|Cffffc9264秒|r。\n|Cff00ff7f多个噬魂灵魄伤害可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS090.blp")
 
@@ -76,7 +76,7 @@ call InitAbilityData('S501',2,0,1,3.33,0,0,0,0,2,12,0,"天罚连击","突刺至�
 call InitAbilityData('S502',5,0,1,2.4,0,0,0,0,2,10,0,"土遁袭杀","钻入地底突进至目标身后进行|Cffffc9262次|r爪击，每次造成|Cffffc926攻击*240%|r伤害。\n\n拥有法宝|Cff00bfff捆仙绳|r时：每75%攻速增加一次爪击。","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
 call InitAbilityData('S503',1,0,2,5.4,0,0,0,0,2,4,1,"玉清合荒","若1200码范围内，有敌/友军|Cffffc926释放主动技能|r，你对自身周围造成|Cffffc926业力*540%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS503.blp")
 call InitAbilityData('S504',3,0,1,2.4,0,0,0,0,2,10,2,"火尖枪舞","突向前方瞬间刺击|Cffffc9263|r次，每次造成|Cffffc926攻击*240%|r伤害。\n\n拥有法宝|Cffff26ff火尖枪|r时：额|Cfff0f0f0外发动一次弑龙枪，造成|r|Cffffc926攻击*750%|r|Cfff0f0f0伤害。|r","ReplaceableTextures\\CommandButtons\\BTNS504.blp")
-call InitAbilityData('S505',2,0,2,2.25,0,0,0,0,2,12,1,"一气化三清","幻化|Cffffc9262|r个分身，每个分身拥有本体的|Cffffc92637.5%|r攻击力。\n4秒后分身爆炸，造成|Cffffc926业力*300%|r伤害。\n\n拥有法宝|Cffffd24d太极图|r时：分身数量|Cffffc926+2|r\n\n|Cff00ff7f分身可触发致命一击及分裂效果|r","ReplaceableTextures\\CommandButtons\\BTNS505.blp")
+call InitAbilityData('S505',2,0,2,2.25,0,0,0,0,2,12,1,"一气化三清","幻化|Cffffc9262|r个分身，每个分身拥有本体的|Cffffc92637.5%|r攻击力。\n4秒后分身爆炸，造成|Cffffc926业力*300%|r伤害。\n\n拥有法宝|Cffffd24d太极图|r时：分身数量|Cffffc926+2|r\n\n|Cff00ff7f分身6%概率造成4倍致命一击|r","ReplaceableTextures\\CommandButtons\\BTNS505.blp")
 call InitAbilityData('S506',1,0,0,0,0,0,0,0,0,0,1,"斩仙飞刀","斩杀低于|Cffffbf006%|r最大生命值的敌人。","ReplaceableTextures\\CommandButtons\\BTNS506.blp")
 call InitAbilityData('S507',1,0,1,0,0,0,0,0,0,0,4,"万物亲和","攻击|Cffffc9266%|r概率召唤|Cffffc9261个元素体|r。\n元素体继承你|Cffffc92670%攻击力|r，持续15秒。","ReplaceableTextures\\CommandButtons\\BTNS507.blp")
 call InitAbilityData('S508',1,0,2,7.2,0,0,0,0,2,0,0,"镜花之舞","攻击|Cffffc92610%|r概率积累|Cffffc9261|r层|Cffffc926妖狐印记|r，达到|Cffffc9267|r层时向周围释放|Cffffc926镜花之舞|r。\n每层妖狐印记提高|Cffffc9266%|r攻击速度，镜花之舞造成|Cffffc926业力*720%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS508.blp")
@@ -102,7 +102,6 @@ call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处
 call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d20%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9265%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
-
 
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")

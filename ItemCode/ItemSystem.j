@@ -81,7 +81,7 @@ scope ItemSystem initializer InitItemSystem
         int index = 0
         int gl = GetTypeIdData(id,104)//概率
 
-        if  id >= 'E001' and id <= 'E025'
+        if  id >= 'E001' and id <= 'E029'
             BJDebugMsg("强化概率"+I2S(gl)+"+"+I2S(IncEquipAddition1))
             gl = gl + IncEquipAddition1
         else
@@ -109,9 +109,9 @@ scope ItemSystem initializer InitItemSystem
 
                             else
                                 HeroMoveToRoom(pid)
-                                if  id >= 'E001' and id <= 'E025'
+                                if  id >= 'E001' and id <= 'E029'
                                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r武器晋升正在挑战中！")
-                                elseif  id >= 'E201' and id <= 'E225'
+                                elseif  id >= 'E201' and id <= 'E229'
                                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r防具晋升正在挑战中！")
                                 endif
                             endif
@@ -127,13 +127,13 @@ scope ItemSystem initializer InitItemSystem
                         UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
                         IncEquipModelFunc(pid,1)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：装备升级成功！|r")
-                        if  id >= 'E001' and id <= 'E025'
+                        if  id >= 'E001' and id <= 'E029'
                             IncEquipAddition1 = 0
                         else
                             IncEquipAddition2 = 0
                         endif
                     else
-                        if  id >= 'E001' and id <= 'E025'
+                        if  id >= 'E001' and id <= 'E029'
                             IncEquipAddition1 = IncEquipAddition1 + 5
                         else
                             IncEquipAddition2 = IncEquipAddition2 + 5
@@ -334,6 +334,11 @@ scope ItemSystem initializer InitItemSystem
                 if  IsUnitHasItemLevel(u1,GetManipulatedItem(),level) == true
                     UnitRemoveItem(u1,GetManipulatedItem())
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：无法携带相同类型物品！|r")
+                endif
+            elseif  u1 == Pu[2]
+                if  itemid >= 'E001' and itemid <= 'E230'
+                    UnitRemoveItem(u1,GetManipulatedItem())
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：无法携带该类型物品！|r")
                 endif
             endif
 
@@ -541,9 +546,9 @@ scope ItemSystem initializer InitItemSystem
             SetPlayerMagicItemResources(pid,2,GetPlayerMagicItemResources(pid,2)+1)
             ReCollectFrameResources(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r使用道具鸿蒙结晶，F4内查看！")
-        elseif  itemid >= 'E001' and itemid <= 'E024'
+        elseif  itemid >= 'E001' and itemid <= 'E029'
             IncEquipFunc(u1,GetManipulatedItem())
-        elseif  itemid >= 'E201' and itemid <= 'E224'
+        elseif  itemid >= 'E201' and itemid <= 'E229'
             IncEquipFunc(u1,GetManipulatedItem())
         elseif  itemid == 'I001'
             

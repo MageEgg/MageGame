@@ -179,6 +179,7 @@ scope DeathEvent initializer InitDeathEvent
         if  num-exp >= 1
             SetItemCharges(it,num-exp)
         else
+            SetItemDroppable(it,true)
             UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
             if  GetRandomInt(1,100)<= gl

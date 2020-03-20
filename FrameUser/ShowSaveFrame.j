@@ -54,121 +54,110 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     endfunction
     //初始化函数
     function InitShowSaveFrameData()
-        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)
-        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)
-        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)
+        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
+        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
+        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
+        RegisterShowSaveFrameData(2,'RY1D','RY1D',0,0,0,0)//星月光环
         
-        //RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)
-        RegisterShowSaveFrameData(3,'RY2A','RY2A',0,0,0,0)
-        RegisterShowSaveFrameData(3,'RY2B','RY2B',0,0,0,0)
-        RegisterShowSaveFrameData(3,'RY2C','RY2C',0,0,0,0)
-
-        RegisterShowSaveFrameData(4,'RY3A','RY3A',0,0,0,0)
-        RegisterShowSaveFrameData(4,'RY3B','RY3B',0,0,0,0)
-        RegisterShowSaveFrameData(4,'RY3C','RY3C',0,0,0,0)
-        
-        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)
-        
-        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)
-        //RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)
-        RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)
-        //RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)
-        //RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)
-
-        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
-
-        
-        //RegisterShowSaveFrameData(0,'RDAA','RDAA',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAB','RDAB',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAC','RDAC',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAD','RDAD',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAE','RDAE',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAF','RDAF',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAG','RDAG',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAH','RDAH',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAI','RDAI',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAJ','RDAJ',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAK','RDAK',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAL','RDAL',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAM','RDAM',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAN','RDAN',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAO','RDAO',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAP','RDAP',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAQ','RDAQ',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAR','RDAR',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAS','RDAS',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAT','RDAT',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAU','RDAU',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAV','RDAV',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAW','RDAW',0,0,0,0)
-        //RegisterShowSaveFrameData(0,'RDAX','RDAX',0,0,0,0)
-        RegisterShowSaveFrameData(0,'RDAY','RDAY',0,0,0,0)
-
-
-        RegisterShowSaveFrameData(5,'RH01','RH01',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH02','RH02',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH03','RH03',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH04','RH04',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH05','RH05',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RH06','RH06',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RH07','RH07',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH08','RH08',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH09','RH09',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH10','RH10',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH11','RH11',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH12','RH12',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH13','RH13',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH14','RH14',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH15','RH15',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RH16','RH16',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RH17','RH17',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH18','RH18',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RH19','RH19',0,0,0,0)
-        //RegisterShowSaveFrameData(5,'RH20','RH20',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH21','RH21',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH22','RH22',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH23','RH23',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH24','RH24',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH25','RH25',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH26','RH26',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH27','RH27',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH28','RH28',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH29','RH29',0,0,0,0)
-        RegisterShowSaveFrameData(5,'RH30','RH30',0,0,0,0)
-        
-        RegisterShowSaveFrameData(6,'RJ1V','RJ1V',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RJ1W','RJ1W',0,0,0,0)
-        RegisterShowSaveFrameData(6,'RY1D','RY1D',0,0,0,0)//6
-        RegisterShowSaveFrameData(6,'RJ1U','RJ1U',0,0,0,0)//38
-        RegisterShowSaveFrameData(6,'RK1A','RK1A',0,0,0,0)//88
-        RegisterShowSaveFrameData(6,'RY2D','RY2D',0,0,0,0)//168
-        RegisterShowSaveFrameData(6,'RY4D','RY4D',0,0,0,0)//238
-        RegisterShowSaveFrameData(6,'RY3D','RY3D',0,0,0,0)//298
-
-        /*
-        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)
-        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)
-        */
-        
+//        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//存档光环
+        RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
+        RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
+        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
+        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
+        RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
+        RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
+        RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
+        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
+        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
+        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
+        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
+        RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
+        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)//铜皮锻骨
+        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)//名将良才
+        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)//绝世高人
+        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)//降龙伏虎
+//        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)//剑血浮生
+        RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
+        RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
+//        RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)//独孤求败
+//        RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//君临天下
+        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
+        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//脂肪肝
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//酒精肝
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//肝硬化
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//肝中之王
+//        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//肝
+//        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
+        RegisterShowSaveFrameData(5,'RJ1V','RJ1V',0,0,0,0)//金币礼包
+        RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0)//木材礼包
+        RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
+//        RegisterShowSaveFrameData(0,'RDAA','RDAA',0,0,0,0)//果然暴君
+        RegisterShowSaveFrameData(0,'RDAB','RDAB',0,0,0,0)//我真的知错了
+        RegisterShowSaveFrameData(0,'RDAC','RDAC',0,0,0,0)//老婆别打了
+        RegisterShowSaveFrameData(0,'RDAD','RDAD',0,0,0,0)//家暴
+//        RegisterShowSaveFrameData(0,'RDAE','RDAE',0,0,0,0)//我救我自己
+//        RegisterShowSaveFrameData(0,'RDAF','RDAF',0,0,0,0)//我也护犊子
+//        RegisterShowSaveFrameData(0,'RDAG','RDAG',0,0,0,0)//爸，我回来了
+        RegisterShowSaveFrameData(0,'RDAH','RDAH',0,0,0,0)//太欧了！
+        RegisterShowSaveFrameData(0,'RDAI','RDAI',0,0,0,0)//护犊子
+        RegisterShowSaveFrameData(0,'RDAJ','RDAJ',0,0,0,0)//真假....猴精..
+        RegisterShowSaveFrameData(0,'RDAK','RDAK',0,0,0,0)//穿越回来还打你！
+        RegisterShowSaveFrameData(0,'RDAL','RDAL',0,0,0,0)//抓了再救
+        RegisterShowSaveFrameData(0,'RDAM','RDAM',0,0,0,0)//我自己来
+        RegisterShowSaveFrameData(0,'RDAN','RDAN',0,0,0,0)//报仇雪恨
+        RegisterShowSaveFrameData(0,'RDAO','RDAO',0,0,0,0)//悬壶济世
+//        RegisterShowSaveFrameData(0,'RDAP','RDAP',0,0,0,0)//销售精英
+//        RegisterShowSaveFrameData(0,'RDAQ','RDAQ',0,0,0,0)//红颜祸水
+//        RegisterShowSaveFrameData(0,'RDAR','RDAR',0,0,0,0)//今晚的月亮好圆啊
+//        RegisterShowSaveFrameData(0,'RDAS','RDAS',0,0,0,0)//自己人也打？
+//        RegisterShowSaveFrameData(0,'RDAT','RDAT',0,0,0,0)//师弟，你不行
+//        RegisterShowSaveFrameData(0,'RDAU','RDAU',0,0,0,0)//师弟，你真不行
+//        RegisterShowSaveFrameData(0,'RDAV','RDAV',0,0,0,0)//姐妹情深
+//        RegisterShowSaveFrameData(0,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
+//        RegisterShowSaveFrameData(0,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
+        RegisterShowSaveFrameData(0,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
+        RegisterShowSaveFrameData(3,'RH01','RH01',0,0,0,0)//神兵杨戬
+        RegisterShowSaveFrameData(3,'RH02','RH02',0,0,0,0)//土行孙
+        RegisterShowSaveFrameData(3,'RH03','RH03',0,0,0,0)//元始天尊
+        RegisterShowSaveFrameData(3,'RH04','RH04',0,0,0,0)//魔化哪吒
+        RegisterShowSaveFrameData(3,'RH05','RH05',0,0,0,0)//老子
+//        RegisterShowSaveFrameData(3,'RH06','RH06',0,0,0,0)//陆压
+//        RegisterShowSaveFrameData(3,'RH07','RH07',0,0,0,0)//女娲
+        RegisterShowSaveFrameData(3,'RH08','RH08',0,0,0,0)//妖皇妲己
+        RegisterShowSaveFrameData(3,'RH09','RH09',0,0,0,0)//剑仙广成子
+        RegisterShowSaveFrameData(3,'RH10','RH10',0,0,0,0)//变幻杨戬
+        RegisterShowSaveFrameData(3,'RH11','RH11',0,0,0,0)//姜子牙
+        RegisterShowSaveFrameData(3,'RH12','RH12',0,0,0,0)//天王李靖
+        RegisterShowSaveFrameData(3,'RH13','RH13',0,0,0,0)//美猴王
+        RegisterShowSaveFrameData(3,'RH14','RH14',0,0,0,0)//龙吉公主
+        RegisterShowSaveFrameData(3,'RH15','RH15',0,0,0,0)//龟灵圣母
+//        RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
+//        RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
+        RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
+//        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
+//        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
+        RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0)//嫦娥
+        RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0)//疾风雷震子
+        RegisterShowSaveFrameData(3,'RH23','RH23',0,0,0,0)//狐媚妲己
+        RegisterShowSaveFrameData(3,'RH24','RH24',0,0,0,0)//申公豹
+        RegisterShowSaveFrameData(3,'RH25','RH25',0,0,0,0)//黄天化
+        RegisterShowSaveFrameData(3,'RH26','RH26',0,0,0,0)//斗战胜佛
+        RegisterShowSaveFrameData(3,'RH27','RH27',0,0,0,0)//暴君纣王
+        RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0)//蛮力纣王
+        RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0)//神农
+        RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0)//后羿
+//        RegisterShowSaveFrameData(6,'RM10','RM1A',0,0,0,0)//任脉
+//        RegisterShowSaveFrameData(6,'RM20','RM2A',0,0,0,0)//督脉
+//        RegisterShowSaveFrameData(6,'RM30','RM3A',0,0,0,0)//冲脉
+//        RegisterShowSaveFrameData(6,'RM40','RM4A',0,0,0,0)//带脉
+//        RegisterShowSaveFrameData(6,'RM50','RM5A',0,0,0,0)//阴跷脉
+//        RegisterShowSaveFrameData(6,'RM60','RM6A',0,0,0,0)//阳跷脉
+//        RegisterShowSaveFrameData(6,'RM70','RM7A',0,0,0,0)//阴维脉
+//        RegisterShowSaveFrameData(6,'RM80','RM8A',0,0,0,0)//阳维脉
     endfunction
 
 
@@ -312,7 +301,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
             
-            if  page == 7
+            if  page == 6
                 lv = GetDzPlayerData(pid,6,index+1)
                 SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
                 //当前经脉最高5级
@@ -330,7 +319,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     endif
                     h = h + 1
                 end
-            elseif  page == 5
+            elseif  page == 3
                 uid = id-'RH00'+'H000'
                 lv = GetDzHeroExpLevel(pid,uid)
                 if  lv == 0
@@ -503,7 +492,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                         endif
 
          
-                        if  page != 7 and page != 5
+                        if  page != 6 and page != 3
                             if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
                                 DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
                             endif
@@ -652,11 +641,11 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
         CreateText(581,Button.frameid,"centertext009",4,4,0.0,0.0,"成就")
         CreateText(582,Button.frameid,"centertext009",4,4,0.0,0.0,"称号")
-        CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"光环")
-        CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"翅膀")
-        CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"神器")
-        CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
-        CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
+        CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"外观")
+        CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
+        CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"其他")
+        CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
+        CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
         CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
 
     endfunction
