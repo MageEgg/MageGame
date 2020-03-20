@@ -542,9 +542,7 @@ scope DeathEvent initializer InitDeathEvent
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了大量道具！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了大量道具！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了大量道具！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了"+GetObjectName('IN30')+"！|r")
     endfunction
 
     function GameOver()

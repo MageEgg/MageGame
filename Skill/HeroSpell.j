@@ -54,7 +54,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
-    function CreateSurroundOfUnit(unit wu,unit tu,real r1,real r2,real r3,real r4,real r5,int i1,int i2,int i3,int i4)
+    function CreateSurroundOfUnit(unit wu,unit tu,real r1,real r2,real r3,real r4,real r5,int i1,int i2,int i3,int i4,string s)
         unit u1 = wu
         unit u2 = tu
         real orang = r1
@@ -68,6 +68,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         int ornum = i2
         int num = i3
         int order = i4
+        string lig = s
         real xx = 0
         real yy = 0
         //BJDebugMsg("总时间"+I2S(tt))
@@ -99,7 +100,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                         if  GetUnitTypeId(uu) != 0
                             damage = GetAbilityDamage(u1,id,GetHeroAbilityLevel(u1,id))
                             //GroupEnumUnitsInRange(gg,GetUnitX(uu),GetUnitY(uu),200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                            Ligfunc(u2,uu,AddLightningEx("CLPB",false,GetUnitX(u2),GetUnitY(u2),GetUnitZ(u2),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
+                            Ligfunc(u2,uu,AddLightningEx(lig,false,GetUnitX(u2),GetUnitY(u2),GetUnitZ(u2),GetUnitX(uu),GetUnitY(uu),GetUnitZ(uu)))
                             DestroyEffect(AddSpecialEffect("effect_AZ_UrsaPsionic_E.mdl",GetUnitX(uu),GetUnitY(uu)))
                             //UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                             UnitDamageTarget(u1,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -262,6 +263,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS002(unit wu)
         SetUnitIntState(wu,'S002',1)
+        UnitAddEffectSetSize(wu,"Abilities\\Spells\\NightElf\\BattleRoar\\RoarCaster.mdl",2)
     endfunction
 
     function SpellS014Attack(unit wu)
@@ -322,7 +324,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             group gg = null
             if  time < 200
                 time = time + 1
-                SetUnitFacing(u2,time*3.6)
                 if  time == 1
                     gg = CreateGroup()
                     GroupEnumUnitsInRange(gg,x,y,500,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
@@ -532,25 +533,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS028(unit wu,real x,real y,real dam)//冥月流星落
-        unit u1 = wu
-        real damage = dam
-        group g = CreateGroup()
-        DestroyEffect(AddSpecialEffect("effect_az_bw_lina_t1-2.mdl",x,y))
-        GroupEnumUnitsInRange(g,x,y,800,GroupNormalNoStr(GetOwningPlayer(u1),"effect_AZ_PotM(1)_T1_Impact.mdl","origin",0))
+    function SpellS028(unit u1,real x,real y,real damage)//冥月流星落
         if  GetUnitAbilityLevel(u1,'S028') == 0
             UnitTimerAddSkill(u1,'S028',4.5)
             AddUnitStateExTimer(u1,81,6,4.5)
         endif
-        TimerStart(0.426,false)
-        {
-            UnitDamageGroup(u1,g,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            DestroyGroup(g)
-            g=null
-            endtimer
-            flush locals
-        }
-        flush locals
+        damage = damage / 8
+        CreateEffectArea(u1,x,y,400,damage,9,0.3,25,0.4,"effect2_az_potm(1)_t1_impact.mdl",false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
     endfunction
 
     function SpellS030(unit u,real x2,real y2,real dam)//三味真火
@@ -826,16 +815,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
     function SpellS076(unit wu,real x,real y,real damage)//连环刺
-        unit u=wu
-        IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
-        UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        LocAddEffectSetSize(x,y,"effect_blue-slash-more.mdl",0.5)
+        AddEffectInArea(x,y,370,22,"effect2_az_FallSword_ice.mdl")
+        UnitGroupAddDamageTimerAddBuff(wu,0.24,x,y,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
         if  GetUnitAbilityLevel(wu,'S076') == 0
             UnitTimerAddSkill(wu,'S076',4.5)
             AddUnitStateExTimer(wu,81,6,4.5)
         endif
-        g.destroy()
         flush locals
     endfunction
 
@@ -1030,7 +1015,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             ang = 360/num
             u2 = CreateTmUnit(GetOwningPlayer(u),"effect_AZ_Storm_E.mdl",x,y,i*ang,50,1)  
             //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
-            CreateSurroundOfUnit(u,u2,i*ang,160,7.2,0.02,86400,'S082',num,3,i)
+            CreateSurroundOfUnit(u,u2,i*ang,160,7.2,0.02,86400,'S082',num,3,i,"CLPB")
         end
         flush locals
     endfunction
@@ -1045,7 +1030,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             ang = 360/num
             u2 = CreateUnit(GetOwningPlayer(u),'eZ18',x,y,i*ang)  
             //单位 环绕马甲 初始角度 环绕半径 角速度 线速度 环绕总时间 ||技能id 当前数量 初始数量 马甲顺序（辅助参数）
-            CreateSurroundOfUnit(u,u2,i*ang,160,7.2,0.02,86400,'S086',num,3,i)
+            CreateSurroundOfUnit(u,u2,i*ang,160,7.2,0.02,86400,'S086',num,3,i,"CLPB")
         end
         flush locals
     endfunction
@@ -1609,14 +1594,51 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
     
-    function SpellS236(unit u,unit u1,real damage)
-        SetUnitX(u,GetUnitX(u1))
-        SetUnitY(u,GetUnitY(u1))
-        AddUnitStateExTimer(u,9,75,6)
-        UnitAddEffectTimer(u,"Abilities\\Spells\\Orc\\CommandAura\\CommandAura.mdl",3)
-        shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u),0,1))
-        UnitDamageTarget(u,u1,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-        LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_zhan.mdl",2.5)
+    function SpellS236(unit wu,real r1,real r2,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = r1
+        real y2 = r2
+        real ang = Atan2(y2-y1,x2-x1)
+        real damage = dam
+        unit u2 = CreateUnit(GetOwningPlayer(u1),'e000',x1,y1,ang/0.01745)
+        real xx = 30*Cos(ang)
+        real yy = 30*Sin(ang)
+        int time = R2I(1000/30)
+        group wg = CreateGroup()
+        group ug = CreateGroup()
+        GroupAddUnit(ug,u2)
+        AddUnitStateExTimer(u1,9,75,6)
+        shenshou(CreateTmUnit(GetOwningPlayer(u1),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u1),0,1))
+        TimerStart(0.002,true)
+        {
+            group gg = CreateGroup()
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                SetUnitXY(u2,x1,y1)
+                if  ModuloInteger(time,6) == 0
+                    LocAddEffectSetSize(x1,y1,"effect3_az_heiseguangzhu.mdl",1)
+                    LocAddEffectSetSize(x1,y1,"effect3_red-zhendi.mdl",1)
+                    LocAddEffectSetSize(x1,y1,"effect_az-leiji.mdl",1.5)
+                endif
+                GroupEnumUnitsInRange(gg,x1,y1,280,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",Buffxy,1,0))
+                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            else
+                RemoveUnit(u2)
+                GroupClear(wg)
+                GroupClear(ug)
+                DestroyGroup(wg)
+                DestroyGroup(ug)
+                //SetUnitXY(u1,x2,y2)
+                endtimer
+            endif
+            GroupClear(gg)
+            DestroyGroup(gg)
+            flush locals
+        }
         flush locals
     endfunction
 
@@ -1825,7 +1847,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     elseif  id == 'S235'
                         SpellS235(u1.u)
                     elseif  id == 'S236'
-                        SpellS236(u1.u,u2.u,damage)
+                        SpellS236(u1.u,sx,sy,damage)
                     elseif  id == 'S237'
                         SpellS237(u1.u)
                 endif
