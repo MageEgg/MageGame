@@ -1483,7 +1483,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),8,1,0.1)
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),8,1,0.2)
                 g.destroy()
             else
                 endtimer
