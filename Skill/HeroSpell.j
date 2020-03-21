@@ -1396,7 +1396,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         unit uu = CreateTmUnit(GetOwningPlayer(u1),"shenshou_shenshou_bian.mdl",x1,y1,0,0,3.5)
-        ShowUnit(u1,false)
         SetUnitAnimation(u1,"spell" )
         SetUnitFacing(u1,ang/0.01745)
         EXSetUnitFacing(u1,ang/0.01745)
@@ -1430,11 +1429,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )  
                     GroupClear(gg)                
                     DestroyGroup(gg)
-
                     RemoveUnit(uu)
-                    ShowUnit(u1,true)
-                    PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
-
                     endtimer
                 endif
             else
@@ -1448,11 +1443,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS ) 
                 GroupClear(gg)                
                 DestroyGroup(gg)
-
                 RemoveUnit(uu)
-                ShowUnit(u1,true)
-                PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
-
                 endtimer
             endif
             flush locals
