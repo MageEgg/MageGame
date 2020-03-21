@@ -512,10 +512,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 endif
             elseif  uid == 'H030'
                 
-                if  newlv == 3
-                    AddUnitRealState(wu,24,300)
-                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：后羿获得百发百中加持，致命倍率|Cffff8000+300%|r")
-                elseif  newlv == 4
+                if  newlv == 4
                     UnitAddAbility(wu,'AH30')
                     DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：后羿获得百发百中加持，领悟多重射击")
                 endif
