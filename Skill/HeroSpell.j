@@ -1396,7 +1396,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         unit uu = CreateTmUnit(GetOwningPlayer(u1),"shenshou_shenshou_bian.mdl",x1,y1,0,0,3.5)
-        ShowUnit(u1,false)
         SetUnitAnimation(u1,"spell" )
         SetUnitFacing(u1,ang/0.01745)
         EXSetUnitFacing(u1,ang/0.01745)
@@ -1423,36 +1422,28 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                     SetUnitFacing(uu,ang/0.01745)
                     EXSetUnitFacing(uu,ang/0.01745)
                     IssueImmediateOrderById( uu, 851972 )
-
+                    CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),12,1,0.8)
                     LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_by_wood_effect_tianhuo_2_1.mdl",2.5)
                     gg = CreateGroup()
                     GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
                     UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )  
                     GroupClear(gg)                
                     DestroyGroup(gg)
-
                     RemoveUnit(uu)
-                    ShowUnit(u1,true)
-                    PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
-
                     endtimer
                 endif
             else
                 SetUnitFacing(uu,ang/0.01745)
                 EXSetUnitFacing(uu,ang/0.01745)
                 IssueImmediateOrderById( uu, 851972 )
-
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),12,1,0.8)
                 LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_by_wood_effect_tianhuo_2_1.mdl",2.5)
                 gg = CreateGroup()
                 GroupEnumUnitsInRange(gg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,3,0))
                 UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS ) 
                 GroupClear(gg)                
                 DestroyGroup(gg)
-
                 RemoveUnit(uu)
-                ShowUnit(u1,true)
-                PlayerSelectOneUnit(GetPlayerId(GetOwningPlayer(u1)),u1)
-
                 endtimer
             endif
             flush locals
@@ -1483,6 +1474,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 IndexGroup g = IndexGroup.create()
                 GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
                 UnitDamageGroup(u,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),8,1,0.2)
                 g.destroy()
             else
                 endtimer
@@ -1535,6 +1527,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS233(unit u,real dam)
         real damage = dam
         unit uu = null
+        CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),12,1,0.8)
         IndexGroup g = IndexGroup.create()
         LocAddEffect(GetUnitX(u),GetUnitY(u),"effect_az-ice-qiquan.mdl")
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_suanni.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
@@ -1562,6 +1555,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         SetUnitAbilityLevel(UnitAddBuffUnit,'DB03',2)
         IssuePointOrderById(UnitAddBuffUnit, 852592,x,y)
 
+        CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),12,1,0.5)
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_qingluan.mdl",x,y,GetUnitFacing(u),-50,1))
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
@@ -1582,6 +1576,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         AddUnitRealState(u,19,b)    
         UnitAddAbility(u,'A235')
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_zhengning.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),-200,1))
+        CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),12,1,0.5)
         TimerStart(4,false)
         {
             RemoveUnitStateEx(u,19,b)
@@ -1601,37 +1596,46 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x2 = r1
         real y2 = r2
         real ang = Atan2(y2-y1,x2-x1)
-        real damage = dam
+        real damage = dam/2
         unit u2 = CreateUnit(GetOwningPlayer(u1),'eZ2H',x1,y1,ang/0.0175)
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         real size = GetUnitScaleSize(u1)
+        group wg = CreateGroup()
         LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
         SetUnitScale(u1,0.01,0.01,0.01)
         AddUnitStateExTimer(u1,9,75,6)
         shenshou(CreateTmUnit(GetOwningPlayer(u1),"shenshou_heihu.mdl",GetUnitX(u1),GetUnitY(u1),GetUnitFacing(u1),0,1))
         TimerStart(0.01,true)
         {
+            group gg = CreateGroup()
             time = time - 1
             if  time > 0 and GetUnitAbilityLevel(u1,'AZ98') == 0
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitXY(u1,x1,y1)
                 SetUnitXY(u2,x1,y1)
+                GroupEnumUnitsInRange(gg,x1,y1,300,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",Buffxy,1,0))
+                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
                 RemoveUnit(u2)
                 SetUnitXY(u1,x1,y1)
                 SetUnitScale(u1,size,size,size)
                 SetUnitAnimation(u1,"attack")
-                LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
-                AddEffectInAreaSetSizeTimer(x1,y1,290,1.5,6,"effect3_impalehittarget.mdl",0.8)
-                LocAddEffectSetSize(x1,y1,"effect3_az_heiseguangzhu.mdl",2.5)
-                LocAddEffectSetSize(x1,y1,"effect3_red-zhendi.mdl",2.5)
-                LocAddEffectSetSize(x1,y1,"effect_az-leiji.mdl",3)
-                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffxy,1,0)
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),12,1,0.8)
+                LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",2.5)
+                AddEffectInAreaSetSizeTimer(x1,y1,400,1.5,12,"effect3_impalehittarget.mdl",0.8)
+                LocAddEffectSetSize(x1,y1,"effect3_az_heiseguangzhu.mdl",3)
+                LocAddEffectSetSize(x1,y1,"effect3_red-zhendi.mdl",3)
+                LocAddEffectSetSize(x1,y1,"effect_az-leiji.mdl",4)
+                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,450,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffxy,1,0)
+                GroupClear(wg)
+                DestroyGroup(wg)
                 endtimer
             endif
+            GroupClear(gg)
+            DestroyGroup(gg)
             flush locals
         }
         flush locals
@@ -1639,6 +1643,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellS237(unit u)
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_kongque.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
+        CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),12,1,0.5)
         AddUnitStateExTimer(u,25,100,6)
         AddUnitStateExTimer(u,16,10,6)
         UnitTimerAddSkill(u,'A237',6)
