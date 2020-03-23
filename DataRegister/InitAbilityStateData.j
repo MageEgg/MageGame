@@ -22,7 +22,7 @@ call InitAbilityData('S006',8,4,1,0,9.6,11.2,13.6,16,2,8,0,"无影杀","对目�
 call InitAbilityData('S070',8,2,1,0,0,0,1.36,1.6,2,8,0,"暴风剑雨","对目标范围内怪物造成多次伤害。\n\n|Cff00ff7f可触发致命一击效果。|r","ReplaceableTextures\\CommandButtons\\BTNS070.blp")
 call InitAbilityData('S052',1,5,2,9.5,11.4,13.3,16.2,19,2,0,1,"神火天降","每|Cffffc92616|r次攻击施动神火天降，对目标范围内敌人造成伤害。\n\n|Cff00ff7f命中时|r|Cffffc926所有技能冷却-0.5秒|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS052.blp")
 call InitAbilityData('S053',2,5,2,3,4,5,6,7,2,2,1,"落魂咒","对周围单位造成伤害。\n\n|Cffffc92630%几率|r|Cff00ff7f造成|r|Cffffc926双倍|r|Cff00ff7f伤害。|r\n|Cff00ff7f不受冷却缩减影响。|r","ReplaceableTextures\\CommandButtons\\BTNS053.blp")
-call InitAbilityData('S080',3,2,1,0,0,0,13.6,16,2,8,1,"剑灵诛仙式","万剑出鞘，对目标范围造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
+call InitAbilityData('S080',3,2,1,0,0,0,1.36,1.6,2,8,1,"剑灵诛仙式","万剑出鞘，对目标范围造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS080.blp")
 call InitAbilityData('S007',1,2,99,0,0,0,4.4,5,2,0,1,"太清妙术","攻击|Cffffc9266%|r概率对目标范围造成伤害。\n\n|Cff00ff7f触发后|r|Cffffc926仙术系技能|r|Cff00ff7f伤害|r|Cffffc926+20%|r|Cff00ff7f，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS007.blp")
 call InitAbilityData('S011',1,4,99,0,3.2,3.6,4.2,4.8,2,0,1,"玄灵诀","攻击|Cffffc9266%|r概率对目标范围造成伤害。\n\n|Cff00ff7f触发后|r|Cffffc926所有技能冷却-0.5秒|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS011.blp")
 call InitAbilityData('S012',1,3,2,0,0,7.6,8.8,10,2,0,1,"龙之吼","攻击|Cffffc9266%|r概率对目标范围造成伤害。\n\n|Cff00ff7f触发后6秒内进入|r|Cffffc926龙神状态|r|Cff00ff7f，|r|Cffffc926业力+20%|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS012.blp")
@@ -102,7 +102,6 @@ call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处
 call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d20%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9265%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
-
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
 InitAbilityStringEx('S502',"附带1秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
 InitAbilityStringEx('S503',"冷却时间2秒","冷却时间移除","判定范围提高至2000码","","")

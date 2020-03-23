@@ -111,58 +111,58 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(220,7,0,5,0,0,Buy_Unit,'AT2H',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")*/
 
         //境界 引索
-        InitAttackUnitChallengeCombatData(1,250,260,1900,5800,14000,42000,80000,150000,400000,830000,1300000,0,0)
-        InitAttackUnitChallengeCombatData(2,250,320,2400,7000,17000,51000,98000,180000,480000,1100000,1600000,0,0)
-        InitAttackUnitChallengeCombatData(3,250,480,3500,11000,26000,76000,150000,260000,720000,1600000,2400000,0,0)
-        InitAttackUnitChallengeCombatData(4,250,700,5100,16000,37000,110000,220000,380000,1100000,2200000,3500000,0,0)
-        InitAttackUnitChallengeCombatData(5,250,1100,7400,23000,54000,160000,320000,550000,1600000,3300000,5100000,0,0)
-        InitAttackUnitChallengeCombatData(6,250,1400,11000,31000,73000,220000,430000,760000,2100000,4400000,7000000,0,0)
-        InitAttackUnitChallengeCombatData(7,250,1900,14000,42000,99000,300000,580000,1100000,2900000,6000000,9400000,0,0)
+        InitAttackUnitChallengeCombatData(1,250,250,640,3100,11000,28000,68000,160000,360000,780000,1300000,0,0)
+        InitAttackUnitChallengeCombatData(2,250,310,790,3800,13000,34000,83000,200000,440000,950000,1600000,0,0)
+        InitAttackUnitChallengeCombatData(3,250,460,1200,5700,20000,51000,130000,290000,660000,1500000,2400000,0,0)
+        InitAttackUnitChallengeCombatData(4,250,660,1800,8200,28000,74000,190000,430000,960000,2100000,3400000,0,0)
+        InitAttackUnitChallengeCombatData(5,250,970,2500,12000,41000,110000,270000,620000,1400000,3100000,5000000,0,0)
+        InitAttackUnitChallengeCombatData(6,250,1400,3500,17000,56000,150000,370000,850000,2000000,4200000,6800000,0,0)
+        InitAttackUnitChallengeCombatData(7,250,1800,4700,23000,76000,200000,490000,1200000,2600000,5600000,9200000,0,0)
 
         //山灵 引索
-        InitAttackUnitChallengeCombatData(1,0,260,2600,7700,15000,29000,54000,89000,150000,230000,280000,470000,670000)
-        InitAttackUnitChallengeCombatData(2,0,320,3200,9400,18000,36000,65000,110000,180000,280000,350000,570000,810000)
-        InitAttackUnitChallengeCombatData(3,0,480,4700,14000,27000,53000,98000,170000,270000,420000,520000,850000,1300000)
-        InitAttackUnitChallengeCombatData(4,0,700,6800,21000,39000,78000,150000,240000,400000,610000,750000,1300000,1800000)
-        InitAttackUnitChallengeCombatData(5,0,1100,10000,30000,56000,120000,210000,350000,580000,880000,1100000,1900000,2600000)
-        InitAttackUnitChallengeCombatData(6,0,1400,14000,41000,77000,160000,290000,480000,790000,1300000,1500000,2500000,3600000)
-        InitAttackUnitChallengeCombatData(7,0,1900,19000,55000,110000,210000,390000,650000,1100000,1700000,2100000,3400000,4800000)
+        InitAttackUnitChallengeCombatData(1,0,130,1400,7300,19000,32000,59000,100000,150000,220000,330000,520000,730000)
+        InitAttackUnitChallengeCombatData(2,0,150,1600,8900,23000,39000,72000,130000,190000,270000,400000,640000,890000)
+        InitAttackUnitChallengeCombatData(3,0,230,2400,14000,34000,59000,110000,190000,280000,400000,590000,950000,1400000)
+        InitAttackUnitChallengeCombatData(4,0,330,3500,20000,50000,85000,160000,270000,400000,580000,860000,1400000,2000000)
+        InitAttackUnitChallengeCombatData(5,0,480,5100,29000,72000,130000,230000,390000,590000,850000,1300000,2100000,2900000)
+        InitAttackUnitChallengeCombatData(6,0,650,7000,39000,99000,170000,320000,530000,800000,1200000,1800000,2800000,3900000)
+        InitAttackUnitChallengeCombatData(7,0,880,9500,53000,140000,230000,430000,720000,1100000,1600000,2400000,3800000,5300000)
 
         //武灵 引索
-        InitAttackUnitChallengeCombatData(1,50,1900,8400,19000,43000,83000,160000,240000,370000,610000,990000,0,0)
-        InitAttackUnitChallengeCombatData(2,50,2400,11000,24000,53000,110000,190000,290000,450000,750000,1300000,0,0)
-        InitAttackUnitChallengeCombatData(3,50,3500,16000,35000,79000,160000,290000,440000,670000,1200000,1900000,0,0)
-        InitAttackUnitChallengeCombatData(4,50,5100,23000,51000,120000,230000,410000,640000,970000,1700000,2700000,0,0)
-        InitAttackUnitChallengeCombatData(5,50,7400,33000,74000,170000,330000,600000,920000,1500000,2400000,3900000,0,0)
-        InitAttackUnitChallengeCombatData(6,50,11000,45000,110000,230000,450000,820000,1300000,2000000,3300000,5300000,0,0)
-        InitAttackUnitChallengeCombatData(7,50,14000,61000,140000,310000,600000,1200000,1800000,2700000,4500000,7200000,0,0)
+        InitAttackUnitChallengeCombatData(1,50,1400,5300,15000,29000,51000,90000,150000,360000,830000,1500000,0,0)
+        InitAttackUnitChallengeCombatData(2,50,1600,6400,19000,35000,62000,110000,190000,440000,1100000,1900000,0,0)
+        InitAttackUnitChallengeCombatData(3,50,2400,9600,28000,53000,93000,170000,280000,660000,1600000,2800000,0,0)
+        InitAttackUnitChallengeCombatData(4,50,3500,14000,40000,76000,140000,240000,400000,960000,2200000,4000000,0,0)
+        InitAttackUnitChallengeCombatData(5,50,5100,21000,58000,120000,200000,350000,590000,1400000,3200000,5800000,0,0)
+        InitAttackUnitChallengeCombatData(6,50,7000,28000,80000,160000,280000,480000,800000,2000000,4400000,8000000,0,0)
+        InitAttackUnitChallengeCombatData(7,50,9500,38000,110000,210000,370000,650000,1100000,2600000,6000000,11000000,0,0)
 
         //符印 引索
-        InitAttackUnitChallengeCombatData(1,150,64000,140000,240000,520000,850000,1300000,1400000,1400000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(2,150,78000,170000,300000,640000,1100000,1500000,1700000,1700000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(3,150,120000,250000,440000,950000,1600000,2300000,2600000,2600000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(4,150,170000,370000,640000,1400000,2300000,3300000,3700000,3700000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(5,150,250000,530000,940000,2100000,3400000,4800000,5400000,5400000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(6,150,340000,730000,1300000,2800000,4600000,6500000,7300000,7300000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(7,150,460000,980000,1800000,3800000,6200000,8800000,9900000,9900000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(1,150,56000,130000,220000,420000,750000,1300000,1500000,1500000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,150,69000,150000,270000,510000,920000,1600000,1900000,1900000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,150,110000,230000,400000,760000,1400000,2400000,2800000,2800000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,150,150000,330000,580000,1100000,2000000,3400000,4000000,4000000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,150,220000,480000,850000,1700000,3000000,5000000,5800000,5800000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,150,300000,650000,1200000,2200000,4000000,6800000,8000000,8000000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,150,410000,880000,1600000,3000000,5400000,9200000,11000000,11000000,0,0,0,0)
 
         //挑战0
-        InitAttackUnitChallengeCombatData(1,300,80,160,340,560,3900,6400,9300,13000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(2,300,100,200,410,690,4700,7800,12000,16000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(3,300,150,290,620,1100,7000,12000,17000,23000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(4,300,210,420,900,1500,11000,17000,25000,34000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(5,300,300,610,1400,2200,15000,25000,36000,49000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(6,300,420,840,1800,3000,21000,34000,50000,67000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(7,300,560,1200,2500,4100,28000,46000,67000,90000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(1,300,80,160,320,510,3500,5900,14000,22000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,300,100,190,390,620,4200,7200,17000,26000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,300,75,290,580,930,6300,11000,26000,39000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,300,110,410,840,1400,9200,16000,37000,57000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,300,160,600,1300,2000,14000,23000,54000,83000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,300,220,830,1700,2700,19000,32000,74000,120000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,300,300,1200,2300,3700,25000,43000,100000,160000,0,0,0,0)
 
         //挑战1
-        InitAttackUnitChallengeCombatData(1,310,18000,33000,49000,72000,99000,160000,230000,280000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(2,310,22000,40000,60000,88000,130000,200000,280000,350000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(3,310,33000,59000,90000,140000,190000,300000,420000,520000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(4,310,48000,86000,140000,200000,270000,430000,610000,750000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(5,310,70000,130000,190000,280000,390000,620000,890000,1100000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(6,310,96000,180000,270000,390000,530000,850000,1300000,1500000,0,0,0,0)
-        InitAttackUnitChallengeCombatData(7,310,130000,240000,360000,520000,720000,1200000,1700000,2100000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(1,310,28000,44000,68000,97000,140000,190000,260000,390000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(2,310,34000,54000,83000,120000,160000,230000,320000,470000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(3,310,51000,81000,130000,180000,240000,340000,480000,710000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(4,310,74000,120000,190000,260000,350000,490000,690000,1100000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(5,310,110000,180000,270000,380000,510000,710000,1000000,1500000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(6,310,150000,240000,370000,520000,700000,970000,1400000,2100000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(7,310,200000,320000,490000,700000,950000,1400000,1900000,2800000,0,0,0,0)
 
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
@@ -634,13 +634,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 if  itemid > 0
                     UnitAddItemEx(Pu[1],itemid)
                 endif
-                if  zu == 0 and wei == 3 //4
+                //zu = 0是挑战 
+                if  zu == 0 and wei == 3 //历练4解锁
                     PlayerUnLockPlot.execute(pid,1)
                     PlayerUnLockPlot.execute(pid,2)
                     PlayerUnLockPlot.execute(pid,3)
-                elseif  zu == 0 and wei == 6 //7
+                elseif  zu == 0 and wei == 5 //历练6解锁
                     PlayerUnLockPlot.execute(pid,4)
-                elseif  zu == 0 and wei == 7 //8
+                elseif  zu == 0 and wei == 7 //历练8解锁
                     PlayerUnLockPlot.execute(pid,5)
                 elseif  zu == 1 and wei == 1 //10
                     PlayerUnLockPlot.execute(pid,6)
