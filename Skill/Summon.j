@@ -1,5 +1,38 @@
 library Summon uses AbilityUI,OtherDamageTimer
-
+    function CameraSetTargetNoiseTimer(int playerid,real magnitude,int Type,real time)
+        int pid = playerid
+        real richter = magnitude
+        if  richter > 5.0
+            richter = 5.0
+        elseif  richter < 2.0
+            richter = 2.0
+        endif
+        if  GetLocalPlayer() == Player(pid)
+            if  Type == 1 or Type == 5 or Type == 7
+                CameraSetTargetNoiseEx(magnitude*2.0, magnitude*Pow(10,richter),true)
+            endif
+            if  Type == 2 or Type == 5 or Type == 8
+                CameraSetSourceNoiseEx(magnitude*2.0, magnitude*Pow(10,richter),true)
+            endif
+            if  Type == 3 or Type == 6 or Type == 7
+                CameraSetTargetNoiseEx(magnitude*2.0, magnitude*Pow(10,richter),false)
+            endif
+            if  Type == 4 or Type == 6 or Type == 8
+                CameraSetSourceNoiseEx(magnitude*2.0, magnitude*Pow(10,richter),false)
+            endif
+        endif
+        TimerStart(time,false)
+        {
+            if  GetLocalPlayer() == Player(pid)
+                CameraSetSourceNoise(0, 0)
+                CameraSetTargetNoise(0, 0)
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    
     function GetHeroSummonNum(unit u)->int
         int num = 0
         int i1 = 0

@@ -1,4 +1,4 @@
-library HeroAbilityFunc uses OtherDamageTimer
+library HeroAbilityFunc uses OtherDamageTimer,Summon
     
 
     function SpellS501_0(unit u1,real sx,real sy,real dam)
@@ -740,6 +740,9 @@ library HeroAbilityFunc uses OtherDamageTimer
                     GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 endif
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                LocAddEffectSetSize(x1,y1,"effect_[dz.spell]002Yellow.mdl",0.8)
+                
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
                 //BJDebugMsg("damage"+R2S(damage))
                 g.destroy()
             else
