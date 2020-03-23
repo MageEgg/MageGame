@@ -149,7 +149,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             endif
             */
 
-
+            
             if  id == 'S527'//不享受冷却减免加成
                 return r1
             elseif  id == 'S525'//攒心钉

@@ -54,47 +54,59 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
     endfunction
     //初始化函数
     function InitShowSaveFrameData()
-        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
-        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
-        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
+        
+        RegisterShowSaveFrameData(5,'RJ1V','RJ1V',0,0,0,0)//金币礼包
+        RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0)//木材礼包
+        RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
+        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
         RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0)//星月光环
-        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
-//        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//存档光环
+        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
+        RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
+        RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
+        
+        
+        
+
+
+        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
         RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
-        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
+        
+
+        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
+        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
+        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
+        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+
+        
+        RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
-        RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
-        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
-        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
-        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
-        RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
+        
         RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)//铜皮锻骨
         RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)//名将良才
         RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)//绝世高人
         RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)//降龙伏虎
-//        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)//剑血浮生
+        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
+        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
+        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
-//        RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)//独孤求败
-//        RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//君临天下
+
+
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//脂肪肝
         RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//酒精肝
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//肝硬化
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//肝中之王
-//        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//肝
-//        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
-        RegisterShowSaveFrameData(5,'RJ1V','RJ1V',0,0,0,0)//金币礼包
-        RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0)//木材礼包
-        RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
+        
+
 //        RegisterShowSaveFrameData(0,'RDAA','RDAA',0,0,0,0)//果然暴君
         RegisterShowSaveFrameData(0,'RDAB','RDAB',0,0,0,0)//我真的知错了
         RegisterShowSaveFrameData(0,'RDAC','RDAC',0,0,0,0)//老婆别打了

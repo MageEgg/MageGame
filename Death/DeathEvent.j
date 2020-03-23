@@ -209,7 +209,7 @@ scope DeathEvent initializer InitDeathEvent
 
         for i2 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i2))
-            if  id >= 'E101' and id <= 'E124'
+            if  id >= 'E101' and id <= 'E130'
                 PlayerItemIncFunc(pid,UnitItemInSlot(Pu[1],i2),1)
                 exitwhen true
             endif

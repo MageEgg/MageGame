@@ -356,7 +356,7 @@ scope ItemSystem initializer InitItemSystem
             PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
         elseif  itemid == 'IP01'
             SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
-        
+        /*
         elseif  itemid >= 'I021' and itemid <= 'I024'
             if  itemid == 'I021'
                 if  GetUnitIntState(Pu[1],108)>=10
@@ -366,20 +366,21 @@ scope ItemSystem initializer InitItemSystem
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r购买失败！灵力不足"+I2S(10)+"。")
                 endif
             elseif  itemid == 'I022'
-                if  GetUnitIntState(Pu[1],108)>=10
+                if  GetUnitIntState(Pu[1],108)>=20
                     AddUnitIntState(Pu[1],108,-20)
                     UnitAddItem(u1,CreateItem('CS22',GetUnitX(u1),GetUnitY(u1)))
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r购买失败！灵力不足"+I2S(20)+"。")
                 endif
             elseif  itemid == 'I023'
-                if  GetUnitIntState(Pu[1],108)>=10
+                if  GetUnitIntState(Pu[1],108)>=4
                     AddUnitIntState(Pu[1],108,-4)
                     UnitAddItem(u1,CreateItem('CS23',GetUnitX(u1),GetUnitY(u1)))
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r购买失败！灵力不足"+I2S(4)+"。")
                 endif
             endif
+            */
         elseif  itemid >= 'IJ01' and itemid <= 'IJ10'
             //AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
@@ -534,8 +535,9 @@ scope ItemSystem initializer InitItemSystem
         endif
 
         if  itemid == 'CS01'
-            PlayerUseLearnAbilityBook(pid,1,GetExpectLevel(pid,1))
-            AddPlayerDrawNum(pid,1)
+            PlayerAbilityDraw(pid,1,'IS03')
+        elseif  itemid == 'CS02'
+            GivePlayerRunePrizeFrame(pid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
