@@ -486,6 +486,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 BossTime = 0
                 AttackUnitWNBoss = AttackUnitWNBoss + 1
                 CreateBossTimer(AttackUnitWNBoss+Attacknum,BossTime)
+
             endif
         else
 
@@ -567,27 +568,14 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
     
     function StartAttackUnit()
-        int jf = 0
         int cos = 0
+        int gold = 0
         if  StopAttackBool == false
             AttackUnitOrderNum = AttackUnitOrderNum + 1
             if  InfiniteAttackBool == false
                 if  AttackUnitType[AttackUnitOrderNum] == 0
                     AttackUnitWN = AttackUnitWN + 1
                     CreateUnitTimer(AttackUnitOrderNum)
-                /*else
-                    if  AttackUnitOrderNum == 7
-                        ExecuteFunc("CreateOperaA")
-                        BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")
-                    elseif  AttackUnitOrderNum == 14
-                        ExecuteFunc("CreateOperaB")
-                        BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")
-                    elseif  AttackUnitOrderNum == 16
-                        ExecuteFunc("ShowGameTeamChallengeNPC")
-                    elseif  AttackUnitOrderNum == 18
-                        ExecuteFunc("CreateOperaC")
-                        BJDebugMsg("CreateOperaACreateOperaACreateOperaACreateOperaA")
-                    endif*/
                 endif
             endif
             if  AttackUnitWN < AttackUnitWNOver
@@ -618,16 +606,36 @@ library AttackUnit uses DamageCode,PassCheckMission
             if  InfiniteAttackBool == false
                 for pid = 0,5
                     if  IsPlaying(pid) == true
+                        cos = 0
+                        gold = 0
                         cos = 100*AttackUnitWN
                         if  cos > 30000
                             cos = 30000
                         endif
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,cos)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r敌军发起进攻，每人获得"+I2S(cos)+"金币奖励。")
-
                         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1
-                            AddUnitRealState(Pu[1],50,16)
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[商城-鼠年大吉]：|r进攻怪来袭，|cffffff80每秒金币+16|r！")
+                            if  ModuloInteger(AttackUnitWN,3) == 0
+                                if  AttackUnitWN == 3
+                                    gold = 3000
+                                elseif  AttackUnitWN == 6
+                                    gold = 6000
+                                elseif  AttackUnitWN == 9
+                                    gold = 10000
+                                elseif  AttackUnitWN == 12
+                                    gold = 15000
+                                elseif  AttackUnitWN == 15
+                                    gold = 20000
+                                elseif  AttackUnitWN == 18
+                                    gold = 25000
+                                elseif  AttackUnitWN == 21
+                                    gold = 30000
+                                endif
+                                if  gold > 0
+                                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[商城-鼠年大吉]：|r进攻怪来袭，为您发放|cffffff80"+I2S(gold)+"金币|r！")
+                                endif
+                            endif
                         endif
                     endif
                 end     
