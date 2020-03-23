@@ -48,38 +48,35 @@ library HeroStateFunc uses DamageCode
         endif
         /////////////////////载入属性////////////////////////
         if  GetPlayerTechCount(Player(pid),'RY1D',true) == 1 //星月光环
-            AddUnitRealState(Pu[1],47,10)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
+            AddUnitRealState(Pu[1],47,10)
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
-            AddUnitRealState(Pu[1],31,30)
-            AddUnitRealState(Pu[1],17,30)
+            AddUnitRealState(Pu[1],49,300)
+            AddUnitRealState(Pu[1],18,12)
             AddUnitRealState(Pu[1],9,30)
-            AddUnitRealState(Pu[1],50,20)
+            UnitAddItemEx(Pu[1],'CS01')
         endif 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
-            AddUnitRealState(Pu[1],32,30)
-            AddUnitRealState(Pu[1],33,30)
+            UnitAddItemEx(Pu[1],'CS02')
+            AddUnitRealState(Pu[1],20,50)
             AddUnitRealState(Pu[1],19,10)
             AddUnitRealState(Pu[1],17,30)
         endif
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
-            UnitAddItemEx(Pu[1],'IP01')
-            AddUnitRealState(Pu[1],18,20)
-            AddUnitRealState(Pu[1],17,30)
+            AddUnitRealState(Pu[1],64,10)
+            AddUnitRealState(Pu[1],17,20)
             UnitAddItemEx(Pu[2],'I015')
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
-            AddUnitRealState(Pu[1],28,1)
+            UnitAddItemEx(Pu[1],'IP01')
             AddUnitRealState(Pu[1],33,20)
-            AddUnitRealState(Pu[1],49,300)
+            AddUnitRealState(Pu[1],48,20)
             CreatePet.execute(pid)
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
-            AddUnitRealState(Pu[1],31,10)
-            AddUnitRealState(Pu[1],47,20)
-            AddUnitRealState(Pu[1],48,20)
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
+            AddUnitRealState(Pu[1],64,10)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1V',true) == 1 //金币礼包
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
