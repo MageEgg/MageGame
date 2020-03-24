@@ -67,6 +67,7 @@ library HeroStateFunc uses DamageCode
             AddUnitRealState(Pu[1],64,10)
             AddUnitRealState(Pu[1],17,20)
             UnitAddItemEx(Pu[2],'I015')
+            AddUnitRealState(Pu[1],52,20000)
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
             UnitAddItemEx(Pu[1],'IP01')
