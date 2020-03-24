@@ -417,7 +417,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 elseif  StateId == 10
                     DzFrameSetText(BUTTON_Text[168],"|cffffcc00闪避：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 18
-                    DzFrameSetText(BUTTON_Text[169],"|cffffcc00减伤：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[169],"|cffffcc00伤害减免：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 22
                     DzFrameSetText(BUTTON_Text[170],"|cffffcc00分裂：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 21
