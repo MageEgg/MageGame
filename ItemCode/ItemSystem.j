@@ -238,7 +238,7 @@ scope ItemSystem initializer InitItemSystem
         int id = 0
         for n = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
-            if  id >= 'E101' and id <= 'E124'
+            if  id >= 'E101' and id <= 'E129'
                 return UnitItemInSlot(Pu[1],n)
             endif
         end
