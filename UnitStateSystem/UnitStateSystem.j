@@ -210,6 +210,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[49]="每秒生命"
         StateName[50]="每秒金币"
         StateName[51]="攻击距离"
+        StateName[52]="经验存储"
         StateName[64]="经验加成"
 
 
