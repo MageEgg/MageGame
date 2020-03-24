@@ -838,6 +838,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
         SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
         GameChallengInt[50] = 0
+        GameChallengInt[51] = 0
         if  GameChallengUnit[59] != null
             FlushChildHashtable(ht,GetHandleId(GameChallengUnit[59]))
             RemoveUnit(GameChallengUnit[59])

@@ -69,6 +69,37 @@ library GameChallenge5 uses GameChallengeBase
         endif
     endfunction
 
+    function EnRctGameChalleng_5_EndWayTimer(unit wu)
+        unit u = wu
+        real x1 = GetUnitX(u)
+        real y1 = GetUnitY(u)
+        int pid = GetUnitAbilityLevel(u,'AZ99')-1
+        TimerStart(3,true)
+        {
+            real x2 = GetUnitX(u)
+            real y2 = GetUnitY(u)
+            if  GetUnitTypeId(u) != 0 
+                if  GetUnitCurrentOrder(u) != 851993
+                    if  Pdis(x1,y1,-2080,2688) > Pdis(x2,y2,-2080,2688)
+                        if  GameChallengInt[51] == 0
+                            IssuePointOrderById(u,851983,GetUnitX(GameChallengUnit[52]),GetUnitY(GameChallengUnit[52]))
+                        elseif  GameChallengInt[51] == 1
+                            IssuePointOrderById(u,851983,GetUnitX(GameChallengUnit[53]),GetUnitY(GameChallengUnit[53]))
+                        elseif  GameChallengInt[51] == 2
+                            IssuePointOrderById(u,851983,GetUnitX(GameChallengUnit[54]),GetUnitY(GameChallengUnit[54]))
+                        elseif  GameChallengInt[51] == 3
+                            IssuePointOrderById(u,851983,GetUnitX(GameChallengUnit[55]),GetUnitY(GameChallengUnit[55]))
+                        endif
+                    endif
+                endif
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function EnRctGameChalleng_5_Way0()
         unit u1 = GetTriggerUnit()
         int pid = GetPlayerId(GetOwningPlayer(u1))
@@ -82,6 +113,7 @@ library GameChallenge5 uses GameChallengeBase
                     UnitAddAbility(GameChallengUnit[59],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[59],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[52]),GetUnitY(GameChallengUnit[52]))
+                    EnRctGameChalleng_5_EndWayTimer(GameChallengUnit[59])
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","土行孙这绳有古怪，快救我回营！",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff解救姜子牙|r",0)
                 endif
@@ -195,6 +227,7 @@ library GameChallenge5 uses GameChallengeBase
             if  GameChallengInt[50] == 7
                 GameChallengInt[50] = 0
                 RemoveChainOfUnit(pid)
+                GameChallengInt[51] = 1
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[53]),GetUnitY(GameChallengUnit[53]))
             endif
         elseif  uid == 'uf52'
@@ -202,12 +235,14 @@ library GameChallenge5 uses GameChallengeBase
             if  GameChallengInt[50] == 10
                 GameChallengInt[50] = 0
                 RemoveChainOfUnit(pid)
+                GameChallengInt[51] = 2
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[54]),GetUnitY(GameChallengUnit[54]))
             endif
         elseif  uid == 'uf53' or uid == 'uf54'
             GameChallengInt[50] = GameChallengInt[50] + 1
             if  GameChallengInt[50] == 14
                 RemoveChainOfUnit(pid)
+                GameChallengInt[51] = 3
                 IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[55]),GetUnitY(GameChallengUnit[55]))
             endif
         elseif  uid == 'uf55'
