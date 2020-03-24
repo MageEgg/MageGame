@@ -392,7 +392,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IS11'
             AstrologyFunc(pid)
         elseif  itemid == 'IS13'
-            IncOrnaments(pid,u1)
+            IncOrnaments(pid,Pu[1])
         elseif  itemid == 'IS14'
             IncHeroAddLifeAbility(pid)
         elseif  itemid == 'IZ10'

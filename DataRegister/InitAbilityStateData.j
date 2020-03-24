@@ -68,7 +68,7 @@ call InitAbilityData('S231',2,0,2,2.1,0,0,0,0,2,30,9,"十绝阵","天降龙柱�
 call InitAbilityData('S232',2,0,5,0.15,0,0,0,0,2,30,9,"八荒斗神","|CffFFC9266秒|r内|Cffffc926伤害减免+20%|r，强制周围敌方单位攻击自己，每次|Cffffc926被攻击|r对目标造成伤害。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH03.blp")
 call InitAbilityData('S233',2,0,1,10,0,0,0,0,2,30,9,"冰封之域","对自身周围敌人造成大量伤害，受影响单位|Cffffc9266秒|r内承受|Cffffc926物理伤害+40%|r，3秒后进入|Cffffc926极冻状态|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH04.blp")
 call InitAbilityData('S234',7,0,2,12.5,0,0,0,0,2,30,9,"离魂秘术","对目标范围内的单位造成大量伤害，使其|Cffffc9266s|r内攻击力降低70%，|Cffffc926承受技能伤害+40%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH05.blp")
-call InitAbilityData('S235',2,0,0,0,0,0,0,0,0,30,9,"修罗之怒","释放时根据当前血量增加自身|Cffffc9265%~25%暴击概率|r，|Cffffc9264秒|r内|Cffffc926每次暴击|r增加自身|Cffffc92620%|r暴击伤害。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH06.blp")
+call InitAbilityData('S235',2,0,0,0,0,0,0,0,0,30,9,"修罗之怒","释放时根据当前血量增加自身|Cffffc9265%~25%暴击|r，|Cffffc9264秒|r内|Cffffc926每次暴击|r增加自身|Cffffc92620%|r暴击伤害。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH06.blp")
 call InitAbilityData('S236',3,0,99,10,0,0,0,0,2,30,9,"神威一击","突刺至目标身后并造成伤害。随后|Cffffc9266秒|r内|Cffffc926攻击速度+75%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH07.blp")
 call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,9,"道法自然","|CffFFC9266|r秒内|Cffffc926冷却缩减+100%|r，|Cffffc926伤害加成+10%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH08.blp")
 

@@ -1660,7 +1660,7 @@ endfunction
 
 
 
-
+    
 function InitTypeStateNandu7()
 BJDebugMsg("注册难度6属性")
 InitTypeStateEx('m001',416,2625)

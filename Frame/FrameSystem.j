@@ -182,8 +182,14 @@ library GameUIInit initializer init uses OriginGameFrame
         for n = 1,4
             call DzFrameClearAllPoints(DzFrameGetMinimapButton(n))
             call DzFrameClearAllPoints(DzFrameGetUpperButtonBarButton(n-1))
-            call DzFrameSetPoint(DzFrameGetMinimapButton(n),1,DzFrameGetMinimapButton(n-1),7,0,-1)
+            if  n == 2
+                call DzFrameSetPoint(DzFrameGetMinimapButton(n),6,GameUI,6,0.005,0.15)
+            else
+                call DzFrameSetPoint(DzFrameGetMinimapButton(n),1,DzFrameGetMinimapButton(n-1),7,0,-1)
+            endif
+
         end
+
         
         for w = 0,5 
             DzFrameClearAllPoints(DzFrameGetItemBarButton(w))

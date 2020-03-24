@@ -409,7 +409,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
                 elseif  StateId == 16
                     DzFrameSetText(BUTTON_Text[164],"|cffffcc00技能伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 19
-                    DzFrameSetText(BUTTON_Text[165],"|cffffcc00暴击概率：|r"+I2S(R2I(showvalue))+"%")
+                    DzFrameSetText(BUTTON_Text[165],"|cffffcc00暴击：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 20
                     DzFrameSetText(BUTTON_Text[166],"|cffffcc00暴击伤害：|r"+I2S(R2I(showvalue))+"%")
                 elseif  StateId == 41
