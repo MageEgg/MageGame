@@ -79,7 +79,7 @@ library GameChallenge5 uses GameChallengeBase
             real x2 = GetUnitX(u)
             real y2 = GetUnitY(u)
             if  GetUnitTypeId(u) != 0 
-                if  GetUnitCurrentOrder(u) != 851993
+                if  GetUnitCurrentOrder(u) != 851993 and GetUnitCurrentOrder(u) != 0
                     if  Pdis(x1,y1,-2080,2688) > Pdis(x2,y2,-2080,2688)
                         if  GameChallengInt[51] == 0
                             IssuePointOrderById(u,851983,GetUnitX(GameChallengUnit[52]),GetUnitY(GameChallengUnit[52]))
