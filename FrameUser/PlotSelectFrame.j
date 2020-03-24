@@ -253,7 +253,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     //刷新副本奖励
     function RePlayerAllExPlotPrize(int pid)
         int num = GetPlayerPlotReNum(pid)+1
-        int use = num * 5
+        int use = 15
 
         if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
             AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )

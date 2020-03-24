@@ -122,7 +122,7 @@
         elseif  id == 310
             int num = GetPlayerPlotReNum(pid)+1
             int use = num*5
-            SetTipsData(1,"","需要 - 玄铁x"+I2S(use))
+            SetTipsData(1,"","需要 - 玄铁x15")
             SetTipsData(10,"","点击刷新时渊副本奖励")
         elseif  id == 21
             SetTipsData(10,"","|CffCCCCCC重铸法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffffd24d补天石|r|Cfff0f0f0，可重置为|r|Cffffd24d同品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【重铸按钮】。|r")

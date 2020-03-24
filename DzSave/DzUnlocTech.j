@@ -8,6 +8,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int Unloc_Type_JF    = 6
     int Unloc_Type_API   = 7
     int Unloc_Type_Dad   = 8
+    int Unloc_Type_Test  = 9
     
     int Unloc_Type_LvRank = 12
     
@@ -190,6 +191,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return AllShopUnloc(pid)==true
         elseif  Type == Unloc_Type_LvRank
             return IsPlayerInRank(pid,data)
+        elseif  Type == Unloc_Type_Test
+            return DzAPI_Map_GetServerValue(Player(pid), "maptest2020") == "1" or DzAPI_Map_GetServerValue(Player(pid), "preset_map_award") == "1"
         endif
         return false
     endfunction
@@ -447,6 +450,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         //等级排行
         InitUnlocTechConditions('RY4J',InitCond1(2,Unloc_Type_LvRank,10),0,0,0,0)
         InitUnlocTechConditions('RY4K',InitCond1(2,Unloc_Type_LvRank,100),0,0,0,0)
+        //测试先锋
+        InitUnlocTechConditions('RY4N',InitCond1(2,Unloc_Type_Test,1),0,0,0,0)
         
 
         //	InitUnlocTechConditions('RDAA',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,1,1)),0,0,0)

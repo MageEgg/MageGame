@@ -375,7 +375,9 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                     endif
                 endif
             else
-                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,1.5),ang,damage*3.125,300,900,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                LocAddEffectSetSize(x1+50*Cos(ang),y1+50*Cos(ang),"effect_fire-boom-new.mdl",0.5)
+                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,2),ang,GetUnitAttack(u1)*7.5,400,1200,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
             endif
             SetUnitPosition(u1,x1,y1)
             EXSetUnitFacing( u1, f/0.01745 )
@@ -593,7 +595,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
                 SetUnitIntState(wu,'S512',1)
 
-                TimerStart(6,false)
+                TimerStart(2,false)
                 {
                     SetUnitIntState(u1,'S512',0)
                     endtimer
@@ -637,7 +639,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
         if  index == 0
 
-            AddUnitRealState(wu,25,-10)
+            AddUnitRealState(wu,25,-25)
             AddUnitRealState(wu,19,10)
             if  lv >= 2
                 AddUnitRealState(wu,9,40)
@@ -671,7 +673,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         elseif  index == 2
 
             AddUnitRealState(wu,9,-30)
-            AddUnitRealState(wu,25,10)
+            AddUnitRealState(wu,25,25)
   
             SetUnitIntState(wu,'S510',0)
             DzSetUnitModel( wu, "H010.mdl" )
@@ -827,7 +829,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
         g.destroy()
         if  GetUnitIntState(wu,'FB27') > 0
-            SpellS514Timer(wu,damage*0.868,x,y,lv)
+            SpellS514Timer(wu,GetHeroStr(wu,true)*9.0,x,y,lv)
         endif
     endfunction
 
@@ -1153,7 +1155,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         if  lv >= 3
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*7.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*10.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             // x = x坐标；y = y坐标；r = 半径；n = 特效数量；path = 特效路径 
             AddEffectInAreaSetSize(GetUnitX(tu),GetUnitY(tu),550,2,6,"effect2_az_goods_blink(green).mdl")
             
