@@ -1586,7 +1586,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             else
                 RemoveUnit(u2)
                 SetUnitXY(u1,x1,y1)
-                SetUnitScale(u1,size,size,size)
+                if  GetUnitIntState(u1,'S510') == 1
+                    SetUnitScale(u1,0.3,0.3,0.3)
+                elseif GetUnitIntState(u1,'S510') == 2
+                    SetUnitScale(u1,0.3,0.3,0.3)
+                else
+                    SetUnitScale(u1,size,size,size)
+                endif
                 SetUnitAnimation(u1,"attack")
                 CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),12,1,0.8)
                 LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",2.5)
