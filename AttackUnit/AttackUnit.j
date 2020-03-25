@@ -127,7 +127,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
     
     function OpenAttackTimerUI(int time)
-        AttackTimerUIText = "进攻波 1/"+I2S(AttackUnitWNOver)
+        AttackTimerUIText = "进攻波 1/"+I2S(AttackUnitWNOver-3)
         AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
         AttackTimerTextExUI.SetText("|cffffcc00"+I2S(time)+"秒")
         ShowAttackTimerUI(true)
@@ -542,7 +542,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             elseif  AttackUnitWN == 15
                 ExecuteFunc("ShowGameTeamChallengeNPC")
             endif
-            AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver)
+            AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver-3)
         endif
     endfunction
 
