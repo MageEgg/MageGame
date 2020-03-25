@@ -371,15 +371,15 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     endif
 
                     if  level > 2
-                        tip = tip + "\n\n|cff00ff00凝体镜[5]：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cff00ff00凝体境[5]：\n" +GetTypeIdString(id,112) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb凝体镜[5]：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb凝体境[5]：\n" +GetTypeIdString(id,112) + "|r"
                     endif
 
                     if  level > 3
-                        tip = tip + "\n\n|cff00ff00金仙镜[10]：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cff00ff00金仙境[10]：\n" +GetTypeIdString(id,113) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb金仙镜[10]：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cffbbbbbb金仙境[10]：\n" +GetTypeIdString(id,113) + "|r"
                     endif
                 else
                     
