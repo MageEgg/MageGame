@@ -113,7 +113,7 @@ library GameChallenge5 uses GameChallengeBase
                     UnitAddAbility(GameChallengUnit[59],'AZ99')
                     SetUnitAbilityLevel(GameChallengUnit[59],'AZ99',pid+1)
                     IssuePointOrderById(GameChallengUnit[59],851983,GetUnitX(GameChallengUnit[52]),GetUnitY(GameChallengUnit[52]))
-                    EnRctGameChalleng_5_EndWayTimer(GameChallengUnit[59])
+                    //EnRctGameChalleng_5_EndWayTimer(GameChallengUnit[59])
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","土行孙这绳有古怪，快救我回营！",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff解救姜子牙|r",0)
                 endif
