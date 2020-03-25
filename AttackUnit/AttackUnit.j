@@ -235,7 +235,6 @@ library AttackUnit uses DamageCode,PassCheckMission
         real ey = 0
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
-        AttackBOSSLastCos = 1
         if  GameLevel > 1
             AttackUnitWNOver = 24  //最终波
             LastAttackBossId = 'mb08'
@@ -335,14 +334,6 @@ library AttackUnit uses DamageCode,PassCheckMission
         int num = LoadInteger(ht,GetHandleId(t),3)
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
-        int bossnum = 0
-        int bossid = 0
-        bossnum = (AttackUnitWNOver/3)
-        if  bossnum < 10
-            bossid = 'mb00'+ bossnum
-        else
-            bossid = 'mb10'
-        endif
         if  FlushNum > 0
             for k = 0,3
                 if  IsPlaying(k) == true
@@ -355,13 +346,15 @@ library AttackUnit uses DamageCode,PassCheckMission
                         for j = 1,unitnum
                             u = CreateUnit(Player(11),puid[k],pex[k],pey[k],0)
                             UnitAddAbility(u,'AZ01')
+                            UnitTimerAddSkill(u,'Avul',0.5)
                             SetUnitXY(u,psx[k],psy[k])
                             PingMinimap(psx[k],psy[k],5)
                             IssueImmediateOrderById(u,852076)
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
+                            AttackBOSSLastCos = AttackBOSSLastCos + 1
                             CreateBossAttachUnit(u,pex[k],pey[k],0.1)
-                            if  puid[k] == bossid
+                            if  puid[k] == LastAttackBossId
                                 AddBossAnger(u)
                             endif
                         end
