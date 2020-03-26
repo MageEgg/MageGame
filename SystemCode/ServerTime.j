@@ -142,7 +142,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
         endfunction
         function UpdateTimeAll() //初始化
         
-            int ttttime = 1584374400
+            int ttttime = S2I(DzCon("DAY"))
 
             InitArray()
             DzPuTime = ttttime

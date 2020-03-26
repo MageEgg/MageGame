@@ -1,6 +1,11 @@
 
 scope AbilityStateData initializer init
     private function init()
+
+
+
+
+
 //输出代码
 //call InitAbilityData('技能id',技能类型,品质,伤害参数,参数A,参数B,参数C,伤害类型,冷却时间,"技能名称","技能说明","技能图标")
 call InitAbilityData('S0Q0',1,9,0,0,0,0,0,0,0,0,10,"Q技能","|Cff00FF7F需求：\n |r|Cff808080- 完成新手任务|r","ReplaceableTextures\\CommandButtons\\BTN013.blp")
@@ -37,7 +42,7 @@ call InitAbilityData('S073',1,4,1,0,6.8,7.6,8.8,10,2,0,2,"混元珠","攻击|Cff
 call InitAbilityData('S074',3,5,1,6.4,7.7,9,10.9,12.8,2,8,2,"戮目珠","对目标范围掷出戮目宝珠，碰撞怪物时造成伤害，\n\n|Cff00ff7f4.5秒内增加|r|Cffffc92610%技能伤害|r|Cff00ff7f。|r\n|Cff00ff7f效果可叠加|r","ReplaceableTextures\\CommandButtons\\BTNS074.blp")
 call InitAbilityData('S013',1,2,99,0,0,0,4.2,4.8,2,0,2,"轮回之狱","每|Cffffc92624次|r攻击对目标范围造成伤害并|Cffffc926眩晕1秒|r。","ReplaceableTextures\\CommandButtons\\BTNS013.blp")
 call InitAbilityData('S022',8,2,5,0,0,0.51,0.62,0.73,2,8,2,"强攻阵","火莲降世，对周围怪物造成伤害。\n\n|Cff00ff7f4.5s内增加|r|Cffffc92610%暴击|r|Cff00ff7f。\n效果可叠加|r","ReplaceableTextures\\CommandButtons\\BTNS022.blp")
-call InitAbilityData('S102',1,4,2,0,1.7,1.9,2.1,2.4,2,0,2,"黑龙之灵","释放1条|Cff999999黑龙之灵|r，每秒对敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS102.blp")
+call InitAbilityData('S102',1,4,2,0,2.2,3.8,4.2,5.4,2,0,2,"黑龙之灵","释放1条|Cff999999黑龙之灵|r，每秒对敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS102.blp")
 call InitAbilityData('S081',8,2,5,0,0,0,0.85,1,2,8,3,"真空领域","将目标范围内的所有单位聚卷入中心，每|Cffffc9260.5|r秒造成伤害。\n\n|Cff00ff7f4秒内，攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害|r","ReplaceableTextures\\CommandButtons\\BTNS081.blp")
 call InitAbilityData('S083',2,4,1,0,3.2,3.8,4.5,5.5,2,8,3,"十方飓风破","自身每|Cff00bfff0.75|r秒向周围逸散暴风，造成伤害。\n\n|Cff00ff7f4秒内提高|r|Cffffc92615%闪避|r|Cff00ff7f。|r\n|Cff00ff7f效果不可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS083.blp")
 call InitAbilityData('S095',1,2,5,0,0,0,0.41,0.47,2,0,3,"佛陀法身","被攻击|Cff00bfff8%|r概率触对周围敌人伤害","ReplaceableTextures\\CommandButtons\\BTNS095.blp")
@@ -93,8 +98,8 @@ call InitAbilityData('S518',1,0,0,0,0,0,0,0,0,0,3,"九转神功","每次突破�
 call InitAbilityData('S519',1,0,2,3.6,0,0,0,0,2,0,1,"天眼神光","|CffFFD24D攻击或施法|r时，|Cffffd24d4%|r几率开启天眼发射神光，造成|Cffffd24d业力*360%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS519.blp")
 call InitAbilityData('S520',2,0,0,0,0,0,0,0,0,10,2,"莲花化身","使用后|Cffffc9266|r秒内|Cffffc926伤害减免+12%|r。","ReplaceableTextures\\CommandButtons\\BTNS520.blp")
 call InitAbilityData('S521',2,0,2,2,0,0,0,0,2,10,1,"月盈","每秒对周围单位造成|Cffffc926业力*200%|r技能伤害，持续|Cffffc9266秒|r。","ReplaceableTextures\\CommandButtons\\BTNS521.blp")
-call InitAbilityData('S522',1,0,0,0,0,0,0,0,0,0,0,"风雷咒术","获得风雷咒术加持，攻击速度提高|Cffffd24d50%|r|Cfff0f0f0。|r过快的攻击速度导致技能伤害|Cffff0000降低25%|r。","ReplaceableTextures\\CommandButtons\\BTNS522.blp")
-call InitAbilityData('S523',6,0,0,0,0,0,0,0,0,12,2,"狐媚术","回复目标|Cffffd24d30%|r生命并|Cffffd24d解除所有负面效果|r，|Cffffd24d4|rs内提高|Cffffd24d15%攻击|r。","ReplaceableTextures\\CommandButtons\\BTNS523.blp")
+call InitAbilityData('S522',1,0,0,0,0,0,0,0,0,0,0,"风雷咒术","获得风雷咒术加持，攻击速度提高|Cffffd24d50%|r|Cfff0f0f0。","ReplaceableTextures\\CommandButtons\\BTNS522.blp")
+call InitAbilityData('S523',2,0,0,0,0,0,0,0,0,12,2,"狐媚术","自身范围内友军回复|Cffffd24d20%|r生命并|Cffffd24d解除所有负面效果|r，|Cffffd24d4|rs内提高|Cffffd24d15%攻击|r。","ReplaceableTextures\\CommandButtons\\BTNS523.blp")
 call InitAbilityData('S524',8,0,2,2,0,0,0,0,2,10,3,"道友请留步","对目标范围进行蛊惑，每秒造成|Cffffc926业力*200%|r技能伤害，持续|Cffffc9264|r秒。","ReplaceableTextures\\CommandButtons\\BTNS524.blp")
 call InitAbilityData('S525',3,0,1,2.4,0,0,0,0,2,8,0,"攒心钉","发射|Cffffd24d3枚|r攒心钉，造成|Cffffd24d攻击*240%|r伤害。\n\n拥有法宝|Cffffc926攒心钉|r时，造成伤害|Cffffc926+25%|r\n","ReplaceableTextures\\CommandButtons\\BTNS525.blp")
 call InitAbilityData('S526',1,0,1,5,0,0,0,0,2,6,0,"当头棒击","每6秒攻击对直线范围造成|Cffff8000攻击*500%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS526.blp")
@@ -102,6 +107,64 @@ call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处
 call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d20%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9263%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
@@ -126,7 +189,7 @@ InitAbilityStringEx('S519',"施法100%几率开启天眼","攻击开启天眼几
 InitAbilityStringEx('S520',"持续时间内，每次攻击附加自身最大生命值*5%伤害","免疫技能负面效果","受到技能伤害时，回复30%最大生命值","","")
 InitAbilityStringEx('S521',"月盈伤害+30%","月盈伤害+50%","攻击3%概率重置月盈冷却。","","")
 InitAbilityStringEx('S522',"攻击速度提高70%","攻击速度提高90%","攻击速度提高150%","","")
-InitAbilityStringEx('S523',"回复50%生命","对目标周围单位造成攻击*1000%技能伤害。","攻击加成效果+30%。","","")
+InitAbilityStringEx('S523',"回复40%生命","对范围内的敌对单位造成攻击*1000%技能伤害。","攻击加成效果+15%。","","")
 InitAbilityStringEx('S524',"蛊惑造成伤害时，眩晕目标0.2秒","蛊惑间隔降低至0.5秒。","被眩晕的单位3秒内承受伤害+30%","","")
 InitAbilityStringEx('S525',"释放攒心钉时,3秒内增加自身15%技能伤害加成。","基础冷却降低2秒。","攒心钉数量+3","","")
 InitAbilityStringEx('S526',"冷却时间降低至4秒","冷却时间降低至2秒","当头棒击必定触发暴击","","")
@@ -134,7 +197,6 @@ InitAbilityStringEx('S527',"处决目标获得神仙搭救，立即原地复活�
 InitAbilityStringEx('S528',"勇猛：施放Q技能时，50%概率对周围造成攻击*1200%伤害。","技能伤害+25%","勇猛必定触发","","")
 InitAbilityStringEx('S529',"触发时对自身周围600码造成生命*60%伤害","被复活单位5s内攻击速度+30%，暴击率+10%。","冷却时间降低至10秒","","")
 InitAbilityStringEx('S530',"攻击必定命中。","触发致命一击时回复自身3%最大生命值","领悟三重射，可触发攻击特效","","")
-
 endfunction
 endscope
 

@@ -1852,7 +1852,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             elseif  id == 'S521'
                 SpellS521(u1.u,damage,lv)
             elseif  id == 'S523'
-                SpellS523(u1.u,u2.u,lv)
+                SpellS523(u1.u,lv)
             elseif  id == 'S524'
                 SpellS524(u1.u,sx,sy,damage,lv)
             elseif  id == 'S525'

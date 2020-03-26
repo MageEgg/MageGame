@@ -1138,30 +1138,46 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         
     endfunction
 
-    function SpellS523(unit wu,unit tu,int lv)
+
+
+    function SpellS523(unit wu,int lv)
         int pid = GetPlayerId(GetOwningPlayer(wu))
-        real life = GetUnitState(tu,UNIT_STATE_LIFE)
-        real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
+        real life = 0
+        real maxlife = 0
+        real add = 0
+        real att = 0
         if  lv >= 2
-            SetUnitState(tu,UNIT_STATE_LIFE,life + maxlife * 0.5)
+            add = 0.4
         else
-            SetUnitState(tu,UNIT_STATE_LIFE,life + maxlife * 0.3)
+            add = 0.2
         endif
         if  lv >= 4
-            AddUnitStateExTimer(tu,32,30,4)
+            att = 30
         else
-            AddUnitStateExTimer(tu,32,15,4)
+            att = 15
         endif
+
+        for pid = 0,3
+            if  IsUnitInRange(Pu[1],wu,600) == true
+                life = GetUnitState(Pu[1],UNIT_STATE_LIFE)
+                maxlife = GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)
+                SetUnitState(Pu[1],UNIT_STATE_LIFE,life + maxlife * 0.3)
+                AddUnitStateExTimer(Pu[1],32,15,4)
+                LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffgreen2a.mdl")
+            endif
+        end
+
+
         if  lv >= 3
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(tu),GetUnitY(tu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*10.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             // x = x坐标；y = y坐标；r = 半径；n = 特效数量；path = 特效路径 
-            AddEffectInAreaSetSize(GetUnitX(tu),GetUnitY(tu),550,2,6,"effect2_az_goods_blink(green).mdl")
-            
+            AddEffectInAreaSetSize(GetUnitX(wu),GetUnitY(wu),550,2,6,"effect2_az_goods_blink(green).mdl")
             g.destroy()
         endif
-        LocAddEffect(GetUnitX(tu),GetUnitY(tu),"effect_e_buffgreen2a.mdl")
+        
+
         int uid = GetUnitTypeId(tu)
         /*if  uid == 'H028' or uid == 'H016' or uid == 'H027'
             if  DzPlayerLv(Player(pid)) >= 6

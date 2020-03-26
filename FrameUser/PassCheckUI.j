@@ -92,12 +92,12 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         //代码输出
         RegisterPassCheckMission(1,2,1,"","点击右上角【签到】按钮完成签到")
         RegisterPassCheckMission(2,1,1,"","通关难1或以上")
-        RegisterPassCheckMission(3,1,10000,"","击杀10000个怪物")
+        RegisterPassCheckMission(3,1,2000,"","击杀2000个进攻怪")
         RegisterPassCheckMission(4,1,9,"","通关9个任意副本")
         RegisterPassCheckMission(5,1,12,"","抽取12次技能")
         RegisterPassCheckMission(6,1,2,"","通关2次任意难度")
         RegisterPassCheckMission(7,1,50,"","击杀50个进攻精英怪")
-        RegisterPassCheckMission(8,1,18,"","击杀18个进攻Boss")
+        RegisterPassCheckMission(8,1,12,"","击杀12个进攻Boss")
         RegisterPassCheckMission(9,1,2,"","获得2次|CffBF00FF先天神器|r品质的法宝")
         RegisterPassCheckMission(10,1,2,"","获得2次|CffFFC926造化至宝|r品质的法宝")
         RegisterPassCheckMission(11,1,1,"","组队通关任意难度")
@@ -110,29 +110,29 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckMission(18,1,1,"","20:00-24:00登陆游戏")
 
 
-        RegisterPassCheckMission(21,2,1,"","20秒内击杀闻太师")
+        RegisterPassCheckMission(21,2,1,"","击杀1次闻太师")
         RegisterPassCheckMission(22,2,1,"","通关难2或以上")
         RegisterPassCheckMission(23,2,1,"","通关难3")
         RegisterPassCheckMission(24,2,1,"","获得1个|CffFF0000混沌圣器|r品质的法宝")
-        RegisterPassCheckMission(25,2,1,"","完成2次团队副本-万仙阵")
+        RegisterPassCheckMission(25,2,1,"","完成1次团队副本-万仙阵")
         RegisterPassCheckMission(26,2,2,"","获得两颗|CffFF0000混沌道果|r。")
         RegisterPassCheckMission(27,2,6,"","获得6个|CffFFC926造化至宝|r品质的法宝")
 
 
-        RegisterPassCheckMission(30,2,20,"","通关20个任意副本")
-        RegisterPassCheckMission(31,2,100,"","击杀100个【新手任务-妖魅】并通关。")
-        RegisterPassCheckMission(32,2,28,"","击杀28个进攻Boss")
+        RegisterPassCheckMission(30,2,16,"","通关16个任意副本")
+        RegisterPassCheckMission(31,2,100,"","击杀100个【新手任务-妖魅】")
+        RegisterPassCheckMission(32,2,20,"","击杀20个进攻Boss")
         RegisterPassCheckMission(33,2,20,"","抽取20次技能")
         RegisterPassCheckMission(34,2,8,"","获得8次|CffBF00FF先天神器|r的法宝")
 
     endfunction
 
     function InitRegisterDay()//注册每日任务
-
+    
         //代码输出
         RegisterPassCheckDay(1,1,4,5,31,0,0)
         RegisterPassCheckDay(2,1,6,18,30,0,0)
-        RegisterPassCheckDay(3,1,8,9,32,0,0)
+        RegisterPassCheckDay(3,1,8,9,21,0,0)
         RegisterPassCheckDay(4,1,10,18,34,0,0)
         RegisterPassCheckDay(5,1,12,7,33,0,0)
         RegisterPassCheckDay(6,1,14,18,21,0,0)
@@ -307,8 +307,9 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
 
         function MissionKillUnit(int pid,int uid)
-            MissionAddNumFunc(pid,3,1)
-            if  uid >= 'ma01' and uid <= 'ma0z'
+            if  uid >= 'm001' and uid <= 'm050'
+                MissionAddNumFunc(pid,3,1)
+            elseif  uid >= 'ma01' and uid <= 'ma0z'
                 MissionAddNumFunc(pid,7,1)//精英怪
             elseif  uid >= 'mb01' and uid <= 'mb0z'
                 MissionAddNumFunc(pid,8,1)//进攻boss

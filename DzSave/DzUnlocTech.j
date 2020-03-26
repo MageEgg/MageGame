@@ -451,7 +451,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4J',InitCond1(2,Unloc_Type_LvRank,10),0,0,0,0)
         InitUnlocTechConditions('RY4K',InitCond1(2,Unloc_Type_LvRank,100),0,0,0,0)
         //测试先锋
-        InitUnlocTechConditions('RY4N',InitCond1(2,Unloc_Type_Test,1),0,0,0,0)
+        InitUnlocTechConditions('RY4N',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_Test,1),0,0,0)
         
 
         //	InitUnlocTechConditions('RDAA',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,1,1)),0,0,0)
