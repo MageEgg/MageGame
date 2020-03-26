@@ -637,8 +637,11 @@ scope DeathEvent initializer InitDeathEvent
 
         if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
-        
-        
+
+            if  uid >= 'mb01' and uid <= 'mb20'
+                AttackBossDeathEvent(u1)
+            endif
+
             if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
                 
                 if  u2 != null
@@ -646,9 +649,7 @@ scope DeathEvent initializer InitDeathEvent
                     PlayerHeroKillUnit(u2,u1)
                     //小怪死亡的其他功能
                     HeroKillMoster(u2,u1)
-                    if  uid >= 'mb01' and uid <= 'mb20'
-                        AttackBossDeathEvent(u1)
-                    endif
+
                     if  uid == 'uJ01'
                         MeridiansChallengeDeath(pid2)
                     endif
