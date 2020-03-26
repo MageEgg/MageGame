@@ -304,8 +304,8 @@ library AttackUnit uses DamageCode,PassCheckMission
         TimerStart(1,true)
         {
             time = time + 1
-            if  time <= 90 and GetUnitTypeId(u) != 0 and u != null
-                if  ModuloInteger(time,10) == 0
+            if  time <= 45 and GetUnitTypeId(u) != 0 and u != null
+                if  ModuloInteger(time,5) == 0
                     nuqi = nuqi + 1
                     if  GetUnitAbilityLevel(u,'AZ80'+nuqi-1) > 0
                         UnitRemoveAbility(u,'AZ80'+nuqi-1)
@@ -314,7 +314,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     AddUnitRealState(u,9,1.7)
                     UnitAddAbility(u,'AZ80'+nuqi)
                 endif
-                if  time == 90
+                if  time == 45
                     UnitAddAbility(u,'AZ80')
                     AddUnitRealState(u,1,GetUnitRealState(u,1))
                 endif
