@@ -8,11 +8,6 @@ library CreateOpera uses DamageCode
     int AttackUnitOperaBossDamageNum = 0
 
     function KillAttackUnitGroupFunc()
-        bool UI = false
-        if  GetUnitAbilityLevel(GetEnumUnit(),'AZ01') > 0 and UI == false
-            UI = true
-            ShowBossDamageUI(false)
-        endif
         KillUnit(GetEnumUnit())
     endfunction
 

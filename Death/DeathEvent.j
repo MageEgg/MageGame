@@ -637,8 +637,11 @@ scope DeathEvent initializer InitDeathEvent
 
         if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
-        
-        
+
+            if  uid >= 'mb01' and uid <= 'mb20'
+                AttackBossDeathEvent(u1)
+            endif
+
             if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
                 
                 if  u2 != null
@@ -646,9 +649,7 @@ scope DeathEvent initializer InitDeathEvent
                     PlayerHeroKillUnit(u2,u1)
                     //小怪死亡的其他功能
                     HeroKillMoster(u2,u1)
-                    if  uid >= 'mb01' and uid <= 'mb20'
-                        AttackBossDeathEvent(u1)
-                    endif
+
                     if  uid == 'uJ01'
                         MeridiansChallengeDeath(pid2)
                     endif
@@ -665,31 +666,32 @@ scope DeathEvent initializer InitDeathEvent
                     AddReviveWildMonster(u1,GetUnitPointValueByType(uid),GetUnitPointX(u1),GetUnitPointY(u1))
                 endif
 
-                if  IsUnitInGroup(u1,AttackUnitGroup)==true//用于进攻怪刷新单位组
-                    GroupRemoveUnit(AttackUnitGroup,u1)
-                endif
-                if  IsUnitInGroup(u1,AttackOperaGroup_B_1)==true//用于进攻怪刷新单位组
-                    GroupRemoveUnit(AttackOperaGroup_B_1,u1)
-                endif
-        
-                if  IsUnitInGroup(u1,AttackOperaGroup_B_2)==true//用于进攻怪刷新单位组
-                    GroupRemoveUnit(AttackOperaGroup_B_2,u1)
-                    if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
-                        OpenOperaB_Boss()
-                    endif
-                endif
-
                 if  GetUnitAbilityLevel(u1,'AZ99') > 0
-                    if  IsUnitInGroup(u1,AttackSummonUnitGroup[GetUnitAbilityLevel(u1,'AZ99')-1])==true//用于进攻怪刷新单位组
+                    if  IsUnitInGroup(u1,AttackSummonUnitGroup[GetUnitAbilityLevel(u1,'AZ99')-1]) == true //刷新单位组
                         RemoveAttackSummonUnit(GetUnitAbilityLevel(u1,'AZ99')-1,u1)
                     endif
                 endif
 
-                
-                
-                FlushChildHashtable(ht,GetHandleId(u1))
-                RemoveUnitTimer(u1,2)
             endif
+
+            if  IsUnitInGroup(u1,AttackUnitGroup) == true//刷新单位组
+                GroupRemoveUnit(AttackUnitGroup,u1)
+            endif
+
+            if  IsUnitInGroup(u1,AttackOperaGroup_B_1) == true//刷新单位组
+                GroupRemoveUnit(AttackOperaGroup_B_1,u1)
+            endif
+        
+            if  IsUnitInGroup(u1,AttackOperaGroup_B_2) == true//刷新单位组
+                GroupRemoveUnit(AttackOperaGroup_B_2,u1)
+                if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
+                    OpenOperaB_Boss()
+                endif
+            endif
+
+            FlushChildHashtable(ht,GetHandleId(u1))
+            RemoveUnitTimer(u1,2)
+
         endif
         flush locals
     endfunction
