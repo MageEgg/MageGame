@@ -157,6 +157,11 @@ library SystemCodes uses ServerTime,Define1
         return ConvertAttackType(EXGetEventDamageData(6))
     end
     
+    function R2S0(real r)->string
+        int l = StringLength(R2S(r))
+        return SubString(R2S(r),0,l-4)
+    endfunction
+
     func R2S2(real r)->string
         int l = StringLength(R2S(r))
         if r > 1000

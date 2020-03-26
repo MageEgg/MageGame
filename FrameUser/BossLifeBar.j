@@ -30,7 +30,7 @@ library BossLifeBarFrame uses GameFrame,System,SystemCodes
                         endif
                         life = GetUnitState(Pu[6],UNIT_STATE_LIFE)
                         maxlife = GetUnitState(Pu[6],UNIT_STATE_MAX_LIFE)
-                        Life.SetText(I2S(R2I(life))+"/"+I2S(R2I(maxlife)))
+                        Life.SetText((R2S0(life))+"/"+(R2S0(maxlife)))
                         Name.SetText(GetUnitName(Pu[6]))
                         Model2.SetAnimate(0,false)
                         Model2.offset = life /maxlife
