@@ -1178,8 +1178,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         endif
         
 
-        int uid = GetUnitTypeId(tu)
-        /*if  uid == 'H028' or uid == 'H016' or uid == 'H027'
+        /*int uid = GetUnitTypeId(tu)
+        if  uid == 'H028' or uid == 'H016' or uid == 'H027'
             if  DzPlayerLv(Player(pid)) >= 6
                 if  GetRandomReal(0,1) <= 0.2
                     if  GetPlayerTechCount(Player(pid),'RDAQ',true) == 0
