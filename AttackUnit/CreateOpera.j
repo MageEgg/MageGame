@@ -265,14 +265,6 @@ library CreateOpera uses DamageCode
     function AttackOperaBEnding(int flag)
         int time = 0
         unit uu = null
-        if  LoadInteger(ht,GetHandleId(OperaTimer),1) >= 70
-            BJDebugMsg("闻太师任务")
-            for pid = 0,3
-                if  IsPlaying(pid) == true
-                    MissionAddNumFunc.execute(pid,21,1)
-                endif
-            end
-        endif
         FlushChildHashtable(ht,GetHandleId(OperaTimer))
         DestroyTimer(OperaTimer)
         OperaTimer = null
@@ -317,6 +309,7 @@ library CreateOpera uses DamageCode
                 if  IsPlaying(pid) == true
                     UnitAddItemEx(Pu[2],'I015')
                     GivePlayerMissionPrize(pid,'RR0D')
+                    MissionAddNumFunc.execute(pid,21,1)
                 endif
             end
         endif
