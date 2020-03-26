@@ -92,7 +92,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         //代码输出
         RegisterPassCheckMission(1,2,1,"","点击右上角【签到】按钮完成签到")
         RegisterPassCheckMission(2,1,1,"","通关难1或以上")
-        RegisterPassCheckMission(3,1,2000,"","击杀2000个进攻怪")
+        RegisterPassCheckMission(3,1,2500,"","击杀2500个进攻怪")
         RegisterPassCheckMission(4,1,9,"","通关9个任意副本")
         RegisterPassCheckMission(5,1,12,"","抽取12次技能")
         RegisterPassCheckMission(6,1,2,"","通关2次任意难度")
