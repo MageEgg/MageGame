@@ -284,7 +284,8 @@ scope DeathEvent initializer InitDeathEvent
         int uid = id2
         TimerStart(30,false)
         {
-            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),uid+1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512,225)
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid+1,AttackRoomPostion[pid][1] +256,AttackRoomPostion[pid][2]+512,225)
+            SetUnitOwner( Pu[120], Player(PLAYER_NEUTRAL_PASSIVE), true )
             SetPlayerOnlyDamage(Pu[120],pid)
             UnitAddAbility(Pu[120],'Awan')
             //LocAddEffect(AttackRoomPostion[pid][1] +384,AttackRoomPostion[pid][2]+192,"effect_az_bw_lina_t1-2.mdl")

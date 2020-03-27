@@ -8,7 +8,7 @@ library GameUIInit initializer init uses OriginGameFrame
     function  GetFrameType(int a) ->int
         return LoadInteger(uiht,a,2)
     endfunction
-
+S
     function InitFrame(int frame,int id,int Type)
         SaveInteger(uiht,frame,1,id)
         SaveInteger(uiht,frame,2,Type)
@@ -183,7 +183,8 @@ library GameUIInit initializer init uses OriginGameFrame
             call DzFrameClearAllPoints(DzFrameGetMinimapButton(n))
             call DzFrameClearAllPoints(DzFrameGetUpperButtonBarButton(n-1))
             if  n == 2
-                call DzFrameSetPoint(DzFrameGetMinimapButton(n),6,GameUI,6,0.005,0.15)
+                call DzFrameSetPoint(DzFrameGetMinimapButton(n),6,GameUI,6,0.005,0.13)
+                call DzFrameSetSize(DzFrameGetMinimapButton(n),0.03,0.03)
             else
                 call DzFrameSetPoint(DzFrameGetMinimapButton(n),1,DzFrameGetMinimapButton(n-1),7,0,-1)
             endif

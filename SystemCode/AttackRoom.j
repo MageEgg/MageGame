@@ -217,7 +217,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             UnitAddEffectOfNPC(Pu[27])
             
 
-            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'u001',x+256,y+512,225)
+            Pu[120]=CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'u001',x+256,y+512,225)
+            SetUnitOwner( Pu[120], Player(PLAYER_NEUTRAL_PASSIVE), true )
             UnitAddAbility(Pu[120],'Awan')
             UnitAddEffectOfNPC(Pu[120])
             SetPlayerOnlyDamage(Pu[120],pid)
