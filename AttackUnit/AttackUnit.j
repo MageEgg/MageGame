@@ -311,12 +311,12 @@ library AttackUnit uses DamageCode,PassCheckMission
                         UnitRemoveAbility(u,'AZ80'+nuqi-1)
                     endif
                     AddUnitRealState(u,9,10)
-                    AddUnitRealState(u,9,1.7)
                     UnitAddAbility(u,'AZ80'+nuqi)
                 endif
                 if  time == 45
                     UnitAddAbility(u,'AZ80')
                     AddUnitRealState(u,1,GetUnitRealState(u,1))
+                    AddUnitRealState(u,20,400)
                 endif
             else
                 BJDebugMsg("end计时器")

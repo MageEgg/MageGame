@@ -143,7 +143,9 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
         function UpdateTimeAll() //初始化
         
             int ttttime = S2I(DzCon("DAY"))
-
+            if  ttttime <= 0 
+                ttttime = 1585065600
+            endif
             InitArray()
             DzPuTime = ttttime
             ServerTime = DzAPI_Map_GetGameStartTime()

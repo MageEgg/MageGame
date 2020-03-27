@@ -8,7 +8,7 @@ library GameUIInit initializer init uses OriginGameFrame
     function  GetFrameType(int a) ->int
         return LoadInteger(uiht,a,2)
     endfunction
-S
+
     function InitFrame(int frame,int id,int Type)
         SaveInteger(uiht,frame,1,id)
         SaveInteger(uiht,frame,2,Type)
