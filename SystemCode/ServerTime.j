@@ -182,6 +182,8 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             BJDebugMsg.execute("初始化天数 通行证：："+I2S(MissionDay))
             
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,ServerTimeDeBug())
+
+            
         endfunction
         
     endlibrary

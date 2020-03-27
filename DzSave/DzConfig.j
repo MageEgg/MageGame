@@ -69,6 +69,8 @@ library DzConfig uses SystemCodes
             DzBool = true
             textbool = true
         endif
+
+        
     endfunction     
 
     

@@ -1,4 +1,4 @@
-library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitStateSetInit
+library UnitStateSet initializer UnitStateSetInit uses State
     //属性加载
     
     int MosterLevel = 0
@@ -11,10 +11,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = value * valv
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 17
+                if  i == 17//增伤
                     value = value + GameReal[GameLevel][1]
-                elseif  i == 18
-                    value = value + GameReal[GameLevel][2]
+                elseif  i == 5//生命加成
+                    value = value * GameReal[GameLevel][2]
                 endif
             endif
 
@@ -38,10 +38,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
 
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 17
+                if  i == 17//增伤
                     value = value + GameReal[GameLevel][1]
-                elseif  i == 18
-                    value = value + GameReal[GameLevel][2]
+                elseif  i == 5//生命加成
+                    value = value * GameReal[GameLevel][2]
                 endif
             endif
 
@@ -63,10 +63,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 17
+                if  i == 17//增伤
                     value = value + GameReal[GameLevel][1]
-                elseif  i == 18
-                    value = value + GameReal[GameLevel][2]
+                elseif  i == 5//生命加成
+                    value = value * GameReal[GameLevel][2]
                 endif
             endif
             if  value != 0
@@ -96,10 +96,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 17
+                if  i == 17//增伤
                     value = value + GameReal[GameLevel][1]
-                elseif  i == 18
-                    value = value + GameReal[GameLevel][2]
+                elseif  i == 5//生命加成
+                    value = value * GameReal[GameLevel][2]
                 endif
             endif
             if  value != 0
@@ -120,10 +120,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
             value = GetTypeIdReal(uid,i)
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
             
-                if  i == 17
+                if  i == 17//增伤
                     value = value + GameReal[GameLevel][1]
-                elseif  i == 18
-                    value = value + GameReal[GameLevel][2]
+                elseif  i == 5//生命加成
+                    value = value * GameReal[GameLevel][2]
                 endif
             endif
             if  value != 0
@@ -149,10 +149,10 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
 
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
 
-                if  i == 17
+                if  i == 17//增伤
                     value = value + GameReal[GameLevel][1]
-                elseif  i == 18
-                    value = value + GameReal[GameLevel][2]
+                elseif  i == 5//生命加成
+                    value = value * GameReal[GameLevel][2]
                 endif
 
                 
@@ -247,6 +247,32 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
     endfunction
     
     
+    function LoadDzConData()
+        string con = DzCon("ND1_7")
+        if  con == ""
+            con = "00000050000000500000007500000110000001600000022500000300"
+        endif
+        int data1 = 0 
+        int data2 = 0
+        int index = 0
+        for i= 0,6
+            index  = i * 8
+            data1 = S2I(SubString(con,index,index+4))
+            data2 = S2I(SubString(con,index+4,index+8))
+            BJDebugMsg("难度"+I2S(i+1)+"data1:"+I2S(data1))
+            BJDebugMsg("难度"+I2S(i+1)+"data2:"+I2S(data2))
+
+            if  data1 > 0
+                GameReal[i+1][1] = data1
+            endif
+            
+            if  data2 > 0
+                GameReal[i+1][2] = data2
+            endif
+
+        end
+    endfunction
+    
 
 
     function InitMostetStateRatio(int level,real r1,real r2)
@@ -254,16 +280,17 @@ library UnitStateSet initializer UnitStateSetInit uses State //initializer UnitS
         GameReal[level][2] = r2
     endfunction
     function UnitStateSetInit()
-        InitMostetStateRatio(1,0,0)
-        InitMostetStateRatio(2,0,0)
-        InitMostetStateRatio(3,50,33)
-        InitMostetStateRatio(4,120,54)
-        
-        InitMostetStateRatio(5,220,68)
-        InitMostetStateRatio(6,340,77)
-        InitMostetStateRatio(7,500,83)
-        
 
+        InitMostetStateRatio(1,0,50)
+        InitMostetStateRatio(2,0,50)
+        InitMostetStateRatio(3,0,75)
+        InitMostetStateRatio(4,0,110)
+        InitMostetStateRatio(5,0,160)
+        InitMostetStateRatio(6,0,225)
+        InitMostetStateRatio(7,0,300)
+
+        LoadDzConData()
+        
     endfunction
 endlibrary
 
