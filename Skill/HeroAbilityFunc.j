@@ -375,9 +375,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                     endif
                 endif
             else
-                LocAddEffectSetSize(x1+50*Cos(ang),y1+50*Cos(ang),"effect_fire-boom-new.mdl",0.5)
-                CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,2),ang,GetUnitAttack(u1)*7.5,400,1200,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
-                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
+                if  GetUnitIntState(u1,'FB11') > 0
+                    LocAddEffectSetSize(x1+50*Cos(ang),y1+50*Cos(ang),"effect_fire-boom-new.mdl",0.5)
+                    CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,2),ang,GetUnitAttack(u1)*7.5,400,1200,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                    CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
+                endif
             endif
             SetUnitPosition(u1,x1,y1)
             EXSetUnitFacing( u1, f/0.01745 )
