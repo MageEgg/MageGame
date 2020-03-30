@@ -1162,7 +1162,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 life = GetUnitState(Pu[1],UNIT_STATE_LIFE)
                 maxlife = GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)
                 SetUnitState(Pu[1],UNIT_STATE_LIFE,life + maxlife * 0.3)
-                AddUnitStateExTimer(Pu[1],32,15,4)
+                AddUnitIntStateTimer(Pu[1],'S523',1,4)
+                //AddUnitStateExTimer(Pu[1],32,15,4)
                 LocAddEffect(GetUnitX(Pu[1]),GetUnitY(Pu[1]),"effect_e_buffgreen2a.mdl")
             endif
         end
@@ -1172,8 +1173,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
             UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*10.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            // x = x坐标；y = y坐标；r = 半径；n = 特效数量；path = 特效路径 
-            AddEffectInAreaSetSize(GetUnitX(wu),GetUnitY(wu),550,2,6,"effect2_az_goods_blink(green).mdl")
+            AddEffectInAreaSetSize(GetUnitX(wu),GetUnitY(wu),550,2,15,"effect2_az_goods_blink(green).mdl")
             g.destroy()
         endif
         

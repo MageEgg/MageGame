@@ -300,6 +300,9 @@ library DamageCode uses UnitStateSet
     function GetPerAPState(unit wu)->real
         real s = GetUnitRealState(wu,32)
         int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  GetUnitIntState(wu,'S523') > 0
+            s = s + 15
+        endif
         return s
     endfunction
 

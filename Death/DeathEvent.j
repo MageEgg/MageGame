@@ -363,29 +363,21 @@ scope DeathEvent initializer InitDeathEvent
         if  uid == 'u0DF' or uid == 'u0DL' or uid == 'u0DR' or uid == 'u0DX'
             
             AttackRoomXCNum = AttackRoomXCNum + 1
-            if  AttackRoomXCNum > 23
-                AttackRoomXCNum = 23
-            endif
+
             CreateItem('IN31',GetUnitX(tu),GetUnitY(tu))
-            AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+20")
+            if  AttackRoomXCNum > 23
+                AdjustPlayerStateBJ( 10 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+10")
+            else
+                AdjustPlayerStateBJ( 20 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r"+GetObjectName(uid)+"挑战成功！奖励幸运星盒x1 玄铁+20")
+            endif
             SetBoardText(5,pid+2,"第|cff00ff00"+I2S(AttackRoomXCNum)+"|r星宿")
         else
-            /*
-            AttackRoomXCNum = AttackRoomXCNum + 1
-            if  AttackRoomXCNum == 10
-                AttackRoomXCNum = 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵(10/10)")
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵("+I2S(AttackRoomXCNum)+"/10)")
-            endif
-            */
 
             if  AttackRoomXCUnitNum <= 0
                 AttackRoomXCNum = AttackRoomXCNum + 1
-                if  AttackRoomXCNum > 23
-                    AttackRoomXCNum = 23
-                endif
+
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
                 AdjustPlayerStateBJ( 5 ,Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[周天星辰阵]:|r星宿之灵挑战成功！奖励幸运星盒x1 玄铁+5")
@@ -426,8 +418,8 @@ scope DeathEvent initializer InitDeathEvent
             
 
             if  uid == 'u001'//占星NPC
-                Pu[28]=CreateUnit(Player(pid),'np03',x-512,y-128,270)//兽魂神通
-                CreateUnit(Player(pid),'nc03',x-512,y-128,270)//兽魂神通
+                Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x-512,y-128,270)//兽魂神通
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc03',x-512,y-128,270)//兽魂神通
                 //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y+256,270)//占星抽奖
                 UnitAddEffectOfNPC(Pu[28])
                 //UnitAddEffectOfNPC(Pu[25])

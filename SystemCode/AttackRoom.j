@@ -315,10 +315,15 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
     //周天星辰阵
     function SoulTimer2FuncGivePrize(int pid)
         int num = AttackRoomXCNum
-        int id = 'u0DA'+num
+        int id = 0
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        
+
+        if  num > 23
+            num = 23    
+        endif
+
+        id = 'u0DA'+num
         if  num == 5 or num == 11 or num == 17 or num == 23
             AttackRoomXCUnitNum = 1
             bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,225)
@@ -531,22 +536,22 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 y = AttackRoomPostion[pid][2]
                 
                 AttackSummonUnitGroup[pid] = CreateGroup()
-                CreateUnit(Player(pid),'nc02',x-512,y+128,270)//技能商店
-                CreateUnit(Player(pid),'nc01',x+128,y+512,270)//境界
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+128,270)//技能商店
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc01',x+128,y+512,270)//境界
                 
-                CreateUnit(Player(pid),'nc06',x,y-512,270)//礼包
-                CreateUnit(Player(pid),'nc41',x,y-512,0)//积分兑换
-                CreateUnit(Player(pid),'nc42',x-128,y+512,270)//挑战
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc06',x,y-512,270)//礼包
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc41',x,y-512,0)//积分兑换
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc42',x-128,y+512,270)//挑战
 
-                Pu[21]=CreateUnit(Player(pid),'np01',x+128,y+512,270)//境界
+                Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x+128,y+512,270)//境界
 
-                Pu[22]=CreateUnit(Player(pid),'np02',x-512,y+128,270)//技能商店
+                Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+128,270)//技能商店
 
-                Pu[24]=CreateUnit(Player(pid),'np04',x+512,y+128,270)//副本入口
+                Pu[24]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',x+512,y+128,270)//副本入口
                 ShowUnit(Pu[24],false)
 
-                Pu[26]=CreateUnit(Player(pid),'np06',x,y-512,270)//礼包
-                Pu[41]=CreateUnit(Player(pid),'np41',x,y-512,0)//积分兑换
+                Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',x,y-512,270)//礼包
+                Pu[41]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np41',x,y-512,0)//积分兑换
                 
                 Pu[27]=CreateUnit(Player(pid),'np27',x+512,y+512,225)//送宝金蝉
 

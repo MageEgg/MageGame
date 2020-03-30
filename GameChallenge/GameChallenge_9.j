@@ -531,7 +531,7 @@ library GameChallenge9 uses GameChallengeBase
                     ShowUnit(GameChallengUnit[90],true)
                     UnitAddEffectOfNPC(GameChallengUnit[90])
                     PingMinimap(GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),3)
-                    CreateUnit(Player(pid),'nc30',GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),270)
+                    CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc30',GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),270)
                     AddItemToStock(GameChallengUnit[90],'IZ01',1,1)
                 endif
             end

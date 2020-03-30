@@ -751,7 +751,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             UnitAddAbility(Pu[1],'AG09')
             UnitMakeAbilityPermanent(Pu[1],true,'AG09')
             ShowUnit(Pu[24],true)
-            CreateUnit(Player(pid),'nc04',GetUnitX(Pu[24]),GetUnitY(Pu[24]),270)//副本入口
+            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc04',GetUnitX(Pu[24]),GetUnitY(Pu[24]),270)//副本入口
             UnitAddEffectOfNPC.execute(Pu[24])
             if  GetLocalPlayer() == Player(pid)
                 DzFrameShow(BUTTON_Back[700+4][0], true)
