@@ -391,12 +391,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real xx = 30*Cos(ang)
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
+        int uid = GetUnitTypeId(u1)
         SetUnitAnimation(u1,"attack")
         TimerStart(0.02,true)
         {
             group gg = null
             time = time - 1
-            if  time > 0
+            if  time > 0 and GetUnitTypeId(u1) == uid
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitXY(u1,x1,y1)
@@ -404,15 +405,17 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                     LocAddEffectSetSize(x1,y1,"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl",2)
                 endif
             else
-                SetUnitXY(u1,x1,y1)
-                SetUnitAnimation(u1,"attack")
-                gg = CreateGroup()
-                LocAddEffectSetSize(x2,y2,"effect2_zhendi-qiquan-boom.mdl",2.5)
-                LocAddEffectSetSize(x2,y2,"effect2_by_wood_gongchengsipai_6.mdl",1.8)
-                GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                GroupClear(gg)
-                DestroyGroup(gg)
+                if  GetUnitTypeId(u1) == uid
+                    SetUnitXY(u1,x1,y1)
+                    SetUnitAnimation(u1,"attack")
+                    gg = CreateGroup()
+                    LocAddEffectSetSize(x2,y2,"effect2_zhendi-qiquan-boom.mdl",2.5)
+                    LocAddEffectSetSize(x2,y2,"effect2_by_wood_gongchengsipai_6.mdl",1.8)
+                    GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                    UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    GroupClear(gg)
+                    DestroyGroup(gg)
+                endif
                 endtimer
             endif
             flush locals
@@ -501,24 +504,27 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         real size = GetUnitScaleSize(u1)
+        int uid = GetUnitTypeId(u1)
         LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
         SetUnitScale(u1,0.01,0.01,0.01)
         TimerStart(0.02,true)
         {
             time = time - 1
-            if  time > 0
+            if  time > 0 and GetUnitTypeId(u1) == uid
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitXY(u1,x1,y1)
                 SetUnitXY(u2,x1,y1)
             else
                 RemoveUnit(u2)
-                SetUnitXY(u1,x1,y1)
-                SetUnitScale(u1,size,size,size)
-                SetUnitAnimation(u1,"attack")
-                LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
-                AddEffectInAreaSetSizeTimer(x1,y1,290,1.5,6,"effect3_impalehittarget.mdl",0.8)
-                UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+                if  GetUnitTypeId(u1) == uid
+                    SetUnitXY(u1,x1,y1)
+                    SetUnitScale(u1,size,size,size)
+                    SetUnitAnimation(u1,"attack")
+                    LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+                    AddEffectInAreaSetSizeTimer(x1,y1,290,1.5,6,"effect3_impalehittarget.mdl",0.8)
+                    UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,300,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",0,0,0)
+                endif
                 endtimer
             endif
             flush locals
@@ -686,24 +692,27 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real yy = 30*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/30)
         real size = GetUnitScaleSize(u1)
+        int uid = GetUnitTypeId(u1)
         LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
         SetUnitScale(u1,0.01,0.01,0.01)
         damage = damage /3
         TimerStart(0.02,true)
         {
             time = time - 1
-            if  time > 0
+            if  time > 0 and GetUnitTypeId(u1) == uid
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitXY(u1,x1,y1)
                 SetUnitXY(u2,x1,y1)
             else
                 RemoveUnit(u2)
-                SetUnitXY(u1,x1,y1)
-                SetUnitScale(u1,size,size,size)
-                SetUnitAnimation(u1,"attack")
-                LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
-                BossFuncSpell29Ex(u1,damage)
+                if  GetUnitTypeId(u1) == uid
+                    SetUnitXY(u1,x1,y1)
+                    SetUnitScale(u1,size,size,size)
+                    SetUnitAnimation(u1,"attack")
+                    LocAddEffectSetSize(x1,y1,"effect2_az_goods_blink(green).mdl",1.8)
+                    BossFuncSpell29Ex(u1,damage)
+                endif
                 endtimer
             endif
             flush locals
@@ -746,12 +755,13 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real yy = 50*Sin(ang)
         int time = R2I(Pdis(x1,y1,x2,y2)/50)
         real size = GetUnitScaleSize(u1)
+        int uid = GetUnitTypeId(u1)
         LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",2)
         SetUnitScale(u1,0.01,0.01,0.01)
         TimerStart(0.007,true)
         {
             time = time - 1
-            if  time > 0
+            if  time > 0 and GetUnitTypeId(u1) == uid
                 x1 = x1 + xx
                 y1 = y1 + yy
                 SetUnitXY(u1,x1,y1)
@@ -763,10 +773,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 endif
             else
                 RemoveUnit(u2)
-                SetUnitXY(u1,x1,y1)
-                SetUnitScale(u1,size,size,size)
-                SetUnitAnimation(u1,"attack")
-                LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",2)
+                if  GetUnitTypeId(u1) == uid
+                    SetUnitXY(u1,x1,y1)
+                    SetUnitScale(u1,size,size,size)
+                    SetUnitAnimation(u1,"attack")
+                    LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",2)
+                endif
                 endtimer
             endif
             flush locals
