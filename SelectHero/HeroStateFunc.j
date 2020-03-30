@@ -4,12 +4,15 @@ library HeroStateFunc uses DamageCode
     function InitPlayerDzShopState(int pid)
         int lv = DzPlayerLv(Player(pid))
         /////////////////////额外给予////////////////////////
+
         if  DzAPI_Map_IsBlueVIP(Player(pid)) == true
             BJDebugMsg("DzAPI_Map_IsBlueVIP")
             if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
                 AddPlayerTechResearched(Player(pid),'RK1A',1)
             endif
         endif
+
+        /*
         if  DzAPI_Map_GetGuildName(Player(pid)) == "星辰俱乐部" 
             BJDebugMsg("DzAPI_Map_GetGuildName")
             if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
@@ -19,6 +22,7 @@ library HeroStateFunc uses DamageCode
                 AddPlayerTechResearched(Player(pid),'RY2D',1)
             endif 
         endif
+        
         if  IsPlayerIn_MZRPG_Admin(pid) == true
             BJDebugMsg("IsPlayerIn_MZRPG_Admin")
             if  GetPlayerTechCount(Player(pid),'RY1D',true) == 0 //星月光环
@@ -46,6 +50,7 @@ library HeroStateFunc uses DamageCode
                 AddPlayerTechResearched(Player(pid),'RJ1W',1)
             endif 
         endif
+        */
         /////////////////////载入属性////////////////////////
         if  GetPlayerTechCount(Player(pid),'RY1D',true) == 1 //星月光环
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
