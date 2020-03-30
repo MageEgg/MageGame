@@ -367,19 +367,19 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     if  level > 1
                         tip = tip + "\n\n|cff00ff00元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
+                        tip = tip + "\n\n|cff808080元婴境[3]：\n" +GetTypeIdString(id,111) + "|r"
                     endif
 
                     if  level > 2
                         tip = tip + "\n\n|cff00ff00凝体境[5]：\n" +GetTypeIdString(id,112) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb凝体境[5]：\n" +GetTypeIdString(id,112) + "|r"
+                        tip = tip + "\n\n|cff808080凝体境[5]：\n" +GetTypeIdString(id,112) + "|r"
                     endif
 
                     if  level > 3
                         tip = tip + "\n\n|cff00ff00金仙境[10]：\n" +GetTypeIdString(id,113) + "|r"
                     else
-                        tip = tip + "\n\n|cffbbbbbb金仙境[10]：\n" +GetTypeIdString(id,113) + "|r"
+                        tip = tip + "\n\n|cff808080金仙境[10]：\n" +GetTypeIdString(id,113) + "|r"
                     endif
                 else
                     
