@@ -11,7 +11,7 @@ library DzDataSetting uses DzBase
     #define MaxHeroNeedExp3 72 //经验需求
     #define MaxHeroNeedExp4 96 //经验需求
 
-    #define MaxHeroDayMedal 512 //一天战勋点
+    #define MaxHeroBaseMedal 128 //一天战勋点
 
     int array DzHeroUseArrayInt[12][680]
     #define DzHeroUseInt                DzHeroUseArrayInt[pid]
@@ -145,12 +145,12 @@ library DzDataSetting uses DzBase
 
         elseif  Group == 16 
             if  flag == 1 //战勋
-                max = GamePuOverDay*MaxHeroDayMedal
+                max = GamePuOverDay*MaxHeroBaseMedal*MaxGameLevel
                 if  max > 3840 
                     max = 3840
                 endif
             elseif  flag == 2 //当天战勋点
-                max = MaxHeroDayMedal
+                max = MaxHeroBaseMedal*MaxGameLevel
             else
                 max = 0
             endif
