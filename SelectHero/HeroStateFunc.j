@@ -217,9 +217,23 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         endif
         
 
+        
+
         if  shopnum > 0
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：|cff00ff00商城道具已激活！存档F5-商城分页中查看!|r")
         endif
+
+
+
+        //加载存档的物品道具
+        if  GetPlayerTechCount(Player(pid),'RY4I',true) == 1 //剑血浮生
+            bj_lastCreatedItem = CreateItem('IN30',GetUnitX(Pu[2]),GetUnitY(Pu[2]))
+            SetItemCharges(bj_lastCreatedItem,2)
+            UnitAddItem(Pu[2],bj_lastCreatedItem)
+            bj_lastCreatedItem = null
+        endif
+
+
 
     endfunction
 
