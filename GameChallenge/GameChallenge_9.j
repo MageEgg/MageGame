@@ -512,15 +512,17 @@ library GameChallenge9 uses GameChallengeBase
     function OpenGameTeamChallenge(int pid,int flag,int time)
         if  GameTeamChallengeBool[1] == false and GameTeamChallengeBool[2] == false
             OpenGameTeamChallengeEx(pid,flag,time)
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,-30000)
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,-10)
             FlushGameTeamChallengeStock()
         elseif  GameTeamChallengeBool[1] == true and GameTeamChallengeBool[2] == false
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前已激活副本，可进入副本集合！")
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
             RemoveItemFromStock(GameChallengUnit[90],'IZ01')
             AddItemToStock(GameChallengUnit[90],'IZ01',1,1)
         elseif  GameTeamChallengeBool[1] == false and GameTeamChallengeBool[2] == true
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前正在挑战副本，无法重复激活！")
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
             RemoveItemFromStock(GameChallengUnit[90],'IZ01')
             AddItemToStock(GameChallengUnit[90],'IZ01',1,1)
         endif
