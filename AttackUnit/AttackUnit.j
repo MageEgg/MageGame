@@ -478,8 +478,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                 Attacknum = 100
                 BossTime = 0
                 AttackUnitWNBoss = AttackUnitWNBoss + 1
+                AttackBOSSDeathCos = 0
+                AttackBOSSLastCos = 0
                 CreateBossTimer(AttackUnitWNBoss+Attacknum,BossTime)
-
             endif
         else
 

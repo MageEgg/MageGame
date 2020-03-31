@@ -821,6 +821,8 @@ library CreateOpera uses DamageCode
         unit u2 = null
         int uid = 'mb09'
         LastBOSSOpera = true
+        UnitTimerAddSkill(GameDefendUnit,'AZ08',10)
+        UnitTimerAddSkill(GameDefendUnit,'Avul',10)
         u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,-1664,-7328,270)
         SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         UnitAddAbility(u,'AZ01')

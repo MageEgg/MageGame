@@ -30,7 +30,6 @@ piece DzGameFunc
     function DzPalyerSignInRefresh(int pid,int week,int mission)
         BJDebugMsg("week:"+I2S(week)+" @@ TimeWeek:"+I2S(TimeWeek))
         if  week != TimeWeek
-            SetDzPlayerData(pid,1,5,0) //今日签到
             SetDzPlayerData(pid,1,10,0) //经脉
             SetDzPlayerData(pid,16,2,0) //当天战勋点
 
@@ -38,6 +37,7 @@ piece DzGameFunc
         endif
         if  mission != DzMissionWeek
             BJDebugMsg("通行证刷新")
+            SetDzPlayerData(pid,1,5,0) //今日签到
             DzFlushOfGroupZero(pid,5)
         endif
     endfunction
