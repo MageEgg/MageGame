@@ -391,12 +391,17 @@ scope ItemSystem initializer InitItemSystem
              
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
-                OpenGameTeamChallenge(pid,1,20)
+                OpenGameTeamChallenge(pid,1,10)
             else
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
                 RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
                 AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
             endif
+
+            //RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
+            //AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
             /*if  GameLevel >= 2
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 30000
                     if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 10

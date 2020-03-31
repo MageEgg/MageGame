@@ -417,6 +417,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                     SetTipsData(10,"",tech)
                     h = 11
                 endif
+
+                
+
                 
                 if  IsSaveFrameTechUnLock(pid,index) == true
                     unlock = 1
@@ -449,6 +452,15 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                         SetTipsData(h,"","|cff808080（解锁后可激活/隐藏外观）|r")
                     endif
                 endif
+
+
+                if  page == 5
+                    if  id == 'RY2D'
+                        h=h+2
+                        SetTipsData(h,"","解锁条件均达成属性+50%")
+                    endif
+                endif
+                
             endif
 
 
