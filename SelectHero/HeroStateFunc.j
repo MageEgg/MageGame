@@ -118,6 +118,7 @@ library HeroStateFunc uses DamageCode
             CreatePet.execute(pid)
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
+            AddUnitRealState(Pu[1],48,10)
             AddUnitRealState(Pu[1],64,10)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
         endif 
