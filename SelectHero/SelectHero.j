@@ -241,6 +241,7 @@ scope SelectHero
                 PlayerReviveX = -4896
                 PlayerReviveY = -3168
                 SelectHeroPrePareFunc(pid)
+                BuryingPointData(pid,0,GameLevel,1)//选难度埋点
             endif
         end
     endfunction

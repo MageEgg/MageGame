@@ -706,6 +706,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                 endif
 
                 SaveDzRoom(pid) //刷新房间显示
+
+                BuryingPointData(pid,1,GameLevel,1)//通关埋点
             endif
         end
         ExecuteFunc("GameWin")

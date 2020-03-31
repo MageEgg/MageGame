@@ -659,6 +659,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
 
     function SetAbilityCD_AG(unit u,int id,real cd)//设置主动技能CD
         integer lv=GetUnitAbilityLevel(u,id)
+        YDWESetUnitAbilityState( u,id,1, 0 )
         YDWESetUnitAbilityDataReal( u,id, lv, 105, cd )
         YDWESetUnitAbilityState( u,id,1, cd )
     endfunction
