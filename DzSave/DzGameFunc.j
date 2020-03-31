@@ -3,7 +3,7 @@ piece DzGameFunc
     function ShowPlayerDzJF(int pid) //显示积分
         if  DzConA[0] == 1 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关积分：|r"+I2S(GetDzPlayerData(pid,2,1)))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"   |cffffcc00当局已获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(MaxHeroBaseMedal*GameLevel))
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
         else
@@ -32,6 +32,7 @@ piece DzGameFunc
         if  week != TimeWeek
             SetDzPlayerData(pid,1,5,0) //今日签到
             SetDzPlayerData(pid,1,10,0) //经脉
+            SetDzPlayerData(pid,16,2,0) //当天战勋点
 
             BJDebugMsg("刷新！！！！！！！！！！")
         endif

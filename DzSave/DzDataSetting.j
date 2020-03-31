@@ -11,6 +11,8 @@ library DzDataSetting uses DzBase
     #define MaxHeroNeedExp3 72 //经验需求
     #define MaxHeroNeedExp4 96 //经验需求
 
+    #define MaxHeroBaseMedal 128 //一天战勋点
+
     int array DzHeroUseArrayInt[12][680]
     #define DzHeroUseInt                DzHeroUseArrayInt[pid]
     #define DzHeroExpLevelCount         DzHeroUseInt
@@ -37,7 +39,7 @@ library DzDataSetting uses DzBase
     // 组13 神器	30组
     // 组14 称号	30组
     // 组15 彩蛋    30组
-    // 组16 10组 1战勋点
+    // 组16 10组 1战勋点 2当天战勋点
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -143,7 +145,12 @@ library DzDataSetting uses DzBase
 
         elseif  Group == 16 
             if  flag == 1 //战勋
-                max = GamePuOverDay*512
+                max = GamePuOverDay*MaxHeroBaseMedal*MaxGameLevel
+                if  max > 3840 
+                    max = 3840
+                endif
+            elseif  flag == 2 //当天战勋点
+                max = MaxHeroBaseMedal*MaxGameLevel
             else
                 max = 0
             endif
