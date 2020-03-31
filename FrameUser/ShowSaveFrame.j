@@ -1,5 +1,5 @@
 
-library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
+library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,MagicItemCollectCode
     /*
     581-600 左侧按钮
     */
@@ -243,7 +243,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 
     //判断是否有外观显示
     function IsSaveIdCanShow(int id,int page)->bool
-        if  page >= 1 and page <= 4
+        if  page == 1 or page == 2
             return true
         elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D'
             return true
@@ -429,7 +429,20 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
                 if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
                     SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
                 else
-                    SetTipsData(1,"",GetTypeIdName(id))
+                    if  id >= 'RSHA' and id <= 'RSHZ'
+                        int butnum = GetPlayerBuyShopNumber(pid)
+                        if  id == 'RSHA' and butnum < 3
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(butnum)+"|r/3)")
+                        elseif  id == 'RSHB' and butnum < 5
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(butnum)+"|r/5)")
+                        elseif  id == 'RSHC' and butnum < 8
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(butnum)+"|r/8)")
+                        else
+                            SetTipsData(1,"",GetTypeIdName(id))
+                        endif
+                    else
+                        SetTipsData(1,"",GetTypeIdName(id))
+                    endif
                 endif
                 tech = GetShowSaveFrameTechTips(pid,index)
                 if  tech != ""
