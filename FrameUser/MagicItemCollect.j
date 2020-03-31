@@ -971,7 +971,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     SetPlayerMagicItemResources(pid,2,num-1)
                     
                     newid = GetPrize(pid,10+color,true)
-                    RecoveryPrizePoolData(pid,10+color,id)//回收法宝
+                    RecoveryPrizePoolData(pid,10+GetTypeIdData(id,101),id)//回收法宝
 
 
                     //重铸
