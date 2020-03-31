@@ -2,9 +2,37 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
     function GetPlayerBuyShopNumber(int pid)->int
         int num = 0
+        if  DzShop(Player(pid),"GH1") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"CB1") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"WQ1") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"CH1") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"CW1") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"LB1") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"LB2") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"LB3") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"RWK") == true
+            num = num + 1
+        endif
 
         return num
     endfunction
+
 
     function InitPlayerDzShopState(int pid)
         int lv = DzPlayerLv(Player(pid))
@@ -171,13 +199,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RSHA',1)
             AddUnitRealState(Pu[1],18,1)
             AddUnitRealState(Pu[1],49,100)
-            
+            UnitAddItemEx(Pu[2],'CS03')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff003件套|r》已激活！")
         endif
         if  buynum >= 5
             AddPlayerTechResearched(Player(pid),'RSHB',1)
             AddUnitRealState(Pu[1],18,2)
             AddUnitRealState(Pu[1],49,200)
             UnitAddItemEx(Pu[2],'CS21')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff005件套|r》已激活！")
         endif
         if  buynum >= 8
             AddPlayerTechResearched(Player(pid),'RSHC',1)
@@ -185,6 +215,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],49,300)
             SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+2)
             ReCollectFrameResources(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff008件套|r》已激活！")
         endif
         
 
