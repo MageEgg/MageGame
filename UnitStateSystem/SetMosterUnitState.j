@@ -22,6 +22,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
                 
                 if  i == 9
                     AddUnitRealState(u,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(u,i,value)
                 else
                     SetUnitRealState(u,i,R2I(value))
                 endif
@@ -49,6 +51,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
                 
                 if  i == 9
                     AddUnitRealState(u,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(u,i,value)
                 else
                     SetUnitRealState(u,i,R2I(value))
                 endif
@@ -80,6 +84,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
 
                 if  i == 9
                     AddUnitRealState(u,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(u,i,value)
                 else
                     SetUnitRealState(u,i,R2I(value))
                 endif
@@ -105,6 +111,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
             if  value != 0
                 if  i == 9
                     AddUnitRealState(wu,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(wu,i,value)
                 else
                     SetUnitRealState(wu,i,R2I(value))
                 endif
@@ -129,6 +137,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
             if  value != 0
                 if  i == 9
                     AddUnitRealState(wu,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(wu,i,value)
                 else
                     SetUnitRealState(wu,i,R2I(value))
                 endif
@@ -162,6 +172,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
             if  value != 0
                 if  i == 9
                     AddUnitRealState(wu,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(wu,i,value)
                 else
                     SetUnitRealState(wu,i,R2I(value))
                 endif
@@ -184,6 +196,8 @@ library UnitStateSet initializer UnitStateSetInit uses State
             if  value != 0
                 if  i == 9
                     AddUnitRealState(wu,i,R2I(value))
+                elseif  i == 5
+                    SetUnitRealState(wu,i,value)
                 else
                     SetUnitRealState(wu,i,R2I(value))
                 endif
