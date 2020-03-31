@@ -421,7 +421,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     pey[k] = AttackUnitEndY(k)[ordernum]
                     if  puid[k] != 0
                         for j = 1,unitnum
-                            if  CountUnitsInGroup(AttackUnitGroup) <= 100
+                            if  CountUnitsInGroup(AttackUnitGroup) <= 50
                                 u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                                 SetUnitXY(u,psx[k],psy[k])
                                 IssuePointOrderById(u,851983,pex[k],pey[k])
