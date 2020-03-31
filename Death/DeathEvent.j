@@ -552,10 +552,22 @@ scope DeathEvent initializer InitDeathEvent
         if  AttackBOSSDeathCos == AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             AttackBOSSLastCos = 0
-            ShowBossDamageUI(false)
-            ShowBossDamageString()
-            if  GetUnitTypeId(boss) == LastAttackBossId
-                AttackUnitWin()
+            if  GameLevel >= 5 
+                if  LastBOSSOpera == false
+                    CreateOperaLastBoss()
+                else
+                    ShowBossDamageUI(false)
+                    ShowBossDamageString()
+                    if  GetUnitTypeId(boss) == LastAttackBossId
+                        AttackUnitWin()
+                    endif
+                endif
+            else
+                ShowBossDamageUI(false)
+                ShowBossDamageString()
+                if  GetUnitTypeId(boss) == LastAttackBossId
+                    AttackUnitWin()
+                endif
             endif
         endif
         CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))

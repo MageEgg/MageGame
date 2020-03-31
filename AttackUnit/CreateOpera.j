@@ -3,6 +3,8 @@ library CreateOpera uses DamageCode
     group AttackOperaGroup_B_1 = null
     group AttackOperaGroup_B_2 = null
     group AttackOperaGroup_C_1 = null
+
+    bool LastBOSSOpera = false
     
     real AttackUnitOperaBossDamage = 0
     int AttackUnitOperaBossDamageNum = 0
@@ -817,18 +819,24 @@ library CreateOpera uses DamageCode
     function CreateOperaLastBoss()
         unit u = null
         unit u2 = null
-        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mb09',-1664,-7328,270)
+        int uid = 'mb09'
+        LastBOSSOpera = true
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,-1664,-7328,270)
         SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
         UnitAddAbility(u,'AZ01')
         UnitAddAbility(u,'Avul')
-        SetUnitFlyHeight(u,0,5000)
+        SetUnitFlyHeight(u,0,4000)
         LocAddEffect(3800,1020,"effect_blue-chuansong.mdx")
         for num = 1,5
             u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',-1664+600*Cos(72*num*0.01745),-7328+600*Sin(72*num*0.01745),270)
             RemoveUnitTimer(u2,1)
-            BossFuncSpell.execute(u,u2,'AZ1J')
+            BossFuncSpell.execute(u,u2,'AZ1K')
         end
-        TimerStart(0.3,false)
+        AddBossAnger.execute(u)
+        GroupAddUnit(AttackUnitGroup,u)
+        AttackBOSSLastCos = 1
+        LastAttackBossId = uid
+        TimerStart(0.4,false)
         {
             unit uu = null
             LocAddEffectSetSize(-1664,-7328,"effect_[dz.spell]001.mdl",1)
