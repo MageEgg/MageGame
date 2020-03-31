@@ -113,13 +113,19 @@ library Summon uses AbilityUI,OtherDamageTimer
         endif
         if  id == 'z103'
             num = num + 1
-            for k = 1,num
+            if  num == 1
                 u2 = CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
                 SetUnitRealState(u2,1,damage)
                 UnitApplyTimedLife(u2,'BHwe',4)
-                //SummonFollow(u,u2)
-                Z103Damage(u,u2,damage)               
-            end
+                Z103Damage(u,u2,damage)    
+            else
+                for k = 1,num
+                    u2 = CreateUnit(GetOwningPlayer(u),id,x+GetRandomReal(-125,125),y+GetRandomReal(-125,125),GetRandomReal(0,360))
+                    SetUnitRealState(u2,1,damage)
+                    UnitApplyTimedLife(u2,'BHwe',4)
+                    Z103Damage(u,u2,damage)               
+                end
+            endif
         endif
         flush locals
     endfunction
