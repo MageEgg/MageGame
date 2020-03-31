@@ -580,8 +580,10 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
     //刷新法宝UI资源显示
     function ReCollectFrameResources(int pid)
-        DzFrameSetText(BUTTON_Text[23],I2S(GetPlayerMagicItemResources(pid,1)))
-        DzFrameSetText(BUTTON_Text[24],I2S(GetPlayerMagicItemResources(pid,2)))
+        if  GetLocalPlayer() == Player(pid)
+            DzFrameSetText(BUTTON_Text[23],I2S(GetPlayerMagicItemResources(pid,1)))
+            DzFrameSetText(BUTTON_Text[24],I2S(GetPlayerMagicItemResources(pid,2)))
+        endif
     endfunction
 
     //刷新法宝UI显示
