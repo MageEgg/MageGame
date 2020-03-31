@@ -63,6 +63,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
         RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
         RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
+
+        RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
+        RegisterShowSaveFrameData(5,'RSHB','RSHB',0,0,0,0)//商城5件套
+        RegisterShowSaveFrameData(5,'RSHC','RSHC',0,0,0,0)//商城8件套
         
         
         

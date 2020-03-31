@@ -1,9 +1,14 @@
 library HeroStateFunc uses DamageCode
 
+    function GetPlayerBuyShopNumber(int pid)->int
+        int num = 0
+
+    endfunction
 
     function InitPlayerDzShopState(int pid)
         int lv = DzPlayerLv(Player(pid))
         int shopnum = 0
+        int buynum = GetPlayerBuyShopNumber(pid)
         /////////////////////额外给予////////////////////////
 
         if  DzAPI_Map_IsBlueVIP(Player(pid)) == true
@@ -159,6 +164,28 @@ library HeroStateFunc uses DamageCode
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00木材礼包|r》已激活！")
         endif 
 
+
+        //商城套装
+        if  buynum >= 3
+            AddPlayerTechResearched(Player(pid),'RSHA',1)
+            AddUnitRealState(Pu[1],18,1)
+            AddUnitRealState(Pu[1],49,100)
+            
+        endif
+        if  buynum >= 5
+            AddPlayerTechResearched(Player(pid),'RSHB',1)
+            AddUnitRealState(Pu[1],18,2)
+            AddUnitRealState(Pu[1],49,200)
+            UnitAddItemEx(Pu[2],'CS21')
+        endif
+        if  buynum >= 8
+            AddPlayerTechResearched(Player(pid),'RSHC',1)
+            AddUnitRealState(Pu[1],18,3)
+            AddUnitRealState(Pu[1],49,300)
+            SetPlayerMagicItemResources(pid,1,GetPlayerMagicItemResources(pid,1)+2)
+            ReCollectFrameResources(pid)
+        endif
+        
 
         if  shopnum > 0
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：|cff00ff00商城道具已激活！存档F5-商城分页中查看!|r")
