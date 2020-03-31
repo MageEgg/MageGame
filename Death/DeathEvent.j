@@ -459,7 +459,7 @@ scope DeathEvent initializer InitDeathEvent
         if  (uid >= 'm001' and uid <= 'm050') or (uid >= 'ma01' and uid <= 'ma0z') or (uid >= 'mb01' and uid <= 'mb0z')
             DzHeroMedalDeathCos = DzHeroMedalDeathCos + 1
             if  ModuloInteger(DzHeroMedalDeathCos,100) == 0
-                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal
+                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal*GameLevel
                     if  DzHeroMedalGameExp < GameLevel*32
                         DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel
                         AddDzPlayerData(pid,16,1,GameLevel)
@@ -471,7 +471,7 @@ scope DeathEvent initializer InitDeathEvent
                 endif
             endif
             if  (uid >= 'mb01' and uid <= 'mb0z')
-                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal
+                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal*GameLevel
                     if  DzHeroMedalGameExp < GameLevel*32
                         DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel
                         AddDzPlayerData(pid,16,1,GameLevel)
