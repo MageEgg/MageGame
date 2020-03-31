@@ -1,8 +1,9 @@
-library HeroStateFunc uses DamageCode
+library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
     function GetPlayerBuyShopNumber(int pid)->int
         int num = 0
 
+        return num
     endfunction
 
     function InitPlayerDzShopState(int pid)
