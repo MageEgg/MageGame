@@ -536,7 +536,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 y = AttackRoomPostion[pid][2]
                 
                 AttackSummonUnitGroup[pid] = CreateGroup()
-                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+128,270)//技能商店
+                
                 CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc01',x+128,y+512,270)//境界
                 
                 CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc06',x,y-512,270)//礼包
@@ -545,7 +545,7 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
 
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',x+128,y+512,270)//境界
 
-                Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+128,270)//技能商店
+                
 
                 Pu[24]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np04',x+512,y+128,270)//副本入口
                 ShowUnit(Pu[24],false)

@@ -849,7 +849,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         endfunction
 
         function InitHeroPoolFunc()
-            
+            //开英雄别忘了开对应的熟练度
             HeroPoolAddType('H001')
             HeroPoolAddType('H002')
             HeroPoolAddType('H003')
@@ -865,7 +865,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             HeroPoolAddType('H013')
             HeroPoolAddType('H014')
             HeroPoolAddType('H015')
-            //HeroPoolAddType('H016')
+            HeroPoolAddType('H016')
             //HeroPoolAddType('H017')
             HeroPoolAddType('H018')
             //HeroPoolAddType('H019')
@@ -942,18 +942,19 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(15,'IN17',6)
             RegisterItemPool(15,'IN18',2)
             RegisterItemPool(15,'IN20',2)
-            RegisterItemPool(15,'IN21',16)
-            RegisterItemPool(15,'IN22',2)
+            RegisterItemPool(15,'IN21',14)
+            RegisterItemPool(15,'IN22',4)
 
-            RegisterItemPool(15,'IN24',16)
-            RegisterItemPool(15,'IN33',6)
+            RegisterItemPool(15,'IN24',14)
+            RegisterItemPool(15,'IN33',4)
             RegisterItemPool(15,'IN34',2)
-            RegisterItemPool(15,'IN35',16)
-            RegisterItemPool(15,'IN36',6)
+            RegisterItemPool(15,'IN35',14)
+            RegisterItemPool(15,'IN36',4)
             RegisterItemPool(15,'IN37',2)
-            RegisterItemPool(15,'IN38',16)
-            RegisterItemPool(15,'IN39',6)
+            RegisterItemPool(15,'IN38',14)
+            RegisterItemPool(15,'IN39',4)
             RegisterItemPool(15,'IN40',2)
+            RegisterItemPool(15,'CS23',3)
             
         endfunction
 

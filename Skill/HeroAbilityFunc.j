@@ -472,7 +472,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             num = 3
         endif
         if  GetUnitIntState(wu,'FB42') > 0
-            num = num + 1
+            num = num + 2
         endif
         SetUnitIntState(wu,'S505',0)
         for i = 1,num
@@ -1125,8 +1125,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         {
             time = time - 1
             IndexGroup g = IndexGroup.create()
-            LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect2_az_cocoguanyu_t2_death.mdl")
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect2_az_cocoguanyu_t2_death.mdl",1.5)
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             

@@ -85,16 +85,21 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
         
-        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)//铜皮锻骨
-        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)//名将良才
-        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)//绝世高人
-        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)//降龙伏虎
+        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)//铜皮锻骨 N1
+        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)//名将良才 N2
+        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)//绝世高人 N3
+        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)//降龙伏虎 N4
+        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)//剑血浮生 N5
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
         RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
         RegisterShowSaveFrameData(1,'RY4N','RY4N',0,0,0,0)//测试先锋
+        
+
+        
+
 
 
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
@@ -129,7 +134,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 //        RegisterShowSaveFrameData(0,'RDAS','RDAS',0,0,0,0)//自己人也打？
 //        RegisterShowSaveFrameData(0,'RDAT','RDAT',0,0,0,0)//师弟，你不行
 //        RegisterShowSaveFrameData(0,'RDAU','RDAU',0,0,0,0)//师弟，你真不行
-//        RegisterShowSaveFrameData(0,'RDAV','RDAV',0,0,0,0)//姐妹情深
+        RegisterShowSaveFrameData(0,'RDAV','RDAV',0,0,0,0)//姐妹情深
 //        RegisterShowSaveFrameData(0,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
 //        RegisterShowSaveFrameData(0,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
         RegisterShowSaveFrameData(0,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
@@ -148,7 +153,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(3,'RH13','RH13',0,0,0,0)//美猴王
         RegisterShowSaveFrameData(3,'RH14','RH14',0,0,0,0)//龙吉公主
         RegisterShowSaveFrameData(3,'RH15','RH15',0,0,0,0)//龟灵圣母
-//        RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
+        RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
 //        RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
         RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
 //        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
@@ -171,10 +176,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
 //        RegisterShowSaveFrameData(6,'RM60','RM6A',0,0,0,0)//阳跷脉
 //        RegisterShowSaveFrameData(6,'RM70','RM7A',0,0,0,0)//阴维脉
 //        RegisterShowSaveFrameData(6,'RM80','RM8A',0,0,0,0)//阳维脉
-//        RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv.1
-//        RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv.2
-//        RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv.3
-//        RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv.4
+        RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv.1
+        RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv.2
+        RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv.3
+        RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv.4
 //        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv.5
 //        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv.6
 //        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv.7

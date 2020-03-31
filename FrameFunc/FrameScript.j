@@ -140,14 +140,20 @@
             
         elseif  id == 652 or id == 653
             int exp = GetDzPlayerData(pid,4,1)
-            int lv = exp / 8
-            exp = exp - lv * 8
+            int lv = exp / 6
+            exp = exp - lv * 6
             if  id == 652 //通行证
-                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
+                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
             elseif  id == 653 //商城通行证
-                SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/8|r)")
+                if  DzShop(Player(pid),"RWK") == false
+                    SetTipsData(10,"","|cffffcc00封神通行证|r|cffff0000(商城购买后激活)|r")
+                else
+                    SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                    SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                endif
             endif
-            SetTipsData(11,"","距离升级还差|cffff0000"+I2S(8-exp)+"|r经验")
+            
             SetTipsData(12,""," ")
             SetTipsData(13,"","|cffcc99ff输入CX完成每日任务可以获得通行证经验|r")
             SetTipsData(14,"","|cffcc99ff封神通行证与普通通行证等级同步|r")

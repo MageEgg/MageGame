@@ -15,6 +15,11 @@ scope SelectHero
     //存档读属性的都放这里  找完姜子牙加载
     function SelectHeroAddSaveState(int pid)
 
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+128,270)//技能商店
+        Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+128,270)//技能商店
+
         SetPlayerTechResearched(Player(pid),'R000',1)
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
         UnitAddAbility(Pu[1],'AG0B')
