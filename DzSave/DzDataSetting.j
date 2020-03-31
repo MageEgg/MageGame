@@ -33,6 +33,7 @@ library DzDataSetting uses DzBase
     // 组13 神器	30组
     // 组14 称号	30组
     // 组15 彩蛋    30组
+    // 组16 10组 
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -56,8 +57,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(13) = 2
         DzDataGroupLength(14) = 2
         DzDataGroupLength(15) = 2
-        /*DzDataGroupLength(16) = 0
-        DzDataGroupLength(17) = 0
+        DzDataGroupLength(16) = 6
+        /*DzDataGroupLength(17) = 0
         DzDataGroupLength(18) = 0
         DzDataGroupLength(19) = 0
         DzDataGroupLength(20) = 0
@@ -136,7 +137,9 @@ library DzDataSetting uses DzBase
             max = MaxHeroExpLevel
         elseif  Group >= 10 and Group <= 15 //不用管
 
-        elseif  Group > 15 //未使用
+        elseif  Group == 16 
+            max = 0
+        elseif  Group > 16 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)
