@@ -331,5 +331,60 @@ piece DzGameFunc
         end
     endfunction
 
+    //房间显示
+    function GetDzPlayerMaxNanDu(int pid)->int //最高难度
+        int lv = 0
+        for nandu = 1,MaxGameLevel
+            if  GetDzPlayerData(pid,3,1+nandu) > 0
+                if  lv < nandu
+                    lv = nandu
+                endif
+            endif
+        end
+        return lv
+    endfunction
+
+    function GetDzPlayerMaxNanDuString(int pid)->string
+        int lv = GetDzPlayerMaxNanDu(pid)
+        if  lv > 0
+            return "N"+I2S(lv)
+        else
+            return "未通关"
+        endif
+    endfunction
+
+    function GetDzHeroMedal(int pid)->int //战勋等级
+        int Medal = GetDzPlayerData(pid,16,1)
+        int lv = DzPlayerLv(Player(pid))
+        if  Medal >= 26880 and  lv >= 14
+            return 10
+        elseif  Medal >= 21760 and  lv >= 12
+            return 9
+        elseif  Medal >= 17152 and  lv >= 11
+            return 8
+        elseif  Medal >= 13056 and  lv >= 10
+            return 7
+        elseif  Medal >= 9472 and  lv >= 8
+            return 6
+        elseif  Medal >= 6400 and  lv >= 7
+            return 5
+        elseif  Medal >= 3840 and  lv >= 6
+            return 4
+        elseif  Medal >= 1792 and  lv >= 4
+            return 3
+        elseif  Medal >= 640 and  lv >= 3
+            return 2
+        elseif  Medal >= 128 and  lv >= 2
+            return 1
+        else
+            return 0
+        endif
+    endfunction
+
+    function GetDzHeroMedalString(int pid)->string
+        int lv = GetDzHeroMedal(pid)
+        return "战勋Lv" + I2S(lv)
+    endfunction
+
 endpiece
 

@@ -704,6 +704,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                 if  GameLevel >= 3
                     MissionAddNumFunc(pid,23,1) //任务
                 endif
+
+                SaveDzRoom(pid) //刷新房间显示
             endif
         end
         ExecuteFunc("GameWin")
