@@ -411,7 +411,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         int ordernum = LoadInteger(ht,GetHandleId(t),2)
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
-        if  FlushNum > 0 and GameWinBoolJu == false
+        if  FlushNum > 0 and GameWinBoolJu == false and LastBOSSOpera == false
             for k = 0,3
                 if  IsPlaying(k) == true
                     puid[k] = AttackUnitID(k)[ordernum]
