@@ -106,7 +106,7 @@ library DzDataSetting uses DzBase
             endif
         elseif  Group == 3
             if  flag == 1 //总通关次数
-                max = DzPlayerGames(Player(pid))
+                max = DzPlayerGames(Player(pid))+1
             elseif  flag >= 2 and flag <= MaxGameLevel+1 //通关难度
                 max = DzPlayerInitTGCos
             elseif  flag >= MaxGameLevel+2 //未开启的难度
