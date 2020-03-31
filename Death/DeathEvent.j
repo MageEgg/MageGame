@@ -461,19 +461,19 @@ scope DeathEvent initializer InitDeathEvent
             if  ModuloInteger(DzHeroMedalDeathCos,100) == 0
                 if  DzHeroMedalGameExp < GameLevel*32
                     DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel
-                    AddDzPlayerData(pid,16,1,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+1！|R")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+1！|R")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+1！|R")
+                    AddDzPlayerData(pid,16,1,GameLevel)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+"+I2S(GameLevel)+"！|R")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+"+I2S(GameLevel)+"！|R")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+"+I2S(GameLevel)+"！|R")
                 endif
             endif
             if  (uid >= 'mb01' and uid <= 'mb0z')
                 if  DzHeroMedalGameExp < GameLevel*32
                     DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel
-                    AddDzPlayerData(pid,16,1,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+1！|R")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+1！|R")
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+1！|R")
+                    AddDzPlayerData(pid,16,1,GameLevel)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+"+I2S(GameLevel)+"！|R")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+"+I2S(GameLevel)+"！|R")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+"+I2S(GameLevel)+"！|R")
                 endif
             endif
         endif

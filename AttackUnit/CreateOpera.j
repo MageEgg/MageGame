@@ -800,4 +800,67 @@ library CreateOpera uses DamageCode
         flush locals
     endfunction
 
+    ///LastBoss剧情
+    function CreateOperaLastBoss2(unit wu)
+        unit u = wu
+        TimerStart(0.4,false)
+        {
+            SetUnitOwner(u,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+            EXSetUnitMoveType(u,0x02)
+            AttackPlayingHero(u)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function CreateOperaLastBossStand(unit wu)
+        unit u = wu
+        real ang = 270
+        int time = 0
+        TimerStart(0.01,true)
+        {
+            if  time < 100
+                time = time + 1
+                ang = ang + 21.6
+                SetUnitFacing(u,ang)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function CreateOperaLastBoss()
+        unit u = null
+        unit u2 = null
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'mb09',-1664,-7328,270)
+        SetUnitOwner(u,Player(PLAYER_NEUTRAL_PASSIVE),true)
+        CreateOperaLastBossStand(u)
+        UnitAddAbility(u,'AZ01')
+        UnitAddAbility(u,'Avul')
+        SetUnitFlyHeight(u,0,1900)
+        LocAddEffect(3800,1020,"effect_blue-chuansong.mdx")
+        for num = 1,5
+            u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',-1664+600*Cos(72*num*0.01745),-7328+600*Sin(72*num*0.01745),270)
+            RemoveUnitTimer(u2,1)
+            BossFuncSpell.execute(u,u2,'AZ1J')
+        end
+        TimerStart(1.0,false)
+        {
+            unit uu = null
+            RemoveUnitTimer(CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ03',-1664,-7328,0),1)
+            SetUnitFacing(u,270)
+            SetUnitAnimation(u,"attack")
+            UnitRemoveAbility(u,'Avul')
+            CreateOperaLastBoss2(u)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    
+
 endlibrary
