@@ -515,7 +515,7 @@ library SystemCodes uses ServerTime,Define1
     end
     
     func IsCanFlyRcet(real x,real y)->bool
-        rect rc = Rect(x - 90, y - 90, x + 90, y + 90)
+        rect rc = Rect(x - 80, y - 80, x + 80, y + 80)
         IsCanFlyNum = 0
         EnumDestructablesInRect(rc,null,function IsCanFlyRcetFunc)
         RemoveRect(rc)

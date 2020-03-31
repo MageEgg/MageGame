@@ -278,23 +278,6 @@ library DzSave initializer InitDzData uses DzDataSetting
     endfunction
 
     //兼容函数结束
-    
-    function SaveDzRoom(int pid) //房间显示
-        string s1 = ""
-        string s2 = ""
-        string s3 = ""
-        if  IsPlaying(pid) == true
-            if  GetPlayerServerValueSuccess(Player(pid)) == true
-                DzAPI_Map_Stat_SetStat( Player(pid), "S1", s1)
-            endif
-            if  GetPlayerServerValueSuccess(Player(pid)) == true
-                DzAPI_Map_Stat_SetStat( Player(pid), "S2", s2)
-            endif
-            if  GetPlayerServerValueSuccess(Player(pid)) == true
-                DzAPI_Map_Stat_SetStat( Player(pid), "S3", s3)
-            endif
-        endif
-    endfunction
 
     function DzFlushOfGroupZero(int pid,int Group)
         int MaxMember = GetDzDataGroupMaxMember(Group)
@@ -344,7 +327,7 @@ library DzSave initializer InitDzData uses DzDataSetting
         for Group = 0,DzServerNum
             DzFlushOfGroup(pid,Group)
         end
-        SaveDzRoom(pid)
+        SaveDzRoom.execute(pid)
     endfunction
 
     function SaveDzServerTime(int pid) //存储版本号
@@ -355,6 +338,25 @@ library DzSave initializer InitDzData uses DzDataSetting
     endfunction
     
     insert DzGameFunc
+
+    function SaveDzRoom(int pid) //房间显示
+        string s1 = ""
+        string s2 = ""
+        string s3 = ""
+        if  IsPlaying(pid) == true
+            s1 = GetDzPlayerMaxNanDuString(pid)
+            s2 = GetDzHeroMedalString(pid)
+            if  GetPlayerServerValueSuccess(Player(pid)) == true
+                DzAPI_Map_Stat_SetStat( Player(pid), "S1", s1)
+            endif
+            if  GetPlayerServerValueSuccess(Player(pid)) == true
+                DzAPI_Map_Stat_SetStat( Player(pid), "S2", s2)
+            endif
+            if  GetPlayerServerValueSuccess(Player(pid)) == true
+                DzAPI_Map_Stat_SetStat( Player(pid), "S3", s3)
+            endif
+        endif
+    endfunction
 
     function IsDzDataNewPlayer(int pid)->bool
         if  (DzS[0] == "" or DzS[0] == null) and StringLength(DzS[1]) != 60
@@ -432,6 +434,7 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 7
                 for pid = 0,5
                     if  IsPlaying(pid) == true
+                        SaveDzRoom(pid) //刷新房间显示
                         //加载科技
                         LoadPlayerAllUnlocTech.execute(pid)
                     endif
