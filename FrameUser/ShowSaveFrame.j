@@ -163,14 +163,24 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame
         RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0)//蛮力纣王
         RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0)//神农
         RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0)//后羿
-//        RegisterShowSaveFrameData(6,'RM10','RM1A',0,0,0,0)//任脉
-//        RegisterShowSaveFrameData(6,'RM20','RM2A',0,0,0,0)//督脉
-//        RegisterShowSaveFrameData(6,'RM30','RM3A',0,0,0,0)//冲脉
-//        RegisterShowSaveFrameData(6,'RM40','RM4A',0,0,0,0)//带脉
-//        RegisterShowSaveFrameData(6,'RM50','RM5A',0,0,0,0)//阴跷脉
-//        RegisterShowSaveFrameData(6,'RM60','RM6A',0,0,0,0)//阳跷脉
-//        RegisterShowSaveFrameData(6,'RM70','RM7A',0,0,0,0)//阴维脉
-//        RegisterShowSaveFrameData(6,'RM80','RM8A',0,0,0,0)//阳维脉
+//        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)//任脉
+//        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)//督脉
+//        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)//冲脉
+//        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)//带脉
+//        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)//阴跷脉
+//        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)//阳跷脉
+//        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)//阴维脉
+//        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)//阳维脉
+//        RegisterShowSaveFrameData(6,'RY9A','RY9A',0,0,0,0)//封神谕令Lv.1
+//        RegisterShowSaveFrameData(6,'RY9B','RY9B',0,0,0,0)//封神谕令Lv.2
+//        RegisterShowSaveFrameData(6,'RY9C','RY9C',0,0,0,0)//封神谕令Lv.3
+//        RegisterShowSaveFrameData(6,'RY9D','RY9D',0,0,0,0)//封神谕令Lv.4
+//        RegisterShowSaveFrameData(6,'RY9E','RY9E',0,0,0,0)//封神谕令Lv.5
+//        RegisterShowSaveFrameData(6,'RY9F','RY9F',0,0,0,0)//封神谕令Lv.6
+//        RegisterShowSaveFrameData(6,'RY9G','RY9G',0,0,0,0)//封神谕令Lv.7
+//        RegisterShowSaveFrameData(6,'RY9H','RY9H',0,0,0,0)//封神谕令Lv.8
+//        RegisterShowSaveFrameData(6,'RY9I','RY9I',0,0,0,0)//封神谕令Lv.9
+//        RegisterShowSaveFrameData(6,'RY9J','RY9J',0,0,0,0)//封神谕令Lv.10
     endfunction
 
 

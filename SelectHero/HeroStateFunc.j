@@ -3,6 +3,7 @@ library HeroStateFunc uses DamageCode
 
     function InitPlayerDzShopState(int pid)
         int lv = DzPlayerLv(Player(pid))
+        int shopnum = 0
         /////////////////////额外给予////////////////////////
 
         if  DzAPI_Map_IsBlueVIP(Player(pid)) == true
@@ -72,62 +73,96 @@ library HeroStateFunc uses DamageCode
 
 
         if  GetPlayerTechCount(Player(pid),'RY1D',true) == 1 //星月光环
+            shopnum = shopnum + 1
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
             AddUnitRealState(Pu[1],47,10)
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：商城道具《|cff00ff00星月光环|r》已激活！")
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
+            shopnum = shopnum + 1
             UnitAddItemEx(Pu[1],'CS01')
-            AddUnitRealState(Pu[1],49,300)
-            AddUnitRealState(Pu[1],18,12)
-            AddUnitRealState(Pu[1],9,30)
+            
             
             if  lv >= 18 and DzShop(Player(pid),"CB1") == true
-                AddUnitRealState(Pu[1],49,150)
-                AddUnitRealState(Pu[1],18,6)
-                AddUnitRealState(Pu[1],9,15)
+                //别忘了改我!!!
+                AddUnitRealState(Pu[1],49,450)
+                AddUnitRealState(Pu[1],18,18)
+                AddUnitRealState(Pu[1],9,45)
+            else
+                AddUnitRealState(Pu[1],49,300)
+                AddUnitRealState(Pu[1],18,12)
+                AddUnitRealState(Pu[1],9,30)
             endif
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：商城道具《|cff00ff00幻莲羽翼|r》已激活！")
         endif 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
+            shopnum = shopnum + 1
             UnitAddItemEx(Pu[1],'CS02')
             AddUnitRealState(Pu[1],20,50)
             AddUnitRealState(Pu[1],19,10)
             AddUnitRealState(Pu[1],17,30)
 
+            /*
             if  lv >= 32 and DzShop(Player(pid),"WQ1") == true
                 AddUnitRealState(Pu[1],20,25)
                 AddUnitRealState(Pu[1],19,5)
                 AddUnitRealState(Pu[1],17,15)
             endif
+            */
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：商城道具《|cff00ff00戮仙剑|r》已激活！")
         endif
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
+            shopnum = shopnum + 1
+
             UnitAddItemEx(Pu[2],'I015')
             AddUnitRealState(Pu[1],64,10)
             AddUnitRealState(Pu[1],17,20)
             AddUnitRealState(Pu[1],52,20000)
-
+            /*
             if  lv >= 24 and DzShop(Player(pid),"CH1") == true
                 AddUnitRealState(Pu[1],64,5)
                 AddUnitRealState(Pu[1],17,10)
                 AddUnitRealState(Pu[1],52,10000)
             endif
+            */
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00金鼠送福|r》已激活！")
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
+            shopnum = shopnum + 1
+
             UnitAddItemEx(Pu[1],'IP01')
             AddUnitRealState(Pu[1],33,20)
             AddUnitRealState(Pu[1],48,20)
             CreatePet.execute(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00小狐妖|r》已激活！")
         endif
         if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 1 //封神礼包
+            shopnum = shopnum + 1
+
             AddUnitRealState(Pu[1],48,10)
             AddUnitRealState(Pu[1],64,10)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00小狐妖|r》已激活！")
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1V',true) == 1 //金币礼包
+            shopnum = shopnum + 1
+
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,2000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00金币礼包|r》已激活！")
         endif 
         if  GetPlayerTechCount(Player(pid),'RJ1W',true) == 1 //木材礼包
+            shopnum = shopnum + 1
+
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00木材礼包|r》已激活！")
         endif 
+
+
+        if  shopnum > 0
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：|cff00ff00商城道具已激活！存档F5-商城分页中查看!|r")
+        endif
 
     endfunction
 
