@@ -1487,7 +1487,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r太荒唐了！"+GetPlayerName(GetOwningPlayer(wu))+"竟然自己杀自己！")
         elseif  Pu[1] == tu
             AddUnitIntState(wu,'RDAA',1)
-            /*if  GetUnitIntState(wu,'RDAA') == 20
+            if  GetUnitIntState(wu,'RDAA') == 20
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAA',true) == 0
@@ -1501,7 +1501,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000果然暴君|r，但可惜地图等级不够要求！")
                 endif
-            endif*/
+            endif
 
             AddUnitStateExTimer(wu,1,GetUnitRealState(tu,1)*0.12,8)
 
