@@ -204,11 +204,11 @@ piece DzGameFunc
     //初始化熟练度
     function InitDzHeroExpData(int pid)
         int game = DzPlayerGames(Player(pid))+1//局数
-        int maxexp = 2*MaxGameLevel*game //最大经验
+        int maxexp = (1+MaxGameLevel)*game //最大经验
         int allexp = 0
         int levelexp = 0
         int nowexp = 0
-        BJDebugMsg("玩家Pid"+I2S(pid)+"当前局数最大经验为"+I2S(maxexp))
+        BJDebugMsg("玩家Pid"+I2S(pid)+" 当前局数为："+I2S(game)+" 最大经验为"+I2S(maxexp))
         for k = 0,5
             for num = 0,9
                 levelexp = GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H000' + num + k * 256))
