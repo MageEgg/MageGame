@@ -72,12 +72,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         
 
 
-        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
-        RegisterShowSaveFrameData(2,'RY2E','RY2E',0,0,0,0)//冰火双翼
-        RegisterShowSaveFrameData(2,'RY2F','RY2F',0,0,0,0)//羽族之音
-        RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
-        RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
-        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+        
         
 
         RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
@@ -92,6 +87,16 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+
+
+        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
+        RegisterShowSaveFrameData(2,'RY2E','RY2E',0,0,0,0)//冰火双翼
+        RegisterShowSaveFrameData(2,'RY2F','RY2F',0,0,0,0)//羽族之音
+        RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
+        RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
+        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+
+        
         
         RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)//铜皮锻骨 N1
         RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)//名将良才 N2
