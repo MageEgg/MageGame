@@ -459,25 +459,21 @@ scope DeathEvent initializer InitDeathEvent
         if  (uid >= 'm001' and uid <= 'm050') or (uid >= 'ma01' and uid <= 'ma0z') or (uid >= 'mb01' and uid <= 'mb0z')
             DzHeroMedalDeathCos = DzHeroMedalDeathCos + 1
             if  ModuloInteger(DzHeroMedalDeathCos,100) == 0
-                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal*GameLevel
+                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal*MaxGameLevel
                     if  DzHeroMedalGameExp < GameLevel*32
                         DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel
                         AddDzPlayerData(pid,16,1,GameLevel)
                         AddDzPlayerData(pid,16,2,GameLevel)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+"+I2S(GameLevel)+"！|R")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+"+I2S(GameLevel)+"！|R")
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000累积击杀100只进攻怪，战勋点+"+I2S(GameLevel)+"！|R")
                     endif
                 endif
             endif
             if  (uid >= 'mb01' and uid <= 'mb0z')
-                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal*GameLevel
+                if  GetDzPlayerData(pid,16,2) < MaxHeroBaseMedal*MaxGameLevel
                     if  DzHeroMedalGameExp < GameLevel*32
                         DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel
                         AddDzPlayerData(pid,16,1,GameLevel)
                         AddDzPlayerData(pid,16,2,GameLevel)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+"+I2S(GameLevel)+"！|R")
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+"+I2S(GameLevel)+"！|R")
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[战勋]：|r：|cffff8000成功击杀进攻BOSS，战勋点+"+I2S(GameLevel)+"！|R")
                     endif
                 endif
