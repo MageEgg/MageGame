@@ -70,59 +70,61 @@ library AttackUnit uses DamageCode,PassCheckMission
     
     function ReflushAttackTimerUI()
         int cos = 0
-        if  AttackTimer != null
-            if  InfiniteAttackBool == false
-                if  AttackUnitWN == 0
-                    if  StopAttackBool == true
-                        if  TimerGetRemaining(AttackElseTimer) > 0
-                            AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
-                            AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
-                        else
-                            AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                            AttackTimerTextExUI.SetText("")
-                        endif
-                    else 
-                        if  TimerGetRemaining(AttackTimer) > 0
-                            if  TimerGetRemaining(AttackTimer) < 11
-                                AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+        if  GameLevel > 0
+            if  AttackTimer != null
+                if  InfiniteAttackBool == false
+                    if  AttackUnitWN == 0
+                        if  StopAttackBool == true
+                            if  TimerGetRemaining(AttackElseTimer) > 0
+                                AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
+                                AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
                             else
-                                AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                AttackTimerTextExUI.SetText("")
                             endif
-                        else
-                            AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                            AttackTimerTextExUI.SetText("")
-                        endif
-                    endif
-                else
-                    if  StopAttackBool == true
-                        if  TimerGetRemaining(AttackElseTimer) > 0
-                            AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
-                            AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
-                        else
-                            AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                            AttackTimerTextExUI.SetText("")
+                        else 
+                            if  TimerGetRemaining(AttackTimer) > 0
+                                if  TimerGetRemaining(AttackTimer) < 11
+                                    AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                else
+                                    AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                endif
+                            else
+                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                AttackTimerTextExUI.SetText("")
+                            endif
                         endif
                     else
-                        if  TimerGetRemaining(AttackTimer) > 0
-                            if  TimerGetRemaining(AttackTimer) < 11
-                                AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                        if  StopAttackBool == true
+                            if  TimerGetRemaining(AttackElseTimer) > 0
+                                AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
+                                AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
                             else
-                                AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                AttackTimerTextExUI.SetText("")
                             endif
                         else
-                            AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                            AttackTimerTextExUI.SetText("")
+                            if  TimerGetRemaining(AttackTimer) > 0
+                                if  TimerGetRemaining(AttackTimer) < 11
+                                    AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                else
+                                    AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                endif
+                            else
+                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                AttackTimerTextExUI.SetText("")
+                            endif
                         endif
                     endif
                 endif
+            else
+                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                AttackTimerTextExUI.SetText("")
             endif
-        else
-            AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-            AttackTimerTextExUI.SetText("")
         endif
     endfunction
     
