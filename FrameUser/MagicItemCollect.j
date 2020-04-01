@@ -937,18 +937,24 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
             if  num > 0
-                SetPlayerMagicItemResources(pid,1,num-1)
                 color = GetTypeIdData(id,101)
-                newid = GetPrize(pid,10+color,true)
-                RecoveryPrizePoolData(pid,10+color,id)//回收法宝
+                if  GetPrizePoolMax(pid,10+color) > 0
+                    
+                    SetPlayerMagicItemResources(pid,1,num-1)
+                    
+                    newid = GetPrize(pid,10+color,true)
+                    RecoveryPrizePoolData(pid,10+color,id)//回收法宝
 
+                    //重铸
+                    RemPlayerMagicItemByIndex(pid,last)
+                    SetPlayerMagicItem(pid,last,newid)
 
-                //重铸
-                RemPlayerMagicItemByIndex(pid,last)
-                SetPlayerMagicItem(pid,last,newid)
-
-                //重置玩家选择
-                SetPlayerMagicItemLast(pid,0)
+                    //重置玩家选择
+                    SetPlayerMagicItemLast(pid,0)
+                else
+                    SetPlayerMagicItemLast(pid,0)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无法重铸该法宝！")
+                endif
             else
                 SetPlayerMagicItemLast(pid,0)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")
@@ -970,33 +976,38 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             color = GetTypeIdData(id,101)-1
             if  color > 0
                 if  num > 0
-                    SetPlayerMagicItemResources(pid,2,num-1)
-                    
-                    newid = GetPrize(pid,10+color,true)
-                    RecoveryPrizePoolData(pid,10+GetTypeIdData(id,101),id)//回收法宝
+                    if  GetPrizePoolMax(pid,10+color) > 0
+                        SetPlayerMagicItemResources(pid,2,num-1)
+                        
+                        newid = GetPrize(pid,10+color,true)
+                        RecoveryPrizePoolData(pid,10+GetTypeIdData(id,101),id)//回收法宝
 
 
-                    //重铸
-                    RemPlayerMagicItemByIndex(pid,last)
-                    SetPlayerMagicItem(pid,last,newid)
+                        //重铸
+                        RemPlayerMagicItemByIndex(pid,last)
+                        SetPlayerMagicItem(pid,last,newid)
 
-                    color = GetTypeIdData(newid,101)
-                    if  color == 1
-                        TimerMissionAddNumFunc(pid,24,1)//获得混沌圣器
-                    elseif  color == 2
-                        TimerMissionAddNumFunc(pid,10,1)//获得造化至宝
-                        TimerMissionAddNumFunc(pid,27,1)//获得造化至宝
-                    elseif  color == 3
-                        TimerMissionAddNumFunc(pid,9,1)//获得先天神器
-                        TimerMissionAddNumFunc(pid,34,1)//获得先天神器
-                    elseif  color == 4
-                        TimerMissionAddNumFunc(pid,12,1)//获得后天仙器
-                    elseif  color == 5
-                        TimerMissionAddNumFunc(pid,13,1)//获得通天灵宝
+                        color = GetTypeIdData(newid,101)
+                        if  color == 1
+                            TimerMissionAddNumFunc(pid,24,1)//获得混沌圣器
+                        elseif  color == 2
+                            TimerMissionAddNumFunc(pid,10,1)//获得造化至宝
+                            TimerMissionAddNumFunc(pid,27,1)//获得造化至宝
+                        elseif  color == 3
+                            TimerMissionAddNumFunc(pid,9,1)//获得先天神器
+                            TimerMissionAddNumFunc(pid,34,1)//获得先天神器
+                        elseif  color == 4
+                            TimerMissionAddNumFunc(pid,12,1)//获得后天仙器
+                        elseif  color == 5
+                            TimerMissionAddNumFunc(pid,13,1)//获得通天灵宝
+                        endif
+
+                        //重置玩家选择
+                        SetPlayerMagicItemLast(pid,0)
+                    else
+                        SetPlayerMagicItemLast(pid,0)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无法锻造该法宝！")
                     endif
-
-                    //重置玩家选择
-                    SetPlayerMagicItemLast(pid,0)
                 else
                     SetPlayerMagicItemLast(pid,0)
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r鸿蒙结晶不足！无法锻造法宝")

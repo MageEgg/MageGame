@@ -112,7 +112,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//酒精肝
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//肝硬化
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//肝中之王
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//肝脑涂地
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         

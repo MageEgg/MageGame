@@ -426,7 +426,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RJ1D',InitCond1(2,Unloc_Type_Level,8),0,0,0,0)
         InitUnlocTechConditions('RJ1E',InitCond1(2,Unloc_Type_Level,10),0,0,0,0)
         InitUnlocTechConditions('RJ1F',InitCond1(2,Unloc_Type_Level,12),0,0,0,0)
-        //InitUnlocTechConditions('RJ1G',InitCond1(2,Unloc_Type_Level,15),0,0,0,0)
+        InitUnlocTechConditions('RJ1G',InitCond1(2,Unloc_Type_Level,15),0,0,0,0)
 
 
         //积分兑换
