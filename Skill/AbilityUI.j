@@ -3,6 +3,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
     #define AbilityUIMax 7
     real array PlayerSkillPostion[4000][2]
     
+    function RefreshUnitSkillQD(unit u) //刷新Q D主动CD
+        YDWESetUnitAbilityState(u, 'AG01', 1,0)
+        YDWESetUnitAbilityState(u, 'AG05', 1,0)
+    endfunction
+
     function RefreshUnitSkill(unit u) //刷新所有技能CD
         int gid=0
         int cid=0
@@ -21,9 +26,6 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             endif
         end
         */
-       
-
-        u = null
     endfunction
 
     function GetHeroAbilityIndex(unit wu,int id)->int

@@ -359,9 +359,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real damage = GetAbilityDamage(wu,id,GetHeroAbilityLevel(wu,id))
         group gg = CreateGroup()
         int k = 0
-        for i = 1,4
+        int k2 = 0
+        for i = 1,5
             k = 'AG00' + i
+            k2 ='AC00' + i
             YDWESetUnitAbilityState(wu,k, 1,YDWEGetUnitAbilityState(wu, k, 1)-0.5)
+            YDWESetUnitAbilityState(wu,k2, 1,YDWEGetUnitAbilityState(wu, k2, 1)-0.5)
         end
         AddEffectInArea(GetUnitX(tu),GetUnitY(tu),380,15,"effect2_az_coco_e2.mdl")
         GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
@@ -550,7 +553,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=GetUnitX(tu)
         real y=GetUnitY(tu)
         real damage=damage1
-        integer id =0
+        
         string mdoelorigin = YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u),"file")
         unit mj=CreateTmUnit(GetOwningPlayer(u),mdoelorigin,GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1)
         DestroyEffect(AddSpecialEffect("effect_az_earthshaker_a.mdl",GetUnitX(u),GetUnitY(u)))
@@ -572,9 +575,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             flush locals
         }
         
-        for i = 1,4
+        int id = 0
+        int id2 = 0
+        for i = 1,5
             id = 'AG00' + i
+            id2 = 'AC00'+ i
             YDWESetUnitAbilityState(u,id, 1,YDWEGetUnitAbilityState(u, id, 1)-0.5)
+            YDWESetUnitAbilityState(u,id2, 1,YDWEGetUnitAbilityState(u, id2, 1)-0.5)
         end
         flush locals
     endfunction
