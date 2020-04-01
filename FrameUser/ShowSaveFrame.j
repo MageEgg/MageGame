@@ -496,7 +496,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
 
                 if  page == 5
-                    if  id == 'RY2D'
+                    if  id == 'RY2D' or id == 'RY3D' or id == 'RY4D'
                         h=h+2
                         SetTipsData(h,"","解锁条件均达成属性+50%")
                     endif

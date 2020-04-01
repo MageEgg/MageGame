@@ -89,6 +89,12 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  lv >= 18 //幻莲仙翼
             AddPlayerTechResearched(Player(pid),'RY2D',1)
         endif
+        if  lv >= 22 //鼠年大吉
+            AddPlayerTechResearched(Player(pid),'RY4D',1)
+        endif
+        if  lv >= 26 //戮仙剑
+            AddPlayerTechResearched(Player(pid),'RY3D',1)
+        endif
 
         /*
         if  lv >= 24 //金鼠送福
@@ -131,33 +137,37 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
             shopnum = shopnum + 1
             UnitAddItemEx(Pu[1],'CS02')
-            AddUnitRealState(Pu[1],20,50)
-            AddUnitRealState(Pu[1],19,10)
-            AddUnitRealState(Pu[1],17,30)
+            
 
-            /*
-            if  lv >= 32 and DzShop(Player(pid),"WQ1") == true
-                AddUnitRealState(Pu[1],20,25)
-                AddUnitRealState(Pu[1],19,5)
-                AddUnitRealState(Pu[1],17,15)
+            
+            if  lv >= 26 and DzShop(Player(pid),"WQ1") == true
+                AddUnitRealState(Pu[1],20,75)
+                AddUnitRealState(Pu[1],19,15)
+                AddUnitRealState(Pu[1],17,45)
+            else
+                AddUnitRealState(Pu[1],20,50)
+                AddUnitRealState(Pu[1],19,10)
+                AddUnitRealState(Pu[1],17,30)
             endif
-            */
+            
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：商城道具《|cff00ff00戮仙剑|r》已激活！")
         endif
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
             shopnum = shopnum + 1
 
             UnitAddItemEx(Pu[2],'I015')
-            AddUnitRealState(Pu[1],64,10)
-            AddUnitRealState(Pu[1],17,20)
-            AddUnitRealState(Pu[1],52,20000)
-            /*
-            if  lv >= 24 and DzShop(Player(pid),"CH1") == true
-                AddUnitRealState(Pu[1],64,5)
-                AddUnitRealState(Pu[1],17,10)
-                AddUnitRealState(Pu[1],52,10000)
+            
+            
+            if  lv >= 22 and DzShop(Player(pid),"CH1") == true
+                AddUnitRealState(Pu[1],64,15)
+                AddUnitRealState(Pu[1],17,30)
+                AddUnitRealState(Pu[1],52,30000)
+            else
+                AddUnitRealState(Pu[1],64,10)
+                AddUnitRealState(Pu[1],17,20)
+                AddUnitRealState(Pu[1],52,20000)
             endif
-            */
+            
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00金鼠送福|r》已激活！")
         endif 
         if  GetPlayerTechCount(Player(pid),'RK1A',true) == 1 //小狐妖
