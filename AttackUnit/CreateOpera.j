@@ -42,22 +42,26 @@ library CreateOpera uses DamageCode
     function GetAttackPlayingHeroId()->int
         if  GetRandomInt(0,1) == 0
             for pid = 0,3
-                if  IsPlaying(pid) == true
+                if  IsPlaying(pid) == true and PlayerDeathBool == false
                     return pid
                 endif
             end
         else
             for pid = 0,3
-                if  IsPlaying(3-pid) == true
+                if  IsPlaying(3-pid) == true and PlayerDeathBool == false
                     return 3-pid
                 endif
             end
         endif
-        return 0
+        return -1
     endfunction
     function AttackPlayingHero(unit u)
         int pid = GetAttackPlayingHeroId()
-        IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+        if  pid >= 0
+            IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+        else
+            IssuePointOrderById(u,851983,GetUnitX(u)+GetRandomReal(-600,600),GetUnitY(u)+GetRandomReal(-600,600))
+        endif
     endfunction
 
     function AttackOperaADamageGold()

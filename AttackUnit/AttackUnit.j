@@ -253,8 +253,14 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
     
     function AttackUnitGroupFunc()
-        if  GetUnitCurrentOrder(GetEnumUnit()) == 0
-            IssuePointOrderById(GetEnumUnit(),851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
+        int pid = 0
+        if  GetUnitCurrentOrder(GetEnumUnit()) == 0 
+            pid = GetAttackPlayingHeroId.evaluate()
+            if  pid >= 0
+                IssuePointOrderById(GetEnumUnit(),851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+            else
+                IssuePointOrderById(GetEnumUnit(),851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
+            endif
         endif
     endfunction
     
