@@ -73,18 +73,22 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
 
         RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
+        RegisterShowSaveFrameData(2,'RY2E','RY2E',0,0,0,0)//冰火双翼
+        RegisterShowSaveFrameData(2,'RY2F','RY2F',0,0,0,0)//羽族之音
         RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
         
 
         RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
+        //RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//麒麟光环
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
 
         
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
+        //RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
@@ -158,7 +162,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH14','RH14',0,0,0,0)//龙吉公主
         RegisterShowSaveFrameData(3,'RH15','RH15',0,0,0,0)//龟灵圣母
         RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
-//        RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
+        RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
         RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
 //        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
 //        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
@@ -700,7 +704,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         CreateText(582,Button.frameid,"centertext009",4,4,0.0,0.0,"称号")
         CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"外观")
         CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
-        CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"其他")
+        CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"封神谕令")
         CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
         CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
         CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
