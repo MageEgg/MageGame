@@ -43,10 +43,10 @@ library DzDataSetting uses DzBase
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
-        DzPlayerInitTGCos[1] = 2
-        DzPlayerInitTGCos[2] = 2
-        DzPlayerInitTGCos[3] = 3
-        DzPlayerInitTGCos[4] = 4
+        DzPlayerInitTGCos[1] = 5
+        DzPlayerInitTGCos[2] = 5
+        DzPlayerInitTGCos[3] = 5
+        DzPlayerInitTGCos[4] = 5
         DzPlayerInitTGCos[5] = 2//5
         DzPlayerInitTGCos[6] = 2//6
         /*DzPlayerInitTGCos[7] = 7
