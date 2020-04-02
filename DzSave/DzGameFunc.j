@@ -20,6 +20,11 @@ piece DzGameFunc
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难3：|r"+I2S(GetDzPlayerData(pid,3,4))+"/"+I2S(DzPlayerInitTGCos))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难4：|r"+I2S(GetDzPlayerData(pid,3,5))+"/"+I2S(DzPlayerInitTGCos))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难5：|r"+I2S(GetDzPlayerData(pid,3,6))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难6：|r"+I2S(GetDzPlayerData(pid,3,7))+"/"+I2S(DzPlayerInitTGCos))
+            /*DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难7：|r"+I2S(GetDzPlayerData(pid,3,8))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难8：|r"+I2S(GetDzPlayerData(pid,3,9))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难9：|r"+I2S(GetDzPlayerData(pid,3,10))+"/"+I2S(DzPlayerInitTGCos))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难10：|r"+I2S(GetDzPlayerData(pid,3,11))+"/"+I2S(DzPlayerInitTGCos))*/
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“JF”查看游戏积分|r")
         else
