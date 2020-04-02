@@ -1,7 +1,8 @@
 library ExNativeFrame uses GameFrame
     
     
-    FRAME HeroHDFrame = 0    
+    FRAME HeroHDFrame = 0
+    FRAME HeroHDButton = 0
     
     private FRAME Button = 0
 
@@ -185,7 +186,7 @@ library ExNativeFrame uses GameFrame
     function ReReHeroFrameUI(int pid)
         int id = 0
         if  GetLocalPlayer() == Player(pid)
-            for i = 1,16
+            for i = 1,8
                 id = ReHeroPool[pid][i]
                 if  id > 0
                     DzFrameSetTexture(BUTTON_Back[950+i][0],GetTypeIdIcon(id),0)
@@ -237,6 +238,11 @@ library ExNativeFrame uses GameFrame
 
     endfunction
 
+    function HeroHDFrameEsc()
+        if  GetLocalPlayer() == DzGetTriggerUIEventPlayer()
+            HeroHDFrame.show = false
+        endif
+    endfunction
 
 
     function InitExNativeFrame()
@@ -244,6 +250,9 @@ library ExNativeFrame uses GameFrame
         ReHeroBack = FRAME.create() //背景注册
         ReHeroButton = FRAME.create() //背景注册
         ReHeroNumber = FRAME.create() //背景注册
+        HeroHDFrame =  FRAME.create() //背景注册
+        HeroHDButton =  FRAME.create() //背景注册
+
 
         //控件设置
         ReHeroButton.frameid = FRAME.Tag("BUTTON","ReHero",GameUI,ReHeroButton)
@@ -279,6 +288,13 @@ library ExNativeFrame uses GameFrame
         HeroHDFrame.SetSize(0.4,0.4)
         HeroHDFrame.SetTexture("war3mapImported\\UI_HeroHD.tga",0)
         HeroHDFrame.show = false
+
+        HeroHDButton.frameid = FRAME.Tag("BACKDROP","HeroHDButton",HeroHDFrame.frameid,HeroHDButton)
+        HeroHDButton.SetPoint(4,HeroHDFrame.frameid,4,0.0,0.0)
+        HeroHDButton.SetSize(0.4,0.4)
+        DzFrameSetScript( HeroHDButton.frameid,1, "HeroHDFrameEsc" , true )
+
+
 
         
         for x = 0,2
