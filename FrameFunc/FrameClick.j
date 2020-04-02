@@ -72,8 +72,9 @@ scope FrameButton
                         PlayerClickRunePrize(pid,id-910)
                     elseif  id >= 921 and id <=923//符印奖励
                         PlayerClickRunePrize(pid,id-920)
-                    elseif  id == 951//重随
+                    elseif  id == 950//重随
                         ReHeroPrePare(pid)
+
                     endif
                 elseif  Type == TYPE_FUNC
                     if  id >= 301 and id <= 308//选择副本按钮
@@ -83,6 +84,15 @@ scope FrameButton
                     elseif  id >= 311 and id <= 318//选择副本按钮
                         //PlayerTestPlot(pid,id-310)
                         OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
+                    elseif  id >= 951 and id <= 966
+                        if  GameChallengPlayerBool[pid][0] == false
+                            ReHeroPrePareByPool(pid,id-950)
+                        else
+                            if  ReHeroButton.show == true    
+                                ReHeroButton.show = false
+                            endif
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r接取任务后无法更换英雄!")
+                        endif
                     endif
                 elseif  Type == TYPE_CLOSE
                     if  id == 410
@@ -252,5 +262,22 @@ endscope
 //! runtextmacro AddFrameFunc("923")
 
 //重随英雄
+//! runtextmacro AddFrameFunc("950")
 //! runtextmacro AddFrameFunc("951")
+//! runtextmacro AddFrameFunc("952")
+//! runtextmacro AddFrameFunc("953")
+//! runtextmacro AddFrameFunc("954")
+//! runtextmacro AddFrameFunc("955")
+//! runtextmacro AddFrameFunc("956")
+//! runtextmacro AddFrameFunc("957")
+//! runtextmacro AddFrameFunc("958")
+//! runtextmacro AddFrameFunc("959")
+//! runtextmacro AddFrameFunc("960")
+//! runtextmacro AddFrameFunc("961")
+//! runtextmacro AddFrameFunc("962")
+//! runtextmacro AddFrameFunc("963")
+//! runtextmacro AddFrameFunc("964")
+//! runtextmacro AddFrameFunc("965")
+//! runtextmacro AddFrameFunc("966")
+
 

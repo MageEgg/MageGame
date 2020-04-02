@@ -78,9 +78,7 @@ scope KeyEvent initializer InitKeyBroadListener
                             ClosePassFrame(pid)
                         endif
                         
-                        if  ReHeroButton.show == true    
-                            ReHeroButton.show = false
-                        endif
+                        
                         
                     endif
                 endif

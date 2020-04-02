@@ -149,46 +149,128 @@ library ExNativeFrame uses GameFrame
         endif
     endfunction
 
+    
+
+    //重随英雄模块
+    int array ReHeroPool
+    function GetReHeroPoolMax()->int
+        return ReHeroPool[0]
+    endfunction
+    function SetReHeroPoolMax(int max)
+        ReHeroPool[0] = max
+    endfunction
+    function AddReHeroPoolMax(int num)
+        ReHeroPool[0] = ReHeroPool[0] + num
+    endfunction
+
+    function GetHeroPoolIndex(int id)->int
+        int max = GetReHeroPoolMax()
+        if  max > 0
+            for i = 1,max
+                if  id == ReHeroPool[i]
+                    return i
+                endif
+            end
+        endif
+        return 0
+    endfunction
+    function IsPoolHasHero(int id)->bool
+        return GetHeroPoolIndex(id) != 0
+    endfunction
+
+
+    function ReReHeroFrameUI()
+        int id = 0
+        for i = 1,16
+            id = ReHeroPool[i]
+            if  id > 0
+                DzFrameSetTexture(BUTTON_Back[950+i][0],GetTypeIdIcon(id),0)
+                DzFrameSetText(BUTTON_Text[950+i],GetTypeIdName(id))
+            else
+                DzFrameSetTexture(BUTTON_Back[950+i][0],"war3mapImported\\alpha.tga",0)
+                DzFrameSetText(BUTTON_Text[950+i],"")
+            endif
+        end
+    endfunction
+
+    private function PoolAdd(int id)
+        int max = GetReHeroPoolMax()+1
+        SetReHeroPoolMax(max)    
+        ReHeroPool[max] = id
+        ReReHeroFrameUI()
+    endfunction
+    private function PoolRemByIndex(int index)
+        int max = GetReHeroPoolMax()
+        if  max == index
+            ReHeroPool[index] = 0
+        else
+            ReHeroPool[index] = ReHeroPool[max]
+            ReHeroPool[max] = 0
+        endif
+        SetReHeroPoolMax(max-1)
+        ReReHeroFrameUI()
+    endfunction
+    function PoolAddHeroId(int id)
+        if  IsPoolHasHero(id) == false
+            BJDebugMsg("增加"+GetTypeIdName(id))
+            PoolAdd(id)
+        endif
+    endfunction
+    function PoolRemHeroId(int id)
+        int index = GetHeroPoolIndex(id)
+        if  index != 0
+            PoolRemByIndex(index)
+        endif
+    endfunction
+
+    
+
     function ReHeroFrameUI(int pid)
         if  GetLocalPlayer() == Player(pid)
-            if  HeroReNumber > 0
-                ReHeroNumber.SetText( I2S(HeroReNumber))
-            else
-                ReHeroButton.show = false
-            endif
+            ReHeroNumber.SetText( I2S(HeroReNumber))
         endif
 
     endfunction
 
 
+
     function InitExNativeFrame()
+        int index = 0
         ReHeroBack = FRAME.create() //背景注册
         ReHeroButton = FRAME.create() //背景注册
         ReHeroNumber = FRAME.create() //背景注册
 
         //控件设置
         ReHeroButton.frameid = FRAME.Tag("BUTTON","ReHero",GameUI,ReHeroButton)
-        ReHeroButton.SetPoint(1,GameUI,4,0.0,0.0)
-        ReHeroButton.SetSize(0.134,0.095)
+        ReHeroButton.SetPoint(0,GameUI,0,0.1,-0.1)
+        ReHeroButton.SetSize(0.173,0.23)
 
         //背景设置
         ReHeroBack.frameid = FRAME.Tag("BACKDROP","ReHero",ReHeroButton.frameid,ReHeroBack)
         ReHeroBack.SetPoint(4,ReHeroButton.frameid,4,0,0)
-        ReHeroBack.SetSize(0.134,0.095)
+        ReHeroBack.SetSize(0.173,0.23)
         ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
 
-        ReHeroNumber.frameid = FRAME.Fdf("text015",ReHeroButton.frameid,ReHeroNumber)
-        ReHeroNumber.SetPoint(0,ReHeroButton.frameid,0,0.09,-0.013)
+        CreateButton(950,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.01,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
+
+        ReHeroNumber.frameid = FRAME.Fdf("text014",ReHeroButton.frameid,ReHeroNumber)
+        ReHeroNumber.SetPoint(5,BUTTON_Back[950][0],5,-0.01,0)
         ReHeroNumber.SetText("1")
 
-        CreateButton(951,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.032,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
+        for hx = 0,3
+            for hy = 0,3
+                index = hy * 4 + hx + 1
+                CreateButton(950+index,ReHeroButton.frameid,TYPE_FUNC,0,ReHeroButton.frameid,0,0.01+0.04*hx,-0.01-hy*0.044,0.033,0.033,"war3mapImported\\alpha.tga")
+                CreateText(950+index,ReHeroButton.frameid,"centertext008",1,7,0.0,-0.002,"")
+            end
+        end
         ReHeroButton.show = false
 
 
 
 
 
-        int index = 0
+        
         for x = 0,2
             for y = 0,2
                 index = y * 3 + x + 1

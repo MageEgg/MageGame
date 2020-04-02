@@ -140,7 +140,11 @@ scope SelectHero
             end
 
             //重随次数
-            HeroReNumber = 1
+            if  DzBool == true
+                HeroReNumber = 100
+            else
+                HeroReNumber = 1
+            endif
             if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
                 HeroReNumber = HeroReNumber + 1
             endif
@@ -213,12 +217,23 @@ scope SelectHero
     endfunction
 
     //重随
+    function ReHeroPrePareByPool(int pid,int index)
+        int id = ReHeroPool[index]
+        int uid = GetUnitTypeId(Pu[1])
+        if  id > 0
+            ReHeroPrePareFunc(pid,id)
+            PoolRemHeroId(id)
+            PoolAddHeroId(uid)
+        endif
+    endfunction
+
     function ReHeroPrePare(int pid)
         int id = GetUnitTypeId(Pu[1])
         if  id > 0
             if  PlayerDeathBool == false
                 if  GameChallengBool[0] == false
                     if  HeroReNumber > 0
+                        PoolAddHeroId(id)
                         ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))
                         HeroReNumber = HeroReNumber - 1
                         ReHeroFrameUI(pid)
