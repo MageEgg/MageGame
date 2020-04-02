@@ -148,6 +148,11 @@ scope SelectHero
             if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
                 HeroReNumber = HeroReNumber + 1
             endif
+            if  GetPlayerTechCount(Player(pid),'RG0B',true) > 0
+                HeroReNumber = HeroReNumber + 1
+            endif
+
+            
 
             ReHeroFrameUI(pid)
 

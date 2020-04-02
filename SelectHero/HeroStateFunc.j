@@ -249,6 +249,18 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             bj_lastCreatedItem = null
         endif
 
+        if  GetPlayerTechCount(Player(pid),'RG0C',true) > 0//通关难3
+            UnitAddItem(Pu[2],CreateItem('IN34',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            UnitAddItem(Pu[2],CreateItem('IN37',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+        endif
+
+        if  GetPlayerTechCount(Player(pid),'RG0D',true) > 0//通关难4
+            UnitAddItem(Pu[2],CreateItem('I013',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+        endif
+
+        
+
+
 
 
     endfunction

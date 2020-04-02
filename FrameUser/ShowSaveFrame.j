@@ -118,40 +118,47 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
-        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//脂肪肝
-        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//酒精肝
-        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//肝硬化
-        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//肝中之王
-        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//肝脑涂地
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//铁石心肝
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
+        RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
+        RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
+//        RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
+//        RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
 
         
 
-//        RegisterShowSaveFrameData(0,'RDAA','RDAA',0,0,0,0)//果然暴君
-        RegisterShowSaveFrameData(0,'RDAB','RDAB',0,0,0,0)//我真的知错了
-        RegisterShowSaveFrameData(0,'RDAC','RDAC',0,0,0,0)//老婆别打了
-        RegisterShowSaveFrameData(0,'RDAD','RDAD',0,0,0,0)//家暴
-//        RegisterShowSaveFrameData(0,'RDAE','RDAE',0,0,0,0)//我救我自己
-//        RegisterShowSaveFrameData(0,'RDAF','RDAF',0,0,0,0)//我也护犊子
-//        RegisterShowSaveFrameData(0,'RDAG','RDAG',0,0,0,0)//爸，我回来了
-        RegisterShowSaveFrameData(0,'RDAH','RDAH',0,0,0,0)//太欧了！
-        RegisterShowSaveFrameData(0,'RDAI','RDAI',0,0,0,0)//护犊子
-        RegisterShowSaveFrameData(0,'RDAJ','RDAJ',0,0,0,0)//真假....猴精..
-        RegisterShowSaveFrameData(0,'RDAK','RDAK',0,0,0,0)//穿越回来还打你！
-        RegisterShowSaveFrameData(0,'RDAL','RDAL',0,0,0,0)//抓了再救
-        RegisterShowSaveFrameData(0,'RDAM','RDAM',0,0,0,0)//我自己来
-        RegisterShowSaveFrameData(0,'RDAN','RDAN',0,0,0,0)//报仇雪恨
-        RegisterShowSaveFrameData(0,'RDAO','RDAO',0,0,0,0)//悬壶济世
-//        RegisterShowSaveFrameData(0,'RDAP','RDAP',0,0,0,0)//销售精英
-//        RegisterShowSaveFrameData(0,'RDAQ','RDAQ',0,0,0,0)//红颜祸水
-//        RegisterShowSaveFrameData(0,'RDAR','RDAR',0,0,0,0)//今晚的月亮好圆啊
-//        RegisterShowSaveFrameData(0,'RDAS','RDAS',0,0,0,0)//自己人也打？
-//        RegisterShowSaveFrameData(0,'RDAT','RDAT',0,0,0,0)//师弟，你不行
-//        RegisterShowSaveFrameData(0,'RDAU','RDAU',0,0,0,0)//师弟，你真不行
-        RegisterShowSaveFrameData(0,'RDAV','RDAV',0,0,0,0)//姐妹情深
-//        RegisterShowSaveFrameData(0,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
-//        RegisterShowSaveFrameData(0,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
-        RegisterShowSaveFrameData(0,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
+//        RegisterShowSaveFrameData(6,'RDAA','RDAA',0,0,0,0)//果然暴君
+        RegisterShowSaveFrameData(6,'RDAB','RDAB',0,0,0,0)//我真的知错了
+        RegisterShowSaveFrameData(6,'RDAC','RDAC',0,0,0,0)//老婆别打了
+        RegisterShowSaveFrameData(6,'RDAD','RDAD',0,0,0,0)//家暴
+//        RegisterShowSaveFrameData(6,'RDAE','RDAE',0,0,0,0)//我救我自己
+//        RegisterShowSaveFrameData(6,'RDAF','RDAF',0,0,0,0)//我也护犊子
+//        RegisterShowSaveFrameData(6,'RDAG','RDAG',0,0,0,0)//爸，我回来了
+        RegisterShowSaveFrameData(6,'RDAH','RDAH',0,0,0,0)//太欧了！
+        RegisterShowSaveFrameData(6,'RDAI','RDAI',0,0,0,0)//护犊子
+        RegisterShowSaveFrameData(6,'RDAJ','RDAJ',0,0,0,0)//真假....猴精..
+        RegisterShowSaveFrameData(6,'RDAK','RDAK',0,0,0,0)//穿越回来还打你！
+        RegisterShowSaveFrameData(6,'RDAL','RDAL',0,0,0,0)//抓了再救
+        RegisterShowSaveFrameData(6,'RDAM','RDAM',0,0,0,0)//我自己来
+        RegisterShowSaveFrameData(6,'RDAN','RDAN',0,0,0,0)//报仇雪恨
+        RegisterShowSaveFrameData(6,'RDAO','RDAO',0,0,0,0)//悬壶济世
+//        RegisterShowSaveFrameData(6,'RDAP','RDAP',0,0,0,0)//销售精英
+//        RegisterShowSaveFrameData(6,'RDAQ','RDAQ',0,0,0,0)//红颜祸水
+//        RegisterShowSaveFrameData(6,'RDAR','RDAR',0,0,0,0)//今晚的月亮好圆啊
+//        RegisterShowSaveFrameData(6,'RDAS','RDAS',0,0,0,0)//自己人也打？
+//        RegisterShowSaveFrameData(6,'RDAT','RDAT',0,0,0,0)//师弟，你不行
+//        RegisterShowSaveFrameData(6,'RDAU','RDAU',0,0,0,0)//师弟，你真不行
+       RegisterShowSaveFrameData(6,'RDAV','RDAV',0,0,0,0)//姐妹情深
+//        RegisterShowSaveFrameData(6,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
+//        RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
+        RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
+
+        
         RegisterShowSaveFrameData(3,'RH01','RH01',0,0,0,0)//神兵杨戬
         RegisterShowSaveFrameData(3,'RH02','RH02',0,0,0,0)//土行孙
         RegisterShowSaveFrameData(3,'RH03','RH03',0,0,0,0)//元始天尊
@@ -170,7 +177,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
         RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
         RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
-        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
+//        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
 //        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
         RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0)//嫦娥
         RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0)//疾风雷震子
@@ -182,24 +189,24 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0)//蛮力纣王
         RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0)//神农
         RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0)//后羿
-//        RegisterShowSaveFrameData(6,'RM10','RM1A',0,0,0,0)//任脉
-//        RegisterShowSaveFrameData(6,'RM20','RM2A',0,0,0,0)//督脉
-//        RegisterShowSaveFrameData(6,'RM30','RM3A',0,0,0,0)//冲脉
-//        RegisterShowSaveFrameData(6,'RM40','RM4A',0,0,0,0)//带脉
-//        RegisterShowSaveFrameData(6,'RM50','RM5A',0,0,0,0)//阴跷脉
-//        RegisterShowSaveFrameData(6,'RM60','RM6A',0,0,0,0)//阳跷脉
-//        RegisterShowSaveFrameData(6,'RM70','RM7A',0,0,0,0)//阴维脉
-//        RegisterShowSaveFrameData(6,'RM80','RM8A',0,0,0,0)//阳维脉
-        RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv.1
-        RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv.2
-        RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv.3
-        RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv.4
-//        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv.5
-//        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv.6
-//        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv.7
-//        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv.8
-//        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv.9
-//        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv.10
+//        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)//任脉
+//        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)//督脉
+//        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)//冲脉
+//        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)//带脉
+//        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)//阴跷脉
+//        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)//阳跷脉
+//        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)//阴维脉
+//        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)//阳维脉
+        RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv1
+        RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv2
+        RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv3
+        RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv4
+//        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv5
+//        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
+//        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
+//        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
+//        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
+//        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
     endfunction
 
 
@@ -343,7 +350,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
             
-            if  page == 6
+            if  page == 7
                 lv = GetDzPlayerData(pid,6,index+1)
                 SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
                 //当前经脉最高5级
@@ -436,7 +443,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     SetTipsData(12,"","|cff808080"+GetTypeIdTips(id))
                 endif
             else
-                if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
+                if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0 and ( page == 1 or page == 2 or page == 5 )
                     SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
                 else
                     if  id >= 'RSHA' and id <= 'RSHZ'
@@ -559,7 +566,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                         endif
 
          
-                        if  page != 6 and page != 3
+                        if  page == 1 or page == 2 or page == 5
                             if  GetUnitAbilityLevel(Pu[1],id - 0x11000000 ) > 0
                                 DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Activation.tga",0)
                             endif
@@ -712,7 +719,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
         CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"封神谕令")
         CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
-        CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
+        CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"彩蛋")
         CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
 
     endfunction
