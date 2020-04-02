@@ -196,6 +196,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             
             AddEquipState(Pu[1],id)
             HeroIncLevel(Pu[1])
+            HeroAddExp(Pu[1],1)
             if  GetUnitTypeId(wu) == 'H018'
                 SpellS518.execute(Pu[1],id)//九转神功
             endif

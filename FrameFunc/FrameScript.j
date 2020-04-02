@@ -118,7 +118,7 @@
         DzFrameShow(UI_TipsHead, true)
         if  id == 309
             SetTipsData(1,"","时渊入场券x"+I2S(GetPlayerPlotPartNum(pid)))
-            SetTipsData(10,"","进入时渊副本消耗时渊入场券")
+            SetTipsData(10,"","完成时渊副本消耗时渊入场券")
         elseif  id == 310
             int num = GetPlayerPlotReNum(pid)+1
             int use = num*5

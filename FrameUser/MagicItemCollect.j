@@ -954,52 +954,19 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int newid = 0
         int color = 0
         if  id > 0
-            num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
-            if  num > 0
-                color = GetTypeIdData(id,101)
-                if  GetPrizePoolMax(pid,10+color) > 0
-                    
-                    SetPlayerMagicItemResources(pid,1,num-1)
-                    
-                    newid = GetPrize(pid,10+color,true)
-                    RecoveryMagicPoolData(pid,10+color,id)//回收法宝
-
-                    //重铸
-                    RemPlayerMagicItemByIndex(pid,last)
-                    SetPlayerMagicItem(pid,last,newid)
-
-                    //重置玩家选择
-                    SetPlayerMagicItemLast(pid,0)
-                else
-                    SetPlayerMagicItemLast(pid,0)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无法重铸该法宝！")
-                endif
-            else
+            if  id >= 'FF01' and id <= 'FF55'
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法重铸或点金！")
                 SetPlayerMagicItemLast(pid,0)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")
-            endif
-        else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
-        endif
-    endfunction
-
-    function RecastPlayerMagicItem2(int pid)
-        int last = GetPlayerMagicItemLast(pid)
-        int id = GetPlayerMagicItem(pid,last)
-        int color = 0
-        int newid = 0
-        int num = 0
-
-        if  id > 0
-            num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
-            if  num >= 3
-                color = GetTypeIdData(id,101)
-                if  color > 2
-                    newid = id + 0x40000
-                    if  GetTypeIdData(newid,101) == 2
-                        SetPlayerMagicItemResources(pid,1,num-3)
-
-                        //RecoveryMagicPoolData(pid,10+color,id)//回收法宝
+            else
+                num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
+                if  num > 0
+                    color = GetTypeIdData(id,101)
+                    if  GetPrizePoolMax(pid,10+color) > 0
+                        
+                        SetPlayerMagicItemResources(pid,1,num-1)
+                        
+                        newid = GetPrize(pid,10+color,true)
+                        RecoveryMagicPoolData(pid,10+color,id)//回收法宝
 
                         //重铸
                         RemPlayerMagicItemByIndex(pid,last)
@@ -1009,15 +976,64 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                         SetPlayerMagicItemLast(pid,0)
                     else
                         SetPlayerMagicItemLast(pid,0)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法点金！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无法重铸该法宝！")
                     endif
                 else
                     SetPlayerMagicItemLast(pid,0)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该品质法宝无法点金！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")
                 endif
-            else
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
+        endif
+    endfunction
+
+    //点金
+    function RecastPlayerMagicItem2(int pid)
+        int last = GetPlayerMagicItemLast(pid)
+        int id = GetPlayerMagicItem(pid,last)
+        int color = 0
+        int newid = 0
+        int num = 0
+
+        if  id > 0  
+            if  id >= 'FF01' and id <= 'FF55'
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法重铸或点金！")
                 SetPlayerMagicItemLast(pid,0)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法点金法宝!")
+            else
+
+                num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
+                if  num >= 3
+                    color = GetTypeIdData(id,101)
+                    if  color > 2
+                        newid = id + 0x40000
+                        if  GetTypeIdData(newid,101) == 2
+                            SetPlayerMagicItemResources(pid,1,num-3)
+
+                            //RecoveryMagicPoolData(pid,10+color,id)//回收法宝
+
+                            //重铸
+                            RemPlayerMagicItemByIndex(pid,last)
+                            SetPlayerMagicItem(pid,last,newid)
+
+
+                            TimerMissionAddNumFunc(pid,10,1)//获得造化至宝
+                            TimerMissionAddNumFunc(pid,27,1)//获得造化至宝
+                            
+                            //重置玩家选择
+                            SetPlayerMagicItemLast(pid,0)
+                        else
+                            SetPlayerMagicItemLast(pid,0)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法点金！")
+                        endif
+                    else
+                        SetPlayerMagicItemLast(pid,0)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该品质法宝无法点金！")
+                    endif
+                else
+                    SetPlayerMagicItemLast(pid,0)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法点金法宝!")
+                endif
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
@@ -1049,14 +1065,14 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int last = GetPlayerMagicItemLast(pid)
         int id = GetPlayerMagicItem(pid,last)
         int now = GetPlayerMagicItemResources(pid,1)//获取补天石数量
-        int color = GetTypeIdData(id,101)
         if  id > 0
             if  now > 0
-                if  color > 2
-                    Dialog.create(Player(pid),"重铸法宝"+GetMagicItemName(id),"重铸("+GetRecastResourcesTips(now,1)+")","点金("+GetRecastResourcesTips(now,3)+")","取消","","","","","","","","","","RecastPlayerMagicItemFunc")
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该品质法宝无法点金！")
+                if  id >= 'FF01' and id <= 'FF55'
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法重铸或点金！")
                     SetPlayerMagicItemLast(pid,0)
+                else
+                    Dialog.create(Player(pid),"重铸法宝"+GetMagicItemName(id),"重铸("+GetRecastResourcesTips(now,1)+")","点金("+GetRecastResourcesTips(now,3)+")","取消","","","","","","","","","","RecastPlayerMagicItemFunc")
+                    
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")

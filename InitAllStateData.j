@@ -1166,6 +1166,7 @@ InitTypeState5('RDAW',0,0,0,0,0,0,0,0,50,0)
 endfunction
 function InitStateData6()
 InitTypeState6('FB09',200,0,0,0,0,0,0,0,0,0)
+InitTypeState6('FF09',200,0,0,0,0,0,0,0,0,0)
 InitTypeState6('IF15',30,0,0,0,0,0,0,0,0,0)
 InitTypeState6('IF16',40,0,0,0,0,0,0,0,0,0)
 InitTypeState6('IF31',50,0,0,0,0,0,0,0,0,0)
