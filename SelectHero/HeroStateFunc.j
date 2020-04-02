@@ -53,6 +53,12 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             if  GetPlayerTechCount(Player(pid),'RY4D',true) == 0 //金鼠送福
                 AddPlayerTechResearched(Player(pid),'RY4D',1)
             endif
+            if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
+                AddPlayerTechResearched(Player(pid),'RK1A',1)
+            endif
+            if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
+                AddPlayerTechResearched(Player(pid),'RY2D',1)
+            endif
         endif
 
         /*

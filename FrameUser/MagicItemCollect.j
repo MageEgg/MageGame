@@ -910,6 +910,25 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
     endfunction
 
+
+    function RecoveryMagicPoolData(int pid,int page,int id)
+        
+        if  id >= 'FB01' and id <= 'FB54'
+            RecoveryPrizePoolData(pid,page,id)//回收法宝
+        elseif  id >= 'FF01' and id <= 'FF54'
+            int newid = id - 0x40000
+            int color = GetTypeIdData(newid,101)
+            if  color > 2
+                BJDebugMsg(GetMagicItemName(id)+"曾经它是"+GetMagicItemName(newid))
+                RecoveryPrizePoolData(pid,10+color,newid)//回收法宝
+            else
+                BJDebugMsg("品质"+I2S(color)+" 不用回收")
+            endif
+        else
+            BJDebugMsg("非普通法宝 不用回收")
+        endif
+    endfunction
+
     //出售法宝
     function SalePlayerMagicItem(int pid)
         int last = GetPlayerMagicItemLast(pid)
@@ -917,7 +936,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int color = GetTypeIdData(id,101)
         int give = 2
         if  id > 0
-            RecoveryPrizePoolData(pid,10+color,id)//回收法宝
+            RecoveryMagicPoolData(pid,10+color,id)//回收法宝
             RemPlayerMagicItemByIndex(pid,last)
             SetPlayerMagicItemLast(pid,0)
             AdjustPlayerStateBJ(give, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
@@ -928,7 +947,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
     //重置法宝
-    function RecastPlayerMagicItem(int pid) 
+    function RecastPlayerMagicItem1(int pid) 
         int last = GetPlayerMagicItemLast(pid)
         int id = GetPlayerMagicItem(pid,last)
         int num = 0
@@ -943,7 +962,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     SetPlayerMagicItemResources(pid,1,num-1)
                     
                     newid = GetPrize(pid,10+color,true)
-                    RecoveryPrizePoolData(pid,10+color,id)//回收法宝
+                    RecoveryMagicPoolData(pid,10+color,id)//回收法宝
 
                     //重铸
                     RemPlayerMagicItemByIndex(pid,last)
@@ -958,6 +977,90 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             else
                 SetPlayerMagicItemLast(pid,0)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
+        endif
+    endfunction
+
+    function RecastPlayerMagicItem2(int pid)
+        int last = GetPlayerMagicItemLast(pid)
+        int id = GetPlayerMagicItem(pid,last)
+        int color = 0
+        int newid = 0
+        int num = 0
+
+        if  id > 0
+            num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
+            if  num >= 3
+                color = GetTypeIdData(id,101)
+                if  color > 2
+                    newid = id + 0x40000
+                    if  GetTypeIdData(newid,101) == 2
+                        SetPlayerMagicItemResources(pid,1,num-3)
+
+                        //RecoveryMagicPoolData(pid,10+color,id)//回收法宝
+
+                        //重铸
+                        RemPlayerMagicItemByIndex(pid,last)
+                        SetPlayerMagicItem(pid,last,newid)
+
+                        //重置玩家选择
+                        SetPlayerMagicItemLast(pid,0)
+                    else
+                        SetPlayerMagicItemLast(pid,0)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法点金！")
+                    endif
+                else
+                    SetPlayerMagicItemLast(pid,0)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该品质法宝无法点金！")
+                endif
+            else
+                SetPlayerMagicItemLast(pid,0)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法点金法宝!")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
+        endif
+    endfunction
+
+    function RecastPlayerMagicItemFunc()
+        int pid = Dialog.GetPlayerid()
+        int index = Dialog.GetButtonid()
+        int now = GetPlayerMagicItemResources(pid,1)//获取补天石数量
+        if  index == 1
+            RecastPlayerMagicItem1(pid)
+        elseif  index == 2
+            RecastPlayerMagicItem2(pid)
+        else
+            SetPlayerMagicItemLast(pid,0)
+        endif
+    endfunction
+
+    function GetRecastResourcesTips(int now,int use)->string
+        if  now >= use
+            return "补天石x"+I2S(use)
+        else
+            return "|cffff0000补天石x"+I2S(use)
+        endif
+    endfunction
+
+    function RecastPlayerMagicItem(int pid)
+        int last = GetPlayerMagicItemLast(pid)
+        int id = GetPlayerMagicItem(pid,last)
+        int now = GetPlayerMagicItemResources(pid,1)//获取补天石数量
+        int color = GetTypeIdData(id,101)
+        if  id > 0
+            if  now > 0
+                if  color > 2
+                    Dialog.create(Player(pid),"重铸法宝"+GetMagicItemName(id),"重铸("+GetRecastResourcesTips(now,1)+")","点金("+GetRecastResourcesTips(now,3)+")","取消","","","","","","","","","","RecastPlayerMagicItemFunc")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该品质法宝无法点金！")
+                    SetPlayerMagicItemLast(pid,0)
+                endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r补天石不足！无法重铸法宝")
+                SetPlayerMagicItemLast(pid,0)
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
@@ -980,7 +1083,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                         SetPlayerMagicItemResources(pid,2,num-1)
                         
                         newid = GetPrize(pid,10+color,true)
-                        RecoveryPrizePoolData(pid,10+GetTypeIdData(id,101),id)//回收法宝
+                        RecoveryMagicPoolData(pid,10+GetTypeIdData(id,101),id)//回收法宝
 
 
                         //重铸

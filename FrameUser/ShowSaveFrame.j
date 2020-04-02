@@ -169,7 +169,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
         RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
         RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
-//        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
+        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
 //        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
         RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0)//嫦娥
         RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0)//疾风雷震子

@@ -125,12 +125,12 @@
             SetTipsData(1,"","需要 - 玄铁x15")
             SetTipsData(10,"","点击刷新时渊副本奖励")
         elseif  id == 21
-            SetTipsData(10,"","|CffCCCCCC重铸法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffffd24d补天石|r|Cfff0f0f0，可重置为|r|Cffffd24d同品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【重铸按钮】。|r")
+            SetTipsData(10,"","|cffcccccc重铸法宝：|n|r|cfff0f0f0消耗|r|cffffd24d1|r|cfff0f0f0个|r|cffffd24d补天石|r|cfff0f0f0，可重置为|r|cffffd24d同品质|r|cfff0f0f0的|r|cffffd24d随机法宝|r|cfff0f0f0。|n消耗|r|cffffc9263|r个|cffffc926补天石|r，可使法宝品质晋升为|cffffc926造化至宝|r。|n|n|cff00ff7f操作提示：点击指定法宝，再点击【重铸按钮】。|r")
         elseif  id == 22
             SetTipsData(10,"","|CffCCCCCC锻造法宝：|n|r|Cfff0f0f0消耗|r|Cffffd24d1|r|Cfff0f0f0个|r|Cffff0000鸿蒙结晶|r|Cfff0f0f0，可重置为|r|Cffffd24d高一品质|r|Cfff0f0f0的|r|Cffffd24d随机法宝|r|Cfff0f0f0。|r|n|n|Cff00ff7f操作提示：点击指定法宝，再点击【锻造按钮】。|r")
         elseif  id == 23
             SetTipsData(1,"","|CffFFD24D补天石|r")
-            SetTipsData(10,"","|CffF0F0F0用来|r|Cffffd24d重铸法宝|r|Cfff0f0f0的材料。|r")
+            SetTipsData(10,"","用来|Cffffc926重铸|r或|Cffffc926点金|r的材料")
         elseif  id == 24
             SetTipsData(1,"","|CffFF0000鸿蒙结晶|r")
             SetTipsData(10,"","|CffF0F0F0用来|r|Cffff0000锻造法宝|r|Cfff0f0f0的材料。|r")

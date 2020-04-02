@@ -230,11 +230,13 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             if  id == 'IJ10'
                 MissionAddNumFunc(pid,26,1)//获得混沌道果
             endif
+            /*
             if  move == 1
                 if  PlayerDeathBool == false 
                     HeroMoveToRoom.execute(pid)
                 endif
             endif
+            */
         endif 
     endfunction
 
