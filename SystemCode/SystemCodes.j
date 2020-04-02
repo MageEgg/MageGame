@@ -914,28 +914,29 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
                 ItemPool[i] = CreateItemPool()
             end
             //炽星魔盒IN31注册
-            RegisterItemPool(17,'IP04',4)
-            RegisterItemPool(17,'IP02',4)
+            RegisterItemPool(17,'IP04',3)
+            RegisterItemPool(17,'IP02',5)
             RegisterItemPool(17,'IP03',1)
             RegisterItemPool(17,'IN08',2)
-            RegisterItemPool(17,'IN13',6)
+            RegisterItemPool(17,'IN13',3)
             RegisterItemPool(17,'IN23',2)
             RegisterItemPool(17,'IN34',6)
             RegisterItemPool(17,'IN37',6)
             RegisterItemPool(17,'IN40',6)
             RegisterItemPool(17,'IN18',2)
-            RegisterItemPool(17,'IN20',2)
+            RegisterItemPool(17,'IN20',3)
             RegisterItemPool(17,'I015',3)
             RegisterItemPool(17,'CS21',2)
             RegisterItemPool(17,'CS22',2)
-            RegisterItemPool(17,'IP01',2)     
-
+            RegisterItemPool(17,'IP01',2)
+            RegisterItemPool(17,'CS01',3)
+            
             //幸运星盒IN30注册
             RegisterItemPool(15,'IN07',3)
             RegisterItemPool(15,'IN08',1)
             RegisterItemPool(15,'IN09',5)
             RegisterItemPool(15,'IN10',3)
-            RegisterItemPool(15,'IN11',1)
+            RegisterItemPool(15,'IN11',2)
             RegisterItemPool(15,'IN13',1)
             RegisterItemPool(15,'IN14',2)
             RegisterItemPool(15,'IN15',1)
@@ -943,7 +944,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(15,'IN18',2)
             RegisterItemPool(15,'IN20',2)
             RegisterItemPool(15,'IN21',14)
-            RegisterItemPool(15,'IN22',4)
+            RegisterItemPool(15,'IN22',5)
 
             RegisterItemPool(15,'IN24',14)
             RegisterItemPool(15,'IN33',4)
@@ -955,6 +956,8 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(15,'IN39',4)
             RegisterItemPool(15,'IN40',2)
             RegisterItemPool(15,'CS23',3)
+            RegisterItemPool(15,'CS04',3)
+            RegisterItemPool(15,'CS05',3)
             
         endfunction
 

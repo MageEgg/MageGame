@@ -535,6 +535,12 @@ scope ItemSystem initializer InitItemSystem
             GivePlayerRunePrizeFrame(pid)
         elseif  itemid == 'CS03'
             PlayerAbilityDraw(pid,2,'IS06')
+        elseif  itemid == 'CS04'
+            PlayerAbilityDraw(pid,1,'IS02')
+        elseif  itemid == 'CS05'
+            PlayerAbilityDraw(pid,2,'IS07')
+        elseif  itemid == 'CS06'
+            PlayerAbilityDraw(pid,2,'IS08')
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
