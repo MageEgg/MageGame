@@ -17,7 +17,7 @@ library DzBase uses SystemCodes,DzAPI
     
     #define DzS DzArrayString[pid]
 
-    int DzPlayerInitTGCos = 2
+    int array DzPlayerInitTGCos
 
     insert DzMatrix
 

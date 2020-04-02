@@ -43,6 +43,16 @@ library DzDataSetting uses DzBase
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
+        DzPlayerInitTGCos[1] = 2
+        DzPlayerInitTGCos[2] = 2
+        DzPlayerInitTGCos[3] = 3
+        DzPlayerInitTGCos[4] = 4
+        DzPlayerInitTGCos[5] = 2//5
+        DzPlayerInitTGCos[6] = 2//6
+        /*DzPlayerInitTGCos[7] = 7
+        DzPlayerInitTGCos[8] = 8
+        DzPlayerInitTGCos[9] = 9
+        DzPlayerInitTGCos[10] = 10*/
     endfunction
     
     function DzDataGroupSetting()
@@ -114,7 +124,7 @@ library DzDataSetting uses DzBase
             if  flag == 1 //总通关次数
                 max = DzPlayerGames(Player(pid))+1
             elseif  flag >= 2 and flag <= MaxGameLevel+1 //通关难度
-                max = DzPlayerInitTGCos
+                max = DzPlayerInitTGCos[flag-1]
             elseif  flag >= MaxGameLevel+2 //未开启的难度
                 max = 0
             endif
