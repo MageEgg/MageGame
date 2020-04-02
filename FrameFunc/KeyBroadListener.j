@@ -78,7 +78,9 @@ scope KeyEvent initializer InitKeyBroadListener
                             ClosePassFrame(pid)
                         endif
                         
-                        
+                        if  HeroHDFrame.show == true
+                            HeroHDFrame.show = false
+                        endif
                         
                     endif
                 endif

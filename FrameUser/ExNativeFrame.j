@@ -1,5 +1,8 @@
 library ExNativeFrame uses GameFrame
     
+    
+    FRAME HeroHDFrame = 0    
+    
     private FRAME Button = 0
 
     private FRAME Back = 0
@@ -152,74 +155,76 @@ library ExNativeFrame uses GameFrame
     
 
     //重随英雄模块
-    int array ReHeroPool
-    function GetReHeroPoolMax()->int
-        return ReHeroPool[0]
+    int array ReHeroPool[12][680]
+    function GetReHeroPoolMax(int pid)->int
+        return ReHeroPool[pid][0]
     endfunction
-    function SetReHeroPoolMax(int max)
-        ReHeroPool[0] = max
+    function SetReHeroPoolMax(int pid,int max)
+        ReHeroPool[pid][0] = max
     endfunction
-    function AddReHeroPoolMax(int num)
-        ReHeroPool[0] = ReHeroPool[0] + num
+    function AddReHeroPoolMax(int pid,int num)
+        ReHeroPool[pid][0] = ReHeroPool[pid][0] + num
     endfunction
 
-    function GetHeroPoolIndex(int id)->int
-        int max = GetReHeroPoolMax()
+    function GetHeroPoolIndex(int pid,int id)->int
+        int max = GetReHeroPoolMax(pid)
         if  max > 0
             for i = 1,max
-                if  id == ReHeroPool[i]
+                if  id == ReHeroPool[pid][i]
                     return i
                 endif
             end
         endif
         return 0
     endfunction
-    function IsPoolHasHero(int id)->bool
-        return GetHeroPoolIndex(id) != 0
+    function IsPoolHasHero(int pid,int id)->bool
+        return GetHeroPoolIndex(pid,id) != 0
     endfunction
 
 
-    function ReReHeroFrameUI()
+    function ReReHeroFrameUI(int pid)
         int id = 0
-        for i = 1,16
-            id = ReHeroPool[i]
-            if  id > 0
-                DzFrameSetTexture(BUTTON_Back[950+i][0],GetTypeIdIcon(id),0)
-                DzFrameSetText(BUTTON_Text[950+i],GetTypeIdName(id))
-            else
-                DzFrameSetTexture(BUTTON_Back[950+i][0],"war3mapImported\\alpha.tga",0)
-                DzFrameSetText(BUTTON_Text[950+i],"")
-            endif
-        end
+        if  GetLocalPlayer() == Player(pid)
+            for i = 1,16
+                id = ReHeroPool[pid][i]
+                if  id > 0
+                    DzFrameSetTexture(BUTTON_Back[950+i][0],GetTypeIdIcon(id),0)
+                    DzFrameSetText(BUTTON_Text[950+i],GetTypeIdName(id))
+                else
+                    DzFrameSetTexture(BUTTON_Back[950+i][0],"war3mapImported\\alpha.tga",0)
+                    DzFrameSetText(BUTTON_Text[950+i],"")
+                endif
+            end
+        endif
     endfunction
 
-    private function PoolAdd(int id)
-        int max = GetReHeroPoolMax()+1
-        SetReHeroPoolMax(max)    
-        ReHeroPool[max] = id
-        ReReHeroFrameUI()
+    private function PoolAdd(int pid,int id)
+        int max = GetReHeroPoolMax(pid)+1
+        SetReHeroPoolMax(pid,max) 
+        ReHeroPool[pid][max] = id
+        ReReHeroFrameUI(pid)
     endfunction
-    private function PoolRemByIndex(int index)
-        int max = GetReHeroPoolMax()
+    private function PoolRemByIndex(int pid,int index)
+        int max = GetReHeroPoolMax(pid)
         if  max == index
-            ReHeroPool[index] = 0
+            ReHeroPool[pid][index] = 0
         else
-            ReHeroPool[index] = ReHeroPool[max]
-            ReHeroPool[max] = 0
+            ReHeroPool[pid][index] = ReHeroPool[pid][max]
+            ReHeroPool[pid][max] = 0
         endif
-        SetReHeroPoolMax(max-1)
-        ReReHeroFrameUI()
+        SetReHeroPoolMax(pid,max-1)
+        ReReHeroFrameUI(pid)
     endfunction
-    function PoolAddHeroId(int id)
-        if  IsPoolHasHero(id) == false
+    function PoolAddHeroId(int pid,int id)
+        if  IsPoolHasHero(pid,id) == false
             BJDebugMsg("增加"+GetTypeIdName(id))
-            PoolAdd(id)
+            PoolAdd(pid,id)
         endif
     endfunction
-    function PoolRemHeroId(int id)
-        int index = GetHeroPoolIndex(id)
+    function PoolRemHeroId(int pid,int id)
+        int index = GetHeroPoolIndex(pid,id)
         if  index != 0
-            PoolRemByIndex(index)
+            PoolRemByIndex(pid,index)
         endif
     endfunction
 
@@ -242,13 +247,14 @@ library ExNativeFrame uses GameFrame
 
         //控件设置
         ReHeroButton.frameid = FRAME.Tag("BUTTON","ReHero",GameUI,ReHeroButton)
-        ReHeroButton.SetPoint(0,GameUI,0,0.1,-0.1)
-        ReHeroButton.SetSize(0.173,0.23)
+        ReHeroButton.SetPoint(0,GameUI,0,0.13,-0.05)
+        ReHeroButton.SetSize(0.173,0.142)
+        //0.23
 
         //背景设置
         ReHeroBack.frameid = FRAME.Tag("BACKDROP","ReHero",ReHeroButton.frameid,ReHeroBack)
         ReHeroBack.SetPoint(4,ReHeroButton.frameid,4,0,0)
-        ReHeroBack.SetSize(0.173,0.23)
+        ReHeroBack.SetSize(0.173,0.142)
         ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
 
         CreateButton(950,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.01,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
@@ -258,7 +264,7 @@ library ExNativeFrame uses GameFrame
         ReHeroNumber.SetText("1")
 
         for hx = 0,3
-            for hy = 0,3
+            for hy = 0,1
                 index = hy * 4 + hx + 1
                 CreateButton(950+index,ReHeroButton.frameid,TYPE_FUNC,0,ReHeroButton.frameid,0,0.01+0.04*hx,-0.01-hy*0.044,0.033,0.033,"war3mapImported\\alpha.tga")
                 CreateText(950+index,ReHeroButton.frameid,"centertext008",1,7,0.0,-0.002,"")
@@ -268,7 +274,11 @@ library ExNativeFrame uses GameFrame
 
 
 
-
+        HeroHDFrame.frameid = FRAME.Tag("BACKDROP","HeroHDFrame",GameUI,HeroHDFrame)
+        HeroHDFrame.SetPoint(1,GameUI,1,-0.005,-0.05)
+        HeroHDFrame.SetSize(0.4,0.4)
+        HeroHDFrame.SetTexture("war3mapImported\\UI_HeroHD.tga",0)
+        HeroHDFrame.show = false
 
         
         for x = 0,2

@@ -223,12 +223,12 @@ scope SelectHero
 
     //重随
     function ReHeroPrePareByPool(int pid,int index)
-        int id = ReHeroPool[index]
+        int id = ReHeroPool[pid][index]
         int uid = GetUnitTypeId(Pu[1])
         if  id > 0
             ReHeroPrePareFunc(pid,id)
-            PoolRemHeroId(id)
-            PoolAddHeroId(uid)
+            PoolRemHeroId(pid,id)
+            PoolAddHeroId(pid,uid)
         endif
     endfunction
 
@@ -238,7 +238,7 @@ scope SelectHero
             if  PlayerDeathBool == false
                 if  GameChallengBool[0] == false
                     if  HeroReNumber > 0
-                        PoolAddHeroId(id)
+                        PoolAddHeroId(pid,id)
                         ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))
                         HeroReNumber = HeroReNumber - 1
                         ReHeroFrameUI(pid)
@@ -264,5 +264,12 @@ scope SelectHero
                 BuryingPointData(pid,0,GameLevel,1)//选难度埋点
             endif
         end
+
+        //活动大使
+        if  DzConA[4] == 1
+            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np39',-5110,-2862,270)
+            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc39',-5110,-3090,270)
+        endif
+
     endfunction
 endscope
