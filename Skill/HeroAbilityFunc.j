@@ -182,9 +182,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction
     
     
-    function SpellS502_2(unit wu,unit tu,real dam,int lv)
+    function SpellS502_2(unit wu,real dam,int lv)
         unit u1 = wu
-        unit u2 = tu
         real x1 = GetUnitX(wu)
         real y1 = GetUnitY(wu)
         unit u3 = CreateTmUnit(GetOwningPlayer(wu),"effect_dark-xuanfen.mdl",x1,y1,GetUnitFacing(u1),0,1.3)
@@ -232,14 +231,15 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         }
         flush locals
     endfunction
-    function SpellS502(unit wu,unit tu,real dam,int lv)
+    function SpellS502(unit wu,real sx,real sy,real dam,int lv)
         unit u1 = wu
-        unit u2 = tu
         int level = lv
         real damage = dam
         real x1 = GetUnitX(wu)
         real y1 = GetUnitY(wu)
-        real ang = Uang(u1,u2)
+        real x2 = sx
+        real y2 = sy
+        real ang = Pang(x1,y1,sx,sy)
         real size = YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"modelScale")
         group g1 = CreateGroup()
         EXSetUnitFacing( u1, ang/0.01745 )
@@ -248,8 +248,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         SetUnitScale(u1,0.001,0.001,0.001)
         TimerStart(0.03,true)
         {
-            real dis = Udis(u1,u2)
-            ang = Uang(u1,u2)
+            real dis = Pdis(x1,y1,x2,y2)
             if  dis > 50 and GetUnitAbilityLevel(u1,'AZ98') == 0
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
@@ -269,14 +268,14 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                     UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                     g.destroy()
                 else
-                    SpellS502_2(u1,u2,damage,level)
+                    SpellS502_2(u1,damage,level)
                     SetUnitScale(u1,size,size,size)
                     DestroyGroup(g1)
                     RemoveUnit(u3)
                     endtimer
                 endif
             else
-                SpellS502_2(u1,u2,damage,level)
+                SpellS502_2(u1,damage,level)
                 SetUnitScale(u1,size,size,size)
                 DestroyGroup(g1)
                 RemoveUnit(u3)

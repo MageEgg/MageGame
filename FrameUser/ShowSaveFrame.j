@@ -127,8 +127,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
         RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
-//        RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
-//        RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
+        RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
+        RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
 
         
 
@@ -177,7 +177,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
         RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
         RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
-//        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
+        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
 //        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
         RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0)//嫦娥
         RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0)//疾风雷震子
