@@ -77,15 +77,15 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         endif
 
 
-        BJDebugMsg("class"+I2S(class))
+        //BJDebugMsg("class"+I2S(class))
         r2 = GetUnitRealState(wu,class + 71)
-        BJDebugMsg("class r2 "+R2S(r2))
+        //BJDebugMsg("class r2 "+R2S(r2))
         if  r2 > 0
-            BJDebugMsg(StateName[class+71]+R2S(r2)+"%")
+            //BJDebugMsg(StateName[class+71]+R2S(r2)+"%")
             r1 = r1 * (1+r2*0.01)
         endif
 
-        BJDebugMsg(YDWEId2S(id)+"等级"+I2S(lv)+"伤害"+R2S(r1))
+        //BJDebugMsg(YDWEId2S(id)+"等级"+I2S(lv)+"伤害"+R2S(r1))
 
         return r1
         flush locals

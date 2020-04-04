@@ -33,18 +33,6 @@ library GameChallenge9 uses GameChallengeBase
         endif
     endfunction
 
-    function SetGameTeamChallengTimerText(unit wu,unit tu,int time)
-        if  time >= 10
-            s1 = SubString(I2S(time),0,1)
-            s2 = SubString(I2S(time),1,2)
-            DzSetUnitModel(wu,"UI_zhuatuzi"+SubString(I2S(time),0,1)+".mdl")
-            DzSetUnitModel(tu,"UI_zhuatuzi"+SubString(I2S(time),1,2)+".mdl")
-        else
-            DzSetUnitModel(wu,"UI_zhuatuzi0.mdl")
-            DzSetUnitModel(tu,"UI_zhuatuzi"+I2S(time)+".mdl")
-        endif
-    endfunction
-
     function IsHasPlayerGoToTeamChalleng()->bool
         for pid = 0,3
             if  IsPlaying(pid) == true
@@ -65,109 +53,6 @@ library GameChallenge9 uses GameChallengeBase
             endif
         end
         return false
-    endfunction
-    
-    function OpenGameTeamChallengeTimer(int t,int fl)
-        int time = t
-        int flag = fl
-        if  flag == 1
-            SetUnitVertexColor(GameTeamChallengUnit(0),255,255,255,255)
-            SetUnitVertexColor(GameTeamChallengUnit(1),255,255,255,255)
-            UnitAddAbility(GameTeamChallengUnit(0),'AZ99')
-            UnitAddAbility(GameTeamChallengUnit(1),'AZ99')
-            SetGameTeamChallengTimerText(GameTeamChallengUnit(0),GameTeamChallengUnit(1),time)
-        elseif  flag == 2
-            SetUnitVertexColor(GameTeamChallengUnit(2),255,255,255,255)
-            SetUnitVertexColor(GameTeamChallengUnit(3),255,255,255,255)
-            UnitAddAbility(GameTeamChallengUnit(2),'AZ99')
-            UnitAddAbility(GameTeamChallengUnit(3),'AZ99')
-            SetGameTeamChallengTimerText(GameTeamChallengUnit(2),GameTeamChallengUnit(3),time)
-        elseif  flag == 10
-            SetUnitVertexColor(GameTeamChallengUnit(10),255,255,255,255)
-            SetUnitVertexColor(GameTeamChallengUnit(11),255,255,255,255)
-            UnitAddAbility(GameTeamChallengUnit(10),'AZ99')
-            UnitAddAbility(GameTeamChallengUnit(11),'AZ99')
-            SetGameTeamChallengTimerText(GameTeamChallengUnit(10),GameTeamChallengUnit(11),time)
-        elseif  flag == 11
-            SetUnitVertexColor(GameTeamChallengUnit(12),255,255,255,255)
-            SetUnitVertexColor(GameTeamChallengUnit(13),255,255,255,255)
-            UnitAddAbility(GameTeamChallengUnit(12),'AZ99')
-            UnitAddAbility(GameTeamChallengUnit(13),'AZ99')
-            SetGameTeamChallengTimerText(GameTeamChallengUnit(12),GameTeamChallengUnit(13),time)
-        elseif  flag == 12
-            SetUnitVertexColor(GameTeamChallengUnit(14),255,255,255,255)
-            SetUnitVertexColor(GameTeamChallengUnit(15),255,255,255,255)
-            UnitAddAbility(GameTeamChallengUnit(14),'AZ99')
-            UnitAddAbility(GameTeamChallengUnit(15),'AZ99')
-            SetGameTeamChallengTimerText(GameTeamChallengUnit(14),GameTeamChallengUnit(15),time)
-        endif
-        TimerStart(1,true)
-        {
-            time = time - 1
-            if  time > 0
-                if  flag == 1
-                    if  GetUnitAbilityLevel(GameTeamChallengUnit(0),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(1),'AZ99') > 0
-                        SetGameTeamChallengTimerText(GameTeamChallengUnit(0),GameTeamChallengUnit(1),time)
-                    else
-                        endtimer
-                    endif
-                elseif  flag == 2
-                    if  GetUnitAbilityLevel(GameTeamChallengUnit(2),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(3),'AZ99') > 0
-                        SetGameTeamChallengTimerText(GameTeamChallengUnit(2),GameTeamChallengUnit(3),time)
-                    else
-                        endtimer
-                    endif
-                elseif  flag == 10
-                    if  GetUnitAbilityLevel(GameTeamChallengUnit(10),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(11),'AZ99') > 0
-                        SetGameTeamChallengTimerText(GameTeamChallengUnit(10),GameTeamChallengUnit(11),time)
-                    else
-                        endtimer
-                    endif
-                elseif  flag == 11
-                    if  GetUnitAbilityLevel(GameTeamChallengUnit(12),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(13),'AZ99') > 0
-                        SetGameTeamChallengTimerText(GameTeamChallengUnit(12),GameTeamChallengUnit(13),time)
-                    else
-                        endtimer
-                    endif
-                elseif  flag == 12
-                    if  GetUnitAbilityLevel(GameTeamChallengUnit(14),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(15),'AZ99') > 0
-                        SetGameTeamChallengTimerText(GameTeamChallengUnit(14),GameTeamChallengUnit(15),time)
-                    else
-                        endtimer
-                    endif
-                endif
-            else    
-                if  flag == 1
-                    SetUnitVertexColor(GameTeamChallengUnit(0),255,255,255,0)
-                    SetUnitVertexColor(GameTeamChallengUnit(1),255,255,255,0)
-                    UnitRemoveAbility(GameTeamChallengUnit(0),'AZ99')
-                    UnitRemoveAbility(GameTeamChallengUnit(1),'AZ99')
-                elseif  flag == 2
-                    SetUnitVertexColor(GameTeamChallengUnit(2),255,255,255,0)
-                    SetUnitVertexColor(GameTeamChallengUnit(3),255,255,255,0)
-                    UnitRemoveAbility(GameTeamChallengUnit(2),'AZ99')
-                    UnitRemoveAbility(GameTeamChallengUnit(3),'AZ99')
-                elseif  flag == 10
-                    SetUnitVertexColor(GameTeamChallengUnit(10),255,255,255,0)
-                    SetUnitVertexColor(GameTeamChallengUnit(11),255,255,255,0)
-                    UnitRemoveAbility(GameTeamChallengUnit(10),'AZ99')
-                    UnitRemoveAbility(GameTeamChallengUnit(11),'AZ99')
-                elseif  flag == 11
-                    SetUnitVertexColor(GameTeamChallengUnit(12),255,255,255,0)
-                    SetUnitVertexColor(GameTeamChallengUnit(13),255,255,255,0)
-                    UnitRemoveAbility(GameTeamChallengUnit(12),'AZ99')
-                    UnitRemoveAbility(GameTeamChallengUnit(13),'AZ99')
-                elseif  flag == 12
-                    SetUnitVertexColor(GameTeamChallengUnit(14),255,255,255,0)
-                    SetUnitVertexColor(GameTeamChallengUnit(15),255,255,255,0)
-                    UnitRemoveAbility(GameTeamChallengUnit(14),'AZ99')
-                    UnitRemoveAbility(GameTeamChallengUnit(15),'AZ99')
-                endif
-                endtimer
-            endif
-            flush locals
-        }
-        flush locals
     endfunction
 
     function EnRctGameTeamChallengA()
@@ -344,7 +229,7 @@ library GameChallenge9 uses GameChallengeBase
         endif
     endfunction
 
-    function GameTeamChallengDeath(unit u2)
+    function GameTeamChallengDeath_A(unit u2)
         int uid = GetUnitTypeId(u2)
         if  uid >= 'ut00' and uid <= 'ut03'
             GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
