@@ -402,6 +402,10 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             CreateButton(190+i,Button.frameid,TYPE_NULL,0,BUTTON_Back[150+i][0],8,-0.005,0.005,0.01,0.01,"war3mapImported\\alpha.tga")
         end
         
+
+        for bz = 1,6
+            CreateButton(750+bz,Button.frameid,TYPE_BUTTON,0,Button.frameid,7,0.135,0.02-bz*0.02,0.015,0.015,"war3mapImported\\UI_baowu0.tga")
+        end
         
         
         Button2.frameid = FRAME.Tag("BUTTON","Hero",origin,Button2)

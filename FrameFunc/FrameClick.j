@@ -250,6 +250,13 @@ endscope
 //! runtextmacro AddFrameFunc("707")
 //! runtextmacro AddFrameFunc("708")
 
+//! runtextmacro AddFrameFunc("751")
+//! runtextmacro AddFrameFunc("752")
+//! runtextmacro AddFrameFunc("753")
+//! runtextmacro AddFrameFunc("754")
+//! runtextmacro AddFrameFunc("755")
+//! runtextmacro AddFrameFunc("756")
+
 
 
 //! runtextmacro AddFrameFunc("910")
