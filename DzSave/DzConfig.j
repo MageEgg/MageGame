@@ -8,13 +8,13 @@ library DzConfig uses SystemCodes
     function GetDzHdToPlayer(int pid)
         int n = 0
         if  DzConA[0] == 1
-            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+            if  TimeHour >= 19 and TimeHour <= 24 and DzConA[10] == 1
                 DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00战争号角活动开启中！通关积分+50%|r")
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cffff0000战争号角活动关闭中！|r")
             endif
             n = DzConA[11]
-            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+            if  TimeHour >= 19 and TimeHour <= 24 and DzConA[10] == 1
                 n = n - 1
             endif
             if  n > 0
@@ -30,12 +30,12 @@ library DzConfig uses SystemCodes
     function GetDzHD()
         int n = 0
         if  DzConA[0] == 1
-            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+            if  TimeHour >= 19 and TimeHour <= 24 and DzConA[10] == 1
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00战争号角活动开启中！通关积分+50%|r")
                 DzConA[11] = DzConA[11] + 1
             endif
             n = DzConA[11]
-            if  TimeHour >= 17 and TimeHour <= 24 and DzConA[10] == 1
+            if  TimeHour >= 19 and TimeHour <= 24 and DzConA[10] == 1
                 n = n - 1
             endif
             if  n > 0
@@ -48,7 +48,7 @@ library DzConfig uses SystemCodes
         string S = ""
         S = DzCon("QJ")
         if  S == ""
-            S = "110010000000000000000000000000000000000000000000000000000000"
+            S = "110010000010000000000000000000000000000000000000000000000000"
         endif
         for n = 0,59
             DzConA[n] = S2I(SubString(S,n,n+1))
