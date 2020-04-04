@@ -212,7 +212,8 @@ piece DzGameFunc
         end
     endfunction
     //初始化熟练度
-    function InitDzHeroExpData(int pid)
+    function InitDzHeroExpData(int id)
+        int pid = id
         int game = DzPlayerGames(Player(pid))+1//局数
         int maxexp = (1+MaxGameLevel)*game //最大经验
         int allexp = 0
@@ -247,7 +248,13 @@ piece DzGameFunc
         SaveDzPlayerDataOfGroup.execute(pid,7)
         SaveDzPlayerDataOfGroup.execute(pid,8)
         SaveDzPlayerDataOfGroup.execute(pid,9)
-        InitDzHeroExpDataEx(pid)
+        TimerStart(0.01,false)
+        {
+            InitDzHeroExpDataEx(pid)
+            endtimer
+            flush locals
+        }
+        flush locals
     endfunction
 
     //单英雄增加熟练度
