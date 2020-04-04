@@ -1,6 +1,9 @@
 library GameChallenge10 uses GameChallengeBase
 
-
+    /*texttag array AttackTexttag
+AttackTexttag[pid] = CreateTextTag()
+                SetTextTagText(AttackTexttag[pid],"0/400",0.03)
+                SetTextTagPos(AttackTexttag[pid],x+176,y+412,0)*/
 
     function SendToGameChallenge_10(int pid)
         real x = 0
