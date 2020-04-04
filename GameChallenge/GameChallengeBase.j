@@ -36,6 +36,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define GameTeamChallengUnit(num)       GameChallengMapUnit[100+num]
 
     #define GameChalleng_0_JZY              GameChallengMapUnit[500]
+    #define GameChalleng_MJ_BOSS            GameChallengMapUnit[501]
 
     #define GameTeamChallengeInt(num)       GameChallengOperaWay[50+num]
 
@@ -44,6 +45,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     int PlayerTeamChallengeCosNum = 0
 
     group array AttackSummonUnitGroup
+
+    rect array ChallengeGameRct
+
+    #define ChallengeRct_MJ                 ChallengeGameRct  //1-10
 
     function AddAttackSummonUnit(int pid,unit u)
         GroupAddUnit(AttackSummonUnitGroup[pid],u)
@@ -475,7 +480,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
         ExecuteFunc("InitGameChallenge_9")
-        ExecuteFunc("InitGameChallenge_10")
+        //ExecuteFunc("InitGameChallenge_10")
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
         ExecuteFunc("InitOperaRectRange")

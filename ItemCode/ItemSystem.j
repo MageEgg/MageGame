@@ -388,7 +388,8 @@ scope ItemSystem initializer InitItemSystem
                     UnitAddPoolItemShow(u1,17)
                 end
             endif
-             
+        elseif  itemid == 'IZ02'
+            SendToGameChallenge_10(pid)
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 OpenGameTeamChallenge(pid,1,10)

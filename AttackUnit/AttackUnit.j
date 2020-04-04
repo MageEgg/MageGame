@@ -533,6 +533,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     IsGameOperaA = true
                     CreateGameOperaA.execute(AttackUnitNextTime[i])
                 endif
+            elseif  AttackUnitWN == 9
+                ExecuteFunc("ShowGameTeamChallengeNPC_A")
             elseif  AttackUnitWN == 11
                 if  IsGameOperaB == false
                     IsGameOperaB = true
@@ -549,7 +551,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     CreateGameOperaC.execute(AttackUnitNextTime[i])
                 endif
             elseif  AttackUnitWN == 15
-                ExecuteFunc("ShowGameTeamChallengeNPC")
+                ExecuteFunc("ShowGameTeamChallengeNPC_B")
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver-3)
         endif
