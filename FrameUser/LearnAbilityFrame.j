@@ -537,6 +537,109 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
     endfunction
 
 
+
+        
+
+
+    //抽技能
+    function PlayerAbilityDraw(int pid,int index,int itemid)
+        //int num = GetPlayerDrawNum(pid,index)
+        //int use = GetPlayerDrawUse(pid,itemid)
+
+
+             
+                
+        //if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= use
+            //AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            PlayerUseLearnAbilityBook(pid,index,itemid)
+            AddPlayerDrawNum(pid,index)
+        //else
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！玄铁不足"+I2S(use)+"。")
+        //endif
+        
+           
+ 
+    endfunction
+    //抽技能
+    function PlayerUseAbilityBookCS01()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+        if  i == 1
+            PlayerAbilityDraw(pid,1,'IS03')
+        else
+            UnitAddItem(Pu[1],CreateItem('CS01',GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        endif
+    endfunction
+    function PlayerUseAbilityBookCS03()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+        if  i == 1
+            PlayerAbilityDraw(pid,2,'IS06')
+        else
+            UnitAddItem(Pu[1],CreateItem('CS03',GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        endif
+    endfunction
+    function PlayerUseAbilityBookCS04()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+        if  i == 1
+            PlayerAbilityDraw(pid,1,'IS02')
+        else
+            UnitAddItem(Pu[1],CreateItem('CS04',GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        endif
+    endfunction
+    function PlayerUseAbilityBookCS05()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+        if  i == 1
+            PlayerAbilityDraw(pid,2,'IS07')
+        else
+            UnitAddItem(Pu[1],CreateItem('CS05',GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        endif
+    endfunction
+    function PlayerUseAbilityBookCS06()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+        if  i == 1
+            PlayerAbilityDraw(pid,2,'IS08')
+        else
+            UnitAddItem(Pu[1],CreateItem('CS06',GetUnitX(Pu[1]),GetUnitY(Pu[1])))
+        endif
+    endfunction
+
+    function PlayerUseAbilityBook(int pid,int index,int itemid)
+        int sid = GetHeroAbilityID(Pu[1],index)
+        
+        if  sid == 0
+            if  itemid == 'CS01'
+                PlayerAbilityDraw(pid,1,'IS03')
+            elseif  itemid == 'CS03'
+                PlayerAbilityDraw(pid,2,'IS06')
+            elseif  itemid == 'CS04'
+                PlayerAbilityDraw(pid,1,'IS02')
+            elseif  itemid == 'CS05'
+                PlayerAbilityDraw(pid,2,'IS07')
+            elseif  itemid == 'CS06'
+                PlayerAbilityDraw(pid,2,'IS08')
+            endif
+        else
+            if  itemid == 'CS01'
+                Dialog.create(Player(pid),"当前技能："+GetHeroAbilityName(Pu[1],index)+"\n是否抽取新技能","确定","取消","","","","","","","","","","","PlayerUseAbilityBookCS01")
+            elseif  itemid == 'CS03'
+                Dialog.create(Player(pid),"当前技能："+GetHeroAbilityName(Pu[1],index)+"\n是否抽取新技能","确定","取消","","","","","","","","","","","PlayerUseAbilityBookCS03")
+            elseif  itemid == 'CS04'
+                Dialog.create(Player(pid),"当前技能："+GetHeroAbilityName(Pu[1],index)+"\n是否抽取新技能","确定","取消","","","","","","","","","","","PlayerUseAbilityBookCS04")
+            elseif  itemid == 'CS05'
+                Dialog.create(Player(pid),"当前技能："+GetHeroAbilityName(Pu[1],index)+"\n是否抽取新技能","确定","取消","","","","","","","","","","","PlayerUseAbilityBookCS05")
+            elseif  itemid == 'CS06'
+                Dialog.create(Player(pid),"当前技能："+GetHeroAbilityName(Pu[1],index)+"\n是否抽取新技能","确定","取消","","","","","","","","","","","PlayerUseAbilityBookCS06")
+            endif
+        endif
+        
+
+    endfunction
+
+
     function LearnAbilityInit()
 
     endfunction
