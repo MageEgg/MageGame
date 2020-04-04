@@ -541,7 +541,26 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         
 
 
-    //抽技能
+//抽技能
+    //读取玩家抽技能次数
+    function GetPlayerDrawNum(int pid,int index)->int
+        return PlayerInt[pid][110+index]
+    endfunction
+    //增加玩家抽技能次数
+    function AddPlayerDrawNum(int pid,int index)
+        PlayerInt[pid][110+index] = PlayerInt[pid][110+index] + 1
+    endfunction
+    //读取玩家抽技能需求
+    function GetPlayerDrawUse(int pid,int itemid)->int
+        if  itemid == 'IS01' or itemid == 'IS06'
+            return 1
+        elseif  itemid == 'IS02' or itemid == 'IS07'
+            return 2
+        elseif  itemid == 'IS03' or itemid == 'IS08'
+            return 3
+        endif
+        return 0
+    endfunction
     function PlayerAbilityDraw(int pid,int index,int itemid)
         //int num = GetPlayerDrawNum(pid,index)
         //int use = GetPlayerDrawUse(pid,itemid)
