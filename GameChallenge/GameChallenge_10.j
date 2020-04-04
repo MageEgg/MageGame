@@ -1,12 +1,15 @@
 library GameChallenge10 uses GameChallengeBase
 
     function SendToGameChallenge_10_End()
+        unit u = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u))
         BJDebugMsg("SendToGameChallenge_10_End")
         if  DzConA[14] == 1
             //SendToGameChallenge_10(pid)
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本-万魔窟]：|r|cffff0000当前万魔窟暂未开放！！！|r")
         endif
+        flush locals
     endfunction
 
     function OpenGameChallenge10_BOSS()
@@ -118,7 +121,7 @@ library GameChallenge10 uses GameChallengeBase
 
         GameChallengeTexttag[0] = CreateTextTag()
         SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ 0/300|r",0.045)
-        SetTextTagPos(GameChallengeTexttag[0],11488-240,-7536+150,0)
+        SetTextTagPos(GameChallengeTexttag[0],11488-300,-7536+150,0)
 
         for j = 0,4
             for k = 0,3
