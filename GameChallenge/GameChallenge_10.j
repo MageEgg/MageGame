@@ -17,6 +17,7 @@ library GameChallenge10 uses GameChallengeBase
         SetUnitOwner(GameChalleng_MJ_BOSS,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
         OpenGameTeamChallengeTimer(time,20)
         SetUnitIntState(GameChalleng_MJ_BOSS,'ut21',time)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000竟然敢打扰我睡觉！！！|r")
         TimerStart(1,true)
         {
             time = time - 1
