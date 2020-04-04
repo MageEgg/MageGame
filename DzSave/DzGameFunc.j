@@ -204,7 +204,7 @@ piece DzGameFunc
     function InitDzHeroExpDataEx(int pid)
         for level = 1,MaxHeroExpLevel
             DzHeroExpLevelCount[level] = GetDzHeroExpLevelCount(pid,level)
-            DzHeroExpLevelCount[0] = DzHeroExpLevelCount[0] + DzHeroExpLevelCount[level]
+            DzHeroExpLevelCount[0] = DzHeroExpLevelCount[0] + DzHeroExpLevelCount[level]*level
         end
         BJDebugMsg("当前英雄熟练度总等级"+I2S(DzHeroExpLevelCount[0]))
         for level = 1,MaxHeroExpLevel
