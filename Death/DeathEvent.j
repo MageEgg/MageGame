@@ -714,6 +714,9 @@ scope DeathEvent initializer InitDeathEvent
         
             if  IsUnitInGroup(u1,AttackOperaGroup_B_2) == true//刷新单位组
                 GroupRemoveUnit(AttackOperaGroup_B_2,u1)
+                if  ModuloInteger(43-CountUnitsInGroup(AttackOperaGroup_B_2),5) == 0 or 43-CountUnitsInGroup(AttackOperaGroup_B_2) == 40 or 43-CountUnitsInGroup(AttackOperaGroup_B_2) == 41 or 43-CountUnitsInGroup(AttackOperaGroup_B_2) == 42 or 43-CountUnitsInGroup(AttackOperaGroup_B_2) == 43
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[西征]：|r击杀闻太师大军("+I2S(43-CountUnitsInGroup(AttackOperaGroup_B_2))+"/43)")
+                endif
                 if  CountUnitsInGroup(AttackOperaGroup_B_2) == 1
                     OpenOperaB_Boss()
                 endif

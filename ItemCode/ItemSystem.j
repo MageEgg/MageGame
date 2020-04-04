@@ -393,7 +393,11 @@ scope ItemSystem initializer InitItemSystem
                 end
             endif
         elseif  itemid == 'IZ02'
-            SendToGameChallenge_10(pid)
+            if  DzConA[13] == 1
+                SendToGameChallenge_10(pid)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前团队副本暂未开放！！！")
+            endif
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 OpenGameTeamChallenge(pid,1,10)

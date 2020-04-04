@@ -16,7 +16,7 @@ library GameChallenge10 uses GameChallengeBase
                 SetUnitIntState(GameChalleng_MJ_BOSS,'ut21',time)
             else
                 if  GetUnitTypeId(GameChalleng_MJ_BOSS) == 'ut21'
-                    SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/300|r",0.05)
+                    SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/300|r",0.045)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
@@ -40,9 +40,9 @@ library GameChallenge10 uses GameChallengeBase
         if  uid == 'ut20'
             if  GetUnitTypeId(GameChalleng_MJ_BOSS) == 'ut21' and GetUnitAbilityLevel(GameChalleng_MJ_BOSS,'AZ8A') > 0
                 GameTeamChallengeInt(2) = GameTeamChallengeInt(2) + 1
-                SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/300|r",0.05)
+                SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/300|r",0.045)
                 if  GameTeamChallengeInt(2) == 300
-                    SetTextTagText(GameChallengeTexttag[0],"",0.05)
+                    SetTextTagText(GameChallengeTexttag[0],"",0.045)
                     UnitRemoveAbility(GameChalleng_MJ_BOSS,'Avul')
                     UnitRemoveAbility(GameChalleng_MJ_BOSS,'AZ8A')
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[团队副本-寻宝秘境]：|r累积击杀"+I2S(GameTeamChallengeInt(2))+"只秘境小怪，|cffff0000秘境领主苏醒了！！！击杀领主可进入万魔窟！！！|r")
@@ -112,8 +112,8 @@ library GameChallenge10 uses GameChallengeBase
         UnitAddAbility(GameChalleng_MJ_BOSS,'AZ8A')
 
         GameChallengeTexttag[0] = CreateTextTag()
-        SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ 0/300|r",0.05)
-        SetTextTagPos(GameChallengeTexttag[0],11488,-7536+150,0)
+        SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ 0/300|r",0.045)
+        SetTextTagPos(GameChallengeTexttag[0],11488-240,-7536+150,0)
 
         for j = 0,4
             for k = 0,3
@@ -149,11 +149,11 @@ library GameChallenge10 uses GameChallengeBase
 
         GameTeamChallengUnit(30) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',11414,-7536,270)
         GameTeamChallengUnit(31) = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',11562,-7536,270)
-        /*for num = 0,1
-            SetUnitScale(GameTeamChallengUnit(30+num),10.5,10.5,10.5)
-            SetUnitVertexColor(GameTeamChallengUnit(30+num),255,255,255,0)
-            SetUnitFlyHeight(GameTeamChallengUnit(30+num),10,10000)
-        end*/
+        for j = 0,1
+            SetUnitScale(GameTeamChallengUnit(30+j),10.5,10.5,10.5)
+            SetUnitVertexColor(GameTeamChallengUnit(30+j),255,255,255,0)
+            SetUnitFlyHeight(GameTeamChallengUnit(30+j),10,10000)
+        end
     endfunction
 
 endlibrary
