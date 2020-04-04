@@ -484,7 +484,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         //	InitUnlocTechConditions('RDAU',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,21,21)),0,0,0)
         	InitUnlocTechConditions('RDAV',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,22,22)),0,0,0)
         //	InitUnlocTechConditions('RDAW',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,23,23)),0,0,0)
-        //	InitUnlocTechConditions('RDAX',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,24,24)),0,0,0)
+        	InitUnlocTechConditions('RDAX',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,24,24)),0,0,0)
             InitUnlocTechConditions('RDAY',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,25,25)),0,0,0)
 
 

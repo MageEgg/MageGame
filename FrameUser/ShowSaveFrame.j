@@ -162,7 +162,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 //        RegisterShowSaveFrameData(6,'RDAU','RDAU',0,0,0,0)//师弟，你真不行
        RegisterShowSaveFrameData(6,'RDAV','RDAV',0,0,0,0)//姐妹情深
 //        RegisterShowSaveFrameData(6,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
-//        RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
+        RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
         RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
 
         
