@@ -205,6 +205,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1F',"千年肝帝","ReplaceableTextures\\CommandButtons\\BTNRJ1F.BLP","")
         call InitTypeIdStrings('RJ1G',"万年肝圣","ReplaceableTextures\\CommandButtons\\BTNRJ1G.BLP","")
         call InitTypeIdStrings('RJ1H',"老司机","ReplaceableTextures\\CommandButtons\\BTNRJ1H.BLP","")
+        call InitTypeIdStrings('RJ1I',"停服补偿","ReplaceableTextures\\CommandButtons\\BTNAM40.blp","通行证经验+7\n\n加强防控，一起加油。众志成城，抗击疫情。致敬英雄共悼逝者！！")
         call InitTypeIdStrings('RJ1U',"封神礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1U.BLP","每秒业力+10\n经验加成+10%\n开局玄铁+10\n装备升级失败返还20%金币")
         call InitTypeIdStrings('RJ1V',"金币礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1V.BLP","开局金币+2000")
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")

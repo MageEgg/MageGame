@@ -201,7 +201,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             return exp
         endfunction
         function GetPlayerPassLevel(int pid)->int
-            int exp = GetPlayerPassExp(pid)
+            int exp = GetPlayerPassExp(pid) + 7
             int level = GetDzPlayerData(pid,4,2) + exp / MaxPassCheckDayExp
             return level
         endfunction
@@ -372,6 +372,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 shop = 1
             endif
 
+
+
             for i = 1,MaxPassCheckPrizeNum
                 if  lv >= i
                     GivePassCheckPrize(pid,i,1)
@@ -521,7 +523,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 endif
             end
 
-            nowexp = GetPlayerPassExp(pid)
+            nowexp = GetPlayerPassExp(pid) + 7
             nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
             for i = 1,MaxPassCheckDayExp
                 if  i <= nowexp

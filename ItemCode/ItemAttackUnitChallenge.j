@@ -701,8 +701,18 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         newid = 'uT0L'
                         lumber = 20
                     endif
-                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
+
+                    if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber+5)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r拥有《|cff00ff00赞助礼包|r》,cffffff00奖励玄铁x5|r")
+                        
+                    else
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
+                    endif
+
+                    
                     AddAttackUnitChallengeStateStock(pid,zu,wei)
                     if  Player(pid) == GetLocalPlayer()
                         YDWESetUnitAbilityDataString(Pu[42],'AT0A',1,215,GetObjectName(newid))
