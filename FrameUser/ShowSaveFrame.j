@@ -59,12 +59,13 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0)//木材礼包
         RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
         RegisterShowSaveFrameData(5,'RJ1X','RJ1X',0,0,0,0)//赞助礼包
-        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
-        RegisterShowSaveFrameData(5,'RY2G','RY2G',0,0,0,0)//幽冥之翼
         RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0)//星月光环
-        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
         RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
+        RegisterShowSaveFrameData(5,'RY2G','RY2G',0,0,0,0)//幽冥之翼
+        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
         RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
+        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
+        
         RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
 
@@ -122,7 +123,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         
 
 
-
+        RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
@@ -130,7 +131,6 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
         RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
@@ -234,7 +234,6 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         int page = Page[pid]
         int techid = 0
         int lock = 1
-        
         for i = 1,5
             techid = GetShowSaveTech(page,index+step*4,i)
             if  techid > 0

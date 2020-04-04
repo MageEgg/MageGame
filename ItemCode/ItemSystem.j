@@ -266,6 +266,10 @@ scope ItemSystem initializer InitItemSystem
                 else
                     use = 100000
                 endif
+                if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
+                    use = use / 2
+                endif
+
                 if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use
                     AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                     next = GetTypeIdData(id,106)

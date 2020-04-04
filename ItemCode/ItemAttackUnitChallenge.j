@@ -255,6 +255,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AddAttackUnitChallengeStateStock(pid,220,0)
                 
                 //AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n|n"+AttackUnitChallengeStateTypeString[200][0]
+                if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                    AttackUnitChallengeStateTypeString[200][0] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(5)+"|r(|cff00ff00+5|r)"
+                endif
                 AddAttackUnitChallengeStateStock(pid,200,0)
                 AddAttackUnitChallengeStateStock(pid,250,0)
 
@@ -275,6 +278,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n？？？")
             endif
         end
+       
     endfunction
     
     function IsCanGetAttackUnitChallengeState(int pid,int challenge)->bool
@@ -696,13 +700,27 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                             SaveInteger(ht,GetHandleId(Pu[1]),'AT0A',LoadInteger(ht,GetHandleId(Pu[1]),'AT0A')+1000)
                         endif
                         //AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|n|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
-                        AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
+                        if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                            AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r(|cff00ff00+5|r)"
+                        else
+                            AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
+                        endif
                     else
                         newid = 'uT0L'
                         lumber = 20
                     endif
-                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
+
+                    if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber+5)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r拥有《|cff00ff00赞助礼包|r》,|cffffff00奖励玄铁x5|r")
+                        
+                    else
+                        AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
+                    endif
+
+                    
                     AddAttackUnitChallengeStateStock(pid,zu,wei)
                     if  Player(pid) == GetLocalPlayer()
                         YDWESetUnitAbilityDataString(Pu[42],'AT0A',1,215,GetObjectName(newid))

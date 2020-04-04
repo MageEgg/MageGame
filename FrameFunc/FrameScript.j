@@ -139,7 +139,7 @@
             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_MagicItem_Sale0.tga",0)
             
         elseif  id == 652 or id == 653
-            int exp = GetDzPlayerData(pid,4,1)
+            int exp = GetDzPlayerData(pid,4,1)+7
             int lv = exp / 6
             exp = exp - lv * 6
             if  id == 652 //通行证
