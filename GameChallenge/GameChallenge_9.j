@@ -429,7 +429,9 @@ library GameChallenge9 uses GameChallengeBase
 
     function ShowGameTeamChallengeNPC_A()
         if  GameTeamChallengeBool[0] == false
-            ExecuteFunc("InitGameChallenge_10")
+            if  DzConA[13] == 1
+                ExecuteFunc("InitGameChallenge_10")
+            endif
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     ShowUnit(GameChallengUnit[90],true)
