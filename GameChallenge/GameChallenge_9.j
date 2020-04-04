@@ -528,21 +528,35 @@ library GameChallenge9 uses GameChallengeBase
         endif
     endfunction
 
-    function ShowGameTeamChallengeNPC()
+    function ShowGameTeamChallengeNPC_B()
+        if  GameTeamChallengeBool[3] == false
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    AddItemToStock(GameChallengUnit[90],'IZ01',1,1)
+                endif
+            end
+            GameTeamChallengeBool[3] = true
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本-万仙阵已激活！！！|r")
+        endif
+    endfunction
+
+    function ShowGameTeamChallengeNPC_A()
         if  GameTeamChallengeBool[0] == false
+            ExecuteFunc("InitGameChallenge_10")
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     ShowUnit(GameChallengUnit[90],true)
                     UnitAddEffectOfNPC(GameChallengUnit[90])
                     PingMinimap(GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),3)
                     CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc30',GetUnitX(GameChallengUnit[90]),GetUnitY(GameChallengUnit[90]),270)
-                    AddItemToStock(GameChallengUnit[90],'IZ01',1,1)
                 endif
             end
             GameTeamChallengeBool[0] = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守10波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守10波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守10波，团队副本NPC已激活！！！|r")
         endif
     endfunction
 
