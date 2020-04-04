@@ -42,15 +42,13 @@ scope SelectHero
         int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
         
         if  dzlv >= 1
-            AddUnitRealState(Pu[1],17,10)
-            AddUnitRealState(Pu[1],5,50)
+            AddUnitRealState(Pu[1],17,5)
         endif
         
         if  dzlv >= 2
-            AddUnitRealState(Pu[1],17,10)
-            AddUnitRealState(Pu[1],10,5)
+            AddUnitRealState(Pu[1],18,3)
         endif
-        
+        /*
         if  dzlv >= 3
             AddUnitRealState(Pu[1],18,4)
         endif
@@ -61,13 +59,19 @@ scope SelectHero
         if  dzlv >= 5
             AddUnitRealState(Pu[1],19,5)
         endif
+        */
+
         
-
-
         int dzalllv =  DzHeroExpLevelCount[0]
 
         if  dzalllv >= 6
-            
+            AddEquipState(Pu[1],'RHD1')
+        endif
+        if  dzalllv >= 12
+            AddEquipState(Pu[1],'RHD2')
+        endif
+        if  dzalllv >= 20
+            AddEquipState(Pu[1],'RHD3')
         endif
         
 
