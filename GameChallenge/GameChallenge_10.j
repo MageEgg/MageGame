@@ -75,9 +75,9 @@ library GameChallenge10 uses GameChallengeBase
             EXSetUnitMoveType(CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",11488,-7536,270,0,1.98),0x01)
             CreateTrigUnitInRange(GameChalleng_MJ_BOSS,198,function SendToGameChallenge_10_End)
 
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，万魔窟已开启！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，万魔窟已开启！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，万魔窟已开启！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，领主死前解除了万魔窟封印！！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，领主死前解除了万魔窟封印！！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，领主死前解除了万魔窟封印！！！！|r")
         endif
     endfunction
 
