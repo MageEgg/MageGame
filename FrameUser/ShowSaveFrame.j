@@ -116,6 +116,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
         RegisterShowSaveFrameData(1,'RY4N','RY4N',0,0,0,0)//测试先锋
+        RegisterShowSaveFrameData(1,'RY4P','RY4P',0,0,0,0)//魔芝星耀
         
 
         

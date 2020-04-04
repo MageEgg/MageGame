@@ -150,7 +150,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                         AddUnitRealState(Pu[1],48,10)
                         AddUnitRealState(Pu[1],27,2)
                         AddUnitRealState(Pu[1],25,10)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+200、每秒业力+10、被动触发概率+2%、冷却缩减+10%！") 
+                        AddPlayerTechResearched(Player(pid),'RY4P',1)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，星耀称号已激活！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif
