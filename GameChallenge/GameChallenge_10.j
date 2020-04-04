@@ -2,6 +2,11 @@ library GameChallenge10 uses GameChallengeBase
 
     function SendToGameChallenge_10_End()
         BJDebugMsg("SendToGameChallenge_10_End")
+        if  DzConA[14] == 1
+            //SendToGameChallenge_10(pid)
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本-万魔窟]：|r|cffff0000当前万魔窟暂未开放！！！|r")
+        endif
     endfunction
 
     function OpenGameChallenge10_BOSS()
