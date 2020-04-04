@@ -30,6 +30,14 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             num = num + 1
         endif
 
+        //新增
+        if  DzShop(Player(pid),"LB4") == true
+            num = num + 1
+        endif
+        if  DzShop(Player(pid),"CB2") == true
+            num = num + 1
+        endif
+
         return num
     endfunction
 
@@ -205,7 +213,27 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00木材礼包|r》已激活！")
+        endif
+        
+
+        if  GetPlayerTechCount(Player(pid),'RJ1X',true) == 1 //赞助礼包
+            shopnum = shopnum + 1
+            AddUnitRealState(Pu[1],17,10)
+            AddUnitRealState(Pu[1],47,20)
+            AddUnitRealState(Pu[1],49,100)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00赞助礼包|r》已激活！")
         endif 
+
+        if  GetPlayerTechCount(Player(pid),'RY2G',true) == 1 //幽冥之翼
+            shopnum = shopnum + 1
+            AddUnitRealState(Pu[1],15,20)
+            AddUnitRealState(Pu[1],16,20)
+            AddUnitRealState(Pu[1],31,20)
+            UnitAddItemEx(Pu[2],'ID14')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00幽冥之翼|r》已激活！")
+        endif
+
+
 
 
         //商城套装
@@ -215,6 +243,12 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],49,100)
             UnitAddItemEx(Pu[2],'CS03')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff003件套|r》已激活！")
+        endif
+        if  buynum >= 4
+            AddPlayerTechResearched(Player(pid),'RSHD',1)
+            AddUnitRealState(Pu[1],18,1)
+            AddUnitRealState(Pu[1],48,6)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff004件套|r》已激活！")
         endif
         if  buynum >= 5
             AddPlayerTechResearched(Player(pid),'RSHB',1)
@@ -231,7 +265,13 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             ReCollectFrameResources(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff008件套|r》已激活！")
         endif
-        
+        if  buynum >= 11
+            AddPlayerTechResearched(Player(pid),'RSHE',1)
+            AddUnitRealState(Pu[1],18,3)
+            AddUnitRealState(Pu[1],48,30)
+            UnitAddItemEx(Pu[2],'CS21')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0011件套|r》已激活！")
+        endif
 
         
 

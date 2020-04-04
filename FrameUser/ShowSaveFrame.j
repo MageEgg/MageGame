@@ -58,16 +58,22 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RJ1V','RJ1V',0,0,0,0)//金币礼包
         RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0)//木材礼包
         RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
+        RegisterShowSaveFrameData(5,'RJ1X','RJ1X',0,0,0,0)//赞助礼包
         RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
+        RegisterShowSaveFrameData(5,'RY2G','RY2G',0,0,0,0)//幽冥之翼
         RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0)//星月光环
         RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
         RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
         RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
+        RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
+        RegisterShowSaveFrameData(5,'RSHD','RSHD',0,0,0,0)//商城4件套
         RegisterShowSaveFrameData(5,'RSHB','RSHB',0,0,0,0)//商城5件套
         RegisterShowSaveFrameData(5,'RSHC','RSHC',0,0,0,0)//商城8件套
-        
+
+        RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
         
         
 
@@ -262,7 +268,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
     function IsSaveIdCanShow(int id,int page)->bool
         if  page == 1 or page == 2
             return true
-        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D'
+        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D' or id == 'RY2G'
             return true
         endif
         return false
@@ -370,7 +376,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 end
             elseif  page == 3
                 uid = id-'RH00'+'H000'
-                lv = 2//GetDzHeroExpLevel(pid,uid)
+                lv = GetDzHeroExpLevel(pid,uid)
                 if  lv == 0
                     use = 12
                 elseif  lv == 1
