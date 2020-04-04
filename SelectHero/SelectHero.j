@@ -65,13 +65,13 @@ scope SelectHero
         int dzalllv =  DzHeroExpLevelCount[0]
 
         if  dzalllv >= 6
-            AddEquipState(Pu[1],'RHD1')
+            SetPlayerTechResearchedEx(Player(pid),'RHD1')
         endif
         if  dzalllv >= 12
-            AddEquipState(Pu[1],'RHD2')
+            SetPlayerTechResearchedEx(Player(pid),'RHD2')
         endif
         if  dzalllv >= 20
-            AddEquipState(Pu[1],'RHD3')
+            SetPlayerTechResearchedEx(Player(pid),'RHD3')
         endif
         
 

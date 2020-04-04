@@ -1583,9 +1583,9 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         {
             group gg = CreateGroup()
             time = time - 1
-            if  time > 0 and GetUnitAbilityLevel(u1,'AZ98') == 0
-                x1 = x1 + xx
-                y1 = y1 + yy
+            x1 = x1 + xx
+            y1 = y1 + yy
+            if  time > 0 and GetUnitAbilityLevel(u1,'AZ98') == 0 and IsCanFlyTerrain(x1,y1) == true
                 SetUnitXY(u1,x1,y1)
                 SetUnitXY(u2,x1,y1)
                 GroupEnumUnitsInRange(gg,x1,y1,300,GroupHasUnitAddBuff(GetOwningPlayer(u1),wg,"",Buffxy,1,0))
