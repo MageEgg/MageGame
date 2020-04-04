@@ -362,6 +362,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         int uid = 0
         int exp = 0
         int use = 0
+        int num = 0
         //BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
@@ -385,7 +386,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     endif
                     h = h + 1
                 end
-            elseif  page == 3
+
+
+
+            elseif  id >= 'RH01' and id <= 'RH99'
                 uid = id-'RH00'+'H000'
                 lv = GetDzHeroExpLevel(pid,uid)
                 if  lv == 0
@@ -452,13 +456,38 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     SetTipsData(1,"",GetTypeIdName(id)+" - |cff00ff00已激活|r")
                 else
                     if  id >= 'RSHA' and id <= 'RSHZ'
-                        int butnum = GetPlayerBuyShopNumber(pid)
-                        if  id == 'RSHA' and butnum < 3
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(butnum)+"|r/3)")
-                        elseif  id == 'RSHB' and butnum < 5
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(butnum)+"|r/5)")
-                        elseif  id == 'RSHC' and butnum < 8
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(butnum)+"|r/8)")
+                        num = GetPlayerBuyShopNumber(pid)
+                        if  id == 'RSHA' and num < 3
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/3)")
+                        elseif  id == 'RSHB' and num < 5
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/5)")
+                        elseif  id == 'RSHC' and num < 8
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/8)")
+                        elseif  id == 'RSHD' and num < 4
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/4)")
+                        elseif  id == 'RSHE' and num < 11
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/11)")
+                        else
+                            SetTipsData(1,"",GetTypeIdName(id))
+                        endif
+                    elseif  id >= 'RHD1' and id <= 'RHD9'
+                        num = DzHeroExpLevelCount[0]
+                        if  id == 'RHD1'and num < 6
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/6)")
+                        elseif  id == 'RHD2' and num < 12
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/12)")
+                        elseif  id == 'RHD3' and num < 20
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/20)")
+                        elseif  id == 'RHD4' and num < 32
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/32)")
+                        elseif  id == 'RHD5' and num < 46
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/46)")
+                        elseif  id == 'RHD6' and num < 62
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/62)")
+                        elseif  id == 'RHD7' and num < 80
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/80)")
+                        elseif  id == 'RHD8' and num < 100
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/100)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
                         endif
@@ -546,7 +575,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     if  id > 0
                         
 
-                        if  page == 3
+                        if  id >= 'RH01' and id <= 'RH99'
                             lv = GetDzHeroExpLevel(pid,id-'RH00'+'H000')
                             if  lv > 0
                                 DzFrameSetTexture(BUTTON_Back[500+index][3],"war3mapImported\\UI_Hero_SaveLevel_"+I2S(lv)+".tga",0)
