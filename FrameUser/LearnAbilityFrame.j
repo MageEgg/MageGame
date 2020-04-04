@@ -629,7 +629,7 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
     function PlayerUseAbilityBook(int pid,int index,int itemid)
         int sid = GetHeroAbilityID(Pu[1],index)
         
-        if  sid == 0
+        if  sid == 0 or sid == 'S0Q1' or sid == 'S0W1'
             if  itemid == 'CS01'
                 PlayerAbilityDraw(pid,1,'IS03')
             elseif  itemid == 'CS03'
