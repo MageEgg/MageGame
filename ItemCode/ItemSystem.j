@@ -172,45 +172,9 @@ scope ItemSystem initializer InitItemSystem
         endif
     endfunction
 
-    //读取玩家抽技能次数
-    function GetPlayerDrawNum(int pid,int index)->int
-        return PlayerInt[pid][110+index]
-    endfunction
-    //增加玩家抽技能次数
-    function AddPlayerDrawNum(int pid,int index)
-        PlayerInt[pid][110+index] = PlayerInt[pid][110+index] + 1
-    endfunction
-    //读取玩家抽技能需求
-    function GetPlayerDrawUse(int pid,int itemid)->int
-        if  itemid == 'IS01' or itemid == 'IS06'
-            return 1
-        elseif  itemid == 'IS02' or itemid == 'IS07'
-            return 2
-        elseif  itemid == 'IS03' or itemid == 'IS08'
-            return 3
-        endif
-        return 0
-    endfunction
     
-    //抽技能
-    function PlayerAbilityDraw(int pid,int index,int itemid)
-        //int num = GetPlayerDrawNum(pid,index)
-        //int use = GetPlayerDrawUse(pid,itemid)
-
-
-             
-                
-        //if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= use
-            //AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
-            PlayerUseLearnAbilityBook(pid,index,itemid)
-            AddPlayerDrawNum(pid,index)
-        //else
-            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r抽取失败！玄铁不足"+I2S(use)+"。")
-        //endif
-        
-           
- 
-    endfunction
+    
+    
     
 
     
@@ -527,7 +491,6 @@ scope ItemSystem initializer InitItemSystem
 
     
     
-
     
     function UseItemActions()
         unit u1 = GetTriggerUnit()
@@ -545,17 +508,17 @@ scope ItemSystem initializer InitItemSystem
         endif
 
         if  itemid == 'CS01'
-            PlayerAbilityDraw(pid,1,'IS03')
+            PlayerUseAbilityBook(pid,1,itemid)
         elseif  itemid == 'CS02'
             GivePlayerRunePrizeFrame(pid)
         elseif  itemid == 'CS03'
-            PlayerAbilityDraw(pid,2,'IS06')
+            PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid == 'CS04'
-            PlayerAbilityDraw(pid,1,'IS02')
+            PlayerUseAbilityBook(pid,1,itemid)
         elseif  itemid == 'CS05'
-            PlayerAbilityDraw(pid,2,'IS07')
+            PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid == 'CS06'
-            PlayerAbilityDraw(pid,2,'IS08')
+            PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
         elseif  itemid >= 'IS21' and itemid <= 'IS23'

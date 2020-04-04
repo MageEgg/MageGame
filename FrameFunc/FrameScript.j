@@ -385,6 +385,8 @@
                         endif
                     elseif  id == 652 or id == 653
                         BoxShowResources(pid,id)
+                    elseif  id >= 751 and id <= 756
+                        BoxShowGem(pid,id-750)
                     elseif  id >= 901 and id <= 908
                         BoxShowRuneFrame(pid,id-900)
                     elseif  id >= 911 and id <= 913

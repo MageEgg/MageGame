@@ -271,6 +271,18 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     endfunction
 
 
+    //宝珠
+
+    function BoxShowGem(int pid,int index)
+        int id = 0
+        DzFrameShow(UI_TipsHead, true)
+        SetTipsData(1,"","宝物槽 - |cff808080未解锁|r")
+        
+        SetTipsData(10,"","|cff808080暂未开放|r")
+        
+        ShowTipsUI()
+    endfunction
+
 
     function HeroFrameUIInit()
         
@@ -404,7 +416,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         
 
         for bz = 1,6
-            CreateButton(750+bz,Button.frameid,TYPE_BUTTON,0,Button.frameid,7,0.135,0.02-bz*0.02,0.015,0.015,"war3mapImported\\UI_baowu0.tga")
+            CreateButton(750+bz,Button.frameid,TYPE_BUTTON,0,Button.frameid,7,0.192,0.0225-bz*0.018,0.015,0.015,"war3mapImported\\UI_baowu0.tga")
         end
         
         
