@@ -60,6 +60,19 @@ scope SelectHero
             AddUnitRealState(Pu[1],19,5)
         endif
         */
+
+        
+        int dzalllv =  DzHeroExpLevelCount[0]
+
+        if  dzalllv >= 6
+            AddEquipState(Pu[1],'RHD1')
+        endif
+        if  dzalllv >= 12
+            AddEquipState(Pu[1],'RHD2')
+        endif
+        if  dzalllv >= 20
+            AddEquipState(Pu[1],'RHD3')
+        endif
         
 
         if  Player(pid)==GetLocalPlayer()
