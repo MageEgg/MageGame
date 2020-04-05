@@ -156,9 +156,6 @@ library DzDataSetting uses DzBase
         elseif  Group == 16 
             if  flag == 1 //战勋
                 max = GamePuOverDay*MaxHeroBaseMedal*MaxGameLevel
-                if  max > 3840 
-                    max = 3840
-                endif
             elseif  flag == 2 //当天战勋点
                 max = MaxHeroBaseMedal*MaxGameLevel
             else
