@@ -1081,7 +1081,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             AddUnitIntStateTimer(wu,'S520',1,6)
         endif
 
-        if  GetUnitIntState(wu,'FB14') > 0 or GetUnitIntState(wu,'FF14')
+        if  GetUnitIntState(wu,'FB14') > 0 or GetUnitIntState(wu,'FF14') > 0
             UnitAddLife(wu,GetUnitState(wu,UNIT_STATE_MAX_LIFE)*0.15)
         endif
 
