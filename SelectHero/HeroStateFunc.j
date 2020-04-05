@@ -52,6 +52,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             BJDebugMsg("DzAPI_Map_IsBlueVIP")
             if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
                 AddPlayerTechResearched(Player(pid),'RK1A',1)
+                buynum = buynum + 1
             endif
         endif
 
@@ -60,44 +61,23 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             BJDebugMsg("DzAPI_Map_GetGuildName")
             if  GetPlayerTechCount(Player(pid),'RY4D',true) == 0 //金鼠送福
                 AddPlayerTechResearched(Player(pid),'RY4D',1)
+                buynum = buynum + 1
             endif
             if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
                 AddPlayerTechResearched(Player(pid),'RK1A',1)
+                buynum = buynum + 1
             endif
             if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
                 AddPlayerTechResearched(Player(pid),'RY2D',1)
+                buynum = buynum + 1
             endif
+            if  GetPlayerTechCount(Player(pid),'RJ1X',true) == 0 //赞助礼包
+                AddPlayerTechResearched(Player(pid),'RJ1X',1)
+                buynum = buynum + 1
+            endif
+            
         endif
 
-        /*
-        if  IsPlayerIn_MZRPG_Admin(pid) == true
-            BJDebugMsg("IsPlayerIn_MZRPG_Admin")
-            if  GetPlayerTechCount(Player(pid),'RY1D',true) == 0 //星月光环
-                AddPlayerTechResearched(Player(pid),'RY1D',1)
-            endif
-            if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
-                AddPlayerTechResearched(Player(pid),'RY2D',1)
-            endif 
-            if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
-                AddPlayerTechResearched(Player(pid),'RY3D',1)
-            endif
-            if  GetPlayerTechCount(Player(pid),'RY4D',true) == 0 //金鼠送福
-                AddPlayerTechResearched(Player(pid),'RY4D',1)
-            endif 
-            if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
-                AddPlayerTechResearched(Player(pid),'RK1A',1)
-            endif
-            if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 0 //封神礼包
-                AddPlayerTechResearched(Player(pid),'RJ1U',1)
-            endif 
-            if  GetPlayerTechCount(Player(pid),'RJ1V',true) == 0 //金币礼包
-                AddPlayerTechResearched(Player(pid),'RJ1V',1)
-            endif 
-            if  GetPlayerTechCount(Player(pid),'RJ1W',true) == 0 //木材礼包
-                AddPlayerTechResearched(Player(pid),'RJ1W',1)
-            endif 
-        endif
-        */
         /////////////////////等级赠送////////////////////////
 
         if  lv >= 18 //幻莲仙翼
@@ -110,16 +90,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RY3D',1)
         endif
 
-        /*
-        if  lv >= 24 //金鼠送福
-            AddPlayerTechResearched(Player(pid),'RY4D',1)
-        endif
 
-        if  lv >= 32 //金鼠送福
-            AddPlayerTechResearched(Player(pid),'RY3D',1)
-        endif
-
-        */
         /////////////////////载入属性////////////////////////
 
 

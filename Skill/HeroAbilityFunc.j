@@ -191,7 +191,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         int num = 2
         int level = lv
         effect eff = AddSpecialEffect("effect_by_wood_quanhuang_bashenanzhuazi2.mdl",x1,y1)
-        if  GetUnitIntState(u1,'FB06') > 0
+        if  GetUnitIntState(u1,'FB06') > 0 or GetUnitIntState(u1,'FF06') > 0 
             num = num  + R2I(GetUnitRealState(u1,9)+1)/7500
         endif
         EXEffectMatRotateZ( eff, GetRandomReal(1,360) )
@@ -369,12 +369,12 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,f/0.01745,75,1),f,damage,200,600,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                 SetUnitAnimationByIndex(u1,2)
                 if  time == 1
-                    if  GetUnitIntState(u1,'FB11') == 0
+                    if  GetUnitIntState(u1,'FB11') == 0 and GetUnitIntState(u1,'FF11') == 0
                         time = 0
                     endif
                 endif
             else
-                if  GetUnitIntState(u1,'FB11') > 0
+                if  GetUnitIntState(u1,'FB11') > 0 or GetUnitIntState(u1,'FF11') > 0
                     LocAddEffectSetSize(x1+50*Cos(ang),y1+50*Cos(ang),"effect_fire-boom-new.mdl",0.5)
                     CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,2),ang,GetUnitAttack(u1)*7.5,400,1200,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                     CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
@@ -990,15 +990,25 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction
 
     function SpellS517Spell(unit wu,unit tu,real damage,int lv)
+        real add = 0
         if  YDWEGetUnitAbilityState(wu, 'AC05', 1) == 0
             real x1 = GetUnitX(tu)
             real y1 = GetUnitY(tu)
             if  lv >= 4
                 SpellS517Timer(wu)
             endif
-            if  lv >= 2
-                damage = damage * 1.4
+
+            if  GetUnitIntState(wu,'FB16') > 0
+                add = 0.3
             endif
+            if  lv >= 2
+                add = 0.4
+            endif
+
+            if  add > 0
+                damage = damage * (1+add)
+            endif
+            
             IndexGroup g = IndexGroup.create()
             AddEffectInAreaSetSize(x1,y1,250,0.5,10,"effect_hero_attack1.mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,2,0))
@@ -1011,36 +1021,24 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
     function SpellS518Spell(unit wu)
         int lv = GetHeroAbilityLevelByIndex(wu,5)
-        if  lv >= 4
+        if  lv >= 3
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetHeroStr(wu,true))*5.4,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            if  lv >= 4
+                UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetHeroStr(wu,true))*6.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            else
+                UnitDamageGroup(wu,g.ejg,(GetUnitAttack(wu)+GetHeroStr(wu,true))*3.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            endif
             LocAddEffectSetSize(GetUnitX(wu),GetUnitY(wu),"effect2_az_magina[2]_v.mdl",2)
             g.destroy()
         endif
 
     endfunction
     function SpellS518(unit wu,int id)
-        
-        int lv = GetHeroAbilityLevelByIndex(wu,5)
-    
-        if  lv >= 3
-            if  ChanceEx(wu,'S518',100) == true
-                SetEquipStateOfPlayer(wu,id,0.1)
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，额外获得10%道果属性！")
-            endif
-        elseif  lv >= 2
-            if  ChanceEx(wu,'S518',70) == true
-                SetEquipStateOfPlayer(wu,id,0.1)
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，额外获得10%道果属性！")
-            endif
-        else
-            if  ChanceEx(wu,'S518',40) == true
-                SetEquipStateOfPlayer(wu,id,0.1)
-                DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运行九转神功，额外获得10%道果属性！")
-            endif
-        endif
-        
+
+        SetEquipStateOfPlayer(wu,id,0.2)
+        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运转九转神功，额外获得20%道果属性！")
+
     endfunction
 
     function SpellS519(unit wu,real dam,int lv)
@@ -1075,19 +1073,19 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction
 
     function SpellS520(unit wu,int lv)
-        unit u1 = wu
-        AddUnitStateExTimer(u1,18,24,6)
-        if  lv >= 2
-            
-            AddUnitIntState(u1,'S520',1)
-            TimerStart(6,false)
-            {
-                AddUnitIntState(u1,'S520',-1)
-                endtimer
-                flush locals
-            }
-            
+        if  GetUnitIntState(wu,'H520') == 0
+            AddUnitRealStateTimer(wu,18,18,6)
+            AddUnitIntStateTimer(wu,'H520',1,6)
         endif
+        if  lv >= 2
+            AddUnitIntStateTimer(wu,'S520',1,6)
+        endif
+
+        if  GetUnitIntState(wu,'FB14') > 0 or GetUnitIntState(wu,'FF14')
+            UnitAddLife(wu,GetUnitState(wu,UNIT_STATE_MAX_LIFE)*0.15)
+        endif
+
+
         flush locals
     endfunction
 

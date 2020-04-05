@@ -495,7 +495,11 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                         AddUnitRealState(wu,9,40)
                     endif
                 endif
-
+            elseif  uid == 'H018'
+                if  newlv == 2
+                    AddUnitRealState(wu,64,15)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：太乙真人运转九转神功，经验加成|Cffff8000+15%|r")
+                endif
             elseif  uid == 'H022'
                 if  newlv == 2
                     AddUnitRealState(wu,9,20)

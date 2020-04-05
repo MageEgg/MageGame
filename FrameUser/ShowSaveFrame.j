@@ -131,6 +131,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
+        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
         RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
@@ -195,7 +196,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
         RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
         RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
-//        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
+        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
         RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0)//嫦娥
         RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0)//疾风雷震子
         RegisterShowSaveFrameData(3,'RH23','RH23',0,0,0,0)//狐媚妲己
@@ -218,8 +219,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv2
         RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv3
         RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv4
-//        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv5
-//        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
+        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv5
+        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
 //        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
 //        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
 //        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9

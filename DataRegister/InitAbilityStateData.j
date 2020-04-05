@@ -75,7 +75,7 @@ call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,9,"道法自然","|CffFFC9266|r
 call InitAbilityData('S501',2,0,1,3.33,0,0,0,0,2,12,0,"天罚连击","突刺至目标区域并挥砍|Cffffc9263|r次，每次造成|Cffffc926攻击*333%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
 call InitAbilityData('S502',3,0,1,2.4,0,0,0,0,2,10,0,"土遁袭杀","钻入地底突进至目标身后进行|Cffffc9262次|r爪击，每次造成|Cffffc926攻击*240%|r伤害。\n\n拥有法宝|Cff00bfff捆仙绳|r时：每75%攻速增加一次爪击。","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
 call InitAbilityData('S503',1,0,2,6.2,0,0,0,0,2,4,1,"玉清合荒","若1200码范围内，有敌/友军|Cffffc926释放主动技能|r，你对自身周围造成|Cffffc926业力*620%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS503.blp")
-call InitAbilityData('S504',3,0,1,2.88,0,0,0,0,2,10,2,"火尖枪舞","突向前方瞬间刺击|Cffffc9263|r次，每次造成|Cffffc926攻击*288%|r伤害。\n\n拥有法宝|Cffff26ff火尖枪|r时：额|Cfff0f0f0外发动一次弑龙枪，造成|r|Cffffc926攻击*750%|r|Cfff0f0f0伤害。|r","ReplaceableTextures\\CommandButtons\\BTNS504.blp")
+call InitAbilityData('S504',3,0,1,2.88,0,0,0,0,2,10,2,"火尖枪舞","突向前方瞬间刺击|Cffffc9263|r次，每次造成|Cffffc926攻击*288%|r伤害。\n\n拥有法宝|Cffff26ff火尖枪|r时：额外发动一次弑龙枪，造成|Cffffc926攻击*750%|r|Cfff0f0f0伤害。|r","ReplaceableTextures\\CommandButtons\\BTNS504.blp")
 call InitAbilityData('S505',2,0,2,3.6,0,0,0,0,2,12,1,"一气化三清","幻化|Cffffc9262|r个分身，每个分身拥有本体的|Cffffc92637.5%|r攻击力。\n4秒后分身爆炸，造成|Cffffc926业力*360%|r伤害。\n\n拥有法宝|Cffffd24d太极图|r时：分身数量|Cffffc926+2|r\n\n|Cff00ff7f分身6%概率造成4倍致命一击|r","ReplaceableTextures\\CommandButtons\\BTNS505.blp")
 call InitAbilityData('S506',1,0,0,0,0,0,0,0,0,0,1,"斩仙飞刀","斩杀低于|Cffffbf006%|r最大生命值的敌人。","ReplaceableTextures\\CommandButtons\\BTNS506.blp")
 call InitAbilityData('S507',1,0,1,0,0,0,0,0,0,10,4,"万物亲和","攻击|Cffffc9266%|r概率召唤|Cffffc9261个元素体|r。\n元素体继承你|Cffffc92670%攻击力|r，攻击间隔0.5。持续6秒。","ReplaceableTextures\\CommandButtons\\BTNS507.blp")
@@ -88,11 +88,11 @@ call InitAbilityData('S513',3,0,0,0,0,0,0,0,0,10,1,"身外法身","使用毫毛�
 call InitAbilityData('S514',2,0,2,7.2,0,0,0,0,2,8,1,"冰封万里","对自身周围发动一次冰封术，造成|Cffffd24d业力*720%|r伤害\n\n|Cfff0f0f0拥有法宝|r|Cffffc926四海瓶|r|Cfff0f0f0时，|r额外发动一次冰暴，造成|Cffffd24d业力*900%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS514.blp")
 call InitAbilityData('S515',1,0,1,11.5,0,0,0,0,2,0,2,"日月珠","|CffFFC926每次施法|r凝聚|Cffffc9261|r颗|Cffffc926日月珠|r环绕自身，数量达到|Cffffc9264颗|r时，向攻击目标造成|Cffffc926攻击*1150%|r范围伤害。","ReplaceableTextures\\CommandButtons\\BTNS515.blp")
 call InitAbilityData('S516',2,0,0,0,0,0,0,0,0,15,0,"悔悟","|CffFFD24D自裁|r悔过，英雄立即死亡，所有人回复|Cffffd24d50%|r生命，|Cffffd24d6|r秒内提高|Cffffd24d30%|r技能伤害。","ReplaceableTextures\\CommandButtons\\BTNS516.blp")
-call InitAbilityData('S517',1,0,1,6.25,0,0,0,0,0,8,0,"乾坤-阵","每|Cffffc9268秒|r对目标范围发动枪阵，造成|Cffffc926攻击*625%|r伤害，并|Cffffc926眩晕2秒|r。","ReplaceableTextures\\CommandButtons\\BTNS517.blp")
+call InitAbilityData('S517',1,0,1,6.25,0,0,0,0,0,8,0,"乾坤-阵","每|Cffffc9268秒|r对目标范围发动枪阵，造成|Cffffc926攻击*625%|r伤害，并|Cffffc926眩晕2秒|r。\n\n拥有法宝|Cffffc926风火轮|r时，造成伤害|Cffffc926+30%|r","ReplaceableTextures\\CommandButtons\\BTNS517.blp")
 call InitAbilityData('S518',1,0,0,0,0,0,0,0,0,0,3,"九转神功","每次突破境界获得额外|Cffffbf0020%|r收益。","ReplaceableTextures\\CommandButtons\\BTNS518.blp")
 call InitAbilityData('S519',1,0,2,3.6,0,0,0,0,2,0,1,"天眼神光","|CffFFD24D攻击或施法|r时，|Cffffd24d4%|r几率开启天眼发射神光，造成|Cffffd24d业力*360%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS519.blp")
-call InitAbilityData('S520',2,0,0,0,0,0,0,0,0,10,2,"莲花化身","使用后|Cffffc9266|r秒内|Cffffc926伤害减免+18%|r。","ReplaceableTextures\\CommandButtons\\BTNS520.blp")
-call InitAbilityData('S521',2,0,2,2,0,0,0,0,2,10,1,"月盈","每秒对周围单位造成|Cffffc926业力*200%|r技能伤害，持续|Cffffc9266秒|r。","ReplaceableTextures\\CommandButtons\\BTNS521.blp")
+call InitAbilityData('S520',2,0,0,0,0,0,0,0,0,10,2,"莲花化身","使用后|Cffffc9266|r秒内|Cffffc926伤害减免+18%|r。\n\n拥有法宝|Cffff26ff混天绫|r时：释放莲花化身回复自身|Cffffc92615%|r生命。","ReplaceableTextures\\CommandButtons\\BTNS520.blp")
+call InitAbilityData('S521',2,0,2,2,0,0,0,0,2,10,1,"月盈","每秒对周围单位造成|Cffffc926业力*250%|r技能伤害，持续|Cffffc9266秒|r。","ReplaceableTextures\\CommandButtons\\BTNS521.blp")
 call InitAbilityData('S522',1,0,0,0,0,0,0,0,0,0,0,"风雷咒术","获得风雷咒术加持，攻击速度提高|Cffffd24d50%|r|Cfff0f0f0。","ReplaceableTextures\\CommandButtons\\BTNS522.blp")
 call InitAbilityData('S523',2,0,0,0,0,0,0,0,0,12,2,"狐媚术","自身范围内友军回复|Cffffd24d20%|r生命并|Cffffd24d解除所有负面效果|r，|Cffffd24d4|rs内提高|Cffffd24d15%攻击|r。","ReplaceableTextures\\CommandButtons\\BTNS523.blp")
 call InitAbilityData('S524',8,0,2,2,0,0,0,0,2,10,3,"道友请留步","对目标范围进行蛊惑，每秒造成|Cffffc926业力*200%|r技能伤害，持续|Cffffc9264|r秒。","ReplaceableTextures\\CommandButtons\\BTNS524.blp")
@@ -112,7 +112,7 @@ InitAbilityStringEx('S503',"冷却时间2秒","冷却时间移除","判定范围
 InitAbilityStringEx('S504',"刺击次数+1","刺击次数+1","刺击次数+2","","")
 InitAbilityStringEx('S505',"幻化3个分身","幻化4个分身","幻化6个分身","","")
 InitAbilityStringEx('S506',"斩杀血限提高至8%","斩杀血限提高至10%","斩杀血限提高至15%","","")
-InitAbilityStringEx('S507',"元素体继承100%攻速加成。","元素体继承攻击特效。","元素继承120%攻击力","元素体属于召唤物机制：类同魔兽的幽灵狼,重复触发和主动召唤都会替换场上已存在的召唤物。数量只受召唤物数量影响。（即法宝上召唤物数量+2，女娲这个技能就召3个）","")
+InitAbilityStringEx('S507',"元素体获得致命一击。","元素体继承攻击特效。","元素继承120%攻击力","元素体属于召唤物机制：类同魔兽的幽灵狼,重复触发和主动召唤都会替换场上已存在的召唤物。数量只受召唤物数量影响。（即法宝上召唤物数量+2，女娲这个技能就召3个）","")
 InitAbilityStringEx('S508',"每层妖狐印记提高9%攻速","每层妖狐印记提高12%攻速","镜花之舞伤害+80%","","")
 InitAbilityStringEx('S509',"心剑状态下闪避额外提高15%","攻击速度+40%","残影伤害+30%","","")
 InitAbilityStringEx('S510',"幽冥龙形态下，攻击速度+45%","赤炎虎形态下触发暴击时，对周围造成攻击*300%技能伤害，内置冷却2秒","人形态下，施放Q技能时对周围造成业力*875%伤害，内置冷却2秒","","")
@@ -123,9 +123,9 @@ InitAbilityStringEx('S514',"伤害范围+100%","冰封术伤害+50%","冰封术�
 InitAbilityStringEx('S515',"日月珠伤害+40%","日月珠伤害+60%","日月珠伤害+80%","","")
 InitAbilityStringEx('S516',"自裁后立即复活，并对周围单位造成攻击*1200%伤害。","回复满额生命","技能伤害提高至60%","","")
 InitAbilityStringEx('S517',"枪阵伤害+40%","触发致命一击时，降低该技能0.5秒冷却。","发动后4秒内致命一击概率+5%，致命倍率+200%","","")
-InitAbilityStringEx('S518',"概率提升至70%","概率提升至100%","重塑：施放技能对自身周围造成（攻击+业力）*540%技能伤害","","")
+InitAbilityStringEx('S518',"经验加成+15%","重塑：施放技能对自身周围造成（攻击+业力）*300%技能伤害","重塑伤害翻倍","","")
 InitAbilityStringEx('S519',"施法100%几率开启天眼","攻击开启天眼几率翻倍","神光伤害翻倍","","")
-InitAbilityStringEx('S520',"持续时间内，每次攻击附加自身最大生命值*5%伤害","免疫技能负面效果","受到技能伤害时，回复30%最大生命值","","")
+InitAbilityStringEx('S520',"持续时间内，每次攻击附加自身最大生命值*3%伤害","免疫技能负面效果","持续时间内，承受技能伤害致死时，回复20%最大生命。","","")
 InitAbilityStringEx('S521',"月盈伤害+30%","月盈伤害+50%","攻击3%概率重置月盈冷却。","","")
 InitAbilityStringEx('S522',"攻击速度提高至70%","攻击速度提高至90%","攻击速度提高至150%","","")
 InitAbilityStringEx('S523',"回复40%生命","对范围内的敌对单位造成攻击*1000%技能伤害。","攻击加成效果+15%。","","")
@@ -136,9 +136,6 @@ InitAbilityStringEx('S527',"处决目标获得神仙搭救，立即原地复活�
 InitAbilityStringEx('S528',"勇猛：施放Q技能时，50%概率对周围造成攻击*1200%伤害。","技能伤害+25%","勇猛必定触发","","")
 InitAbilityStringEx('S529',"触发时对自身周围600码造成生命*60%伤害","被复活单位5s内攻击速度+30%，暴击率+10%。","冷却时间降低至10秒","","")
 InitAbilityStringEx('S530',"攻击必定命中。","触发致命一击时回复自身3%最大生命值","领悟三重射，可触发攻击特效","","")
-
-
-
 
 
 

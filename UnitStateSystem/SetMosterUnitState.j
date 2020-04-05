@@ -264,7 +264,7 @@ library UnitStateSet initializer UnitStateSetInit uses State
     function LoadDzConData()
         string con = DzCon("ND1_7")
         if  con == ""
-            con = "00000050000000500000007500000110000001600000022500000300"
+            con = "00000050000000500000006500000090003001400030021000400300"
         endif
         int data1 = 0 
         int data2 = 0
@@ -297,11 +297,11 @@ library UnitStateSet initializer UnitStateSetInit uses State
 
         InitMostetStateRatio(1,0,50)
         InitMostetStateRatio(2,0,50)
-        InitMostetStateRatio(3,0,75)
-        InitMostetStateRatio(4,0,110)
-        InitMostetStateRatio(5,0,160)
-        InitMostetStateRatio(6,0,225)
-        InitMostetStateRatio(7,0,300)
+        InitMostetStateRatio(3,0,65)
+        InitMostetStateRatio(4,0,90)
+        InitMostetStateRatio(5,30,140)
+        InitMostetStateRatio(6,30,210)
+        InitMostetStateRatio(7,40,300)
 
         LoadDzConData()
         
