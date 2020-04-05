@@ -1,4 +1,4 @@
-library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengDeath
+library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengeDeath
     
     real array AttackRoomPostion[12][600] 
     bool array AttackRoomUnitBool
