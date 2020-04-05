@@ -44,6 +44,8 @@
 
 #include "MageGame\\DzSave\\DzSave.j" 
 
+#include "MageGame\\DzSave\\DzUnlocTech.j"
+
 //属性系统
 #include "MageGame\\UnitStateSystem\\DamageCode.j"
 
@@ -57,6 +59,7 @@
 
 //物品系统
 #include "MageGame\\ItemCode\\ItemGameFunc.j"
+#include "MageGame\\ItemCode\\ItemAttackUnitChallenge.j"
 #include "MageGame\\ItemCode\\ItemMeridians.j"
 #include "MageGame\\ItemCode\\ItemSystem.j"
 
@@ -73,7 +76,8 @@
 #include "MageGame\\GameChallenge\\GameChallenge_8.j"
 #include "MageGame\\GameChallenge\\GameChallenge_9.j"
 #include "MageGame\\GameChallenge\\GameChallenge_10.j"
-#include "MageGame\\GameChallenge\\GameChallengDeath.j"
+#include "MageGame\\GameChallenge\\GameChallenge_11.j"
+#include "MageGame\\GameChallenge\\GameChallengeDeath.j"
 
 //选择英雄
 #include "MageGame\\SelectHero\\HeroStateFunc.j"
@@ -94,3 +98,6 @@
 #include "MageGame\\DataRegister\\InitAllTypeIdData.j"
 
 #include "MageGame\\DataRegister\\InitPrizeData.j"
+
+#include "MageGame\\DataRegister\\InitNanduState.j"
+

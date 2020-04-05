@@ -663,7 +663,7 @@ scope DeathEvent initializer InitDeathEvent
             PlayerUnit[pid2][6] = null
         endif
         //剧情任务等
-        GameChallengDeathEvent(u2,u1)
+        GameChallengeDeathEvent(u2,u1)
 
         if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
