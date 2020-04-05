@@ -366,7 +366,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             YDWESetUnitAbilityState(wu,k, 1,YDWEGetUnitAbilityState(wu, k, 1)-0.5)
             YDWESetUnitAbilityState(wu,k2, 1,YDWEGetUnitAbilityState(wu, k2, 1)-0.5)
         end
-        AddEffectInArea(GetUnitX(tu),GetUnitY(tu),380,15,"effect2_az_coco_e2.mdl")
+        AddEffectInArea(GetUnitX(tu),GetUnitY(tu),350,9,"effect2_az_coco_e2.mdl")
         GroupEnumUnitsInRange(gg,GetUnitX(tu),GetUnitY(tu),400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         GroupClear(gg)
