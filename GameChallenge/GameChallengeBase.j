@@ -4,41 +4,48 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define unitcos unitplayercos[pid]
 
-    int array       GameChallengPlayerInt[12][680]
-    unit array      GameChallengPlayerUnit[12][680]
-    bool array      GameChallengPlayerBool[12][680]
+    int array       GameChallengePlayerInt[12][680]
+    unit array      GameChallengePlayerUnit[12][680]
+    bool array      GameChallengePlayerBool[12][680]
+    real array      GameChallengeArrayReal[12][680]
 
-    int array      GameChallengOperaWay
+    int array      GameChallengeOperaWay
 
-    unit array      GameChallengMapUnit
+    unit array      GameChallengeMapUnit
 
     bool array      GameTeamChallengeBool
 
-    #define GameChallengInt                 GameChallengPlayerInt[pid]
-    #define GameChallengUnit                GameChallengPlayerUnit[pid]
-    #define GameChallengBool                GameChallengPlayerBool[pid]
+    #define GameChallengeInt                GameChallengePlayerInt[pid]
+    #define GameChallengeUnit               GameChallengePlayerUnit[pid]
+    #define GameChallengeBool               GameChallengePlayerBool[pid]
+    #define GameChallengeReal               GameChallengePlayerReal[pid]
 
-    #define PlayerInChallengeShowUnit       GameChallengUnit[500]
-    #define IsPlayerInChallenge             GameChallengBool[500]
-    #define IsFinshChallenge(num)           GameChallengBool[500+num]
+    #define PlayerInChallengeShowUnit       GameChallengeUnit[500]
+    #define IsPlayerInChallenge             GameChallengeBool[500]
+    #define IsFinshChallenge(num)           GameChallengeBool[500+num]
 
-    #define IsPlayerInTeamChallenge         GameChallengBool[550]
+    #define IsPlayerInTeamChallenge         GameChallengeBool[550]
 
-    #define PlayerInChallengeNumber         GameChallengInt[500]
-    #define PlayerChallengeOverCosNum       GameChallengInt[501]
+    #define PlayerInChallengeNumber         GameChallengeInt[500]
+    #define PlayerChallengeOverCosNum       GameChallengeInt[501]
 
-    #define PlayerChallengeTimeCosNum(num)  GameChallengInt[510+num]
+    #define PlayerChallengeTimeCosNum(num)  GameChallengeInt[510+num]
 
-    #define GameBiaoJI                      GameChallengMapUnit
+    #define GameBiaoJI                      GameChallengeMapUnit
 
-    #define GameChallengLeagueUnit(num)     GameChallengMapUnit[50+num]
+    #define GameChallengLeagueUnit(num)     GameChallengeMapUnit[50+num]
 
-    #define GameTeamChallengUnit(num)       GameChallengMapUnit[100+num]
+    #define GameTeamChallengUnit(num)       GameChallengeMapUnit[100+num]
 
-    #define GameChalleng_0_JZY              GameChallengMapUnit[500]
-    #define GameChalleng_MJ_BOSS            GameChallengMapUnit[501]
+    #define GameChallenge_0_JZY             GameChallengeMapUnit[500]
+    #define GameChallenge_MJ_BOSS           GameChallengeMapUnit[501]
 
-    #define GameTeamChallengeInt(num)       GameChallengOperaWay[50+num]
+    #define GameTeamChallengeInt(num)       GameChallengeOperaWay[50+num]
+
+    #define GameChallengeWM_OriginX         GameChallengeReal[0]
+    #define GameChallengeWM_OriginY         GameChallengeReal[1]
+    #define GameChallengeWM_MX              GameChallengeReal[2]
+    #define GameChallengeWM_MY              GameChallengeReal[3]
 
     #define UnitAPOfPlayer 0
 
@@ -49,6 +56,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     rect array ChallengeGameRct
 
     #define ChallengeRct_MJ                 ChallengeGameRct  //1-10
+    #define ChallengeRct_WM(num)            ChallengeGameRct[10+num]  //1-10
 
     texttag array GameChallengeTexttag
 
@@ -304,10 +312,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         y = OriginalDefendY - y
         for pid = 0,3
             if  IsPlaying(pid) == true 
-                RemoveUnit(GameChallengUnit[200])
-                GameChallengUnit[200] = null
-                RemoveUnit(GameChallengUnit[201])
-                GameChallengUnit[201] = null
+                RemoveUnit(GameChallengeUnit[200])
+                GameChallengeUnit[200] = null
+                RemoveUnit(GameChallengeUnit[201])
+                GameChallengeUnit[201] = null
                 PlayerReviveX = -6560
                 PlayerReviveY = -6592
                 UnitAddAbility(Pu[1],'AZ96')
@@ -382,15 +390,15 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         for pid = 0,3
             if  IsPlaying(pid) == true 
                 if  show == true
-                    UnitRemoveAbility(GameChallengUnit[200],'Apiv')
-                    UnitRemoveAbility(GameChallengUnit[201],'Apiv')
-                    UnitRemoveAbility(GameChallengUnit[202],'Apiv')
-                    UnitRemoveAbility(GameChallengUnit[203],'Apiv')
+                    UnitRemoveAbility(GameChallengeUnit[200],'Apiv')
+                    UnitRemoveAbility(GameChallengeUnit[201],'Apiv')
+                    UnitRemoveAbility(GameChallengeUnit[202],'Apiv')
+                    UnitRemoveAbility(GameChallengeUnit[203],'Apiv')
                 else
-                    UnitAddAbility(GameChallengUnit[200],'Apiv')
-                    UnitAddAbility(GameChallengUnit[201],'Apiv')
-                    UnitAddAbility(GameChallengUnit[202],'Apiv')
-                    UnitAddAbility(GameChallengUnit[203],'Apiv')
+                    UnitAddAbility(GameChallengeUnit[200],'Apiv')
+                    UnitAddAbility(GameChallengeUnit[201],'Apiv')
+                    UnitAddAbility(GameChallengeUnit[202],'Apiv')
+                    UnitAddAbility(GameChallengeUnit[203],'Apiv')
                 endif
             endif
         end
@@ -423,36 +431,36 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                 if  pid == 0
                     x = -7584+30
                     y = -5312
-                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-280,y,0)
-                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-450,y,0)
+                    GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-280,y,0)
+                    GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-450,y,0)
                 elseif  pid == 1
                     x = -5184
                     y = -6240-30
-                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+280,270)
-                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+450,270)
+                    GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+280,270)
+                    GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+450,270)
                 elseif  pid == 2
                     x = -6240-30
                     y = -8512
-                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+280,y,180)
-                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+450,y,180)
+                    GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+280,y,180)
+                    GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+450,y,180)
                 elseif  pid == 3
                     x = -8640
                     y = -7584+30
-                    GameChallengUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-280,90)
-                    GameChallengUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-450,90)
+                    GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-280,90)
+                    GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-450,90)
                 endif 
-                GameChallengUnit[200] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,0,0,1.0)
-                EXSetUnitMoveType(GameChallengUnit[200],0x01)
-                GameChallengUnit[201] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,0,1.1)
-                EXSetUnitMoveType(GameChallengUnit[201],0x01)
-                UnitAddAbility(GameChallengUnit[200],'Apiv')
-                UnitAddAbility(GameChallengUnit[201],'Apiv')
-                CreateTrigUnitInRange(GameChallengUnit[201],120,function SendOperaRectRange)
+                GameChallengeUnit[200] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,0,0,1.0)
+                EXSetUnitMoveType(GameChallengeUnit[200],0x01)
+                GameChallengeUnit[201] = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,0,1.1)
+                EXSetUnitMoveType(GameChallengeUnit[201],0x01)
+                UnitAddAbility(GameChallengeUnit[200],'Apiv')
+                UnitAddAbility(GameChallengeUnit[201],'Apiv')
+                CreateTrigUnitInRange(GameChallengeUnit[201],120,function SendOperaRectRange)
 
                 for num = 0,1
-                    EXSetUnitMoveType(GameChallengUnit[202+num],0x01)
-                    SetUnitColor(GameChallengUnit[202+num], PLAYER_COLOR_YELLOW )
-                    UnitAddAbility(GameChallengUnit[202+num],'Apiv')
+                    EXSetUnitMoveType(GameChallengeUnit[202+num],0x01)
+                    SetUnitColor(GameChallengeUnit[202+num], PLAYER_COLOR_YELLOW )
+                    UnitAddAbility(GameChallengeUnit[202+num],'Apiv')
                 end
 
             endif
@@ -482,7 +490,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
         ExecuteFunc("InitGameChallenge_9")
-        //ExecuteFunc("InitGameChallenge_10")
+
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
         ExecuteFunc("InitOperaRectRange")
@@ -500,13 +508,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         int ap = 0
         for pid = 0,3
             if  boolid > 0
-                if  GameChallengBool[boolid] == false and GameChallengBool[boolid-1] == true
+                if  GameChallengeBool[boolid] == false and GameChallengeBool[boolid-1] == true
                     if  Player(pid) == GetLocalPlayer()
                         ap = 255
                     endif
                 endif
             else 
-                if  GameChallengBool[boolid] == false
+                if  GameChallengeBool[boolid] == false
                     if  Player(pid) == GetLocalPlayer()
                         ap = 255
                     endif
@@ -517,16 +525,16 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function IsCanMoveToRoom(int pid)->boolean
-        if  GameChallengBool[0] == false
+        if  GameChallengeBool[0] == false
             return false
         endif
-        if  GameChallengBool[1] == false
+        if  GameChallengeBool[1] == false
             return false
         endif
-        if  GameChallengBool[2] == false
+        if  GameChallengeBool[2] == false
             return false
         endif
-        if  GameChallengBool[3] == false
+        if  GameChallengeBool[3] == false
             return false
         endif
         if  GetUnitAbilityLevel(Pu[1],'AZ02') > 0
@@ -561,9 +569,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         SetUnitFollowAlways(pid)
     endfunction
 
-    function GetCanUsesGameChallengUnitID(int pid)->int
+    function GetCanUsesGameChallengeUnitID(int pid)->int
         for num = 500,600
-            if  GameChallengUnit[num] == null
+            if  GameChallengeUnit[num] == null
                 return num
             endif
         end
@@ -572,10 +580,10 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function GameChallengCanUsesUnitFlush(int pid)
         for num = 500,600
-            if  GameChallengUnit[num] != null
-                FlushChildHashtable(ht,GetHandleId(GameChallengUnit[num]))
-                RemoveUnit(GameChallengUnit[num])
-                GameChallengUnit[num] = null
+            if  GameChallengeUnit[num] != null
+                FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[num]))
+                RemoveUnit(GameChallengeUnit[num])
+                GameChallengeUnit[num] = null
             endif
         end
     endfunction
@@ -622,38 +630,38 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         UnitAddEffectOfNPC(GameTeamChallengUnit(num))
     endfunction
 
-    function CreateUsesGameChallengUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
+    function CreateUsesGameChallengeUnitOfAng(int pid,int num,int uid,real x,real y,real ang)
         //BJDebugMsg(I2S(num))
-        GameChallengUnit[num] = CreateUnit(Player(pid+4),uid,x,y,ang)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
-        SetUnitRealState(GameChallengUnit[num],99,num)
-        UnitAddAbility(GameChallengUnit[num],'AZ99')
-        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-        EXSetUnitCollisionType( false,GameChallengUnit[num], 1 )
-        SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-        IssueImmediateOrderById(GameChallengUnit[num],852076)
+        GameChallengeUnit[num] = CreateUnit(Player(pid+4),uid,x,y,ang)
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[num],UnitAPOfPlayer)
+        SetUnitRealState(GameChallengeUnit[num],99,num)
+        UnitAddAbility(GameChallengeUnit[num],'AZ99')
+        SetUnitAbilityLevel(GameChallengeUnit[num],'AZ99',pid+1)
+        EXSetUnitCollisionType( false,GameChallengeUnit[num], 1 )
+        SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+        IssueImmediateOrderById(GameChallengeUnit[num],852076)
     endfunction
 
-    function CreateUsesGameChallengUnit(int pid,int num,int uid,real x,real y)
+    function CreateUsesGameChallengeUnit(int pid,int num,int uid,real x,real y)
         //BJDebugMsg(I2S(num))
-        CreateUsesGameChallengUnitOfAng(pid,num,uid,x,y,0)
+        CreateUsesGameChallengeUnitOfAng(pid,num,uid,x,y,0)
     endfunction
 
-    function CreateUsesGameChallengUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
+    function CreateUsesGameChallengeUnitExOfAng(int pid,int num,int uid,real x,real y,real ang)
         //BJDebugMsg(I2S(num))
-        GameChallengUnit[num] = CreateUnit(Player(pid+4),uid,x,y,ang)
-        SetUnitOwner(GameChallengUnit[num],Player(PLAYER_NEUTRAL_PASSIVE),true)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[num],UnitAPOfPlayer)
-        SetUnitRealState(GameChallengUnit[num],99,num)
-        UnitAddAbility(GameChallengUnit[num],'AZ99')
-        SetUnitAbilityLevel(GameChallengUnit[num],'AZ99',pid+1)
-        EXSetUnitCollisionType( false,GameChallengUnit[num], 1 )
-        IssueImmediateOrderById(GameChallengUnit[num],852076)
+        GameChallengeUnit[num] = CreateUnit(Player(pid+4),uid,x,y,ang)
+        SetUnitOwner(GameChallengeUnit[num],Player(PLAYER_NEUTRAL_PASSIVE),true)
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[num],UnitAPOfPlayer)
+        SetUnitRealState(GameChallengeUnit[num],99,num)
+        UnitAddAbility(GameChallengeUnit[num],'AZ99')
+        SetUnitAbilityLevel(GameChallengeUnit[num],'AZ99',pid+1)
+        EXSetUnitCollisionType( false,GameChallengeUnit[num], 1 )
+        IssueImmediateOrderById(GameChallengeUnit[num],852076)
     endfunction
 
-    function CreateUsesGameChallengUnitEx(int pid,int num,int uid,real x,real y)
+    function CreateUsesGameChallengeUnitEx(int pid,int num,int uid,real x,real y)
         //BJDebugMsg(I2S(num))
-        CreateUsesGameChallengUnitExOfAng(pid,num,uid,x,y,0)
+        CreateUsesGameChallengeUnitExOfAng(pid,num,uid,x,y,0)
     endfunction
 
     function SetUnitPositionOfGameChalleng(unit u,real x,real y)
@@ -671,9 +679,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         /*int cosa = 0
         int cosb = 0
         for num = 1,8
-            if  GameChallengOperaWay[num] == 1
+            if  GameChallengeOperaWay[num] == 1
                 cosa = cosa + 1
-            elseif  GameChallengOperaWay[num] == 2
+            elseif  GameChallengeOperaWay[num] == 2
                 cosb = cosb + 1
             endif
         end
@@ -795,27 +803,27 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function GameChallenge_1Flush(int pid)
         for num = 0,5
-            SetUnitVertexColor(GameChallengUnit[10+num],255,255,255,0)
+            SetUnitVertexColor(GameChallengeUnit[10+num],255,255,255,0)
         end
-        GameChallengInt[10] = 0
-        GameChallengInt[11] = 0
-        GameChallengBool[10] = false
-        GameChallengBool[11] = false
-        if  GameChallengUnit[19] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[19]))
-            RemoveUnit(GameChallengUnit[19])
-            GameChallengUnit[19] = null
+        GameChallengeInt[10] = 0
+        GameChallengeInt[11] = 0
+        GameChallengeBool[10] = false
+        GameChallengeBool[11] = false
+        if  GameChallengeUnit[19] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[19]))
+            RemoveUnit(GameChallengeUnit[19])
+            GameChallengeUnit[19] = null
         endif
     endfunction
 
     function GameChallenge_2Flush(int pid)
-        SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
-        if  GameChallengUnit[29] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[29]))
-            RemoveUnit(GameChallengUnit[29])
-            GameChallengUnit[29] = null
+        SetUnitVertexColor(GameChallengeUnit[22],255,255,255,0)
+        if  GameChallengeUnit[29] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[29]))
+            RemoveUnit(GameChallengeUnit[29])
+            GameChallengeUnit[29] = null
         endif
-        GameChallengInt[20] = 0
+        GameChallengeInt[20] = 0
         if  GetUnitAbilityLevel(Pu[1],'AZ04') > 0
             UnitRemoveAbility(Pu[1],'AZ04')
         endif
@@ -823,63 +831,63 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function GameChallenge_3Flush(int pid)
         for num = 0,3
-            SetUnitVertexColor(GameChallengUnit[30+num],255,255,255,0)
+            SetUnitVertexColor(GameChallengeUnit[30+num],255,255,255,0)
         end
-        GameChallengInt[30] = 0
-        if  GameChallengUnit[39] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[39]))
-            RemoveUnit(GameChallengUnit[39])
-            GameChallengUnit[39] = null
+        GameChallengeInt[30] = 0
+        if  GameChallengeUnit[39] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[39]))
+            RemoveUnit(GameChallengeUnit[39])
+            GameChallengeUnit[39] = null
         endif
     endfunction
 
     function GameChallenge_4Flush(int pid)
         for num = 0,7
-            SetUnitVertexColor(GameChallengUnit[40+num],255,255,255,0)
+            SetUnitVertexColor(GameChallengeUnit[40+num],255,255,255,0)
         end
-        GameChallengInt[40] = 0
-        SetUnitAnimation(GameChallengUnit[43],"stand")
+        GameChallengeInt[40] = 0
+        SetUnitAnimation(GameChallengeUnit[43],"stand")
     endfunction
 
     function GameChallenge_5Flush(int pid)
-        SetUnitVertexColor(GameChallengUnit[50],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
-        GameChallengInt[50] = 0
-        GameChallengInt[51] = 0
-        if  GameChallengUnit[59] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[59]))
-            RemoveUnit(GameChallengUnit[59])
-            GameChallengUnit[59] = null
+        SetUnitVertexColor(GameChallengeUnit[50],255,255,255,0)
+        SetUnitVertexColor(GameChallengeUnit[51],255,255,255,0)
+        GameChallengeInt[50] = 0
+        GameChallengeInt[51] = 0
+        if  GameChallengeUnit[59] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[59]))
+            RemoveUnit(GameChallengeUnit[59])
+            GameChallengeUnit[59] = null
         endif
     endfunction
     
     function GameChallenge_6Flush(int pid)
         for num = 0,3
-            SetUnitVertexColor(GameChallengUnit[60+num],255,255,255,0)
+            SetUnitVertexColor(GameChallengeUnit[60+num],255,255,255,0)
         end
-        GameChallengInt[60] = 0
-        if  GameChallengUnit[69] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[69]))
-            RemoveUnit(GameChallengUnit[69])
-            GameChallengUnit[69] = null
+        GameChallengeInt[60] = 0
+        if  GameChallengeUnit[69] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[69]))
+            RemoveUnit(GameChallengeUnit[69])
+            GameChallengeUnit[69] = null
         endif
     endfunction
 
     function GameChallenge_7Flush(int pid)
         for num = 0,9
-            SetUnitVertexColor(GameChallengUnit[70+num],255,255,255,0)
+            SetUnitVertexColor(GameChallengeUnit[70+num],255,255,255,0)
         end
     endfunction
 
     function GameChallenge_8Flush(int pid)
         for num = 0,3
-            SetUnitVertexColor(GameChallengUnit[80+num],255,255,255,0)
+            SetUnitVertexColor(GameChallengeUnit[80+num],255,255,255,0)
         end
-        GameChallengInt[80] = 0
-        if  GameChallengUnit[89] != null
-            FlushChildHashtable(ht,GetHandleId(GameChallengUnit[89]))
-            RemoveUnit(GameChallengUnit[89])
-            GameChallengUnit[89] = null
+        GameChallengeInt[80] = 0
+        if  GameChallengeUnit[89] != null
+            FlushChildHashtable(ht,GetHandleId(GameChallengeUnit[89]))
+            RemoveUnit(GameChallengeUnit[89])
+            GameChallengeUnit[89] = null
         endif
     endfunction
 

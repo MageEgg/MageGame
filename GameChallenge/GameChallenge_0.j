@@ -1,8 +1,8 @@
 library GameChallenge0 uses GameChallengeBase
     
     function GameChallenge_0_C_Death(int pid)
-        if  GameChallengBool[0] == true and GameChallengBool[1] == true and GameChallengBool[2] == false
-            GameChallengBool[2] = true
+        if  GameChallengeBool[0] == true and GameChallengeBool[1] == true and GameChallengeBool[2] == false
+            GameChallengeBool[2] = true
             for n = 4,5
                 SetUnitAPOfBool(GameBiaoJI[n],2)
             end
@@ -21,18 +21,18 @@ library GameChallenge0 uses GameChallengeBase
 
 
     function GameChallenge_0_B_Death(int pid)
-        if  GameChallengBool[0] == true
-            GameChallengInt[1] = GameChallengInt[1] + 1
-            if  GameChallengBool[1] == false
-                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengInt[1])+"/20",0)
+        if  GameChallengeBool[0] == true
+            GameChallengeInt[1] = GameChallengeInt[1] + 1
+            if  GameChallengeBool[1] == false
+                SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀妖魅|r|n|cffffcc00累积：|r"+I2S(GameChallengeInt[1])+"/20",0)
             endif
-            if  GameChallengInt[1] < 20
-                if  GameChallengInt[1] == 1 or ModuloInteger(GameChallengInt[1],5) == 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
+            if  GameChallengeInt[1] < 20
+                if  GameChallengeInt[1] == 1 or ModuloInteger(GameChallengeInt[1],5) == 0
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengeInt[1])+"/20)")
                 endif
-            elseif  GameChallengInt[1] == 20
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengInt[1])+"/20)")
-                GameChallengBool[1] = true
+            elseif  GameChallengeInt[1] == 20
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[任务]：|r击杀妖魅("+I2S(GameChallengeInt[1])+"/20)")
+                GameChallengeBool[1] = true
                 for n = 1,3
                     SetUnitAPOfBool(GameBiaoJI[n],1)
                 end
@@ -70,18 +70,18 @@ library GameChallenge0 uses GameChallengeBase
 
     function SendPlyaerToGameChalleng0(unit u)
         int pid = GetPlayerId(GetOwningPlayer(u))
-        if  GameChallengBool[0] == false
-            SetUnitXY(u,GetUnitX(GameChalleng_0_JZY),GetUnitY(GameChalleng_0_JZY))
+        if  GameChallengeBool[0] == false
+            SetUnitXY(u,GetUnitX(GameChallenge_0_JZY),GetUnitY(GameChallenge_0_JZY))
         endif
     endfunction
 
-    function EnRctGameChalleng_0_JZY()
+    function EnRctGameChallenge_0_JZY()
         unit u1 = GetTriggerUnit()
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  GameChallengBool[0] == false
-                    GameChallengBool[0] = true
+                if  GameChallengeBool[0] == false
+                    GameChallengeBool[0] = true
                     SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","宋兄待我不薄，此后花园乃风水之地，却造不起楼房，定是有妖魅作怪。可否替我前去一看？",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀20个妖魅|r",0)
                     SetUnitAPOfBool(GameBiaoJI[0],0)
@@ -101,9 +101,9 @@ library GameChallenge0 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  GameChallengBool[0] == true and GameChallengBool[1] == true and GameChallengBool[2] == true
-                    if  GameChallengBool[3] == false
-                        GameChallengBool[3] = true
+                if  GameChallengeBool[0] == true and GameChallengeBool[1] == true and GameChallengeBool[2] == true
+                    if  GameChallengeBool[3] == false
+                        GameChallengeBool[3] = true
                         SetUnitAPOfBool(GameBiaoJI[6],3)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励玄铁x5！")
@@ -123,8 +123,8 @@ library GameChallenge0 uses GameChallengeBase
 
     function InitGameChallenge_0()
         trigger tig = null
-        GameChalleng_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-5696,-3200,180)
-        EXSetUnitMoveType(GameChalleng_0_JZY,0x01)
+        GameChallenge_0_JZY = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-5696,-3200,180)
+        EXSetUnitMoveType(GameChallenge_0_JZY,0x01)
         GameBiaoJI[0] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-5696,-3200,0)
         CreateUnit(Player(9),'nc07',-5696,-3200,0)
         
@@ -144,8 +144,8 @@ library GameChallenge0 uses GameChallengeBase
         end
         
         tig = CreateTrigger() //姜子牙
-        TriggerRegisterUnitInRange(tig, GameChalleng_0_JZY,150,null)
-        TriggerAddAction(tig, function EnRctGameChalleng_0_JZY)
+        TriggerRegisterUnitInRange(tig, GameChallenge_0_JZY,150,null)
+        TriggerAddAction(tig, function EnRctGameChallenge_0_JZY)
 
         tig = CreateTrigger() //周文王
         TriggerRegisterUnitInRange(tig, GameDefendUnit,250,null)

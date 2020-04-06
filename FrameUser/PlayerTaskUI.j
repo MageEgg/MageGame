@@ -122,7 +122,7 @@ library PlayerTaskUI uses GameFrame
         {
             if  time < 50
                 time = time + 1
-                if  GameChallengPlayerBool[pid][4] == false
+                if  GameChallengePlayerBool[pid][4] == false
                     if  Player(pid) == GetLocalPlayer()
                         hp = hp + 5
                         PlayerTaskUI_Back.alpha = hp
@@ -136,7 +136,7 @@ library PlayerTaskUI uses GameFrame
                     endif
                 endif
             else
-                if  GameChallengPlayerBool[pid][4] == false
+                if  GameChallengePlayerBool[pid][4] == false
                     if  Player(pid) == GetLocalPlayer()
                         PlayerTaskUI_Back.alpha = 255
                         PlayerTaskUI_Back.show = true

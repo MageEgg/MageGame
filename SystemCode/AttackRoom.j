@@ -484,8 +484,8 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                     BJDebugMsg("阻止F3刷怪")
                 endif
 
-                if  GameChallengPlayerBool[pid][0] == true and GameChallengPlayerBool[pid][1] == true and GameChallengPlayerBool[pid][2] == true and GameChallengPlayerBool[pid][3] == true and GameChallengPlayerBool[pid][4] == false
-                    GameChallengPlayerBool[pid][4] = true
+                if  GameChallengePlayerBool[pid][0] == true and GameChallengePlayerBool[pid][1] == true and GameChallengePlayerBool[pid][2] == true and GameChallengePlayerBool[pid][3] == true and GameChallengePlayerBool[pid][4] == false
+                    GameChallengePlayerBool[pid][4] = true
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,1000)
                     UnitAddItemEx(Pu[1],'I010')
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励1000金币和"+GetObjectName('I010')+"！")
@@ -573,12 +573,12 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 RefreshAttackRoom(pid)
 
                 //////////////////团本分割/////////////////////
-                GameChallengPlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
-                GameChallengPlayerUnit[pid][91] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
-                DzSetUnitModel(GameChallengPlayerUnit[pid][91],"effect2_tx-yuzhou.mdl")
-                CreateTrigUnitInRangeOfGameChallenge(GetUnitX(GameChallengPlayerUnit[pid][91]),GetUnitY(GameChallengPlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)
-                ShowUnit(GameChallengPlayerUnit[pid][90],false)
-                SetUnitVertexColor(GameChallengPlayerUnit[pid][91],255,255,255,0)
+                GameChallengePlayerUnit[pid][90] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np30',AttackRoomPostion[pid][1]+450,AttackRoomPostion[pid][2]-512,90)
+                GameChallengePlayerUnit[pid][91] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',AttackRoomPostion[pid][1]+450-120,AttackRoomPostion[pid][2]-512+120,0)
+                DzSetUnitModel(GameChallengePlayerUnit[pid][91],"effect2_tx-yuzhou.mdl")
+                CreateTrigUnitInRangeOfGameChallenge(GetUnitX(GameChallengePlayerUnit[pid][91]),GetUnitY(GameChallengePlayerUnit[pid][91]),200,function EnRctGameTeamChallengA)
+                ShowUnit(GameChallengePlayerUnit[pid][90],false)
+                SetUnitVertexColor(GameChallengePlayerUnit[pid][91],255,255,255,0)
             endif
         end
     endfunction

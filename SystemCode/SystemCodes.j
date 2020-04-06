@@ -644,6 +644,25 @@ library SystemCodes uses ServerTime,Define1
         p = null
     endfunction
 
+    function RectAlocCondition()->bool
+        return GetUnitAbilityLevel(GetTriggerUnit(),'Aloc') == 0
+    endfunction
+
+    function InitRctEventFunc(rect rec,bool in,code cod)
+        trigger trig = CreateTrigger()
+        region rectRegion = CreateRegion()
+        RegionAddRect(rectRegion, rec)
+        if  in == true
+            TriggerRegisterEnterRegion(trig, rectRegion, null)
+        else
+            TriggerRegisterLeaveRegion(trig, rectRegion, null)
+        endif
+        TriggerAddCondition(trig,Condition(function RectAlocCondition))
+        TriggerAddAction(trig, cod)
+        trig = null
+        rectRegion = null
+    endfunction
+
     //////////////////////////////////顺序调整分割///////////////////////////////////////
 
     function HeroMoveToHome(int pid)

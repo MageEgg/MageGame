@@ -1,13 +1,13 @@
 library GameChallenge2 uses GameChallengeBase
 
     function GameChalleng_2_WaterDeath3(int pid,unit u2)
-        GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
-        GameChallengInt[20] = GameChallengInt[20] + 1
-        if  GameChallengInt[20] == 4
-            GameChallengInt[20] = 0
-            if  GameChallengOperaWay[2] == 0
+        GameChallengeUnit[R2I(GetUnitRealState(u2,99))] = null
+        GameChallengeInt[20] = GameChallengeInt[20] + 1
+        if  GameChallengeInt[20] == 4
+            GameChallengeInt[20] = 0
+            if  GameChallengeOperaWay[2] == 0
                 if  GetGameChallengOperaSelsect() == 0
-                    GameChallengOperaWay[2] = 1
+                    GameChallengeOperaWay[2] = 1
                     SetLeagueUnit(2,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"哪吒","一人做事一人当，岂有连累父母之理！今我削肉剔骨，不累双亲。",0)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","后太乙真人以莲花化身复活哪吒，并化去哪吒杀性。",1)
@@ -15,7 +15,7 @@ library GameChallenge2 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-哪吒闹海]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00哪吒加入己方阵营！|r")                                   
                 else
-                    GameChallengOperaWay[2] = 2
+                    GameChallengeOperaWay[2] = 2
                     SetLeagueUnit(2,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"李靖","住手！你这孽障！造事多端，还嫌害得我不够么？！",0)
                     SetPlayerTaskUIChatOfPlayer(pid,"哪吒","哼！你们多次无故欺压于我，不打一顿是不知道小爷厉害的！既如此待薄厌恶，小爷也不再奉陪！",1)
@@ -89,7 +89,7 @@ library GameChallenge2 uses GameChallengeBase
         {
             if  time < 4 and IsPlayerInChallenge == true
                 time = time + 1
-                num = GetCanUsesGameChallengUnitID(pid)
+                num = GetCanUsesGameChallengeUnitID(pid)
                 if  num != 0
                     if  time == 1
                         a = num
@@ -111,26 +111,26 @@ library GameChallenge2 uses GameChallengeBase
                         y = 2816
                         SetPlayerTaskUIChatOfPlayer(pid,"敖广","我等已奏明玉帝，捉拿你夫妇问罪！",0.5)
                     endif
-                    ang = Atan2(GetUnitY(GameChallengUnit[19])-y,GetUnitX(GameChallengUnit[19])-x)/0.01745
-                    CreateUsesGameChallengUnitExOfAng(pid,num,'uf22',x,y,ang)
-                    SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
-                    UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                    UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
-                    SetUnitAnimation(GameChallengUnit[num],"attack")
+                    ang = Atan2(GetUnitY(GameChallengeUnit[19])-y,GetUnitX(GameChallengeUnit[19])-x)/0.01745
+                    CreateUsesGameChallengeUnitExOfAng(pid,num,'uf22',x,y,ang)
+                    SetUnitOverStateOfGameChalleng(pid,GameChallengeUnit[num],2)
+                    UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                    UnitAddEffect(GameChallengeUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
+                    SetUnitAnimation(GameChallengeUnit[num],"attack")
                 endif
             else
-                SetUnitOwner(GameChallengUnit[a],Player(pid+4),true)
-                SetUnitColor(GameChallengUnit[a],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                IssuePointOrderById(GameChallengUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[b],Player(pid+4),true)
-                SetUnitColor(GameChallengUnit[b],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                IssuePointOrderById(GameChallengUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[c],Player(pid+4),true)
-                SetUnitColor(GameChallengUnit[c],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                IssuePointOrderById(GameChallengUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                SetUnitOwner(GameChallengUnit[d],Player(pid+4),true)
-                SetUnitColor(GameChallengUnit[d],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                IssuePointOrderById(GameChallengUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetUnitOwner(GameChallengeUnit[a],Player(pid+4),true)
+                SetUnitColor(GameChallengeUnit[a],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                IssuePointOrderById(GameChallengeUnit[a],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetUnitOwner(GameChallengeUnit[b],Player(pid+4),true)
+                SetUnitColor(GameChallengeUnit[b],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                IssuePointOrderById(GameChallengeUnit[b],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetUnitOwner(GameChallengeUnit[c],Player(pid+4),true)
+                SetUnitColor(GameChallengeUnit[c],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                IssuePointOrderById(GameChallengeUnit[c],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetUnitOwner(GameChallengeUnit[d],Player(pid+4),true)
+                SetUnitColor(GameChallengeUnit[d],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                IssuePointOrderById(GameChallengeUnit[d],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败四海龙王|r",0)
                 endtimer
             endif
@@ -153,12 +153,12 @@ library GameChallenge2 uses GameChallengeBase
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
             UnitAddAbility(Pu[1],'AZ04')
-            GameChallengUnit[29] = CreateUnit(Player(9),'np21',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[29],UnitAPOfPlayer)
-            UnitAddAbility(GameChallengUnit[29],'AZ99')
-            SetUnitAbilityLevel(GameChallengUnit[29],'AZ99',pid+1)
-            UnitAddEffectOfGameChalleng(GameChallengUnit[29])
-            IssuePointOrderById(GameChallengUnit[29],851983,GetUnitX(GameChallengUnit[20]),GetUnitY(GameChallengUnit[20]))
+            GameChallengeUnit[29] = CreateUnit(Player(9),'np21',GetUnitX(Pu[1]),GetUnitY(Pu[1]),270)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[29],UnitAPOfPlayer)
+            UnitAddAbility(GameChallengeUnit[29],'AZ99')
+            SetUnitAbilityLevel(GameChallengeUnit[29],'AZ99',pid+1)
+            UnitAddEffectOfGameChalleng(GameChallengeUnit[29])
+            IssuePointOrderById(GameChallengeUnit[29],851983,GetUnitX(GameChallengeUnit[20]),GetUnitY(GameChallengeUnit[20]))
             SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随哪吒！",0.3)
             SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随哪吒|r",0.3)
         elseif  ty == 1
@@ -168,26 +168,26 @@ library GameChallenge2 uses GameChallengeBase
             PlayerInChallengeNumber = 2
             SendPlayerUnit(pid,x+150,y)
             ShowHeroGetTask(pid)
-            GameChallengUnit[29] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np21',x,y,135)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[29],UnitAPOfPlayer)
-            UnitAddAbility(GameChallengUnit[29],'AZ99')
-            SetUnitAbilityLevel(GameChallengUnit[29],'AZ99',pid+1)
-            UnitAddEffectOfGameChalleng(GameChallengUnit[29])
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[22],UnitAPOfPlayer)
-            UnitAddEffectOfGameChalleng(GameChallengUnit[22])
+            GameChallengeUnit[29] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np21',x,y,135)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[29],UnitAPOfPlayer)
+            UnitAddAbility(GameChallengeUnit[29],'AZ99')
+            SetUnitAbilityLevel(GameChallengeUnit[29],'AZ99',pid+1)
+            UnitAddEffectOfGameChalleng(GameChallengeUnit[29])
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[22],UnitAPOfPlayer)
+            UnitAddEffectOfGameChalleng(GameChallengeUnit[22])
             OpenGameChallenge_2_BTimer(pid)
         endif
     endfunction
 
     function GameChalleng_2_WaterDeath1(int pid,unit u2)
-        GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
-        IssuePointOrderById(GameChallengUnit[29],851983,GetUnitX(GameChallengUnit[21]),GetUnitY(GameChallengUnit[21]))
+        GameChallengeUnit[R2I(GetUnitRealState(u2,99))] = null
+        IssuePointOrderById(GameChallengeUnit[29],851983,GetUnitX(GameChallengeUnit[21]),GetUnitY(GameChallengeUnit[21]))
         SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随哪吒！",0)
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随哪吒|r",0)
     endfunction
 
     function GameChalleng_2_WaterDeath2(int pid,unit u2)
-        GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
+        GameChallengeUnit[R2I(GetUnitRealState(u2,99))] = null
         SetPlayerTaskUIChatOfPlayer(pid,"敖广","吾儿！！！哪吒你欺人太甚！吾自去天庭讨个说法！",0)
         GameChallengeFluahAll(pid,1)
         IsFinshChallenge(2) = true
@@ -218,19 +218,19 @@ library GameChallenge2 uses GameChallengeBase
         real x = 0
         real y = 0
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
-            if  u1 == GameChallengUnit[29]
+            if  u1 == GameChallengeUnit[29]
                 x = -5760
                 y = 3168
-                SetUnitPositionOfGameChalleng(GameChallengUnit[29],x,y)
+                SetUnitPositionOfGameChalleng(GameChallengeUnit[29],x,y)
                 IssueImmediateOrderById(u1, 851993 )
                 SetUnitFaceOfUnit(u1,Pu[1])
-                num = GetCanUsesGameChallengUnitID(pid)
+                num = GetCanUsesGameChallengeUnitID(pid)
                 if  num != 0
-                    x = GetUnitX(GameChallengUnit[20])
-                    y = GetUnitY(GameChallengUnit[20])
-                    CreateUsesGameChallengUnit(pid,num,'uf20',x,y)
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
+                    x = GetUnitX(GameChallengeUnit[20])
+                    y = GetUnitY(GameChallengeUnit[20])
+                    CreateUsesGameChallengeUnit(pid,num,'uf20',x,y)
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    UnitAddEffect(GameChallengeUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     UnitAddEffect(Pu[1],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     Sdofplayer(Player(pid),x,y,3)
                 endif
@@ -247,19 +247,19 @@ library GameChallenge2 uses GameChallengeBase
         real x = 0
         real y = 0
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
-            if  u1 == GameChallengUnit[29]
+            if  u1 == GameChallengeUnit[29]
                 x = -5184
                 y = 4000
-                SetUnitPositionOfGameChalleng(GameChallengUnit[29],x,y)
+                SetUnitPositionOfGameChalleng(GameChallengeUnit[29],x,y)
                 IssueImmediateOrderById(u1, 851993 )
                 SetUnitFaceOfUnit(u1,Pu[1])
-                num = GetCanUsesGameChallengUnitID(pid)
+                num = GetCanUsesGameChallengeUnitID(pid)
                 if  num != 0
-                    x = GetUnitX(GameChallengUnit[21])
-                    y = GetUnitY(GameChallengUnit[21])
-                    CreateUsesGameChallengUnit(pid,num,'uf21',x,y)
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                    UnitAddEffect(GameChallengUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
+                    x = GetUnitX(GameChallengeUnit[21])
+                    y = GetUnitY(GameChallengeUnit[21])
+                    CreateUsesGameChallengeUnit(pid,num,'uf21',x,y)
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    UnitAddEffect(GameChallengeUnit[num],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     UnitAddEffect(Pu[1],"Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl")
                     Sdofplayer(Player(pid),x,y,3)
                 endif
@@ -272,17 +272,17 @@ library GameChallenge2 uses GameChallengeBase
     function InitGameChallenge_2()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                GameChallengUnit[20] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-6080,3072,0)
-                SetUnitVertexColor(GameChallengUnit[20],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[20],0x01)
+                GameChallengeUnit[20] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-6080,3072,0)
+                SetUnitVertexColor(GameChallengeUnit[20],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[20],0x01)
                 
-                GameChallengUnit[21] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5536,3872,0)
-                SetUnitVertexColor(GameChallengUnit[21],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[21],0x01)
+                GameChallengeUnit[21] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',-5536,3872,0)
+                SetUnitVertexColor(GameChallengeUnit[21],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[21],0x01)
 
-                GameChallengUnit[22] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np22',-3712,2880,180)
-                SetUnitVertexColor(GameChallengUnit[22],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[22],0x01)
+                GameChallengeUnit[22] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np22',-3712,2880,180)
+                SetUnitVertexColor(GameChallengeUnit[22],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[22],0x01)
             endif
         end
 
