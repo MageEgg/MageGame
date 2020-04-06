@@ -250,7 +250,7 @@ scope SelectHero
         int id = GetUnitTypeId(Pu[1])
         if  id > 0
             if  PlayerDeathBool == false
-                if  GameChallengBool[0] == false
+                if  GameChallengeBool[0] == false
                     if  HeroReNumber > 0
                         PoolAddHeroId(pid,id)
                         ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))

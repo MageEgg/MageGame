@@ -11,25 +11,25 @@ library GameChallenge7 uses GameChallengeBase
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = 2816
                         y = 3584
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf70',x,y,270)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf70',x,y,270)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
                         LocAddEffectSetSize(x,y,"effect_az-leiji.mdx",2)
                         LocAddEffectSetSize(x,y,"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                         SetPlayerTaskUIChatOfPlayer(pid,"剧情","多宝道人登场！！！",0)
                     endif
                 elseif  time == 2
-                    SetUnitPositionOfGameChalleng(GameChallengUnit[num],x,3400)
+                    SetUnitPositionOfGameChalleng(GameChallengeUnit[num],x,3400)
                     SetPlayerTaskUIChatOfPlayer(pid,"多宝道人","哼！尔等再三欺我教门人，今我师尊摆此诛仙阵，你们一个都别想跑！",0)
                 elseif  time == 3
-                    UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败多宝道人|r",0)
                     endtimer
                 endif
@@ -57,20 +57,20 @@ library GameChallenge7 uses GameChallengeBase
                 elseif  time == 2
                     SetPlayerTaskUIChatOfPlayer(pid,"通天教主","那按你说，你门人有理，连骂我也是该的？我已是摆了此阵，道兄就破吾此阵，便见高下。",0)
                 elseif  time == 3
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = 1504
                         y = 2720
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf71',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf71',x,y,270)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengeUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 4
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第一剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第一剑|r",0)
                     endtimer
@@ -92,32 +92,32 @@ library GameChallenge7 uses GameChallengeBase
         x = 4064
         y = 2300
         SendPlayerUnitTimer(pid,x,y)
-        SetUnitVertexColor(GameChallengUnit[70],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[71],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[75],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[76],255,255,255,0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[72],UnitAPOfPlayer)
-        UnitAddEffectOfGameChalleng(GameChallengUnit[72])
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[77],UnitAPOfPlayer)
+        SetUnitVertexColor(GameChallengeUnit[70],255,255,255,0)
+        SetUnitVertexColor(GameChallengeUnit[71],255,255,255,0)
+        SetUnitVertexColor(GameChallengeUnit[75],255,255,255,0)
+        SetUnitVertexColor(GameChallengeUnit[76],255,255,255,0)
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[72],UnitAPOfPlayer)
+        UnitAddEffectOfGameChalleng(GameChallengeUnit[72])
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[77],UnitAPOfPlayer)
         TimerStart(1,true)
         {
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = 4064
                         y = 2528
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf72',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf72',x,y,270)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengeUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第二剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第二剑|r",0)
                     endtimer
@@ -139,30 +139,30 @@ library GameChallenge7 uses GameChallengeBase
         x = 4064
         y = 4600
         SendPlayerUnitTimer(pid,x,y)
-        SetUnitVertexColor(GameChallengUnit[72],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[77],255,255,255,0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[73],UnitAPOfPlayer)
-        UnitAddEffectOfGameChalleng(GameChallengUnit[73])
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[78],UnitAPOfPlayer)
+        SetUnitVertexColor(GameChallengeUnit[72],255,255,255,0)
+        SetUnitVertexColor(GameChallengeUnit[77],255,255,255,0)
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[73],UnitAPOfPlayer)
+        UnitAddEffectOfGameChalleng(GameChallengeUnit[73])
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[78],UnitAPOfPlayer)
         TimerStart(1,true)
         {
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = 4064
                         y = 4832
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf73',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf73',x,y,270)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengeUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第三剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第三剑|r",0)
                     endtimer
@@ -184,30 +184,30 @@ library GameChallenge7 uses GameChallengeBase
         x = 1472
         y = 4650
         SendPlayerUnitTimer(pid,x,y)
-        SetUnitVertexColor(GameChallengUnit[73],255,255,255,0)
-        SetUnitVertexColor(GameChallengUnit[78],255,255,255,0)
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[74],UnitAPOfPlayer)
-        UnitAddEffectOfGameChalleng(GameChallengUnit[74])
-        ShowUnitOfOnlyPlayer(pid,GameChallengUnit[79],UnitAPOfPlayer)
+        SetUnitVertexColor(GameChallengeUnit[73],255,255,255,0)
+        SetUnitVertexColor(GameChallengeUnit[78],255,255,255,0)
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[74],UnitAPOfPlayer)
+        UnitAddEffectOfGameChalleng(GameChallengeUnit[74])
+        ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[79],UnitAPOfPlayer)
         TimerStart(1,true)
         {
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = 1472
                         y = 4896
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf74',x,y,270)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf74',x,y,270)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengeUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","摘去诛仙阵第四剑。",0)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff摘去诛仙阵第四剑|r",0)
                     endtimer
@@ -241,19 +241,19 @@ library GameChallenge7 uses GameChallengeBase
             PlayerInChallengeNumber = 7
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[70],UnitAPOfPlayer)
-            UnitAddEffectOfGameChalleng(GameChallengUnit[70])
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[71],UnitAPOfPlayer)
-            UnitAddEffectOfGameChalleng(GameChallengUnit[71])
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[75],UnitAPOfPlayer)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[76],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[70],UnitAPOfPlayer)
+            UnitAddEffectOfGameChalleng(GameChallengeUnit[70])
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[71],UnitAPOfPlayer)
+            UnitAddEffectOfGameChalleng(GameChallengeUnit[71])
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[75],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[76],UnitAPOfPlayer)
             GameChalleng_7_Zhen_1(pid)
         endif
     endfunction
 
     function GameChallenge_7_Death(int pid,unit u2)
         int uid = GetUnitTypeId(u2)
-        GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
+        GameChallengeUnit[R2I(GetUnitRealState(u2,99))] = null
         if  uid == 'uf70'
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击败多宝道人！！！",0)
             GameChallengeFluahAll(pid,1)
@@ -271,16 +271,16 @@ library GameChallenge7 uses GameChallengeBase
             GameChalleng_7_Zhen_4(pid)
         elseif  uid == 'uf74'
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功获取四剑！！！",0)
-            if  GameChallengOperaWay[7] == 0
+            if  GameChallengeOperaWay[7] == 0
                 if  GetGameChallengOperaSelsect() == 0
-                    GameChallengOperaWay[7] = 1
+                    GameChallengeOperaWay[7] = 1
                     SetLeagueUnit(7,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"广成子","诛仙阵已破，我等随子牙取关去罢！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00广成子加入己方阵营！|r")                                
                 else
-                    GameChallengOperaWay[7] = 2
+                    GameChallengeOperaWay[7] = 2
                     SetLeagueUnit(7,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"剧情","诛仙阵已破，通天教主趁人不备，收走了广成子。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-诛仙阵斗法]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000广成子加入敌方阵营！|r")   
@@ -299,36 +299,36 @@ library GameChallenge7 uses GameChallengeBase
     function InitGameChallenge_7()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                GameChallengUnit[70] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np17',1760,2848,225)
-                SetUnitVertexColor(GameChallengUnit[70],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[70],0x01)
-                GameChallengUnit[71] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',1888,2624,225)
-                SetUnitVertexColor(GameChallengUnit[71],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[71],0x01)
-                GameChallengUnit[72] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np18',4256,2624,225)
-                SetUnitVertexColor(GameChallengUnit[72],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[72],0x01)
-                GameChallengUnit[73] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',4256,4864,225)
-                SetUnitVertexColor(GameChallengUnit[73],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[73],0x01)
-                GameChallengUnit[74] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np19',1664,4992,225)
-                SetUnitVertexColor(GameChallengUnit[74],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[74],0x01)
-                GameChallengUnit[75] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',1760,2848,0)
-                SetUnitVertexColor(GameChallengUnit[75],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[75],0x01)
-                GameChallengUnit[76] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',1888,2624,0)
-                SetUnitVertexColor(GameChallengUnit[76],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[76],0x01)
-                GameChallengUnit[77] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',4256,2624,0)
-                SetUnitVertexColor(GameChallengUnit[77],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[77],0x01)
-                GameChallengUnit[78] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',4256,4864,0)
-                SetUnitVertexColor(GameChallengUnit[78],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[78],0x01)
-                GameChallengUnit[79] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',1664,4992,0)
-                SetUnitVertexColor(GameChallengUnit[79],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[79],0x01)
+                GameChallengeUnit[70] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np17',1760,2848,225)
+                SetUnitVertexColor(GameChallengeUnit[70],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[70],0x01)
+                GameChallengeUnit[71] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',1888,2624,225)
+                SetUnitVertexColor(GameChallengeUnit[71],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[71],0x01)
+                GameChallengeUnit[72] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np18',4256,2624,225)
+                SetUnitVertexColor(GameChallengeUnit[72],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[72],0x01)
+                GameChallengeUnit[73] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',4256,4864,225)
+                SetUnitVertexColor(GameChallengeUnit[73],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[73],0x01)
+                GameChallengeUnit[74] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np19',1664,4992,225)
+                SetUnitVertexColor(GameChallengeUnit[74],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[74],0x01)
+                GameChallengeUnit[75] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',1760,2848,0)
+                SetUnitVertexColor(GameChallengeUnit[75],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[75],0x01)
+                GameChallengeUnit[76] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',1888,2624,0)
+                SetUnitVertexColor(GameChallengeUnit[76],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[76],0x01)
+                GameChallengeUnit[77] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',4256,2624,0)
+                SetUnitVertexColor(GameChallengeUnit[77],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[77],0x01)
+                GameChallengeUnit[78] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',4256,4864,0)
+                SetUnitVertexColor(GameChallengeUnit[78],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[78],0x01)
+                GameChallengeUnit[79] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ08',1664,4992,0)
+                SetUnitVertexColor(GameChallengeUnit[79],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[79],0x01)
             endif
         end
     endfunction

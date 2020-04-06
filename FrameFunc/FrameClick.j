@@ -85,7 +85,7 @@ scope FrameButton
                         //PlayerTestPlot(pid,id-310)
                         OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
                     elseif  id >= 951 and id <= 966
-                        if  GameChallengPlayerBool[pid][0] == false
+                        if  GameChallengePlayerBool[pid][0] == false
                             ReHeroPrePareByPool(pid,id-950)
                         else
                             if  ReHeroButton.show == true    

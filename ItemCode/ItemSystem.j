@@ -374,30 +374,30 @@ scope ItemSystem initializer InitItemSystem
             else
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
-                RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
-                AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
+                RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
+                AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
             endif
 
-            //RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
-            //AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
+            //RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
+            //AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
             /*if  GameLevel >= 2
                 if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 30000
                     if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 10
                         OpenGameTeamChallenge(pid,1,20)
                     else
-                        RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
-                        AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
+                        RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
+                        AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r玄铁不足10！")
                     endif
                 else
-                    RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
-                    AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r金币不足30000！")
                 endif
             else
-                RemoveItemFromStock(GameChallengPlayerUnit[pid][90],'IZ01')
-                AddItemToStock(GameChallengPlayerUnit[pid][90],'IZ01',1,1)
+                RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
+                AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
             endif*/
         elseif  itemid >= 'IC00' and itemid <= 'IC11'

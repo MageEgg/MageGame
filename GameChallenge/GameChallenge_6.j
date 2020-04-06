@@ -27,25 +27,25 @@ library GameChallenge6 uses GameChallengeBase
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = -1696
                         y = 8224
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf62',x,y,315)
-                        SetUnitOverStateOfGameChalleng(pid,GameChallengUnit[num],2)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf62',x,y,315)
+                        SetUnitOverStateOfGameChalleng(pid,GameChallengeUnit[num],2)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 2
                     SetPlayerTaskUIChatOfPlayer(pid,"申公豹","殷殿下，你父亲固得罪于天下，可与之为仇。但殿下弟弟，听说他下山助周，没想姜子牙欲邀功，竟用太极图把他化成灰了！",0)
                 elseif  time == 3
                     SetPlayerTaskUIChatOfPlayer(pid,GetPlayerName(Player(pid)),"信口胡说！！！",0)
                 elseif  time == 4
-                    UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击败申公豹|r",0)
                     endtimer
                 endif
@@ -70,9 +70,9 @@ library GameChallenge6 uses GameChallengeBase
             PlayerInChallengeNumber = 6
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[60],UnitAPOfPlayer)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[61],UnitAPOfPlayer)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[62],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[60],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[61],UnitAPOfPlayer)
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[62],UnitAPOfPlayer)
             OpenGameChallenge_6_A_ChatTimer(pid)
         elseif  ty == 1
             x = -1440
@@ -81,8 +81,8 @@ library GameChallenge6 uses GameChallengeBase
             PlayerInChallengeNumber = 6
             SendPlayerUnit(pid,x,y)
             ShowHeroGetTask(pid)
-            ShowUnitOfOnlyPlayer(pid,GameChallengUnit[63],UnitAPOfPlayer)
-            UnitAddEffectOfGameChalleng(GameChallengUnit[63])
+            ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[63],UnitAPOfPlayer)
+            UnitAddEffectOfGameChalleng(GameChallengeUnit[63])
             OpenGameChallenge_6_B_Timer(pid)
         endif
     endfunction
@@ -98,22 +98,22 @@ library GameChallenge6 uses GameChallengeBase
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = -992
                         y = 7200
                         SetPlayerTaskUIChatOfPlayer(pid,"马元","姜子牙不要跑！！！",0)
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf60',x,y,225)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf60',x,y,225)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 2
-                    SetUnitXY(GameChallengUnit[69],-1312,7264)
-                    UnitAddEffectOfGameChalleng(GameChallengUnit[69])
-                    SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-                    SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-                    IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                    SetUnitXY(GameChallengeUnit[69],-1312,7264)
+                    UnitAddEffectOfGameChalleng(GameChallengeUnit[69])
+                    SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+                    SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+                    IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀马元|r",0)
                     endtimer
                 endif
@@ -126,13 +126,13 @@ library GameChallenge6 uses GameChallengeBase
     endfunction
 
     function GameChalleng_6_JumpAttack2TimerEnd(int pid,int num)
-        SetUnitXY(GameChallengUnit[69],-64,7136)
-        UnitAddEffectOfGameChalleng(GameChallengUnit[69])
-        SetUnitFaceOfUnit(GameChallengUnit[69],GameChallengUnit[num])
-        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-        SetUnitOwner(GameChallengUnit[num],Player(pid+4),true)
-        SetUnitColor(GameChallengUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
-        IssuePointOrderById(GameChallengUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+        SetUnitXY(GameChallengeUnit[69],-64,7136)
+        UnitAddEffectOfGameChalleng(GameChallengeUnit[69])
+        SetUnitFaceOfUnit(GameChallengeUnit[69],GameChallengeUnit[num])
+        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+        SetUnitOwner(GameChallengeUnit[num],Player(pid+4),true)
+        SetUnitColor(GameChallengeUnit[num],GetPlayerColor(Player(PLAYER_NEUTRAL_AGGRESSIVE)))
+        IssuePointOrderById(GameChallengeUnit[num],851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
         SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff击杀殷洪|r",0)
     endfunction
 
@@ -187,19 +187,19 @@ library GameChallenge6 uses GameChallengeBase
             time = time + 1
             if  IsPlayerInChallenge == true
                 if  time == 1
-                    num = GetCanUsesGameChallengUnitID(pid)
+                    num = GetCanUsesGameChallengeUnitID(pid)
                     if  num != 0
                         x = -192
                         y = 7168
                         SetPlayerTaskUIChatOfPlayer(pid,"姜子牙","殷洪你可敢上桥来，和我打三回合？",0)
-                        CreateUsesGameChallengUnitExOfAng(pid,num,'uf61',x,y,225)
-                        UnitAddEffectOfGameChalleng(GameChallengUnit[num])
-                        UnitAddEffectSetSize(GameChallengUnit[num],"effect_az-leiji.mdx",2)
-                        SetUnitAnimation(GameChallengUnit[num],"attack")
+                        CreateUsesGameChallengeUnitExOfAng(pid,num,'uf61',x,y,225)
+                        UnitAddEffectOfGameChalleng(GameChallengeUnit[num])
+                        UnitAddEffectSetSize(GameChallengeUnit[num],"effect_az-leiji.mdx",2)
+                        SetUnitAnimation(GameChallengeUnit[num],"attack")
                     endif
                 elseif  time == 2
                     SetPlayerTaskUIChatOfPlayer(pid,"殷洪","哼！就算我师父在我也不惧，又何怕你幻术？我来了！",0)
-                    GameChalleng_6_JumpAttack2Timer(pid,GameChallengUnit[num],num,144,6400)
+                    GameChalleng_6_JumpAttack2Timer(pid,GameChallengeUnit[num],num,144,6400)
                     endtimer
                 endif
             else
@@ -259,17 +259,17 @@ library GameChallenge6 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u1))
         if  GetUnitAbilityLevel(u1,'Aloc') == 0
             if  u1 == Pu[1]
-                if  GameChallengUnit[69] == null and GameChallengInt[60] == 0 and IsFinshChallenge(6) == false and IsPlayerInChallenge == true
-                    GameChallengInt[60] = 1
-                    SetUnitVertexColor(GameChallengUnit[61],255,255,255,0)
-                    SetUnitVertexColor(GameChallengUnit[51],255,255,255,0)
-                    GameChallengUnit[69] = CreateUnit(Player(9),'np07',GetUnitX(Pu[1]),GetUnitY(Pu[1]),45)
-                    ShowUnitOfOnlyPlayer(pid,GameChallengUnit[69],UnitAPOfPlayer)
-                    UnitAddAbility(GameChallengUnit[69],'AZ99')
-                    SetUnitAbilityLevel(GameChallengUnit[69],'AZ99',pid+1)
+                if  GameChallengeUnit[69] == null and GameChallengeInt[60] == 0 and IsFinshChallenge(6) == false and IsPlayerInChallenge == true
+                    GameChallengeInt[60] = 1
+                    SetUnitVertexColor(GameChallengeUnit[61],255,255,255,0)
+                    SetUnitVertexColor(GameChallengeUnit[51],255,255,255,0)
+                    GameChallengeUnit[69] = CreateUnit(Player(9),'np07',GetUnitX(Pu[1]),GetUnitY(Pu[1]),45)
+                    ShowUnitOfOnlyPlayer(pid,GameChallengeUnit[69],UnitAPOfPlayer)
+                    UnitAddAbility(GameChallengeUnit[69],'AZ99')
+                    SetUnitAbilityLevel(GameChallengeUnit[69],'AZ99',pid+1)
                     SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随姜子牙！",0.2)
                     SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随姜子牙|r",0)
-                    GameChalleng_6_Jump1(pid,GameChallengUnit[69],-1184,7072,0)
+                    GameChalleng_6_Jump1(pid,GameChallengeUnit[69],-1184,7072,0)
                 endif
             endif
         endif
@@ -278,17 +278,17 @@ library GameChallenge6 uses GameChallengeBase
 
     function GameChallenge_6_A_Death(int pid,unit u2)
         int uid = GetUnitTypeId(u2)
-        GameChallengUnit[R2I(GetUnitRealState(u2,99))] = null
+        GameChallengeUnit[R2I(GetUnitRealState(u2,99))] = null
         if  uid == 'uf60'
-            if  GameChallengInt[60] == 1
-                GameChallengInt[60] = 2
-                GameChalleng_6_Jump1(pid,GameChallengUnit[69],-288,7296,1)
+            if  GameChallengeInt[60] == 1
+                GameChallengeInt[60] = 2
+                GameChalleng_6_Jump1(pid,GameChallengeUnit[69],-288,7296,1)
                 SetPlayerTaskUIChatOfPlayer(pid,"任务","跟随姜子牙！",0)
                 SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff跟随姜子牙|r",0)
             endif
         elseif  uid == 'uf61'
-            if  GameChallengInt[60] == 2
-                GameChallengInt[60] = 0
+            if  GameChallengeInt[60] == 2
+                GameChallengeInt[60] = 0
                 SetPlayerTaskUIChatOfPlayer(pid,"殷洪","老师，弟子愿保武王灭纣，望乞救命！",0)
                 SetPlayerTaskUIChatOfPlayer(pid,"赤精子","此时迟了！你已犯天条，自化飞灰，莫误了进封神台时辰！",1)
                 GameChallengeFluahAll(pid,1)
@@ -298,16 +298,16 @@ library GameChallenge6 uses GameChallengeBase
             endif
         elseif  uid == 'uf62'
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","成功击杀申公豹！",0)
-            if  GameChallengOperaWay[6] == 0
+            if  GameChallengeOperaWay[6] == 0
                 if  GetGameChallengOperaSelsect() == 0
-                    GameChallengOperaWay[6] = 1
+                    GameChallengeOperaWay[6] = 1
                     SetLeagueUnit(6,true)
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","吾奉师尊之命，此事不可鲁莽。师尊自会给我一个答案。",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")   
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r") 
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cff00ff00殷郊加入己方阵营！|r")                                  
                 else
-                    GameChallengOperaWay[6] = 2
+                    GameChallengeOperaWay[6] = 2
                     SetLeagueUnit(6,false)
                     SetPlayerTaskUIChatOfPlayer(pid,"殷郊","兄弟竟死于恶人之手，我与姜尚不共戴天！",1)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[时渊-愚孝愚亲]：|r"+GetPlayerNameOfColor(pid)+"完成了时渊剧情，|cffff0000殷郊加入敌方阵营！|r")   
@@ -342,18 +342,18 @@ library GameChallenge6 uses GameChallengeBase
     function InitGameChallenge_6()
         for pid = 0,3
             if  IsPlaying(pid) == true
-                GameChallengUnit[60] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',-2048,6368,180)
-                SetUnitVertexColor(GameChallengUnit[60],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[60],0x01)
-                GameChallengUnit[61] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-2048,6368,0)
-                SetUnitVertexColor(GameChallengUnit[61],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[61],0x01)
-                GameChallengUnit[62] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2048,6560,0)
-                SetUnitVertexColor(GameChallengUnit[62],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[62],0x01)
-                GameChallengUnit[63] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np25',-1504,8352,225)
-                SetUnitVertexColor(GameChallengUnit[63],255,255,255,0)
-                EXSetUnitMoveType(GameChallengUnit[63],0x01)
+                GameChallengeUnit[60] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np16',-2048,6368,180)
+                SetUnitVertexColor(GameChallengeUnit[60],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[60],0x01)
+                GameChallengeUnit[61] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ07',-2048,6368,0)
+                SetUnitVertexColor(GameChallengeUnit[61],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[61],0x01)
+                GameChallengeUnit[62] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np07',-2048,6560,0)
+                SetUnitVertexColor(GameChallengeUnit[62],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[62],0x01)
+                GameChallengeUnit[63] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np25',-1504,8352,225)
+                SetUnitVertexColor(GameChallengeUnit[63],255,255,255,0)
+                EXSetUnitMoveType(GameChallengeUnit[63],0x01)
             endif
         end
         CreateTrigUnitInRangeOfGameChallenge(-2048,6368,150,function EnRctGameChalleng_6_Way0)
