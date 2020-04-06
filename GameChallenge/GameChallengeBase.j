@@ -7,7 +7,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     int array       GameChallengePlayerInt[12][680]
     unit array      GameChallengePlayerUnit[12][680]
     bool array      GameChallengePlayerBool[12][680]
-    real array      GameChallengeArrayReal[12][680]
+    real array      GameChallengePlayerReal[12][680]
 
     int array      GameChallengeOperaWay
 

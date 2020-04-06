@@ -119,7 +119,7 @@ library GameChallenge11 uses GameChallengeBase
         ChallengeRct_WM(2) = gg_rct_ChallengeRct_MK_2
         ChallengeRct_WM(3) = gg_rct_ChallengeRct_MK_3
 
-        /*for pid = 0,3
+        for pid = 0,3
             if  pid == 0
                 GameChallengeWM_OriginX = 0
                 GameChallengeWM_OriginY = 0
@@ -133,7 +133,7 @@ library GameChallenge11 uses GameChallengeBase
                 GameChallengeWM_OriginX = 0
                 GameChallengeWM_OriginY = 0
             endif
-        end*/
+        end
 
         InitRctEventFunc(ChallengeRct_WM(0),false,function LeaveChallengeRct_WM_0)
         InitRctEventFunc(ChallengeRct_WM(1),false,function LeaveChallengeRct_WM_1)
