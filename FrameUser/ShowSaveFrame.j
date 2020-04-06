@@ -113,6 +113,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)//独孤求败 N6
         RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//独孤求败 N7
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
+        RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
         RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
@@ -183,7 +184,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH03','RH03',0,0,0,0)//元始天尊
         RegisterShowSaveFrameData(3,'RH04','RH04',0,0,0,0)//魔化哪吒
         RegisterShowSaveFrameData(3,'RH05','RH05',0,0,0,0)//老子
-//        RegisterShowSaveFrameData(3,'RH06','RH06',0,0,0,0)//陆压
+        RegisterShowSaveFrameData(3,'RH06','RH06',0,0,0,0)//陆压
 //        RegisterShowSaveFrameData(3,'RH07','RH07',0,0,0,0)//女娲
         RegisterShowSaveFrameData(3,'RH08','RH08',0,0,0,0)//妖皇妲己
         RegisterShowSaveFrameData(3,'RH09','RH09',0,0,0,0)//剑仙广成子

@@ -187,7 +187,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[27]="触发概率"
         StateName[28]="每秒回血"
         StateName[29]="每秒回蓝"
-        StateName[30]=""
+        StateName[30]="抵抗概率"
         StateName[31]="生命加成"
         StateName[32]="攻击加成"
 
@@ -268,7 +268,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[1027]="%"
         StateName[1028]="%"
         StateName[1029]="%"
-        StateName[1030]=""
+        StateName[1030]="%"
         StateName[1031]="%"
         StateName[1032]="%"
         StateName[1033]="%"

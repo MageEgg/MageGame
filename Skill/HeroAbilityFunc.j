@@ -1036,8 +1036,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction
     function SpellS518(unit wu,int id)
 
-        SetEquipStateOfPlayer(wu,id,0.2)
-        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运转九转神功，额外获得20%道果属性！")
+        SetEquipStateOfPlayer(wu,id,0.16)
+        DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r:太乙真人运转九转神功，额外获得16%道果属性！")
 
     endfunction
 

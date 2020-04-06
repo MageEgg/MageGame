@@ -89,7 +89,7 @@ call InitAbilityData('S514',2,0,2,7.2,0,0,0,0,2,8,1,"冰封万里","对自身周
 call InitAbilityData('S515',1,0,1,11.5,0,0,0,0,2,0,2,"日月珠","|CffFFC926每次施法|r凝聚|Cffffc9261|r颗|Cffffc926日月珠|r环绕自身，数量达到|Cffffc9264颗|r时，向攻击目标造成|Cffffc926攻击*1150%|r范围伤害。","ReplaceableTextures\\CommandButtons\\BTNS515.blp")
 call InitAbilityData('S516',2,0,0,0,0,0,0,0,0,15,0,"悔悟","|CffFFD24D自裁|r悔过，英雄立即死亡，所有人回复|Cffffd24d50%|r生命，|Cffffd24d6|r秒内提高|Cffffd24d30%|r技能伤害。","ReplaceableTextures\\CommandButtons\\BTNS516.blp")
 call InitAbilityData('S517',1,0,1,6.25,0,0,0,0,0,8,0,"乾坤-阵","每|Cffffc9268秒|r对目标范围发动枪阵，造成|Cffffc926攻击*625%|r伤害，并|Cffffc926眩晕2秒|r。\n\n拥有法宝|Cffffc926风火轮|r时，造成伤害|Cffffc926+30%|r","ReplaceableTextures\\CommandButtons\\BTNS517.blp")
-call InitAbilityData('S518',1,0,0,0,0,0,0,0,0,0,3,"九转神功","每次突破境界获得额外|Cffffbf0020%|r收益。","ReplaceableTextures\\CommandButtons\\BTNS518.blp")
+call InitAbilityData('S518',1,0,0,0,0,0,0,0,0,0,3,"九转神功","每次突破境界获得额外|Cffffbf0016%|r收益。","ReplaceableTextures\\CommandButtons\\BTNS518.blp")
 call InitAbilityData('S519',1,0,2,3.6,0,0,0,0,2,0,1,"天眼神光","|CffFFD24D攻击或施法|r时，|Cffffd24d4%|r几率开启天眼发射神光，造成|Cffffd24d业力*360%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS519.blp")
 call InitAbilityData('S520',2,0,0,0,0,0,0,0,0,10,2,"莲花化身","使用后|Cffffc9266|r秒内|Cffffc926伤害减免+18%|r。\n\n拥有法宝|Cffff26ff混天绫|r时：释放莲花化身回复自身|Cffffc92615%|r生命。","ReplaceableTextures\\CommandButtons\\BTNS520.blp")
 call InitAbilityData('S521',2,0,2,2,0,0,0,0,2,10,1,"月盈","每秒对周围单位造成|Cffffc926业力*250%|r技能伤害，持续|Cffffc9266秒|r。","ReplaceableTextures\\CommandButtons\\BTNS521.blp")
