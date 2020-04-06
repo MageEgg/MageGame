@@ -326,30 +326,34 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     function OpenLastAttack(int pid) //大决战
         if  InfiniteAttackBool == false
             if  CrazyAttackBool == false
-                if  AttackUnitWN > 15
-                    if  AttackUnitWN >= AttackUnitWNOver - 3
+                if  StopAttackBool == false
+                    if  AttackUnitWN > 15
+                        if  AttackUnitWN >= AttackUnitWNOver - 3
+                            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
+                            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
+                        else
+                            AttackUnitOrderNum = AttackUnitWNOver - 3
+                            AttackUnitWN = AttackUnitWNOver - 3
+                            AttackUnitWNBoss = AttackUnitWN/3
+                            FlushChildHashtable(ht,GetHandleId(AttackTimer))
+                            DestroyTimer(AttackTimer)
+                            CreateNextTimer(AttackUnitWN)
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
+                            RemoveItemFromStock(GameDefendUnit,'IZ04')
+                            AddItemToStock(GameDefendUnit,'IZ04',0,1)
+                        endif
+                    else
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
-                    else
-                        AttackUnitOrderNum = AttackUnitWNOver - 3
-                        AttackUnitWN = AttackUnitWNOver - 3
-                        AttackUnitWNBoss = AttackUnitWN/3
-                        FlushChildHashtable(ht,GetHandleId(AttackTimer))
-                        DestroyTimer(AttackTimer)
-                        CreateNextTimer(AttackUnitWN)
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerName(Player(pid))+"|cffffff00使用了道具提前进入大决战！！！|R")
-                        RemoveItemFromStock(GameDefendUnit,'IZ04')
-                        AddItemToStock(GameDefendUnit,'IZ04',0,1)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r该道具只能再16波之后使用！")
                     endif
                 else
-                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
-                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r该道具只能再16波之后使用！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前处于暂停刷怪，无法提前进入大决战！")
                 endif
             else
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
