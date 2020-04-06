@@ -353,6 +353,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                         DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r该道具只能再16波之后使用！")
                     endif
                 else
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
                     DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前处于暂停刷怪，无法提前进入大决战！")
                 endif
             else
