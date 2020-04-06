@@ -279,6 +279,12 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             UnitAddItem(Pu[2],CreateItem('CS21',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
         endif
 
+        if  GetPlayerTechCount(Player(pid),'RG0G',true) > 0//通关难7
+            UnitAddItem(Pu[2],CreateItem('IN40',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+        endif
+
+        
+
 
 
         if  GetPlayerTechCount(Player(pid),'RY4E',true) > 0
