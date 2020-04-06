@@ -953,7 +953,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             loop
                 u2 = FirstOfGroup(gg)
                 exitwhen u2 == null
-                if  u2 != Pu[1] and GetUnitAbilityLevel(U2,'AZ01') == 0 and GetUnitAbilityLevel(U2,'AZ92') == 0 
+                if  u2 != Pu[1] and GetUnitAbilityLevel(u2,'AZ01') == 0 and GetUnitAbilityLevel(u2,'AZ92') == 0 
                     x2 = GetUnitX(u2)
                     y2 = GetUnitY(u2)
                     ang = Atan2(y1-y2,x1-x2)
