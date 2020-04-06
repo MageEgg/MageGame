@@ -368,6 +368,9 @@ scope ItemSystem initializer InitItemSystem
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r|cffff0000当前团队副本暂未开放！！！|r")
             endif
+        elseif  itemid == 'IZ04'
+            AddItemToStock(GameDefendUnit,itemid,1,1)
+            OpenLastAttack(pid)
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 OpenGameTeamChallenge(pid,1,10)
