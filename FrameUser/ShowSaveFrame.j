@@ -139,6 +139,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
         RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
         RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
+        RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0)//难7通关5次
 
         
 

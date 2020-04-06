@@ -339,8 +339,27 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
             if  GameLevel >= 3
                 id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+
+                if  index == 3 and GameLevel >= 5
+                    if  GetMagicItemMaxColor(pid) > 3
+                        BJDebugMsg("前2副本没有紫")
+                        if  GetTypeIdData(id3,101) > 3 and GetTypeIdData(id4,101) > 3 and GetTypeIdData(id5,101) > 3
+                            BJDebugMsg("新奖励中没有紫")
+                            RecoveryPrizePoolData(pid,10+GetTypeIdData(id3,101),id3)
+                            BJDebugMsg("回收第一格法宝")
+                            id3 = GetPrize(pid,13,true)
+                        else
+                            BJDebugMsg("新奖励中有紫,跳过")
+                        endif
+                    else
+                        BJDebugMsg("前2本出紫了,不管了")
+                    endif
+                endif
             endif
+            
         endif
+
+
 
         GivePlayerPrize(pid,id1,id2,id3,id4,id5)
 

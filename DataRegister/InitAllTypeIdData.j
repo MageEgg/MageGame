@@ -217,6 +217,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG0D',"难4通关5次","ReplaceableTextures\\CommandButtons\\BTNTG04.BLP","招魂幡Lv3x1")
         call InitTypeIdStrings('RG0E',"难5通关5次","ReplaceableTextures\\CommandButtons\\BTNTG05.BLP","完美技能进阶石x1")
         call InitTypeIdStrings('RG0F',"难6通关5次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","")
+        call InitTypeIdStrings('RG0G',"难7通关5次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","七命玄门丹x1\n重随英雄次数+1")
         call InitTypeIdStrings('RSHA',"商城3件套","ReplaceableTextures\\CommandButtons\\BTNSCX3.blp","每秒生命+100\n伤害减免+1%\n初级被动技能书*1")
         call InitTypeIdStrings('RSHB',"商城5件套","ReplaceableTextures\\CommandButtons\\BTNSCX5.blp","每秒生命+200\n伤害减免+2%\n完美技能进阶石*1")
         call InitTypeIdStrings('RSHC',"商城8件套","ReplaceableTextures\\CommandButtons\\BTNSCX8.blp","每秒生命+300\n伤害减免+3%\n开局补天石+2")
@@ -321,7 +322,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RT16',"封神通行证16级","war3mapImported\\UI_State02.tga","")
         call InitTypeIdStrings('RT17',"封神通行证17级","war3mapImported\\UI_State05.tga","")
         call InitTypeIdStrings('RT19',"封神通行证19级","war3mapImported\\UI_State10.tga","")
-
 
 
         BJDebugMsg("init1end")

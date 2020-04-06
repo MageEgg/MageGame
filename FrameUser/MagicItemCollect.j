@@ -602,6 +602,25 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
 
+    
+    function GetMagicItemMaxColor(int pid)->int
+        int id = 0
+        int color = 0
+        int maxcolor = 5
+
+        for index = 1,MagicItemMax
+            id = GetPlayerMagicItem(pid,index)
+            color = GetTypeIdData(id,101)
+            if  id > 0 
+                if  color < maxcolor
+                    maxcolor = color
+                endif
+            endif
+        end
+        BJDebugMsg("当前最高品质为"+I2S(maxcolor))
+        return maxcolor
+    endfunction
+
     //判断是否唯一
     function IsMagicItemOnly(int pid,int n)->bool
         int id = 0
@@ -626,105 +645,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
     endfunction
 
 
-    /*
-    //羁绊属性
-    function SetMagicItemState(int pid,int index,int now,int offset)
-        int s1 = 0
-        int s2 = 0
-        int v1 = 0
-        int v2 = 0
-        BJDebugMsg("index"+I2S(index)+"_now"+I2S(now)+"_off"+I2S(offset))
-        if  index == 1
-            s1 = 1
-            if  now >= 4
-                v1 = 450000
-            elseif  now >= 3
-                v1 = 300000
-            elseif  now >= 2
-                v1 = 150000
-            endif
-        elseif  index == 2
-            s1 = 15
-            if  now >= 4
-                v1 = 24
-            elseif  now >= 3
-                v1 = 12
-            elseif  now >= 2
-                v1 = 6
-            endif
-        elseif  index == 3
-            s1 = 10
-            s2 = 18
-            if  now >= 4
-                v1 = 9
-                v2 = 9
-            elseif  now >= 3
-                v1 = 6
-                v2 = 6
-            elseif  now >= 2
-                v1 = 3
-                v2 = 3
-            endif
-        elseif  index == 4
-            s1 = 14
-            if  now >= 4
-                v1 = 8
-            elseif  now >= 3
-                v1 = 4
-            elseif  now >= 2
-                v1 = 3
-            endif
-        elseif  index == 5
-            s1 = 13
-            if  now >= 4
-                v1 = 8
-            elseif  now >= 3
-                v1 = 4
-            elseif  now >= 2
-                v1 = 3
-            endif
-
-        elseif  index == 7
-            s1 = 19
-            s2 = 20
-            if  now >= 4
-                v1 = 6
-                v2 = 150
-            elseif  now >= 3
-                v1 = 3
-                v2 = 100
-            elseif  now >= 2
-                v1 = 2
-                v2 = 50
-            endif
-        elseif  index == 8
-            s1 = 4
-            if  now >= 4
-                v1 = 12
-            elseif  now >= 3
-                v1 = 8
-            elseif  now >= 2
-                v1 = 4
-            endif
-        elseif  index == 9
-            s1 = 16
-            if  now >= 4
-                v1 = 24
-            elseif  now >= 3
-                v1 = 12
-            elseif  now >= 2
-                v1 = 6
-            endif
-        endif
-        if  s1 > 0 and v1 > 0
-            AddUnitRealState(Pu[1],s1,v1*offset)
-        endif
-        if  s2 > 0 and v2 > 0
-            AddUnitRealState(Pu[1],s2,v2*offset)
-        endif
-    endfunction
-    */
-
+    
     function ReMagicItemState(int pid,int index,int add)
         int now = GetUnitIntState(Pu[1],index)
         int new = now + add
