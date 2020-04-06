@@ -932,6 +932,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS081(unit wu,real r1,real r2,real dam)//真空领域
         unit u1 = wu
         unit u2 = null
+        int pid = GetPlayerId(GetOwningPlayer(u1))
         real damage = dam/8
         real x1 = r1
         real y1 = r2
@@ -952,13 +953,15 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             loop
                 u2 = FirstOfGroup(gg)
                 exitwhen u2 == null
-                x2 = GetUnitX(u2)
-                y2 = GetUnitY(u2)
-                ang = Atan2(y1-y2,x1-x2)
-                dx = 8*Cos(ang)
-                dy = 8*Sin(ang)
-                SetUnitX(u2,x2+dx)
-                SetUnitY(u2,y2+dy)
+                if  u2 != Pu[1] and GetUnitAbilityLevel(U2,'AZ01') == 0 and GetUnitAbilityLevel(U2,'AZ92') == 0 
+                    x2 = GetUnitX(u2)
+                    y2 = GetUnitY(u2)
+                    ang = Atan2(y1-y2,x1-x2)
+                    dx = 8*Cos(ang)
+                    dy = 8*Sin(ang)
+                    SetUnitX(u2,x2+dx)
+                    SetUnitY(u2,y2+dy)
+                endif
                 if  ModuloInteger(time,17) == 0
                     UnitDamageTarget(u1,u2,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endif
