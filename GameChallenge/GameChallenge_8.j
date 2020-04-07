@@ -456,14 +456,10 @@ library GameChallenge8 uses GameChallengeBase
 
             if  GetUnitTypeId(Pu[1]) == 'H013' //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 2
-                    if  GetRandomReal(0,1) <= 0.4
-                        if  GetPlayerTechCount(Player(pid),'RDAJ',true) == 0
-                            SetDzPlayerData(pid,15,10,10)
-                            SetPlayerTechResearchedEx(Player(pid),'RDAJ')
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000真假....猴精..|r（永久存档）！")
-                        endif
-                    else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000真假....猴精..|r，但可惜运气太差了没激活存档！")
+                    if  GetPlayerTechCount(Player(pid),'RDAJ',true) == 0
+                        SetDzPlayerData(pid,15,10,10)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAJ')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000真假....猴精..|r（永久存档）！")
                     endif
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000真假....猴精..|r，但可惜地图等级不够要求！")

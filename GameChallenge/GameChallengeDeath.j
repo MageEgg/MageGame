@@ -225,6 +225,8 @@ library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Gam
             GameTeamChallengDeath_A(u2)
         elseif  uid2 >= 'ut20' and uid2 <= 'ut29'
             GameTeamChallengDeath_B(u2)
+        elseif  uid2 >= 'ut30' and uid2 <= 'ut39'
+            GameTeamChallengDeath_C(pid,u2)
         endif
         //BJDebugMsg(YDWEId2S(uid2))
         flush locals
