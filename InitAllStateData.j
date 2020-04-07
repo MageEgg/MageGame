@@ -1335,6 +1335,7 @@ InitTypeState6('RY9F',0,5000,0,0,0,0,0,0,0,0)
 InitTypeState6('RY9G',0,5000,0,0,0,0,0,0,0,0)
 InitTypeState6('RY9H',0,5000,0,0,0,0,0,0,0,0)
 InitTypeState6('RY9I',0,5000,0,0,0,0,0,0,0,0)
+InitTypeState6('RG0F',0,10000,0,0,0,0,0,0,0,0)
 InitTypeState6('RM7E',50,0,0,0,0,0,0,0,0,0)
 endfunction
 function InitStateData7()
