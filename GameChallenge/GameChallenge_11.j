@@ -130,7 +130,7 @@ library GameChallenge11 uses GameChallengeBase
             SetChallengeWMCS(pid)
             SendPlayerUnit(pid,GameChallengeWM_OriginX,GameChallengeWM_OriginY)
             CreateChallengeWM(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r当前挑战|cffffcc00万魔窟第"+I2S(PlayerChallengeWMCos+1)+"层|r！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r当前挑战|cffffcc00万魔窟第"+I2S(PlayerChallengeWMCos)+"层|r！")
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[万魔窟]：|r传送冷却中，剩余"+I2S(30-GetUnitIntState(Pu[1],'WMCS'))+"秒！") 
         endif
@@ -157,7 +157,7 @@ library GameChallenge11 uses GameChallengeBase
         AddUnitRealState(Pu[1],17,GameChallengeWM_Prize[PlayerChallengeWMCos])
         UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",3.2)
         CreateChallengeWMEx(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos+1)+"层，奖励"+I2S(R2I(GameChallengeWM_Prize[PlayerChallengeWMCos]))+"%伤害加成！|r")
+        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos)+"层，奖励"+I2S(R2I(GameChallengeWM_Prize[PlayerChallengeWMCos]))+"%伤害加成！|r")
         if  PlayerChallengeWMCos == 1 or ModuloInteger(PlayerChallengeWMCos,10) == 0
             ReGemFrame(pid)
         endif
