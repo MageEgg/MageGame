@@ -35,6 +35,8 @@ library GameChallenge10 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     SetUnitOwner(GameChallenge_MJ_BOSS,Player(PLAYER_NEUTRAL_PASSIVE),true)
+                    SetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_LIFE,GetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_MAX_LIFE))
+                    SetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_MANA,GetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_MAX_MANA))
                     SetUnitIntState(GameChallenge_MJ_BOSS,'ut21',0)
                     SetUnitPosition(GameChallenge_MJ_BOSS,11488,-7536)
                     SetUnitFacing(GameChallenge_MJ_BOSS,270)
