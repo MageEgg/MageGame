@@ -172,7 +172,7 @@ library GameChallenge11 uses GameChallengeBase
             lv = 40
         endif
         AddUnitRealState(Pu[1],17,GameChallengeWM_PrizeA[lv])
-        DropGemItem(u2,GameChallengeWM_PrizeB[lv],GameChallengeWM_PrizeC[lv])
+        DropGemItem.execute(u2,GameChallengeWM_PrizeB[lv],GameChallengeWM_PrizeC[lv])
         UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",5)
         CreateChallengeWMEx(pid)
         DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos)+"层，奖励"+I2S(R2I(GameChallengeWM_PrizeA[lv]))+"%伤害加成！|r")
