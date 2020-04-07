@@ -242,8 +242,8 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
         if  uid == 'ut20'
-            gold = 220
-            exp = 68
+            gold = 50
+            exp = 10
         endif
 
         
