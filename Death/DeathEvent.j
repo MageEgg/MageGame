@@ -287,15 +287,17 @@ scope DeathEvent initializer InitDeathEvent
     endfunction
 
 
-    function ut20UnitDeath(unit wu)
+    function ut20UnitDeath(int p,unit wu)
         real x = 0
         real y = 0
         for pid = 0,3
-            x = GetUnitX(Pu[1])
-            y = GetUnitY(Pu[1])
+            if  p != pid
+                x = GetUnitX(Pu[1])
+                y = GetUnitY(Pu[1])
 
-            if  GetRectMinX(r) <= x and x <= GetRectMaxX(r) and GetRectMinY(r) <= y and y <= GetRectMaxY(r)
-                PlayerHeroAddState(pid,'ut20',null)
+                if  GetRectMinX(gg_rct_ChallengeRctConE) <= x and x <= GetRectMaxX(gg_rct_ChallengeRctConE) and GetRectMinY(gg_rct_ChallengeRctConE) <= y and y <= GetRectMaxY(gg_rct_ChallengeRctConE)
+                    PlayerHeroAddState(pid,'ut20',null)
+                endif
             endif
         end
     endfunction
@@ -693,7 +695,7 @@ scope DeathEvent initializer InitDeathEvent
             if  uid >= 'mb01' and uid <= 'mb20'
                 AttackBossDeathEvent(u1)
             elseif  uid == 'ut20'
-                ut20UnitDeath(u1)
+                ut20UnitDeath(pid2,u1)
             endif
 
             if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
