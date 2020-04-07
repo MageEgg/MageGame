@@ -1,24 +1,102 @@
 library GameChallenge11 uses GameChallengeBase
 
+    real array GameChallengeWMArrayReal[40][200]
+
+    #define GameChallengeWM_Life            GameChallengeWMArrayReal[1]
+    #define GameChallengeWM_Attack          GameChallengeWMArrayReal[2]
+    #define GameChallengeWM_Prize           GameChallengeWMArrayReal[3]
+
+    function InitGameChallengeWM_MDate(int num,real life,real attack,real prize)
+        GameChallengeWM_Life[num] = life
+        GameChallengeWM_Attack[num] = attack
+        GameChallengeWM_Prize[num] = prize
+    endfunction
+
+    function InitGameChallengeWM_M()
+        InitGameChallengeWM_MDate(1,1,1,2)
+        InitGameChallengeWM_MDate(2,1.19,1.09,2)
+        InitGameChallengeWM_MDate(3,1.42,1.2,2)
+        InitGameChallengeWM_MDate(4,1.69,1.31,2)
+        InitGameChallengeWM_MDate(5,3.1,1.93,6)
+        InitGameChallengeWM_MDate(6,3.63,2.14,3)
+        InitGameChallengeWM_MDate(7,4.3,2.42,3)
+        InitGameChallengeWM_MDate(8,4.7,2.63,3)
+        InitGameChallengeWM_MDate(9,5.62,3.11,3)
+        InitGameChallengeWM_MDate(10,10.12,4.93,8)
+        InitGameChallengeWM_MDate(11,12.51,5.5,4)
+        InitGameChallengeWM_MDate(12,15.48,6.15,4)
+        InitGameChallengeWM_MDate(13,19.14,6.86,4)
+        InitGameChallengeWM_MDate(14,24.33,7.78,4)
+        InitGameChallengeWM_MDate(15,44.1,10.53,10)
+        InitGameChallengeWM_MDate(16,51.87,11.43,5)
+        InitGameChallengeWM_MDate(17,63.53,12.75,5)
+        InitGameChallengeWM_MDate(18,76.97,14.19,5)
+        InitGameChallengeWM_MDate(19,93.24,15.8,5)
+        InitGameChallengeWM_MDate(20,175.21,22.15,12)
+        InitGameChallengeWM_MDate(21,197.36,23.42,6)
+        InitGameChallengeWM_MDate(22,222.3,24.77,6)
+        InitGameChallengeWM_MDate(23,250.4,26.2,6)
+        InitGameChallengeWM_MDate(24,283.33,27.8,6)
+        InitGameChallengeWM_MDate(25,389.43,32.65,14)
+        InitGameChallengeWM_MDate(26,429.48,34.31,7)
+        InitGameChallengeWM_MDate(27,463.29,35.5,7)
+        InitGameChallengeWM_MDate(28,499.77,36.74,7)
+        InitGameChallengeWM_MDate(29,539.13,38.02,7)
+        InitGameChallengeWM_MDate(30,798.16,51.52,16)
+        InitGameChallengeWM_MDate(31,916.84,59.18,8)
+        InitGameChallengeWM_MDate(32,1053.17,67.98,8)
+        InitGameChallengeWM_MDate(33,1209.78,78.09,8)
+        InitGameChallengeWM_MDate(34,1389.67,89.7,8)
+        InitGameChallengeWM_MDate(35,2310.29,149.13,18)
+        InitGameChallengeWM_MDate(36,2653.83,171.31,10)
+        InitGameChallengeWM_MDate(37,3048.45,196.78,10)
+        InitGameChallengeWM_MDate(38,3501.75,226.04,10)
+        InitGameChallengeWM_MDate(39,4022.45,259.65,10)
+        InitGameChallengeWM_MDate(40,6687.23,431.67,20)
+    endfunction
+
+    function SetChallengeWMState(int pid,unit u,int num,int boss)
+        int lv = PlayerChallengeWMCos+1
+        if  lv > 40
+            lv = 40
+        endif
+        if  boss == 1
+            SetUnitRealStateOfOtherId(u,'uK1A'+num)
+        else
+            SetUnitRealStateOfOtherId(u,'uK0A'+num)
+        endif
+        BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
+        BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*GameChallengeWM_Life[lv])
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*GameChallengeWM_Attack[lv])
+        BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
+        BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
+    endfunction 
+
     function CreateChallengeWM(int pid)
-        int lv = PlayerChallengeWMCos
         real x = GameChallengeWM_MX
         real y = GameChallengeWM_MY
         unit u = null
         int bosstype = GetRandomInt(0,7) //8种
         int unitnum = GetRandomInt(9,18) //数量
+        int unitype = 0 
         u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut30'+bosstype,x,y,270)
+        SetChallengeWMState(pid,u,bosstype,1)
         UnitAddAbility(u,'AZ99')
         SetUnitAbilityLevel(u,'AZ99',pid+1)
         AddWMSummonUnit(pid,u)
         IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
 
         for num = 1,unitnum
-            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut40'+GetRandomInt(0,7),x,y,270)
+            unitype = GetRandomInt(0,7)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut40'+unitype,x,y,270)
+            SetChallengeWMState(pid,u,unitype,1)
             if  num <= 3
                 SetUnitRealState(u,1,GetUnitRealState(u,1)*5)
                 SetUnitRealState(u,5,GetUnitRealState(u,5)*15)
                 SetUnitVertexColor(u,255,100,100,100)
+                BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
+                BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
             endif
             UnitAddAbility(u,'AZ99')
             SetUnitAbilityLevel(u,'AZ99',pid+1)
@@ -76,9 +154,13 @@ library GameChallenge11 uses GameChallengeBase
         int uid = GetUnitTypeId(u2)
         FlushWMSummonUnitGroup(pid)
         PlayerChallengeWMCos = PlayerChallengeWMCos + 1
+        AddUnitRealState(Pu[1],17,GameChallengeWM_Prize[PlayerChallengeWMCos])
         UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",3.2)
         CreateChallengeWMEx(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos+1)+"层|r！")
+        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos+1)+"层，奖励"+I2S(R2I(GameChallengeWM_Prize[PlayerChallengeWMCos]))+"%伤害加成！|r")
+        if  PlayerChallengeWMCos == 1 or ModuloInteger(PlayerChallengeWMCos,10) == 0
+            ReGemFrame(pid)
+        endif
     endfunction
 
     function EnterChallengeRct_WM_0()
@@ -184,7 +266,7 @@ library GameChallenge11 uses GameChallengeBase
     endfunction
     
     function InitGameChallenge_11()
-
+        InitGameChallengeWM_M()
         ChallengeRct_WM(0) = gg_rct_ChallengeRct_MK_0
         ChallengeRct_WM(1) = gg_rct_ChallengeRct_MK_1
         ChallengeRct_WM(2) = gg_rct_ChallengeRct_MK_2
