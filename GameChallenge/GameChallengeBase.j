@@ -328,6 +328,35 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         u = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,0,5,1.98)
         EXSetUnitMoveType(u,0x01)
         CreateTrigUnitInRange(u,198,function SendOperaRectRange)
+
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-420,y,0)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-590,y,0)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+420,y,180)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+590,y,180)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+420,270)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+590,270)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-420,90)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-590,90)
+        EXSetUnitMoveType(u,0x01)
+        SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
         GameDefendUnit = CreateUnit(Player(9),'np20',-1664,-7440,90)
         OriginalDefendX = GetUnitX(GameDefendUnit)
         OriginalDefendY = GetUnitY(GameDefendUnit)
@@ -456,23 +485,23 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         for pid = 0,3
             if  IsPlaying(pid) == true 
                 if  pid == 0
-                    x = -7584+30
+                    x = -7554
                     y = -5312
                     GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-280,y,0)
                     GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-450,y,0)
                 elseif  pid == 1
                     x = -5184
-                    y = -6240-30
+                    y = -6270
                     GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+280,270)
                     GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+450,270)
                 elseif  pid == 2
-                    x = -6240-30
+                    x = -6270
                     y = -8512
                     GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+280,y,180)
                     GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+450,y,180)
                 elseif  pid == 3
                     x = -8640
-                    y = -7584+30
+                    y = -7554
                     GameChallengeUnit[202] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-280,90)
                     GameChallengeUnit[203] = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-450,90)
                 endif 

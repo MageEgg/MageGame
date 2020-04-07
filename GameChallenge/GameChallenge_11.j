@@ -79,8 +79,10 @@ library GameChallenge11 uses GameChallengeBase
         endif
         BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
         BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
-        SetUnitRealState(u,1,GetUnitRealState(u,1)*life)
-        SetUnitRealState(u,5,GetUnitRealState(u,5)*attack)
+        BJDebugMsg(GetUnitName(u)+"生命系数"+R2S(life))
+        BJDebugMsg(GetUnitName(u)+"攻击系数"+R2S(attack))
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*life)
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*attack)
         BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
         BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
     endfunction 
