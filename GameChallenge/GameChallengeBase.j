@@ -28,6 +28,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     #define PlayerInChallengeNumber         GameChallengeInt[500]
     #define PlayerChallengeOverCosNum       GameChallengeInt[501]
+    #define PlayerChallengeWMCos            GameChallengeInt[502]
 
     #define PlayerChallengeTimeCosNum(num)  GameChallengeInt[510+num]
 

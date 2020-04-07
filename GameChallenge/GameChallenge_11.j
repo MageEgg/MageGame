@@ -1,7 +1,36 @@
 library GameChallenge11 uses GameChallengeBase
 
+    function CreateChallengeWM(int pid)
+        int lv = PlayerChallengeWMCos
+        real x = GameChallengeWM_MX
+        real y = GameChallengeWM_MY
+        unit u = null
+        int bosstype = GetRandomInt(0,7) //8种
+        int unitnum = GetRandomInt(9,18) //数量
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut20'+bosstype,x,y,270)
+        UnitAddAbility(u,'AZ99')
+        SetUnitAbilityLevel(u,'AZ99',pid+1)
+        AddWMSummonUnit(pid,u)
+        IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+
+        for num = 1,unitnum
+            u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut40'+GetRandomInt(0,7),x,y,270)
+            if  num <= 3
+                SetUnitRealState(u,1,GetUnitRealState(u,1)*5)
+                SetUnitRealState(u,5,GetUnitRealState(u,5)*15)
+                SetUnitVertexColor(u,255,100,100,100)
+            endif
+            UnitAddAbility(u,'AZ99')
+            SetUnitAbilityLevel(u,'AZ99',pid+1)
+            AddWMSummonUnit(pid,u)
+            IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+        end
+    endfunction
+
     function OpenChallengeWM(int pid)
         SendPlayerUnit(pid,GameChallengeWM_OriginX,GameChallengeWM_OriginY)
+        CreateChallengeWM(pid)
+        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r当前挑战|cffffcc00万魔窟第"+I2S(PlayerChallengeWMCos)+"层|r！")
     endfunction
 
     function EnterChallengeRct_WM_0()
