@@ -309,10 +309,10 @@ scope ItemSystem initializer InitItemSystem
 
     function GemItemCardFormula(unit wu,int sid,item it) 
         int itemid = GetItemTypeId(it)
-        int index = sid - 'IK90'
+        int index = sid - 'AK90'
 
         if  itemid == 'IK1A' or itemid == 'IK2A' or itemid == 'IK3A' or itemid == 'IK4A' or itemid == 'IK5A' or itemid == 'IK6A' or itemid == 'IK7A' or itemid == 'IK8A'
-            if  RemoveUnitHasItem(wu,sid - 0x8000000) == true
+            if  RemoveUnitHasItem(wu,sid + 0x8000000) == true
                 RemoveItem(it)
                 UnitAddItemById(wu,itemid + index)
                 UnitAddEffect(wu,"Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl")
