@@ -170,7 +170,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[10]="闪避"
         StateName[11]="免伤概率"
         StateName[12]=""
-        StateName[13]="物理穿透"
+        StateName[13]="护甲穿透"
         StateName[14]="法术穿透"
         StateName[15]="攻击伤害"
         StateName[16]="技能伤害"

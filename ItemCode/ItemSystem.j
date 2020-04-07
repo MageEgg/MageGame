@@ -307,6 +307,22 @@ scope ItemSystem initializer InitItemSystem
 
     endfunction
 
+    function GemItemCardFormula(unit wu,int sid,item it) 
+        int itemid = GetItemTypeId(it)
+        int index = sid - 'IK90'
+
+        if  itemid == 'IK1A' or itemid == 'IK2A' or itemid == 'IK3A' or itemid == 'IK4A' or itemid == 'IK5A' or itemid == 'IK6A' or itemid == 'IK7A' or itemid == 'IK8A'
+            if  RemoveUnitHasItem(wu,itemid - 0x8000000) == true
+                RemoveItem(it)
+                UnitAddItemById(wu,itemid + index)
+                UnitAddEffect(wu,"Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl")
+            endif
+        else
+            DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,10,"|cffff0000[系统]：|r使用目标不正确！")
+        endif
+
+
+    endfunction
     
     
     function PickupItemActions()
@@ -558,7 +574,7 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
-        elseif  itemid >= 'IK01' and itemid <= 'IK99'
+        elseif  itemid >= 'IK01' and itemid <= 'IK8Z'
             PlayerUseGemItem(u1,GetManipulatedItem())
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
             PlayerHeroSkillMagic(u1,itemid - 'IS20',1,itemid)

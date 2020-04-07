@@ -286,7 +286,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         
 
         function GetGemMaxNum(int pid)->int
-            int num = PlayerChallengeWMCos+1
+            int num = PlayerChallengeWMCos
             int max = 0
             if  num > 0
                 max = 2 + num / 10
@@ -319,19 +319,37 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 for index = 1,6
                     if  max >= index
                         id = GetPlayerGemByIndex(pid,index)
-                        DzFrameSetTexture( BUTTON_Back[750+index][1],GetTypeIdIcon(id), 0)
-                        DzFrameSetTexture( BUTTON_Back[750+index][0],"war3mapImported\\UI_baowu0.tga", 0)
+                        if  id > 0
+                            DzFrameSetTexture( BUTTON_Back[750+index][0],GetTypeIdIcon(id), 0)
+                        else
+                            DzFrameSetTexture( BUTTON_Back[750+index][0],"war3mapImported\\UI_baowu1.tga", 0)
+                        endif
                     else
-                        DzFrameSetTexture( BUTTON_Back[750+index][0],"war3mapImported\\UI_baowu1.tga", 0)
+                        DzFrameSetTexture( BUTTON_Back[750+index][0],"war3mapImported\\UI_baowu0.tga", 0)
                     endif
                 end
             endif
         endfunction 
 
 
+        function SetGemState(unit wu,int id,int offset)
+            int Type = GetTypeIdData(id,100)
+            if  Type > 0
+                AddUnitRune(wu,'FY00'+Type,1*offset)
+            endif
+            SetEquipStateOfPlayer(wu,id,offset)
+
+            if  id == 'IK03'
+                AddUnitRealState(wu,75,30*offset)
+            elseif  id >= 'IK3A' and id <= 'IK3Z'
+                AddUnitRealState(wu,75,60*offset)
+            endif
+        endfunction
+
         function PlayerRemGemByIndex(int pid,int index)
             int id = GetPlayerGemByIndex(pid,index)
-            RemoveEquipState(Pu[1],id)
+            UnitAddItemById(Pu[1],id)
+            SetGemState(Pu[1],id,-1)
             SetPlayerGemByIndex(pid,index,0)
             ReGemFrame(pid)
         endfunction
@@ -339,7 +357,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         function PlayerAddGem(int pid,int id)
             int index = GetGemNullIndex(pid)
             if  index > 0
-                AddEquipState(Pu[1],id)
+                SetGemState(Pu[1],id,1)
                 SetPlayerGemByIndex(pid,index,id)
                 ReGemFrame(pid)
             endif
@@ -351,6 +369,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             if  index > 0
                 PlayerAddGem(pid,GetItemTypeId(it))
                 UnitRemoveItem(wu,it)
+                RemoveItem(it)
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r宝物槽已满！无法镶嵌！")
             endif
@@ -368,7 +387,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             int max = GetGemMaxNum(pid)
             DzFrameShow(UI_TipsHead, true)
 
-            if  index >= max
+            if  max >= index
                 id = GetPlayerGemByIndex(pid,index)
                 if  id > 0
                     SetTipsData(1,"",GetTypeIdName(id))
