@@ -68,6 +68,8 @@ scope FrameButton
                         ClickShowSaveFrame(pid)
                     elseif  id == 706 //F6
                         ClickPassFrame(pid)
+                    elseif  id >= 751 and id <= 756
+                        PlayerClickGemItem(pid,id-750)
                     elseif  id >= 911 and id <=913//符印奖励
                         PlayerClickRunePrize(pid,id-910)
                     elseif  id >= 921 and id <=923//符印奖励
