@@ -355,7 +355,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r宝物槽已满！无法镶嵌！")
             endif
         endfunction
-        function PlayerClickGemItem(unit wu,int index)
+        function PlayerClickGemItem(int pid,int index)
             if  GetPlayerGemByIndex(pid,index) > 0
                 PlayerRemGemByIndex(pid,index)
             endif
