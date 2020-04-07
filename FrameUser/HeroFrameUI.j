@@ -345,6 +345,23 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             endif
         endfunction
 
+        function PlayerUseGemItem(unit wu,item it)
+            int pid = GetPlayerId(GetOwningPlayer(wu))
+            int index = GetGemNullIndex(pid)
+            if  index > 0
+                PlayerAddGem(pid,GetItemTypeId(it))
+                UnitRemoveItem(wu,it)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r宝物槽已满！无法镶嵌！")
+            endif
+        endfunction
+        function PlayerClickGemItem(int pid,int index)
+            if  GetPlayerGemByIndex(pid,index) > 0
+                PlayerRemGemByIndex(pid,index)
+            endif
+        endfunction
+
+
 
         function BoxShowGem(int pid,int index)
             int id = 0

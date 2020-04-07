@@ -558,6 +558,8 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
+        elseif  itemid >= 'IK01' and itemid <= 'IK99'
+            PlayerUseGemItem(u1,GetManipulatedItem())
         elseif  itemid >= 'IS21' and itemid <= 'IS23'
             PlayerHeroSkillMagic(u1,itemid - 'IS20',1,itemid)
         elseif  itemid >= 'IS24' and itemid <= 'IS26'
