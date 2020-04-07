@@ -7,7 +7,7 @@ library GameChallenge11 uses GameChallengeBase
         unit u = null
         int bosstype = GetRandomInt(0,7) //8种
         int unitnum = GetRandomInt(9,18) //数量
-        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut20'+bosstype,x,y,270)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut30'+bosstype,x,y,270)
         UnitAddAbility(u,'AZ99')
         SetUnitAbilityLevel(u,'AZ99',pid+1)
         AddWMSummonUnit(pid,u)
