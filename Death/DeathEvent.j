@@ -621,6 +621,7 @@ scope DeathEvent initializer InitDeathEvent
                         GameChallengPlayerDeathEvent(u1)
 
                         AttackSummonUnitGroupDeathEvent(pid,u2)
+                        WMSummonUnitGroupDeathEvent(pid,u2)
                     endif
 
                     if  GetUnitTypeId(u1) == 'H027' and GetUnitTypeId(u2) == 'mc07' //彩蛋
