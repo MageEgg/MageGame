@@ -4,9 +4,9 @@ library GameChallenge11 uses GameChallengeBase
 
     #define GameChallengeWM_Life            GameChallengeWMArrayReal[1]
     #define GameChallengeWM_Attack          GameChallengeWMArrayReal[2]
-    #define GameChallengeWM_PrizeA           GameChallengeWMArrayReal[3]
-    #define GameChallengeWM_PrizeB           GameChallengeWMArrayReal[3]
-    #define GameChallengeWM_PrizeC           GameChallengeWMArrayReal[3]
+    #define GameChallengeWM_PrizeA          GameChallengeWMArrayReal[3]
+    #define GameChallengeWM_PrizeB          GameChallengeWMArrayReal[4]
+    #define GameChallengeWM_PrizeC          GameChallengeWMArrayReal[5]
 
     function InitGameChallengeWM_MDate(int num,real life,real attack,real prizea,real prizeb,real prizec)
         GameChallengeWM_Life[num] = life
