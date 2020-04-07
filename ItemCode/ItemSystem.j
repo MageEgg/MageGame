@@ -364,7 +364,11 @@ scope ItemSystem initializer InitItemSystem
             endif
         elseif  itemid == 'IZ03'
             if  DzConA[14] == 1
-                //SendToGameChallenge_10(pid)
+                if  GetUnitTypeId(GameChallengeMapUnit[501]) != 'ut21'
+                    OpenChallengeWM(pid)  
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[团队副本-万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
+                endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r|cffff0000当前团队副本暂未开放！！！|r")
             endif
