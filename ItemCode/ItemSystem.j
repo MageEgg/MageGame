@@ -366,9 +366,7 @@ scope ItemSystem initializer InitItemSystem
             //FormulaVerify()
         endif
         
-        if  itemid == 'IN30'
-            PickUpItemOfIN30(u1,GetUnitX(u1),GetUnitY(u1))
-        elseif  itemid == 'IP01'
+        if  itemid == 'IP01'
             SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
         elseif  itemid == 'IP14'
             UnitAddItem(u1,CreateItem('IP04',GetUnitX(u1),GetUnitY(u1)))
@@ -528,10 +526,6 @@ scope ItemSystem initializer InitItemSystem
         ItemEventOfAttackUnitChallengeState(pid,itemid)
         if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
             PlayerGetGameGift(pid,itemid)
-        endif
-
-        if  itemid == 'IP07'
-            PickUpItemOfIP07(u1,GetUnitX(u1),GetUnitY(u1))
         endif
         
         if  IsItemPowerup(GetManipulatedItem()) == true //清除
