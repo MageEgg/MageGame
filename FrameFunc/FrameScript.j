@@ -1,19 +1,5 @@
 
-    function ShowNewDzFrameTooltip(real high)
-        DzFrameSetSize(UI_TipsHead,0.215,high)
-        DzFrameClearAllPoints(UI_TipsHead)
-        DzFrameSetPoint(UI_TipsHead, 8, GameUI, 2, 0,-0.435 )
-
-        DzFrameSetSize(UI_TipsFoot,0.215,high)
-        DzFrameClearAllPoints(UI_TipsFoot)
-        DzFrameSetPoint(UI_TipsFoot, 8, GameUI, 2, 0,-0.435 )
-    endfunction
-
-    function SetOriginDzFrameTooltip()
-        DzFrameSetPoint( DzFrameGetTooltip(), 8, GameUI, 2, 0, -0.44 )
-        DzFrameSetSize( UI_TipsHead, TipsSize, 0.01)
-        DzFrameSetSize( UI_TipsFoot, TipsSize, 0.01)
-    endfunction
+    
 
     function UI_ScriptOut(int frame)
         int Type = GetFrameType(frame)
