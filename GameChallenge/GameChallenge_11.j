@@ -195,23 +195,23 @@ library GameChallenge11 uses GameChallengeBase
             if  pid == 0
                 GameChallengeWM_OriginX = 10496
                 GameChallengeWM_OriginY = -928
-                GameChallengeWM_MX = 9568
-                GameChallengeWM_MY = 0
+                GameChallengeWM_MX = 9632
+                GameChallengeWM_MY = -64
             elseif  pid == 1
                 GameChallengeWM_OriginX = 13632
                 GameChallengeWM_OriginY = -928	
-                GameChallengeWM_MX = 12704
-                GameChallengeWM_MY = 0
+                GameChallengeWM_MX = 12768
+                GameChallengeWM_MY = -64
             elseif  pid == 2
                 GameChallengeWM_OriginX = 13632
                 GameChallengeWM_OriginY = -4000
-                GameChallengeWM_MX = 12704
-                GameChallengeWM_MY = -3072
+                GameChallengeWM_MX = 12768
+                GameChallengeWM_MY = -3136
             elseif  pid == 3
                 GameChallengeWM_OriginX = 10496
                 GameChallengeWM_OriginY = -4000
-                GameChallengeWM_MX = 9568
-                GameChallengeWM_MY = -3072
+                GameChallengeWM_MX = 9632
+                GameChallengeWM_MY = -3136
             endif
         end
 
