@@ -52,6 +52,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     int PlayerTeamChallengeCosNum = 0
 
     group array AttackSummonUnitGroup
+    group array WMSummonUnitGroup
 
     rect array ChallengeGameRct
 
@@ -87,6 +88,31 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function AttackSummonUnitGroupDeathEvent(int pid,unit u)
         FlushAttackSummonUnitGroup(pid)
         BJDebugMsg("死亡清空所有召唤的练功房怪")
+    endfunction
+
+    function AddWMSummonUnit(int pid,unit u)
+        GroupAddUnit(WMSummonUnitGroup[pid],u)
+    endfunction
+
+    function RemoveWMSummonUnit(int pid,unit u)
+        GroupRemoveUnit(WMSummonUnitGroup[pid],u)
+    endfunction
+
+    function FlushWMSummonUnitGroupFunc()
+        FlushChildHashtable(ht,GetHandleId(GetEnumUnit()))
+        RemoveUnit(GetEnumUnit())
+    endfunction
+
+    function FlushWMSummonUnitGroup(int pid)
+        if  CountUnitsInGroup(WMSummonUnitGroup[pid]) > 0
+            BJDebugMsg("清空所有召唤的万魔窟怪")
+            ForGroup(WMSummonUnitGroup[pid],function FlushWMSummonUnitGroupFunc)
+        endif
+    endfunction
+
+    function WMSummonUnitGroupDeathEvent(int pid,unit u)
+        FlushWMSummonUnitGroup(pid)
+        BJDebugMsg("死亡清空所有召唤的万魔窟怪")
     endfunction
 
     function SendOperaRectRange()
@@ -490,6 +516,8 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_7")
         ExecuteFunc("InitGameChallenge_8")
         ExecuteFunc("InitGameChallenge_9")
+
+        ExecuteFunc("InitGameChallenge_11")
 
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
