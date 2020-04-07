@@ -193,7 +193,7 @@ library GameChallenge10 uses GameChallengeBase
             end
         end
 
-        j = 0,3
+        for j = 0,3
             for k = 0,2
                 x = GetRectMinX(ChallengeRct_MJ[3])+xlength+xs*j
                 y = GetRectMinY(ChallengeRct_MJ[3])+ylength+ys*k
