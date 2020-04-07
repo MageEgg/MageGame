@@ -1217,6 +1217,49 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    function BossFuncSpell53()
+        insert BossSpell
+        UnitTimerAddSkill(u1,'AZ08',1)
+        UnitTimerAddSkill(u1,'Avul',1)
+        flush locals
+    endfunction
+
+    function BossFuncSpell54()
+        insert BossSpell
+        group gg = CreateGroup()
+        AddEffectInArea(x2,y2,380,8,"Abilities\\Spells\\Undead\\FrostNova\\FrostNovaTarget.mdl")
+        GroupEnumUnitsInRange(gg,x2,y2,400,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
+        UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function BossFuncSpell55()
+        insert BossSpell
+        //伤害来源，目标，伤害值，递增值，最大单位数量，恢复友军bool，对友军闪电，对友军特效，伤害敌军bool，对敌军闪电，对敌军特效，重复选取,伤害类型（0魔法），眩晕(秒)
+        unit u2 = CreateUnit(Player(0),'e000',x2,y2,0)
+        RemoveUnitTimer(u2,0.5)
+        CreateLig(u1,u2,damage,400,6,false,"","",true,"CLPB","Abilities\\Weapons\\Bolt\\BoltImpact.mdl",false,0,0)
+        flush locals
+    endfunction
+
+    function BossFuncSpell56()
+        insert BossSpell
+        unit u2 = null
+        group gg = CreateGroup()
+        GroupEnumUnitsInRange(gg,x1,y1,1000,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+        loop
+            u2 = FirstOfGroup(gg)
+            exitwhen u2 == null
+            UnitAddLife(u2,GetUnitState(u2,UNIT_STATE_MAX_LIFE)*0.1)
+            UnitAddEffect(u2,"Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
+            GroupRemoveUnit(gg,u2)
+        endloop
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
 
     function BossFuncSpell(unit wu,unit tu,int id)
         unit u1 = wu
@@ -1387,6 +1430,20 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ1Z'
             damage = attack*12
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,1.7,"BossFuncSpell52")
+
+        
+        elseif  id == 'AZ3A'
+            damage = attack*6
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,0.1,"BossFuncSpell53")
+        elseif  id == 'AZ3B'
+            damage = attack*6
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell54")
+        elseif  id == 'AZ3C'
+            damage = attack*6
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.7,"BossFuncSpell55")
+        elseif  id == 'AZ3D'
+            damage = attack*6
+            BossFuncStart(u1,u2,RAC_A_600,ang,damage,1.7,"BossFuncSpell56")
 
         ////////////////////////////分割线////////////////////////////////
 

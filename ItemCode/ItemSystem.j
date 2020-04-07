@@ -402,16 +402,24 @@ scope ItemSystem initializer InitItemSystem
             endif
         elseif  itemid == 'IZ02'
             if  DzConA[13] == 1
-                SendToGameChallenge_10(pid)
+                if  GameLevel >= 4
+                    SendToGameChallenge_10(pid)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度4或以上才能激活！！！")
+                endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r|cffff0000当前团队副本暂未开放！！！|r")                         
             endif
         elseif  itemid == 'IZ03'
             if  DzConA[14] == 1
-                if  GetUnitTypeId(GameChallengeMapUnit[501]) != 'ut21'
-                    OpenChallengeWM(pid)  
+                if  GameLevel >= 4
+                    if  GetUnitTypeId(GameChallengeMapUnit[501]) != 'ut21'
+                        OpenChallengeWM(pid)  
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
+                    endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度4或以上才能激活！！！")
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r|cffff0000当前团队副本暂未开放！！！|r")
@@ -427,7 +435,7 @@ scope ItemSystem initializer InitItemSystem
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
                 RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
                 AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度2或以上才能激活！！！")
             endif
 
             //RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')

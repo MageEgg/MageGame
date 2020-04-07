@@ -5,10 +5,14 @@ library GameChallenge10 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u))
         if  u == Pu[1]
             if  DzConA[14] == 1
-                if  GetUnitTypeId(GameChallenge_MJ_BOSS) != 'ut21'
-                    OpenChallengeWM.execute(pid)
+                if  GameLevel >= 4
+                    if  GetUnitTypeId(GameChallenge_MJ_BOSS) != 'ut21'
+                        OpenChallengeWM.execute(pid)
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
+                    endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度4或以上才能激活！！！")
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[万魔窟]：|r|cffff0000当前万魔窟暂未开放！！！|r")
