@@ -333,9 +333,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
 
         function SetGemState(unit wu,int id,int offset)
+            int pid = GetPlayerId(GetOwningPlayer(wu))
             int Type = GetTypeIdData(id,100)
             if  Type > 0
                 AddUnitRune(wu,'FY00'+Type,1*offset)
+                ReRuneFrame(pid)
             endif
             SetEquipStateOfPlayer(wu,id,offset)
 
