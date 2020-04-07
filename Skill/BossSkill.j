@@ -1434,16 +1434,16 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         
         elseif  id == 'AZ3A'
             damage = attack*6
-            BossFuncStart(u1,u2,RAC_A_200,ang,damage,0.1,"BossFuncSpell53")
+            BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell53")
         elseif  id == 'AZ3B'
             damage = attack*6
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,2,"BossFuncSpell54")
         elseif  id == 'AZ3C'
             damage = attack*6
-            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.7,"BossFuncSpell55")
+            BossFuncStart(u1,u2,RAC_A_200,ang,damage,1.5,"BossFuncSpell55")
         elseif  id == 'AZ3D'
             damage = attack*6
-            BossFuncStart(u1,u2,RAC_A_600,ang,damage,1.7,"BossFuncSpell56")
+            BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell56")
 
         ////////////////////////////分割线////////////////////////////////
 
