@@ -102,7 +102,7 @@ library GameChallenge11 uses GameChallengeBase
         for num = 1,unitnum
             unitype = GetRandomInt(0,7)
             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut40'+unitype,x,y,270)
-            SetChallengeWMState(pid,u,unitype,1)
+            SetChallengeWMState(pid,u,unitype,0)
             if  num <= 3
                 SetUnitRealState(u,1,GetUnitRealState(u,1)*5)
                 SetUnitRealState(u,5,GetUnitRealState(u,5)*15)
