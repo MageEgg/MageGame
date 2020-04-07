@@ -328,7 +328,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             if  CrazyAttackBool == false
                 if  StopAttackBool == false
                     if  AttackUnitWN > 15
-                        if  TimerGetRemaining(AttackElseTimer) >= 5
+                        if  TimerGetRemaining(AttackTimer) >= 5
                             if  AttackUnitWN >= AttackUnitWNOver - 3
                                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
