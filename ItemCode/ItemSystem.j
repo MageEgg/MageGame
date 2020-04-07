@@ -312,7 +312,7 @@ scope ItemSystem initializer InitItemSystem
         int index = sid - 'IK90'
 
         if  itemid == 'IK1A' or itemid == 'IK2A' or itemid == 'IK3A' or itemid == 'IK4A' or itemid == 'IK5A' or itemid == 'IK6A' or itemid == 'IK7A' or itemid == 'IK8A'
-            if  RemoveUnitHasItem(wu,itemid - 0x8000000) == true
+            if  RemoveUnitHasItem(wu,sid - 0x8000000) == true
                 RemoveItem(it)
                 UnitAddItemById(wu,itemid + index)
                 UnitAddEffect(wu,"Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl")
