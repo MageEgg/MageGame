@@ -1,6 +1,8 @@
 library GameChallenge11 uses GameChallengeBase
 
-    
+    function OpenChallengeWM(int pid)
+        SendPlayerUnit(pid,GameChallengeWM_OriginX,GameChallengeWM_OriginY)
+    endfunction
 
     function EnterChallengeRct_WM_0()
         int pid = GetPlayerId(GetOwningPlayer(GetTriggerUnit()))

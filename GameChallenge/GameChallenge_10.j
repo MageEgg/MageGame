@@ -5,7 +5,11 @@ library GameChallenge10 uses GameChallengeBase
         int pid = GetPlayerId(GetOwningPlayer(u))
         BJDebugMsg("SendToGameChallenge_10_End")
         if  DzConA[14] == 1
-            //SendToGameChallenge_10(pid)
+            if  GetUnitTypeId(GameChallenge_MJ_BOSS) != 'ut21'
+                OpenChallengeWM.execute(pid)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[团队副本-万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
+            endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本-万魔窟]：|r|cffff0000当前万魔窟暂未开放！！！|r")
         endif
