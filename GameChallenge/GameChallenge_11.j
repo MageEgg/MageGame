@@ -27,10 +27,55 @@ library GameChallenge11 uses GameChallengeBase
         end
     endfunction
 
+    function SetChallengeWMCS(int id)
+        int pid = id
+        int time = 1
+        SetUnitIntState(Pu[1],'WMCS',time)
+        TimerStart(1,true)
+        {
+            if  time < 30
+                time = time + 1
+                SetUnitIntState(Pu[1],'WMCS',time)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function OpenChallengeWM(int pid)
-        SendPlayerUnit(pid,GameChallengeWM_OriginX,GameChallengeWM_OriginY)
-        CreateChallengeWM(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r当前挑战|cffffcc00万魔窟第"+I2S(PlayerChallengeWMCos)+"层|r！")
+        if  GetUnitIntState(Pu[1],'WMCS') == 0
+            SetChallengeWMCS(pid)
+            SendPlayerUnit(pid,GameChallengeWM_OriginX,GameChallengeWM_OriginY)
+            CreateChallengeWM(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r当前挑战|cffffcc00万魔窟第"+I2S(PlayerChallengeWMCos+1)+"层|r！")
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[万魔窟]：|r传送冷却中，剩余"+I2S(GetUnitIntState(Pu[1],'WMCS'))+"秒！") 
+        endif
+    endfunction
+
+    function CreateChallengeWMEx(int id)
+        int pid = id
+        TimerStart(1,false)
+        {
+            if  IsLocInRect(ChallengeRct_WM(pid),GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true
+                CreateChallengeWM(pid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[万魔窟]：|r|cffff8000自动为您召唤下一层BOSS！|r")
+            endif
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function GameTeamChallengDeath_C(int pid,unit u2)
+        int uid = GetUnitTypeId(u2)
+        FlushWMSummonUnitGroup(pid)
+        PlayerChallengeWMCos = PlayerChallengeWMCos + 1
+        UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",3.2)
+        CreateChallengeWMEx(pid)
+        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos+1)+"层|r！")
     endfunction
 
     function EnterChallengeRct_WM_0()
@@ -143,6 +188,7 @@ library GameChallenge11 uses GameChallengeBase
         ChallengeRct_WM(3) = gg_rct_ChallengeRct_MK_3
 
         for pid = 0,3
+            WMSummonUnitGroup[pid] = CreateGroup()
             if  pid == 0
                 GameChallengeWM_OriginX = 10496
                 GameChallengeWM_OriginY = -928
