@@ -57,16 +57,17 @@ library GameChallenge11 uses GameChallengeBase
         InitGameChallengeWM_MDate(38,3501.75,226.04,2,30,10)
         InitGameChallengeWM_MDate(39,4022.45,259.65,2,30,10)
         InitGameChallengeWM_MDate(40,6687.23,431.67,5,100,50)
+        InitGameChallengeWM_MDate(41,6687.23,431.67,2,30,10)
     endfunction
 
     function SetChallengeWMState(int pid,unit u,int num,int boss)
         int lv = PlayerChallengeWMCos+1
         real life = 0
         real attack = 0
-        if  lv > 40
-            life = GameChallengeWM_Life[40]
-            attack = GameChallengeWM_Attack[40]
-            life = life*Pow(1.2,lv-40)
+        if  lv > 41
+            life = GameChallengeWM_Life[41]
+            attack = GameChallengeWM_Attack[41]
+            life = life*Pow(1.2,lv-41)
         else
             life = GameChallengeWM_Life[lv]
             attack = GameChallengeWM_Attack[lv]
@@ -169,8 +170,8 @@ library GameChallenge11 uses GameChallengeBase
         FlushWMSummonUnitGroup(pid)
         PlayerChallengeWMCos = PlayerChallengeWMCos + 1
         lv = PlayerChallengeWMCos
-        if  lv > 40
-            lv = 40
+        if  lv > 41
+            lv = 41
         endif
         AddUnitRealState(Pu[1],17,GameChallengeWM_PrizeA[lv])
         DropGemItem(u2,GameChallengeWM_PrizeB[lv],GameChallengeWM_PrizeC[lv])
