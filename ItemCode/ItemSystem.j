@@ -283,6 +283,30 @@ scope ItemSystem initializer InitItemSystem
     endfunction
 
 
+    function ItemFormula(unit wu,item it1,item it2)
+        int id = (GetItemTypeId(it1) - 'IK00')*0x100 + 'IK0A'
+        BJDebugMsg("ID"+YDWEId2S(id)+I2S(id))
+        RemoveItem(it1)
+        RemoveItem(it2)
+        UnitAddItemById(wu,id)
+        UnitAddEffect(wu,"Abilities\\Spells\\Items\\AIsm\\AIsmTarget.mdl")
+    endfunction
+
+    function GemItemFormula(unit wu,item it)
+        int itemid = GetItemTypeId(it)
+        
+        for n = 0,5
+            if  it != UnitItemInSlot(wu,n)
+                if  GetItemTypeId(UnitItemInSlot(wu,n)) == itemid
+                    BJDebugMsg("合成材料满足")
+                    ItemFormula(wu,it,UnitItemInSlot(wu,n))
+                    exitwhen true
+                endif
+            endif
+        end
+
+    endfunction
+
     
     
     function PickupItemActions()
@@ -297,8 +321,9 @@ scope ItemSystem initializer InitItemSystem
 
         
 
-
+        BJDebugMsg("获取物品")
         if  GetItemType(GetManipulatedItem()) == ITEM_TYPE_ARTIFACT
+            BJDebugMsg("永久")
             //FormulaVerify()
 
             if  u1 == Pu[1]
@@ -315,8 +340,13 @@ scope ItemSystem initializer InitItemSystem
             endif
 
         elseif  GetItemType(GetManipulatedItem()) == ITEM_TYPE_CHARGED
+            BJDebugMsg("可充")
             AddItemCharges(u1,GetManipulatedItem())
         else
+            if  itemid >= 'IK01' and itemid <= 'IK08'
+                BJDebugMsg("宝珠")
+                GemItemFormula(u1,GetManipulatedItem())
+            endif
             //FormulaVerify()
         endif
         

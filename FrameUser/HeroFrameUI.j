@@ -271,17 +271,110 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     endfunction
 
 
-    //宝珠
+    scope Gem
+        //宝珠
+        int array PlayerGemData[12][680]
 
-    function BoxShowGem(int pid,int index)
-        int id = 0
-        DzFrameShow(UI_TipsHead, true)
-        SetTipsData(1,"","宝物槽 - |cff808080未解锁|r")
+
+        function SetPlayerGemByIndex(int pid,int index,int id)
+            PlayerGemData[pid][index] = id
+        endfunction
+        function GetPlayerGemByIndex(int pid,int index)->int 
+            return PlayerGemData[pid][index]
+        endfunction
+
         
-        SetTipsData(10,"","|cff808080暂未开放|r")
-        
-        ShowTipsUI()
-    endfunction
+
+        function GetGemMaxNum(int pid)->int
+            int num = PlayerChallengeWMCos+1
+            int max = 0
+            if  num > 0
+                max = 2 + num / 10
+            endif
+            if  max > 6
+                max = 6
+            endif
+            return max
+        endfunction
+        function GetGemNullIndex(int pid)->int
+            int max = GetGemMaxNum(pid)
+            if  max > 0
+                for i = 1,max
+                    if  GetPlayerGemByIndex(pid,i) == 0
+                        return i
+                    endif
+                end
+            endif
+            return 0
+        endfunction
+        function IsPlayerCanAddGem(int pid)->bool
+            return GetGemNullIndex(pid) > 0
+        endfunction
+
+        function ReGemFrame(int pid)
+            int id = 0
+            int max = 0
+            if  GetLocalPlayer() == Player(pid)
+                max = GetGemMaxNum(pid)
+                for index = 1,6
+                    if  max >= index
+                        id = GetPlayerGemByIndex(pid,index)
+                        DzFrameSetTexture( BUTTON_Back[750+index][1],GetTypeIdIcon(id), 0)
+                        DzFrameSetTexture( BUTTON_Back[750+index][0],"war3mapImported\\UI_baowu0.tga", 0)
+                    else
+                        DzFrameSetTexture( BUTTON_Back[750+index][0],"war3mapImported\\UI_baowu1.tga", 0)
+                    endif
+                end
+            endif
+        endfunction 
+
+
+        function PlayerRemGemByIndex(int pid,int index)
+            int id = GetPlayerGemByIndex(pid,index)
+            RemoveEquipState(Pu[1],id)
+            SetPlayerGemByIndex(pid,index,0)
+            ReGemFrame(pid)
+        endfunction
+
+        function PlayerAddGem(int pid,int id)
+            int index = GetGemNullIndex(pid)
+            if  index > 0
+                AddEquipState(Pu[1],id)
+                SetPlayerGemByIndex(pid,index,id)
+                ReGemFrame(pid)
+            endif
+        endfunction
+
+
+        function BoxShowGem(int pid,int index)
+            int id = 0
+            int max = GetGemMaxNum(pid)
+            DzFrameShow(UI_TipsHead, true)
+
+            if  index >= max
+                id = GetPlayerGemByIndex(pid,index)
+                if  id > 0
+                    SetTipsData(1,"",GetTypeIdName(id))
+                    SetTipsData(10,"",GetTypeIdTips(id))
+                else
+                    SetTipsData(1,"","宝物槽 - 空")
+                    SetTipsData(10,"","|cff00ff00物品栏内点击宝物可镶嵌至该槽位|r")
+                endif
+            else
+                SetTipsData(1,"","宝物槽 - |cff808080未解锁|r")
+                if  index == 1 or index == 2
+                    max = 1
+                else
+                    max = index * 10 - 20
+                endif
+                SetTipsData(10,"","万魔窟达到|CffFFD24D"+I2S(max)+"|r层后解锁")
+            endif
+            
+            
+            
+            ShowTipsUI()
+        endfunction
+    endscope
 
 
     function HeroFrameUIInit()
