@@ -57,8 +57,16 @@ library GameChallenge11 uses GameChallengeBase
 
     function SetChallengeWMState(int pid,unit u,int num,int boss)
         int lv = PlayerChallengeWMCos+1
+        real life = 0
+        real attack = 0
         if  lv > 40
-            lv = 40
+            life = GameChallengeWM_Life[40]
+            attack = GameChallengeWM_Attack[40]
+            life = life*Pow(1.1,lv-40)
+            attack = attack*Pow(1.1,lv-40)
+        else
+            life = GameChallengeWM_Life[lv]
+            attack = GameChallengeWM_Attack[lv]
         endif
         if  boss == 1
             SetUnitRealStateOfOtherId(u,'uK1A'+num)
@@ -67,8 +75,8 @@ library GameChallenge11 uses GameChallengeBase
         endif
         BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
         BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
-        SetUnitRealState(u,1,GetUnitRealState(u,1)*GameChallengeWM_Life[lv])
-        SetUnitRealState(u,5,GetUnitRealState(u,5)*GameChallengeWM_Attack[lv])
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*life)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*attack)
         BJDebugMsg(GetUnitName(u)+"生命"+R2S(GetUnitRealState(u,5)))
         BJDebugMsg(GetUnitName(u)+"攻击"+R2S(GetUnitRealState(u,1)))
     endfunction 
@@ -151,16 +159,22 @@ library GameChallenge11 uses GameChallengeBase
     endfunction
 
     function GameTeamChallengDeath_C(int pid,unit u2)
+        int lv = 0
         int uid = GetUnitTypeId(u2)
         FlushWMSummonUnitGroup(pid)
         PlayerChallengeWMCos = PlayerChallengeWMCos + 1
-        AddUnitRealState(Pu[1],17,GameChallengeWM_Prize[PlayerChallengeWMCos])
-        UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",3.2)
+        lv = PlayerChallengeWMCos
+        if  lv > 40
+            lv = 40
+        endif
+        AddUnitRealState(Pu[1],17,GameChallengeWM_Prize[lv])
+        UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",5)
         CreateChallengeWMEx(pid)
-        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos)+"层，奖励"+I2S(R2I(GameChallengeWM_Prize[PlayerChallengeWMCos]))+"%伤害加成！|r")
+        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos)+"层，奖励"+I2S(R2I(GameChallengeWM_Prize[lv]))+"%伤害加成！|r")
         if  PlayerChallengeWMCos == 1 or ModuloInteger(PlayerChallengeWMCos,10) == 0
             ReGemFrame(pid)
         endif
+        SetBoardText(6,pid+2,"第"+I2S(PlayerChallengeWMCos)+"层")
     endfunction
 
     function EnterChallengeRct_WM_0()
@@ -273,27 +287,30 @@ library GameChallenge11 uses GameChallengeBase
         ChallengeRct_WM(3) = gg_rct_ChallengeRct_MK_3
 
         for pid = 0,3
-            WMSummonUnitGroup[pid] = CreateGroup()
-            if  pid == 0
-                GameChallengeWM_OriginX = 10496
-                GameChallengeWM_OriginY = -928
-                GameChallengeWM_MX = 9632
-                GameChallengeWM_MY = -64
-            elseif  pid == 1
-                GameChallengeWM_OriginX = 13632
-                GameChallengeWM_OriginY = -928	
-                GameChallengeWM_MX = 12768
-                GameChallengeWM_MY = -64
-            elseif  pid == 2
-                GameChallengeWM_OriginX = 13632
-                GameChallengeWM_OriginY = -4000
-                GameChallengeWM_MX = 12768
-                GameChallengeWM_MY = -3136
-            elseif  pid == 3
-                GameChallengeWM_OriginX = 10496
-                GameChallengeWM_OriginY = -4000
-                GameChallengeWM_MX = 9632
-                GameChallengeWM_MY = -3136
+            if  IsPlaying(pid) == true
+                WMSummonUnitGroup[pid] = CreateGroup()
+                SetBoardText(6,pid+2,"第"+I2S(PlayerChallengeWMCos)+"层")
+                if  pid == 0
+                    GameChallengeWM_OriginX = 10496
+                    GameChallengeWM_OriginY = -928
+                    GameChallengeWM_MX = 9632
+                    GameChallengeWM_MY = -64
+                elseif  pid == 1
+                    GameChallengeWM_OriginX = 13632
+                    GameChallengeWM_OriginY = -928	
+                    GameChallengeWM_MX = 12768
+                    GameChallengeWM_MY = -64
+                elseif  pid == 2
+                    GameChallengeWM_OriginX = 13632
+                    GameChallengeWM_OriginY = -4000
+                    GameChallengeWM_MX = 12768
+                    GameChallengeWM_MY = -3136
+                elseif  pid == 3
+                    GameChallengeWM_OriginX = 10496
+                    GameChallengeWM_OriginY = -4000
+                    GameChallengeWM_MX = 9632
+                    GameChallengeWM_MY = -3136
+                endif
             endif
         end
 

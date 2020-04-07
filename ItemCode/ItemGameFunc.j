@@ -911,8 +911,13 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     function PickUpItemOfIP07Func()
         int num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IP07')
         if  GetItemTypeId(GetEnumItem()) == 'IP07'
-            RemoveItem(GetEnumItem())
-            SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
+            if  GetWidgetLife(GetEnumItem()) > 0.00
+                RemoveItem(GetEnumItem())
+                SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
+            else
+                SetWidgetLife(GetEnumItem(),1)
+                RemoveItem(GetEnumItem())
+            endif
         endif
     endfunction
 
@@ -929,8 +934,13 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     function PickUpItemOfIN30Func()
         int num = UnitHasItemOfTypeReNum(PickUpItemUnit,'IN30')
         if  GetItemTypeId(GetEnumItem()) == 'IN30'
-            RemoveItem(GetEnumItem())
-            SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
+            if  GetWidgetLife(GetEnumItem()) > 0.00
+                RemoveItem(GetEnumItem())
+                SetItemCharges(UnitItemInSlot(PickUpItemUnit,num),GetItemCharges(UnitItemInSlot(PickUpItemUnit,num))+1)
+            else
+                SetWidgetLife(GetEnumItem(),1)
+                RemoveItem(GetEnumItem())
+            endif
         endif
     endfunction
 
