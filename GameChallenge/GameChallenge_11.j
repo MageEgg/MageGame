@@ -36,6 +36,9 @@ library GameChallenge11 uses GameChallengeBase
             if  time < 30
                 time = time + 1
                 SetUnitIntState(Pu[1],'WMCS',time)
+                if  time == 30
+                    SetUnitIntState(Pu[1],'WMCS',0)
+                endif
             else
                 endtimer
             endif
@@ -51,7 +54,7 @@ library GameChallenge11 uses GameChallengeBase
             CreateChallengeWM(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r当前挑战|cffffcc00万魔窟第"+I2S(PlayerChallengeWMCos+1)+"层|r！")
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[万魔窟]：|r传送冷却中，剩余"+I2S(GetUnitIntState(Pu[1],'WMCS'))+"秒！") 
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[万魔窟]：|r传送冷却中，剩余"+I2S(30-GetUnitIntState(Pu[1],'WMCS'))+"秒！") 
         endif
     endfunction
 
