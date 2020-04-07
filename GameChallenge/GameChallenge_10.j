@@ -169,32 +169,32 @@ library GameChallenge10 uses GameChallengeBase
         SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ 0/300|r",0.045)
         SetTextTagPos(GameChallengeTexttag[0],11488-320,-7536+200,0)
 
-        for j = 0,4
-            for k = 0,3
+        for j = 0,3
+            for k = 0,2
                 x = GetRectMinX(ChallengeRct_MJ[0])+xlength+xs*j
                 y = GetRectMaxY(ChallengeRct_MJ[0])-ylength-ys*k
                 CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut20',x,y,270)
             end
         end
 
-        for j = 0,4
-            for k = 0,3
+        for j = 0,3
+            for k = 0,2
                 x = GetRectMaxX(ChallengeRct_MJ[1])-xlength-xs*j
                 y = GetRectMaxY(ChallengeRct_MJ[1])-ylength-ys*k
                 CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut20',x,y,270)
             end
         end
 
-        for j = 0,4
-            for k = 0,3
+        for j = 0,3
+            for k = 0,2
                 x = GetRectMaxX(ChallengeRct_MJ[2])-xlength-xs*j
                 y = GetRectMinY(ChallengeRct_MJ[2])+ylength+ys*k
                 CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut20',x,y,90)
             end
         end
 
-        for j = 0,4
-            for k = 0,3
+        j = 0,3
+            for k = 0,2
                 x = GetRectMinX(ChallengeRct_MJ[3])+xlength+xs*j
                 y = GetRectMinY(ChallengeRct_MJ[3])+ylength+ys*k
                 CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut20',x,y,90)
