@@ -322,7 +322,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RT16',"封神通行证16级","war3mapImported\\UI_State02.tga","")
         call InitTypeIdStrings('RT17',"封神通行证17级","war3mapImported\\UI_State05.tga","")
         call InitTypeIdStrings('RT19',"封神通行证19级","war3mapImported\\UI_State10.tga","")
-        call InitTypeIdStrings('IK01',"|CffBF00FF【稀有】白虎|r","ReplaceableTextures\\CommandButtons\\BTNSST01.blp","致命倍率|Cffffc926+10%|n|n|r|Cffff00bf【白虎】|r+|Cffff00bf【白虎】|r=|Cffffc926【神威虎爪】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
+        call InitTypeIdStrings('IK01',"|CffBF00FF【稀有】白虎|r","ReplaceableTextures\\CommandButtons\\BTNSST01.blp","致命倍率|Cffffc926+150%|n|n|r|Cffff00bf【白虎】|r+|Cffff00bf【白虎】|r=|Cffffc926【神威虎爪】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK02',"|CffBF00FF【稀有】玄武|r","ReplaceableTextures\\CommandButtons\\BTNSST02.blp","最大生命|Cffffc926+10%|n|n|r|Cffff00bf【玄武】|r+|Cffff00bf【玄武】|r=|Cffffc926【佛陀舍利】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK03',"|CffBF00FF【稀有】帝魄|r","ReplaceableTextures\\CommandButtons\\BTNSST03.blp","道兵伤害|Cffffc926+30%|n|n|r|Cffff00bf【帝魄】|r+|Cffff00bf【帝魄】|r=|Cffffc926【昊天帝玉】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK04',"|CffBF00FF【稀有】青龙|r","ReplaceableTextures\\CommandButtons\\BTNSST04.blp","攻击|Cffffc926+30000|r，攻击|Cffffc926+6%|n|n|r|Cffff00bf【青龙】|r+|Cffff00bf【青龙】|r=|Cffffc926【应龙珠】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
