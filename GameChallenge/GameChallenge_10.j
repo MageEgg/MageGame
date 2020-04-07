@@ -35,6 +35,8 @@ library GameChallenge10 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     SetUnitOwner(GameChallenge_MJ_BOSS,Player(PLAYER_NEUTRAL_PASSIVE),true)
+                    SetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_LIFE,GetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_MAX_LIFE))
+                    SetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_MANA,GetUnitState(GameChallenge_MJ_BOSS,UNIT_STATE_MAX_MANA))
                     SetUnitIntState(GameChallenge_MJ_BOSS,'ut21',0)
                     SetUnitPosition(GameChallenge_MJ_BOSS,11488,-7536)
                     SetUnitFacing(GameChallenge_MJ_BOSS,270)
@@ -51,6 +53,9 @@ library GameChallenge10 uses GameChallengeBase
 
     function GameTeamChallengDeath_B(unit u2)
         int uid = GetUnitTypeId(u2)
+        real x = 0
+        real y = 0
+        unit u = null
         if  uid == 'ut20'
             if  GetUnitTypeId(GameChallenge_MJ_BOSS) == 'ut21' and GetUnitAbilityLevel(GameChallenge_MJ_BOSS,'AZ8A') > 0
                 GameTeamChallengeInt(2) = GameTeamChallengeInt(2) + 1
@@ -75,16 +80,46 @@ library GameChallenge10 uses GameChallengeBase
             SetTextTagLifespan(GameChallengeTexttag[0],2.00)
             SetTextTagFadepoint(GameChallengeTexttag[0],0.50)
             GameChallenge_MJ_BOSS = null
-
-            GameChallenge_MJ_BOSS = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",11488,-7536,270,0,1.8)
+            x = 11488
+            y = -7536
+            GameChallenge_MJ_BOSS = CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"effect_az_goods_tp_target(3).mdl",x,y,270,0,1.8)
             EXSetUnitMoveType(GameChallenge_MJ_BOSS,0x01)
-            EXSetUnitMoveType(CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",11488,-7536,270,0,1.98),0x01)
+            EXSetUnitMoveType(CreateTmUnit(Player(PLAYER_NEUTRAL_PASSIVE),"sunwell.mdl",x,y,270,0,1.98),0x01)
             CreateTrigUnitInRange(GameChallenge_MJ_BOSS,198,function SendToGameChallenge_10_End)
+
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-420,y,0)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x-590,y,0)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+420,y,180)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x+590,y,180)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+420,270)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y+590,270)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-420,90)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'eZ09',x,y-590,90)
+            EXSetUnitMoveType(u,0x01)
+            SetUnitColor(u,PLAYER_COLOR_YELLOW)
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，领主死前解除了万魔窟封印！！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，领主死前解除了万魔窟封印！！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff80成功击杀秘境领主，领主死前解除了万魔窟封印！！！！|r")
         endif
+        u = null
     endfunction
 
     function SendToGameChallenge_10(int pid)
@@ -121,7 +156,8 @@ library GameChallenge10 uses GameChallengeBase
         ChallengeRct_MJ[2] = gg_rct_ChallengeRct_MJ_M_2
         ChallengeRct_MJ[3] = gg_rct_ChallengeRct_MJ_M_3
 
-        GameChallenge_MJ_BOSS = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'ut21',11488,-7536,270)
+        GameChallenge_MJ_BOSS = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut21',11488,-7536,270)
+        SetUnitOwner(GameChallenge_MJ_BOSS,Player(PLAYER_NEUTRAL_PASSIVE),true)
         UnitAddAbility(GameChallenge_MJ_BOSS,'Avul')
         UnitAddAbility(GameChallenge_MJ_BOSS,'AZ8A')
 
