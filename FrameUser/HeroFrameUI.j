@@ -412,6 +412,18 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             
             ShowTipsUI()
         endfunction
+
+        function DropGemItem(unit wu,int r1,int r2)
+            if  GetRandomInt(1,100)<= r1
+                bj_lastCreatedItem = CreateItem(GetRandomInt('IK01','IK09'),GetUnitX(wu),GetUnitY(wu))
+                LocAddEffect(GetItemX(bj_lastCreatedItem),GetItemY(bj_lastCreatedItem),"effect_tx_shanguang.mdx")
+            endif
+            if  GetRandomInt(1,100)<= r2
+                bj_lastCreatedItem = CreateItem(GetRandomInt('IK91','IK99'),GetUnitX(wu),GetUnitY(wu))
+                LocAddEffect(GetItemX(bj_lastCreatedItem),GetItemY(bj_lastCreatedItem),"effect_tx_shanguang.mdx")
+            endif
+            bj_lastCreatedItem = null
+        endfunction
     endscope
 
 
