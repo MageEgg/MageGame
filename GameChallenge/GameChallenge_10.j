@@ -121,7 +121,8 @@ library GameChallenge10 uses GameChallengeBase
         ChallengeRct_MJ[2] = gg_rct_ChallengeRct_MJ_M_2
         ChallengeRct_MJ[3] = gg_rct_ChallengeRct_MJ_M_3
 
-        GameChallenge_MJ_BOSS = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'ut21',11488,-7536,270)
+        GameChallenge_MJ_BOSS = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'ut21',11488,-7536,270)
+        SetUnitOwner(GameChallenge_MJ_BOSS,Player(PLAYER_NEUTRAL_PASSIVE),true)
         UnitAddAbility(GameChallenge_MJ_BOSS,'Avul')
         UnitAddAbility(GameChallenge_MJ_BOSS,'AZ8A')
 
