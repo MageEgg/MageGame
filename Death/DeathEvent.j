@@ -228,7 +228,7 @@ scope DeathEvent initializer InitDeathEvent
         //杀敌数
         //AddUnitIntState(Pu[1],108,1)
         
-
+        exp = 10
         gold = GetTypeIdData(uid,103)
         if  gold == 0
             if  uid != 'u020'
@@ -239,6 +239,11 @@ scope DeathEvent initializer InitDeathEvent
                 //山魈妖魅 60%收益
                 gold = gold * GetRandomReal(0.6,1)
             endif
+        endif
+
+        if  uid == 'ut20'
+            gold = 220
+            exp = 68
         endif
 
         
@@ -252,10 +257,12 @@ scope DeathEvent initializer InitDeathEvent
             gold = gold + GetUnitRealState(Pu[1],46)
 
             AdjustPlayerStateBJ( R2I(gold) ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-            UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
+            if  wu != null
+                UnitAddTextPlayer(wu,Player(pid),"+"+I2S(R2I(gold+0.0001)),255,202,0,255,90,0.023)
+            endif
         endif
+
         //杀敌经验
-        exp = 10
         if  exp > 0
             exp = exp + R2I(I2R(exp) * GetUnitRealState(Pu[1],64)*0.01)
             HeroAddExp( Pu[1],exp)
@@ -277,6 +284,20 @@ scope DeathEvent initializer InitDeathEvent
             AddUnitRealState(Pu[1],5,ste)
         endif
         
+    endfunction
+
+
+    function ut20UnitDeath(unit wu)
+        real x = 0
+        real y = 0
+        for pid = 0,3
+            x = GetUnitX(Pu[1])
+            y = GetUnitY(Pu[1])
+
+            if  GetRectMinX(r) <= x and x <= GetRectMaxX(r) and GetRectMinY(r) <= y and y <= GetRectMaxY(r)
+                PlayerHeroAddState(pid,'ut20',null)
+            endif
+        end
     endfunction
 
     function CreateNewForg(int id1,int id2)
@@ -671,6 +692,8 @@ scope DeathEvent initializer InitDeathEvent
 
             if  uid >= 'mb01' and uid <= 'mb20'
                 AttackBossDeathEvent(u1)
+            elseif  uid == 'ut20'
+                ut20UnitDeath(u1)
             endif
 
             if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false
