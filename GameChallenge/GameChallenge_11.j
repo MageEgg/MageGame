@@ -66,8 +66,7 @@ library GameChallenge11 uses GameChallengeBase
         if  lv > 40
             life = GameChallengeWM_Life[40]
             attack = GameChallengeWM_Attack[40]
-            life = life*Pow(1.1,lv-40)
-            attack = attack*Pow(1.1,lv-40)
+            life = life*Pow(1.2,lv-40)
         else
             life = GameChallengeWM_Life[lv]
             attack = GameChallengeWM_Attack[lv]
