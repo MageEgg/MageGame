@@ -702,7 +702,11 @@ scope DeathEvent initializer InitDeathEvent
                         RemoveAttackSummonUnit(GetUnitAbilityLevel(u1,'AZ99')-1,u1)
                     endif
                 endif
-
+                if  GetUnitAbilityLevel(u1,'AZ99') > 0
+                    if  IsUnitInGroup(u1,WMSummonUnitGroup[GetUnitAbilityLevel(u1,'AZ99')-1]) == true //刷新单位组
+                        RemoveWMSummonUnit(GetUnitAbilityLevel(u1,'AZ99')-1,u1)
+                    endif
+                endif
             endif
 
             if  IsUnitInGroup(u1,AttackUnitGroup) == true//刷新单位组
