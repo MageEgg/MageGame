@@ -210,14 +210,14 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0)//蛮力纣王
         RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0)//神农
         RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0)//后羿
-//        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)//任脉
-//        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)//督脉
-//        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)//冲脉
-//        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)//带脉
-//        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)//阴跷脉
-//        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)//阳跷脉
-//        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)//阴维脉
-//        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)//阳维脉
+        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)//任脉
+        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)//督脉
+        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)//冲脉
+        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)//带脉
+        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)//阴跷脉
+        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)//阳跷脉
+        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)//阴维脉
+        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)//阳维脉
         RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv1
         RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv2
         RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv3
@@ -757,7 +757,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"封神谕令")
         CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
         CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"彩蛋")
-        CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"未开放")
+        CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"经脉")
 
     endfunction
 

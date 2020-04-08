@@ -340,7 +340,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             if  GameLevel >= 3
                 id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
 
-                if  index == 3 and GameLevel >= 5
+                if  index == 3 and GameLevel >= 4
                     if  GetMagicItemMaxColor(pid) > 3
                         BJDebugMsg("前2副本没有紫")
                         if  GetTypeIdData(id3,101) > 3 and GetTypeIdData(id4,101) > 3 and GetTypeIdData(id5,101) > 3
