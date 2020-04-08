@@ -1237,7 +1237,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
 
     function BossFuncSpell55()
         insert BossSpell
-        unit u2 = CreateUnit(Player(0),'e000',x2,y2,0)
+        unit u2 = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'e000',x2,y2,0)
         group gg = CreateGroup()
         RemoveUnitTimer(u2,0.5)
         Ligfunc(u1,u2,AddLightningEx("CLPB",false,GetUnitX(u1),GetUnitY(u1),GetUnitZ(u1),GetUnitX(u2),GetUnitY(u2),GetUnitZ(u2)))

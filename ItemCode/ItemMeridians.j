@@ -5,7 +5,10 @@ library ItemMeridians uses DamageCode,ItemGameFunc
 
     //int array IsCanChallengeMeridiansInGame
 
-    function 
+    function CreateMeridiansNPC()
+        
+
+    endfunction
 
     function GetMeridiansName(int num)->string
         if  num == 1
