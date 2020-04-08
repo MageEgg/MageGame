@@ -221,9 +221,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],48,6)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff004件套|r》已激活！")
 
-            if  GetLocalPlayer() == Player(pid)
-                YDWESetItemDataString('IS13',3,"|cfff0f0f0白色强化价格：|r|cffffd24d2500\n|r|cff00ff7f绿色|r|cfff0f0f0强化价格：|r|cffffd24d5000\n|r|cff00bfff蓝色|r|cfff0f0f0强化价格：|r|cffffd24d10000\n|r|cffbf00ff紫色|r|cfff0f0f0强化价格：|r|cffffd24d20000\n黄色|r|cfff0f0f0强化价格：|r|cffffd24d30000\n|r|cffff0000红色|r|cfff0f0f0强化价格：|r|cffffd24d50000\n\n|r|cff00ff7f消耗金币，100%几率提高饰品1级。|r")
-            endif
+            
            
 
         endif

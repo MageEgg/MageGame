@@ -443,6 +443,11 @@ scope DeathEvent initializer InitDeathEvent
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x-512,y-128,270)//兽魂神通
                 CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc03',x-512,y-128,270)//兽魂神通
+                if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
+                    if  GetLocalPlayer() == Player(pid)
+                        YDWESetItemDataString('IS13',3,"|cfff0f0f0白色强化价格：|r|cffffd24d2500\n|r|cff00ff7f绿色|r|cfff0f0f0强化价格：|r|cffffd24d5000\n|r|cff00bfff蓝色|r|cfff0f0f0强化价格：|r|cffffd24d10000\n|r|cffbf00ff紫色|r|cfff0f0f0强化价格：|r|cffffd24d20000\n黄色|r|cfff0f0f0强化价格：|r|cffffd24d30000\n|r|cffff0000红色|r|cfff0f0f0强化价格：|r|cffffd24d50000\n\n|r|cff00ff7f消耗金币，100%几率提高饰品1级。|r")
+                    endif
+                endif
                 //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y+256,270)//占星抽奖
                 UnitAddEffectOfNPC(Pu[28])
                 //UnitAddEffectOfNPC(Pu[25])

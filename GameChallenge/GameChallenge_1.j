@@ -303,7 +303,7 @@ library GameChallenge1 uses GameChallengeBase
             //奖励
             PlayerFinishPlotEx(pid,1)
 
-            /*if  GetUnitTypeId(Pu[1]) == 'H022' //彩蛋
+            if  GetUnitTypeId(Pu[1]) == 'H022' //彩蛋
                 if  DzPlayerLv(Player(pid)) >= 6
                     if  GameLevel >= 3
                         if  GetPlayerTechCount(Player(pid),'RDAG',true) == 0
@@ -317,7 +317,7 @@ library GameChallenge1 uses GameChallengeBase
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000爸，我回来了|r，但可惜地图等级不够要求！")
                 endif
-            endif*/
+            endif
         endif
     endfunction
 
