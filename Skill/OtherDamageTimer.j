@@ -42,11 +42,7 @@ library OtherDamageTimer uses SystemTimer
             flush locals
 
     endfunction
-    
-
-
   
-        
     function CreateTmFuncZero(unit wu,unit m,real Ang,real rac,real dis,real t,real high)
         unit u1 = wu
         unit u2 = m 
