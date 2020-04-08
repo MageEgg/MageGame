@@ -398,6 +398,20 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                             if  IsPlaying(pid) == true 
                                 if  IsLocInRect(gg_rct_GameRect2,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == false
                                     SetUnitXY(Pu[1],-6910,-6950)
+                                    if  pid == 0
+                                        PlayerReviveX = -1984
+                                        PlayerReviveY = -7136
+                                    elseif  pid == 1
+                                        PlayerReviveX = -1344
+                                        PlayerReviveY = -7136
+                                    elseif  pid == 2
+                                        PlayerReviveX = -1344
+                                        PlayerReviveY = -7808
+                                    elseif  pid == 3
+                                        PlayerReviveX = -1984
+                                        PlayerReviveY = -7808
+                                    endif
+                                    SetUnitAbilityLevel(Pu[1],'AZ96',5)
                                 endif
                             endif
                         end
