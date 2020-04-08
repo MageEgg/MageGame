@@ -733,17 +733,15 @@ library AttackUnit uses DamageCode,PassCheckMission
         int time = 0
         TimerStart(1,true)
         {
-            if  time < 30
+            if  time < 60
                 time = time + 1
-                if  time == 10
-                
-                elseif  time == 20
+                if  time == 30
                     for pid = 0,5
                         if  IsPlaying(pid) == true
-                            Dialog.create(Player(pid),"|cffff0000游戏已通关！|r\n游戏将在10秒内结束！","确定","","","","","","","","","","","","")
+                            Dialog.create(Player(pid),"|cffff0000游戏已通关！|r\n游戏将在30秒内结束！","确定","","","","","","","","","","","","")
                         endif
                     end
-                elseif  time == 25
+                elseif  time == 55
                     PauseAllUnits( true )
                 endif
             else
