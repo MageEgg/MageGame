@@ -4,6 +4,7 @@ piece DzGameFunc
         if  DzConA[0] == 1 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关积分：|r"+I2S(GetDzPlayerData(pid,2,1)))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(MaxHeroBaseMedal*MaxGameLevel))  
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00万魔窟：|r"+I2S(GetDzPlayerData(pid,2,3))+"层")
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
         else
@@ -394,6 +395,27 @@ piece DzGameFunc
     function GetDzHeroMedalString(int pid)->string
         int lv = GetDzHeroMedal(pid)
         return "战勋Lv" + I2S(lv)
+    endfunction
+
+    ////////////////////////排行榜类存储////////////////////
+    function InitInfiniteModelJF(int pid)
+        int dataA = 0
+        int dataB = 0
+        dataA = DzAPI_Map_GetStoredInteger(Player(pid),"WJ1") //万魔窟
+        dataB = GetDzPlayerData(pid,2,3) //万魔窟
+        if  dataA > dataB
+            DzAPI_Map_StoreInteger(Player(pid),"WJ1",dataB)
+        endif
+    endfunction
+    
+    function SetInfiniteModelJF(int pid,int jf)
+        int data = 0
+        data = GetDzPlayerData(pid,2,3) //万魔窟
+        if  jf > data
+            SetDzPlayerData(pid,2,3,jf)
+            DzAPI_Map_StoreInteger(Player(pid),"WJ1",jf)
+            BJDebugMsg("万魔窟排行榜存储："+I2S(jf)+"层")
+        endif
     endfunction
 
 endpiece

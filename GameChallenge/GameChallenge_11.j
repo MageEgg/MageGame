@@ -182,6 +182,7 @@ library GameChallenge11 uses GameChallengeBase
             ReGemFrame(pid)
         endif
         SetBoardText(6,pid+2,"第"+I2S(PlayerChallengeWMCos)+"层")
+        SetInfiniteModelJF(pid,PlayerChallengeWMCos)
     endfunction
 
     function EnterChallengeRct_WM_0()

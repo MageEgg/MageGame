@@ -429,6 +429,7 @@ library DzSave initializer InitDzData uses DzDataSetting
                         SaveDzServerTime(pid) //更新版本
                         InitDzPlayerTG(pid) //加载通关
                         InitDzHeroExpData.execute(pid) //加载熟练度
+                        InitInfiniteModelJF(pid) //排行榜类加载
                     endif
                 end
             elseif  time == 7

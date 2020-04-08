@@ -20,12 +20,14 @@ library DzDataSetting uses DzBase
     #define DzHeroMedalDeathCos         DzHeroUseInt[50]
     #define DzHeroMedalGameExp          DzHeroUseInt[51]
 
+    #define InfiniteModeACosNum 80
+
     ///////////////////////////////////////////////////////////
     
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包
-    // 组2 12组 == 1通关积分 2守家积分 
+    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 
     // 组3 20组 == 1总通关次数 2+通关难度次数 最高难5
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
@@ -117,7 +119,9 @@ library DzDataSetting uses DzBase
                 if  max > 5000
                     max = 5000
                 endif
-            elseif  flag >= 3 //未使用
+            elseif  flag == 3 //万魔窟
+                max = InfiniteModeACosNum 
+            elseif  flag >= 4 //未使用
                 max = 0
             endif
         elseif  Group == 3
