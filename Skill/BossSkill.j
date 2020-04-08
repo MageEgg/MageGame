@@ -1238,7 +1238,6 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell55()
         insert BossSpell
         group gg = CreateGroup()
-        RemoveUnitTimer(u2,0.5)
         Ligfunc(u1,null,AddLightningEx("CLPB",false,GetUnitX(u1),GetUnitY(u1),GetUnitZ(u1),x2,y2,0))
         AddEffectInArea(x2,y2,280,4,"effect_AZ_UrsaPsionic_E.mdl")
         GroupEnumUnitsInRange(gg,x2,y2,300,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))

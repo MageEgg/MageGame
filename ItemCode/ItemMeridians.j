@@ -6,9 +6,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     //int array IsCanChallengeMeridiansInGame
 
     function CreateMeridiansNPC()
-        GameDefendUnit = RemoveUnit(GameDefendUnit)
+        RemoveUnit(GameDefendUnit)
         GameDefendUnit = CreateUnit(Player(9),'np43',-1664,-7440,270)
-        
+
     endfunction
 
     function GetMeridiansName(int num)->string
