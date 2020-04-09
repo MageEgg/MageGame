@@ -427,6 +427,8 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IZ04'
             AddItemToStock(GameDefendUnit,itemid,1,1)
             OpenLastAttack(pid)
+        elseif  itemid == 'IZ05'
+            OpenMeridiansChallenge(pid)
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 OpenGameTeamChallenge(pid,1,10)
