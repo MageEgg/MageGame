@@ -711,7 +711,7 @@ scope DeathEvent initializer InitDeathEvent
                     //小怪死亡的其他功能
                     HeroKillMoster(u2,u1)
 
-                    if  uid == 'uJ01'
+                    if  uid == 'utJA'
                         MeridiansChallengeDeath()
                     endif
                     if  uid >= 'uT0A' and uid <= 'uTZZ'
