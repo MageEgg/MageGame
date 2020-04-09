@@ -712,7 +712,7 @@ scope DeathEvent initializer InitDeathEvent
                     HeroKillMoster(u2,u1)
 
                     if  uid == 'uJ01'
-                        MeridiansChallengeDeath(pid2)
+                        MeridiansChallengeDeath()
                     endif
                     if  uid >= 'uT0A' and uid <= 'uTZZ'
                         AttackUnitChallengeStateDeathEvent(pid2,u1)
