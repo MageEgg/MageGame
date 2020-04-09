@@ -175,7 +175,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
                 GamePuOverDay = 0
             endif
 
-            MeridiansDay = (ServerTime-ttttime)/86400 //经脉日
+            MeridiansDay = (ServerTime-1586361600)/86400 //经脉日
             if  MeridiansDay < 0
                 MeridiansDay = 0
             endif
