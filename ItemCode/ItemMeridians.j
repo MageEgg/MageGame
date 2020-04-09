@@ -79,7 +79,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         end
     endfunction
 
-    function CreateOperaLastBoss()
+    function CreateMeridiansBoss()
         unit u = null
         unit u2 = null
         int uid = 'utJA'
@@ -108,7 +108,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         if  GameLevel >= 3
             if  IsMeridiansChallenging == false
                 IsMeridiansChallenging = true
-                CreateOperaLastBoss()
+                CreateMeridiansBoss()
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
