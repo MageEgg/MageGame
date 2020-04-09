@@ -439,7 +439,7 @@ scope AllTypeIdData initializer init
         InitTypeIdJbStateOnec('FY02',"被动触发概率+6%","被攻击4%概率恢复15%最大生命值，冷却1秒。","")
         InitTypeIdJbStateOnec('FY03',"道兵数量+1","道兵数量+2","")
         InitTypeIdJbStateOnec('FY04',"火神：攻击32次重置主动技能冷却","火神触发要求降低至攻击20次。","对E和R技能不生效。")
-        InitTypeIdJbStateOnec('FY05',"释放技能回复自身（攻击+业力）*200%生命值","对Boss造成的伤害增加25%","")
+        InitTypeIdJbStateOnec('FY05',"释放技能回复自身（攻击+业力）*350%生命值","对Boss造成的伤害增加25%","")
         InitTypeIdJbStateOnec('FY06',"额外释放技能概率+20%","额外释放技能次数+1","")
         InitTypeIdJbStateOnec('FY07',"攻击命中后立即追加三次普通攻击。冷却2秒","对生命低于35%的单位造成额外50%伤害","")
         InitTypeIdJbStateOnec('FY08',"暗裔：释放主动技能25%几率不进入冷却","暗裔触发几率提升至50%","对E和R技能不生效。")
