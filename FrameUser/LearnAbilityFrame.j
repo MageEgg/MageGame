@@ -439,11 +439,15 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
 
         int id = GetCanIncAbilityId(pid,i,4)
-        int index = GetHeroAbilityIndex(Pu[1],id)
-        HeroIncAbility(Pu[1],index)
+        if  id > 0
+            int index = GetHeroAbilityIndex(Pu[1],id)
+            HeroIncAbility(Pu[1],index)
 
-        int lv = GetHeroAbilityLevel(Pu[1],id)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+            int lv = GetHeroAbilityLevel(Pu[1],id)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+        else
+            UnitAddItemById(Pu[1],'CS21')
+        endif
     endfunction
     function IncAbilityGemFunc2()
         int pid = Dialog.GetPlayerid()
@@ -452,10 +456,16 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
 
         int id = GetCanIncAbilityId(pid,i,5)
-        int index = GetHeroAbilityIndex(Pu[1],id)
-        HeroIncAbility(Pu[1],index)
-        int lv = GetHeroAbilityLevel(Pu[1],id)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+
+        if  id > 0
+            int index = GetHeroAbilityIndex(Pu[1],id)
+            HeroIncAbility(Pu[1],index)
+            int lv = GetHeroAbilityLevel(Pu[1],id)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+
+        else
+            UnitAddItemById(Pu[1],'CS22')
+        endif
     endfunction
 
     
@@ -463,25 +473,30 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int pid = Dialog.GetPlayerid()
         int i = Dialog.GetButtonid()
 
+        int id = GetCanIncAbilityId(pid,i,4)
 
-        if  GetRandomInt(1,100)<= 50
-            int id = GetCanIncAbilityId(pid,i,4)
-            int index = GetHeroAbilityIndex(Pu[1],id)
-            HeroIncAbility(Pu[1],index)
-            int lv = GetHeroAbilityLevel(Pu[1],id)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+        if  id > 0
+            if  GetRandomInt(1,100)<= 50
+                
+                int index = GetHeroAbilityIndex(Pu[1],id)
+                HeroIncAbility(Pu[1],index)
+                int lv = GetHeroAbilityLevel(Pu[1],id)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
 
-            AddUnitIntState(Pu[1],'RDAH',1)
-            if  GetUnitIntState(Pu[1],'RDAH') >= 3
-                if  GetPlayerTechCount(Player(pid),'RDAH',true) == 0
-                    SetDzPlayerData(pid,15,8,8)
-                    SetPlayerTechResearchedEx(Player(pid),'RDAH')
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000太欧了！|r（永久存档）！")
+                AddUnitIntState(Pu[1],'RDAH',1)
+                if  GetUnitIntState(Pu[1],'RDAH') >= 3
+                    if  GetPlayerTechCount(Player(pid),'RDAH',true) == 0
+                        SetDzPlayerData(pid,15,8,8)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAH')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000太欧了！|r（永久存档）！")
+                    endif
                 endif
+            else
+                SetUnitIntState(Pu[1],'RDAH',0)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：很遗憾！技能进阶失败！")
             endif
         else
-            SetUnitIntState(Pu[1],'RDAH',0)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：很遗憾！技能进阶失败！")
+            UnitAddItemById(Pu[1],'CS23')
         endif
     endfunction
 
@@ -489,15 +504,20 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
         int pid = Dialog.GetPlayerid()
         int i = Dialog.GetButtonid()
 
+        int id = GetCanIncAbilityId(pid,i,5)
 
-        if  GetRandomInt(1,100)<= 50
-            int id = GetCanIncAbilityId(pid,i,5)
-            int index = GetHeroAbilityIndex(Pu[1],id)
-            HeroIncAbility(Pu[1],index)
-            int lv = GetHeroAbilityLevel(Pu[1],id)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+        if  id > 0
+            if  GetRandomInt(1,100)<= 50
+                
+                int index = GetHeroAbilityIndex(Pu[1],id)
+                HeroIncAbility(Pu[1],index)
+                int lv = GetHeroAbilityLevel(Pu[1],id)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进阶成功，得到技能"+GetIncAbilityName(id,lv))
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：很遗憾！技能进阶失败！")
+            endif
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：很遗憾！技能进阶失败！")
+            UnitAddItemById(Pu[1],'CS24')
         endif
     endfunction
 
@@ -521,13 +541,13 @@ library LearnAbility initializer LearnAbilityInit uses ReplaceAbilityFrame,Learn
 
         if  id1 > 0
             if  itemid == 'CS21'
-                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc1")
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),"取消","","","","","","","","","","IncAbilityGemFunc1")
             elseif  itemid == 'CS22'
-                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc2")
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),"取消","","","","","","","","","","IncAbilityGemFunc2")
             elseif  itemid == 'CS23'
-                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc3")
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),"取消","","","","","","","","","","IncAbilityGemFunc3")
             elseif  itemid == 'CS24'
-                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),GetIncAbilityName(id3,ic3),"","","","","","","","","","IncAbilityGemFunc4")
+                Dialog.create(Player(pid),"请选择技能",GetIncAbilityName(id1,ic1),GetIncAbilityName(id2,ic2),"取消","","","","","","","","","","IncAbilityGemFunc4")
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：没有可以升级的技能！")
