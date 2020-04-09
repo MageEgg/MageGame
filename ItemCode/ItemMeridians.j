@@ -109,9 +109,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
             if  IsMeridiansChallenging == false
                 IsMeridiansChallenging = true
                 CreateOperaLastBoss()
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,""|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,""|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,""|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r当前正在挑战经脉！")
             endif
