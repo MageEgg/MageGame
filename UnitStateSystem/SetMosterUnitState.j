@@ -212,9 +212,7 @@ library UnitStateSet initializer UnitStateSetInit uses State
         int id = GetUnitTypeId(wu)
         int newid = 0
         int index = 0
-        if  id == 'utJA'
-            SetHeroUnitState(wu)
-        elseif  id >= 'm000' and id <= 'mzzz'
+        if  id >= 'm000' and id <= 'mzzz'
             if  id == 'm200'
                 SetMosterUnitState(wu)
             else

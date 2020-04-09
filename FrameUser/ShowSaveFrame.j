@@ -83,10 +83,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         
 
         RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
-        //RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//麒麟光环
+        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//麒麟光环
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
-        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
 
         
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃

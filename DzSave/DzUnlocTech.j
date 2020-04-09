@@ -445,6 +445,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY2E',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_Load,GameDataList(12,5,5)),0,0,0)
         InitUnlocTechConditions('RY2F',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_Load,GameDataList(12,6,6)),0,0,0)
         InitUnlocTechConditions('RY4O',InitCond1(1,Unloc_Type_Level,16),InitCond2(0,Unloc_Type_Load,GameDataList(14,15,15)),0,0,0)
+        InitUnlocTechConditions('RY1E',InitCond1(1,Unloc_Type_Level,20),InitCond2(0,Unloc_Type_Load,GameDataList(11,5,5)),0,0,0)
         
 
 
@@ -517,6 +518,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         ReExChangeTips(pid,'IY2E')
         ReExChangeTips(pid,'IY2F')
         ReExChangeTips(pid,'IY4O')
+        ReExChangeTips(pid,'IY1E')
     endfunction
 
     //物品兑换注册
@@ -530,6 +532,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         ExChangeList('IY2F',12,2,1,1900,12,6,6)
 
         ExChangeList('IY4O',16,2,1,2300,14,15,15)
+        ExChangeList('IY1E',20,2,1,3200,11,5,5)
 
     endfunction
 
