@@ -832,7 +832,7 @@ library CreateOpera uses DamageCode
         UnitAddAbility(u,'AZ01')
         UnitAddAbility(u,'Avul')
         SetUnitFlyHeight(u,0,4000)
-        LocAddEffect(3800,1020,"effect_blue-chuansong.mdx")
+        LocAddEffect(-1664,-7328,"effect_blue-chuansong.mdx")
         for num = 1,5
             u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',-1664+600*Cos(72*num*0.01745),-7328+600*Sin(72*num*0.01745),270)
             RemoveUnitTimer(u2,1)

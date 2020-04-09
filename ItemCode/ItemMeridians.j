@@ -9,6 +9,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         CreateUnit(Player(9),'np43',-1300,-7100,270)
         CreateUnit(Player(9),'np44',-1300,-7100,270)
         SetUnitScale(CreateUnit(Player(9),'eZ08',-1300,-7100,270),1.9,1.9,1.9)
+
+        UnitAddAbility(GameDefendUnit,'AZ08')
+        UnitAddAbility(GameDefendUnit,'Avul')
     endfunction
 
     function GetMeridiansName(int num)->string
@@ -76,19 +79,23 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         end
     endfunction
 
-    function SetMeridiansColdTimer(int id)
-        int pid = id
-        int time = 0
-        TimerStart(1,true)
-        {
-            if  time < 300
-                time = time + 1
-                YDWESetUnitAbilityState(Pu[42],'AZ40',1,300)
-            else
-                endtimer
-            endif
-            flush locals
-        }
+    function CreateOperaLastBoss()
+        unit u = null
+        unit u2 = null
+        int uid = 'utJA'
+        PingMinimap(-1664,-7328,5)
+        u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,-1664,-7328,270)
+        UnitAddAbility(u,'AZ01')
+        SetUnitAnimation(u,"attack")
+        LocAddEffect(-1664,-7328,"effect_blue-chuansong.mdx")
+        LocAddEffectSetSize(-1664,-7328,"effect_[dz.spell]001.mdl",1)
+        LocAddEffectSetSize(-1664,-7328,"effect_red-yumao-zhendi-paoxiao.mdx",2.5)
+        for num = 1,5
+            u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',-1664+600*Cos(72*num*0.01745),-7328+600*Sin(72*num*0.01745),270)
+            RemoveUnitTimer(u2,1)
+            BossFuncSpell.execute(u,u2,'AZ0L')
+        end
+        AttackPlayingHero(u)
         flush locals
     endfunction
 
@@ -101,19 +108,16 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         if  GameLevel >= 3
             if  IsMeridiansChallenging == false
                 IsMeridiansChallenging = true
-                u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uJ01',x-440,y+440,270)
-                UnitAddAbility(u,'AZ99')
-                SetUnitAbilityLevel(u,'AZ99',pid+1)
-                AddAttackSummonUnit.execute(pid,u)
-                IssuePointOrderById(u,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
-                
+                CreateOperaLastBoss()
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,""|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,""|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,""|cffffcc00[通关挑战-经脉]：|r"+GetPlayerNameOfColor(pid)+"|cffff0000召唤了"+GetObjectName('utJA')+"！！！|r")
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r当前正在挑战经脉！")
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r该挑战难度3或以上才开放哦！")
         endif
-        SetMeridiansColdTimer(pid)
         flush locals
     endfunction
 
