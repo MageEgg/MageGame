@@ -690,11 +690,12 @@ library AttackUnit uses DamageCode,PassCheckMission
         int jf = 0
         int jfadd = 0
         GameWinBoolJu = true
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在30秒内结束！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+        ExecuteFunc("CreateMeridiansNPC")
         for pid = 0,5
             if  IsPlaying(pid) == true
                 //存档
@@ -735,10 +736,10 @@ library AttackUnit uses DamageCode,PassCheckMission
         {
             if  time < 60
                 time = time + 1
-                if  time == 30
+                if  time == 50
                     for pid = 0,5
                         if  IsPlaying(pid) == true
-                            Dialog.create(Player(pid),"|cffff0000游戏已通关！|r\n游戏将在30秒内结束！","确定","","","","","","","","","","","","")
+                            Dialog.create(Player(pid),"|cffff0000游戏已通关！|r\n游戏将在10秒内结束！","确定","","","","","","","","","","","","")
                         endif
                     end
                 elseif  time == 55
