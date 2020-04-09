@@ -212,7 +212,9 @@ library UnitStateSet initializer UnitStateSetInit uses State
         int id = GetUnitTypeId(wu)
         int newid = 0
         int index = 0
-        if  id >= 'm000' and id <= 'mzzz'
+        if  id == 'utJA'
+            SetHeroUnitState(wu)
+        elseif  id >= 'm000' and id <= 'mzzz'
             if  id == 'm200'
                 SetMosterUnitState(wu)
             else
@@ -264,7 +266,7 @@ library UnitStateSet initializer UnitStateSetInit uses State
     function LoadDzConData()
         string con = DzCon("ND1_7")
         if  con == ""
-            con = "00000050000000500000006500000090003001400030021000400300"
+            con = "000000500000005000000065-0300090003001400030021000400300"
         endif
         int data1 = 0 
         int data2 = 0
