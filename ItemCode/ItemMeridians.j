@@ -134,7 +134,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r恭喜你成功突破|cffffff00“"+GetMeridiansName(num)+"”|r！|r[今日成功突破经脉 |cffffcc00"+I2S(GetDzPlayerData(pid,1,10))+"/"+I2S(DzMeridiansDayNum)+"|r]")
             else
                 AddDzPlayerData(pid,2,1,20)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r您今日突破经脉次数已达上限，自动转化为20点通关积分！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r您突破的|cffffff00“"+GetMeridiansName(num)+"”已满级，自动转化为20点通关积分！")
             endif
         else
             AddDzPlayerData(pid,2,1,20)
