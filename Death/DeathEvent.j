@@ -168,12 +168,16 @@ scope DeathEvent initializer InitDeathEvent
         int id = GetItemTypeId(it)
         int num = GetItemCharges(it)
         int next = GetTypeIdData(id,106)
-        int gl = 50
+        int gl = GetTypeIdData(id,104)
 
         if  next == 'E102' or next == 'E103'
             gl = 100
         elseif  next >= 'E103' and next <= 'E106'
             gl = 80
+        endif
+
+        if  gl < 40
+            gl = 40
         endif
             
         if  num-exp >= 1
