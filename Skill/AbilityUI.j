@@ -492,9 +492,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             elseif  uid == 'H010'
                 if  newlv == 2
                     if  GetUnitIntState(wu,'S510') == 1
-                        AddUnitRealState(wu,9,40)
+                        AddUnitRealState(wu,9,20)
                     endif
+
+                    AddUnitRealState(wu,9,25)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：变幻杨戬运转八九玄功，攻击速度|Cffff8000+25%|r")
                 endif
+
             elseif  uid == 'H018'
                 if  newlv == 2
                     AddUnitRealState(wu,64,15)

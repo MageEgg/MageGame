@@ -1,90 +1,75 @@
 library HeroAbilityFunc uses OtherDamageTimer,Summon
-    
-
-    function SpellS501_0(unit u1,real sx,real sy,real dam)
-        
-        unit wu = u1
-        real x1 = GetUnitX(wu)
-        real y1 = GetUnitY(wu)
-        real ang = Pang(x1,y1,sx,sy)
-        real damage = dam
-        
-        EXSetUnitFacing( wu, ang/0.01745 )
-        SetUnitFacing(wu,ang/0.01745)
-        
-        TimerStart(0.2,false)
-        {
-            IndexGroup g = IndexGroup.create()
-            x1 = x1 + 50*Cos(ang)
-            y1 = y1 + 50*Sin(ang)
-            LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
-            GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            g.destroy()
-            endtimer
-            flush locals
-        }
-        flush locals
+    function SpellS501_4(unit wu,real x1,real y1,real damage)
+        real ang = GetRandomReal(-3.14,3.14)
+        real dis = GetRandomReal(-300,300)
+        IndexGroup g = IndexGroup.create()
+        LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_zhenzhengdeluolei.mdl",0.8)
+        GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))    
+        UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        g.destroy()
     endfunction
-    function SpellS501_1(unit u1,real sx,real sy,real dam,int lv)
-        unit wu = u1
-        real x1 = GetUnitX(wu)
-        real y1 = GetUnitY(wu)
-        real ang = Pang(x1,y1,sx,sy)
-        real damage = dam
-        int level = lv
-        
-        EXSetUnitFacing( wu, ang/0.01745 )
-        SetUnitFacing(wu,ang/0.01745)
-        
-        TimerStart(0.2,false)
-        {
-            IndexGroup g = IndexGroup.create()
-            LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",4)
-            if  level >= 4
-                GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,4,0))
-            else
-                GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-            endif
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            g.destroy()
-            endtimer
-            flush locals
-        }
-        flush locals
-    endfunction
-    function SpellS501_3(unit wu,real sx,real sy,real sa)
+    function SpellS501_3(unit wu)
         unit u1 = wu
-        real x1 = sx
-        real y1 = sy
-        real x2 = GetUnitX(u1)
-        real y2 = GetUnitY(u1)
-        real ang = sa
-        int alpha = 200
-        SetUnitVertexColor(u1,255,255,255,200)
-        SetUnitAnimationByIndex(wu,3)
-        TimerStart(0.03,true)
+        real damage = GetUnitAttack(u1)*1.6
+        SpellS501_4(wu,GetUnitX(wu),GetUnitY(wu),damage)
+        TimerStart(0.15,true)
         {
-            real dis = Pow(Pow(x1-x2,2)+Pow(y1-y2,2),0.5)
-            alpha = alpha - 25
-            
-            
-            if  alpha > 0 and dis > 30
-                x2 = x2 + 8 * Cos(ang)
-                y2 = y2 + 8 * Sin(ang)
-                SetUnitVertexColor(u1,255,255,255,alpha)
-                SetUnitX(u1,x2)
-                SetUnitY(u1,y2)
-            else
-                RemoveUnit(u1)
+            SpellS501_4(u1,GetUnitX(u1),GetUnitY(u1),damage)
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS501_2(unit wu,real dam,int level)
+        unit u1 = wu
+        real damage = dam
+        int lv = level
+        int time = 3
+        TimerStart(0.2,true)
+        {   
+            IndexGroup g = IndexGroup.create()
+            real x1 = GetUnitX(u1)
+            real y1 = GetUnitY(u1)
+            if  time == 3
+                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",4)
+                GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                if  lv >= 2
+                    UnitDamageGroup(u1,g.ejg,damage*2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                else
+                    UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                endif
+            elseif  time == 2
+                LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
+                GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                if  lv >= 3
+                    UnitDamageGroup(u1,g.ejg,damage*2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                else
+                    UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                endif
+                
+            elseif  time == 1
+                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",4)
+                if  lv >= 4
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,4,0))
+                else
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                endif
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            endif
+
+            time = time - 1
+            if  time <= 0
+                if  GetUnitIntState(u1,'FB22') > 0 or GetUnitIntState(u1,'FF22') > 0
+                    SpellS501_3(u1)
+                endif
                 endtimer
             endif
-            
+            g.destroy()
             flush locals
         }
         flush locals
     endfunction
-    function SpellS501_2(unit wu,real sx,real sy,real dam)
+    
+    function SpellS501(unit wu,real sx,real sy,real dam,int level)
         unit u1 = wu
         real x2 = sx
         real y2 = sy
@@ -92,37 +77,28 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real y1 = GetUnitY(wu)
         real ang = Pang(x1,y1,sx,sy)
         int time = 0
+        int lv = level
         real damage = dam
         EXSetUnitCollisionType( false,u1, 1 )
         SetUnitPathing( u1, false )
         
         SetUnitPosition(u1,x1,y1)
-        group g1 = CreateGroup()
                 
-        TimerStart(0.03,true)
+        TimerStart(0.01,true)
         {
             time = time + 1
             if  time <= 15 and GetUnitAbilityLevel(u1,'AZ98') == 0
-                if  time - (time / 4) * 4 == 0
-                    //real size = YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"modelScale")
-                    //SpellS501_3(CreateTmUnit(GetOwningPlayer(u1), YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(u1),"file"),x1,y1,GetUnitFacing(u1),0,size),x1+120*Cos(ang),y1+120*Sin(ang),ang)
-                    
-                endif
                 x1 = x1 + 30 * Cos(ang)
                 y1 = y1 + 30 * Sin(ang)
                 if  IsCanFlyTerrain(x1,y1) == true
                     SetUnitPosition(u1,x1,y1)
                     EXSetUnitFacing( u1, ang/0.01745 )
                     SetUnitFacing(u1,ang/0.01745)
-                    IndexGroup g = IndexGroup.create()
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,175,GroupHasUnit(GetOwningPlayer(u1),g1,""))
-                    UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                    g.destroy()
+
                 else
                     EXSetUnitCollisionType( true,u1, 1 )
                     SetUnitPathing( u1, true )
                     SetUnitAnimation(u1,"stand")
-                    DestroyGroup(g1)
                     endtimer
                 endif
                 
@@ -130,54 +106,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 EXSetUnitCollisionType( true,u1, 1 )
                 SetUnitPathing( u1, true )
                 SetUnitAnimation(u1,"stand")
-                DestroyGroup(g1)
+                SpellS501_2(u1,damage,lv)
                 endtimer
             endif
             flush locals
         }
-        flush locals
-        
-    endfunction
-    function SpellS501(unit wu,real x,real y,real dam,int lv)
-        
-        real x1 = x
-        real y1 = y
-        real damage = dam
-        int index = GetUnitIntState(wu,'S501')
-        
-        SetUnitPosition(wu,GetUnitX(wu),GetUnitY(wu))
-        if  index == 0
-            if  lv >= 2
-                damage = damage * 2
-            endif
-            SpellS501_2(wu,x1,y1,damage)
-            SetUnitIntState(wu,'S501',index+1)
-            SetAbilityCD_AG(wu,'AG05',0.5 )
-            SetUnitAnimationByIndex(wu,3)
-            if  GetLocalPlayer() == GetOwningPlayer(wu)
-                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_2.blp")
-            endif
-        elseif  index == 1
-            if  lv >= 3
-                damage = damage * 2
-            endif
-            SpellS501_0(wu,x1,y1,damage)
-            SetUnitIntState(wu,'S501',index+1)
-            SetAbilityCD_AG(wu,'AG05',0.1)
-            SetUnitAnimationByIndex(wu,4)
-            if  GetLocalPlayer() == GetOwningPlayer(wu)
-                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_3.blp")
-            endif
-        elseif  index == 2
-            SpellS501_1(wu,x1,y1,damage,lv)
-            SetUnitIntState(wu,'S501',0)
-            SetUnitAnimationByIndex(wu,8)
-            SetAbilityCD_AG(wu,'AG05',12)
-            if  GetLocalPlayer() == GetOwningPlayer(wu)
-                YDWESetUnitAbilityDataString(wu, 'AG05',1, 204, "ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
-            endif
-        endif
-
         flush locals
     endfunction
     
@@ -342,11 +275,10 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real ang = face
         real damage = dam
         int time = 4
-        if  level >= 4
-            time = 8
-        elseif  level >= 3
-            time = 6
-        elseif  level >= 2
+        int lv = level
+        if  lv >= 4
+            time = 7
+        elseif  lv >= 3
             time = 5
         endif
 
@@ -356,6 +288,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         TimerStart(0.2,true)
         {
             real f = ang
+            real r1 = 0
             x1 = GetUnitX(u1)
             y1 = GetUnitY(u1)
             time = time - 1
@@ -367,6 +300,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 f = ang + GetRandomReal(-0.5235,0.5235)
                 LocAddEffectTimerOrSize(x1,y1,ang/0.01745,"effect_az_caster_Red.mdl",0,1.8)
                 CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,f/0.01745,75,1),f,damage,200,600,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
+                if  lv >= 2
+                    r1 = GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.025
+                    UnitAddLife(u1,r1)
+                    BJDebugMsg("火尖枪回复生命"+R2S(r1))
+                endif
                 SetUnitAnimationByIndex(u1,2)
                 if  time == 1
                     if  GetUnitIntState(u1,'FB11') == 0 and GetUnitIntState(u1,'FF11') == 0
@@ -378,6 +316,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                     LocAddEffectSetSize(x1+50*Cos(ang),y1+50*Cos(ang),"effect_fire-boom-new.mdl",0.5)
                     CreateTmFunc(u1,CreateTmUnit(GetOwningPlayer(u1),"effect_[dz.spell]004Red.mdl",x1,y1,ang/0.01745,75,2),ang,GetUnitAttack(u1)*7.5,400,1200,75,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_NORMALa)
                     CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
+                    if  lv >= 2
+                        r1 = GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.025
+                        UnitAddLife(u1,r1)
+                        BJDebugMsg("火尖枪回复生命"+R2S(r1))
+                    endif
                 endif
             endif
             SetUnitPosition(u1,x1,y1)
@@ -489,13 +432,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         int value = 0
         num = GetUnitIntState(wu,'S508')
         if  num < 6
-            if  ChanceEx(wu,'S508',10) == true
+            if  ChanceEx(wu,'S508',12) == true
                 if  lv >= 3
-                    value = 12
-                elseif  lv >= 2
-                    value = 9
+                    value = 18
                 else
-                    value = 6
+                    value = 9
                 endif
                 AddUnitRealState(wu,9,value)
                 AddUnitIntState(wu,'H508',value)
@@ -506,6 +447,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             damage = GetAbilityDamage(wu,'S508',1)
             if  lv >= 4
                 damage = damage * 1.8
+            elseif  lv >= 2
+                damage = damage * 1.3
             endif
             AddUnitRealState(wu,9,-GetUnitIntState(wu,'H508'))
             SetUnitIntState(wu,'S508',0)
@@ -583,56 +526,49 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
 
     function SpellS510Spell2(unit wu)
-        unit u1 = wu
+
         BJDebugMsg("杨戬lv4")
         if  GetHeroAbilityLevel(wu,'S510') >= 4
-            if  GetUnitIntState(wu,'S512') == 0 and GetUnitIntState(wu,'S510') == 0
+            if  GetUnitIntState(wu,'S512') == 0
                 BJDebugMsg("杨戬lv4damage")
                 IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
-                UnitDamageGroup(wu,g.ejg,GetHeroStr(wu,true)*8.75,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),450,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                if  GetUnitIntState(wu,'S510') == 0
+                    UnitDamageGroup(wu,g.ejg,GetHeroStr(wu,true)*8.75*1.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                else
+                    UnitDamageGroup(wu,g.ejg,GetHeroStr(wu,true)*8.75,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                endif
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_fire-boom-new.mdl")
                 g.destroy()
 
-                SetUnitIntState(wu,'S512',1)
+                AddUnitIntStateTimer(wu,'S512',1,2)
 
-                TimerStart(2,false)
-                {
-                    SetUnitIntState(u1,'S512',0)
-                    endtimer
-                    flush locals
-                }
             endif
         endif
-        flush locals
     endfunction
 
     function SpellS510Spell1(unit wu)
-        unit u1 = wu
+        
         BJDebugMsg("杨戬lv3")
         if  GetHeroAbilityLevel(wu,'S510') >= 3
-            if  GetUnitIntState(wu,'S511') == 0 and GetUnitIntState(wu,'S510') == 2
+            if  GetUnitIntState(wu,'S511') == 0
 
                 BJDebugMsg("杨戬lv3damage")
                 IndexGroup g = IndexGroup.create()
-                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),350,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+                GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),450,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
                 UnitDamageGroup(wu,g.ejg,GetUnitAttack(wu)*3,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_green-texiao-shandian.mdl")
                 g.destroy()
 
-                
-                
+                if  GetUnitIntState(wu,'S510') == 2
+                    AddUnitIntStateTimer(wu,'S511',1,0.2)
+                else
+                    AddUnitIntStateTimer(wu,'S511',1,2)
+                endif
 
-                SetUnitIntState(wu,'S511',1)
-                TimerStart(2,false)
-                {
-                    SetUnitIntState(u1,'S511',0)
-                    endtimer
-                    flush locals
-                }
             endif
         endif
-        flush locals
+        
     endfunction
 
     function SpellS510(unit wu,int lv)
@@ -643,7 +579,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             AddUnitRealState(wu,25,-25)
             AddUnitRealState(wu,19,10)
             if  lv >= 2
-                AddUnitRealState(wu,9,40)
+                AddUnitRealState(wu,9,20)
             endif
             
             
@@ -660,7 +596,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             AddUnitRealState(wu,19,-10)
             AddUnitRealState(wu,9,30)
             if  lv >= 2
-                AddUnitRealState(wu,9,-40)
+                AddUnitRealState(wu,9,-20)
             endif
 
 
@@ -818,10 +754,10 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffdj,2,0))
             UnitDamageGroup(wu,g.ejg,damage*2.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         elseif  lv >= 3
-            GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffdj,1,0))
             UnitDamageGroup(wu,g.ejg,damage*1.5,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         elseif  lv >= 2
-            GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,x,y,800,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffdj,1,0))
             UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         else
             GroupEnumUnitsInRange(g.ejg,x,y,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
@@ -1417,11 +1353,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             y1 = y1 + 200*Sin(ang)
             IndexGroup g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupHasUnit(GetOwningPlayer(u1),g1,""))
-            if  lv >= 4
-                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
-            else
-                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-            endif
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
             LocAddEffectSetSize(x1,y1,"effect_az_tormentedsoul_t1.mdl",0.7)
             
@@ -1438,18 +1370,18 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     function SpellS526(unit wu,unit tu,real damage,int lv)
         if  YDWEGetUnitAbilityState(wu,'AC05', 1) == 0
             SetUnitAnimationByIndex(wu,3)
-            if  lv >= 3
-                YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 2 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 2)
-            elseif  lv >= 2
+            if  lv >= 2
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 4 )
-                YDWESetUnitAbilityState( wu, 'AC05', 1, 4)
+                YDWESetUnitAbilityState( wu, 'AC05', 1, 3)
             else
                 YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 6 )
                 YDWESetUnitAbilityState( wu, 'AC05', 1, 6)
             endif
+            if  lv >= 3
+                damage = damage * 1.5
+            endif
             SpellS526Timer(wu,Pang(GetUnitX(wu),GetUnitY(wu),GetUnitX(tu),GetUnitY(tu)),damage,lv)
-        //DAMAGE_TYPE_ENHANCED
+        
         endif
     endfunction
     function SpellS527(unit wu,unit tu,int lv)
