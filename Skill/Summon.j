@@ -1,4 +1,5 @@
 library Summon uses AbilityUI,OtherDamageTimer
+
     function CameraSetTargetNoiseTimer(int playerid,real magnitude,int Type,real time)
         int pid = playerid
         real richter = magnitude
@@ -79,16 +80,17 @@ library Summon uses AbilityUI,OtherDamageTimer
         unit u1 = wu
         unit u2 = tu
         int uid = GetUnitTypeId(u2)
+        int pid = GetPlayerId(GetOwningPlayer(u1))
         TimerStart(0.1,true)
         {
             if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == uid
-                if  Udis(u1,u2) > 800
-                    SetUnitXY(u2,GetUnitX(u1)+GetRandomReal(-200,200),GetUnitY(u1)+GetRandomReal(-200,200))
+                if  Udis(Pu[6],u2) > 800
+                    SetUnitXY(u2,GetUnitX(Pu[6])+GetRandomReal(-200,200),GetUnitY(Pu[6])+GetRandomReal(-200,200))
                     UnitAddEffect(u2,"effect_az_pafeathermoon_b.mdl")
-                    IssuePointOrderById(u2,851983,GetUnitX(u1)+GetRandomReal(-500,500),GetUnitY(u1)+GetRandomReal(-500,500))
+                    IssuePointOrderById(u2,851983,GetUnitX(Pu[6])+GetRandomReal(-500,500),GetUnitY(Pu[6])+GetRandomReal(-500,500))
                 endif
                 if  GetUnitCurrentOrder(u2) == 0
-                    IssuePointOrderById(u2,851983,GetUnitX(u1)+GetRandomReal(-500,500),GetUnitY(u1)+GetRandomReal(-500,500))
+                    IssuePointOrderById(u2,851983,GetUnitX(Pu[6])+GetRandomReal(-500,500),GetUnitY(Pu[6])+GetRandomReal(-500,500))
                 endif
             else
                 endtimer
