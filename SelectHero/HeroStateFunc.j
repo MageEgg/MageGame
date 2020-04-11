@@ -147,7 +147,6 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
                 AddUnitRealState(Pu[1],64,15)
                 AddUnitRealState(Pu[1],17,30)
                 AddUnitRealState(Pu[1],52,30000)
-                UnitAddItemEx(Pu[2],'I015')
             else
                 AddUnitRealState(Pu[1],64,10)
                 AddUnitRealState(Pu[1],17,20)

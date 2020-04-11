@@ -640,6 +640,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 elseif  AttackUnitWN == 21
                                     gold = 30000
                                 endif
+                                if  DzPlayerLv(Player(pid)) >= 22 and DzShop(Player(pid),"CH1") == true
+                                    gold = gold * 3 / 2
+                                endif
+
                                 if  gold > 0
                                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,gold)
                                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[商城-鼠年大吉]：|r进攻怪来袭，为您发放|cffffff80"+I2S(gold)+"金币|r！")
