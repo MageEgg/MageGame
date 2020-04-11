@@ -683,7 +683,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 if  lv >= 4
                     GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
                 else
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,280,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
                 endif
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 LocAddEffectSetSize(x1,y1,"effect_[dz.spell]002Yellow.mdl",0.8)

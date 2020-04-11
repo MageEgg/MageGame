@@ -176,6 +176,17 @@ scope DeathEvent initializer InitDeathEvent
             gl = 80
         endif
 
+        if  GetPlayerTechCount(Player(pid),'RG1B',true)>0
+            gl = gl + 5
+        endif
+        if  GetPlayerTechCount(Player(pid),'RG1D',true)>0
+            gl = gl + 5
+        endif
+        if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
+            gl = gl + 5
+        endif
+
+        BJDebugMsg("项链成功率"+I2S(gl))
         if  gl < 40
             gl = 40
         endif

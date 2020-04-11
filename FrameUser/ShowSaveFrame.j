@@ -128,17 +128,32 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
+
         RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//铁石心肝
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
+
         RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(0,'RJ1J','RJ1H',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(0,'RJ1K','RJ1H',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
         RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
         RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
         RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
         RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0)//难7通关5次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
+        RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关12次
+        RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0)//难3通关12次
+        RegisterShowSaveFrameData(0,'RG1D','RG1D',0,0,0,0)//难4通关12次
+        RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0)//难5通关12次
+        RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0)//难6通关12次
+        RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关12次
 
         
 

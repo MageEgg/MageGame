@@ -285,13 +285,39 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
     //读取奖励法宝池序号
     function GetPlotPrizeMagicIndex(int pid,int index)->int
-        int ran = GetRandomInt(1,100)
-        int green = 60
-        int blue = 100 - 3 * index
         int prizeid = 0
+
+        real ran = GetRandomInt(1,100)
+        real cj = 1.0
+
+        real green = 60
+        real zi = index * 3
+        real blue = 100 - zi - green
+
+        
+
+        if  GetPlayerTechCount(Player(pid),'RG1A',true)>0
+            cj = cj + 0.15
+        endif
+        if  GetPlayerTechCount(Player(pid),'RG1C',true)>0
+            cj = cj + 0.15
+        endif
+        if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
+            cj = cj + 0.15
+        endif
+
+        blue = blue *cj
+        zi = zi * cj
+        green = 100-blue-zi
+
+        BJDebugMsg("法宝加成:"+R2S(cj*100)+"%")
+        BJDebugMsg("法宝概率:绿"+R2S(green*100)+"%")
+        BJDebugMsg("法宝概率:蓝"+R2S(blue*100)+"%")
+        BJDebugMsg("法宝概率:紫"+R2S(zi*100)+"%")
+
         if  ran <= green
             prizeid = 15
-        elseif  ran <= blue
+        elseif  ran <= 100-zi
             prizeid = 14
         else
             prizeid = 13
@@ -356,6 +382,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
                     endif
                 endif
             endif
+
             
         endif
 
