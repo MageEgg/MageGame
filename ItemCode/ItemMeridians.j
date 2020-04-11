@@ -1,6 +1,6 @@
 library ItemMeridians uses DamageCode,ItemGameFunc
 
-    int DzMeridiansDayNum = 2
+    int DzMeridiansDayNum = 5
     int MeridiansMaxLv = 5
 
     bool IsMeridiansChallenging = false

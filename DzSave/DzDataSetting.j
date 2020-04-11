@@ -142,7 +142,7 @@ library DzDataSetting uses DzBase
 
         elseif  Group == 6 //不用管
             if  flag == 1 //经脉最大上限
-                max = MeridiansDay*DzMeridiansDayNum
+                max = MeridiansDay*DzMeridiansDayNum -3
             elseif  flag >= 2 and flag <= 9 //经脉等级
                 max = MeridiansMaxLv
             elseif  flag >= 10

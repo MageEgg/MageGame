@@ -1,20 +1,27 @@
 library HeroAbilityFunc uses OtherDamageTimer,Summon
     function SpellS501_4(unit wu,real x1,real y1,real damage)
         real ang = GetRandomReal(-3.14,3.14)
-        real dis = GetRandomReal(-300,300)
+        real dis = GetRandomReal(-200,200)
+        x1 = x1 + dis * Cos(ang)
+        y1 = y1 + dis * Sin(ang)
         IndexGroup g = IndexGroup.create()
-        LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_zhenzhengdeluolei.mdl",0.8)
-        GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))    
+        LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_zhenzhengdeluolei.mdl",1)
+        GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))    
         UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
     function SpellS501_3(unit wu)
         unit u1 = wu
         real damage = GetUnitAttack(u1)*1.6
+        int num = 4
         SpellS501_4(wu,GetUnitX(wu),GetUnitY(wu),damage)
-        TimerStart(0.15,true)
+        TimerStart(0.1,true)
         {
             SpellS501_4(u1,GetUnitX(u1),GetUnitY(u1),damage)
+            num = num -1 
+            if  num <= 0
+                endtimer
+            endif
             flush locals
         }
         flush locals

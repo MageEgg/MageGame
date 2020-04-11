@@ -900,6 +900,11 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             HeroPoolAddType('H029')
             HeroPoolAddType('H030')
             //HeroPoolAddType('H031')
+            //HeroPoolAddType('H032')
+            //HeroPoolAddType('H033')
+            //HeroPoolAddType('H034')
+            //HeroPoolAddType('H035')
+            //HeroPoolAddType('H036')
 
         endfunction
 
