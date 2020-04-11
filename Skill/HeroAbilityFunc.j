@@ -1,12 +1,12 @@
 library HeroAbilityFunc uses OtherDamageTimer,Summon
     function SpellS501_4(unit wu,real x1,real y1,real damage)
         real ang = GetRandomReal(-3.14,3.14)
-        real dis = GetRandomReal(-200,200)
+        real dis = GetRandomReal(200,300)
         x1 = x1 + dis * Cos(ang)
         y1 = y1 + dis * Sin(ang)
         IndexGroup g = IndexGroup.create()
-        LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_zhenzhengdeluolei.mdl",1)
-        GroupEnumUnitsInRange(g.ejg,x1,y1,250,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))    
+        LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_zhenzhengdeluolei.mdl",2)
+        GroupEnumUnitsInRange(g.ejg,x1,y1,500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))    
         UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
@@ -15,7 +15,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real damage = GetUnitAttack(u1)*1.6
         int num = 4
         SpellS501_4(wu,GetUnitX(wu),GetUnitY(wu),damage)
-        TimerStart(0.1,true)
+        TimerStart(0.15,true)
         {
             SpellS501_4(u1,GetUnitX(u1),GetUnitY(u1),damage)
             num = num -1 
@@ -37,7 +37,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             real x1 = GetUnitX(u1)
             real y1 = GetUnitY(u1)
             if  time == 3
-                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",4)
+                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",2.8)
                 GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 if  lv >= 2
                     UnitDamageGroup(u1,g.ejg,damage*2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -45,7 +45,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                     UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 endif
             elseif  time == 2
-                LocAddEffectSetSize(x1,y1,"effect_az_pafeathermoon_b.mdl",4)
+                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",2.8)
                 GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 if  lv >= 3
                     UnitDamageGroup(u1,g.ejg,damage*2,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
@@ -54,7 +54,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 endif
                 
             elseif  time == 1
-                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",4)
+                LocAddEffectSetSize(x1,y1,"effect_shengguang.mdl",2.8)
                 if  lv >= 4
                     GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,4,0))
                 else
@@ -89,7 +89,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         EXSetUnitCollisionType( false,u1, 1 )
         SetUnitPathing( u1, false )
         
-        SetUnitPosition(u1,x1,y1)
+        
                 
         TimerStart(0.01,true)
         {
