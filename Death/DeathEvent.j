@@ -172,8 +172,6 @@ scope DeathEvent initializer InitDeathEvent
 
         if  next == 'E102' or next == 'E103'
             gl = 100
-        elseif  next >= 'E103' and next <= 'E106'
-            gl = 80
         endif
 
         if  GetPlayerTechCount(Player(pid),'RG1B',true)>0

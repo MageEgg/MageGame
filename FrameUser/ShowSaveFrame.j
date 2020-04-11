@@ -135,8 +135,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
 
         RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(0,'RJ1J','RJ1H',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(0,'RJ1K','RJ1H',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次

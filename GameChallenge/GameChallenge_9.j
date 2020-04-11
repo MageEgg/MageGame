@@ -443,9 +443,9 @@ library GameChallenge9 uses GameChallengeBase
                 endif
             end
             GameTeamChallengeBool[0] = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守10波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守10波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守10波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守6波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守6波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守6波，团队副本NPC已激活！！！|r")
         endif
     endfunction
 

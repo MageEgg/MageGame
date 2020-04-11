@@ -533,8 +533,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     IsGameOperaA = true
                     CreateGameOperaA.execute(AttackUnitNextTime[i])
                 endif
-            elseif  AttackUnitWN == 9
                 ExecuteFunc("ShowGameTeamChallengeNPC_A")
+                
             elseif  AttackUnitWN == 11
                 if  IsGameOperaB == false
                     IsGameOperaB = true
