@@ -284,14 +284,14 @@ library ExNativeFrame uses GameFrame
 
 
         HeroHDFrame.frameid = FRAME.Tag("BACKDROP","HeroHDFrame",GameUI,HeroHDFrame)
-        HeroHDFrame.SetPoint(1,GameUI,1,-0.005,-0.05)
-        HeroHDFrame.SetSize(0.4,0.4)
+        HeroHDFrame.SetPoint(1,GameUI,1,0.0,-0.1)
+        HeroHDFrame.SetSize(0.5,0.21)
         HeroHDFrame.SetTexture("war3mapImported\\UI_HeroHD.tga",0)
         HeroHDFrame.show = false
 
         HeroHDButton.frameid = FRAME.Tag("BUTTON","HeroHDButton",HeroHDFrame.frameid,HeroHDButton)
         HeroHDButton.SetPoint(4,HeroHDFrame.frameid,4,0.0,0.0)
-        HeroHDButton.SetSize(0.4,0.4)
+        HeroHDButton.SetSize(0.5,0.21)
         DzFrameSetScript( HeroHDButton.frameid,1, "HeroHDFrameEsc" , true )
 
 
