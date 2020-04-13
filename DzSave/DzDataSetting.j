@@ -56,7 +56,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[8] = 5
         /*DzPlayerInitTGCos[9] = 9
         DzPlayerInitTGCos[10] = 10*/
-        
+
         DzPlayerInitCrazyTGCos[1] = 1
         DzPlayerInitCrazyTGCos[2] = 1
         DzPlayerInitCrazyTGCos[3] = 1
@@ -170,9 +170,9 @@ library DzDataSetting uses DzBase
 
         elseif  Group == 16 
             if  flag == 1 //战勋
-                max = GamePuOverDay*MaxHeroBaseMedal*MaxGameLevel
+                max = GamePuOverDay*896//MaxHeroBaseMedal*MaxGameLevel
             elseif  flag == 2 //当天战勋点
-                max = MaxHeroBaseMedal*MaxGameLevel
+                max = 896//MaxHeroBaseMedal*MaxGameLevel
             else
                 max = 0
             endif
