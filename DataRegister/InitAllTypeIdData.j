@@ -1,6 +1,6 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
-    //输出代码
+  //输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","雷之符印+1")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","木之符印+1")
@@ -182,7 +182,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY3A',"凝霜","ReplaceableTextures\\CommandButtons\\BTNRY3A.BLP","")
         call InitTypeIdStrings('RY3B',"破阙","ReplaceableTextures\\CommandButtons\\BTNRY3B.BLP","")
         call InitTypeIdStrings('RY3D',"戮仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3D.BLP","暴击率+10%\n暴击伤害+50%\n伤害加成+30%\n攻击5%范围攻击力*5技能伤害\n\n开局奖励：\n随机符印箱x1\n\n解锁外观|cffff0000戮仙剑\n|r")
-        call InitTypeIdStrings('RY3F',"诛仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3F.BLP","暴击率+10%\n暴击伤害+50%\n伤害加成+30%\n攻击5%范围攻击力*5技能伤害\n\n开局奖励：\n随机符印箱x1\n\n解锁外观|cffff0000戮仙剑\n|r")
+        call InitTypeIdStrings('RY3F',"诛仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3F.BLP","伤害加成+30%\n境界突破收益+8%\n死亡20%几率重生\n对万魔窟怪物伤害+25%\n\n开局奖励：无尽招魂幡x1\n\n解锁外观|cffff0000诛仙剑\n|r")
         call InitTypeIdStrings('RY4E',"铜皮锻骨","ReplaceableTextures\\CommandButtons\\BTNRY4E.BLP","开局金币+500")
         call InitTypeIdStrings('RY4F',"名将良才","ReplaceableTextures\\CommandButtons\\BTNRY4F.BLP","")
         call InitTypeIdStrings('RY4G',"绝世高人","ReplaceableTextures\\CommandButtons\\BTNRY4G.BLP","")
@@ -216,6 +216,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")
         call InitTypeIdStrings('RJ1X',"赞助礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1X.BLP","伤害加成+10%\n每秒攻击+20\n每秒生命+100\n山灵挑战成功额外奖励5玄铁")
         call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","业力加成+20%\n每秒业力+20\n\n开局奖励：时渊入场券x1\n\n宠物攻击力=英雄业力\n小狐狸攻击间隔1秒，暴击率20%，继承英雄暴击伤害。\n宠物攻击5%概率造成业力*400%范围伤害\n\n解锁宠物|Cffffd24d小狐妖|r")
+        call InitTypeIdStrings('RP1A',"笑天犬","ReplaceableTextures\\CommandButtons\\BTNPF01.BLP","每秒攻击+10\n每秒业力+15\n\n解锁助手皮肤|Cffff0000笑天犬|r")
         call InitTypeIdStrings('RG0A',"难1通关5次","ReplaceableTextures\\CommandButtons\\BTNTG01.BLP","")
         call InitTypeIdStrings('RG0B',"难2通关5次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","重随英雄次数+1")
         call InitTypeIdStrings('RG0C',"难3通关5次","ReplaceableTextures\\CommandButtons\\BTNTG03.BLP","天魂融血丹x1\n三纹清灵丹x1")
@@ -438,8 +439,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IK97',"|CffFFD24D雷之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_07.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926雷之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK98',"|CffFFD24D暗之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926暗之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
 
-
-        
         
         
         

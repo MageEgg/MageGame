@@ -38,6 +38,17 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             num = num + 1
         endif
 
+        if  DzShop(Player(pid),"PF1") == true
+            num = num + 1
+        endif
+
+        if  DzShop(Player(pid),"WQ2") == true
+            num = num + 1
+        endif
+
+
+
+
         return num
     endfunction
 
@@ -220,6 +231,13 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],31,20)
             UnitAddItemEx(Pu[2],'ID14')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00幽冥之翼|r》已激活！")
+        endif
+
+        if  GetPlayerTechCount(Player(pid),'RY2G',true) == 1 //幽冥之翼
+            shopnum = shopnum + 1
+            AddUnitRealState(Pu[1],47,10)
+            AddUnitRealState(Pu[1],48,15)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00笑天犬|r》已激活！")
         endif
 
 

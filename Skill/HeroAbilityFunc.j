@@ -1590,7 +1590,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(wu),'z104',x1,y1,0)
             
             if  lv >= 2
-                SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5)*2)
+                SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5)*3)
 
             else
                 SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5))
@@ -1607,7 +1607,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             SetUnitRealState(bj_lastCreatedUnit,17,GetUnitRealState(wu,17))
             SetUnitRealState(bj_lastCreatedUnit,19,GetUnitRealState(wu,19))
             SetUnitRealState(bj_lastCreatedUnit,20,GetUnitRealState(wu,20))
-            SetUnitRealState(bj_lastCreatedUnit,18,40)
+
+            
+            if  GetUnitIntState(wu,'FB33') > 0 orGetUnitIntState(wu,'FF33') > 0
+                SetUnitRealState(bj_lastCreatedUnit,18,40)
+            endif
             UnitApplyTimedLife(bj_lastCreatedUnit,'BHwe',3)
             bj_lastCreatedUnit = null
         end
@@ -1659,7 +1663,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real x1 = sx
         real y1 = sy
         real damage = dam
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"units\\nightelf\\MountainGiant\\MountainGiant",x1,y1,270,0,0.3)
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"units\\nightelf\\MountainGiant\\MountainGiant.mdl",x1,y1,270,0,0.3)
         int level = lv
         int time = 0
         TimerStart(0.05,true)
@@ -1721,7 +1725,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real y1 = GetUnitY(wu)
         real ang = a
         unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect_tx_asad (23).mdl",x1,y1,ang/0.01745,50,1.0)
-        int time = 20
+        int time = 16
         group g1 = CreateGroup()
         real damage = dam
         int num = GetUnitIntState(wu,'S534')
@@ -1736,8 +1740,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             
             time = time - 1
 
-            x1 = x1 + 30 * Cos(ang)
-            y1 = y1 + 30 * Sin(ang)
+            x1 = x1 + 50 * Cos(ang)
+            y1 = y1 + 50 * Sin(ang)
             SetUnitX(u2,x1)
             SetUnitY(u2,y1)
             IndexGroup g = IndexGroup.create()

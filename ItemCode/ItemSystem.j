@@ -82,12 +82,21 @@ scope ItemSystem initializer InitItemSystem
         int gl = GetTypeIdData(id,104)//概率
 
         if  id >= 'E001' and id <= 'E029'
-            BJDebugMsg("强化概率"+I2S(gl)+"+"+I2S(IncEquipAddition1))
+            BJDebugMsg("强化概率+"+I2S(IncEquipAddition1))
             gl = gl + IncEquipAddition1
         else
-            BJDebugMsg("强化概率"+I2S(gl)+"+"+I2S(IncEquipAddition2))
+            BJDebugMsg("强化概率+"+I2S(IncEquipAddition2))
             gl = gl + IncEquipAddition2
         endif
+
+        if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
+            gl = gl + 3
+        endif
+        if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
+            gl = gl + 3
+        endif
+
+        BJDebugMsg("强化概率陈宫+"+I2S(gl))
         if  next > 0
             
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold

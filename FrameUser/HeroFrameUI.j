@@ -197,6 +197,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             AddEquipState(Pu[1],id)
             HeroIncLevel(Pu[1])
             HeroAddExp(Pu[1],1)
+
+            if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
+                SetEquipStateOfPlayer(Pu[1],id,0.08)
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具诛仙剑，额外获得8%道果属性！")
+            endif
+
             if  GetUnitTypeId(wu) == 'H018'
                 SpellS518.execute(Pu[1],id)//九转神功
             endif

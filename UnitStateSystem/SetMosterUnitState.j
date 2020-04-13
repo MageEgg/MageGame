@@ -261,10 +261,11 @@ library UnitStateSet initializer UnitStateSetInit uses State
     endfunction
     
     
-    function LoadDzConData()
+    function LoadDzConData1()
         string con = DzCon("ND1_7")
         if  con == ""
-            con = "000000500000005000000065-0300090003001400030021000400300"
+            con = "00000050000000500000006500000090000001400030021000400300"
+            
         endif
         int data1 = 0 
         int data2 = 0
@@ -276,12 +277,37 @@ library UnitStateSet initializer UnitStateSetInit uses State
             BJDebugMsg("难度"+I2S(i+1)+"data1:"+I2S(data1))
             BJDebugMsg("难度"+I2S(i+1)+"data2:"+I2S(data2))
 
-            if  data1 > 0
+            if  data1 != 0
                 GameReal[i+1][1] = data1
             endif
             
-            if  data2 > 0
+            if  data2 != 0
                 GameReal[i+1][2] = data2
+            endif
+
+        end
+    endfunction
+    function LoadDzConData2()
+        string con = DzCon("ND8_14")
+        if  con == ""
+            con = "00400420000000000000000000000000000000000000000000000000"
+        endif
+        int data1 = 0 
+        int data2 = 0
+        int index = 0
+        for i= 0,6
+            index  = i * 8
+            data1 = S2I(SubString(con,index,index+4))
+            data2 = S2I(SubString(con,index+4,index+8))
+            BJDebugMsg("难度"+I2S(i+8)+"data1:"+I2S(data1))
+            BJDebugMsg("难度"+I2S(i+8)+"data2:"+I2S(data2))
+
+            if  data1 != 0
+                GameReal[i+8][1] = data1
+            endif
+            
+            if  data2 != 0
+                GameReal[i+8][2] = data2
             endif
 
         end
@@ -303,8 +329,10 @@ library UnitStateSet initializer UnitStateSetInit uses State
         InitMostetStateRatio(6,30,210)
         InitMostetStateRatio(7,40,300)
 
-        LoadDzConData()
-        
+        InitMostetStateRatio(8,40,420)
+
+        LoadDzConData1()
+        LoadDzConData2()
     endfunction
 endlibrary
 

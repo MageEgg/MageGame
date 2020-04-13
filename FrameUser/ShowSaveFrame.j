@@ -65,8 +65,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
         RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
         RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
+        RegisterShowSaveFrameData(5,'RP1A','RP1A',0,0,0,0)//笑天犬
         
-        RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
@@ -318,7 +318,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
     function IsSaveIdCanShow(int id,int page)->bool
         if  page == 1 or page == 2
             return true
-        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D' or id == 'RY2G'
+        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D' or id == 'RY2G' or id == 'RP1A'
             return true
         endif
         return false
@@ -350,17 +350,28 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
             index = 3
         elseif  sid >= 'AY4A' and sid <= 'AY4Z'
             index = 4
+        elseif  sid >= 'AP1A' and sid <= 'AP1Z'
+            index = 9
         endif
 
         BJDebugMsg("点击的id"+YDWEId2S(sid))
 
         if  index != 0
-            for i = 0,25
-                if  GetUnitAbilityLevel(Pu[1],'AY0A'+i+index*0x100) > 0
-                    nowid = 'AY0A'+i+index*0x100
-                    exitwhen true
-                endif
-            end
+            if  index == 9
+                for i2 = 0,25
+                    if  GetUnitAbilityLevel(Pu[1],'AP1A'+i2) > 0
+                        nowid = 'AP1A'+i2
+                        exitwhen true
+                    endif
+                end
+            else
+                for i = 0,25
+                    if  GetUnitAbilityLevel(Pu[1],'AY0A'+i+index*0x100) > 0
+                        nowid = 'AY0A'+i+index*0x100
+                        exitwhen true
+                    endif
+                end
+            endif
             
             if  nowid != 0
                 UnitRemoveAbility(Pu[1],nowid)
@@ -368,12 +379,27 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
 
             if  sid == nowid
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
-            else
-                if  nowid == 0
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观激活成功！")
+                
+                if  nowid >= 'AP1A' and nowid <= 'AP1Z'
+                    DzSetUnitModel(Pu[2],"Unit_CraneGod.mdl")
+                    SetUnitScale(Pu[2],0.9,0.9,0.9)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r助手皮肤隐藏成功！")
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观替换成功！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
+                endif
+            else
+                if  nowid >= 'AP1A' and nowid <= 'AP1Z'
+                    if  nowid == 'AP1A'
+                        DzSetUnitModel(Pu[2],"zs_rykj.mdl")
+                        SetUnitScale(Pu[2],2.5,2.5,2.5)
+                    endif
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r助手皮肤替换成功！")
+                else
+                    if  nowid == 0
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观激活成功！")
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观替换成功！")
+                    endif
                 endif
                 UnitAddAbility(Pu[1],sid)
             endif

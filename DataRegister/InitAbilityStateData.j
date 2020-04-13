@@ -102,11 +102,12 @@ call InitAbilityData('S527',9,0,0,0,0,0,0,0,0,16,2,"昏庸无道","|CffFFD24D处
 call InitAbilityData('S528',1,0,0,0,0,0,0,0,0,0,0,"尚武乏谋","有什么问题是暴力不能解决的呢？\n技能伤害+|Cffffd24d20%|r。","ReplaceableTextures\\CommandButtons\\BTNS528.blp")
 call InitAbilityData('S529',1,0,0,0,0,0,0,0,0,20,3,"神医救世","队友或你死亡时，直接|Cffffd24d复活|r。","ReplaceableTextures\\CommandButtons\\BTNS529.blp")
 call InitAbilityData('S530',1,0,0,0,0,0,0,0,0,0,0,"百发百中","攻击|Cffffc9263%|r概率造成|Cffffc926480%|r致命一击。","ReplaceableTextures\\CommandButtons\\BTNS530.blp")
-call InitAbilityData('S532',1,0,1,1,0,0,0,0,1,0,4,"军团战争","攻击时|Cffffc9266%|r概率召唤|Cffffc9262|r个西周军，持续时间|Cffffc9263|r秒。|n拥有法宝|Cffff00bf青云剑|r时，西周军|Cffffc926免疫技能眩晕|r，承受技能伤害减少|Cffffc92650%|r。|n|n|Cff00ff7f西周军继承本体100%攻击力，100%生命值。|n|n|r|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926星悦丶大锤砸|r","ReplaceableTextures\\CommandButtons\\BTNS532.blp")
+call InitAbilityData('S532',1,0,1,1,0,0,0,0,1,0,4,"军团战争","攻击时|Cffffc9266%|r概率召唤|Cffffc9262|r个西周军，持续时间|Cffffc9263|r秒。|n拥有法宝|Cffff00bf青云剑|r时，西周军|Cffffc926免疫技能眩晕|r，伤害减免|Cffffc926+40%|r。|n|n|Cff00ff7f西周军继承本体100%攻击力，100%生命值。|n|n|r|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926星悦丶大锤砸|r","ReplaceableTextures\\CommandButtons\\BTNS532.blp")
 call InitAbilityData('S533',1,0,1,3,0,0,0,0,2,0,0,"咆哮风暴","哮天犬攻击|Cffffc9266%|r概率撕咬周围敌人|Cffffc9262|r次，每次造成|Cffffc926攻击*300%|r伤害。|n拥有法宝|Cffffc926哮天犬|r时，触发时召唤主人神兵杨戬发动天罚，造成|Cffffc926攻击*700%|r伤害。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926阿呆|r","ReplaceableTextures\\CommandButtons\\BTNS533.blp")
-call InitAbilityData('S534',1,0,2,4,0,0,0,0,2,0,4,"开山力士","释放技能时召唤|Cffffc9262|r个|Cffffc926开山力士|r自爆，每个造成|Cffffc926业力*500|r伤害。|n拥有法宝|Cffffc926七宝妙树|r时，开山力士数量|Cffffc926+1|r。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926淡漠品煙|r","ReplaceableTextures\\CommandButtons\\BTNS534.blp")
-call InitAbilityData('S535',1,0,2,9.5,0,0,0,0,2,0,1,"五光石","攻击|Cffffc92616|r次发射|Cffffc9261|r枚五光石，造成|Cffffc926业力*950%|r伤害，并获得一层|Cffffc926石心|r。|n|Cffffc926石心|r超过|Cffffc9267|r层时，下一次无光石附带|Cffffc9261|r秒眩晕。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926一个做梦的人。|r","ReplaceableTextures\\CommandButtons\\BTNS535.blp")
-call InitAbilityData('S536',3,0,99,5.5,0,0,0,0,2,0,2,"","攻击|Cffffc92616|r次发射|Cffffc9261|r枚五光石，造成|Cffffc926业力*950%|r伤害，并为敌方附加一层|Cffffc926石印|r。|n敌方受到的石印超过|Cffffc9267|r层时，眩晕|Cffffc9261|r秒。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926？？？|r","ReplaceableTextures\\CommandButtons\\BTNS536.blp")
+call InitAbilityData('S534',1,0,2,4.5,0,0,0,0,2,0,4,"开山力士","释放技能时召唤|Cffffc9262|r个|Cffffc926开山力士|r1秒后自爆，每个造成|Cffffc926业力*450%|r伤害。|n拥有法宝|Cffffc926七宝妙树|r时，开山力士数量|Cffffc926+1|r。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926淡漠品煙|r","ReplaceableTextures\\CommandButtons\\BTNS534.blp")
+call InitAbilityData('S535',1,0,2,9.5,0,0,0,0,2,0,1,"五光石","攻击|Cffffc92616|r次发射|Cffffc9261|r枚五光石，造成|Cffffc926业力*950%|r伤害，并获得一层|Cffffc926石心|r。|n|Cffffc926石心|r超过|Cffffc9267|r层时，下一次五光石附带|Cffffc9261|r秒眩晕。|n拥有法宝|Cff00bfff扫霞衣|r时，对|Cffffc926眩晕中的单位|r造成伤害|Cffffc926+30%|r。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926一个做梦的人。|r","ReplaceableTextures\\CommandButtons\\BTNS535.blp")
+call InitAbilityData('S536',3,0,99,5.5,0,0,0,0,2,0,2,"断罪处刑","","ReplaceableTextures\\CommandButtons\\BTNS536.blp")
+
 
 
 
@@ -144,13 +145,8 @@ InitAbilityStringEx('S530',"攻击必定命中。","触发致命一击时回复�
 InitAbilityStringEx('S532',"西周军生命值+200%","西周军拥有多重射击，攻击力+50%。","西周军数量+2","","")
 InitAbilityStringEx('S533',"撕咬使敌人进入流血状态，承受伤害+15%，持续3秒。","对流血状态的敌人攻击吸血+12%。","撕咬次数+2","","")
 InitAbilityStringEx('S534',"自爆伤害+40%","自爆附带1秒眩晕。","开山力士数量+1","","")
-InitAbilityStringEx('S535',"触发时50%概率额外发射1枚五色石。","触发时30%概率额外发射2枚五色石。","触发时20%概率额外发射3枚五色石。","","")
-InitAbilityStringEx('S536',"触发时50%概率额外发射1枚五色石。","触发时30%概率额外发射2枚五色石。","触发时20%概率额外发射3枚五色石。","","")
-
-
-
-
-
+InitAbilityStringEx('S535',"攻击次数降低至12次","额外发射一枚五光石","额外发射两枚五光石","","")
+InitAbilityStringEx('S536',"","","","","")
 
 
 
