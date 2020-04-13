@@ -753,6 +753,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                 AddDzPlayerData(pid,3,1,1) //总通关次数
                 AddDzPlayerData(pid,3,GameLevel+1,1) //通关难度次数
 
+                if  GameMode == 2
+                    AddDzPlayerData(pid,17,1,1) //疯狂总通关次数
+                    AddDzPlayerData(pid,17,GameLevel+1,1) //疯狂通关难度次数
+                endif
+
                 jfadd = 10*GameLevel
                 jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
                 AddDzPlayerData(pid,2,1,jfadd) //通关积分

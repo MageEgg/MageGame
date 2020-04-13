@@ -2,7 +2,7 @@ library DzDataSetting uses DzBase
 
     //////////////////////////////////////////////////////////
     //使用的宏定义
-    #define MaxGameLevel 7
+    #define MaxGameLevel 8
 
     #define MaxHeroExpLevel 2 //最大等级
     #define MaxHeroNeedExp0 12 //经验需求
@@ -28,7 +28,7 @@ library DzDataSetting uses DzBase
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包
     // 组2 12组 == 1通关积分 2守家积分 3万魔窟 
-    // 组3 20组 == 1总通关次数 2+通关难度次数 最高难5
+    // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
     // 组6 20组 1经脉最大上限 2-9经脉 10+未使用
@@ -42,6 +42,7 @@ library DzDataSetting uses DzBase
     // 组14 称号	30组
     // 组15 彩蛋    30组
     // 组16 10组 1战勋点 2当天战勋点
+    // 组17 20组 == 1疯狂总次数 2+通关难疯狂度次数 
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -52,9 +53,20 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[5] = 15
         DzPlayerInitTGCos[6] = 15
         DzPlayerInitTGCos[7] = 15
-        /*DzPlayerInitTGCos[8] = 8
-        DzPlayerInitTGCos[9] = 9
+        DzPlayerInitTGCos[8] = 5
+        /*DzPlayerInitTGCos[9] = 9
         DzPlayerInitTGCos[10] = 10*/
+        
+        DzPlayerInitCrazyTGCos[1] = 1
+        DzPlayerInitCrazyTGCos[2] = 1
+        DzPlayerInitCrazyTGCos[3] = 1
+        DzPlayerInitCrazyTGCos[4] = 1
+        DzPlayerInitCrazyTGCos[5] = 1
+        DzPlayerInitCrazyTGCos[6] = 1
+        DzPlayerInitCrazyTGCos[7] = 1
+        DzPlayerInitCrazyTGCos[8] = 1
+        /*DzPlayerInitCrazyTGCos[9] = 1
+        DzPlayerInitCrazyTGCos[10] = 1*/
     endfunction
     
     function DzDataGroupSetting()
@@ -76,8 +88,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(14) = 2
         DzDataGroupLength(15) = 2
         DzDataGroupLength(16) = 6
-        /*DzDataGroupLength(17) = 0
-        DzDataGroupLength(18) = 0
+        DzDataGroupLength(17) = 3
+        /*DzDataGroupLength(18) = 0
         DzDataGroupLength(19) = 0
         DzDataGroupLength(20) = 0
         DzDataGroupLength(21) = 0
@@ -164,7 +176,15 @@ library DzDataSetting uses DzBase
             else
                 max = 0
             endif
-        elseif  Group > 16 //未使用
+        elseif  Group == 17
+            if  flag == 1 //总通关次数
+                max = DzPlayerGames(Player(pid))+1
+            elseif  flag >= 2 and flag <= MaxGameLevel+1 //通关难度
+                max = DzPlayerInitCrazyTGCos[flag-1]
+            elseif  flag >= MaxGameLevel+2 //未开启的难度
+                max = 0
+            endif
+        elseif  Group > 17 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)
