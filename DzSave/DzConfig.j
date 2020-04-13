@@ -9,8 +9,10 @@ library DzConfig uses SystemCodes
         int n = 0
         if  DzConA[0] == 1
             n = DzConA[11]
+            if  GameMode == 2
+                n = n - 1
+            endif
             if  n > 0
-                BJDebugMsg("GetDzHdToPlayer")
                 if  TimeHour >= 14 and TimeHour <= 21 and DzConA[10] == 1
                     DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00战争号角活动开启中！通关积分+"+I2S(50*n)+"%|r")
                 else
@@ -47,7 +49,7 @@ library DzConfig uses SystemCodes
         endif
         for n = 0,59
             DzConA[n] = S2I(SubString(S,n,n+1))
-            BJDebugMsg(I2S(n)+"@@@@@"+I2S(DzConA[n]))
+            //BJDebugMsg(I2S(n)+"@@@@@"+I2S(DzConA[n]))
         end
         if  DzConA[1] == 1
             QQNumber = "735968074"
