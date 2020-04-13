@@ -436,14 +436,14 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
 
 
-        InitUnlocTechConditions('RGAA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,2,5)),0,0,0)
-        InitUnlocTechConditions('RGAB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,3,5)),0,0,0)
-        InitUnlocTechConditions('RGAC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(17,4,5)),0,0,0)
-        InitUnlocTechConditions('RGAD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(17,5,5)),0,0,0)
-        InitUnlocTechConditions('RGAE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(17,6,5)),0,0,0)
-        InitUnlocTechConditions('RGAF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(17,7,5)),0,0,0)
-        InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(17,8,5)),0,0,0)
-        InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(17,9,5)),0,0,0)
+        InitUnlocTechConditions('RGAA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,2,1)),0,0,0)
+        InitUnlocTechConditions('RGAB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,3,1)),0,0,0)
+        InitUnlocTechConditions('RGAC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(17,4,1)),0,0,0)
+        InitUnlocTechConditions('RGAD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(17,5,1)),0,0,0)
+        InitUnlocTechConditions('RGAE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(17,6,1)),0,0,0)
+        InitUnlocTechConditions('RGAF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(17,7,1)),0,0,0)
+        InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(17,8,1)),0,0,0)
+        InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(17,9,1)),0,0,0)
 
 
 
