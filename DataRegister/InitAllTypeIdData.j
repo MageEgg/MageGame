@@ -309,11 +309,11 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RH28',"蛮力纣王","ReplaceableTextures\\CommandButtons\\BTNH028.blp","")
         call InitTypeIdStrings('RH29',"神农","ReplaceableTextures\\CommandButtons\\BTNH029.blp","")
         call InitTypeIdStrings('RH30',"后羿","ReplaceableTextures\\CommandButtons\\BTNH030.blp","")
-        call InitTypeIdStrings('RH32',"帝皇姬昌","ReplaceableTextures\\CommandButtons\\BTNH026.blp","")
-        call InitTypeIdStrings('RH33',"哮天犬","ReplaceableTextures\\CommandButtons\\BTNH027.blp","")
-        call InitTypeIdStrings('RH34',"准提道人","ReplaceableTextures\\CommandButtons\\BTNH028.blp","")
-        call InitTypeIdStrings('RH35',"邓婵玉","ReplaceableTextures\\CommandButtons\\BTNH029.blp","")
-        call InitTypeIdStrings('RH36',"苟作者","ReplaceableTextures\\CommandButtons\\BTNH030.blp","")
+        call InitTypeIdStrings('RH32',"帝皇姬昌","ReplaceableTextures\\CommandButtons\\BTNH032.blp","")
+        call InitTypeIdStrings('RH33',"哮天犬","ReplaceableTextures\\CommandButtons\\BTNH033.blp","")
+        call InitTypeIdStrings('RH34',"准提道人","ReplaceableTextures\\CommandButtons\\BTNH034.blp","")
+        call InitTypeIdStrings('RH35',"邓婵玉","ReplaceableTextures\\CommandButtons\\BTNH035.blp","")
+        call InitTypeIdStrings('RH36',"苟作者","ReplaceableTextures\\CommandButtons\\BTNH036.blp","")
         call InitTypeIdStrings('RM10',"任脉","ReplaceableTextures\\CommandButtons\\BTNQJBM01.blp","")
         call InitTypeIdStrings('RM20',"督脉","ReplaceableTextures\\CommandButtons\\BTNQJBM02.blp","")
         call InitTypeIdStrings('RM30',"冲脉","ReplaceableTextures\\CommandButtons\\BTNQJBM03.blp","")
@@ -438,7 +438,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IK96',"|CffFFD24D光之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_06.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926光之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK97',"|CffFFD24D雷之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_07.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926雷之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK98',"|CffFFD24D暗之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926暗之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
-
         
         
         

@@ -1589,6 +1589,8 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         for i = 1,max
             bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(wu),'z104',x1,y1,0)
             
+            SetUnitRealState(bj_lastCreatedUnit,3,GetUnitRealState(wu,3)*0.5)
+
             if  lv >= 2
                 SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5)*3)
 

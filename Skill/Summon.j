@@ -85,14 +85,16 @@ library Summon uses AbilityUI,OtherDamageTimer
         {
             if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == uid
                 if  Udis(u1,u2) > 800
-                    SetUnitXY(u2,GetUnitX(Pu[6])+GetRandomReal(-200,200),GetUnitY(Pu[6])+GetRandomReal(-200,200))
+                    SetUnitXY(u2,GetUnitX(Pu[1])+GetRandomReal(-200,200),GetUnitY(Pu[1])+GetRandomReal(-200,200))
                     UnitAddEffect(u2,"effect_az_pafeathermoon_b.mdl")
                 endif
 
-                if  GetUnitTypeId(Pu[6]) > 0
-                    IssuePointOrderById(u2,851983,GetUnitX(Pu[6])+GetRandomReal(-500,500),GetUnitY(Pu[6])+GetRandomReal(-500,500))
-                else
-                    IssuePointOrderById(u2,851983,GetUnitX(Pu[1])+GetRandomReal(-500,500),GetUnitY(Pu[1])+GetRandomReal(-500,500))
+                if  GetUnitCurrentOrder(u2) == 0
+                    if  GetUnitTypeId(Pu[6]) > 0
+                        IssueTargetOrderById(u2,851983,Pu[6])
+                    else
+                        IssuePointOrderById(u2,851983,GetUnitX(Pu[1])+GetRandomReal(-500,500),GetUnitY(Pu[1])+GetRandomReal(-500,500))
+                    endif
                 endif
             else
                 endtimer
