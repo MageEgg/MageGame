@@ -761,8 +761,13 @@ library AttackUnit uses DamageCode,PassCheckMission
                 jfadd = 10*GameLevel
                 jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
                 AddDzPlayerData(pid,2,1,jfadd) //通关积分
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
-                
+
+                if  GameMode == 1
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
+                elseif  GameMode == 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
+                endif
+
                 AddDzHeroExp(Pu[1],1+GameLevel)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00增加"+GetUnitName(Pu[1])+I2S((1+GameLevel)*10)+"点熟练度！|r")
 

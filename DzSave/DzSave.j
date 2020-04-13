@@ -442,8 +442,9 @@ library DzSave initializer InitDzData uses DzDataSetting
                 end
                 ExecuteFunc("InitAllUnlocTechFuncItem")
             elseif  time == 8
-                ExecuteFunc("OpenSelectMode")
                 GetDzHD()
+            elseif  time == 9
+                ExecuteFunc("OpenSelectMode")
                 endtimer
             endif
             flush locals
