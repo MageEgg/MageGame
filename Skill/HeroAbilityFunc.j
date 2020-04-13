@@ -1643,15 +1643,17 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         if  lv >= 4
             time = time + 2
         endif
-        if  GetUnitIntState(wu,'FB07') > 0
-            SpellS501_4(u1,GetUnitX(wu),GetUnitY(wu),GetUnitAttack(u1)*7/5)
-        endif
         SpellS533Damage(u1,damage,lv)
-        TimerStart(0.4,true)
+        TimerStart(0.3,true)
         {
-            SpellS533Damage(u1,damage,lv)
+            
             time = time - 1
-            if  time <= 0
+            if  time >= 0
+                SpellS533Damage(u1,damage,lv)
+            else
+                if  GetUnitIntState(u1,'FB07') > 0
+                    SpellS501_4(u1,GetUnitX(u1),GetUnitY(u1),GetUnitAttack(u1)*7)
+                endif
                 endtimer
             endif
             flush locals
@@ -1721,6 +1723,9 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction
 
 
+
+
+
     function SpellS535Timer(unit wu,real a,real dam)
         unit u1 = wu
         real x1 = GetUnitX(wu)
@@ -1748,9 +1753,9 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             SetUnitY(u2,y1)
             IndexGroup g = IndexGroup.create()
             if  num == 6
-                GroupEnumUnitsInRange(g.ejg,x1,y1,150,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,150,GroupHasUnitAddBuff(GetOwningPlayer(u1),g1,"",Buffxy,1,0))
             else
-                GroupEnumUnitsInRange(g.ejg,x1,y1,150,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                GroupEnumUnitsInRange(g.ejg,x1,y1,150,GroupHasUnit(GetOwningPlayer(u1),g1,""))
             endif
             UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
@@ -1775,7 +1780,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         SpellS535Timer(wu,ang,dam)
         TimerStart(0.3,true)
         {
-            
+            SpellS535Timer(wu,ang,dam)
             time = time - 1
             if  time <= 0
                 endtimer
