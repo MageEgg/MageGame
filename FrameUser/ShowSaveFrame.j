@@ -224,6 +224,15 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0)//蛮力纣王
         RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0)//神农
         RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0)//后羿
+        RegisterShowSaveFrameData(3,'RH32','RH32',0,0,0,0)//帝皇姬昌
+        RegisterShowSaveFrameData(3,'RH33','RH33',0,0,0,0)//哮天犬
+        RegisterShowSaveFrameData(3,'RH34','RH34',0,0,0,0)//准提道人
+        RegisterShowSaveFrameData(3,'RH35','RH35',0,0,0,0)//邓婵玉
+        //RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0)//苟作者
+
+
+
+
         RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)//任脉
         RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)//督脉
         RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)//冲脉
@@ -238,7 +247,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv4
         RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv5
         RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
-//        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
+        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
 //        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
 //        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
 //        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
