@@ -1609,7 +1609,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             SetUnitRealState(bj_lastCreatedUnit,20,GetUnitRealState(wu,20))
 
             
-            if  GetUnitIntState(wu,'FB33') > 0 orGetUnitIntState(wu,'FF33') > 0
+            if  GetUnitIntState(wu,'FB33') > 0 or GetUnitIntState(wu,'FF33') > 0
                 SetUnitRealState(bj_lastCreatedUnit,18,40)
             endif
             UnitApplyTimedLife(bj_lastCreatedUnit,'BHwe',3)
