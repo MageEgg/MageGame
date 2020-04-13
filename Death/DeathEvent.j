@@ -91,6 +91,11 @@ scope DeathEvent initializer InitDeathEvent
         if  GetPlayerTechCount(Player(pid),'RDAU',true) > 0
             time = time - 1
         endif
+        if  GetPlayerTechCount(Player(pid),'RG0H',true) > 0
+            time = time - 1
+        endif
+        
+
         PlayerDeathBool = true
         PetDeathPosition(pid)
         SetHandleData(wt,pid)
@@ -170,28 +175,31 @@ scope DeathEvent initializer InitDeathEvent
         int next = GetTypeIdData(id,106)
         int gl = GetTypeIdData(id,104)
 
-        if  next == 'E102' or next == 'E103'
-            gl = 100
-        endif
-
-        if  GetPlayerTechCount(Player(pid),'RG1B',true)>0
-            gl = gl + 5
-        endif
-        if  GetPlayerTechCount(Player(pid),'RG1D',true)>0
-            gl = gl + 5
-        endif
-        if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
-            gl = gl + 5
-        endif
-
-        BJDebugMsg("项链成功率"+I2S(gl))
-        if  gl < 40
-            gl = 40
-        endif
+        
             
         if  num-exp >= 1
             SetItemCharges(it,num-exp)
         else
+
+            if  next == 'E102' or next == 'E103'
+                gl = 100
+            endif
+
+            if  GetPlayerTechCount(Player(pid),'RG1B',true)>0
+                gl = gl + 5
+            endif
+            if  GetPlayerTechCount(Player(pid),'RG1D',true)>0
+                gl = gl + 5
+            endif
+            if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
+                gl = gl + 5
+            endif
+
+            BJDebugMsg("项链成功率"+I2S(gl))
+            if  gl < 40
+                gl = 40
+            endif
+
             SetItemDroppable(it,true)
             UnitRemoveItem(Pu[1],it)
             RemoveItem(it)

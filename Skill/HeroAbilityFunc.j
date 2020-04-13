@@ -1,4 +1,21 @@
 library HeroAbilityFunc uses OtherDamageTimer,Summon
+    function GetUnitAttackNumb(unit wu)->int //S036
+        int i=1
+            if  IsPlayerHasAbility(wu,'S036') == true
+                i=i+1
+            endif
+            if  GetUnitAbilityLevel(wu,'S005') > 0
+                i=i+1
+            endif
+            if  GetUnitAbilityLevel(wu,'S030') > 0
+                i=i+1
+            endif
+            if  GetUnitAbilityLevel(wu,'S078') > 0
+                i=i+1
+            endif
+        return i
+    endfunction
+
     function SpellS501_4(unit wu,real x1,real y1,real damage)
         real ang = GetRandomReal(-3.14,3.14)
         real dis = GetRandomReal(200,300)
@@ -1559,10 +1576,55 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction
 
 
-    function SpellS533Damage(unit wu,real x1,real y1,real damage,int lv)
+
+    function SpellS532(unit wu,real damage,int lv)
+        int max = 2 + GetHeroSummonNum(wu)
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+
+        if  lv >= 4
+            max = max + 2
+        endif
+
+        for i = 1,max
+            bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(wu),'z104',x1,y1,0)
+            
+            if  lv >= 2
+                SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5)*2)
+
+            else
+                SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5))
+            endif
+
+
+            if  lv >= 3
+                SetUnitRealState(bj_lastCreatedUnit,1,damage*1.5)
+                UnitAddAbility(bj_lastCreatedUnit,'A005')
+            else
+                SetUnitRealState(bj_lastCreatedUnit,1,damage)
+            endif
+            SetUnitRealState(bj_lastCreatedUnit,15,GetUnitRealState(wu,15))
+            SetUnitRealState(bj_lastCreatedUnit,17,GetUnitRealState(wu,17))
+            SetUnitRealState(bj_lastCreatedUnit,19,GetUnitRealState(wu,19))
+            SetUnitRealState(bj_lastCreatedUnit,20,GetUnitRealState(wu,20))
+            SetUnitRealState(bj_lastCreatedUnit,18,40)
+            UnitApplyTimedLife(bj_lastCreatedUnit,'BHwe',3)
+            bj_lastCreatedUnit = null
+        end
+        
+        
+    endfunction
+
+    function SpellS533Damage(unit wu,real damage,int lv)
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
         LocAddEffectSetSize(x1,y1,"effect_tx_new (3).mdl",0.5)
         IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        if  lv >= 2
+            GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffjs,11,0))
+        else
+            GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        endif
         UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
@@ -1570,20 +1632,18 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     function SpellS533(unit wu,real dam,int level)
         unit u1 = wu
         int lv = level
-        real x1 = GetUnitX(wu)
-        real y1 = GetUnitY(wu)
         real damage = dam
         int time = 1
         if  lv >= 4
             time = time + 2
         endif
         if  GetUnitIntState(wu,'FB07') > 0
-            SpellS501_4(u1,x1,y1,GetUnitAttack(u1)*7/5)
+            SpellS501_4(u1,GetUnitX(wu),GetUnitY(wu),GetUnitAttack(u1)*7/5)
         endif
-        SpellS533Damage(u1,x1,y1,damage,lv)
+        SpellS533Damage(u1,damage,lv)
         TimerStart(0.4,true)
         {
-            SpellS533Damage(u1,x1,y1,damage,lv)
+            SpellS533Damage(u1,damage,lv)
             time = time - 1
             if  time <= 0
                 endtimer
@@ -1592,5 +1652,166 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         }
         flush locals
     endfunction
+
+
+    function SpellS534Timer(unit wu,real sx,real sy,real dam,int lv)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        real damage = dam
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"units\\nightelf\\MountainGiant\\MountainGiant",x1,y1,270,0,0.3)
+        int level = lv
+        int time = 0
+        TimerStart(0.05,true)
+        {
+            time = time + 1
+            SetUnitScale(u2,0.3 + I2R(time)*0.02 ,0.3 + I2R(time)*0.02,0.3 + I2R(time)*0.02)
+            SetUnitVertexColor(u2,255,255-time*10,255-time*10,255)
+
+            if  time >= 20
+
+                LocAddEffectSetSize(x1,y1,"effect_fire-boom-new.mdl",0.5)
+                IndexGroup g = IndexGroup.create()
+                if  level >= 3
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,700,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+                else
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,700,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                endif
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                g.destroy()
+
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS534(unit wu,real sx,real sy,real damage,int lv)
+
+        int max = 2 + GetHeroSummonNum(wu)
+        
+
+        if  GetUnitIntState(wu,'FB39') > 0
+            max = max + 1
+        endif
+
+        if  lv >= 4
+            max = max + 1
+        endif
+
+        if  lv >= 2
+            damage = damage * 1.4
+        endif
+
+        real ang = 0
+        real dis = 0
+        for i = 1,max
+            ang = GetRandomReal(-3.14,3.14)
+            dis = GetRandomReal(-300,300)
+            SpellS534Timer(wu,sx+dis*Cos(ang),sy+dis*Sin(ang),damage,lv)
+        end
+    endfunction
+
+
+    function SpellS535Timer(unit wu,real a,real dam)
+        unit u1 = wu
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+        real ang = a
+        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"effect_tx_asad (23).mdl",x1,y1,ang/0.01745,50,1.0)
+        int time = 20
+        group g1 = CreateGroup()
+        real damage = dam
+        int num = GetUnitIntState(wu,'S534')
+        if  num == 6
+            SetUnitIntState(wu,'S534',0)
+        else
+            SetUnitIntState(wu,'S534',num+1)
+        endif
+
+        TimerStart(0.03,true)
+        {
+            
+            time = time - 1
+
+            x1 = x1 + 30 * Cos(ang)
+            y1 = y1 + 30 * Sin(ang)
+            SetUnitX(u2,x1)
+            SetUnitY(u2,y1)
+            IndexGroup g = IndexGroup.create()
+            if  num == 6
+                GroupEnumUnitsInRange(g.ejg,x1,y1,150,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+            else
+                GroupEnumUnitsInRange(g.ejg,x1,y1,150,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            endif
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+
+            if  time <= 0
+                KillUnit(u2)    
+                GroupClear(g1)
+                DestroyGroup(g1)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS535Num(unit wu,unit tu,real dam,int num)
+        unit u1 = wu
+        unit u2 = tu
+        real damage = dam
+        int time = num-1
+        real ang = Uang(wu,tu)
+        SpellS535Timer(wu,ang,dam)
+        TimerStart(0.3,true)
+        {
+            
+            time = time - 1
+            if  time <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    function SpellS535(unit wu,unit tu,real dam,int lv)
+
+        int num = GetUnitIntState(wu,'S535') + GetUnitAttackNumb(wu)
+        int use = 16
+        int max = 1
+
+        if  lv >= 4
+            max = 4
+        elseif  lv >= 3
+            max = 2
+        endif
+        if  lv >= 2
+            use = 12
+        endif
+
+        
+        if  num >= use
+            SetUnitIntState(wu,'S535',0)
+            if  max > 1
+                SpellS535Num(wu,tu,dam,max)
+            else
+                SpellS535Timer(wu,Uang(wu,tu),dam)
+            endif
+
+        else
+            SetUnitIntState(wu,'S535',num)
+        endif
+
+
+
+        
+
+    endfunction
+
+    
 
 endlibrary

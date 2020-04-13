@@ -109,9 +109,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             
             if  lv >= 18 and DzShop(Player(pid),"CB1") == true
                 //别忘了改我!!!
-                AddUnitRealState(Pu[1],49,450)
-                AddUnitRealState(Pu[1],18,18)
-                AddUnitRealState(Pu[1],9,45)
+                if  buynum >= 11
+                    AddUnitRealState(Pu[1],49,600)
+                    AddUnitRealState(Pu[1],18,24)
+                    AddUnitRealState(Pu[1],9,60)
+                else
+                    AddUnitRealState(Pu[1],49,450)
+                    AddUnitRealState(Pu[1],18,18)
+                    AddUnitRealState(Pu[1],9,45)
+                endif
             else
                 AddUnitRealState(Pu[1],49,300)
                 AddUnitRealState(Pu[1],18,12)
@@ -126,9 +132,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
             
             if  lv >= 26 and DzShop(Player(pid),"WQ1") == true
-                AddUnitRealState(Pu[1],20,75)
-                AddUnitRealState(Pu[1],19,15)
-                AddUnitRealState(Pu[1],17,45)
+                if  buynum >= 11
+                    AddUnitRealState(Pu[1],20,100)
+                    AddUnitRealState(Pu[1],19,20)
+                    AddUnitRealState(Pu[1],17,60)
+                else
+                    AddUnitRealState(Pu[1],20,75)
+                    AddUnitRealState(Pu[1],19,15)
+                    AddUnitRealState(Pu[1],17,45)
+                endif
             else
                 AddUnitRealState(Pu[1],20,50)
                 AddUnitRealState(Pu[1],19,10)
@@ -144,9 +156,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             
             
             if  lv >= 22 and DzShop(Player(pid),"CH1") == true
-                AddUnitRealState(Pu[1],64,15)
-                AddUnitRealState(Pu[1],17,30)
-                AddUnitRealState(Pu[1],52,30000)
+                if  buynum >= 11
+                    AddUnitRealState(Pu[1],64,20)
+                    AddUnitRealState(Pu[1],17,40)
+                    AddUnitRealState(Pu[1],52,40000)
+                else
+                    AddUnitRealState(Pu[1],64,15)
+                    AddUnitRealState(Pu[1],17,30)
+                    AddUnitRealState(Pu[1],52,30000)
+                endif
             else
                 AddUnitRealState(Pu[1],64,10)
                 AddUnitRealState(Pu[1],17,20)
@@ -264,6 +282,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             bj_lastCreatedItem = null
         endif
 
+        if  GetPlayerTechCount(Player(pid),'RGAE',true) > 0//通关疯5
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
+            UnitAddItem(Pu[2],CreateItem('IN30',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+        endif
+
         if  GetPlayerTechCount(Player(pid),'RG0C',true) > 0//通关难3
             UnitAddItem(Pu[2],CreateItem('IN34',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
             UnitAddItem(Pu[2],CreateItem('IN37',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
@@ -288,6 +311,10 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RY4E',true) > 0
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
         endif
+        if  GetPlayerTechCount(Player(pid),'RGAA',true) > 0
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
+        endif
+        
 
 
 

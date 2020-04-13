@@ -84,13 +84,15 @@ library Summon uses AbilityUI,OtherDamageTimer
         TimerStart(0.1,true)
         {
             if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == uid
-                if  Udis(Pu[6],u2) > 800
+                if  Udis(u1,u2) > 800
                     SetUnitXY(u2,GetUnitX(Pu[6])+GetRandomReal(-200,200),GetUnitY(Pu[6])+GetRandomReal(-200,200))
                     UnitAddEffect(u2,"effect_az_pafeathermoon_b.mdl")
-                    IssuePointOrderById(u2,851983,GetUnitX(Pu[6])+GetRandomReal(-500,500),GetUnitY(Pu[6])+GetRandomReal(-500,500))
                 endif
-                if  GetUnitCurrentOrder(u2) == 0
+
+                if  GetUnitTypeId(Pu[6]) > 0
                     IssuePointOrderById(u2,851983,GetUnitX(Pu[6])+GetRandomReal(-500,500),GetUnitY(Pu[6])+GetRandomReal(-500,500))
+                else
+                    IssuePointOrderById(u2,851983,GetUnitX(Pu[1])+GetRandomReal(-500,500),GetUnitY(Pu[1])+GetRandomReal(-500,500))
                 endif
             else
                 endtimer
@@ -99,6 +101,8 @@ library Summon uses AbilityUI,OtherDamageTimer
         }
         flush locals
     endfunction
+
+
 
     function HeroSpellSummon(unit u,real x,real y,integer id,real damage)
         integer num = GetHeroSummonNum(u)
@@ -109,10 +113,17 @@ library Summon uses AbilityUI,OtherDamageTimer
                 u2 = CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
                 SetUnitRealState(u2,1,damage)
                 SetUnitRealState(u2,22,GetUnitRealState(u,22))
+                SetUnitRealState(u2,15,GetUnitRealState(u,15))
+                SetUnitRealState(u2,17,GetUnitRealState(u,17))
+                SetUnitRealState(u2,19,GetUnitRealState(u,19))
+                SetUnitRealState(u2,20,GetUnitRealState(u,20))
                 UnitApplyTimedLife(u2,'BHwe',6)
                 SummonFollow(u,u2)
             end
         endif
+
+
+
         if  id == 'z103'
             num = num + 1
             if  num == 1

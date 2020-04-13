@@ -159,6 +159,12 @@ library DamageCode uses UnitStateSet
     //获取抵抗加成结算
     function GetUnitDkState(unit wu)->real
         real s = GetUnitRealState(wu,18)
+
+        if  GetUnitAbilityLevel(wu,'B007') > 0
+            s = s - 15
+            BJDebugMsg("承受伤害+15%")
+        endif
+
         if  s > 90
             s = 90
         endif

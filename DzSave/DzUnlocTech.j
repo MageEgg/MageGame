@@ -432,19 +432,35 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RJ1K',InitCond1(2,Unloc_Type_Level,27),0,0,0,0)
 
 
+
+        InitUnlocTechConditions('RGAA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,2,5)),0,0,0)
+        InitUnlocTechConditions('RGAB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,3,5)),0,0,0)
+        InitUnlocTechConditions('RGAC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(17,4,5)),0,0,0)
+        InitUnlocTechConditions('RGAD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(17,5,5)),0,0,0)
+        InitUnlocTechConditions('RGAE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(17,6,5)),0,0,0)
+        InitUnlocTechConditions('RGAF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(17,7,5)),0,0,0)
+        InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(17,8,5)),0,0,0)
+        InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(17,9,5)),0,0,0)
+
+
+
         InitUnlocTechConditions('RG0B',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(3,3,5)),0,0,0)
         InitUnlocTechConditions('RG0C',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(3,4,5)),0,0,0)
         InitUnlocTechConditions('RG0D',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(3,5,5)),0,0,0)
         InitUnlocTechConditions('RG0E',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,5)),0,0,0)
         InitUnlocTechConditions('RG0F',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,5)),0,0,0)
         InitUnlocTechConditions('RG0G',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,5)),0,0,0)
+        InitUnlocTechConditions('RG0G',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,5)),0,0,0)
 
-        InitUnlocTechConditions('RG1B',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(3,3,12)),0,0,0)
-        InitUnlocTechConditions('RG1C',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(3,4,12)),0,0,0)
-        InitUnlocTechConditions('RG1D',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(3,5,12)),0,0,0)
-        InitUnlocTechConditions('RG1E',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,12)),0,0,0)
-        InitUnlocTechConditions('RG1F',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,12)),0,0,0)
-        InitUnlocTechConditions('RG1G',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,12)),0,0,0)
+
+        InitUnlocTechConditions('RG1B',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(3,3,15)),0,0,0)
+        InitUnlocTechConditions('RG1C',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(3,4,15)),0,0,0)
+        InitUnlocTechConditions('RG1D',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(3,5,15)),0,0,0)
+        InitUnlocTechConditions('RG1E',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,15)),0,0,0)
+        InitUnlocTechConditions('RG1F',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,15)),0,0,0)
+        InitUnlocTechConditions('RG1G',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,15)),0,0,0)
+        InitUnlocTechConditions('RG1H',InitCond1(1,Unloc_Type_Level,17),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,15)),0,0,0)
+
 
         //积分兑换
         InitUnlocTechConditions('RY1C',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_Load,GameDataList(11,3,3)),0,0,0)
@@ -466,6 +482,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4I',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,1)),0,0,0)
         InitUnlocTechConditions('RY4L',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,1)),0,0,0)
         InitUnlocTechConditions('RY4M',InitCond1(1,Unloc_Type_Level,8),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,1)),0,0,0)
+        InitUnlocTechConditions('RY4Q',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,1)),0,0,0)
 
         //等级排行
         InitUnlocTechConditions('RY4J',InitCond1(2,Unloc_Type_LvRank,10),0,0,0,0)
@@ -508,12 +525,13 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             InitUnlocTechConditions('RY9D',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,3840)),0,0,0)
             InitUnlocTechConditions('RY9E',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,6400)),0,0,0)
             InitUnlocTechConditions('RY9F',InitCond1(1,Unloc_Type_Level,8),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,9472)),0,0,0)
-            InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,13056)),0,0,0)
+            InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,13619)),0,0,0)
             /*
-            InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,17152)),0,0,0)
-            InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,21760)),0,0,0)
-            InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,26880)),0,0,0)
+            InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,18180)),0,0,0)
+            InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,23198)),0,0,0)
+            InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,28718)),0,0,0)
             */
+
     endfunction
 
 

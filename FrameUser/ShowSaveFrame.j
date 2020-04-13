@@ -111,6 +111,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)//剑血浮生 N5
         RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)//独孤求败 N6
         RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//独孤求败 N7
+        RegisterShowSaveFrameData(1,'RY4Q','RY4Q',0,0,0,0)//九五之尊 N8
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
         RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
@@ -145,15 +146,27 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
         RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
         RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0)//难7通关5次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG0H','RG0H',0,0,0,0)//难8通关5次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
-        RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关12次
-        RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0)//难3通关12次
-        RegisterShowSaveFrameData(0,'RG1D','RG1D',0,0,0,0)//难4通关12次
-        RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0)//难5通关12次
-        RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0)//难6通关12次
-        RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关12次
+        RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关15次
+        RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0)//难3通关15次
+        RegisterShowSaveFrameData(0,'RG1D','RG1D',0,0,0,0)//难4通关15次
+        RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0)//难5通关15次
+        RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0)//难6通关15次
+        RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关15次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+//        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关15次
+
+        RegisterShowSaveFrameData(0,'RGAA','RGAA',0,0,0,0)//通关疯狂N1
+        RegisterShowSaveFrameData(0,'RGAB','RGAB',0,0,0,0)//通关疯狂N2
+        RegisterShowSaveFrameData(0,'RGAC','RGAC',0,0,0,0)//通关疯狂N3
+        RegisterShowSaveFrameData(0,'RGAD','RGAD',0,0,0,0)//通关疯狂N4
+        RegisterShowSaveFrameData(0,'RGAE','RGAE',0,0,0,0)//通关疯狂N5
+        RegisterShowSaveFrameData(0,'RGAF','RGAF',0,0,0,0)//通关疯狂N6
+        RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0)//通关疯狂N7
+        RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
 
         
 

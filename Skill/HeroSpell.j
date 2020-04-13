@@ -140,22 +140,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function GetUnitAttackNumb(unit wu)->int //S036
-        int i=1
-            if  IsPlayerHasAbility(wu,'S036') == true
-                i=i+1
-            endif
-            if  GetUnitAbilityLevel(wu,'S005') > 0
-                i=i+1
-            endif
-            if  GetUnitAbilityLevel(wu,'S030') > 0
-                i=i+1
-            endif
-            if  GetUnitAbilityLevel(wu,'S078') > 0
-                i=i+1
-            endif
-        return i
-    endfunction
+    
 
     function GetUnitBeAttackedNumb(unit wu)->int //被攻击
         int i = 1
