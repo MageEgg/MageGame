@@ -413,7 +413,7 @@ library GameChallenge9 uses GameChallengeBase
         endif
     endfunction
 
-    function ShowGameTeamChallengeNPC_B()
+    function ShowGameTeamChallengeNPC_B(int num)
         if  GameTeamChallengeBool[3] == false
             for pid = 0,3
                 if  IsPlaying(pid) == true
@@ -421,13 +421,13 @@ library GameChallenge9 uses GameChallengeBase
                 endif
             end
             GameTeamChallengeBool[3] = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本-万仙阵已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本-万仙阵已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守16波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
         endif
     endfunction
 
-    function ShowGameTeamChallengeNPC_A()
+    function ShowGameTeamChallengeNPC_A(int num)
         if  GameTeamChallengeBool[0] == false
             if  DzConA[13] == 1
                 if  GameLevel >= 4
@@ -443,9 +443,9 @@ library GameChallenge9 uses GameChallengeBase
                 endif
             end
             GameTeamChallengeBool[0] = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守6波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守6波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守6波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
         endif
     endfunction
 

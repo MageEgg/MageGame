@@ -35,7 +35,6 @@ library DzConfig uses SystemCodes
                 else
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00通关积分活动开启中！通关积分+"+I2S(50*n)+"%|r")
                 endif
-
             endif
         endif
     endfunction

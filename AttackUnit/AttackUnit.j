@@ -221,6 +221,20 @@ library AttackUnit uses DamageCode,PassCheckMission
             InitAttackUnitData(107,0,0,1,1,1,-6910,-6912,'mb07','mb07','mb07','mb07',-6912,-4800,-4750,-6912,-6912,-9110,-9080,-6912)
             InitAttackUnitData(108,0,0,1,1,1,-1664,-7440,'mb08','mb08','mb08','mb08',-1664,-6320,96,-7550,-1664,-8950,-3250,-7440)
         endif
+        if  GameMode == 2
+            if  lv > 1
+                for num = 10,20
+                    AttackUnitNextTime[num] = 30
+                end
+                AttackUnitNextTime[21] = 70
+            else
+                for num = 10,17
+                    AttackUnitNextTime[num] = 30
+                end
+                AttackUnitNextTime[18] = 70
+            endif
+            DzConA[11] = DzConA[11] + 1
+        endif
         ExecuteFunc("InitAttackUnitChallengeState")
     endfunction
     
@@ -528,35 +542,68 @@ library AttackUnit uses DamageCode,PassCheckMission
                 CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
-            if  AttackUnitWN == 5
-                if  IsGameOperaA == false
-                    IsGameOperaA = true
-                    CreateGameOperaA.execute(AttackUnitNextTime[i])
-                endif
-                ExecuteFunc("ShowGameTeamChallengeNPC_A")
-                
-            elseif  AttackUnitWN == 11
-                if  IsGameOperaB == false
-                    IsGameOperaB = true
-                    CreateGameOperaB.execute(AttackUnitNextTime[i])
-                endif
-                for pid = 0,3
-                    if  IsPlaying(pid) == true
-                        AddPlayerTechResearched(Player(pid),'RZ00',1)
+            if  GameMode == 1
+                if  AttackUnitWN == 5
+                    if  IsGameOperaA == false
+                        IsGameOperaA = true
+                        CreateGameOperaA.execute(AttackUnitNextTime[i])
                     endif
-                end
-            elseif  AttackUnitWN == 14
-                if  IsGameOperaC == false
-                    IsGameOperaC = true
-                    CreateGameOperaC.execute(AttackUnitNextTime[i])
-                endif
-            elseif  AttackUnitWN == 15
-                ExecuteFunc("ShowGameTeamChallengeNPC_B")
+                    ShowGameTeamChallengeNPC_A.execute(AttackUnitWN+1)
+                    
+                elseif  AttackUnitWN == 11
+                    if  IsGameOperaB == false
+                        IsGameOperaB = true
+                        CreateGameOperaB.execute(AttackUnitNextTime[i])
+                    endif
+                    for pid = 0,3
+                        if  IsPlaying(pid) == true
+                            AddPlayerTechResearched(Player(pid),'RZ00',1)
+                        endif
+                    end
+                elseif  AttackUnitWN == 14
+                    if  IsGameOperaC == false
+                        IsGameOperaC = true
+                        CreateGameOperaC.execute(AttackUnitNextTime[i])
+                    endif
+                elseif  AttackUnitWN == 15
+                    ShowGameTeamChallengeNPC_B.execute(AttackUnitWN+1)
 
-                AddItemToStock(GameDefendUnit,'IZ04',1,1)
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                    AddItemToStock(GameDefendUnit,'IZ04',1,1)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                endif
+            elseif  GameMode == 2
+                if  AttackUnitWN == 2
+                    if  IsGameOperaA == false
+                        IsGameOperaA = true
+                        CreateGameOperaA.execute(AttackUnitNextTime[i])
+                    endif
+                elseif  AttackUnitWN == 3
+                    ShowGameTeamChallengeNPC_A.execute(AttackUnitWN+1)
+                elseif  AttackUnitWN == 5
+                    if  IsGameOperaB == false
+                        IsGameOperaB = true
+                        CreateGameOperaB.execute(AttackUnitNextTime[i])
+                    endif
+                    for pid = 0,3
+                        if  IsPlaying(pid) == true
+                            AddPlayerTechResearched(Player(pid),'RZ00',1)
+                        endif
+                    end
+                elseif  AttackUnitWN == 8
+                    if  IsGameOperaC == false
+                        IsGameOperaC = true
+                        CreateGameOperaC.execute(AttackUnitNextTime[i])
+                    endif
+                elseif  AttackUnitWN == 9
+                    ShowGameTeamChallengeNPC_B.execute(AttackUnitWN+1)
+                elseif  AttackUnitWN == 10
+                    AddItemToStock(GameDefendUnit,'IZ04',1,1)
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                endif
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver-3)
         endif
