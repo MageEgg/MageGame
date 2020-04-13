@@ -325,11 +325,11 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
 
     function OpenLastAttack(int pid) //大决战
         int maxusenum = 0
-        /*if  GameMode == 1
+        if  GameMode == 1
             maxusenum = 15
         elseif  GameMode == 2
             maxusenum = 11
-        endif*/
+        endif
         if  InfiniteAttackBool == false
             if  CrazyAttackBool == false
                 if  StopAttackBool == false

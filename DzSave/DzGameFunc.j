@@ -3,7 +3,7 @@ piece DzGameFunc
     function ShowPlayerDzJF(int pid) //显示积分
         if  DzConA[0] == 1 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关积分：|r"+I2S(GetDzPlayerData(pid,2,1)))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(MaxHeroBaseMedal*MaxGameLevel))  
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(896))//MaxHeroBaseMedal*MaxGameLevel))  
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00万魔窟：|r"+I2S(GetDzPlayerData(pid,2,3))+"层")
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
@@ -23,8 +23,8 @@ piece DzGameFunc
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难5：|r"+I2S(GetDzPlayerData(pid,3,6))+"/"+I2S(DzPlayerInitTGCos[5]))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难6：|r"+I2S(GetDzPlayerData(pid,3,7))+"/"+I2S(DzPlayerInitTGCos[6]))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难7：|r"+I2S(GetDzPlayerData(pid,3,8))+"/"+I2S(DzPlayerInitTGCos[7]))
-            /*DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难8：|r"+I2S(GetDzPlayerData(pid,3,9))+"/"+I2S(DzPlayerInitTGCos[8]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难9：|r"+I2S(GetDzPlayerData(pid,3,10))+"/"+I2S(DzPlayerInitTGCos[9]))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难8：|r"+I2S(GetDzPlayerData(pid,3,9))+"/"+I2S(DzPlayerInitTGCos[8]))
+            /*DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难9：|r"+I2S(GetDzPlayerData(pid,3,10))+"/"+I2S(DzPlayerInitTGCos[9]))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难10：|r"+I2S(GetDzPlayerData(pid,3,11))+"/"+I2S(DzPlayerInitTGCos[10]))*/
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“JF”查看游戏积分|r")
