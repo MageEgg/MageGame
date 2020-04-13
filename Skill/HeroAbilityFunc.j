@@ -1777,10 +1777,10 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real damage = dam
         int time = num-1
         real ang = Uang(wu,tu)
-        SpellS535Timer(wu,ang,dam)
+        SpellS535Timer(u1,ang,damage)
         TimerStart(0.3,true)
         {
-            SpellS535Timer(wu,ang,dam)
+            SpellS535Timer(u1,ang,damage)
             time = time - 1
             if  time <= 0
                 endtimer
