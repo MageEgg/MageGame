@@ -111,13 +111,16 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(220,7,0,5,0,0,Buy_Unit,'AT2H',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")*/
 
         //境界 引索
-        InitAttackUnitChallengeCombatData(1,250,250,640,3100,11000,28000,68000,160000,360000,780000,1300000,0,0)
-        InitAttackUnitChallengeCombatData(2,250,310,790,3800,13000,34000,83000,200000,440000,950000,1600000,0,0)
-        InitAttackUnitChallengeCombatData(3,250,460,1200,5700,20000,51000,130000,290000,660000,1500000,2400000,0,0)
-        InitAttackUnitChallengeCombatData(4,250,660,1800,8200,28000,74000,190000,430000,960000,2100000,3400000,0,0)
-        InitAttackUnitChallengeCombatData(5,250,970,2500,12000,41000,110000,270000,620000,1400000,3100000,5000000,0,0)
-        InitAttackUnitChallengeCombatData(6,250,1400,3500,17000,56000,150000,370000,850000,2000000,4200000,6800000,0,0)
-        InitAttackUnitChallengeCombatData(7,250,1800,4700,23000,76000,200000,490000,1200000,2600000,5600000,9200000,0,0)
+        InitAttackUnitChallengeCombatData(1,250,250,640,3000,10000,28000,68000,160000,360000,780000,1300000,0,0)
+        InitAttackUnitChallengeCombatData(2,250,310,790,3700,13000,34000,83000,200000,440000,950000,1600000,0,0)
+        InitAttackUnitChallengeCombatData(3,250,460,1200,5500,19000,51000,130000,290000,660000,1500000,2400000,0,0)
+        InitAttackUnitChallengeCombatData(4,250,660,1800,7900,27000,74000,190000,430000,960000,2100000,3400000,0,0)
+        InitAttackUnitChallengeCombatData(5,250,970,2500,12000,39000,110000,270000,620000,1400000,3100000,5000000,0,0)
+        InitAttackUnitChallengeCombatData(6,250,1400,3500,16000,53000,150000,370000,850000,2000000,4200000,6800000,0,0)
+        InitAttackUnitChallengeCombatData(7,250,1800,4700,22000,72000,200000,490000,1200000,2600000,5600000,9200000,0,0)
+        InitAttackUnitChallengeCombatData(8,250,2300,5700,27000,89000,250000,610000,1500000,3200000,6900000,12000000,0,0)
+
+        
 
         //山灵 引索
         InitAttackUnitChallengeCombatData(1,0,130,1400,7300,19000,32000,59000,100000,150000,220000,330000,520000,730000)
@@ -127,6 +130,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,0,480,5100,29000,72000,130000,230000,390000,590000,850000,1300000,2100000,2900000)
         InitAttackUnitChallengeCombatData(6,0,650,7000,39000,99000,170000,320000,530000,800000,1200000,1800000,2800000,3900000)
         InitAttackUnitChallengeCombatData(7,0,880,9500,53000,140000,230000,430000,720000,1100000,1600000,2400000,3800000,5300000)
+        InitAttackUnitChallengeCombatData(8,0,1100,12000,65000,170000,290000,530000,890000,1400000,2000000,2900000,4600000,6500000)
+
+
 
         //武灵 引索
         InitAttackUnitChallengeCombatData(1,50,1400,5300,15000,29000,51000,90000,150000,360000,830000,1500000,0,0)
@@ -136,6 +142,10 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,50,5100,21000,58000,120000,200000,350000,590000,1400000,3200000,5800000,0,0)
         InitAttackUnitChallengeCombatData(6,50,7000,28000,80000,160000,280000,480000,800000,2000000,4400000,8000000,0,0)
         InitAttackUnitChallengeCombatData(7,50,9500,38000,110000,210000,370000,650000,1100000,2600000,6000000,11000000,0,0)
+        InitAttackUnitChallengeCombatData(8,50,12000,47000,140000,260000,460000,800000,1400000,3200000,7300000,14000000,0,0)
+
+
+
 
         //符印 引索
         InitAttackUnitChallengeCombatData(1,150,56000,130000,220000,420000,750000,1300000,1500000,1500000,0,0,0,0)
@@ -145,6 +155,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,150,220000,480000,850000,1700000,3000000,5000000,5800000,5800000,0,0,0,0)
         InitAttackUnitChallengeCombatData(6,150,300000,650000,1200000,2200000,4000000,6800000,8000000,8000000,0,0,0,0)
         InitAttackUnitChallengeCombatData(7,150,410000,880000,1600000,3000000,5400000,9200000,11000000,11000000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(8,150,500000,1100000,2000000,3700000,6700000,12000000,14000000,14000000,0,0,0,0)
+
+
 
         //挑战0
         InitAttackUnitChallengeCombatData(1,300,80,160,320,510,3500,5900,14000,22000,0,0,0,0)
@@ -154,7 +167,10 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,300,160,600,1300,2000,14000,23000,54000,83000,0,0,0,0)
         InitAttackUnitChallengeCombatData(6,300,220,830,1700,2700,19000,32000,74000,120000,0,0,0,0)
         InitAttackUnitChallengeCombatData(7,300,300,1200,2300,3700,25000,43000,100000,160000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(8,300,370,1400,2800,4500,31000,52000,130000,190000,0,0,0,0)
 
+
+        
         //挑战1
         InitAttackUnitChallengeCombatData(1,310,28000,44000,68000,97000,140000,190000,260000,390000,0,0,0,0)
         InitAttackUnitChallengeCombatData(2,310,34000,54000,83000,120000,160000,230000,320000,470000,0,0,0,0)
@@ -163,6 +179,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(5,310,110000,180000,270000,380000,510000,710000,1000000,1500000,0,0,0,0)
         InitAttackUnitChallengeCombatData(6,310,150000,240000,370000,520000,700000,970000,1400000,2100000,0,0,0,0)
         InitAttackUnitChallengeCombatData(7,310,200000,320000,490000,700000,950000,1400000,1900000,2800000,0,0,0,0)
+        InitAttackUnitChallengeCombatData(8,310,250000,390000,610000,860000,1200000,1700000,2300000,3500000,0,0,0,0)
 
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
