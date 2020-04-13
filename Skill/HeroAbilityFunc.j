@@ -1558,4 +1558,39 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         endif
     endfunction
 
+
+    function SpellS533Damage(unit wu,real x1,real y1,real damage,int lv)
+        LocAddEffectSetSize(x1,y1,"effect_tx_new (3).mdl",0.5)
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        g.destroy()
+    endfunction
+
+    function SpellS533(unit wu,real dam,int level)
+        unit u1 = wu
+        int lv = level
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+        real damage = dam
+        int time = 1
+        if  lv >= 4
+            time = time + 2
+        endif
+        if  GetUnitIntState(wu,'FB07') > 0
+            SpellS501_4(u1,x1,y1,GetUnitAttack(u1)*7/5)
+        endif
+        SpellS533Damage(u1,x1,y1,damage,lv)
+        TimerStart(0.4,true)
+        {
+            SpellS533Damage(u1,x1,y1,damage,lv)
+            time = time - 1
+            if  time <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
 endlibrary

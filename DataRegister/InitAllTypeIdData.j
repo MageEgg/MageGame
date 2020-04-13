@@ -294,6 +294,12 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RH28',"蛮力纣王","ReplaceableTextures\\CommandButtons\\BTNH028.blp","")
         call InitTypeIdStrings('RH29',"神农","ReplaceableTextures\\CommandButtons\\BTNH029.blp","")
         call InitTypeIdStrings('RH30',"后羿","ReplaceableTextures\\CommandButtons\\BTNH030.blp","")
+        call InitTypeIdStrings('RH32',"帝皇姬昌","ReplaceableTextures\\CommandButtons\\BTNH026.blp","")
+        call InitTypeIdStrings('RH33',"哮天犬","ReplaceableTextures\\CommandButtons\\BTNH027.blp","")
+        call InitTypeIdStrings('RH34',"准提道人","ReplaceableTextures\\CommandButtons\\BTNH028.blp","")
+        call InitTypeIdStrings('RH35',"邓婵玉","ReplaceableTextures\\CommandButtons\\BTNH029.blp","")
+        call InitTypeIdStrings('RH36',"苟作者","ReplaceableTextures\\CommandButtons\\BTNH030.blp","")
+        
         call InitTypeIdStrings('RM10',"任脉","ReplaceableTextures\\CommandButtons\\BTNQJBM01.blp","")
         call InitTypeIdStrings('RM20',"督脉","ReplaceableTextures\\CommandButtons\\BTNQJBM02.blp","")
         call InitTypeIdStrings('RM30',"冲脉","ReplaceableTextures\\CommandButtons\\BTNQJBM03.blp","")
