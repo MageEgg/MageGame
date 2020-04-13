@@ -388,8 +388,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r外观隐藏成功！")
                 endif
             else
-                if  nowid >= 'AP1A' and nowid <= 'AP1Z'
-                    if  nowid == 'AP1A'
+                BJDebugMsg(YDWEId2S(sid))
+                if  sid >= 'AP1A' and sid <= 'AP1Z'
+                    if  sid == 'AP1A'
                         DzSetUnitModel(Pu[2],"zs_rykj.mdl")
                         SetUnitScale(Pu[2],2.5,2.5,2.5)
                     endif
