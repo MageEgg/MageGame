@@ -182,7 +182,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY3A',"凝霜","ReplaceableTextures\\CommandButtons\\BTNRY3A.BLP","")
         call InitTypeIdStrings('RY3B',"破阙","ReplaceableTextures\\CommandButtons\\BTNRY3B.BLP","")
         call InitTypeIdStrings('RY3D',"戮仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3D.BLP","暴击率+10%\n暴击伤害+50%\n伤害加成+30%\n攻击5%范围攻击力*5技能伤害\n\n开局奖励：\n随机符印箱x1\n\n解锁外观|cffff0000戮仙剑\n|r")
-        call InitTypeIdStrings('RY3F',"诛仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3F.BLP","伤害加成+30%\n境界突破收益+8%\n死亡20%几率重生\n对万魔窟怪物伤害+25%\n\n开局奖励：无尽招魂幡x1\n\n解锁外观|cffff0000诛仙剑\n|r")
+        
         call InitTypeIdStrings('RY4E',"铜皮锻骨","ReplaceableTextures\\CommandButtons\\BTNRY4E.BLP","开局金币+500")
         call InitTypeIdStrings('RY4F',"名将良才","ReplaceableTextures\\CommandButtons\\BTNRY4F.BLP","")
         call InitTypeIdStrings('RY4G',"绝世高人","ReplaceableTextures\\CommandButtons\\BTNRY4G.BLP","")

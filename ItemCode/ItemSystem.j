@@ -92,9 +92,11 @@ scope ItemSystem initializer InitItemSystem
         if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
             gl = gl + 3
         endif
+        /*
         if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
             gl = gl + 3
         endif
+        */
 
         BJDebugMsg("强化概率陈宫+"+I2S(gl))
         if  next > 0
