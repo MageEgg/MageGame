@@ -324,10 +324,16 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     endfunction
 
     function OpenLastAttack(int pid) //大决战
+        int maxusenum = 0
+        /*if  GameMode == 1
+            maxusenum = 15
+        elseif  GameMode == 2
+            maxusenum = 11
+        endif*/
         if  InfiniteAttackBool == false
             if  CrazyAttackBool == false
                 if  StopAttackBool == false
-                    if  AttackUnitWN > 15
+                    if  AttackUnitWN > maxusenum
                         if  TimerGetRemaining(AttackTimer) >= 5
                             if  AttackUnitWN >= AttackUnitWNOver - 3
                                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
@@ -356,7 +362,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                     else
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r该道具只能再16波之后使用！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r该道具只能在"+I2S(maxusenum+1)+"波之后使用！")
                     endif
                 else
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
