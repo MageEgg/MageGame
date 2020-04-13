@@ -688,7 +688,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     gold = 30000
                                 endif
                                 if  DzPlayerLv(Player(pid)) >= 22 and DzShop(Player(pid),"CH1") == true
-                                    gold = gold * 3 / 2
+                                    if   GetPlayerTechCount(Player(pid),'RSHE',true) == 1
+                                        gold = gold * 2
+                                    else
+                                        gold = gold * 3 / 2
+                                    endif
                                 endif
 
                                 if  gold > 0

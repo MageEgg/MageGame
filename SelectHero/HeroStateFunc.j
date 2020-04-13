@@ -233,7 +233,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00幽冥之翼|r》已激活！")
         endif
 
-        if  GetPlayerTechCount(Player(pid),'RY2G',true) == 1 //幽冥之翼
+        if  GetPlayerTechCount(Player(pid),'RP1A',true) == 1 //笑天犬
             shopnum = shopnum + 1
             AddUnitRealState(Pu[1],47,10)
             AddUnitRealState(Pu[1],48,15)
