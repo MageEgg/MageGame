@@ -76,6 +76,7 @@ scope DeathEvent initializer InitDeathEvent
             if  GetUnitAbilityLevel(Pu[1],'AZ96') == 5
                 if  GetLocalPlayer() == Player(pid)
                     SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                    PanCameraToTimed( x, y, 0 )
                 endif
             else
                 SendPlayerUnit(pid,x,y)
