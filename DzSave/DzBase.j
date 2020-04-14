@@ -39,6 +39,9 @@ library DzBase uses SystemCodes,DzAPI
     endfunction
     
     function GetDataMaximumValue(int data,int max)->int
+        if  max < 0
+            max = 0
+        endif
         if  data > 0
             if  data > max 
                 data = max
