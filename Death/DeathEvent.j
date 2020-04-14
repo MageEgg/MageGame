@@ -139,6 +139,21 @@ scope DeathEvent initializer InitDeathEvent
         elseif  itemid == 'I015'
             gold = GetRandomInt(12000,17000)
             exp = 10000
+        elseif  itemid == 'I051'
+            gold = GetRandomInt(7000,12000)
+            exp = 2000
+        elseif  itemid == 'I052'
+            gold = GetRandomInt(8000,13000)
+            exp = 3000
+        elseif  itemid == 'I053'
+            gold = GetRandomInt(9000,14000)
+            exp = 4000
+        elseif  itemid == 'I054'
+            gold = GetRandomInt(10000,15000)
+            exp = 6000
+        elseif  itemid == 'I055'
+            gold = GetRandomInt(12000,17000)
+            exp = 8000
         endif
 
 
@@ -165,6 +180,20 @@ scope DeathEvent initializer InitDeathEvent
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功炼化" + GetObjectName(id))
             UnitRemoveItem(Pu[1],it)
             RemoveItem(it)
+            return true
+        endif
+    endfunction
+
+    function PlayerItemGrowSuperFunc(int pid,item it,int exp)->bool
+        int id = GetItemTypeId(it)
+        int num = GetItemCharges(it)
+        
+        if  num - exp >= 1
+            SetItemCharges(it,num-exp)
+            return false
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您成功炼化" + GetObjectName(id))
+            SetItemCharges(it,1000)
             return true
         endif
     endfunction
@@ -224,6 +253,12 @@ scope DeathEvent initializer InitDeathEvent
                     PlayerUseGoldBox(pid,id)
                 endif
                 exitwhen true
+            elseif  id >= 'I051' and id <= 'I055'
+                if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i1),1) == true
+                    PlayerUseGoldBox(pid,id)
+                endif
+                exitwhen true
+                
             endif
         end
 
@@ -650,7 +685,24 @@ scope DeathEvent initializer InitDeathEvent
     endfunction
 
     
-    
+    function SpellRY3F(unit wu)->bool
+        if  GetPlayerTechCount(GetOwningPlayer(wu),'RY3F',true) > 0
+            if  GetRandomInt(1,100) <= 20
+
+                ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
+                LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
+                if  GetOwningPlayer(wu)==GetLocalPlayer()
+                    ClearSelection()
+                    SelectUnit(wu,true)
+                    PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
+                endif
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+GetPlayerNameOfColor(GetPlayerId(GetOwningPlayer(wu)))+"原地重生了！")
+                return true
+            endif
+        endif
+        return false
+    endfunction
+
     function DeathEventFunc()
     
         unit u1 = GetTriggerUnit()
@@ -662,7 +714,7 @@ scope DeathEvent initializer InitDeathEvent
         if  pid <= 3//玩家类型死亡
             if  IsUnitType(u1, UNIT_TYPE_HERO) == true//玩家死亡  复活英雄
                 if  u1 == Pu[1]
-                    if  SpellS529Spell(u1) == false
+                    if  SpellS529Spell(u1) == false and SpellRY3F(u1) == false
                         
                         RevivePlayerHero(pid)
                         BJDebugMsg("复活准备"+GetUnitName(Pu[1]))
@@ -673,17 +725,7 @@ scope DeathEvent initializer InitDeathEvent
                         WMSummonUnitGroupDeathEvent(pid,u2)
                     endif
 
-                    if  GetUnitTypeId(u1) == 'H027' and GetUnitTypeId(u2) == 'mc07' //彩蛋
-                        if  GameLevel >= 2
-                            if  GetPlayerTechCount(Player(pid),'RDAC',true) == 0
-                                SetDzPlayerData(pid,15,3,3)
-                                SetPlayerTechResearchedEx(Player(pid),'RDAC')
-                                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000老婆别打了|r（永久存档）！")
-                            endif
-                        else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000老婆别打了|r，但可惜难度不够要求！")
-                        endif
-                    endif
+                    
                     
                 endif
             else
@@ -695,19 +737,51 @@ scope DeathEvent initializer InitDeathEvent
         
         if  u1 == GameDefendUnit
             GameOver()
-        elseif  u1 == AttackUnitBoss[10] and uid == 'mc06'
+        elseif  u1 == AttackUnitBoss[10] and uid == 'mc06' //闻太师
             AttackOperaBEnding(1)
             if  GetUnitTypeId(u2) == 'H028' //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 2
+                if  DzPlayerLv(Player(pid2)) >= 2
                     if  GetPlayerTechCount(Player(pid2),'RDAW',true) == 0
                         SetDzPlayerData(pid2,15,23,23)
                         SetPlayerTechResearchedEx(Player(pid2),'RDAW')
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid2)+"激活|cffffcc00【彩蛋】|cffff8000打自己人怎么了？|r（永久存档）！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000打自己人怎么了？|r，但可惜难度不够要求！")
+                    DisplayTimedTextToPlayer(Player(pid2),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000打自己人怎么了？|r，但可惜难度不够要求！")
                 endif
             endif
+        elseif  uid == 'mb09'//通天教主
+
+            if  GetUnitTypeId(u2) == 'H003' //彩蛋
+                if  DzPlayerLv(Player(pid2)) >= 6
+                    if  GameLevel >= 3
+                        if  GetPlayerTechCount(Player(pid2),'RDAT',true) == 0
+                            SetDzPlayerData(pid2,15,20,20)
+                            SetPlayerTechResearchedEx(Player(pid2),'RDAT')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid2)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你不行|r（永久存档）！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid2),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜难度不够要求！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid2),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜地图等级不够要求！")
+                endif
+            elseif  GetUnitTypeId(u2) == 'H005' //彩蛋
+                if  DzPlayerLv(Player(pid2)) >= 6
+                    if  GameLevel >= 3
+                        if  GetPlayerTechCount(Player(pid2),'RDAU',true) == 0
+                            SetDzPlayerData(pid2,15,21,21)
+                            SetPlayerTechResearchedEx(Player(pid2),'RDAU')
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid2)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r（永久存档）！")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid2),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜难度不够要求！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid2),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜地图等级不够要求！")
+                endif
+            endif
+            
         endif
         if  u1 == PlayerUnit[pid2][6]
             PlayerUnit[pid2][6] = null

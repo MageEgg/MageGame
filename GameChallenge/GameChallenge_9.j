@@ -176,7 +176,7 @@ library GameChallenge9 uses GameChallengeBase
         }
         flush locals
     endfunction
-
+    
     function GameTeamChallengWin(int pid,int flag,int value)
         int itid = 0
         if  flag == 1

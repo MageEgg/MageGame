@@ -92,13 +92,14 @@ scope ItemSystem initializer InitItemSystem
         if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
             gl = gl + 3
         endif
-        /*
-        if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
+        
+        if  GetPlayerTechCount(Player(pid),'RSHF',true) > 0
             gl = gl + 3
+            BJDebugMsg("13件套+3")
         endif
-        */
+        
 
-        BJDebugMsg("强化概率陈宫+"+I2S(gl))
+        BJDebugMsg("强化成功率"+I2S(gl))
         if  next > 0
             
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
@@ -331,6 +332,44 @@ scope ItemSystem initializer InitItemSystem
         else
             DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,10,"|cffff0000[系统]：|r使用目标不正确！")
         endif
+
+
+    endfunction
+
+
+    //使用超级招魂幡
+    function PlayerUseSuperSoul(unit wu,item it)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int id = GetItemTypeId(it)
+        int use = 0
+        int num = GetItemCharges(it)+1
+        if  id == 'I051'
+            use = 10
+        elseif  id == 'I052'
+            use = 20
+        elseif  id == 'I053'
+            use = 30
+        elseif  id == 'I054'
+            use = 40
+        endif
+
+        SetItemCharges(it,num)
+
+        if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_LUMBER)>=use
+            AdjustPlayerStateBJ(-use, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            
+            RemoveItem(it)
+
+            bj_lastCreatedItem = CreateItem(id+1,GetUnitX(wu),GetUnitY(wu))
+            SetItemCharges(bj_lastCreatedItem,num)
+            UnitAddItem(wu,bj_lastCreatedItem)
+
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您！招魂幡升级成功！")
+        else    
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r强化失败！玄铁不足"+I2S(use))
+        endif
+
 
 
     endfunction
@@ -589,6 +628,8 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
+        elseif  itemid >= 'I051' and itemid <= 'I055'
+            PlayerUseSuperSoul(u1,GetManipulatedItem())
         elseif  itemid >= 'IK01' and itemid <= 'IK8Z'
             PlayerUseGemItem(u1,GetManipulatedItem())
         elseif  itemid >= 'IS21' and itemid <= 'IS23'

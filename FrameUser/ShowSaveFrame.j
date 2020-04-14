@@ -4,6 +4,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
     581-600 左侧按钮
     */
 
+  
 
     private FRAME Button = 0
     private FRAME Slider = 0
@@ -65,9 +66,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
         RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
         RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
+        RegisterShowSaveFrameData(5,'RY3F','RY3F',0,0,0,0)//诛仙剑
         RegisterShowSaveFrameData(5,'RP1A','RP1A',0,0,0,0)//笑天犬
         
-        RegisterShowSaveFrameData(5,0,0,0,0,0,0)//填空假id
+        
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
         RegisterShowSaveFrameData(5,'RSHD','RSHD',0,0,0,0)//商城4件套
@@ -75,6 +77,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RSHC','RSHC',0,0,0,0)//商城8件套
 
         RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
+        RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0)//商城13件套
         
         
 
@@ -201,8 +204,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RHD1','RHD1',0,0,0,0)//小有所成
         RegisterShowSaveFrameData(3,'RHD2','RHD2',0,0,0,0)//炉火纯青
         RegisterShowSaveFrameData(3,'RHD3','RHD3',0,0,0,0)//一代宗师
-        RegisterShowSaveFrameData(3,0,0,0,0,0,0)//空id
-//        RegisterShowSaveFrameData(3,'RHD4','RHD4',0,0,0,0)//名震一方
+        RegisterShowSaveFrameData(3,'RHD4','RHD4',0,0,0,0)//名震一方
 //        RegisterShowSaveFrameData(3,'RHD5','RHD5',0,0,0,0)//名扬四海
 //        RegisterShowSaveFrameData(3,'RHD6','RHD6',0,0,0,0)//封神之巅
 //        RegisterShowSaveFrameData(3,'RHD7','RHD7',0,0,0,0)//创世之初
@@ -318,7 +320,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
     function IsSaveIdCanShow(int id,int page)->bool
         if  page == 1 or page == 2
             return true
-        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D' or id == 'RY2G' or id == 'RP1A'
+        elseif  id == 'RY1D' or id == 'RY2D' or id == 'RY3D' or id == 'RY4D' or id == 'RY2G' or id == 'RP1A' or id == 'RY3F'
             return true
         endif
         return false
@@ -415,6 +417,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         endif
     endfunction
 
+
+    
+
+
     //显示说明
     function BoxShowSaveFrame(int pid,int index)
         int step = Step[pid]
@@ -429,6 +435,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         int exp = 0
         int use = 0
         int num = 0
+
+        real value = 0
+        int state = 0
         //BJDebugMsg("page"+I2S(page)+"step"+I2S(step))
         if  id > 0
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
@@ -479,7 +488,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 endif
 
                 
-                if  lv == 2
+                if  lv == 3
                     SetTipsData(1,"",GetTypeIdName(id)+" Lv.Max")
                     SetTipsData(10,"","|cff808080熟练度：|r")
                     SetTipsData(11,"","|cff00ff000|r/0\n ")
@@ -490,18 +499,21 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 endif
                 
                 
-                SetTipsData(12,"",GetShowLevelTip(1,lv)+"：提高该英雄5%伤害加成")
-                SetTipsData(13,"",GetShowLevelTip(2,lv)+"：提高该英雄3%伤害减免")
+        
 
+                for s = 1,3
+                    state = GetTypeIdData(id,200+s)
+                    value = GetTypeIdReal(id,200+s)
+                    SetTipsData(11+s,"",GetShowLevelTip(s,lv)+"：提高该英雄"+I2S(R2I(value))+StateName[1000+state]+StateName[state])
+                end
+  
                 /*
-                SetTipsData(14,"",GetShowLevelTip(3,lv)+"：提高该英雄4%伤害减免")
-                
                 SetTipsData(15,"",GetShowLevelTip(4,lv)+"：提高该英雄10%伤害加成")
                 SetTipsData(16,"",GetShowLevelTip(5,lv)+"：提高该英雄5%暴击率")
                 */
 
-                SetTipsData(14,"","")
-                SetTipsData(15,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
+                SetTipsData(15,"","")
+                SetTipsData(16,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
                 
                 
                 
@@ -544,16 +556,16 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/12)")
                         elseif  id == 'RHD3' and num < 20
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/20)")
-                        elseif  id == 'RHD4' and num < 32
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/32)")
-                        elseif  id == 'RHD5' and num < 46
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/46)")
-                        elseif  id == 'RHD6' and num < 62
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/62)")
-                        elseif  id == 'RHD7' and num < 80
+                        elseif  id == 'RHD4' and num < 34
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/34)")
+                        elseif  id == 'RHD5' and num < 54
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/54)")
+                        elseif  id == 'RHD6' and num < 80
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/80)")
-                        elseif  id == 'RHD8' and num < 100
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/100)")
+                        elseif  id == 'RHD7' and num < 112
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/112)")
+                        elseif  id == 'RHD8' and num < 150
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/150)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
                         endif

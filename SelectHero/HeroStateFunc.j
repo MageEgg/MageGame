@@ -136,6 +136,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             endif
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：商城道具《|cff00ff00幻莲羽翼|r》已激活！")
         endif 
+
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
             shopnum = shopnum + 1
             UnitAddItemEx(Pu[1],'CS02')
@@ -160,6 +161,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：商城道具《|cff00ff00戮仙剑|r》已激活！")
         endif
+
+        if  GetPlayerTechCount(Player(pid),'RY3F',true) == 1 //诛仙剑
+            shopnum = shopnum + 1
+            UnitAddItemEx(Pu[2],'I051')
+            AddUnitRealState(Pu[1],17,30)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00诛仙剑|r》已激活！")
+        endif
+
+
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
             shopnum = shopnum + 1
 
@@ -240,6 +250,8 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00笑天犬|r》已激活！")
         endif
 
+        
+
 
 
 
@@ -282,6 +294,12 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],48,30)
             UnitAddItemEx(Pu[2],'CS21')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0011件套|r》已激活！")
+        endif
+
+        if  buynum >= 13
+            AddPlayerTechResearched(Player(pid),'RSHF',1)
+            AddUnitRealState(Pu[1],48,50)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0013件套|r》已激活！")
         endif
 
         

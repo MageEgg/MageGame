@@ -17,6 +17,7 @@ scope SelectHero
 
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
+        
         CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+128,270)//技能商店
         Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+128,270)//技能商店
 
@@ -40,26 +41,18 @@ scope SelectHero
         endif 
 
         int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
+        int state = 0
+        real value = 0
+        int id = GetUnitTypeId(Pu[1])-'H000' + 'RH00'
+        for s = 1,3
+            if  dzlv >= s
+                state = GetTypeIdData(id,200+s)
+                value = GetTypeIdReal(id,200+s)
+                AddUnitRealState(Pu[1],state,value)
+            endif
+
+        end
         
-        if  dzlv >= 1
-            AddUnitRealState(Pu[1],17,5)
-        endif
-        
-        if  dzlv >= 2
-            AddUnitRealState(Pu[1],18,3)
-        endif
-        /*
-        if  dzlv >= 3
-            AddUnitRealState(Pu[1],18,4)
-        endif
-        
-        if  dzlv >= 4
-            AddUnitRealState(Pu[1],17,10)
-        endif
-        if  dzlv >= 5
-            AddUnitRealState(Pu[1],19,5)
-        endif
-        */
 
         
         int dzalllv =  DzHeroExpLevelCount[0]

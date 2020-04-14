@@ -1,6 +1,19 @@
 library State initializer StateLibraryInit uses ejtimer,System,Define2
     
     
+
+    function InitHeroProficiency(int id,int lv1,real r1,int lv2,real r2,int lv3,real r3,int lv4,real r4,int lv5,real r5)
+        SetTypeIdData(id,201,lv1)
+        SetTypeIdReal(id,201, r1)
+        SetTypeIdData(id,202,lv2)
+        SetTypeIdReal(id,202, r2)
+        SetTypeIdData(id,203,lv3)
+        SetTypeIdReal(id,203, r3)
+        SetTypeIdData(id,204,lv4)
+        SetTypeIdReal(id,204, r4)
+        SetTypeIdData(id,205,lv5)
+        SetTypeIdReal(id,205, r5)
+    endfunction
     
     func InitTypeIdStrings(int id,string name,string icon,string tips)
         SetTypeIdString(id,100,name)
@@ -214,11 +227,11 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[64]="经验加成"
 
 
-        StateName[71]="刺杀系"
-        StateName[72]="仙术系"
-        StateName[73]="妖魔系"
-        StateName[74]="佛门系"
-        StateName[75]="道兵系"
+        StateName[71]="刺杀系伤害"
+        StateName[72]="仙术系伤害"
+        StateName[73]="妖魔系伤害"
+        StateName[74]="佛门系伤害"
+        StateName[75]="道兵系伤害"
 
 
         StateName[81]="刺杀系概率"
@@ -291,6 +304,20 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[1050]=""
         StateName[1051]=""
         StateName[1064]="%"
+        StateName[1071]="%"
+        StateName[1072]="%"
+        StateName[1073]="%"
+        StateName[1074]="%"
+        StateName[1075]="%"
+
+        StateName[1081]="%"
+        StateName[1082]="%"
+        StateName[1083]="%"
+        StateName[1084]="%"
+        StateName[1085]="%"
+
+ 
+
                 
     endfunction
     
