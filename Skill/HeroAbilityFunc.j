@@ -123,6 +123,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                     EXSetUnitCollisionType( true,u1, 1 )
                     SetUnitPathing( u1, true )
                     SetUnitAnimation(u1,"stand")
+                    SpellS501_2(u1,damage,lv)
                     endtimer
                 endif
                 
@@ -1673,17 +1674,17 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         TimerStart(0.05,true)
         {
             time = time + 1
-            SetUnitScale(u2,0.3 + I2R(time)*0.02 ,0.3 + I2R(time)*0.02,0.3 + I2R(time)*0.02)
+            SetUnitScale(u2,0.3 + I2R(time)*0.04 ,0.3 + I2R(time)*0.02,0.3 + I2R(time)*0.04)
             SetUnitVertexColor(u2,255,255-time*10,255-time*10,255)
 
             if  time >= 20
 
-                LocAddEffectSetSize(x1,y1,"effect_fire-boom-new.mdl",0.5)
+                LocAddEffect(x1,y1,"effect_fire-boom-new.mdl")
                 IndexGroup g = IndexGroup.create()
                 if  level >= 3
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,700,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,1000,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
                 else
-                    GroupEnumUnitsInRange(g.ejg,x1,y1,700,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,1000,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
                 endif
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 g.destroy()

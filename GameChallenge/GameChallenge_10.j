@@ -34,7 +34,7 @@ library GameChallenge10 uses GameChallengeBase
                 SetUnitIntState(GameChallenge_MJ_BOSS,'ut21',time)
             else
                 if  GetUnitTypeId(GameChallenge_MJ_BOSS) == 'ut21'
-                    SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/300|r",0.045)
+                    SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/150|r",0.045)
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-寻宝秘境]：|r|cffff0000未在时间内击杀秘境领主，秘境领主回去睡觉了！！！|r")
@@ -63,8 +63,8 @@ library GameChallenge10 uses GameChallengeBase
         if  uid == 'ut20'
             if  GetUnitTypeId(GameChallenge_MJ_BOSS) == 'ut21' and GetUnitAbilityLevel(GameChallenge_MJ_BOSS,'AZ8A') > 0
                 GameTeamChallengeInt(2) = GameTeamChallengeInt(2) + 1
-                SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/300|r",0.045)
-                if  GameTeamChallengeInt(2) == 300
+                SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ "+I2S(GameTeamChallengeInt(2))+"/150|r",0.045)
+                if  GameTeamChallengeInt(2) == 150
                     SetTextTagText(GameChallengeTexttag[0],"",0.045)
                     UnitRemoveAbility(GameChallenge_MJ_BOSS,'Avul')
                     UnitRemoveAbility(GameChallenge_MJ_BOSS,'AZ8A')
@@ -73,7 +73,7 @@ library GameChallenge10 uses GameChallengeBase
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[团队副本-寻宝秘境]：|r累积击杀"+I2S(GameTeamChallengeInt(2))+"只秘境小怪，|cffff0000秘境领主苏醒了！！！击杀领主可进入万魔窟！！！|r")
                     GameTeamChallengeInt(2) = 0
                 elseif  ModuloInteger(GameTeamChallengeInt(2),50) == 0
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff00已击杀"+I2S(GameTeamChallengeInt(2))+"只秘境小怪，累积击杀300只可唤醒秘境领主！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本-寻宝秘境]：|r|cffffff00已击杀"+I2S(GameTeamChallengeInt(2))+"只秘境小怪，累积击杀150只可唤醒秘境领主！|r")
                 endif
             endif
         elseif  uid == 'ut21'
@@ -144,7 +144,7 @@ library GameChallenge10 uses GameChallengeBase
         endif
         SendPlayerUnit(pid,x,y)
         if  GetUnitTypeId(GameChallenge_MJ_BOSS) == 'ut21'
-            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[团队副本-寻宝秘境]：|r进入寻宝秘境，累积击杀300只秘境小怪可唤醒秘境领主！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[团队副本-寻宝秘境]：|r进入寻宝秘境，累积击杀150只秘境小怪可唤醒秘境领主！")
         endif
     endfunction
 
@@ -166,7 +166,7 @@ library GameChallenge10 uses GameChallengeBase
         UnitAddAbility(GameChallenge_MJ_BOSS,'AZ8A')
 
         GameChallengeTexttag[0] = CreateTextTag()
-        SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ 0/300|r",0.045)
+        SetTextTagText(GameChallengeTexttag[0],"|cffffff00领主睡觉中！ 0/150|r",0.045)
         SetTextTagPos(GameChallengeTexttag[0],11488-320,-7536+200,0)
 
         for j = 0,3

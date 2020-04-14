@@ -367,13 +367,13 @@ piece DzGameFunc
     function GetDzHeroMedal(int pid)->int //战勋等级
         int Medal = GetDzPlayerData(pid,16,1)
         int lv = DzPlayerLv(Player(pid))
-        if  Medal >= 26880 and  lv >= 14
+        if  Medal >= 28718 and  lv >= 14
             return 10
-        elseif  Medal >= 21760 and  lv >= 12
+        elseif  Medal >= 23198 and  lv >= 12
             return 9
-        elseif  Medal >= 17152 and  lv >= 11
+        elseif  Medal >= 18180 and  lv >= 11
             return 8
-        elseif  Medal >= 13056 and  lv >= 10
+        elseif  Medal >= 13619 and  lv >= 10
             return 7
         elseif  Medal >= 9472 and  lv >= 8
             return 6
