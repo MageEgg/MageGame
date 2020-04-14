@@ -86,7 +86,7 @@ library SystemCodes uses ServerTime,Define1
         if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
             UnitTimerAddSkill(Pu[1],'AZ98',0.1)
         endif
-        if  IsLocInRect(gg_rct_GameRect,x,y) == true
+        if  IsLocInRect(gg_rct_GameRect,x,y) == true and GetUnitAbilityLevel(Pu[1],'AZ96') != 5
             //小图
             if  GetLocalPlayer() == Player(pid)
                 SetPlayerCameraBoundsToRect(gg_rct_GameRect)

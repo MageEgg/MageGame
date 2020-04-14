@@ -414,6 +414,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                                         PlayerReviveX = -1984
                                         PlayerReviveY = -7808
                                     endif
+                                    UnitAddAbility(Pu[1],'AZ96')
                                     SetUnitAbilityLevel(Pu[1],'AZ96',5)
                                     if  GetLocalPlayer() == Player(pid)
                                         SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
