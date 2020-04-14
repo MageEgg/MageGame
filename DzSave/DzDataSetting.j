@@ -4,7 +4,7 @@ library DzDataSetting uses DzBase
     //使用的宏定义
     #define MaxGameLevel 8
 
-    #define MaxHeroExpLevel 2 //最大等级
+    #define MaxHeroExpLevel 3 //最大等级
     #define MaxHeroNeedExp0 12 //经验需求
     #define MaxHeroNeedExp1 24 //经验需求
     #define MaxHeroNeedExp2 36 //经验需求
@@ -161,9 +161,9 @@ library DzDataSetting uses DzBase
                 max = 0
             endif
         elseif  Group == 7
-            max = MaxHeroNeedExp1//MaxHeroNeedExp4
+            max = MaxHeroNeedExp2//MaxHeroNeedExp4
         elseif  Group == 8
-            max = MaxHeroNeedExp1//MaxHeroNeedExp4
+            max = MaxHeroNeedExp2//MaxHeroNeedExp4
         elseif  Group == 9
             max = MaxHeroExpLevel
         elseif  Group >= 10 and Group <= 15 //不用管

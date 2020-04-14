@@ -391,6 +391,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     if  ModuloInteger(time,5) == 0
                         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台做好战斗准备！！！|r")
                     endif
+                    if  time == 20
+                        KillAttackUnitGroup()
+                    endif
                 elseif  time <= 10
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,2,"|cffffcc00[封神]：|r|cffff0000距离最终决战还剩|cff00ff00"+I2S(time)+"秒|cffff0000，请所有玩家F2前往封神台准备战斗！！！|r")
                     if  time == 1
@@ -412,6 +415,9 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                                         PlayerReviveY = -7808
                                     endif
                                     SetUnitAbilityLevel(Pu[1],'AZ96',5)
+                                    if  GetLocalPlayer() == Player(pid)
+                                        SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                                    endif
                                 endif
                             endif
                         end
