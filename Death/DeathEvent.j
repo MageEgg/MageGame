@@ -73,7 +73,13 @@ scope DeathEvent initializer InitDeathEvent
                 y = AttackRoomPostion[pid][2]
             endif
             ReviveHero(Pu[1],x,y,true)
-            SendPlayerUnit(pid,x,y)
+            if  GetUnitAbilityLevel(Pu[1],'AZ96') == 5
+                if  GetLocalPlayer() == Player(pid)
+                    SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+                endif
+            else
+                SendPlayerUnit(pid,x,y)
+            endif
             AddUnitStateExTimer(Pu[1],11,100,2)
             PlayerDeathBool = false
         endif
