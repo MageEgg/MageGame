@@ -704,7 +704,6 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
     function UnitItemIN08(int pid,int itid)
         if  IsChangeGodStage == false
             KillAttackUnitGroup()
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家清除了所有进攻怪！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家清除了所有进攻怪！！！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"使用了"+GetObjectName(itid)+"，|cffffff00为大家清除了所有进攻怪！！！|r")
