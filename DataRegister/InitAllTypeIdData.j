@@ -272,6 +272,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RDAW',"打自己人怎么了？","ReplaceableTextures\\CommandButtons\\BTNCD23.blp","")
         call InitTypeIdStrings('RDAX',"龙王出来喷水","ReplaceableTextures\\CommandButtons\\BTNCD24.blp","")
         call InitTypeIdStrings('RDAY',"今天爆率真高啊","ReplaceableTextures\\CommandButtons\\BTNCD25.blp","强化成功率+1.25%")
+        call InitTypeIdStrings('RDAZ',"夸我帅","ReplaceableTextures\\CommandButtons\\BTNH036.blp","|cff808080据说评论多了会触发隐藏成就？|r")
         call InitTypeIdStrings('RHD1',"小有所成","ReplaceableTextures\\CommandButtons\\BTNSLD01.blp","")
         call InitTypeIdStrings('RHD2',"炉火纯青","ReplaceableTextures\\CommandButtons\\BTNSLD02.blp","")
         call InitTypeIdStrings('RHD3',"一代宗师","ReplaceableTextures\\CommandButtons\\BTNSLD03.blp","")

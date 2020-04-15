@@ -1375,6 +1375,7 @@ InitTypeState5('RDAS',0,0,0,0,0,0,0,0,50,0)
 InitTypeState5('RDAT',0,0,0,0,0,0,2,0,0,0)
 InitTypeState5('RDAV',0,0,0,0,0,0,0,2,0,0)
 InitTypeState5('RDAW',0,0,0,0,0,0,0,0,50,0)
+InitTypeState5('RDAZ',0,0,0,0,0,0,1,1,50,0)
 endfunction
 function InitStateData6()
 InitTypeState6('FB09',200,0,0,0,0,0,0,0,0,0)

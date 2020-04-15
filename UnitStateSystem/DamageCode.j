@@ -269,8 +269,13 @@ library DamageCode uses UnitStateSet
     
     function Chance(unit wu,real gl)->bool
         real s = GetUnitChance(wu)
-        gl=gl*0.01
-        return GetRandomReal(0, 1) <= gl+s
+        gl= gl * 0.01 + s
+
+        
+        BJDebugMsg("概率"+R2S(gl))
+        
+
+        return GetRandomReal(0, 1) <= gl
     endfunction
 
     function ChanceEx(unit wu,int id,real gl)->bool

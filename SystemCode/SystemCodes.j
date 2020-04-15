@@ -851,14 +851,25 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             return HeroPool[GetRandomInt(1,HeroPoolMax)]
         endfunction
 
-        function GetHeroPoolTypeNew(int id)->int
-            int newid = GetHeroPoolType() 
+        function GetHeroPoolTypeEx(int pid)->int
+            if  DzPlayerLv(Player(pid)) >= 16
+                if  GetRandomReal(1,100) <= 2.7
+                    return 'H036'
+                endif
+            endif
+            return GetHeroPoolType()
+        endfunction
+
+        function GetHeroPoolTypeNew(int pid,int id)->int
+            int newid = GetHeroPoolTypeEx(pid) 
             if  newid == id
                 BJDebugMsg("重复递归")
-                return GetHeroPoolTypeNew(id)
+                return GetHeroPoolTypeNew(pid,id)
             endif
             return newid
         endfunction
+
+        
 
         
 

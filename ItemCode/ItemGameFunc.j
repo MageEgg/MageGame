@@ -104,9 +104,9 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 if  DzAPI_Map_Returns(Player(pid),16) == true
                     if  GameGiftBool[num] == false
                         GameGiftBool[num] = true
-                        AddUnitRealState(Pu[1],15,5)
-                        AddUnitRealState(Pu[1],16,5)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，攻击伤害+5%、技能伤害+5%！") 
+                        AddUnitRealState(Pu[1],15,10)
+                        AddUnitRealState(Pu[1],16,10)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，攻击伤害+10%、技能伤害+10%！") 
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                     endif

@@ -11,6 +11,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int Unloc_Type_Test  = 9
     
     int Unloc_Type_LvRank = 12
+
+    int Unloc_Type_Comment = 13
     
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
@@ -193,6 +195,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return IsPlayerInRank(pid,data)
         elseif  Type == Unloc_Type_Test
             return DzAPI_Map_GetServerValue(Player(pid), "maptest2020") == "1" or DzAPI_Map_GetServerValue(Player(pid), "preset_map_award") == "1"
+        elseif  Type == Unloc_Type_Comment
+            return DzAPI_Map_CommentCount(Player(pid)) > 0
         endif
         return false
     endfunction
@@ -519,6 +523,10 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         	InitUnlocTechConditions('RDAW',InitCond1(1,Unloc_Type_Level,2),InitCond2(0,Unloc_Type_JF,GameDataList(15,23,23)),0,0,0)
         	InitUnlocTechConditions('RDAX',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,24,24)),0,0,0)
             InitUnlocTechConditions('RDAY',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,25,25)),0,0,0)
+            
+
+            InitUnlocTechConditions('RDAZ',InitCond1(2,Unloc_Type_Comment,1),0,0,0,0)
+            
 
 
             //封神谕令
