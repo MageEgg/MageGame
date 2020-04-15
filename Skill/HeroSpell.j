@@ -1733,13 +1733,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         if  wu == Pu[63]
             i1 = GetHeroAbilityLevelByIndex(Pu[1],5)
             if  lv >= 4
-                damage = GetAbilityDamage(Pu[1],id,lv)
+                damage = GetAbilityDamage(Pu[1],id,lv)*1.2
             elseif  lv >= 3
-                damage = GetAbilityDamage(Pu[1],id,lv)*0.7
-            elseif  lv >= 3
-                damage = GetAbilityDamage(Pu[1],id,lv)*0.6
+                damage = GetAbilityDamage(Pu[1],id,lv)*0.9
             else
-                damage = GetAbilityDamage(Pu[1],id,lv)*0.5
+                damage = GetAbilityDamage(Pu[1],id,lv)*0.7
             endif
         else
             damage = GetAbilityDamage(wu,id,lv)
@@ -1748,7 +1746,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 i1 = GetHeroAbilityLevelByIndex(wu,5)
                 if  SpellS511Spell(wu,i1) == true
                     if  i1 >= 3
-                        damage = damage * 2.5
+                        damage = damage * 2.8
                     else
                         damage = damage * 2
                     endif
@@ -1820,7 +1818,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
          endif   
 
-         if   id >= 'S501' and id <= 'S530'  
+         if   id >= 'S501' and id <= 'S540'  
             if  id == 'S501'
                 SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
             elseif  id == 'S502'
@@ -1836,7 +1834,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             elseif  id == 'S512'
                 SpellS512(u1.u,sx,sy,damage,lv)
             elseif  id == 'S513'
-                SpellS513(u1.u,sx,sy)
+                SpellS513(u1.u,u1.x+100*Cos(u1.face*0.01745),u1.y+100*Sin(u1.face*0.01745))
             elseif  id == 'S514'
                 SpellS514(u1.u,damage,lv)
                 
@@ -1854,6 +1852,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 SpellS525(u1.u,sx,sy,damage,lv)
             elseif  id == 'S527'
                 SpellS527(u1.u,u2.u,lv)
+            elseif  id == 'S536'
+                SpellS536(u1.u,sx,sy,damage,lv)
             endif
         endif
        

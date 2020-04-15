@@ -147,20 +147,20 @@ scope DeathEvent initializer InitDeathEvent
             gold = GetRandomInt(12000,17000)
             exp = 10000
         elseif  itemid == 'I051'
-            gold = GetRandomInt(7000,12000)
-            exp = 2000
+            gold = 2000
+            exp = 1000
         elseif  itemid == 'I052'
-            gold = GetRandomInt(8000,13000)
-            exp = 3000
+            gold = 2400
+            exp = 1250
         elseif  itemid == 'I053'
-            gold = GetRandomInt(9000,14000)
-            exp = 4000
+            gold = 3000
+            exp = 1500
         elseif  itemid == 'I054'
-            gold = GetRandomInt(10000,15000)
-            exp = 6000
+            gold = 3500
+            exp = 1750
         elseif  itemid == 'I055'
-            gold = GetRandomInt(12000,17000)
-            exp = 8000
+            gold = 4000
+            exp = 2000
         endif
 
 
@@ -259,13 +259,7 @@ scope DeathEvent initializer InitDeathEvent
                 if  PlayerItemGrowFunc(pid,UnitItemInSlot(Pu[1],i1),1) == true
                     PlayerUseGoldBox(pid,id)
                 endif
-                exitwhen true
-            elseif  id >= 'I051' and id <= 'I055'
-                if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i1),1) == true
-                    PlayerUseGoldBox(pid,id)
-                endif
-                exitwhen true
-                
+                exitwhen true      
             endif
         end
 
@@ -274,6 +268,15 @@ scope DeathEvent initializer InitDeathEvent
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i2))
             if  id >= 'E101' and id <= 'E129'
                 PlayerItemIncFunc(pid,UnitItemInSlot(Pu[1],i2),1)
+                exitwhen true
+            endif
+        end
+
+        for i3 = 0,5
+            if  id >= 'I051' and id <= 'I055'
+                if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i3),1) == true
+                    PlayerUseGoldBox(pid,id)
+                endif
                 exitwhen true
             endif
         end
