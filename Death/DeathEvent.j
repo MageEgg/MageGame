@@ -159,7 +159,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 3500
             exp = 1750
         elseif  itemid == 'I055'
-            gold = 4000
+            gold = 4500
             exp = 2000
         endif
 

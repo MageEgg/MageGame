@@ -112,7 +112,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IJ09',"|cffff0033至圣道果[9]|r","war3mapImported\\ch_DG9.mdl","")
         call InitTypeIdStrings('IJ10',"|cffff0033混沌道果[10]|r","war3mapImported\\ch_DG10.mdl","")
         call InitTypeIdStrings('CS01',"D级技能书","ReplaceableTextures\\CommandButtons\\BTNCS01.blp","随机技能")
-        call InitTypeIdStrings('CS02',"|cff00FA9AC级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS02.blp","随机技能")
+        call InitTypeIdStrings('CS02',"|cffffc926符印宝箱|r","ReplaceableTextures\\CommandButtons\\BTNAM24.blp","随机抽取|Cffffd24d3|r个|Cffffd24d符印|r，可以从中任意选择|Cffffd24d1|r个。")
         call InitTypeIdStrings('CS03',"|cff00BFFFB级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS03.blp","随机技能")
         call InitTypeIdStrings('CS04',"|cffff0000A级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS04.blp","随机技能")
         call InitTypeIdStrings('CS05',"|cffff0033S级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS05.blp","随机技能")

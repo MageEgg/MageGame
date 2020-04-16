@@ -54,6 +54,8 @@ scope FrameButton
                         PassFreamClickLast(pid)
                     elseif  id == 662 //通行证翻页
                         PassFreamClickNext(pid)
+                    elseif  id >= 671 and id <= 679//通行证选择
+                        PassFreamClickNextStep(pid,id - 671)
                     elseif  id == 702 //F2
                         if  PlayerDeathBool == false
                             HeroMoveToHome(pid)
@@ -241,6 +243,12 @@ endscope
 //! runtextmacro AddFrameFunc("655")
 //! runtextmacro AddFrameFunc("661")
 //! runtextmacro AddFrameFunc("662")
+
+//! runtextmacro AddFrameFunc("671")
+//! runtextmacro AddFrameFunc("672")
+//! runtextmacro AddFrameFunc("673")
+//! runtextmacro AddFrameFunc("674")
+//! runtextmacro AddFrameFunc("675")
 
 //辅助按钮
 //! runtextmacro AddFrameFunc("701")

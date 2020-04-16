@@ -86,6 +86,27 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(18,5,'CS22')
         RegisterPassCheckPrize(19,0,'RT19')
         RegisterPassCheckPrize(20,'RY3A','RY3B')
+
+        RegisterPassCheckPrize(21,'RS21','IN30')
+        RegisterPassCheckPrize(22,0,0)
+        RegisterPassCheckPrize(23,0,0)
+        RegisterPassCheckPrize(24,2,5)
+        RegisterPassCheckPrize(25,'RS25','RT25')
+        RegisterPassCheckPrize(26,'IP02','RT26')
+        RegisterPassCheckPrize(27,'RS27','RT27')
+        RegisterPassCheckPrize(28,0,0)
+        RegisterPassCheckPrize(29,0,0)
+        RegisterPassCheckPrize(30,'RS30','RT30')
+        RegisterPassCheckPrize(31,0,'RT31')
+        RegisterPassCheckPrize(32,'RS32','RT32')
+        RegisterPassCheckPrize(33,0,'RT33')
+        RegisterPassCheckPrize(34,0,0)
+        RegisterPassCheckPrize(35,'IP02','RT35')
+        RegisterPassCheckPrize(36,'RS36','RT36')
+        RegisterPassCheckPrize(37,0,'RT37')
+        RegisterPassCheckPrize(38,5,'CS02')
+        RegisterPassCheckPrize(39,0,'RT39')
+        RegisterPassCheckPrize(40,0,0)
     endfunction
 
     function InitRegisterMission()//注册任务
@@ -196,14 +217,16 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         int array PassCheckPlayerData[12][680]
         #define PlayerPassData  PassCheckPlayerData[pid]
 
-        function GetPlayerPassExp(int pid)->int
-            int exp = GetDzPlayerData(pid,4,1)
+        function GetPlayerPassExp(int pid,int step)->int
+            int exp = GetDzPlayerData(pid,4,1+step)
             return exp
         endfunction
-        function GetPlayerPassLevel(int pid)->int
-            int exp = GetPlayerPassExp(pid) + 7
-            int level = GetDzPlayerData(pid,4,2) + exp / MaxPassCheckDayExp
-            return level
+        function GetPlayerPassLevel(int pid,int step)->int
+            int exp = GetPlayerPassExp(pid,step)
+            if  step == 0
+                exp = exp + 7
+            endif
+            return exp / MaxPassCheckDayExp
         endfunction
 
         function GetMissionIndex(int pid,int missionid)->int//根据任务判断今天的index
@@ -365,15 +388,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
 
         function PlayerAddPassPrize(int pid)
-            int lv = GetPlayerPassLevel(pid)
+            int lv = GetPlayerPassLevel(pid,0)
             int shop = 0
-
             if  DzShop(Player(pid),"RWK") == true
                 shop = 1
             endif
-
-
-
             for i = 1,MaxPassCheckPrizeNum
                 if  lv >= i
                     GivePassCheckPrize(pid,i,1)
@@ -383,6 +402,9 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                     endif
                 endif
             end
+
+
+
         endfunction
 
         function PlayerLoadPassCheck(int pid)//加载通行证
@@ -422,6 +444,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
     655         快速升级
     661         ←
     662         →
+
+    671         第一赛季
+    672         第二赛季
     */
     private FRAME Button = 0
     private FRAME Back = 0
@@ -430,11 +455,12 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
     private int Page = 0
     private int PageMax = 1
+    private int Step = 0
 
     
 
     function GetPassCheckPrizeId(int id,int num)->int
-        return GetPassCheckPrize(Page*10+id,num)
+        return GetPassCheckPrize((Page+Step*2)*10+id,num)
     endfunction
 
     
@@ -443,27 +469,29 @@ library PassCheckUI uses GameFrame,PassCheckMission
     function RePassClickPrize(int pid)
         int id = 0
         int index = 0
-        int level = GetPlayerPassLevel(pid)
+        int level = GetPlayerPassLevel(pid,Step)
         if  GetLocalPlayer() == Player(pid)
             Key.SetText(I2S(Page+1)+"/2")
             DzFrameSetText(BUTTON_Text[650],"|cffffcc00"+I2S(level)+"|r")
             BJDebugMsg("level"+I2S(level))
             for i = 1,10
-                index = Page*10+i
+                index = (Page+Step*2)*10+i
                 if  level >= index
-                    DzFrameSetText(BUTTON_Text[610+i],"|cff000000"+I2S(index)+"|r")
+                    DzFrameSetText(BUTTON_Text[610+i],"|cff000000"+I2S(Page*10+i)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\UI_Pass_LevelBack.tga",0)
 
                     
                     DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\alpha.tga",0)
 
-                    if  DzShop(Player(pid),"RWK") == false
+                    if  DzShop(Player(pid),"RWK") == false and Step == 0
+                        DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    elseif  DzShop(Player(pid),"RWK2") == false and Step == 1
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
                     else
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\alpha.tga",0)
                     endif
                 else
-                    DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(index)+"|r")
+                    DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(Page*10+i)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\alpha.tga",0)
 
                     DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\UI_DisBack.tga",0)
@@ -494,7 +522,8 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
     function RePassClickFrame(int pid)
         int missionid = 0
-        int level = GetPlayerPassLevel(pid)
+        int step = Step
+        int level = GetPlayerPassLevel(pid,step)
         int nowexp = 0
         int use = 0
         int exp = 0
@@ -523,7 +552,10 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 endif
             end
 
-            nowexp = GetPlayerPassExp(pid) + 7
+            nowexp = GetPlayerPassExp(pid,step)
+            if  step == 0
+                nowexp = nowexp + 7
+            endif
             nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
             for i = 1,MaxPassCheckDayExp
                 if  i <= nowexp
@@ -557,6 +589,15 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 
                 RePassClickPrize(pid)
             endif
+        endif
+    endfunction
+
+
+    //选择通行证分页
+    function PassFreamClickNextStep(int pid,int step)
+        if  GetLocalPlayer() == Player(pid)
+            Step = step
+            RePassClickPrize(pid)
         endif
     endfunction
 
@@ -680,6 +721,10 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateButton(661,Button.frameid,TYPE_BUTTON,0,Button.frameid,1,-0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Left.tga")
         CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Right.tga")
 
+
+        CreateButton(671,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.02,0.005,0.03,0.03,"war3mapImported\\UI_fs1.tga")
+
+        CreateButton(672,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.06,0.005,0.03,0.03,"war3mapImported\\UI_ry1.tga")
     endfunction
 
     function PassCheckUIInit()
