@@ -745,23 +745,26 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         return false
     endfunction
 
-    function SpellS513Timer(unit wu)
+    function SpellS513Timer(unit wu,int lv)
         unit u1 = wu
         int time = 12
         real x1 = GetUnitX(wu)
         real y1 = GetUnitY(wu)
         effect eff = AddSpecialEffect("GH_lshr.mdl",x1,y1)
+        int level = lv
         EXSetEffectSize(eff,2)
         TimerStart(0.5,true)
         {
             
             time = time - 1
             if  GetUnitTypeId(u1) != 0
-                for pid = 0,3
-                    if  IsUnitInRangeXY(Pu[1], x1, y1, 600) == true
-                        UnitAddLife(Pu[1],GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.015)
-                    endif
-                end
+                if  level >= 2
+                    for pid = 0,3
+                        if  IsUnitInRangeXY(Pu[1], x1, y1, 600) == true
+                            UnitAddLife(Pu[1],GetUnitState(Pu[1],UNIT_STATE_MAX_LIFE)*0.015)
+                        endif
+                    end
+                endif
                 if  time <= 0
                     DestroyEffect(eff)
                     RemoveUnit(u1)
@@ -776,7 +779,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         }
         flush locals
     endfunction
-    function SpellS513(unit wu,real sx,real sy)
+    function SpellS513(unit wu,real sx,real sy,int lv)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         if  Pu[63] != null
             RemoveUnit(Pu[63])
@@ -785,7 +788,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         Pu[63] = CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"file"),sx,sy,0,0,YDWEGetObjectPropertyReal(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"modelScale"))
         SetUnitVertexColor(Pu[63],255,255,255,180)
         UnitAddEffect(Pu[63],"Abilities\\Spells\\Orc\\FeralSpirit\\feralspirittarget.mdl")
-        SpellS513Timer(Pu[63])
+        SpellS513Timer(Pu[63],lv)
     endfunction
 //effect_ice23.mdl
     function SpellS514Timer(unit u1,real dam,real sx,real sy,int level)
@@ -1881,23 +1884,29 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
 
 
-    function SpellS536Timer(unit wu,real sx,real sy)
-        real x1 = GetUnitX(wu)
-        real y1 = GetUnitY(wu)
-        real x2 = sx
-        real y2 = sy
-        real ang = Pang(x1,y1,x2,y2)
+    function SpellS536TimerFunc(unit wu,real sx,real sy,real face,real dam)
+        real x1 = sx
+        real y1 = sy
+        real ang = face
         unit u1 = wu
-        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_dawn_bird_00.mdl",x1,y1,ang/0.01745-90,50,1)
-        int time = 30
-        real damage = (GetUnitAttack(wu) + GetHeroStr(wu,true))*4.0
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"effect_dummy_dawn_bird_00.mdl",x1,y1,ang/0.01745-90,60,1.2)
+        int time = 20
+        real damage = dam
         group g1 = CreateGroup()
-        TimerStart(0.02,true)
+        int Type = 0
+        SetUnitPropWindow( u2, 6.26 )
+        SetUnitTurnSpeed( u2, GetRandomReal(0.05,0.08))
+        TimerStart(0.03,true)
         {
             time = time - 1
 
-            x1 = x1 + 30*Cos(ang)
-            y1 = y1 + 30*Sin(ang)
+            if  Type == 1
+                SetUnitFacing(u2,Uang(u2,u1)/0.01745-90)
+                ang = (GetUnitFacing(u2)+90)*0.01745
+            endif
+
+            x1 = x1 + 40*Cos(ang)
+            y1 = y1 + 40*Sin(ang)
             SetUnitX(u2,x1)
             SetUnitY(u2,y1)
             IndexGroup g = IndexGroup.create()
@@ -1906,7 +1915,37 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             g.destroy()
 
             if  time <= 0
-                KillUnit(u2)
+                Type = 1
+            endif
+
+            if  Type == 1 and Udis(u2,u1) < 100
+                RemoveUnit(u2)
+                DestroyGroup(g1)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS536Timer(unit wu,real sx,real sy)
+        unit u1 = wu
+        real damage = (GetUnitAttack(wu) + GetHeroStr(wu,true))*3.0 / 5
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+        real ang = Pang(x1,y1,sx,sy)
+        int time = 5
+        
+
+        TimerStart(0.1,true)
+        {
+            time = time - 1
+
+            real dis = GetRandomReal(-200,200)
+            real f = GetRandomReal(-3.14,3.14)
+            SpellS536TimerFunc(u1,x1+dis*Cos(f),y1+dis*Sin(f),ang,damage)
+
+            if  time <= 0
                 endtimer
             endif
             flush locals
@@ -1917,10 +1956,13 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
     function SpellS536(unit wu,real sx,real sy,real damage,int lv)
 
-        LocAddEffectSetRotateSize(sx,sy,0,2,"effect_193.mdx")
-        LocAddEffectSetRotateSize(sx,sy,120,2,"effect_193.mdx")
-        LocAddEffectSetRotateSize(sx,sy,240,2,"effect_193.mdx")
+        LocAddEffectSetRotateSize(sx+50,sy,0,2,"effect_193.mdx")
+        LocAddEffectSetRotateSize(sx+50*Cos(2.094),sy+50*Sin(2.094),120,2,"effect_193.mdx")
+        LocAddEffectSetRotateSize(sx+50*Cos(4.188),sy+50*Sin(4.188),240,2,"effect_193.mdx")
 
+        LocAddEffect(sx,sy,"effect_AA_bwaxec.mdl")
+
+        
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,sx,sy,500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)

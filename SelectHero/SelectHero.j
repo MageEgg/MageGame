@@ -131,7 +131,7 @@ scope SelectHero
         if  IsPlaying(pid) == true
             
             
-            Pu[1] = CreateUnit(Player(pid),GetHeroPoolType(),PlayerReviveX,PlayerReviveY,0)
+            Pu[1] = CreateUnit(Player(pid),GetHeroPoolTypeEx(pid),PlayerReviveX,PlayerReviveY,0)
             
             Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             
@@ -164,8 +164,17 @@ scope SelectHero
             if  GetPlayerTechCount(Player(pid),'RG0G',true) > 0
                 HeroReNumber = HeroReNumber + 1
             endif
+            if  DzAPI_Map_Returns(Player(pid),16) == true
+                HeroReNumber = HeroReNumber + 1
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"收藏地图，重随英雄次数+1")
+            endif
 
             
+            if  GetUnitTypeId(Pu[1]) != 'H036'
+                if  DzPlayerLv(Player(pid)) >= 30
+                    PoolAddHeroId(pid,'H036')
+                endif
+            endif
             
 
             ReHeroFrameUI(pid)
@@ -253,7 +262,7 @@ scope SelectHero
                 if  GameChallengeBool[0] == false
                     if  HeroReNumber > 0
                         PoolAddHeroId(pid,id)
-                        ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(id))
+                        ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(pid,id))
                         HeroReNumber = HeroReNumber - 1
                         ReHeroFrameUI(pid)
                     else

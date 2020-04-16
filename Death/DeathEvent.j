@@ -150,7 +150,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 2000
             exp = 1000
         elseif  itemid == 'I052'
-            gold = 2400
+            gold = 2500
             exp = 1250
         elseif  itemid == 'I053'
             gold = 3000
@@ -159,7 +159,7 @@ scope DeathEvent initializer InitDeathEvent
             gold = 3500
             exp = 1750
         elseif  itemid == 'I055'
-            gold = 4000
+            gold = 4500
             exp = 2000
         endif
 
@@ -273,6 +273,7 @@ scope DeathEvent initializer InitDeathEvent
         end
 
         for i3 = 0,5
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],i3))
             if  id >= 'I051' and id <= 'I055'
                 if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i3),1) == true
                     PlayerUseGoldBox(pid,id)

@@ -198,6 +198,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(6,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
         RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
         RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
+        RegisterShowSaveFrameData(6,'RDAZ','RDAZ',0,0,0,0)//评论
 
         
 
@@ -243,7 +244,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH33','RH33',0,0,0,0)//哮天犬
         RegisterShowSaveFrameData(3,'RH34','RH34',0,0,0,0)//准提道人
         RegisterShowSaveFrameData(3,'RH35','RH35',0,0,0,0)//邓婵玉
-        //RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0)//苟作者
+        RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0)//苟作者
 
 
 
