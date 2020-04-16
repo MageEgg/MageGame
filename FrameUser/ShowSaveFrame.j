@@ -95,7 +95,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         //RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
-        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
+        
 
 
         RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
@@ -103,7 +104,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(2,'RY2F','RY2F',0,0,0,0)//羽族之音
         RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
-        RegisterShowSaveFrameData(2,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0)//魅惑之翼
 
         
         
@@ -141,6 +142,14 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0)//老司机
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
+        RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0)//荣耀之信
+        RegisterShowSaveFrameData(0,'RJ2C','RJ2C',0,0,0,0)//荣耀之心
+        RegisterShowSaveFrameData(0,'RJ2D','RJ2D',0,0,0,0)//荣耀之证
+        RegisterShowSaveFrameData(0,'RJ2E','RJ2E',0,0,0,0)//荣耀之光
+        RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0)//中流砥柱
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次

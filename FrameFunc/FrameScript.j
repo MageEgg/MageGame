@@ -125,18 +125,31 @@
             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_MagicItem_Sale0.tga",0)
             
         elseif  id == 652 or id == 653
-            int exp = GetDzPlayerData(pid,4,1)+7
+            int step = GetPassCheckStep()
+            int exp = GetDzPlayerData(pid,4,1+step)
+            if  step == 0
+                exp = exp + 7
+            endif
             int lv = exp / 6
             exp = exp - lv * 6
             if  id == 652 //通行证
-                SetTipsData(10,"","普通通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
                 SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
             elseif  id == 653 //商城通行证
-                if  DzShop(Player(pid),"RWK") == false
-                    SetTipsData(10,"","|cffffcc00封神通行证|r|cffff0000(商城购买后激活)|r")
-                else
-                    SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
-                    SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                if  step == 0
+                    if  DzShop(Player(pid),"RWK") == false
+                        SetTipsData(10,"","|cffffcc00封神通行证|r|cffff0000(商城购买后激活)|r")
+                    else
+                        SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                        SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                    endif
+                elseif  step == 1
+                    if  DzShop(Player(pid),"RWK2") == false
+                        SetTipsData(10,"","|cffffcc00荣耀通行证|r|cffff0000(商城购买后激活)|r")
+                    else
+                        SetTipsData(10,"","|cffffcc00荣耀通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                        SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                    endif
                 endif
             endif
             

@@ -153,6 +153,33 @@ library ExNativeFrame uses GameFrame
         endif
     endfunction
 
+
+    function PlayerReRuneRandomPrize(int pid)->bool
+        int id = 0
+        int prize = GetRandomInt(1,8)
+        int prizeadd = GetRandomInt(1,7)
+        if  GetUnitIntState(Pu[1],911) > 0
+
+            for i = 1,3
+                prize = prize+6
+                if  prize > 8
+                    prize = prize - 8
+                endif
+                SetUnitIntState(Pu[1],910+i,'FY00'+prize)
+            end
+
+            if  GetLocalPlayer() == Player(pid)
+                Button.show = true
+                ReRunePrizeFrame(pid)
+            endif
+
+            return true
+        endif
+        return false
+    endfunction
+
+    
+
     
 
     //重随英雄模块

@@ -1,6 +1,6 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
-  //输出代码
+ //输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","雷之符印+1")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","木之符印+1")
@@ -130,6 +130,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IP03',"鸿蒙结晶","ReplaceableTextures\\CommandButtons\\BTNIP03.blp","点击|Cffffc926选中指定法宝|r后，再点击|Cffffc926锻造|r，可|Cffffc926重置|r指定法宝，|Cffffc926品质提升一级|r。\n\n|Cff00ff7f每次重铸消耗1个鸿蒙结晶|r")
         call InitTypeIdStrings('IP04',"神兽洗灵石","ReplaceableTextures\\CommandButtons\\BTNIP04.blp","使用后|Cffffd24d重置|r当前|Cffff0000神兽神通【R】|r|Cfff0f0f0。|r")
         call InitTypeIdStrings('IP05',"虚空圣战卡","ReplaceableTextures\\CommandButtons\\BTNIP05.blp","开启|Cffffd24d结界|r，前往虚空终止|Cffff0000封神圣战|r。")
+        call InitTypeIdStrings('IP06',"|CffFF0000副本奖励刷新券|r","ReplaceableTextures\\CommandButtons\\BTNIP06.blp","使用后可重置当前副本奖励选项。")
+        call InitTypeIdStrings('IP07',"|CffFF0000符印奖励刷新券|r","ReplaceableTextures\\CommandButtons\\BTNIP07.blp","使用后可重置当前符印奖励选项。")
         call InitTypeIdStrings('I011',"招魂幡Lv1","ReplaceableTextures\\CommandButtons\\BTNZPH1.blp","")
         call InitTypeIdStrings('I012',"|Cff00FF7F招魂幡Lv2|r","ReplaceableTextures\\CommandButtons\\BTNZPH2.blp","")
         call InitTypeIdStrings('I013',"|Cff00BFFF招魂幡Lv3|r","ReplaceableTextures\\CommandButtons\\BTNZPH3.blp","")
@@ -140,6 +142,9 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('CS22',"|CffFF0000技能进化石【完美】|r","ReplaceableTextures\\CommandButtons\\BTNIN04.blp","使|Cffffd24dA级技能|r|Cfff0f0f0品质提升|r|Cffff0000S级|r|Cfff0f0f0。|r")
         call InitTypeIdStrings('CS23',"|Cff00FF7F技能进阶石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN06.blp","|CffFFD24D50%|r几率使指定技能|Cffffd24d品质提升一级|r|Cfff0f0f0。\n\n|r|Cff00ff7f最多可提升至A级。|r")
         call InitTypeIdStrings('CS24',"|CffFFD24D技能进化石【残缺】|r","ReplaceableTextures\\CommandButtons\\BTNIN04.blp","|CffFFD24D50%|r几率使指定|Cffffd24dA级技能|r|Cfff0f0f0品质提升|r|Cffff0000S级|r|Cfff0f0f0。|r")
+        call InitTypeIdStrings('CS51',"|cff00BFFF初级附魔石|r","ReplaceableTextures\\CommandButtons\\BTNCS51.blp","为指定的装备附魔一条额外属性。")
+        call InitTypeIdStrings('CS52',"|cffffff00中级附魔石|r","ReplaceableTextures\\CommandButtons\\BTNCS52.blp","为指定装备附魔一条较强的额外属性。")
+        call InitTypeIdStrings('CS53',"|cffff0033高级附魔石|r","ReplaceableTextures\\CommandButtons\\BTNCS53.blp","为指定装备附魔一条强大的额外属性。")
         call InitTypeIdStrings('IT01',"境界挑战1","","渡过该劫后可结成|CffCCCCCC低级道果|r。|n|n|CffCCCCCC低级道果：|r|n攻击+5000|n业力+4000|n生命值+100000|n生命回复+2000|n攻击伤害+9%|n技能伤害+8%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT02',"境界挑战2","","渡过该劫后可结成|CffCCCCCC中级道果|r。|n|n|CffCCCCCC中级道果：|r|n攻击+7500|n业力+6000|n生命值+150000|n生命回复+3000|n攻击伤害+9%|n技能伤害+8%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT03',"境界挑战3","","渡过该劫后可结成|Cff00ff7f高级道果|r。|n|n|Cff00ff7f高级道果：|r|n攻击+12500|n业力+10000|n生命值+250000|n生命回复+5000|n攻击伤害+9%|n技能伤害+8%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
@@ -172,6 +177,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY2A',"光洁之翼","ReplaceableTextures\\CommandButtons\\BTNRY2A.BLP","")
         call InitTypeIdStrings('RY2B',"圣灵之翼","ReplaceableTextures\\CommandButtons\\BTNRY2B.BLP","")
         call InitTypeIdStrings('RY2D',"幻莲仙翼","ReplaceableTextures\\CommandButtons\\BTNRY2D.BLP","每秒生命+300\n伤害减免+12%\n攻击速度+30%\n\n开局奖励：\n高级技能书x1\n\n解锁外观|cffff0000幻莲仙翼|r")
+        call InitTypeIdStrings('RY2H',"魅惑之翼","ReplaceableTextures\\CommandButtons\\BTNCB11.BLP","")
         call InitTypeIdStrings('RY1C',"天乾地坤","ReplaceableTextures\\CommandButtons\\BTNRY1C.BLP","")
         call InitTypeIdStrings('RY1E',"麒麟光环","ReplaceableTextures\\CommandButtons\\BTNRY1E.BLP","")
         call InitTypeIdStrings('RY1A',"血灵光环","ReplaceableTextures\\CommandButtons\\BTNRY1A.BLP","")
@@ -179,6 +185,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY1D',"星月光环","ReplaceableTextures\\CommandButtons\\BTNRY1D.BLP","开局金币+2000\n每秒攻击+10\n重随英雄次数+1\n\n解锁外观|cff00bfff星月光环|r")
         call InitTypeIdStrings('RY3C',"崩鸣刃","ReplaceableTextures\\CommandButtons\\BTNRY3C.BLP","")
         call InitTypeIdStrings('RY3E',"凛霜战锤","ReplaceableTextures\\CommandButtons\\BTNRY3E.BLP","")
+        call InitTypeIdStrings('RY3G',"五火七禽扇","ReplaceableTextures\\CommandButtons\\BTNWQ05.BLP","")
         call InitTypeIdStrings('RY3A',"凝霜","ReplaceableTextures\\CommandButtons\\BTNRY3A.BLP","")
         call InitTypeIdStrings('RY3B',"破阙","ReplaceableTextures\\CommandButtons\\BTNRY3B.BLP","")
         call InitTypeIdStrings('RY3D',"戮仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3D.BLP","暴击率+10%\n暴击伤害+50%\n伤害加成+30%\n攻击5%范围攻击力*5技能伤害\n\n开局奖励：\n随机符印箱x1\n\n解锁外观|cffff0000戮仙剑\n|r")
@@ -334,13 +341,13 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY9H',"封神谕令Lv8","ReplaceableTextures\\CommandButtons\\BTNYL08.blp","\n|cff00ff00输入“JF”可查看当前战勋\n每击杀100个进攻怪增加难度x1战勋\n每击杀一个进攻Boss增加难度x1战勋")
         call InitTypeIdStrings('RY9I',"封神谕令Lv9","ReplaceableTextures\\CommandButtons\\BTNYL09.blp","\n|cff00ff00输入“JF”可查看当前战勋\n每击杀100个进攻怪增加难度x1战勋\n每击杀一个进攻Boss增加难度x1战勋")
         call InitTypeIdStrings('RY9J',"封神谕令Lv10","ReplaceableTextures\\CommandButtons\\BTNYL10.blp","\n|cff00ff00输入“JF”可查看当前战勋\n每击杀100个进攻怪增加难度x1战勋\n每击杀一个进攻Boss增加难度x1战勋")
-        call InitTypeIdStrings('RS01',"普通通行证1级","war3mapImported\\UI_State22.tga","")
-        call InitTypeIdStrings('RS05',"普通通行证5级","war3mapImported\\UI_State21.tga","")
-        call InitTypeIdStrings('RS07',"普通通行证7级","war3mapImported\\UI_State48.tga","")
-        call InitTypeIdStrings('RS09',"普通通行证9级","war3mapImported\\UI_State09.tga","")
-        call InitTypeIdStrings('RS10',"普通通行证10级","war3mapImported\\UI_State05.tga","")
-        call InitTypeIdStrings('RS12',"普通通行证12级","war3mapImported\\UI_State47.tga","")
-        call InitTypeIdStrings('RS16',"普通通行证16级","war3mapImported\\UI_State64.tga","")
+        call InitTypeIdStrings('RS01',"第1赛季通行证1级","war3mapImported\\UI_State22.tga","")
+        call InitTypeIdStrings('RS05',"第1赛季通行证5级","war3mapImported\\UI_State21.tga","")
+        call InitTypeIdStrings('RS07',"第1赛季通行证7级","war3mapImported\\UI_State48.tga","")
+        call InitTypeIdStrings('RS09',"第1赛季通行证9级","war3mapImported\\UI_State09.tga","")
+        call InitTypeIdStrings('RS10',"第1赛季通行证10级","war3mapImported\\UI_State05.tga","")
+        call InitTypeIdStrings('RS12',"第1赛季通行证12级","war3mapImported\\UI_State47.tga","")
+        call InitTypeIdStrings('RS16',"第1赛季通行证16级","war3mapImported\\UI_State64.tga","")
         call InitTypeIdStrings('RT05',"封神通行证5级","war3mapImported\\UI_State03.tga","")
         call InitTypeIdStrings('RT06',"封神通行证6级","war3mapImported\\UI_State01.tga","")
         call InitTypeIdStrings('RT07',"封神通行证7级","war3mapImported\\UI_State02.tga","")
@@ -352,6 +359,29 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RT16',"封神通行证16级","war3mapImported\\UI_State02.tga","")
         call InitTypeIdStrings('RT17',"封神通行证17级","war3mapImported\\UI_State05.tga","")
         call InitTypeIdStrings('RT19',"封神通行证19级","war3mapImported\\UI_State10.tga","")
+        call InitTypeIdStrings('RS21',"第2赛季通行证1级","war3mapImported\\UI_State22.tga","")
+        call InitTypeIdStrings('RS25',"第2赛季通行证5级","war3mapImported\\UI_State03.tga","")
+        call InitTypeIdStrings('RS27',"第2赛季通行证7级","war3mapImported\\UI_State48.tga","")
+        call InitTypeIdStrings('RS30',"第2赛季通行证10级","war3mapImported\\UI_State05.tga","")
+        call InitTypeIdStrings('RS32',"第2赛季通行证12级","war3mapImported\\UI_State48.tga","")
+        call InitTypeIdStrings('RS36',"第2赛季通行证16级","war3mapImported\\UI_State02.tga","")
+        call InitTypeIdStrings('RT25',"荣耀通行证5级","war3mapImported\\UI_State03.tga","")
+        call InitTypeIdStrings('RT26',"荣耀通行证6级","war3mapImported\\UI_State47.tga","")
+        call InitTypeIdStrings('RT27',"荣耀通行证7级","war3mapImported\\UI_State48.tga","")
+        call InitTypeIdStrings('RT30',"荣耀通行证10级","war3mapImported\\UI_State49.tga","")
+        call InitTypeIdStrings('RT31',"荣耀通行证11级","war3mapImported\\UI_State47.tga","")
+        call InitTypeIdStrings('RT32',"荣耀通行证12级","war3mapImported\\UI_State02.tga","")
+        call InitTypeIdStrings('RT33',"荣耀通行证13级","war3mapImported\\UI_State28.tga","")
+        call InitTypeIdStrings('RT35',"荣耀通行证15级","war3mapImported\\UI_State01.tga","")
+        call InitTypeIdStrings('RT36',"荣耀通行证16级","war3mapImported\\UI_State02.tga","")
+        call InitTypeIdStrings('RT37',"荣耀通行证17级","war3mapImported\\UI_State05.tga","")
+        call InitTypeIdStrings('RT39',"荣耀通行证19级","war3mapImported\\UI_State10.tga","")
+        call InitTypeIdStrings('RJ2A',"荣耀之初","ReplaceableTextures\\CommandButtons\\BTNRJ2A.BLP","")
+        call InitTypeIdStrings('RJ2B',"荣耀之信","ReplaceableTextures\\CommandButtons\\BTNRJ2B.BLP","")
+        call InitTypeIdStrings('RJ2C',"荣耀之心","ReplaceableTextures\\CommandButtons\\BTNRJ2C.BLP","")
+        call InitTypeIdStrings('RJ2D',"荣耀之证","ReplaceableTextures\\CommandButtons\\BTNRJ2D.BLP","")
+        call InitTypeIdStrings('RJ2E',"荣耀之光","ReplaceableTextures\\CommandButtons\\BTNRJ2E.BLP","")
+        call InitTypeIdStrings('RJ2F',"中流砥柱","ReplaceableTextures\\CommandButtons\\BTNRJ2F.BLP","")
         call InitTypeIdStrings('IK01',"|CffBF00FF【稀有】白虎|r","ReplaceableTextures\\CommandButtons\\BTNSST01.blp","致命倍率|Cffffc926+150%|n|n|r|Cffff00bf【白虎】|r+|Cffff00bf【白虎】|r=|Cffffc926【神威虎爪】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK02',"|CffBF00FF【稀有】玄武|r","ReplaceableTextures\\CommandButtons\\BTNSST02.blp","最大生命|Cffffc926+10%|n|n|r|Cffff00bf【玄武】|r+|Cffff00bf【玄武】|r=|Cffffc926【佛陀舍利】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK03',"|CffBF00FF【稀有】帝魄|r","ReplaceableTextures\\CommandButtons\\BTNSST03.blp","道兵伤害|Cffffc926+30%|n|n|r|Cffff00bf【帝魄】|r+|Cffff00bf【帝魄】|r=|Cffffc926【昊天帝玉】|n|n|r|Cff00ff7f点击穿戴或脱卸。|r")
@@ -440,9 +470,20 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IK96',"|CffFFD24D光之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_06.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926光之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK97',"|CffFFD24D雷之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_07.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926雷之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK98',"|CffFFD24D暗之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926暗之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         BJDebugMsg("init1end")
     endfunction
     function InitDataString2()//注册法宝说明数据

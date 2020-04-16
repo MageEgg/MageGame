@@ -88,25 +88,25 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(20,'RY3A','RY3B')
 
         RegisterPassCheckPrize(21,'RS21','IN30')
-        RegisterPassCheckPrize(22,0,0)
-        RegisterPassCheckPrize(23,0,0)
+        RegisterPassCheckPrize(22,'RJ2A','RJ2E')
+        RegisterPassCheckPrize(23,'IP06','IP07')
         RegisterPassCheckPrize(24,2,5)
         RegisterPassCheckPrize(25,'RS25','RT25')
         RegisterPassCheckPrize(26,'IP02','RT26')
         RegisterPassCheckPrize(27,'RS27','RT27')
-        RegisterPassCheckPrize(28,0,0)
-        RegisterPassCheckPrize(29,0,0)
+        RegisterPassCheckPrize(28,'RJ2B','RY2H')
+        RegisterPassCheckPrize(29,'CS51','CS52')
         RegisterPassCheckPrize(30,'RS30','RT30')
         RegisterPassCheckPrize(31,0,'RT31')
         RegisterPassCheckPrize(32,'RS32','RT32')
         RegisterPassCheckPrize(33,0,'RT33')
-        RegisterPassCheckPrize(34,0,0)
+        RegisterPassCheckPrize(34,'RJ2C','RJ2E')
         RegisterPassCheckPrize(35,'IP02','RT35')
         RegisterPassCheckPrize(36,'RS36','RT36')
         RegisterPassCheckPrize(37,0,'RT37')
         RegisterPassCheckPrize(38,5,'CS02')
         RegisterPassCheckPrize(39,0,'RT39')
-        RegisterPassCheckPrize(40,0,0)
+        RegisterPassCheckPrize(40,'RJ2D','RY3G')
     endfunction
 
     function InitRegisterMission()//注册任务
@@ -267,9 +267,14 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         function PlayerMissionComplete(int pid,int missionid)//任务完成
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
-                AddDzPlayerData(pid,4,1,exp)
+                if  MissionDay >= 21
+                    AddDzPlayerData(pid,4,1,exp)
+                    AddDzPlayerData(pid,4,2,exp)
+                else
+                    AddDzPlayerData(pid,4,1,exp)
+                endif
                 //DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[系统]：|r"+GetMissionName(missionid)+"任务完成！通行证经验+"+I2S(exp))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[系统]：|r任务完成！通行证经验+"+I2S(exp))
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[系统]：|r任务完成！全部通行证经验+"+I2S(exp))
             endif
         endfunction
         
@@ -403,6 +408,21 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 endif
             end
 
+            lv = GetPlayerPassLevel(pid,1)
+            shop = 0
+            if  DzShop(Player(pid),"RWK2") == true
+                shop = 1
+            endif
+            for i2 = 1,MaxPassCheckPrizeNum
+                if  lv >= i2
+                    GivePassCheckPrize(pid,i2+20,1)
+                    
+                    if  shop == 1
+                        GivePassCheckPrize(pid,i2+20,2)
+                    endif
+                endif
+            end
+
 
 
         endfunction
@@ -421,6 +441,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 if  TimeHour >= 20 and TimeHour<= 24
                     MissionAddNumFunc(pid,18,1)
                 endif
+
+                
+                
+
             endif
         endfunction
     endscope
@@ -457,6 +481,10 @@ library PassCheckUI uses GameFrame,PassCheckMission
     private int PageMax = 1
     private int Step = 0
 
+
+    function GetPassCheckStep()->int
+        return Step
+    endfunction
     
 
     function GetPassCheckPrizeId(int id,int num)->int
@@ -557,6 +585,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 nowexp = nowexp + 7
             endif
             nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
+            BJDebugMsg("通行证"+I2S(step+1)+"exp"+I2S(nowexp))
             for i = 1,MaxPassCheckDayExp
                 if  i <= nowexp
                     DzFrameSetTexture(BUTTON_Back[600+i][0],"war3mapImported\\UI_Pass_Exp1.tga",0)
@@ -597,7 +626,10 @@ library PassCheckUI uses GameFrame,PassCheckMission
     function PassFreamClickNextStep(int pid,int step)
         if  GetLocalPlayer() == Player(pid)
             Step = step
+            
+            DzFrameSetTexture(BUTTON_Back[653][0],"replaceabletextures\\commandbuttons\\BTNTXZ0"+I2S(step+2)+".blp",0)
             RePassClickPrize(pid)
+            RePassClickFrame(pid)
         endif
     endfunction
 
@@ -752,6 +784,12 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
         CreateFrameButton1()
 
+
+        if  MissionDay >= 21
+            Step = 1
+        else
+            Step = 0
+        endif
         
         Button.show = false
     endfunction

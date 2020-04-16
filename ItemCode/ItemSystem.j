@@ -628,6 +628,16 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
+        elseif  itemid == 'IP06'
+            if  PlayerReRandomPrize(pid) == false
+                UnitAddItemById(u1,itemid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前没有副本奖励选项！")
+            endif
+        elseif  itemid == 'IP07'
+            if  PlayerReRuneRandomPrize(pid) == false
+                UnitAddItemById(u1,itemid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前没有符印奖励选项！")
+            endif
         elseif  itemid >= 'I051' and itemid <= 'I055'
             PlayerUseSuperSoul(u1,GetManipulatedItem())
         elseif  itemid >= 'IK01' and itemid <= 'IK8Z'
@@ -736,21 +746,6 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
             endif
-        elseif  itemid == 'IP06'
-            HeroAddExp( Pu[1], 100)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+100")
-        elseif  itemid == 'IP07'
-            if  attacklv <= 11
-                UnitAddPoolItemShow(u1,11)
-            else
-                UnitAddPoolItemShow(u1,17)
-            endif
-        elseif  itemid == 'IP08'
-            HeroAddExp( Pu[1], 300)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+300")
-        elseif  itemid == 'IP09'
-            HeroAddExp( Pu[1], 500)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r您使用了"+GetObjectName(itemid)+",境界经验+500")
         endif
         
         flush locals

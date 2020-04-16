@@ -146,6 +146,9 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
         endif
     endfunction
 
+
+    
+
 //玩家点击奖励
     function PlayerClickPrize(int pid,int index)
         int id = 0
@@ -238,6 +241,8 @@ library PrizeFrame uses GameFrame,MagicItemCollectCode
     endfunction
 
 
+
+    
     
 
     

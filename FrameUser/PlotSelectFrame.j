@@ -79,6 +79,15 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         */
     endfunction
 
+    function GetNowOverPlotIndex(int pid)->int
+        for i = 1,8
+            if  GetPlayerPlotStateByIndex(pid,9-i) == 2
+                return 9-i
+            endif
+        end
+        return 1
+    endfunction
+
 
     //获取副本图标
     function GetPlotIcon(int pid,int index)->string
@@ -114,6 +123,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     function SetPlayerPlotReNum(int pid,int num)
         Pint[310] = num
     endfunction
+
+    
     
 
 
@@ -281,7 +292,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
     endfunction
 
+
+
     
+
 
     //读取奖励法宝池序号
     function GetPlotPrizeMagicIndex(int pid,int index)->int
@@ -314,12 +328,12 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         blue = blue *cj
         zi = zi * cj
         green = 100-blue-zi
-
+/*
         BJDebugMsg("法宝加成:"+R2S(cj*100)+"%")
         BJDebugMsg("法宝概率:绿"+R2S(green*100)+"%")
         BJDebugMsg("法宝概率:蓝"+R2S(blue*100)+"%")
         BJDebugMsg("法宝概率:紫"+R2S(zi*100)+"%")
-
+*/
         if  ran <= green
             prizeid = 15
         elseif  ran <= 100-zi
@@ -345,6 +359,39 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
 
         return prizeid
+    endfunction
+
+
+    function PlayerReRandomPrize(int pid)->bool
+        int rid = 0
+        int index = GetNowOverPlotIndex(pid)
+
+        int id3 = 0
+        int id4 = 0
+        int id5 = 0
+        BJDebugMsg("当前副本"+I2S(index))
+        if  Pint[300] == 0
+            if  GetUnitIntState(Pu[1],403) > 0
+                for i = 1,3
+                    rid = GetUnitIntState(Pu[1],402+i)
+                    if  rid > 0
+                        
+                        RecoveryPrizePoolData(pid,10+GetTypeIdData(rid,101),rid)
+                        SetUnitIntState(Pu[1],402+i,0)
+                    endif
+                end
+                
+                id3 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+                id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+                if  GameLevel >= 3
+                    id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+                endif
+                GivePlayerPrize(pid,'CF01',0,id3,id4,id5)
+
+                return true
+            endif
+        endif
+        return false
     endfunction
 
     //给玩家副本奖励
