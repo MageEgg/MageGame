@@ -208,6 +208,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY4O',"凌风之灵","ReplaceableTextures\\CommandButtons\\BTNRY4O.BLP","")
         call InitTypeIdStrings('RY4P',"魔芝星耀","ReplaceableTextures\\CommandButtons\\BTNRY4P.BLP","每秒生命+200\n每秒业力+10\n被动触发概率+2%\n冷却缩减+10%")
         call InitTypeIdStrings('RY4Q',"九五之尊","ReplaceableTextures\\CommandButtons\\BTNCH03.BLP","")
+        call InitTypeIdStrings('RY4R',"无极修罗","ReplaceableTextures\\CommandButtons\\BTNCH09.BLP","")
         call InitTypeIdStrings('RJ1A',"小有成就","ReplaceableTextures\\CommandButtons\\BTNRJ1A.BLP","")
         call InitTypeIdStrings('RJ1B',"老油条","ReplaceableTextures\\CommandButtons\\BTNRJ1B.BLP","")
         call InitTypeIdStrings('RJ1C',"心肝宝贝","ReplaceableTextures\\CommandButtons\\BTNRJ1C.BLP","")
@@ -241,8 +242,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG1E',"难5通关15次","ReplaceableTextures\\CommandButtons\\BTNTG05.BLP","法宝稀有度+15%")
         call InitTypeIdStrings('RG1F',"难6通关15次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1G',"难7通关15次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","法宝稀有度+15%")
-        call InitTypeIdStrings('RG1H',"难8通关12次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
-        call InitTypeIdStrings('RG1I',"难9通关12次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
+        call InitTypeIdStrings('RG1H',"难8通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
+        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
         call InitTypeIdStrings('RGAA',"通关疯狂N1","ReplaceableTextures\\CommandButtons\\BTNCJFK01.BLP","开局金币+500")
         call InitTypeIdStrings('RGAB',"通关疯狂N2","ReplaceableTextures\\CommandButtons\\BTNCJFK02.BLP","")
         call InitTypeIdStrings('RGAC',"通关疯狂N3","ReplaceableTextures\\CommandButtons\\BTNCJFK03.BLP","")
@@ -474,10 +475,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IK96',"|CffFFD24D光之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_06.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926光之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK97',"|CffFFD24D雷之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_07.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926雷之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK98',"|CffFFD24D暗之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926暗之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
-
-
-
-
 
 
 
