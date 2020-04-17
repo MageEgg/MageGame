@@ -495,29 +495,27 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
 
 
 
-    function JJFuncSpell99Timer(unit wu,int n)
+    function JJFuncSpell99Timer(unit wu,real face)
         unit u1 = wu
-        real ang = GetRandomReal(-3.14,3.14)
-        real dis = GetRandomReal(-700,700)
-        real x1 = GetUnitX(wu) + dis * Cos(ang)
-        real y1 = GetUnitY(wu) + dis * Sin(ang)
-        int num = n
+        real ang = face*0.01745
+        real x1 = GetUnitX(wu) + 300 * Cos(ang)
+        real y1 = GetUnitY(wu) + 300 * Sin(ang)
+        int num = 4
         unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
         TimerStart(1.0,true)
         {
             
             IndexGroup g = IndexGroup.create()
             LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
-            GroupEnumUnitsInRange(g.ejg,x1,y1,170,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            GroupEnumUnitsInRange(g.ejg,x1,y1,180,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,50*Pow(10,10),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
             if  num > 0
-                ang = GetRandomReal(-3.14,3.14)
-                dis = GetRandomReal(-700,700)
-                x1 = GetUnitX(u1) + dis * Cos(ang)
-                y1 = GetUnitY(u1) + dis * Sin(ang)
+                ang = ang + 1.047
+                x1 = x1 + 300 * Cos(ang)
+                y1 = y1 + 300 * Sin(ang)
                 u2 = CreateTmUnit(GetOwningPlayer(u1),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
             else
                 endtimer
@@ -529,13 +527,10 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
 
 
     function JJFuncSpell99(unit u1)
-        
-        JJFuncSpell99Timer(u1,3)
-        JJFuncSpell99Timer(u1,3)
-        JJFuncSpell99Timer(u1,3)
-        JJFuncSpell99Timer(u1,3)
-        JJFuncSpell99Timer(u1,3)
-        JJFuncSpell99Timer(u1,3)
+        for i = 0,5
+            JJFuncSpell99Timer(u1,60*i)
+        end
+
     endfunction
 
 
