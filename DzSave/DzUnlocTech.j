@@ -467,7 +467,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RG1E',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,15)),0,0,0)
         InitUnlocTechConditions('RG1F',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,15)),0,0,0)
         InitUnlocTechConditions('RG1G',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,15)),0,0,0)
-        InitUnlocTechConditions('RG1H',InitCond1(1,Unloc_Type_Level,17),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,12)),0,0,0)
+        InitUnlocTechConditions('RG1H',InitCond1(1,Unloc_Type_Level,17),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,15)),0,0,0)
 
 
         //积分兑换
