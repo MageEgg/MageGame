@@ -498,7 +498,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
     function JJFuncSpell99Timer(unit wu,int n)
         unit u1 = wu
         real ang = GetRandomReal(-3.14,3.14)
-        real dis = GetRandomReal(-300,300)
+        real dis = GetRandomReal(-700,700)
         real x1 = GetUnitX(wu) + dis * Cos(ang)
         real y1 = GetUnitY(wu) + dis * Sin(ang)
         int num = n
@@ -509,13 +509,13 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,170,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,999999999999,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,50*Pow(10,10),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
             if  num > 0
                 ang = GetRandomReal(-3.14,3.14)
-                dis = GetRandomReal(-300,300)
+                dis = GetRandomReal(-700,700)
                 x1 = GetUnitX(u1) + dis * Cos(ang)
                 y1 = GetUnitY(u1) + dis * Sin(ang)
                 u2 = CreateTmUnit(GetOwningPlayer(u1),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
@@ -528,12 +528,14 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
     endfunction
 
 
-    function JJFuncSpell99(unit wu)
-        unit u1 = wu
-        JJFuncSpell99Timer(u1,4)
-        JJFuncSpell99Timer(u1,4)
-        JJFuncSpell99Timer(u1,4)
-        JJFuncSpell99Timer(u1,4)
+    function JJFuncSpell99(unit u1)
+        
+        JJFuncSpell99Timer(u1,3)
+        JJFuncSpell99Timer(u1,3)
+        JJFuncSpell99Timer(u1,3)
+        JJFuncSpell99Timer(u1,3)
+        JJFuncSpell99Timer(u1,3)
+        JJFuncSpell99Timer(u1,3)
     endfunction
 
 
