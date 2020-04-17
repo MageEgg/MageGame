@@ -1,6 +1,6 @@
 scope AllTypeIdData initializer init
     function InitDataString1()
- //输出代码
+//输出代码
         call InitTypeIdStrings('FB01',"|CffFFD24D打神鞭|r","ReplaceableTextures\\CommandButtons\\BTNFB01.BLP","雷之符印+1")
         call InitTypeIdStrings('FB02',"|Cff00FF7F中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFB02.BLP","")
         call InitTypeIdStrings('FB03',"|CffFFD24D四不像|r","ReplaceableTextures\\CommandButtons\\BTNFB03.BLP","木之符印+1")
@@ -178,6 +178,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY2B',"圣灵之翼","ReplaceableTextures\\CommandButtons\\BTNRY2B.BLP","")
         call InitTypeIdStrings('RY2D',"幻莲仙翼","ReplaceableTextures\\CommandButtons\\BTNRY2D.BLP","每秒生命+300\n伤害减免+12%\n攻击速度+30%\n\n开局奖励：\n高级技能书x1\n\n解锁外观|cffff0000幻莲仙翼|r")
         call InitTypeIdStrings('RY2H',"魅惑之翼","ReplaceableTextures\\CommandButtons\\BTNCB11.BLP","")
+        call InitTypeIdStrings('RY2I',"断罪神灵","ReplaceableTextures\\CommandButtons\\BTNCB03.BLP","地图等级35级开始，每提升一级，伤害加成+1%。")
         call InitTypeIdStrings('RY1C',"天乾地坤","ReplaceableTextures\\CommandButtons\\BTNRY1C.BLP","")
         call InitTypeIdStrings('RY1E',"麒麟光环","ReplaceableTextures\\CommandButtons\\BTNRY1E.BLP","")
         call InitTypeIdStrings('RY1A',"血灵光环","ReplaceableTextures\\CommandButtons\\BTNRY1A.BLP","")
@@ -232,6 +233,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG0F',"难6通关5次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","")
         call InitTypeIdStrings('RG0G',"难7通关5次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","七命玄门丹x1\n重随英雄次数+1")
         call InitTypeIdStrings('RG0H',"难8通关5次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","复活时间-1秒")
+        call InitTypeIdStrings('RG0I',"难9通关5次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
         call InitTypeIdStrings('RG1A',"难1通关15次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","")
         call InitTypeIdStrings('RG1B',"难2通关15次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1C',"难3通关15次","ReplaceableTextures\\CommandButtons\\BTNTG03.BLP","法宝稀有度+15%")
@@ -239,7 +241,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG1E',"难5通关15次","ReplaceableTextures\\CommandButtons\\BTNTG05.BLP","法宝稀有度+15%")
         call InitTypeIdStrings('RG1F',"难6通关15次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1G',"难7通关15次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","法宝稀有度+15%")
-        call InitTypeIdStrings('RG1H',"难8通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
+        call InitTypeIdStrings('RG1H',"难8通关12次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
+        call InitTypeIdStrings('RG1I',"难9通关12次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
         call InitTypeIdStrings('RGAA',"通关疯狂N1","ReplaceableTextures\\CommandButtons\\BTNCJFK01.BLP","开局金币+500")
         call InitTypeIdStrings('RGAB',"通关疯狂N2","ReplaceableTextures\\CommandButtons\\BTNCJFK02.BLP","")
         call InitTypeIdStrings('RGAC',"通关疯狂N3","ReplaceableTextures\\CommandButtons\\BTNCJFK03.BLP","")
@@ -248,6 +251,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RGAF',"通关疯狂N6","ReplaceableTextures\\CommandButtons\\BTNCJFK06.BLP","")
         call InitTypeIdStrings('RGAG',"通关疯狂N7","ReplaceableTextures\\CommandButtons\\BTNCJFK07.BLP","")
         call InitTypeIdStrings('RGAH',"通关疯狂N8","ReplaceableTextures\\CommandButtons\\BTNCJFK08.BLP","")
+        call InitTypeIdStrings('RGAI',"通关疯狂N9","ReplaceableTextures\\CommandButtons\\BTNCJFK09.BLP","")
         call InitTypeIdStrings('RSHA',"商城3件套","ReplaceableTextures\\CommandButtons\\BTNSCX3.blp","每秒生命+100\n伤害减免+1%\n初级被动技能书*1")
         call InitTypeIdStrings('RSHB',"商城5件套","ReplaceableTextures\\CommandButtons\\BTNSCX5.blp","每秒生命+200\n伤害减免+2%\n完美技能进阶石*1")
         call InitTypeIdStrings('RSHC',"商城8件套","ReplaceableTextures\\CommandButtons\\BTNSCX8.blp","每秒生命+300\n伤害减免+3%\n开局补天石+2")
@@ -470,13 +474,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IK96',"|CffFFD24D光之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_06.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926光之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK97',"|CffFFD24D雷之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_07.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926雷之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
         call InitTypeIdStrings('IK98',"|CffFFD24D暗之刻印|r","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","为|Cffffc926史诗品质|r的|Cffffc926宝物|r附加一条|Cffffc926暗之符印|r属性。|n|n|Cff00ff7f点击可将刻印镶嵌至指定史诗品质的宝物。|n|r|Cffff0000镶嵌后不可拆卸和替换。|r")
-
-
-
-
-
-
-
 
 
 

@@ -128,7 +128,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckMission(15,1,16,"","通关16次任意副本")
         RegisterPassCheckMission(16,1,6,"","击杀6次送宝金蟾")
         RegisterPassCheckMission(17,1,16,"","完成16次山灵挑战")
-        RegisterPassCheckMission(18,1,1,"","20:00-24:00登陆游戏")
+        RegisterPassCheckMission(18,1,1,"","17:00-24:00登陆游戏")
 
 
         RegisterPassCheckMission(21,2,1,"","击杀1次闻太师")
@@ -226,7 +226,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             if  step == 0
                 exp = exp + 7
             endif
-            return exp / MaxPassCheckDayExp
+            int level = exp / MaxPassCheckDayExp
+            if  level > 20
+                level = 20
+            endif
+            return level
         endfunction
 
         function GetMissionIndex(int pid,int missionid)->int//根据任务判断今天的index
@@ -349,7 +353,9 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             elseif  uid >= 'uT1A' and uid <= 'uT1Z'
                 MissionAddNumFunc(pid,14,1)//武灵挑战
             elseif  uid == 'u020'
-                MissionAddNumFunc(pid,31,1)//-妖魅
+                if  GetUnitAbilityLevel(Pu[1],'AG0B') > 0
+                    MissionAddNumFunc(pid,31,1)//-妖魅
+                endif
             endif
         endfunction
 
@@ -379,8 +385,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---道具类")
                     SetPlayerTechResearchedEx(Player(pid),id)
                 elseif  id < 500
+                    BJDebugMsg("PassPrize :玄铁"+I2S(id)+"---资源类")
                     AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
                 elseif  id < 1000000
+                    BJDebugMsg("PassPrize :金币"+I2S(id)+"---资源类")
                     AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cff00ff00[通行证奖励]：|r"+GetItemName(CreateItem(id,x-512,y-512))+"已创建至练功房左下角!")
@@ -438,7 +446,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 
                 PlayerAddPassPrize(pid)
                 
-                if  TimeHour >= 20 and TimeHour<= 24
+                if  TimeHour >= 17 and TimeHour<= 24
                     MissionAddNumFunc(pid,18,1)
                 endif
 
@@ -503,9 +511,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
             DzFrameSetText(BUTTON_Text[650],"|cffffcc00"+I2S(level)+"|r")
             BJDebugMsg("level"+I2S(level))
             for i = 1,10
-                index = (Page+Step*2)*10+i
+                index = Page*10+i
                 if  level >= index
-                    DzFrameSetText(BUTTON_Text[610+i],"|cff000000"+I2S(Page*10+i)+"|r")
+                    DzFrameSetText(BUTTON_Text[610+i],"|cff000000"+I2S(index)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\UI_Pass_LevelBack.tga",0)
 
                     
@@ -519,7 +527,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\alpha.tga",0)
                     endif
                 else
-                    DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(Page*10+i)+"|r")
+                    DzFrameSetText(BUTTON_Text[610+i],"|cffffffff"+I2S(index)+"|r")
                     DzFrameSetTexture(BUTTON_Back[610+i][0],"war3mapImported\\alpha.tga",0)
 
                     DzFrameSetTexture(BUTTON_Back[620+i][3],"war3mapImported\\UI_DisBack.tga",0)
@@ -529,7 +537,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
 
                 for y = 1,2
-                    id = GetPassCheckPrize(index,y)
+                    id = GetPassCheckPrize(index+Step*20,y)
                     if  id > 0
                         if  id < 500
                             DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\UI_PlayerState2.tga",0)
@@ -580,11 +588,15 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 endif
             end
 
-            nowexp = GetPlayerPassExp(pid,step)
-            if  step == 0
-                nowexp = nowexp + 7
+            if  level >= 20
+                nowexp = 0
+            else
+                nowexp = GetPlayerPassExp(pid,step)
+                if  step == 0
+                    nowexp = nowexp + 7
+                endif
+                nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
             endif
-            nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
             BJDebugMsg("通行证"+I2S(step+1)+"exp"+I2S(nowexp))
             for i = 1,MaxPassCheckDayExp
                 if  i <= nowexp
@@ -662,6 +674,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
             else
                 Button.show = true
                 RePassClickFrame(pid)
+                RePassClickPrize(pid)
             endif
         endif
     endfunction
@@ -790,6 +803,7 @@ library PassCheckUI uses GameFrame,PassCheckMission
         else
             Step = 0
         endif
+        DzFrameSetTexture(BUTTON_Back[653][0],"replaceabletextures\\commandbuttons\\BTNTXZ0"+I2S(Step+2)+".blp",0)
         
         Button.show = false
     endfunction

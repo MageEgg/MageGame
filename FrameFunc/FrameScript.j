@@ -133,29 +133,48 @@
             int lv = exp / 6
             exp = exp - lv * 6
             if  id == 652 //通行证
-                SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
-                SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                if  step == 0
+                    SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                    SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                elseif  step == 1
+                    if  MissionDay > 20
+                        SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                        SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                    else
+                        SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv0")
+                        SetTipsData(11,"","距离第2赛季还剩|cffff0000"+I2S(21-MissionDay)+"|r天")
+                    endif
+                endif
             elseif  id == 653 //商城通行证
                 if  step == 0
                     if  DzShop(Player(pid),"RWK") == false
                         SetTipsData(10,"","|cffffcc00封神通行证|r|cffff0000(商城购买后激活)|r")
                     else
-                        SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
-                        SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                        if  lv >= 20
+                            SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cff00ff00已满级)")
+                        else
+                            SetTipsData(10,"","|cffffcc00封神通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                            SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                        endif
                     endif
+                    
                 elseif  step == 1
                     if  DzShop(Player(pid),"RWK2") == false
                         SetTipsData(10,"","|cffffcc00荣耀通行证|r|cffff0000(商城购买后激活)|r")
                     else
-                        SetTipsData(10,"","|cffffcc00荣耀通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
-                        SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                        if  lv >= 20
+                            SetTipsData(10,"","|cffffcc00荣耀通行证|r.Lv"+I2S(lv)+"(|cff00ff00已满级)")
+                        else
+                            SetTipsData(10,"","|cffffcc00荣耀通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                            SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                        endif
                     endif
                 endif
             endif
-            
             SetTipsData(12,""," ")
             SetTipsData(13,"","|cffcc99ff输入CX完成每日任务可以获得通行证经验|r")
-            SetTipsData(14,"","|cffcc99ff封神通行证与普通通行证等级同步|r")
+            SetTipsData(14,"","|cffcc99ff该通行证与普通通行证等级同步|r")
+            
         endif
         ShowTipsUI()
     endfunction

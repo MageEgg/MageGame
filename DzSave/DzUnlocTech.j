@@ -458,6 +458,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RG0F',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,5)),0,0,0)
         InitUnlocTechConditions('RG0G',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,5)),0,0,0)
         InitUnlocTechConditions('RG0H',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,5)),0,0,0)
+        InitUnlocTechConditions('RG0I',InitCond1(1,Unloc_Type_Level,18),InitCond2(0,Unloc_Type_JF,GameDataList(3,10,5)),0,0,0)
 
 
         InitUnlocTechConditions('RG1B',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(3,3,15)),0,0,0)
@@ -466,7 +467,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RG1E',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(3,6,15)),0,0,0)
         InitUnlocTechConditions('RG1F',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(3,7,15)),0,0,0)
         InitUnlocTechConditions('RG1G',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(3,8,15)),0,0,0)
-        InitUnlocTechConditions('RG1H',InitCond1(1,Unloc_Type_Level,17),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,15)),0,0,0)
+        InitUnlocTechConditions('RG1H',InitCond1(1,Unloc_Type_Level,17),InitCond2(0,Unloc_Type_JF,GameDataList(3,9,12)),0,0,0)
 
 
         //积分兑换
@@ -478,8 +479,10 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY2F',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_Load,GameDataList(12,6,6)),0,0,0)
         InitUnlocTechConditions('RY4O',InitCond1(1,Unloc_Type_Level,16),InitCond2(0,Unloc_Type_Load,GameDataList(14,15,15)),0,0,0)
         InitUnlocTechConditions('RY1E',InitCond1(1,Unloc_Type_Level,20),InitCond2(0,Unloc_Type_Load,GameDataList(11,5,5)),0,0,0)
+        InitUnlocTechConditions('RY3E',InitCond1(1,Unloc_Type_Level,24),InitCond2(0,Unloc_Type_Load,GameDataList(13,5,5)),0,0,0)
         
 
+        InitUnlocTechConditions('RY2I',InitCond1(2,Unloc_Type_Level,35),0,0,0,0)
 
         //称号
         InitUnlocTechConditions('RY4E',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(3,2,1)),0,0,0)
@@ -537,8 +540,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             InitUnlocTechConditions('RY9E',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,6400)),0,0,0)
             InitUnlocTechConditions('RY9F',InitCond1(1,Unloc_Type_Level,8),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,9472)),0,0,0)
             InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,13619)),0,0,0)
-            /*
             InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,18180)),0,0,0)
+            /*
             InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,23198)),0,0,0)
             InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,28718)),0,0,0)
             */
@@ -557,6 +560,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         ReExChangeTips(pid,'IY2F')
         ReExChangeTips(pid,'IY4O')
         ReExChangeTips(pid,'IY1E')
+        ReExChangeTips(pid,'IY3E')
     endfunction
 
     //物品兑换注册
@@ -571,6 +575,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
         ExChangeList('IY4O',16,2,1,2300,14,15,15)
         ExChangeList('IY1E',20,2,1,3200,11,5,5)
+
+        ExChangeList('IY3E',24,2,1,3300,13,5,5)
 
     endfunction
 
