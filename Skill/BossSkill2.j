@@ -527,8 +527,24 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
 
 
     function JJFuncSpell99(unit u1)
+        real face = 0
         for i = 0,5
             JJFuncSpell99Timer(u1,60*i)
+        end
+
+        for n = 1,2
+            face = GetUnitFacing(u1)-75+n*50
+            bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(u1),'z105',GetUnitX(u1)+100*Cos(face*0.01745),GetUnitY(u1)+100*Sin(face*0.01745),face)
+            SetUnitRealState(bj_lastCreatedUnit,1,GetUnitRealState(u1,1)*0.5)
+            SetUnitRealState(bj_lastCreatedUnit,3,GetUnitRealState(u1,3))
+            SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(u1,5))
+            SetUnitRealState(bj_lastCreatedUnit,17,GetUnitRealState(u1,17))
+            SetUnitRealState(bj_lastCreatedUnit,19,GetUnitRealState(u1,19))
+            SetUnitRealState(bj_lastCreatedUnit,20,GetUnitRealState(u1,20))
+            UnitApplyTimedLife(bj_lastCreatedUnit,'BHwe',6)
+
+            
+            bj_lastCreatedUnit = null
         end
 
     endfunction
