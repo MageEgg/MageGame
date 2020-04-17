@@ -502,12 +502,12 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         real y1 = GetUnitY(wu) + 300 * Sin(ang)
         int num = 4
         unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
-        TimerStart(1.0,true)
+        TimerStart(1.5,true)
         {
             
             IndexGroup g = IndexGroup.create()
             LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
-            GroupEnumUnitsInRange(g.ejg,x1,y1,180,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            GroupEnumUnitsInRange(g.ejg,x1,y1,165,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
             UnitDamageGroup(u1,g.ejg,50*Pow(10,10),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
@@ -535,10 +535,11 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         for n = 1,2
             face = GetUnitFacing(u1)-75+n*50
             bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(u1),'z105',GetUnitX(u1)+200*Cos(face*0.01745),GetUnitY(u1)+200*Sin(face*0.01745),face)
-            SetUnitRealState(bj_lastCreatedUnit,1,GetUnitRealState(u1,1)*0.5)
+            SetUnitRealState(bj_lastCreatedUnit,1,GetUnitRealState(u1,1)/2)
             SetUnitRealState(bj_lastCreatedUnit,3,GetUnitRealState(u1,3))
             SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(u1,5))
             SetUnitRealState(bj_lastCreatedUnit,17,GetUnitRealState(u1,17))
+            SetUnitRealState(bj_lastCreatedUnit,18,-50)
             SetUnitRealState(bj_lastCreatedUnit,19,GetUnitRealState(u1,19))
             SetUnitRealState(bj_lastCreatedUnit,20,GetUnitRealState(u1,20))
             UnitApplyTimedLife(bj_lastCreatedUnit,'BHwe',6)
