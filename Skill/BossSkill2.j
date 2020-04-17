@@ -534,7 +534,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
 
         for n = 1,2
             face = GetUnitFacing(u1)-75+n*50
-            bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(u1),'z105',GetUnitX(u1)+100*Cos(face*0.01745),GetUnitY(u1)+100*Sin(face*0.01745),face)
+            bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(u1),'z105',GetUnitX(u1)+200*Cos(face*0.01745),GetUnitY(u1)+200*Sin(face*0.01745),face)
             SetUnitRealState(bj_lastCreatedUnit,1,GetUnitRealState(u1,1)*0.5)
             SetUnitRealState(bj_lastCreatedUnit,3,GetUnitRealState(u1,3))
             SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(u1,5))
