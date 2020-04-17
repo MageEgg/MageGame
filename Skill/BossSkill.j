@@ -904,7 +904,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         {
             time = time + 1
             if  time <= 5
-                AddEffectInArea(x2,y2,370,22,"effect2_az_FallSword_ice.mdl")
+                AddEffectInArea(x2,y2,370,12,"effect2_az_FallSword_ice.mdl")
                 UnitGroupAddDamageTimerAddBuff(u1,0.24,x2,y2,damage,400,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa,"",Buffdj,1,0)
             else
                 endtimer
@@ -1266,6 +1266,37 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    function BossFuncSpell57()
+        insert BossSpell
+        unit u2 = null
+        int time = 0
+        for num = 1,6
+            u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',x1+900*Cos(60*num*0.01745),y1+900*Sin(60*num*0.01745),270)
+            RemoveUnitTimer(u2,1)
+            BossFuncSpell.execute(u1,u2,'AZ1G')
+        end
+        TimerStart(2,true)
+        {
+            time = time + 1
+            if  time == 1
+                for num = 1,5
+                    u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',x1+600*Cos(72*num*0.01745),y1+600*Sin(72*num*0.01745),270)
+                    RemoveUnitTimer(u2,1)
+                    BossFuncSpell.execute(u1,u2,'AZ1G')
+                end
+            elseif  time == 2
+                u2 = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'e000',x1,y1,270)
+                RemoveUnitTimer(u2,1)
+                BossFuncSpell.execute(u1,u2,'AZ0O')
+                BossFuncSpell.execute(u1,u2,'AZ0S')
+            elseif  time == 3
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function BossFuncSpell(unit wu,unit tu,int id)
         unit u1 = wu
         unit u2 = tu
@@ -1449,6 +1480,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ3D'
             damage = attack*6
             BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell56")
+
+
+        elseif  id == 'AZ3E'
+            damage = attack*12
+            BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell57")
+        
 
         ////////////////////////////分割线////////////////////////////////
 
