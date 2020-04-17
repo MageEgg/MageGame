@@ -824,6 +824,9 @@ library CreateOpera uses DamageCode
         unit u = null
         unit u2 = null
         int uid = 'mb09'
+        if  GameLevel >= 9
+            uid = 'mb10'
+        endif
         LastBOSSOpera = true
         UnitTimerAddSkill(GameDefendUnit,'AZ08',10)
         UnitTimerAddSkill(GameDefendUnit,'Avul',10)
