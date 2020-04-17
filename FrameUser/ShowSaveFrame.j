@@ -606,7 +606,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     if  unlock == 1
                         lv = DzPlayerLv(Player(pid))
                         if  lv > 35
-                            SetTipsData(h,"","伤害加成+10%(|cff00ff00+"+I2S(lv-35)+"1%|r)")
+                            SetTipsData(h,"","伤害加成+10%(|cff00ff00+"+I2S(lv-35)+"%|r)")
                         else
                             SetTipsData(h,"","伤害加成+10%")
                         endif
