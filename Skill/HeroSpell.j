@@ -1580,7 +1580,6 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 UnitDamageGroup(u1,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
                 RemoveUnit(u2)
-                SetUnitXY(u1,x1,y1)
                 if  GetUnitIntState(u1,'S510') == 1
                     SetUnitScale(u1,0.3,0.3,0.3)
                 elseif GetUnitIntState(u1,'S510') == 2

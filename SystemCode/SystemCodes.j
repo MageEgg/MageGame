@@ -84,7 +84,7 @@ library SystemCodes uses ServerTime,Define1
 
     function SendPlayerUnit(int pid,real x,real y) //通用单位传送
         if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
-            UnitTimerAddSkill(Pu[1],'AZ98',0.1)
+            UnitTimerAddSkill(Pu[1],'AZ98',0.15)
         endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true and GetUnitAbilityLevel(Pu[1],'AZ96') != 5
             //小图
@@ -110,7 +110,7 @@ library SystemCodes uses ServerTime,Define1
 
     function SendPlayerUnitBarringCamera(int pid,real x,real y) //通用单位传送
         if  GetUnitAbilityLevel(Pu[1],'AZ98') == 0
-            UnitTimerAddSkill(Pu[1],'AZ98',0.1)
+            UnitTimerAddSkill(Pu[1],'AZ98',0.15)
         endif
         if  IsLocInRect(gg_rct_GameRect,x,y) == true
             //小图
