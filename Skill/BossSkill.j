@@ -1485,8 +1485,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ3E'
             damage = attack*12
             BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell57")
-        
-
+        elseif  id == 'AZ3F'
+            JJFuncSpell99(u1)
         ////////////////////////////分割线////////////////////////////////
 
         elseif  id >= 'AZ2A' and id <= 'AZ2Z'

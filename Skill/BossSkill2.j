@@ -5,7 +5,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         TimerStart(1,true)
         {
             int num = GetUnitIntState(u2,'AZ2A')
-            UnitDamageTarget(u1,u2,GetUnitState(u2,UNIT_STATE_LIFE)*0.03,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageTarget(u1,u2,GetUnitState(u2,UNIT_STATE_LIFE)*0.03,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             num = num - 1
             SetUnitIntState(u2,'AZ2A',num - 1)
             if  num <= 0
@@ -43,7 +43,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",0.5)
             GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*4.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*4.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
@@ -81,7 +81,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",0.5)
             GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*4.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*4.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
@@ -130,7 +130,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl",0.5)
             GroupEnumUnitsInRange(g.ejg,x1,y1,100,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*4.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*4.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
@@ -182,13 +182,13 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         int gg = g
         LocAddEffectSetSize(x1,y1,"effect2_az_coco_e2.mdl",2.0)
         GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-        UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*6.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+        UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*6.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
         TimerStart(1,true)
         {
             IndexGroup g = gg 
             LocAddEffect(x1,y1,"effect_az_tormentedsoul_t1.mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*6.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*6.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             num = num - 1
             if  num <= 0
                 g.destroy()
@@ -227,7 +227,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         real life = GetUnitState(tu,UNIT_STATE_LIFE)
         real maxlife = GetUnitState(tu,UNIT_STATE_MAX_LIFE)
         if  life / maxlife <= 0.4
-            UnitDamageTarget(wu,tu,2000000000,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
+            UnitDamageTarget(wu,tu,2000000000,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_ENHANCED,null)
             DisplayTimedTextToPlayer(GetOwningPlayer(tu),0,0,10,"|cffffcc00[系统]：|r你的生命低于40%，被因果律斩杀了")
         endif
     endfunction
@@ -265,7 +265,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetRotate(x1,y1,GetRandomReal(1,360),"effect_zm(30).mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*2.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*2.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             time = time - 1
             if  time <= 0
@@ -351,7 +351,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             LocAddEffectTimerOrSize(x1,y1,0,"effect2_chanrao.mdl",1.0,1.8)
             LocAddEffectSetSize(x1,y1,"effect_forestbolt.mdl",3.0)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             endtimer
@@ -369,7 +369,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetSize(x1,y1,"effect_forestbolth.mdl",3.0)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             endtimer
@@ -387,7 +387,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetSize(x1,y1,"effect_az_kaer_t1.mdl",1.5)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             endtimer
@@ -406,7 +406,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             LocAddEffectSetSize(x1,y1,"effect_az_cwdullahan_d1target.mdl",1.6)
             LocAddEffectSetSize(x1,y1,"effect_green-texiao-shandian.mdl",1.6)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             endtimer
@@ -424,7 +424,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffectSetSize(x1,y1,"effect_hero_grandmagus_n1s_z_down.mdl",1.6)
             GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             endtimer
@@ -464,7 +464,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
                 IndexGroup g = IndexGroup.create()
                 LocAddEffectSetSize(x1,y1,"effect_az_tormentedsoul_t1.mdl",0.5)
                 GroupEnumUnitsInRange(g.ejg,x1,y1,200,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-                UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+                UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*12.0,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
                 g.destroy()
                 LocAddEffectSetSize(x1,y1,"effect_AA_bwaxec.mdl",1.2)
                 
@@ -491,6 +491,49 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             flush locals
         }
         flush locals
+    endfunction
+
+
+
+    function JJFuncSpell99Timer(unit wu,int n)
+        unit u1 = wu
+        real ang = GetRandomReal(-3.14,3.14)
+        real dis = GetRandomReal(-300,300)
+        real x1 = GetUnitX(wu) + dis * Cos(ang)
+        real y1 = GetUnitY(wu) + dis * Sin(ang)
+        int num = n
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
+        TimerStart(1.0,true)
+        {
+            
+            IndexGroup g = IndexGroup.create()
+            LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
+            GroupEnumUnitsInRange(g.ejg,x1,y1,170,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,999999999999,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            RemoveUnit(u2)
+            num = num - 1
+            if  num > 0
+                ang = GetRandomReal(-3.14,3.14)
+                dis = GetRandomReal(-300,300)
+                x1 = GetUnitX(u1) + dis * Cos(ang)
+                y1 = GetUnitY(u1) + dis * Sin(ang)
+                u2 = CreateTmUnit(GetOwningPlayer(u1),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+
+    function JJFuncSpell99(unit wu)
+        unit u1 = wu
+        JJFuncSpell99Timer(u1,4)
+        JJFuncSpell99Timer(u1,4)
+        JJFuncSpell99Timer(u1,4)
+        JJFuncSpell99Timer(u1,4)
     endfunction
 
 
