@@ -2,7 +2,7 @@ library DzDataSetting uses DzBase
 
     //////////////////////////////////////////////////////////
     //使用的宏定义
-    #define MaxGameLevel 8
+    #define MaxGameLevel 9
 
     #define MaxHeroExpLevel 3 //最大等级
     #define MaxHeroNeedExp0 12 //经验需求
@@ -53,9 +53,9 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[5] = 15
         DzPlayerInitTGCos[6] = 15
         DzPlayerInitTGCos[7] = 15
-        DzPlayerInitTGCos[8] = 5
-        /*DzPlayerInitTGCos[9] = 9
-        DzPlayerInitTGCos[10] = 10*/
+        DzPlayerInitTGCos[8] = 12
+        DzPlayerInitTGCos[9] = 5
+        //DzPlayerInitTGCos[10] = 10
 
         DzPlayerInitCrazyTGCos[1] = 1
         DzPlayerInitCrazyTGCos[2] = 1
@@ -65,8 +65,8 @@ library DzDataSetting uses DzBase
         DzPlayerInitCrazyTGCos[6] = 1
         DzPlayerInitCrazyTGCos[7] = 1
         DzPlayerInitCrazyTGCos[8] = 1
-        /*DzPlayerInitCrazyTGCos[9] = 1
-        DzPlayerInitCrazyTGCos[10] = 1*/
+        DzPlayerInitCrazyTGCos[9] = 1
+        //DzPlayerInitCrazyTGCos[10] = 1
     endfunction
     
     function DzDataGroupSetting()
