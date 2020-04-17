@@ -352,6 +352,10 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         endif
         
 
+        if  GetPlayerTechCount(Player(pid),'RY2I',true) > 0
+            AddUnitRealState(Pu[1],17,10+(lv-35))
+        endif
+        
 
 
 

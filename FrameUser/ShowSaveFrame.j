@@ -92,7 +92,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
         
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
-        //RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
+        RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
@@ -105,6 +105,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
         RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0)//魅惑之翼
+        RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0)//断罪神灵
 
         
         
@@ -116,6 +117,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)//独孤求败 N6
         RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//独孤求败 N7
         RegisterShowSaveFrameData(1,'RY4Q','RY4Q',0,0,0,0)//九五之尊 N8
+        RegisterShowSaveFrameData(1,'RY4R','RY4R',0,0,0,0)//无极修罗 N9
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
         RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
@@ -159,7 +161,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
         RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0)//难7通关5次
         RegisterShowSaveFrameData(0,'RG0H','RG0H',0,0,0,0)//难8通关5次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG0I','RG0I',0,0,0,0)//难9通关5次
+
 
         RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关15次
         RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0)//难3通关15次
@@ -167,9 +170,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0)//难5通关15次
         RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0)//难6通关15次
         RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关15次
+        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关12次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-//        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关15次
+
 
         RegisterShowSaveFrameData(0,'RGAA','RGAA',0,0,0,0)//通关疯狂N1
         RegisterShowSaveFrameData(0,'RGAB','RGAB',0,0,0,0)//通关疯狂N2
@@ -273,7 +276,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv5
         RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
         RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
-//        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
+        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
 //        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
 //        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
     endfunction
@@ -527,6 +530,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 
                 
                 
+            
                 
             elseif  id >= 'RDAA' and id <= 'RDAZ'
                 if  IsSaveFrameTechUnLock(pid,index) == true
@@ -589,7 +593,6 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     h = 11
                 endif
 
-                
 
                 
                 if  IsSaveFrameTechUnLock(pid,index) == true
@@ -598,10 +601,24 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     unlock = 0
                 endif
                 
-                if  unlock == 1
-                    SetTipsData(h,"",GetTypeIdStateTips(id))
+
+                if  id == 'RY2I'
+                    if  unlock == 1
+                        lv = DzPlayerLv(Player(pid))
+                        if  lv > 35
+                            SetTipsData(h,"","伤害加成+10%(|cff00ff00+"+I2S(lv-35)+"1%|r)")
+                        else
+                            SetTipsData(h,"","伤害加成+10%")
+                        endif
+                    else
+                        SetTipsData(h,"","|cff808080伤害加成+10%|r")
+                    endif
                 else
-                    SetTipsData(h,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
+                    if  unlock == 1
+                        SetTipsData(h,"",GetTypeIdStateTips(id))
+                    else
+                        SetTipsData(h,"","|cff808080"+GetTypeIdStateTips(id)+"|r")
+                    endif
                 endif
 
                 h = h + 1
