@@ -63,7 +63,11 @@ library GameChallenge9 uses GameChallengeBase
                 if  GameTeamChallengeBool[0] == true and GameTeamChallengeBool[1] == true and GameTeamChallengeBool[2] == false
                     GameChallengeBool[90] = true
                     SendPlayerUnit(pid,6432,3104)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r您已进入团队副本，请等待挑战开始！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r您已进入万仙阵副本，请等待挑战开始！")
+                elseif  GameTeamChallengeBool[20] == true and GameTeamChallengeBool[21] == true and GameTeamChallengeBool[22] == false
+                    GameChallengeBool[120] = true
+                    SendPlayerUnit(pid,8065.25,-2052.25)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r您已进入虚空圣战副本，请等待挑战开始！")
                 endif
             endif
         endif
@@ -177,55 +181,52 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
     
-    function GameTeamChallengWin(int pid,int flag,int value)
+    function GameTeamChallengWin(int pid,int value)
         int itid = 0
-        if  flag == 1
-            if  GetRandomReal(0,1) <= 0.8
-                UnitAddItemEx(Pu[1],'IP02')
-                itid = 'IP02'
+        if  GetRandomReal(0,1) <= 0.8
+            itid = 'IP02'
+            UnitAddItemEx(Pu[1],itid)
+        else
+            itid = 'IP03'
+            UnitAddItemEx(Pu[1],itid)
+        endif
+        AddUnitRealState(Pu[1],31,3)
+        AddUnitRealState(Pu[1],32,3)
+        AddUnitRealState(Pu[1],33,3)
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！！！|r")
+        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+"随机获得"+GetObjectName(itid)+"！")
+
+        if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
+            if  DzPlayerLv(Player(pid)) >= 6
+                if  GameLevel >= 3
+                    if  GetPlayerTechCount(Player(pid),'RDAT',true) == 0
+                        SetDzPlayerData(pid,15,20,20)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAT')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你不行|r（永久存档）！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜难度不够要求！")
+                endif
             else
-                UnitAddItemEx(Pu[1],'IP03')
-                itid = 'IP03'
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜地图等级不够要求！")
             endif
-            AddUnitRealState(Pu[1],31,3)
-            AddUnitRealState(Pu[1],32,3)
-            AddUnitRealState(Pu[1],33,3)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cff00ff00通天教主分身已死亡，成功通过挑战！！！|r")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r|cffffff80全队奖励3%攻击力、3%业力和3%生命！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本-万仙阵]：|r"+GetPlayerNameOfColor(pid)+"随机获得"+GetObjectName(itid)+"！")
+        endif
 
-            if  GetUnitTypeId(Pu[1]) == 'H003' //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 6
-                    if  GameLevel >= 3
-                        if  GetPlayerTechCount(Player(pid),'RDAT',true) == 0
-                            SetDzPlayerData(pid,15,20,20)
-                            SetPlayerTechResearchedEx(Player(pid),'RDAT')
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你不行|r（永久存档）！")
-                        endif
-                    else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜难度不够要求！")
+        if  GetUnitTypeId(Pu[1]) == 'H005' //彩蛋
+            if  DzPlayerLv(Player(pid)) >= 6
+                if  GameLevel >= 3
+                    if  GetPlayerTechCount(Player(pid),'RDAU',true) == 0
+                        SetDzPlayerData(pid,15,21,21)
+                        SetPlayerTechResearchedEx(Player(pid),'RDAU')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r（永久存档）！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你不行|r，但可惜地图等级不够要求！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜难度不够要求！")
                 endif
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜地图等级不够要求！")
             endif
-
-            if  GetUnitTypeId(Pu[1]) == 'H005' //彩蛋
-                if  DzPlayerLv(Player(pid)) >= 6
-                    if  GameLevel >= 3
-                        if  GetPlayerTechCount(Player(pid),'RDAU',true) == 0
-                            SetDzPlayerData(pid,15,21,21)
-                            SetPlayerTechResearchedEx(Player(pid),'RDAU')
-                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r（永久存档）！")
-                        endif
-                    else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜难度不够要求！")
-                    endif
-                else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[彩蛋]：|r恭喜您触发了|cffffcc00【彩蛋】|cffff8000师弟，你真不行|r，但可惜地图等级不够要求！")
-                endif
-            endif
-
         endif
     endfunction
 
@@ -247,11 +248,12 @@ library GameChallenge9 uses GameChallengeBase
                 ExecuteFunc("GameTeamChallengA_Opera3")
             endif   
         elseif  uid == 'ut05'
+            GameTeamChallengUnit(R2I(GetUnitRealState(u2,99))) = null
             if  GameTeamChallengeInt(0) == 30
                 for pid = 0,3
                     if  IsPlaying(pid) == true
                         MissionAddNumFunc(pid,25,1) //任务
-                        GameTeamChallengWin(pid,1,GameTeamChallengeInt(1))
+                        GameTeamChallengWin(pid,GameTeamChallengeInt(1))
                         if  IsPlayerInTeamChallenge == true 
                             FlushGameTeamChallengeOfPlayer(pid,0)
                         endif
@@ -332,21 +334,10 @@ library GameChallenge9 uses GameChallengeBase
             end
             GameTeamChallengA_Opera1Timer(30)
         else
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活团队副本！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活万仙阵副本！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活万仙阵副本！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000没有玩家进入挑战，可重新激活万仙阵副本！！！|r")
         endif
-    endfunction
-
-    function GameTeamChallengeDoorTimer(unit wu,real time)
-        unit u = wu
-        TimerStart(time,false)
-        {
-            SetUnitVertexColor(u,255,255,255,0)
-            endtimer
-            flush locals
-        }
-        flush locals
     endfunction
 
     function OpenGameTeamChallengeEx(int pid,int fl,int t)
@@ -367,14 +358,14 @@ library GameChallenge9 uses GameChallengeBase
         elseif  flag == 2
             OpenGameTeamChallengeTimer(time,3)
         endif
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r"+GetPlayerNameOfColor(pid)+"激活了|cffff8000团队副本|r，请在|cff00ff00"+I2S(time)+"秒|R内进入副本集合！！！") 
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r"+GetPlayerNameOfColor(pid)+"激活了|cffff8000团队副本|r，请在|cff00ff00"+I2S(time)+"秒|R内进入副本集合！！！") 
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r"+GetPlayerNameOfColor(pid)+"激活了|cffff8000团队副本|r，请在|cff00ff00"+I2S(time)+"秒|R内进入副本集合！！！") 
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r"+GetPlayerNameOfColor(pid)+"激活了|cffff8000万仙阵副本|r，请在|cff00ff00"+I2S(time)+"秒|R内进入副本集合！！！") 
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r"+GetPlayerNameOfColor(pid)+"激活了|cffff8000万仙阵副本|r，请在|cff00ff00"+I2S(time)+"秒|R内进入副本集合！！！") 
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r"+GetPlayerNameOfColor(pid)+"激活了|cffff8000万仙阵副本|r，请在|cff00ff00"+I2S(time)+"秒|R内进入副本集合！！！") 
         TimerStart(5,true)
         {
             num = num + 1
             if  num < cos
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r|cffff8000团队副本|r已激活，请在|cff00ff00"+I2S(time-num*5)+"秒|R内进入副本集合！！！") 
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[团队副本]：|r|cffff8000万仙阵副本|r已激活，请在|cff00ff00"+I2S(time-num*5)+"秒|R内进入副本集合！！！") 
             else
                 if  flag == 1
                     ExecuteFunc("GameTeamChallengA_Opera1")
@@ -387,10 +378,31 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
+    function FlushGameTeamChallengeStockTimer(int id,int it)
+        int pid = id
+        int itid = it
+        TimerStart(5,false)
+        {
+            RemoveItemFromStock(GameChallengeUnit[90],itid)
+            AddItemToStock(GameChallengeUnit[90],itid,1,1)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function FlushGameTeamChallengeStock()
         for pid = 0,3
             RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
             AddItemToStock(GameChallengeUnit[90],'IZ01',0,1)
+            AddUnitIntStateTimer(GameChallengeUnit[90],'IZ01',1,150)
+
+            if  GameTeamChallengeBool[20] == true
+                if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ06')
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ06',1,1)
+                endif
+            endif
         end
     endfunction
 
@@ -402,50 +414,24 @@ library GameChallenge9 uses GameChallengeBase
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前已激活副本，可进入副本集合！")
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
-            RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
-            AddItemToStock(GameChallengeUnit[90],'IZ01',1,1)
+
+            if  GameTeamChallengeBool[20] == true
+                if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ06')
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ06',1,1)
+                endif
+            endif
         elseif  GameTeamChallengeBool[1] == false and GameTeamChallengeBool[2] == true
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前正在挑战副本，无法重复激活！")
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
-            RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
-            AddItemToStock(GameChallengeUnit[90],'IZ01',1,1)
-        endif
-    endfunction
 
-    function ShowGameTeamChallengeNPC_B(int num)
-        if  GameTeamChallengeBool[3] == false
-            for pid = 0,3
-                if  IsPlaying(pid) == true
-                    AddItemToStock(GameChallengeUnit[90],'IZ01',1,1)
-                endif
-            end
-            GameTeamChallengeBool[3] = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
-        endif
-    endfunction
-
-    function ShowGameTeamChallengeNPC_A(int num)
-        if  GameTeamChallengeBool[0] == false
-            if  DzConA[13] == 1
-                if  GameLevel >= 4
-                    ExecuteFunc("InitGameChallenge_10")
+            if  GameTeamChallengeBool[20] == true
+                if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ06')
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ06',1,1)
                 endif
             endif
-            for pid = 0,3
-                if  IsPlaying(pid) == true
-                    ShowUnit(GameChallengeUnit[90],true)
-                    UnitAddEffectOfNPC(GameChallengeUnit[90])
-                    PingMinimap(GetUnitX(GameChallengeUnit[90]),GetUnitY(GameChallengeUnit[90]),3)
-                    CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc30',GetUnitX(GameChallengeUnit[90]),GetUnitY(GameChallengeUnit[90]),270)
-                endif
-            end
-            GameTeamChallengeBool[0] = true
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
         endif
     endfunction
 
@@ -495,7 +481,56 @@ library GameChallenge9 uses GameChallengeBase
                 EXSetUnitMoveType(GameChallengeUnit[107],0x01)
             endif
         end
+    endfunction
 
+    function ShowGameTeamChallengeNPC_A(int num)
+        if  GameTeamChallengeBool[0] == false
+            if  DzConA[13] == 1
+                if  GameLevel >= 4
+                    ExecuteFunc("InitGameChallenge_10")
+                endif
+            endif
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    ShowUnit(GameChallengeUnit[90],true)
+                    UnitAddEffectOfNPC(GameChallengeUnit[90])
+                    PingMinimap(GetUnitX(GameChallengeUnit[90]),GetUnitY(GameChallengeUnit[90]),3)
+                    CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc30',GetUnitX(GameChallengeUnit[90]),GetUnitY(GameChallengeUnit[90]),270)
+                endif
+            end
+            GameTeamChallengeBool[0] = true
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本NPC已激活！！！|r")
+        endif
+    endfunction
+    
+    function ShowGameTeamChallengeNPC_B(int num)
+        if  GameTeamChallengeBool[3] == false
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    AddItemToStock(GameChallengeUnit[90],'IZ01',1,1)
+                endif
+            end
+            GameTeamChallengeBool[3] = true
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-万仙阵已激活！！！|r")
+        endif
+    endfunction
+
+    function ShowGameTeamChallengeNPC_C(int num)
+        if  GameTeamChallengeBool[20] == false
+            for pid = 0,3
+                if  IsPlaying(pid) == true
+                    AddItemToStock(GameChallengeUnit[90],'IZ06',1,1)
+                endif
+            end
+            GameTeamChallengeBool[20] = true
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-虚空圣战已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-虚空圣战已激活！！！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[封神榜]：|r|cffffff00成功防守"+I2S(num)+"波，团队副本-虚空圣战已激活！！！|r")
+        endif
     endfunction
 
 endlibrary

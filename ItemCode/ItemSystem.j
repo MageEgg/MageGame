@@ -481,36 +481,49 @@ scope ItemSystem initializer InitItemSystem
             OpenMeridiansChallenge(pid)
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
-                OpenGameTeamChallenge(pid,1,10)
+                if  GameTeamChallengeBool[21] == false
+                    OpenGameTeamChallenge(pid,1,10)
+                else    
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
+                    FlushGameTeamChallengeStockTimer(pid,itemid)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请5秒后重新购买！|r")
+                endif
             else
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
-                RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
-                AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
+
+                if  GameTeamChallengeBool[20] == true
+                    if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0
+                        RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ06')
+                        AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ06',1,1)
+                    endif
+                endif
+
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度2或以上才能激活！！！")
             endif
-
-            //RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
-            //AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
-            /*if  GameLevel >= 2
-                if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_GOLD) >= 30000
-                    if  GetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_LUMBER) >= 10
-                        OpenGameTeamChallenge(pid,1,20)
-                    else
-                        RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
-                        AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r玄铁不足10！")
-                    endif
-                else
-                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
-                    AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r金币不足30000！")
+        elseif  itemid == 'IZ06'
+            if  GameLevel >= 5
+                if  GameTeamChallengeBool[1] == false
+                    OpenGameTeamChallenge2(pid,1,10)
+                else    
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
+                    FlushGameTeamChallengeStockTimer(pid,itemid)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请5秒后重新购买！|r")
                 endif
             else
-                RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
-                AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r难度2或以上才能激活团本哦！！！")
-            endif*/
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
+
+                if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
+                endif
+
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度5或以上才能激活！！！")
+            endif
+
         elseif  itemid >= 'IC00' and itemid <= 'IC11'
             if  itemid == 'IC00'
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾！什么也没有得到！|r")
