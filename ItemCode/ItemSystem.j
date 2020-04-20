@@ -382,19 +382,21 @@ scope ItemSystem initializer InitItemSystem
         if  index == 0
             minid = 'E026'
             maxid = 'E033'
-        elseif  index == 2
+        elseif  index == 1
             minid = 'E126'
             maxid = 'E133'
-        elseif  index == 1
+        elseif  index == 2
             minid = 'E226'
             maxid = 'E233'
         endif
-        for n = 0,5
-            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
-            if  id >= minid and id <= maxid
-                return id
-            endif
-        end
+        if  minid != 0
+            for n = 0,5
+                id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
+                if  id >= minid and id <= maxid
+                    return id
+                endif
+            end
+        endif
         return 0
     endfunction
     function GetIncEquipIdEx(int pid,int index)->int
@@ -402,27 +404,29 @@ scope ItemSystem initializer InitItemSystem
         int id = 0
         if  index == 0
             useid = 'E034'
-        elseif  index == 2
-            useid = 'E134'
         elseif  index == 1
+            useid = 'E134'
+        elseif  index == 2
             useid = 'E234'
         endif
-        for n = 0,5
-            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
-            if  id == useid
-                return id
-            endif
-        end
+        if  useid != 0
+            for n = 0,5
+                id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
+                if  id == useid
+                    return id
+                endif
+            end
+        endif
         return 0
     endfunction
     function GetIncEquipName(int id,int index)->string
         if  id == 0
             if  index == 0
                 return "[武器]不符合升级条件"
-            elseif  index == 2
-                return "[防具]不符合升级条件"
             elseif  index == 1
                 return "[饰品]不符合升级条件"
+            elseif  index == 2
+                return "[防具]不符合升级条件"
             endif
         endif
         return GetObjectName(id)
@@ -445,11 +449,16 @@ scope ItemSystem initializer InitItemSystem
         int i = Dialog.GetButtonid()
 
         int id = GetIncEquipId(pid,i-1)
-        if  id > 0
-            GemIncEquip(Pu[1],id)
-        else
+
+        if  i == 4
             UnitAddItemById(Pu[1],'CS41')
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+        else
+            if  id > 0
+                GemIncEquip(Pu[1],id)
+            else
+                UnitAddItemById(Pu[1],'CS41')
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+            endif
         endif
     endfunction
 
@@ -458,11 +467,15 @@ scope ItemSystem initializer InitItemSystem
         int i = Dialog.GetButtonid()
 
         int id = GetIncEquipIdEx(pid,i-1)
-        if  id > 0
-            GemIncEquip(Pu[1],id)
-        else
+        if  i == 4
             UnitAddItemById(Pu[1],'CS42')
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+        else
+            if  id > 0
+                GemIncEquip(Pu[1],id)
+            else
+                UnitAddItemById(Pu[1],'CS42')
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+            endif
         endif
     endfunction
 
@@ -474,19 +487,19 @@ scope ItemSystem initializer InitItemSystem
         int id3 = 0
         if  itemid == 'CS41'
             id1 = GetIncEquipId(pid,0)
-            id2 = GetIncEquipId(pid,2)
-            id3 = GetIncEquipId(pid,1)
+            id2 = GetIncEquipId(pid,1)
+            id3 = GetIncEquipId(pid,2)
         else
             id1 = GetIncEquipIdEx(pid,0)
-            id2 = GetIncEquipIdEx(pid,2)
-            id3 = GetIncEquipIdEx(pid,1)
+            id2 = GetIncEquipIdEx(pid,1)
+            id3 = GetIncEquipIdEx(pid,2)
         endif
 
         if  id1 != 0 or id2 != 0 or id3 != 0
             if  itemid == 'CS41'
-                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,2),GetIncEquipName(id3,1),"","","","","","","","","","PlayerUseIncEquipGemFunc1")
+                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,1),GetIncEquipName(id3,2),"取消","","","","","","","","","PlayerUseIncEquipGemFunc1")
             else
-                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,2),GetIncEquipName(id3,1),"","","","","","","","","","PlayerUseIncEquipGemFunc2")
+                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,1),GetIncEquipName(id3,2),"取消","","","","","","","","","PlayerUseIncEquipGemFunc2")
             endif
         else
             UnitAddItemById(wu,itemid)

@@ -568,8 +568,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/11)")
                         elseif  id == 'RSHF' and num < 13
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/13)")
-                        elseif  id == 'RSHG' and num < 15
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/15)")
+                        elseif  id == 'RSHG' and num < 14
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/14)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
                         endif
