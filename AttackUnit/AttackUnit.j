@@ -572,6 +572,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                elseif  AttackUnitWN == 17
+                    ShowGameTeamChallengeNPC_C.execute(AttackUnitWN+1)
                 endif
             elseif  GameMode == 2
                 if  AttackUnitWN == 2
@@ -603,6 +605,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
+                elseif  AttackUnitWN == 12
+                    ShowGameTeamChallengeNPC_C.execute(AttackUnitWN+1)                
                 endif
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver-3)

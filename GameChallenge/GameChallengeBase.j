@@ -9,7 +9,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     bool array      GameChallengePlayerBool[12][680]
     real array      GameChallengePlayerReal[12][680]
 
-    int array      GameChallengeOperaWay
+    int array       GameChallengeOperaWay
 
     unit array      GameChallengeMapUnit
 
@@ -25,6 +25,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define IsFinshChallenge(num)           GameChallengeBool[500+num]
 
     #define IsPlayerInTeamChallenge         GameChallengeBool[550]
+    #define IsPlayerInTeamChallenge2        GameChallengeBool[551]
 
     #define PlayerInChallengeNumber         GameChallengeInt[500]
     #define PlayerChallengeOverCosNum       GameChallengeInt[501]
@@ -51,6 +52,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     #define UnitAPOfPlayer 0
 
     int PlayerTeamChallengeCosNum = 0
+    int PlayerTeamChallengeCosNum2 = 0
 
     group array AttackSummonUnitGroup
     group array WMSummonUnitGroup
@@ -569,6 +571,7 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         ExecuteFunc("InitGameChallenge_9")
 
         ExecuteFunc("InitGameChallenge_11")
+        ExecuteFunc("InitGameChallenge_12")
 
         ExecuteFunc("InitGameChallengeLeaveRctEvent")
         ExecuteFunc("InitGameTeamChallengeLeaveRctEvent")
@@ -788,6 +791,13 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     function SetUnitOverStateOfGameTeamChalleng(unit u,int flag)
         real value = 0
         value = Pow(1.2,(PlayerTeamChallengeCosNum-1))
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
+    endfunction
+
+    function SetUnitOverStateOfGameTeamChalleng2(unit u,int flag)
+        real value = 0
+        value = Pow(1.2,(PlayerTeamChallengeCosNum2-1))
         SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
         SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
     endfunction
@@ -1034,6 +1044,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
             UnitAddAbility(GameTeamChallengUnit(30),'AZ99')
             UnitAddAbility(GameTeamChallengUnit(31),'AZ99')
             SetGameTeamChallengTimerText(GameTeamChallengUnit(30),GameTeamChallengUnit(31),time)
+        elseif  flag == 40
+            SetUnitVertexColor(GameTeamChallengUnit(40),255,255,255,255)
+            SetUnitVertexColor(GameTeamChallengUnit(41),255,255,255,255)
+            UnitAddAbility(GameTeamChallengUnit(40),'AZ99')
+            UnitAddAbility(GameTeamChallengUnit(41),'AZ99')
+            SetGameTeamChallengTimerText(GameTeamChallengUnit(40),GameTeamChallengUnit(41),time)
         endif
         TimerStart(1,true)
         {
@@ -1075,6 +1091,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     else
                         endtimer
                     endif
+                elseif  flag == 40
+                    if  GetUnitAbilityLevel(GameTeamChallengUnit(40),'AZ99') > 0 and GetUnitAbilityLevel(GameTeamChallengUnit(41),'AZ99') > 0  
+                        SetGameTeamChallengTimerText(GameTeamChallengUnit(40),GameTeamChallengUnit(41),time)
+                    else
+                        endtimer
+                    endif
                 endif
             else    
                 if  flag == 1
@@ -1107,9 +1129,25 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
                     SetUnitVertexColor(GameTeamChallengUnit(31),255,255,255,0)
                     UnitRemoveAbility(GameTeamChallengUnit(30),'AZ99')
                     UnitRemoveAbility(GameTeamChallengUnit(31),'AZ99')
+                elseif  flag == 40
+                    SetUnitVertexColor(GameTeamChallengUnit(40),255,255,255,0)
+                    SetUnitVertexColor(GameTeamChallengUnit(41),255,255,255,0)
+                    UnitRemoveAbility(GameTeamChallengUnit(40),'AZ99')
+                    UnitRemoveAbility(GameTeamChallengUnit(41),'AZ99')
                 endif
                 endtimer
             endif
+            flush locals
+        }
+        flush locals
+    endfunction
+    
+    function GameTeamChallengeDoorTimer(unit wu,real time)
+        unit u = wu
+        TimerStart(time,false)
+        {
+            SetUnitVertexColor(u,255,255,255,0)
+            endtimer
             flush locals
         }
         flush locals

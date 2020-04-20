@@ -1,4 +1,4 @@
-library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,GameChallenge3,GameChallenge4,GameChallenge5,GameChallenge6,GameChallenge7,GameChallenge8,GameChallenge9,GameChallenge10,GameChallenge11
+library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,GameChallenge3,GameChallenge4,GameChallenge5,GameChallenge6,GameChallenge7,GameChallenge8,GameChallenge9,GameChallenge10,GameChallenge11,GameChallenge12
     
     function OpenGameChallenge(int pid,int flag,int ty)
         if  GetUnitAbilityLevel(Pu[1],'AZ02') == 0 
@@ -90,9 +90,19 @@ library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Gam
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄死亡，挑战失败！！！|r")
             if  IsHasPlayerInTeamChalleng() == false
                 FlushGameTeamChallenge()
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成万仙阵挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成万仙阵挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成万仙阵挑战，团队副本失败！！！|r")
+            endif
+        endif
+        if  IsPlayerInTeamChallenge2 == true
+            FlushGameTeamChallengeOfPlayer2(pid,0)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄死亡，挑战失败！！！|r")
+            if  IsHasPlayerInTeamChalleng2() == false
+                FlushGameTeamChallenge2()
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成虚空圣战挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成虚空圣战挑战，团队副本失败！！！|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成虚空圣战挑战，团队副本失败！！！|r")
             endif
         endif
         flush locals
@@ -119,16 +129,40 @@ library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Gam
             if  u1 == Pu[1]
                 if  IsPlayerInTeamChallenge == true
                     FlushGameTeamChallengeOfPlayer(pid,2)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄离开团队副本，挑战失败！！！|r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄离开万仙阵副本，挑战失败！！！|r")
                     if  IsHasPlayerInTeamChalleng() == false
                         FlushGameTeamChallenge()
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
-                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成万仙阵挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成万仙阵挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成万仙阵挑战，团队副本失败！！！|r")
                     endif
                 else
                     if  GameChallengeBool[90] == true
                         GameChallengeBool[90] = false
+                    endif
+                endif
+            endif
+        endif
+        flush locals
+    endfunction
+
+    function GameTeamChallengPlayerLeaveRctEvent2()
+        unit u1 = GetTriggerUnit()
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        if  GetUnitAbilityLevel(u1,'Aloc') == 0
+            if  u1 == Pu[1]
+                if  IsPlayerInTeamChallenge2 == true
+                    FlushGameTeamChallengeOfPlayer2(pid,2)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000英雄离开虚空圣战副本，挑战失败！！！|r")
+                    if  IsHasPlayerInTeamChalleng2() == false
+                        FlushGameTeamChallenge2()
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成虚空圣战挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成虚空圣战挑战，团队副本失败！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[团队副本]：|r|cffff0000未有玩家完成虚空圣战挑战，团队副本失败！！！|r")
+                    endif
+                else
+                    if  GameChallengeBool[120] == true
+                        GameChallengeBool[120] = false
                     endif
                 endif
             endif
@@ -160,6 +194,12 @@ library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Gam
         RegionAddRect(rectRegion,gg_rct_ChallengeRctConC)
         TriggerRegisterLeaveRegion(tig,rectRegion,null)
         TriggerAddAction(tig, function GameTeamChallengPlayerLeaveRctEvent)
+
+        tig = CreateTrigger() 
+        rectRegion = CreateRegion()
+        RegionAddRect(rectRegion,gg_rct_ChallengeRctConF)
+        TriggerRegisterLeaveRegion(tig,rectRegion,null)
+        TriggerAddAction(tig, function GameTeamChallengPlayerLeaveRctEvent2)
 
         tig = null
         rectRegion = null
@@ -223,6 +263,8 @@ library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Gam
         endif
         if  uid2 >= 'ut00' and uid2 <= 'ut09'
             GameTeamChallengDeath_A(u2)
+        elseif  uid2 >= 'ut10' and uid2 <= 'ut19'
+            GameTeamChallengDeath2_A(u2)
         elseif  uid2 >= 'ut20' and uid2 <= 'ut29'
             GameTeamChallengDeath_B(u2)
         elseif  uid2 >= 'ut30' and uid2 <= 'ut39'
