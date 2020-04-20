@@ -790,14 +790,14 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
 
     function SetUnitOverStateOfGameTeamChalleng(unit u,int flag)
         real value = 0
-        value = Pow(1.2,(PlayerTeamChallengeCosNum-1))
+        value = Pow(1.2,PlayerTeamChallengeCosNum)
         SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
         SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
     endfunction
 
     function SetUnitOverStateOfGameTeamChalleng2(unit u,int flag)
         real value = 0
-        value = Pow(1.2,(PlayerTeamChallengeCosNum2-1))
+        value = Pow(1.2,PlayerTeamChallengeCosNum2)
         SetUnitRealState(u,1,GetUnitRealState(u,1)*value)
         SetUnitRealState(u,5,GetUnitRealState(u,5)*value)
     endfunction
