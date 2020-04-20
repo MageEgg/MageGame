@@ -381,7 +381,7 @@ library GameChallenge9 uses GameChallengeBase
     function FlushGameTeamChallengeStockTimer(int id,int it)
         int pid = id
         int itid = it
-        TimerStart(5,false)
+        TimerStart(10,false)
         {
             RemoveItemFromStock(GameChallengeUnit[90],itid)
             AddItemToStock(GameChallengeUnit[90],itid,1,1)
@@ -415,6 +415,9 @@ library GameChallenge9 uses GameChallengeBase
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
 
+            RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
+            AddItemToStock(GameChallengeUnit[90],'IZ01',0,1)
+
             if  GameTeamChallengeBool[20] == true
                 if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0
                     RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ06')
@@ -425,6 +428,9 @@ library GameChallenge9 uses GameChallengeBase
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前正在挑战副本，无法重复激活！")
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
+
+            RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
+            AddItemToStock(GameChallengeUnit[90],'IZ01',0,1)
 
             if  GameTeamChallengeBool[20] == true
                 if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0
