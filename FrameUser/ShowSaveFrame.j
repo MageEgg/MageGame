@@ -529,7 +529,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 SetTipsData(16,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
                 
                 
-                
+                if  id == 'RH36'
+                    SetTipsData(17,"","地图等级16级加入随机英雄池，30级可手选。")
+                endif
             
                 
             elseif  id >= 'RDAA' and id <= 'RDAZ'
@@ -559,6 +561,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/4)")
                         elseif  id == 'RSHE' and num < 11
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/11)")
+                        elseif  id == 'RSHF' and num < 13
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/13)")
+                        elseif  id == 'RSHF' and num < 15
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/15)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
                         endif
