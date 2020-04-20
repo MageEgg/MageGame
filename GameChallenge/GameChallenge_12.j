@@ -229,6 +229,9 @@ library GameChallenge12 uses GameChallengeBase
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
 
+            RemoveItemFromStock(GameChallengeUnit[90],'IZ06')
+            AddItemToStock(GameChallengeUnit[90],'IZ06',0,1)
+
             if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0
                 RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
                 AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
@@ -237,6 +240,9 @@ library GameChallenge12 uses GameChallengeBase
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前正在挑战副本，无法重复激活！")
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
+
+            RemoveItemFromStock(GameChallengeUnit[90],'IZ06')
+            AddItemToStock(GameChallengeUnit[90],'IZ06',0,1)
 
             if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0
                 RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')

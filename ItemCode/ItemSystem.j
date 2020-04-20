@@ -608,8 +608,12 @@ scope ItemSystem initializer InitItemSystem
                 else    
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,10)
+
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],itemid)
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],itemid,0,1)
+
                     FlushGameTeamChallengeStockTimer(pid,itemid)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请5秒后重新购买！|r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请10秒后重新购买！|r")
                 endif
             else
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,30000)
@@ -631,8 +635,12 @@ scope ItemSystem initializer InitItemSystem
                 else    
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
+
+                    RemoveItemFromStock(GameChallengePlayerUnit[pid][90],itemid)
+                    AddItemToStock(GameChallengePlayerUnit[pid][90],itemid,0,1)
+                    
                     FlushGameTeamChallengeStockTimer(pid,itemid)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请5秒后重新购买！|r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请10秒后重新购买！|r")
                 endif
             else
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
