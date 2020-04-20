@@ -46,6 +46,9 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             num = num + 1
         endif
 
+        if  DzShop(Player(pid),"RWK2") == true
+            num = num + 1
+        endif
 
 
 
@@ -84,6 +87,16 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             endif
             if  GetPlayerTechCount(Player(pid),'RJ1X',true) == 0 //赞助礼包
                 AddPlayerTechResearched(Player(pid),'RJ1X',1)
+                buynum = buynum + 1
+            endif
+
+            if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
+                AddPlayerTechResearched(Player(pid),'RY3D',1)
+                buynum = buynum + 1
+            endif
+
+            if  GetPlayerTechCount(Player(pid),'RY3F',true) == 0 //诛仙剑
+                AddPlayerTechResearched(Player(pid),'RY3F',1)
                 buynum = buynum + 1
             endif
             
@@ -239,7 +252,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],15,20)
             AddUnitRealState(Pu[1],16,20)
             AddUnitRealState(Pu[1],31,20)
-            UnitAddItemEx(Pu[2],'ID14')
+            if  buynum >= 14
+                UnitAddItemEx(Pu[2],'ID16')
+            else
+                UnitAddItemEx(Pu[2],'ID14')
+            endif
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00幽冥之翼|r》已激活！")
         endif
 
@@ -300,6 +317,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RSHF',1)
             AddUnitRealState(Pu[1],48,50)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0013件套|r》已激活！")
+        endif
+
+        if  buynum >= 14
+            AddPlayerTechResearched(Player(pid),'RSHG',1)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0014件套|r》已激活！")
         endif
 
         

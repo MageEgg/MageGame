@@ -129,6 +129,8 @@
             int exp = GetDzPlayerData(pid,4,1+step)
             if  step == 0
                 exp = exp + 7
+            elseif  step == 1
+                exp = exp + 6
             endif
             int lv = exp / 6
             exp = exp - lv * 6

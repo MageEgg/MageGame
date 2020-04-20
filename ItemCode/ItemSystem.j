@@ -373,6 +373,122 @@ scope ItemSystem initializer InitItemSystem
 
 
     endfunction
+
+
+    function GetIncEquipId(int pid,int index)->int
+        int minid = 0
+        int maxid = 0
+        int id = 0
+        if  index == 0
+            minid = 'E026'
+            maxid = 'E033'
+        elseif  index == 1
+            minid = 'E126'
+            maxid = 'E133'
+        elseif  index == 2
+            minid = 'E226'
+            maxid = 'E233'
+        endif
+        for n = 0,5
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
+            if  id >= minid and id <= maxid
+                return id
+            endif
+        end
+        return 0
+    endfunction
+    function GetIncEquipIdEx(int pid,int index)->int
+        int useid = 0
+        int id = 0
+        if  index == 0
+            useid = 'E034'
+        elseif  index == 1
+            useid = 'E134'
+        elseif  index == 2
+            useid = 'E234'
+        endif
+        for n = 0,5
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
+            if  id == useid
+                return id
+            endif
+        end
+        return 0
+    endfunction
+    function GetIncEquipName(int id)->string
+        if  id == 0
+            return "无"
+        endif
+        return GetObjectName(id)
+    endfunction
+
+
+    function GemIncEquip(unit wu,int itemid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int next = GetTypeIdData(itemid,106)
+        if  RemoveUnitHasItem(wu,itemid) == true
+            UnitAddItemById(wu,next)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：装备升级成功！|r")
+        else
+
+        endif
+    endfunction
+
+    function PlayerUseIncEquipGemFunc1()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+        int id = GetIncEquipId(pid,i-1)
+        if  id > 0
+            GemIncEquip(Pu[1],id)
+        else
+            UnitAddItemById(Pu[1],'CS41')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+        endif
+    endfunction
+
+    function PlayerUseIncEquipGemFunc2()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+        int id = GetIncEquipId(pid,i-1)
+        if  id > 0
+            GemIncEquip(Pu[1],id)
+        else
+            UnitAddItemById(Pu[1],'CS42')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+        endif
+    endfunction
+
+
+    function PlayerUseIncEquipGem(unit wu,int itemid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int id1 = 0
+        int id2 = 0
+        int id3 = 0
+        if  itemid == 'CS41'
+            id1 = GetIncEquipId(pid,0)
+            id2 = GetIncEquipId(pid,1)
+            id3 = GetIncEquipId(pid,2)
+        else
+            id1 = GetIncEquipIdEx(pid,0)
+            id2 = GetIncEquipIdEx(pid,1)
+            id3 = GetIncEquipIdEx(pid,2)
+        endif
+
+        if  id1 != 0 or id2 != 0 or id3 != 0
+            if  itemid == 'CS41'
+                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1),GetIncEquipName(id2),GetIncEquipName(id3),"","","","","","","","","","PlayerUseIncEquipGemFunc1")
+            else
+                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1),GetIncEquipName(id2),GetIncEquipName(id3),"","","","","","","","","","PlayerUseIncEquipGemFunc2")
+            endif
+        else
+            UnitAddItemById(wu,itemid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+        endif
+    endfunction
+
+    
     
     
     function PickupItemActions()
@@ -628,6 +744,10 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseAbilityBook(pid,2,itemid)
         elseif  itemid >= 'CS21' and itemid <= 'CS24'
             PlayerUseIncAbilityGem(u1,itemid)
+        elseif  itemid == 'CS41'
+            PlayerUseIncEquipGem(u1,itemid)
+        elseif  itemid == 'CS42'
+            PlayerUseIncEquipGem(u1,itemid)
         elseif  itemid == 'IP06'
             if  PlayerReRandomPrize(pid) == false
                 UnitAddItemById(u1,itemid)

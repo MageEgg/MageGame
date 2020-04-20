@@ -225,6 +225,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             int exp = GetPlayerPassExp(pid,step)
             if  step == 0
                 exp = exp + 7
+            elseif  step == 1
+                exp = exp + 6
             endif
             int level = exp / MaxPassCheckDayExp
             if  level > 20
@@ -594,6 +596,8 @@ library PassCheckUI uses GameFrame,PassCheckMission
                 nowexp = GetPlayerPassExp(pid,step)
                 if  step == 0
                     nowexp = nowexp + 7
+                elseif  step == 1
+                    nowexp = nowexp + 6
                 endif
                 nowexp = nowexp - (nowexp /MaxPassCheckDayExp) * MaxPassCheckDayExp
             endif

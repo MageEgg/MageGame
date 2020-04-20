@@ -61,13 +61,14 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
         RegisterShowSaveFrameData(5,'RJ1X','RJ1X',0,0,0,0)//赞助礼包
         RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0)//星月光环
+        RegisterShowSaveFrameData(5,'RP1A','RP1A',0,0,0,0)//笑天犬
         RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
         RegisterShowSaveFrameData(5,'RY2G','RY2G',0,0,0,0)//幽冥之翼
         RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
         RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
         RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
         RegisterShowSaveFrameData(5,'RY3F','RY3F',0,0,0,0)//诛仙剑
-        RegisterShowSaveFrameData(5,'RP1A','RP1A',0,0,0,0)//笑天犬
+        
         
         
 
@@ -78,6 +79,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
         RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
         RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0)//商城13件套
+        RegisterShowSaveFrameData(5,'RSHg','RSHg',0,0,0,0)//商城14件套
         
         
 
@@ -132,6 +134,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
 
         RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
+        RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
@@ -144,7 +147,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        
         RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
         RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0)//荣耀之信
         RegisterShowSaveFrameData(0,'RJ2C','RJ2C',0,0,0,0)//荣耀之心
@@ -563,7 +566,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/11)")
                         elseif  id == 'RSHF' and num < 13
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/13)")
-                        elseif  id == 'RSHF' and num < 15
+                        elseif  id == 'RSHG' and num < 15
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/15)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
