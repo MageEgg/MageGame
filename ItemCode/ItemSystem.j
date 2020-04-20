@@ -451,7 +451,7 @@ scope ItemSystem initializer InitItemSystem
         int pid = Dialog.GetPlayerid()
         int i = Dialog.GetButtonid()
 
-        int id = GetIncEquipId(pid,i-1)
+        int id = GetIncEquipIdEx(pid,i-1)
         if  id > 0
             GemIncEquip(Pu[1],id)
         else
@@ -623,13 +623,13 @@ scope ItemSystem initializer InitItemSystem
                 if  GameTeamChallengeBool[1] == false
                     OpenGameTeamChallenge2(pid,1,10)
                 else    
-                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
+                    AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
                     FlushGameTeamChallengeStockTimer(pid,itemid)
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前已激活其他团本入口，请5秒后重新购买！|r")
                 endif
             else
-                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
 
                 if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0

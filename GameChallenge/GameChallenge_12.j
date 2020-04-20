@@ -226,7 +226,7 @@ library GameChallenge12 uses GameChallengeBase
             FlushGameTeamChallengeStock2()
         elseif  GameTeamChallengeBool[21] == true and GameTeamChallengeBool[22] == false
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前已激活副本，可进入副本集合！")
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
 
             if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0
@@ -235,7 +235,7 @@ library GameChallenge12 uses GameChallengeBase
             endif
         elseif  GameTeamChallengeBool[21] == false and GameTeamChallengeBool[22] == true
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r当前正在挑战副本，无法重复激活！")
-            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,40000)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
 
             if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0
