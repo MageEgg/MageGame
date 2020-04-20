@@ -69,7 +69,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
         RegisterShowSaveFrameData(5,'RY3F','RY3F',0,0,0,0)//诛仙剑
         
-        
+        RegisterShowSaveFrameData(5,'RTX1','RTX1',0,0,0,0)//通行证1
+        RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0)//通行证2
         
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
@@ -79,7 +80,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
         RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
         RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0)//商城13件套
-        RegisterShowSaveFrameData(5,'RSHg','RSHg',0,0,0,0)//商城14件套
+        RegisterShowSaveFrameData(5,'RSHG','RSHG',0,0,0,0)//商城14件套
         
         
 
@@ -185,6 +186,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RGAF','RGAF',0,0,0,0)//通关疯狂N6
         RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0)//通关疯狂N7
         RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
+        RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
 
         
 

@@ -422,6 +422,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY2G',InitCond1(2,Unloc_Type_Shop,ShopList("CB2")),0,0,0,0)
         InitUnlocTechConditions('RP1A',InitCond1(2,Unloc_Type_Shop,ShopList("PF1")),0,0,0,0)
         InitUnlocTechConditions('RY3F',InitCond1(2,Unloc_Type_Shop,ShopList("WQ2")),0,0,0,0)
+
+        InitUnlocTechConditions('RTX1',InitCond1(2,Unloc_Type_Shop,ShopList("RWK")),0,0,0,0)
+        InitUnlocTechConditions('RTX2',InitCond1(2,Unloc_Type_Shop,ShopList("RWK2")),0,0,0,0)
         
 
 
@@ -449,6 +452,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGAF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(17,7,1)),0,0,0)
         InitUnlocTechConditions('RGAG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(17,8,1)),0,0,0)
         InitUnlocTechConditions('RGAH',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(17,9,1)),0,0,0)
+        InitUnlocTechConditions('RGAI',InitCond1(1,Unloc_Type_Level,18),InitCond2(0,Unloc_Type_JF,GameDataList(17,10,1)),0,0,0)
 
 
 
