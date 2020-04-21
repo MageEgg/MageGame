@@ -164,7 +164,7 @@ library DamageCode uses UnitStateSet
             s = s - 15
             BJDebugMsg("承受伤害+15%")
         endif
-
+        
         if  s > 90
             s = 90
         endif
@@ -223,6 +223,34 @@ library DamageCode uses UnitStateSet
     endfunction
     function GetUnitWx(unit wu)->real
         real s = GetUnitWxState(wu)
+        return s*0.01
+    endfunction
+    
+
+
+    function GetUnitFxState(unit wu)->real
+        real s = 0
+        real lv = 0
+        
+        lv = GetUnitIntState(wu,'FM0I')
+        if  lv > 0
+            s = s + lv * 1
+        endif
+
+        lv = GetUnitIntState(wu,'FM1N')
+        if  lv > 0
+            s = s + lv * 2.5
+        endif
+
+        lv = GetUnitIntState(wu,'FM2K')
+        if  lv > 0
+            s = s + lv * 5
+        endif
+
+        return s
+    endfunction
+    function GetUnitFx(unit wu)->real
+        real s = GetUnitFxState(wu)
         return s*0.01
     endfunction
     

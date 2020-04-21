@@ -614,6 +614,14 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         }
         flush locals
     end
+
+
+    function SetItemIntState(item wi,int StateId,int value)
+        SetUnitData(wi,StateId,value)
+    endfunction
+    function GetItemIntState(item wi,int StateId)->int
+        return GetUnitData(wi,StateId)
+    endfunction
     
 endlibrary
 

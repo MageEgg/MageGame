@@ -918,9 +918,73 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             //HeroPoolAddType('H036')
 
         endfunction
-
+        
 
     endscope
+
+    scope TypeIdPool
+        int array TypePool[80][100]
+        function GetTypePoolMax(int index)->int
+            return TypePool[index][100]
+        endfunction
+        function SetTypePoolMax(int index,int max)
+            TypePool[index][100] = max
+        endfunction
+
+        function GetTypePoolType(int index)->int
+            int max = GetTypePoolMax(index)
+            return TypePool[index][GetRandomInt(1,max)]
+        endfunction
+
+        function TypePoolAddType(int index,int id)
+            int max = GetTypePoolMax(index)+1
+            TypePool[index][max] = id
+            SetTypePoolMax(index,max)
+        endfunction
+
+        function InitTypePoolFunc()
+            TypePoolAddType(1,'FM0A')
+            TypePoolAddType(1,'FM0B')
+            TypePoolAddType(1,'FM0C')
+            TypePoolAddType(1,'FM0D')
+            TypePoolAddType(1,'FM0E')
+            TypePoolAddType(1,'FM0F')
+            TypePoolAddType(1,'FM0G')
+            TypePoolAddType(1,'FM0H')
+            TypePoolAddType(1,'FM0I')
+            TypePoolAddType(1,'FM0J')
+
+            TypePoolAddType(2,'FM1A')
+            TypePoolAddType(2,'FM1B')
+            TypePoolAddType(2,'FM1C')
+            TypePoolAddType(2,'FM1D')
+            TypePoolAddType(2,'FM1E')
+            TypePoolAddType(2,'FM1F')
+            TypePoolAddType(2,'FM1G')
+            TypePoolAddType(2,'FM1H')
+            TypePoolAddType(2,'FM1I')
+            TypePoolAddType(2,'FM1J')
+            TypePoolAddType(2,'FM1K')
+            TypePoolAddType(2,'FM1L')
+            TypePoolAddType(2,'FM1M')
+            TypePoolAddType(2,'FM1N')
+
+            TypePoolAddType(3,'FM2A')
+            TypePoolAddType(3,'FM2B')
+            TypePoolAddType(3,'FM2C')
+            TypePoolAddType(3,'FM2D')
+            TypePoolAddType(3,'FM2E')
+            TypePoolAddType(3,'FM2F')
+            TypePoolAddType(3,'FM2G')
+            TypePoolAddType(3,'FM2H')
+            TypePoolAddType(3,'FM2I')
+            TypePoolAddType(3,'FM2J')
+            TypePoolAddType(3,'FM2K')
+            TypePoolAddType(3,'FM2L')
+        endfunction
+
+    endscope
+
 
     scope ItemPool
         itempool array ItemPool
@@ -1004,6 +1068,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
     function InitAllFunc()
         ExecuteFunc("InitHeroPoolFunc")
         ExecuteFunc("InitUnitPoolFunc")
+        ExecuteFunc("InitTypePoolFunc")
     endfunction
     
 endlibrary

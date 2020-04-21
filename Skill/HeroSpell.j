@@ -1707,6 +1707,24 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
 
+    //受到暴击伤害时，5秒内恢复50%生命，冷却时间40秒。
+    function SpellFM2C(unit wu)
+        unit u1 = wu
+        int time = 5
+        TimerStart(1,true)
+        {
+            time = time - 1
+            UnitAddLife(u1,GetUnitState(u1,UNIT_STATE_MAX_LIFE)*0.1)
+            UnitAddEffect(u1,"Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl")
+            if  time <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+
 
 
     //-----------------------------------------------------------------------------

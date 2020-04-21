@@ -236,13 +236,15 @@ scope DeathEvent initializer InitDeathEvent
                 gl = 40
             endif
 
-            SetItemDroppable(it,true)
-            UnitRemoveItem(Pu[1],it)
-            RemoveItem(it)
+            
             if  GetRandomInt(1,100)<= gl
+                SetItemDroppable(it,true)
+                UnitRemoveItem(Pu[1],it)
+                RemoveItem(it)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cff00ff00[系统]：恭喜您！饰品升级成功！")
                 UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             else
+                SetItemCharges(it,GetTypeIdData(id,100))
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾！饰品升级失败！")
                 UnitAddItem(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             endif
