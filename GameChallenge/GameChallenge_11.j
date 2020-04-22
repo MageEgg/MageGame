@@ -173,6 +173,9 @@ library GameChallenge11 uses GameChallengeBase
         if  lv > 41
             lv = 41
         endif
+
+        
+
         AddUnitRealState(Pu[1],17,GameChallengeWM_PrizeA[lv])
         DropGemItem(u2,GameChallengeWM_PrizeB[lv],GameChallengeWM_PrizeC[lv])
         UnitAddEffectSetSize(Pu[1],"effect_e_buffattack.mdl",5)
@@ -180,6 +183,9 @@ library GameChallenge11 uses GameChallengeBase
         DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[万魔窟]：|r成功击杀"+GetUnitName(u2)+"，|cffffff80万魔窟层数升级为第"+I2S(PlayerChallengeWMCos)+"层，奖励"+I2S(R2I(GameChallengeWM_PrizeA[lv]))+"%伤害加成！|r")
         if  PlayerChallengeWMCos == 1 or ModuloInteger(PlayerChallengeWMCos,10) == 0
             ReGemFrame(pid)
+        endif
+        if  lv == 20
+            IsCanFruit11(pid)
         endif
         SetBoardText(6,pid+2,"第"+I2S(PlayerChallengeWMCos)+"层")
         SetInfiniteModelJF(pid,PlayerChallengeWMCos)

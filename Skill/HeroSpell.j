@@ -1193,7 +1193,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
     
     function SpellS101(unit u,real x,real y,real damage)
-        AddUnitStateExTimer(u,82,6,4.5)
+        AddUnitStateExTimer(u,84,6,4.5)
         IndexGroup g = IndexGroup.create()
         GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"effect_az_zeusking_impact-black.mdl","origin",0))
         LocAddEffect(x,y,"effect_white-shandian-qiquan.mdl")

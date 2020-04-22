@@ -254,6 +254,8 @@ library DamageCode uses UnitStateSet
             s = s + lv * 5
         endif
 
+        BJDebugMsg("法吸"+R2S(s))
+
         return s
     endfunction
     function GetUnitFx(unit wu)->real
