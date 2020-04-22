@@ -538,31 +538,33 @@ scope DeathEvent initializer InitDeathEvent
             endif
         elseif  uid >= 'uJ00' and uid <= 'uJzz'
             int num =  GetUnitIntState(Pu[1],150)
-            if  num < 10
-                if  uid == 'uJ00'
-                    AddPlayerImmortalFruit(Pu[1],'IJ01',1)
-                elseif  uid == 'uJ10'
-                    AddPlayerImmortalFruit(Pu[1],'IJ02',1)
-                elseif  uid == 'uJ20'
-                    AddPlayerImmortalFruit(Pu[1],'IJ03',1)
-                elseif  uid == 'uJ30'
-                    AddPlayerImmortalFruit(Pu[1],'IJ04',1)
-                elseif  uid == 'uJ40'
-                    AddPlayerImmortalFruit(Pu[1],'IJ05',1)
-                elseif  uid == 'uJ50'
-                    AddPlayerImmortalFruit(Pu[1],'IJ06',1)
-                elseif  uid == 'uJ60'
-                    AddPlayerImmortalFruit(Pu[1],'IJ07',1)
-                elseif  uid == 'uJ70'
-                    AddPlayerImmortalFruit(Pu[1],'IJ08',1)
-                elseif  uid == 'uJ80'
-                    AddPlayerImmortalFruit(Pu[1],'IJ09',1)
-                elseif  uid == 'uJ90'
-                    AddPlayerImmortalFruit(Pu[1],'IJ10',1)
+            if  uid == 'uJA0'
+                if  num == 10
+                AddPlayerImmortalFruit(Pu[1],'IJ11',1)
                 endif
-            elseif  num == 10
-                if  uid == 'uJA0'
-                    AddPlayerImmortalFruit(Pu[1],'IJ11',1)
+            else
+                if  num < 10
+                    if  uid == 'uJ00'
+                        AddPlayerImmortalFruit(Pu[1],'IJ01',1)
+                    elseif  uid == 'uJ10'
+                        AddPlayerImmortalFruit(Pu[1],'IJ02',1)
+                    elseif  uid == 'uJ20'
+                        AddPlayerImmortalFruit(Pu[1],'IJ03',1)
+                    elseif  uid == 'uJ30'
+                        AddPlayerImmortalFruit(Pu[1],'IJ04',1)
+                    elseif  uid == 'uJ40'
+                        AddPlayerImmortalFruit(Pu[1],'IJ05',1)
+                    elseif  uid == 'uJ50'
+                        AddPlayerImmortalFruit(Pu[1],'IJ06',1)
+                    elseif  uid == 'uJ60'
+                        AddPlayerImmortalFruit(Pu[1],'IJ07',1)
+                    elseif  uid == 'uJ70'
+                        AddPlayerImmortalFruit(Pu[1],'IJ08',1)
+                    elseif  uid == 'uJ80'
+                        AddPlayerImmortalFruit(Pu[1],'IJ09',1)
+                    elseif  uid == 'uJ90'
+                        AddPlayerImmortalFruit(Pu[1],'IJ10',1)
+                    endif 
                 endif
             endif
             

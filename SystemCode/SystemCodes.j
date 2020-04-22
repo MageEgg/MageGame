@@ -972,7 +972,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             TypePoolAddType(3,'FM2A')
             TypePoolAddType(3,'FM2B')
             TypePoolAddType(3,'FM2C')
-            TypePoolAddType(3,'FM2D')
+            //TypePoolAddType(3,'FM2D')
             TypePoolAddType(3,'FM2E')
             TypePoolAddType(3,'FM2F')
             TypePoolAddType(3,'FM2G')

@@ -314,7 +314,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r请挑战三灾五难劫提升境界！")
                     endif
                 else
-                    SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+                    if  id == 'IT11'
+                        ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前境界无法挑战！")
+                    else
+                        SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+                    endif
                 endif
             else
                 ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
