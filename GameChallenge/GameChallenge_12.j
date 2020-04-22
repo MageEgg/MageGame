@@ -139,11 +139,11 @@ library GameChallenge12 uses GameChallengeBase
     function GameTeamChalleng2A_Opera1()
         if  IsHasPlayerGoToTeamChalleng2() == true
             GameTeamChallengeBool[22] = true
-            CreateUsesGameTeamChalleng(10,'ut10',6016,-544,0)
-            CreateUsesGameTeamChalleng(11,'ut11',7552,-544,0)
-            CreateUsesGameTeamChalleng(12,'ut12',6784-77.5,-960,270)
-            CreateUsesGameTeamChalleng(13,'ut13',6016,-1376,180)
-            CreateUsesGameTeamChalleng(14,'ut14',7552,-1376,180)
+            CreateUsesGameTeamChalleng(15,'ut10',6016,-544,0)
+            CreateUsesGameTeamChalleng(16,'ut11',7552,-544,0)
+            CreateUsesGameTeamChalleng(17,'ut12',6784-77.5,-960,270)
+            CreateUsesGameTeamChalleng(18,'ut13',6016,-1376,180)
+            CreateUsesGameTeamChalleng(19,'ut14',7552,-1376,180)
             SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(10),0)
             SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(11),0)
             SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(12),0)
