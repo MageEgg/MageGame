@@ -350,7 +350,17 @@
                         boxid = GetHeroAbilityID(Pu[1],id-130)
                         BoxShowAbility(boxid)
                     elseif  id >= 150 and id <= 160
-                        boxid = GetUnitIntState(Pu[1],id)
+                        int num = GetUnitIntState(Pu[1],150)
+                        if  num > 10
+                            if  id == 151
+                                boxid = GetUnitIntState(Pu[1],161)
+                            else
+                                boxid = GetUnitIntState(Pu[1],id)
+                            endif
+                        else
+                            boxid = GetUnitIntState(Pu[1],id)
+                        endif
+                        
                         if  boxid > 0
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)

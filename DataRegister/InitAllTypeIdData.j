@@ -873,6 +873,7 @@ InitEquipData('E234',0,0,0,0,0,'E235',0,0)
         InitEquipData('IT08',0,0,0,0,0,0,-7970,7965)
         InitEquipData('IT09',0,0,0,0,0,0,2100,-5120)
         InitEquipData('IT10',0,0,0,0,0,0,2268,-8065)
+        InitEquipData('IT11',0,0,0,0,0,0,3539,-8927)
 
         BJDebugMsg("init4end")
     endfunction

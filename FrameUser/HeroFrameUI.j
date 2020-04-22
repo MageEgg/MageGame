@@ -131,6 +131,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         int now = GetHeroXP(wu) + exp
         int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))-1
         int exmax = GetExExpMax(pid)
+        int lv = 0
         if  now > max
             HeroExExp = HeroExExp + (now-max)
             if  HeroExExp > exmax
@@ -149,17 +150,22 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             endif
         endif
 
+        lv = GetHeroLevel(wu)
         if  now != GetHeroXP(wu)
             SetHeroXP(wu,now,true)
             ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
-        elseif  GetHeroLevel(wu) != MaxHeroLevel+1
+        elseif  lv != MaxHeroLevel+1
             if  GetLocalPlayer() == Player(pid)
                 ExpModel.show =true
             endif
             if  HeroExpMaxTips == false
                 HeroExpMaxTips = true
                 HeroExpMaxTipsTimer(pid)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战任意雷劫获得道果晋级")
+                if  lv <= 10
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战任意雷劫获得道果晋级")
+                elseif  lv == 11
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战斩三仙获得道果晋级")
+                endif
             endif
         endif
     endfunction
@@ -188,8 +194,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     function AddImmortalFruit(unit wu,int id,int move)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
-
         if  num < MaxHeroLevel
+
             BJDebugMsg(GetTypeIdIcon(id))
             num = num + 1
             SetUnitIntState(Pu[1],150+num,id)
@@ -205,16 +211,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 SetEquipStateOfPlayer(Pu[1],id,0.08)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具诛仙剑，额外获得8%道果属性！")
             endif
-            
-
             if  GetUnitTypeId(wu) == 'H018'
                 SpellS518.execute(Pu[1],id)//九转神功
             endif
-/*
-            if  num == 7
-                SetPlayerMonsterSoulSkillOfHeroLevel.execute(pid) 
-            endif
-*/
+
+
+
             if  GetLocalPlayer() == Player(pid)
 
                 if  num > 10
@@ -246,7 +248,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 
             endif
             SetBoardText(3,pid+2,GetTypeIdName('IJ5A'+num))
-            //LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effectex_TParchive.mdl")
+            
+
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r恭喜您！境界突破成功！")
 
             //境界突破提高技能等级
@@ -255,7 +258,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             endif
             if  num == 10
                 RemoveUnit(Pu[21])
-                Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',AttackRoomPostion[pid][1]+128,AttackRoomPostion[pid][2]+512,270)//境界
+                Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np29',AttackRoomPostion[pid][1]+128,AttackRoomPostion[pid][2]+512,270)//境界
             endif
             if  id == 'IJ10'
                 MissionAddNumFunc(pid,26,1)//获得混沌道果
@@ -263,13 +266,6 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
             HeroDGId[pid][num] = id
 
-            /*
-            if  move == 1
-                if  PlayerDeathBool == false 
-                    HeroMoveToRoom.execute(pid)
-                endif
-            endif
-            */
         endif 
     endfunction
 
@@ -288,10 +284,20 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int num = GetUnitIntState(Pu[1],150)
         int now = GetHeroXP(Pu[1]) 
-        int max = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))
+        int lv = GetHeroLevel(Pu[1])
+        int max = DzGetUnitNeededXP(Pu[1],lv)
         if  max - now == 1
             if  num < MaxHeroLevel
-                SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+                if  lv == 11
+                    if  id == 'IT11'
+                        SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+                    else
+                        ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r请挑战斩三尸提升境界！")
+                    endif
+                else
+                    SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
+                endif
             else
                 ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前境界已满，无法挑战境界！")
@@ -583,7 +589,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         
         
         
-        for i = 1,MaxHeroLevel
+        for i = 1,10
             CreateButton(150+i,Button.frameid,TYPE_BUTTON,0,Button.frameid,6,0.005+0.0215*(i-1),-0.003,0.018,0.018,"war3mapImported\\UI_Level_Button.tga")
             CreateModel(150+i,Button.frameid,TYPE_BUTTON,6,6,-0.005,-0.002,"")
 

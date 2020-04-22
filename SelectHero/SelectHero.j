@@ -99,7 +99,7 @@ scope SelectHero
 
         UnitAddAbility(Pu[1],'AG01')
         UnitAddAbility(Pu[1],'AG02')
-        //UnitAddAbility(Pu[1],'AG03')
+
         UnitAddAbility(Pu[1],'AG04')
         UnitAddAbility(Pu[1],'AG05')
 
