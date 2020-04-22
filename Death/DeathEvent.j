@@ -643,6 +643,18 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
 
+        if  uid == 'uJA1'//风神
+            UnitAddAbility(Pu[1],'A00E')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r成功击杀风神，获得免疫罡风伤害效果！")
+        elseif  uid == 'uJA2'//火神
+            UnitAddAbility(Pu[1],'A00F')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r成功击杀火神，获得免疫熔岩地面效果效果！")
+        elseif  uid == 'uJA3'//雷神
+            UnitAddAbility(Pu[1],'A00D')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r成功击杀雷神，获得免疫天雷眩晕效果！")
+        endif
+
+
     end
     function KillUnitNotHasKiller(unit wu,int uid)
         if  GetUnitAbilityLevel(wu,'AZ99') > 0

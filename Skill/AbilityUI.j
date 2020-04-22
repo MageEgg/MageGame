@@ -76,6 +76,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
             r1 =  r1 * GetUnitRealState(wu,chi)
         endif
 
+        if  GetUnitAbilityLevel(wu,'A00C') > 0
+            if  GetTypeIdData(id,100) != 1 and GetTypeIdData(id,103)==2 //伤害类型
+                r1 = r1 * 1.5
+                BJDebugMsg("怒气技 伤害+50%")
+            endif
+        endif
+
 
         //BJDebugMsg("class"+I2S(class))
         r2 = GetUnitRealState(wu,class + 71)
