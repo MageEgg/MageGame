@@ -223,7 +223,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RHD2','RHD2',0,0,0,0)//炉火纯青
         RegisterShowSaveFrameData(3,'RHD3','RHD3',0,0,0,0)//一代宗师
         RegisterShowSaveFrameData(3,'RHD4','RHD4',0,0,0,0)//名震一方
-//        RegisterShowSaveFrameData(3,'RHD5','RHD5',0,0,0,0)//名扬四海
+        RegisterShowSaveFrameData(3,'RHD5','RHD5',0,0,0,0)//名扬四海
 //        RegisterShowSaveFrameData(3,'RHD6','RHD6',0,0,0,0)//封神之巅
 //        RegisterShowSaveFrameData(3,'RHD7','RHD7',0,0,0,0)//创世之初
 //        RegisterShowSaveFrameData(3,'RHD8','RHD8',0,0,0,0)//创世元神

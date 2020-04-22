@@ -636,6 +636,10 @@ scope DeathEvent initializer InitDeathEvent
             if  GetRandomReal(1,10000)<=5
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
             endif
+        elseif  uid == 'ut20'
+            if  GetRandomReal(1,10000)<=20
+                CreateItem('CS51',GetUnitX(tu),GetUnitY(tu))
+            endif
         endif
 
 

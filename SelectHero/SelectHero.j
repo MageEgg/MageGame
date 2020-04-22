@@ -69,6 +69,9 @@ scope SelectHero
         if  dzalllv >= 34
             SetPlayerTechResearchedEx(Player(pid),'RHD4')
         endif
+        if  dzalllv >= 54
+            SetPlayerTechResearchedEx(Player(pid),'RHD5')
+        endif
         
 
         if  Player(pid)==GetLocalPlayer()

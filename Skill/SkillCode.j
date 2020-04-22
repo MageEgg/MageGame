@@ -109,6 +109,12 @@ library SkillCode uses System,State,DamageCode
     function UnitAddLife(unit whichunit,real amount)
         real lifea = GetUnitState(whichunit,UNIT_STATE_LIFE)
         real lifem = GetUnitState(whichunit,UNIT_STATE_MAX_LIFE)-lifea
+
+        if  GetUnitAbilityLevel(whichunit,'B009') > 0 and GetUnitAbilityLevel(whichunit,'A00F') == 0
+            amount = amount * 0.5
+            BJDebugMsg("熔岩地面回血减半")
+        endif
+
         if  lifem != 0
             if  lifem > amount 
                 lifem = amount

@@ -1622,7 +1622,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_kongque.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
         CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),12,1,0.5)
         AddUnitStateExTimer(u,25,100,6)
-        AddUnitStateExTimer(u,16,10,6)
+        AddUnitStateExTimer(u,17,10,6)
         UnitTimerAddSkill(u,'A237',6)
         flush locals
     endfunction
@@ -1735,7 +1735,25 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         }
         flush locals
     endfunction
+    
 
+    function SpellAG07(unit wu)
+        unit u1 = wu
+        AddUnitRealState(wu,3,100)
+        UnitAddAbility(wu,'A00C')
+        SetUnitState(wu, ConvertUnitState(0x25), GetUnitState(wu, ConvertUnitState(0x25)) - 0.1)
+        
+        CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(wu)),8,1,0.2)
+        TimerStart(10,false)
+        {
+            AddUnitRealState(u1,3,-100)
+            UnitRemoveAbility(u1,'A00C')
+            SetUnitState(u1, ConvertUnitState(0x25), GetUnitState(u1, ConvertUnitState(0x25)) + 0.1)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
 
 
 

@@ -494,6 +494,25 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
     endfunction
 
 
+    function JJFuncSpell11(unit wu,real sx,real sy)
+        unit u1 = wu
+        real x1 = sx
+        real y1 = sy
+        unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
+        TimerStart(1.5,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
+            GroupEnumUnitsInRange(g.ejg,x1,y1,165,GroupNormalNoStrAddBuffJJ11(GetOwningPlayer(u1),"",Buffxy,5,0))
+            UnitDamageGroup(u1,g.ejg,50*Pow(10,10),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            g.destroy()
+            RemoveUnit(u2)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
 
     function JJFuncSpell99Timer(unit wu,real face)
         unit u1 = wu
@@ -504,11 +523,10 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         unit u2 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x1,y1,0,30,1)
         TimerStart(1.5,true)
         {
-            
+            unit uu = null
             IndexGroup g = IndexGroup.create()
             LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,165,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
-            UnitDamageGroup(u1,g.ejg,50*Pow(10,10),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
@@ -525,6 +543,8 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
         flush locals
     endfunction
 
+
+   
 
     function JJFuncSpell99(unit u1)
         real face = 0

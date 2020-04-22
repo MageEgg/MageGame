@@ -30,11 +30,11 @@ library ItemEquip uses DamageCode,ItemGameFunc
             endif
         elseif  index == 2
             if  id == 'E135'
-                s = s + "|Cffffc926轮回之心：每10%冷却缩减提升1%伤害加成。|r"
+                s = s + "\n\n|Cffffc926轮回之心：每10%冷却缩减提升1%伤害加成。|r"
             endif
         elseif  index == 3
             if  id == 'E235'
-                s = s + "|Cffffc926祖龙庇佑：被攻击8%概率回复15%最大生命值，3秒内免疫任何伤害。冷却60秒。|r"
+                s = s + "\n\n|Cffffc926祖龙庇佑：被攻击8%概率回复15%最大生命值，3秒内免疫任何伤害。冷却60秒。|r"
             endif
         endif
 

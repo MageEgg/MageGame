@@ -90,6 +90,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
                 buynum = buynum + 1
             endif
 
+            if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 0 //封神礼包
+                AddPlayerTechResearched(Player(pid),'RJ1U',1)
+                buynum = buynum + 1
+            endif
+
             if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
                 AddPlayerTechResearched(Player(pid),'RY3D',1)
                 buynum = buynum + 1

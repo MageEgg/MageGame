@@ -58,16 +58,19 @@ library GameChallenge12 uses GameChallengeBase
         int flag = 0
         int itid = 0
         real ran = GetRandomReal(1,100)
-        if  ran <= 70
+        if  ran <= 50
             itid = 'CS41'
             UnitAddItemEx(Pu[1],itid)
-        elseif  ran <= 90
+        elseif  ran <= 70
             itid = 'CS41'
             UnitAddItemEx(Pu[1],itid)
             UnitAddItemEx(Pu[1],itid)
             flag = 1
-        else
+        elseif  ran <= 80
             itid = 'CS42'
+            UnitAddItemEx(Pu[1],itid)
+        else
+            itid = 'CS53'
             UnitAddItemEx(Pu[1],itid)
         endif
         AddUnitRealState(Pu[1],31,4)

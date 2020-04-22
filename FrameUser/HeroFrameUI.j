@@ -165,7 +165,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战任意雷劫获得道果晋级")
                 elseif  lv == 11 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0
 
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战斩三尸获得道果晋级")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战三灾五难劫获得道果晋级")
                 endif
             endif
         endif
@@ -193,7 +193,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
 
     function IsCanFruit11(int pid)
-        if  GetPlayerTechCount(Player(pid),'RJ0K',true) > 0 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0 and GameChallengePlayerInt[pid][502] >= 20
+        if  GetPlayerTechCount(Player(pid),'RJ0J',true) > 0 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0 and GameChallengePlayerInt[pid][502] >= 20
             if  GetLocalPlayer() == Player(pid)
                 YDWESetItemDataString('IT11',3,GetTypeIdTips('IT11'))
             endif
@@ -270,7 +270,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 RemoveUnit(Pu[21])
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np29',AttackRoomPostion[pid][1]+128,AttackRoomPostion[pid][2]+512,270)//境界
                 if  GetLocalPlayer() == Player(pid)
-                    YDWESetItemDataString('IT11',3,"|cffffff00需求：|r\n - |cff808080难度6\n - 准圣[11]\n - 万魔窟20层\n渡过该劫后可结成|Cffff0000无极道果|r。\n\n|Cffff0000无极道果：|r\n攻击+250000\n业力+200000\n生命值+5000000\n生命回复+100000\n攻击伤害+36%\n技能伤害+30%")
+                    YDWESetItemDataString('IT11',3,"|cffffff00需求：|r\n - |cff808080难度6\n - 金仙境[10]\n - 万魔窟20层\n"+GetTypeIdTips('IT11'))
                 endif
                 IsCanFruit11(pid)
             endif
@@ -304,14 +304,14 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             if  num < MaxHeroLevel
                 if  lv == 11
                     if  id == 'IT11'
-                        if  GetPlayerTechCount(Player(pid),'RJ0K',true) > 0 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0 and GameChallengePlayerInt[pid][502] >= 20
+                        if  GetPlayerTechCount(Player(pid),'RJ0J',true) > 0 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0 and GameChallengePlayerInt[pid][502] >= 20
                             SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r不满足条件，无法挑战！")
                         endif
                     else
                         ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r请挑战斩三尸提升境界！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r请挑战三灾五难劫提升境界！")
                     endif
                 else
                     SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
