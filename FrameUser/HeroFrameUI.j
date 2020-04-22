@@ -25,7 +25,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     private FRAME Button2 = 0
     private FRAME Back2 = 0
 
-    int MaxHeroLevel = 10
+    int MaxHeroLevel = 11
+
+    int array HeroDGId[12][100]
 
     //升级装备显示
     function IncEquipModelFunc(int pid,int index)
@@ -214,15 +216,30 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             endif
 */
             if  GetLocalPlayer() == Player(pid)
-            
-                DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 1, 0 )
+
+                if  num > 10
+                    DzFrameSetModel( BUTTON_Model[150+num-10], GetTypeIdIcon(id), 1, 0 )
+                    if  id == 'IJ10'
+                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber0.tga",0)
+                    elseif  id == 'IJ11'
+                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber11.tga",0)
+                    else
+                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
+                    endif
+                else
+                    DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 1, 0 )
+                    if  id == 'IJ10'
+                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber0.tga",0)
+                    elseif  id == 'IJ11'
+                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber11.tga",0)
+                    else
+                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
+                    endif
+                endif
+
 
                 
-                if  id == 'IJ10'
-                    DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber0.tga",0)
-                else
-                    DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
-                endif
+                
                 
 
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
@@ -236,9 +253,16 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             if  num == 3 or num == 5 or num == 10
                 HeroIncAbility(wu,5)
             endif
+            if  num == 10
+                RemoveUnit(Pu[21])
+                Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np01',AttackRoomPostion[pid][1]+128,AttackRoomPostion[pid][2]+512,270)//境界
+            endif
             if  id == 'IJ10'
                 MissionAddNumFunc(pid,26,1)//获得混沌道果
             endif
+
+            HeroDGId[pid][num] = id
+
             /*
             if  move == 1
                 if  PlayerDeathBool == false 

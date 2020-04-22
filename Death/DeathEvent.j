@@ -557,6 +557,8 @@ scope DeathEvent initializer InitDeathEvent
                 AddPlayerImmortalFruit(Pu[1],'IJ09',1)
             elseif  uid == 'uJ90'
                 AddPlayerImmortalFruit(Pu[1],'IJ10',1)
+            elseif  uid == 'uJA0'
+                AddPlayerImmortalFruit(Pu[1],'IJ11',1)
             endif
         
         endif

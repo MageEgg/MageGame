@@ -141,6 +141,13 @@ library DamageCode uses UnitStateSet
     //获取伤害加成结算
     function GetUnitShState(unit wu)->real
         real s = GetUnitRealState(wu,17)
+
+        if  GetUnitAbilityLevel(wu,'A00A') > 0
+            s = s + GetUnitRealState(wu,25)/10
+            BJDebugMsg("项链提高伤害 实际为"+R2S(s))
+        endif
+              
+
         if  s > 90
             s = 90
         elseif  s <= -100

@@ -56,7 +56,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FF02',"|CffFFD24D中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFF02.BLP","")
         call InitTypeIdStrings('FF04',"|CffFFD24D三尖两刃刀|r","ReplaceableTextures\\CommandButtons\\BTNFF04.BLP","")
         call InitTypeIdStrings('FF05',"|CffFFD24D八爪龙纹黄袍|r","ReplaceableTextures\\CommandButtons\\BTNFF05.BLP","土之符印+1")
-        call InitTypeIdStrings('FF06',"|CffFFD24D缚妖索|r","ReplaceableTextures\\CommandButtons\\BTNFF06.BLP","雷之符印+1")
+        call InitTypeIdStrings('FF06',"|CffFFD24D捆仙绳|r","ReplaceableTextures\\CommandButtons\\BTNFF06.BLP","雷之符印+1")
         call InitTypeIdStrings('FF09',"|CffFFD24D震天箭|r","ReplaceableTextures\\CommandButtons\\BTNFF09.BLP","暗之符印+1")
         call InitTypeIdStrings('FF11',"|CffFFD24D火尖枪|r","ReplaceableTextures\\CommandButtons\\BTNFF11.BLP","火之符印+1")
         call InitTypeIdStrings('FF12',"|CffFFD24D乾坤圈|r","ReplaceableTextures\\CommandButtons\\BTNFF12.BLP","")
@@ -111,6 +111,10 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IJ08',"|cffffff00仙品道果[8]|r","war3mapImported\\ch_DG8.mdl","")
         call InitTypeIdStrings('IJ09',"|cffff0033至圣道果[9]|r","war3mapImported\\ch_DG9.mdl","")
         call InitTypeIdStrings('IJ10',"|cffff0033混沌道果[10]|r","war3mapImported\\ch_DG10.mdl","")
+        call InitTypeIdStrings('IJ11',"|CffFF0000无极道果【11】|r","war3mapImported\\ch_DG11.mdl","")
+        call InitTypeIdStrings('IJ12',"|CffFF0000圣人本源【12】|r","war3mapImported\\ch_DG12.mdl","")
+        call InitTypeIdStrings('IJ13',"|CffFF0000道祖传承【13】|r","war3mapImported\\ch_DG13.mdl","")
+        call InitTypeIdStrings('IJ14',"|CffFF0000创世之证【14】|r","war3mapImported\\ch_DG14.mdl","")
         call InitTypeIdStrings('CS01',"D级技能书","ReplaceableTextures\\CommandButtons\\BTNCS01.blp","随机技能")
         call InitTypeIdStrings('CS02',"|cffffc926符印宝箱|r","ReplaceableTextures\\CommandButtons\\BTNAM24.blp","随机抽取|Cffffd24d3|r个|Cffffd24d符印|r，可以从中任意选择|Cffffd24d1|r个。")
         call InitTypeIdStrings('CS03',"|cff00BFFFB级技能书|r","ReplaceableTextures\\CommandButtons\\BTNCS03.blp","随机技能")
@@ -155,6 +159,10 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IT08',"境界挑战8","","渡过该劫后可结成|Cffffc926仙品道果|r。|n|n|Cffffc926仙品道果：|r|n攻击+102500|n业力+82000|n生命值+2050000|n生命回复+41000|n攻击伤害+24%|n技能伤害+20%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT09',"境界挑战9","","渡过该劫后可结成|Cffff0000至圣道果|r。|n|n|Cffff0000至圣道果：|r|n攻击+141250|n业力+113000|n生命值+2825000|n生命回复+56500|n攻击伤害+24%|n技能伤害+20%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT10',"境界挑战10","","渡过该劫后可结成|Cffff0000混沌道果|r。|n|n|Cffff0000混沌道果：|r|n攻击+191250|n业力+153000|n生命值+3825000|n生命回复+76500|n攻击伤害+36%|n技能伤害+30%|n|n|Cff00FF7F完成任意渡劫均可突破境界。|r")
+        call InitTypeIdStrings('IT11',"境界挑战11","","渡过该劫后可结成|Cffff0000无极道果|r。|n|n|Cffff0000无极道果：|r|n攻击+250000|n业力+200000|n生命值+5000000|n生命回复+100000|n攻击伤害+36%|n技能伤害+30%|n")
+        call InitTypeIdStrings('IT12',"境界挑战12","","渡过该劫后可结成|Cffff0000圣人本源|r。|n|n|Cffff0000圣人本源：|r|n攻击+312500|n业力+250000|n生命值+6250000|n生命回复+125000|n攻击伤害+36%|n技能伤害+30%|n")
+        call InitTypeIdStrings('IT13',"境界挑战13","","渡过该劫后可结成|Cffff0000道祖传承|r。|n|n|Cffff0000道祖传承：|r|n攻击+382500|n业力+306000|n生命值+7650000|n生命回复+153000|n攻击伤害+48%|n技能伤害+36%|n")
+        call InitTypeIdStrings('IT14',"境界挑战14","","渡过该劫后可结成|Cffff0000创世之证|r。|n|n|Cffff0000创世之证：|r|n攻击+462500|n业力+370000|n生命值+9250000|n生命回复+185000|n攻击伤害+48%|n技能伤害+36%|n")
         call InitTypeIdStrings('IJ5A',"炼气士[0]","","")
         call InitTypeIdStrings('IJ5B',"筑基境[1]","","")
         call InitTypeIdStrings('IJ5C',"金丹境[2]","","")
@@ -166,9 +174,9 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IJ5I',"化真境[8]","","")
         call InitTypeIdStrings('IJ5J',"天仙境[9]","","")
         call InitTypeIdStrings('IJ5K',"金仙境[10]","","")
-        call InitTypeIdStrings('IJ5L',"准圣境[11]","","")
-        call InitTypeIdStrings('IJ5M',"圣人境[12]","","")
-        call InitTypeIdStrings('IJ5N',"道祖境[13]","","")
+        call InitTypeIdStrings('IJ5L',"准圣[11]","","")
+        call InitTypeIdStrings('IJ5M',"圣人[12]","","")
+        call InitTypeIdStrings('IJ5N',"道祖[13]","","")
         call InitTypeIdStrings('IJ5O',"创世元神[14]","","")
         call InitTypeIdStrings('RY2C',"五彩凰翼","ReplaceableTextures\\CommandButtons\\BTNRY2C.BLP","")
         call InitTypeIdStrings('RY2E',"冰火双翼","ReplaceableTextures\\CommandButtons\\BTNRY2E.BLP","")
@@ -519,6 +527,12 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FM2K',"附魔","","|CffFF0000技能吸血+5%|r")
         call InitTypeIdStrings('FM2L',"附魔","","|CffFF0000多重施法次数+1|r")
 
+
+
+
+
+
+        
         BJDebugMsg("init1end")
     endfunction
     function InitDataString2()//注册法宝说明数据

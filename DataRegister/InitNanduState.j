@@ -74,8 +74,8 @@ InitTypeStateEx('uJ60',1217761,995296)
 InitTypeStateEx('uJ70',2651361,2288995)
 InitTypeStateEx('uJ80',3517254,6098467)
 InitTypeStateEx('uJ90',5492935,12668816)
-InitTypeStateEx('uJA0',9771068,14033275)
-InitTypeStateEx('uJB0',10739703,15614866)
+InitTypeStateEx('uJA0',8006503,24240003)
+InitTypeStateEx('uJB0',8006503,24240003)
 InitTypeStateEx('uJC0',10739703,15614866)
 InitTypeStateEx('uJD0',10739703,15614866)
 InitTypeStateEx('uE01',4533,1909)
@@ -276,10 +276,10 @@ InitTypeStateEx('uK1H',528383,136262)
 InitTypeStateEx('ut20',21754,5566)
 InitTypeStateEx('ut21',218135,154395)
 InitTypeStateEx('utJA',1014552,3011933)
+InitTypeStateEx('uJA1',4771784,39878715)
+InitTypeStateEx('uJA2',4771784,39878715)
+InitTypeStateEx('uJA3',4771784,39878715)
 endfunction
-
-
-
 
 
 
@@ -371,8 +371,8 @@ InitTypeStateEx('uJ60',1522201,995296)
 InitTypeStateEx('uJ70',3314201,2288995)
 InitTypeStateEx('uJ80',4396567,6098467)
 InitTypeStateEx('uJ90',6866169,12668816)
-InitTypeStateEx('uJA0',12213836,14033275)
-InitTypeStateEx('uJB0',13424629,15614866)
+InitTypeStateEx('uJA0',10008129,24240003)
+InitTypeStateEx('uJB0',10008129,24240003)
 InitTypeStateEx('uJC0',13424629,15614866)
 InitTypeStateEx('uJD0',13424629,15614866)
 InitTypeStateEx('uE01',5666,1909)
@@ -573,10 +573,10 @@ InitTypeStateEx('uK1H',660479,136262)
 InitTypeStateEx('ut20',27193,5566)
 InitTypeStateEx('ut21',272669,154395)
 InitTypeStateEx('utJA',1268191,3011933)
+InitTypeStateEx('uJA1',5964730,39878715)
+InitTypeStateEx('uJA2',5964730,39878715)
+InitTypeStateEx('uJA3',5964730,39878715)
 endfunction
-
-
-
 
 
 
@@ -668,8 +668,8 @@ InitTypeStateEx('uJ60',2054971,995296)
 InitTypeStateEx('uJ70',4474171,2288995)
 InitTypeStateEx('uJ80',5935365,6098467)
 InitTypeStateEx('uJ90',9269328,12668816)
-InitTypeStateEx('uJA0',16488678,14033275)
-InitTypeStateEx('uJB0',18123249,15614866)
+InitTypeStateEx('uJA0',15012194,24240003)
+InitTypeStateEx('uJB0',15012194,24240003)
 InitTypeStateEx('uJC0',18123249,15614866)
 InitTypeStateEx('uJD0',18123249,15614866)
 InitTypeStateEx('uE01',7650,1909)
@@ -870,10 +870,10 @@ InitTypeStateEx('uK1H',891646,136262)
 InitTypeStateEx('ut20',36710,5566)
 InitTypeStateEx('ut21',368103,154395)
 InitTypeStateEx('utJA',2310441,4293608)
+InitTypeStateEx('uJA1',8947095,39878715)
+InitTypeStateEx('uJA2',8947095,39878715)
+InitTypeStateEx('uJA3',8947095,39878715)
 endfunction
-
-
-
 
 
 
@@ -965,8 +965,8 @@ InitTypeStateEx('uJ60',2435522,995296)
 InitTypeStateEx('uJ70',5302721,2288995)
 InitTypeStateEx('uJ80',7034508,6098467)
 InitTypeStateEx('uJ90',10985871,12668816)
-InitTypeStateEx('uJA0',19542137,14033275)
-InitTypeStateEx('uJB0',21479407,15614866)
+InitTypeStateEx('uJA0',20016259,24240003)
+InitTypeStateEx('uJB0',20016259,24240003)
 InitTypeStateEx('uJC0',21479407,15614866)
 InitTypeStateEx('uJD0',21479407,15614866)
 InitTypeStateEx('uE01',9066,1909)
@@ -1167,10 +1167,10 @@ InitTypeStateEx('uK1H',1056766,136262)
 InitTypeStateEx('ut20',43508,5566)
 InitTypeStateEx('ut21',436270,154395)
 InitTypeStateEx('utJA',4682620,8966462)
+InitTypeStateEx('uJA1',11929460,39878715)
+InitTypeStateEx('uJA2',11929460,39878715)
+InitTypeStateEx('uJA3',11929460,39878715)
 endfunction
-
-
-
 
 
 
@@ -1262,8 +1262,8 @@ InitTypeStateEx('uJ60',3957724,995296)
 InitTypeStateEx('uJ70',8616923,2288995)
 InitTypeStateEx('uJ80',11431076,6098467)
 InitTypeStateEx('uJ90',17852040,12668816)
-InitTypeStateEx('uJA0',31755973,14033275)
-InitTypeStateEx('uJB0',34904037,15614866)
+InitTypeStateEx('uJA0',26021137,24240003)
+InitTypeStateEx('uJB0',26021137,24240003)
 InitTypeStateEx('uJC0',34904037,15614866)
 InitTypeStateEx('uJD0',34904037,15614866)
 InitTypeStateEx('uE01',14733,1909)
@@ -1464,10 +1464,10 @@ InitTypeStateEx('uK1H',1717245,136262)
 InitTypeStateEx('ut20',70702,5566)
 InitTypeStateEx('ut21',708940,154395)
 InitTypeStateEx('utJA',7103650,11754150)
+InitTypeStateEx('uJA1',15508298,39878715)
+InitTypeStateEx('uJA2',15508298,39878715)
+InitTypeStateEx('uJA3',15508298,39878715)
 endfunction
-
-
-
 
 
 
@@ -1559,8 +1559,8 @@ InitTypeStateEx('uJ60',5175485,995296)
 InitTypeStateEx('uJ70',11268285,2288995)
 InitTypeStateEx('uJ80',14948331,6098467)
 InitTypeStateEx('uJ90',23344976,12668816)
-InitTypeStateEx('uJA0',41527042,14033275)
-InitTypeStateEx('uJB0',45643741,15614866)
+InitTypeStateEx('uJA0',34027641,24240003)
+InitTypeStateEx('uJB0',34027641,24240003)
 InitTypeStateEx('uJC0',45643741,15614866)
 InitTypeStateEx('uJD0',45643741,15614866)
 InitTypeStateEx('uE01',19266,1909)
@@ -1761,10 +1761,10 @@ InitTypeStateEx('uK1H',2245628,136262)
 InitTypeStateEx('ut20',92457,5566)
 InitTypeStateEx('ut21',927076,154395)
 InitTypeStateEx('utJA',10889214,15408535)
+InitTypeStateEx('uJA1',20280082,39878715)
+InitTypeStateEx('uJA2',20280082,39878715)
+InitTypeStateEx('uJA3',20280082,39878715)
 endfunction
-
-
-
 
 
 
@@ -1856,8 +1856,8 @@ InitTypeStateEx('uJ60',7102122,1312343)
 InitTypeStateEx('uJ70',16239525,4103433)
 InitTypeStateEx('uJ80',23432306,15478949)
 InitTypeStateEx('uJ90',39891846,41489104)
-InitTypeStateEx('uJA0',72244406,49383617)
-InitTypeStateEx('uJB0',80806680,58611835)
+InitTypeStateEx('uJA0',48557610,28013725)
+InitTypeStateEx('uJB0',45036584,24240003)
 InitTypeStateEx('uJC0',80806680,58611835)
 InitTypeStateEx('uJD0',80806680,58611835)
 InitTypeStateEx('uE01',25500,1909)
@@ -2058,10 +2058,10 @@ InitTypeStateEx('uK1H',2972155,136262)
 InitTypeStateEx('ut20',122369,5566)
 InitTypeStateEx('ut21',1227012,154395)
 InitTypeStateEx('utJA',17087518,20624116)
+InitTypeStateEx('uJA1',29187490,46087096)
+InitTypeStateEx('uJA2',29187490,46087096)
+InitTypeStateEx('uJA3',29187490,46087096)
 endfunction
-
-
-
 
 
 
@@ -2153,8 +2153,8 @@ InitTypeStateEx('uJ60',9468118,1307348)
 InitTypeStateEx('uJ70',21646352,4078928)
 InitTypeStateEx('uJ80',31231194,15410154)
 InitTypeStateEx('uJ90',60176095,50729215)
-InitTypeStateEx('uJA0',146790628,95034705)
-InitTypeStateEx('uJB0',168016175,116116927)
+InitTypeStateEx('uJA0',80699971,42933325)
+InitTypeStateEx('uJB0',91638407,55827197)
 InitTypeStateEx('uJC0',168016175,116116927)
 InitTypeStateEx('uJD0',168016175,116116927)
 InitTypeStateEx('uE01',34000,1909)
@@ -2355,10 +2355,10 @@ InitTypeStateEx('uK1H',7666971,420188)
 InitTypeStateEx('ut20',163159,5566)
 InitTypeStateEx('ut21',1636016,154395)
 InitTypeStateEx('utJA',22783358,20624116)
+InitTypeStateEx('uJA1',50222948,70632245)
+InitTypeStateEx('uJA2',50222948,70632245)
+InitTypeStateEx('uJA3',50222948,70632245)
 endfunction
-
-
-
 
 
 
@@ -2450,8 +2450,8 @@ InitTypeStateEx('uJ60',13255366,1307348)
 InitTypeStateEx('uJ70',30304893,4078928)
 InitTypeStateEx('uJ80',43723671,15410154)
 InitTypeStateEx('uJ90',112435740,86773022)
-InitTypeStateEx('uJA0',210236611,107952044)
-InitTypeStateEx('uJB0',242079361,134555153)
+InitTypeStateEx('uJA0',128293770,55827197)
+InitTypeStateEx('uJB0',128293770,55827197)
 InitTypeStateEx('uJC0',242079361,134555153)
 InitTypeStateEx('uJD0',242079361,134555153)
 InitTypeStateEx('uE01',47600,1909)
@@ -2652,11 +2652,11 @@ InitTypeStateEx('uK1H',10733760,420188)
 InitTypeStateEx('ut20',228423,5566)
 InitTypeStateEx('ut21',2290423,154395)
 InitTypeStateEx('utJA',31896701,20624116)
+InitTypeStateEx('uJA1',81933612,91844743)
+InitTypeStateEx('uJA2',81933612,91844743)
+InitTypeStateEx('uJA3',81933612,91844743)
 endfunction
 endscope
-
-
-
 
 
 
