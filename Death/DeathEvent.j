@@ -210,7 +210,7 @@ scope DeathEvent initializer InitDeathEvent
         int num = GetItemCharges(it)
         int next = GetTypeIdData(id,106)
         int gl = GetTypeIdData(id,104)
-
+        int fmid = 0
         
             
         if  num-exp >= 1
@@ -236,17 +236,25 @@ scope DeathEvent initializer InitDeathEvent
                 gl = 40
             endif
 
-            
+                
+
+
             if  GetRandomInt(1,100)<= gl
                 SetItemDroppable(it,true)
+                
+                fmid = GetItemIntState(it,'FMID')
                 UnitRemoveItem(Pu[1],it)
                 RemoveItem(it)
+                bj_lastCreatedItem = CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetItemIntState(bj_lastCreatedItem,'FMID',fmid)
+                UnitAddItem(Pu[1],bj_lastCreatedItem)
+                UnitAddEffect(Pu[1],"effect_e_buffyellow2.mdx")
+                bj_lastCreatedItem = null
+
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cff00ff00[系统]：恭喜您！饰品升级成功！")
-                UnitAddItem(Pu[1],CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             else
                 SetItemCharges(it,GetTypeIdData(id,100))
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffff0000[系统]：很遗憾！饰品升级失败！")
-                UnitAddItem(Pu[1],CreateItem(id,GetUnitX(Pu[1]),GetUnitY(Pu[1])))
             endif
         endif
     endfunction

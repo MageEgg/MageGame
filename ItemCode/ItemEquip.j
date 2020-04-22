@@ -123,6 +123,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
     function HeroEquipRemMagic(unit wu,item it)
         int id = GetItemIntState(it,'FMID')
         AddUnitIntState(wu,id,-1)
+        SetMagicStateEx(wu,id,-1)
         SetEquipStateOfPlayer(wu,id,-1)
         SetItemIntState(it,'FMID',0)
     endfunction
@@ -134,6 +135,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
         endif
 
         AddUnitIntState(wu,id,1)
+        SetMagicStateEx(wu,id,1)
         SetEquipStateOfPlayer(wu,id,1)
         SetItemIntState(it,'FMID',id)
 

@@ -1307,18 +1307,30 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real x=GetUnitX(u1)
         real y=GetUnitY(u1)
         real damage = GetHeroStr(u,true)
+        real add = 0
 
         
         if  GetPlayerTechCount(GetOwningPlayer(u),'RM1E',true) > 0
-            damage = damage * 1.5
+            add = add + 0.5
+        endif
+        if  GetUnitAbilityLevel(u,'A009') > 0
+            add = add + 0.5
         endif
         
-        IndexGroup g 
+        damage = damage * (1+add)
+
+        IndexGroup g  
         if  GetUnitAbilityLevel(u,'AZ15') > 0 and ChanceEx(u,'S109',10) == true
             g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             if  FirstOfGroup(g.ejg)!=null
-                LocAddEffectSetSize(x,y,"effect_red-texiao-shandian.mdl",0.8)
+
+                if  GetUnitAbilityLevel(u,'A009') > 0
+                    LocAddEffectSetSize(x,y,"effect_by_wood_effect_d2_shadowfiend_shadowraze_1.mdl",0.8)
+                else
+                    LocAddEffectSetSize(x,y,"effect_red-texiao-shandian.mdl",0.8)
+                endif
+                
                 UnitDamageGroup(u,g.ejg,damage*4,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
             g.destroy()
