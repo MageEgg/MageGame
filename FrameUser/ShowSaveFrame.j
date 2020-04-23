@@ -174,8 +174,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0)//难5通关15次
         RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0)//难6通关15次
         RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关15次
-        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关12次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关15次
+        RegisterShowSaveFrameData(0,'RG1I','RG1I',0,0,0,0)//难9通关15次
+        
 
 
         RegisterShowSaveFrameData(0,'RGAA','RGAA',0,0,0,0)//通关疯狂N1
@@ -936,6 +937,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         
     endfunction
 endlibrary
+
 
 
 

@@ -54,7 +54,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[6] = 15
         DzPlayerInitTGCos[7] = 15
         DzPlayerInitTGCos[8] = 15
-        DzPlayerInitTGCos[9] = 5
+        DzPlayerInitTGCos[9] = 15
         //DzPlayerInitTGCos[10] = 10
 
         DzPlayerInitCrazyTGCos[1] = 1

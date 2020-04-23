@@ -252,7 +252,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG1F',"难6通关15次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1G',"难7通关15次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","法宝稀有度+15%")
         call InitTypeIdStrings('RG1H',"难8通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
-        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
+        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
         call InitTypeIdStrings('RGAA',"通关疯狂N1","ReplaceableTextures\\CommandButtons\\BTNCJFK01.BLP","开局金币+500")
         call InitTypeIdStrings('RGAB',"通关疯狂N2","ReplaceableTextures\\CommandButtons\\BTNCJFK02.BLP","")
         call InitTypeIdStrings('RGAC',"通关疯狂N3","ReplaceableTextures\\CommandButtons\\BTNCJFK03.BLP","")
