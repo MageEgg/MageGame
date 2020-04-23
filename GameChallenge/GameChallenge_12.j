@@ -147,11 +147,11 @@ library GameChallenge12 uses GameChallengeBase
             CreateUsesGameTeamChalleng(17,'ut12',6784-77.5,-960,270)
             CreateUsesGameTeamChalleng(18,'ut13',6016,-1376,180)
             CreateUsesGameTeamChalleng(19,'ut14',7552,-1376,180)
-            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(10),0)
-            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(11),0)
-            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(12),0)
-            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(13),0)
-            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(14),0)
+            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(15),0)
+            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(16),0)
+            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(17),0)
+            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(18),0)
+            SetUnitOverStateOfGameTeamChalleng2(GameTeamChallengUnit(19),0)
             OpenGameTeamChallengeTimer(60,40)
             for pid = 0,3
                 if  IsPlaying(pid) == true
