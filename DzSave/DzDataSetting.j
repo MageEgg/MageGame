@@ -43,6 +43,7 @@ library DzDataSetting uses DzBase
     // 组15 彩蛋    30组
     // 组16 10组 1战勋点 2当天战勋点
     // 组17 20组 == 1疯狂总次数 2+通关难疯狂度次数 
+    // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -89,8 +90,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(15) = 2
         DzDataGroupLength(16) = 6
         DzDataGroupLength(17) = 3
-        /*DzDataGroupLength(18) = 0
-        DzDataGroupLength(19) = 0
+        DzDataGroupLength(18) = 5
+        /*DzDataGroupLength(19) = 0
         DzDataGroupLength(20) = 0
         DzDataGroupLength(21) = 0
         DzDataGroupLength(22) = 0
@@ -163,18 +164,18 @@ library DzDataSetting uses DzBase
                 max = 0
             endif
         elseif  Group == 7
-            max = MaxHeroNeedExp2//MaxHeroNeedExp4
+            max = MaxHeroNeedExp2 //MaxHeroNeedExp4
         elseif  Group == 8
-            max = MaxHeroNeedExp2//MaxHeroNeedExp4
+            max = MaxHeroNeedExp2 //MaxHeroNeedExp4
         elseif  Group == 9
             max = MaxHeroExpLevel
         elseif  Group >= 10 and Group <= 15 //不用管
 
         elseif  Group == 16 
             if  flag == 1 //战勋
-                max = GamePuOverDay*896//MaxHeroBaseMedal*MaxGameLevel
+                max = GamePuOverDay*896 //MaxHeroBaseMedal*MaxGameLevel
             elseif  flag == 2 //当天战勋点
-                max = 896//MaxHeroBaseMedal*MaxGameLevel
+                max = 896 //MaxHeroBaseMedal*MaxGameLevel
             else
                 max = 0
             endif
@@ -186,7 +187,17 @@ library DzDataSetting uses DzBase
             elseif  flag >= MaxGameLevel+2 //未开启的难度
                 max = 0
             endif
-        elseif  Group > 17 //未使用
+        elseif  Group == 18 //活动存档组
+            if  flag == 1
+                max = 3000
+            elseif  flag == 2
+                max = Holiday51*2
+            elseif  flag == 3
+                max = 1000
+            elseif  flag > 3
+                max = 0
+            endif
+        elseif  Group > 18 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)
