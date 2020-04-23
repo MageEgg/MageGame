@@ -16,6 +16,8 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
         int GamePuOverDay = 0
         int MeridiansDay = 0
 
+        int Holiday51 = 0
+
         int TimeTestDay = 0
         int TimeMon = 0
         int TimeWeek = 0
@@ -179,6 +181,12 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             if  MeridiansDay < 0
                 MeridiansDay = 0
             endif
+
+            Holiday51 = (ServerTime-1587657600)/86400 //经脉日
+            if  Holiday51 < 0
+                Holiday51 = 0
+            endif
+            BJDebugMsg.execute("初始化天数 51活动：："+I2S(Holiday51))
             BJDebugMsg.execute("初始化天数 经脉日：："+I2S(MeridiansDay))
             BJDebugMsg.execute("初始化天数 已发布：："+I2S(GamePuOverDay))
             BJDebugMsg.execute("初始化天数 通行证：："+I2S(MissionDay))

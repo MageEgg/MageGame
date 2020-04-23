@@ -109,6 +109,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
         RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0)//魅惑之翼
         RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0)//断罪神灵
+        RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0)//GM-小咸鱼
 
         
         
@@ -414,6 +415,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     if  sid == 'AP1A'
                         DzSetUnitModel(Pu[2],"zs_rykj.mdl")
                         SetUnitScale(Pu[2],2.5,2.5,2.5)
+                    elseif  sid == 'AP1B'
+                        DzSetUnitModel(Pu[2],"moster_sumo.mdl")
+                        SetUnitScale(Pu[2],1,1,1)
                     endif
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r助手皮肤替换成功！")
                 else
@@ -472,7 +476,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     SetTipsData(10,""," ")
                 endif
                 h = 11
-                for i = 1,5
+                for i = 1,10
                     if  lv >= i
                         SetTipsData(h,"","Lv."+I2S(i)+"："+GetTypeIdName(id+i+16))
                     else
@@ -866,7 +870,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
         CreateText(581,Button.frameid,"centertext009",4,4,0.0,0.0,"成就")
         CreateText(582,Button.frameid,"centertext009",4,4,0.0,0.0,"称号")
-        CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"外观")
+        CreateText(583,Button.frameid,"centertext009",4,4,0.0,0.0,"皮肤外观")
         CreateText(584,Button.frameid,"centertext009",4,4,0.0,0.0,"英雄熟练度")
         CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"封神谕令")
         CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")

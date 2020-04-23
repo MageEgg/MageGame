@@ -307,6 +307,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                         if  GetPlayerTechCount(Player(pid),'RJ0J',true) > 0 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0 and GameChallengePlayerInt[pid][502] >= 20
                             SendPlayerUnit(pid,GetTypeIdData(id,151),GetTypeIdData(id,152))
                         else
+                            ReturnPlayerBuyItemUse(pid,id)//返还物品资源消耗
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r不满足条件，无法挑战！")
                         endif
                     else

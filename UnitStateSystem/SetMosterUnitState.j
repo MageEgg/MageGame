@@ -222,6 +222,10 @@ library UnitStateSet initializer UnitStateSetInit uses State
             SetAttackUnitState(wu)
         elseif  id >= 'Mb00' and id <= 'Mb99'
             SetMosterUnitState(wu)
+        elseif  id == 'uh01'//山
+            SetUnitRealState(wu,5,500)
+        elseif  id == 'uh02'
+            SetUnitRealState(wu,5,100)
         elseif  id >= 'u0DA' and id <= 'u0DZ'
             //周天星辰阵
             SetMosterUnitState(wu)
