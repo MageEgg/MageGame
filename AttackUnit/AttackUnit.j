@@ -569,7 +569,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 endif
             endif
 
-            if  GameMode == 1
+            if  GameMode == 1 or GameMode == 3
                 if  AttackUnitWN == 5
                     if  IsGameOperaA == false
                         IsGameOperaA = true
