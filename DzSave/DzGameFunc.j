@@ -6,6 +6,11 @@ piece DzGameFunc
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(896))//MaxHeroBaseMedal*MaxGameLevel))  
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00万魔窟：|r"+I2S(GetDzPlayerData(pid,2,3))+"层")
 
+            if  DzConA[24] == 1
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00狂欢积分：|r"+I2S(GetDzPlayerData(pid,18,1)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,3))+"/1000")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00祖传矿铲：|r"+I2S(GetDzPlayerData(pid,18,2)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,4))+"/2")
+            endif
+
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r未开启存档！")
@@ -39,6 +44,7 @@ piece DzGameFunc
             SetDzPlayerData(pid,1,10,0) //经脉
             SetDzPlayerData(pid,16,2,0) //当天战勋点
             SetDzPlayerData(pid,18,3,0) //活动刷新
+            SetDzPlayerData(pid,18,4,0) //活动刷新
             BJDebugMsg("刷新！！！！！！！！！！")
         endif
         if  mission != DzMissionWeek

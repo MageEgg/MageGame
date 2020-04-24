@@ -375,7 +375,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         int id4 = 0
         int id5 = 0
         BJDebugMsg("当前副本"+I2S(index))
-        if  Pint[300] == 0
+        //if  Pint[300] == 0
             if  GetUnitIntState(Pu[1],403) > 0
                 for i = 1,3
                     rid = GetUnitIntState(Pu[1],402+i)
@@ -395,7 +395,7 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
                 return true
             endif
-        endif
+        //endif
         return false
     endfunction
 

@@ -156,7 +156,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ2D','RJ2D',0,0,0,0)//荣耀之证
         RegisterShowSaveFrameData(0,'RJ2E','RJ2E',0,0,0,0)//荣耀之光
         RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0)//中流砥柱
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RJ2G','RJ2G',0,0,0,0)//劳动光荣
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
