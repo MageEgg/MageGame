@@ -227,7 +227,7 @@ library GameChallenge12 uses GameChallengeBase
     
     function FlushGameTeamChallengeStock2()
         int time = 150
-        if  GmaeMode == 3
+        if  GameMode == 3
             time = 75
             FlushGameTeamChallengeStock2TimerNew(time)
         endif

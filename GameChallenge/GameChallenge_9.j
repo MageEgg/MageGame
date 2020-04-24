@@ -409,7 +409,7 @@ library GameChallenge9 uses GameChallengeBase
 
     function FlushGameTeamChallengeStock()
         int time = 150
-        if  GmaeMode == 3
+        if  GameMode == 3
             time = 75
             FlushGameTeamChallengeStockTimerNew(time)
         endif
