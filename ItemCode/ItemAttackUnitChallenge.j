@@ -249,6 +249,10 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int id = AttackUnitChallengeStateTypeValueA[zu][wei]
         int zero = AttackUnitChallengeStateTypeValueA[zu][0]
         string s = ""
+        real time = 5
+        if  GameMode == 3
+            time = 1
+        endif
         //BJDebugMsg(YDWEId2S(id))
         UnitAddAbility(Pu[42],id)
         if  GetPlayerTechCount(Player(pid),id+167772160-1,true) > 0 or id == zero
@@ -258,7 +262,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         s = s + AttackUnitChallengeStateTypeString[zu][wei]
         if  Player(pid) == GetLocalPlayer()
             YDWESetUnitAbilityDataString(Pu[42],id,1,218,s)
-            YDWESetUnitAbilityState(Pu[42],id,1,5)
+            YDWESetUnitAbilityState(Pu[42],id,1,time)
         endif
     endfunction
 
