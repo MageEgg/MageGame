@@ -142,22 +142,17 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
-
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
+
         RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//铁石心肝
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
-
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
+
         RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0)//老司机
-
-        RegisterShowSaveFrameData(0,'RJ1M','RJ1M',0,0,0,0)//我超强
-        RegisterShowSaveFrameData(0,'RJ1N','RJ1N',0,0,0,0)//我究极强
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-
+        
         RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
         RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0)//荣耀之信
         RegisterShowSaveFrameData(0,'RJ2C','RJ2C',0,0,0,0)//荣耀之心
