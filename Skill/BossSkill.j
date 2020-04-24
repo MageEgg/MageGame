@@ -1313,6 +1313,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    function BossFuncSpell59()
+        insert BossSpell
+        damage = damage / 4
+        CreateEffectArea(u1,x2,y2,400,damage,5,0.3,10,0.5,"Units\\Demon\\Infernal\\InfernalBirth.mdl",false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+        flush locals
+    endfunction
+
+
     function BossFuncSpell(unit wu,unit tu,int id)
         unit u1 = wu
         unit u2 = tu
@@ -1503,7 +1511,11 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             JJFuncSpell99(u1)
         elseif  id == 'AZ3G'
             damage = attack*10
-            BossFuncStart(u1,u1,RAC_A_600,ang,damage,2,"BossFuncSpell58")
+            BossFuncStart(u1,u1,RAC_A_600,ang,damage,0.01,"BossFuncSpell58")
+        elseif  id == 'AZ3H'
+            damage = attack*10
+            BossFuncStart(u1,u2,RAC_A_400,ang,damage,0.01,"BossFuncSpell59")
+
         ////////////////////////////分割线////////////////////////////////
 
         elseif  id >= 'AZ2A' and id <= 'AZ2Z'
@@ -1576,8 +1588,6 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function SpellAXBF(unit wu)
         unit u = wu
         int uid = GetUnitTypeId(u)
-        real x = 0
-        real y = 0
         UnitAddAbility(u,'AXBN')
         TimerStart(1,true)
         {
@@ -1585,7 +1595,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             real damage = GetUnitRealState(u,1)*2
             if  GetUnitTypeId(u) == uid
                 gg = CreateGroup()
-                GroupEnumUnitsInRange(gg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"Abilities\\Spells\\NightElf\\Immolation\\ImmolationDamage.mdl","origin",0))
+                GroupEnumUnitsInRange(gg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(u),"Abilities\\Spells\\NightElf\\Immolation\\ImmolationDamage.mdl","head",0))
                 UnitDamageGroup(u,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 GroupClear(gg)
                 DestroyGroup(gg)

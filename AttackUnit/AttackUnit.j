@@ -317,6 +317,8 @@ library AttackUnit uses DamageCode,PassCheckMission
             sid = 'AXAA'+12//GetRandomInt(0,12)
         elseif  ty == 1
             sid = 'AXBA'+GetRandomInt(0,9)
+        else
+            sid = ty
         endif
         UnitAddAbility(u,sid)
         if  sid == 'AXAA'
@@ -339,7 +341,9 @@ library AttackUnit uses DamageCode,PassCheckMission
             UnitAddAbility(u,'AXAM')
         //////////////////////////////
         elseif  sid == 'AXBA'
-            UnitAddAbility(u,'AXAM')
+            UnitAddAbility(u,'AZ3G')
+        elseif  sid == 'AXBC'
+            UnitAddAbility(u,'AZ3H')
         elseif  sid == 'AXBE'
             UnitAddAbility(u,'AXBM')
         elseif  sid == 'AXBF'
