@@ -133,7 +133,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
         RegisterPassCheckMission(21,2,1,"","击杀1次闻太师")
         RegisterPassCheckMission(22,2,1,"","通关难2或以上")
-        RegisterPassCheckMission(23,2,1,"","通关难3")
+        RegisterPassCheckMission(23,2,1,"","通关难3或以上")
         RegisterPassCheckMission(24,2,1,"","获得1个|CffFF0000混沌圣器|r品质的法宝")
         RegisterPassCheckMission(25,2,1,"","完成1次团队副本-万仙阵")
         RegisterPassCheckMission(26,2,2,"","获得两颗|CffFF0000混沌道果|r。")

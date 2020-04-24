@@ -875,7 +875,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         CreateText(585,Button.frameid,"centertext009",4,4,0.0,0.0,"封神谕令")
         CreateText(586,Button.frameid,"centertext009",4,4,0.0,0.0,"商城")
         CreateText(587,Button.frameid,"centertext009",4,4,0.0,0.0,"彩蛋")
-        CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"经脉")
+        CreateText(588,Button.frameid,"centertext009",4,4,0.0,0.0,"特殊成就")
 
     endfunction
 

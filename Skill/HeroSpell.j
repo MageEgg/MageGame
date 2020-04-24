@@ -1744,12 +1744,19 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
     function SpellAG07(unit wu)
         unit u1 = wu
+        real time = 10
         AddUnitRealState(wu,3,100)
         UnitAddAbility(wu,'A00C')
         SetUnitState(wu, ConvertUnitState(0x25), GetUnitState(wu, ConvertUnitState(0x25)) - 0.1)
         
         CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(wu)),8,1,0.2)
-        TimerStart(10,false)
+
+        if  GetPlayerTechCount(GetOwningPlayer(wu),'RM6J',true) > 0
+            time = time + 3
+        endif
+
+
+        TimerStart(time,false)
         {
             AddUnitRealState(u1,3,-100)
             UnitRemoveAbility(u1,'A00C')

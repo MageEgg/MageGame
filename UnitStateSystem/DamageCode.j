@@ -564,7 +564,9 @@ library DamageCode uses UnitStateSet
             return false
         endif
     endfunction
-
+    func GetUnitAttack(unit wu)->real
+        return GetUnitState(wu, ConvertUnitState(0x12)) + GetUnitState(wu, ConvertUnitState(0x13))
+    end
 
     function GetHeroZdl(unit wu)->int
         real zdl = 0
@@ -600,5 +602,6 @@ library DamageCode uses UnitStateSet
         return R2I(zdl)
     endfunction
 
-    
+
 endlibrary
+
