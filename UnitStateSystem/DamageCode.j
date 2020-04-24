@@ -564,4 +564,41 @@ library DamageCode uses UnitStateSet
             return false
         endif
     endfunction
+
+
+    function GetHeroZdl(unit wu)->int
+        real zdl = 0
+        
+        real 攻击 = GetUnitAttack(wu)
+        real 业力 = GetHeroStr(wu,true)//业力
+        
+        real 护甲 = GetUnitRealState(wu,3)
+        real 生命 = GetUnitRealState(wu,5)
+        
+        real 技伤 = GetUnitFsState(wu)
+        real 攻伤 = GetUnitWsState(wu)
+        real 增伤 = GetUnitShState(wu)
+        real 减伤 = GetUnitDkState(wu)//伤害抵抗
+        real 攻速 = GetHeroAgi(wu,true)//攻速
+        real 冷却 = GetHeroInt(wu,true)//冷却
+        real 暴击 = GetUnitBjState(wu)
+        real 爆伤 = GetUnitBsState(wu)
+        real 吸血 = GetUnitWxState(wu)
+        real 闪避 = GetUnitSbState(wu)
+        real 护穿 = GetUnitWcState(wu)
+        real 回血 = GetUnitRealState(wu,7)
+        
+
+        zdl =(生命*0.05+回血*2+攻击+业力)*(1+护甲*0.01+吸血*0.01+闪避*0.01+减伤*0.01+暴击*0.01+(爆伤-200)*0.002+攻速*0.006+冷却*0.004+攻伤*0.004+技伤*0.006+增伤*0.01+护穿*0.0002)
+
+        zdl = zdl / 100
+        
+        if  zdl < 5
+            zdl = 5
+        endif
+        
+        return R2I(zdl)
+    endfunction
+
+    
 endlibrary

@@ -1308,8 +1308,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real y=GetUnitY(u1)
         real damage = GetHeroStr(u,true)
         real add = 0
+        real gl = 10
 
         
+        
+        if  GetPlayerTechCount(GetOwningPlayer(u),'RM1J',true) > 0
+            gl = gl + 10
+        endif
         if  GetPlayerTechCount(GetOwningPlayer(u),'RM1E',true) > 0
             add = add + 0.5
         endif
@@ -1320,7 +1325,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         damage = damage * (1+add)
 
         IndexGroup g  
-        if  GetUnitAbilityLevel(u,'AZ15') > 0 and ChanceEx(u,'S109',10) == true
+        if  GetUnitAbilityLevel(u,'AZ15') > 0 and ChanceEx(u,'S109',gl) == true
             g = IndexGroup.create()
             GroupEnumUnitsInRange(g.ejg,x,y,300,GroupNormalNoStr(GetOwningPlayer(u),"","",0))
             if  FirstOfGroup(g.ejg)!=null

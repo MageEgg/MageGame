@@ -371,34 +371,28 @@ scope ItemSystem initializer InitItemSystem
                 endif
             elseif  itemid == 'IV02'
                 if  GetDzPlayerData(pid,10,7) == 7
-                    if  GetDzPlayerData(pid,19,2) == 0
-                        
-                        if  DzPlayerLv(Player(pid)) >= 8
-                            if  GetDzPlayerData(pid,18,1) >= 3000
-                                if  GetDzPlayerData(pid,18,2) >= 5
-                                    if  Holiday51 >= 5
-                                        AddDzPlayerData(pid,18,1,-3000)
-                                        AddDzPlayerData(pid,18,2,-5)
-                                        AddDzPlayerData(pid,19,2,2)
-                                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
-                                    else
-                                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:还不到第5天，你哪来的8个矿铲！")
-                                    endif
+                    if  DzPlayerLv(Player(pid)) >= 8
+                        if  GetDzPlayerData(pid,18,1) >= 3000
+                            if  GetDzPlayerData(pid,18,2) >= 5
+                                if  Holiday51 >= 4
+                                    AddDzPlayerData(pid,18,1,-3000)
+                                    AddDzPlayerData(pid,18,2,-5)
+                                    AddDzPlayerData(pid,19,2,2)
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
                                 else
-                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！祖传矿铲不足|cff00ff005")
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:还不到第4天，你哪来的8个矿铲！")
                                 endif
                             else
-                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！狂欢积分不足|cff00ff003000")
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！祖传矿铲不足|cff00ff005")
                             endif
                         else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff008")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！狂欢积分不足|cff00ff003000")
                         endif
-                        
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff008")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！请先兑换成就-工作使我快乐。")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
                 endif
             elseif  itemid == 'IV03'
                 if  HolidayChangeData[pid][3] == 0

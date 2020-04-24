@@ -493,7 +493,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY3E',InitCond1(1,Unloc_Type_Level,24),InitCond2(0,Unloc_Type_Load,GameDataList(13,5,5)),0,0,0)
 
         InitUnlocTechConditions('RJ2G',InitCond1(1,Unloc_Type_Level,6),InitCond2(1,Unloc_Type_Day51,2),InitCond3(0,Unloc_Type_Load,GameDataList(10,7,7)),0,0)
-        InitUnlocTechConditions('RP1B',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day51,5),InitCond3(0,Unloc_Type_Load,GameDataList(19,2,2)),0,0)
+        InitUnlocTechConditions('RP1B',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day51,4),InitCond3(0,Unloc_Type_Load,GameDataList(19,2,2)),0,0)
         
 
 

@@ -595,14 +595,17 @@ scope DeathEvent initializer InitDeathEvent
             endif
         elseif  uid == 'uh02'//狂欢活动恶霸
             for jfpid = 0,3
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")
                 if  IsPlaying(jfpid) == true 
                     if  GetDzPlayerData(jfpid,18,3) <= 990
                         AddDzPlayerData(jfpid,18,1,10)
                         AddDzPlayerData(jfpid,18,3,10)
+                    else
+                        DisplayTimedTextToPlayer(Player(jfpid),0,0,5,"|cffffcc00[51狂欢]：|r狂欢积分今日已达上限!")
                     endif
                     AdjustPlayerStateBJ( 2 ,Player(jfpid), PLAYER_STATE_RESOURCE_LUMBER )
                 endif
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")
+                
             end
         elseif  uid == 'uh01'//山
             for spid = 0,3
@@ -611,9 +614,10 @@ scope DeathEvent initializer InitDeathEvent
                         if  GetDzPlayerData(spid,18,4) < 2
                             AddDzPlayerData(spid,18,2,1)
                             AddDzPlayerData(spid,18,4,1)
+                            
                             DisplayTimedTextToPlayer(Player(spid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功移走大山！祖传矿铲+1！|r")
                         else
-                            DisplayTimedTextToPlayer(Player(spid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功移走大山！|r")
+                            DisplayTimedTextToPlayer(Player(spid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功移走大山！(祖传矿铲今日已达上限)|r")
                         endif
                     endif
                 endif
@@ -669,7 +673,7 @@ scope DeathEvent initializer InitDeathEvent
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
             endif
         elseif  uid == 'ut20'
-            if  GetRandomReal(1,10000)<=20
+            if  GetRandomReal(1,10000)<=60
                 CreateItem('CS51',GetUnitX(tu),GetUnitY(tu))
             endif
         endif
