@@ -344,6 +344,10 @@ library AttackUnit uses DamageCode,PassCheckMission
             UnitAddAbility(u,'AZ3G')
         elseif  sid == 'AXBC'
             UnitAddAbility(u,'AZ3H')
+        elseif  sid == 'AXBD'
+            AddUnitRealState(u,51,500)
+            SetUnitRealState(u,1,GetUnitRealState(u,1)*1.3)
+            SpellAXBD.execute(u)
         elseif  sid == 'AXBE'
             UnitAddAbility(u,'AXBM')
         elseif  sid == 'AXBF'

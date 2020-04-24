@@ -1300,11 +1300,18 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function BossFuncSpell58()
         insert BossSpell
         int time = 0
-        TimerStart(0.15,true)
+        TimerStart(0.1,true)
         {
+            effect eff = null
+            real newang = 0
             time = time + 1
-            if  time < 10
-                
+            if  time <= 12
+                eff = AddSpecialEffect("effect_hero_attack4.mdl",x1,y1)
+                EXEffectMatRotateZ(eff,(time-1)*30+270)
+                DestroyEffect(eff)
+                newang = Atan2(200*Sin(((time-1)*30+270)*0.01745),200*Cos(((time-1)*30+270)*0.01745))
+                //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
+                CreateTm(u1,'e00P',x1,y1,newang,damage,1,0,210,900,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
             else
                 endtimer                
             endif
@@ -1604,6 +1611,44 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             endif
             flush locals
         }
+        flush locals
+    endfunction
+
+    function SpellAXBDEx(unit wu,unit tu)
+        unit u1 = wu
+        unit u2 = tu
+        int uid = GetUnitTypeId(u1)
+        TimerStart(0.3,true)
+        {
+            if  GetUnitTypeId(u1) != uid
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellAXBD(unit wu)
+        unit u1 = wu
+        real x = GetUnitX(u1)
+        real y = GetUnitY(u1)
+        real sx = 0
+        real sy = 0
+        unit u2 = null
+        for num = 1,2
+            sx = x + 20*Cos((180*num)*0.01745)
+            sy = y + 20*Sin((180*num)*0.01745)
+            u2 = CreateUnit(Player(11),'z106',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),GetUnitFacing(wu))
+            AddBossAttachUnitState(u2,GetUnitTypeId(u2))
+            AddUnitRealState(u2,19,10)
+            AddUnitRealState(u2,20,2000)
+            SetUnitXY(u2,sx,sy)
+            IssuePointOrderById(u2,851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
+            GroupAddUnit(AttackUnitGroup,u2)
+            SpellAXBDEx(u1,u2)
+            ShowUnitState.execute(0)
+        end
         flush locals
     endfunction
 
