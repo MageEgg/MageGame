@@ -1618,10 +1618,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         unit u1 = wu
         unit u2 = tu
         int uid = GetUnitTypeId(u1)
-        TimerStart(0.3,true)
+        TimerStart(0.1,true)
         {
             if  GetUnitTypeId(u1) != uid
-                RemoveUnit(u2)
+                KillUnit(u2)
                 endtimer
             endif
             flush locals
