@@ -49,9 +49,7 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
         return 0
     endfunction
 
-    func GetUnitAttack(unit wu)->real
-        return GetUnitState(wu, ConvertUnitState(0x12)) + GetUnitState(wu, ConvertUnitState(0x13))
-    end
+    
     
     func GetAbilityDamage(unit wu,int id,int lv)->real
         real r1 = 0
