@@ -869,10 +869,20 @@ scope DeathEvent initializer InitDeathEvent
         if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
 
+            //特殊判断无伤害来源可触发
             if  uid >= 'mb01' and uid <= 'mb20'
                 AttackBossDeathEvent(u1)
             elseif  uid == 'ut20'
                 ut20UnitDeath(pid2,u1)
+            endif
+            if  GetUnitAbilityLevel(u1,'AXAG') > 0
+                SpellAXAG(u1)
+            endif
+            if  GetUnitAbilityLevel(u1,'AXAI') > 0
+                SpellAXAI(u1)
+            endif
+            if  GetUnitAbilityLevel(u1,'AXBB') > 0
+                SpellAXBB(u1)
             endif
 
             if  IsPlayerAlly(GetOwningPlayer(u1),GetOwningPlayer(u2))==false

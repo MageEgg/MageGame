@@ -1297,6 +1297,22 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    function BossFuncSpell58()
+        insert BossSpell
+        int time = 0
+        TimerStart(0.15,true)
+        {
+            time = time + 1
+            if  time < 10
+                
+            else
+                endtimer                
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function BossFuncSpell(unit wu,unit tu,int id)
         unit u1 = wu
         unit u2 = tu
@@ -1480,13 +1496,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ3D'
             damage = attack*6
             BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell56")
-
-
         elseif  id == 'AZ3E'
             damage = attack*12
             BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell57")
         elseif  id == 'AZ3F'
             JJFuncSpell99(u1)
+        elseif  id == 'AZ3G'
+            damage = attack*10
+            BossFuncStart(u1,u1,RAC_A_600,ang,damage,2,"BossFuncSpell58")
         ////////////////////////////分割线////////////////////////////////
 
         elseif  id >= 'AZ2A' and id <= 'AZ2Z'
@@ -1511,5 +1528,73 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    ///////////////////////////变异模式技能分割//////////////////////////////////
+
+    function SpellAXAG(unit u)
+        real x = GetUnitX(u)
+        real y = GetUnitY(u)
+        real damage = GetUnitRealState(u,1)*4
+        group gg = CreateGroup()
+        LocAddEffectSetSize(x,y,"effect3_red-zhendi.mdl",1.5)
+        LocAddEffectSetSize(x,y,"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",1)
+        GroupEnumUnitsInRange(gg,x,y,350,GroupNormalNoStr(GetOwningPlayer(u),"","origin",0))
+        UnitDamageGroup(u,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function SpellAXAI(unit u)
+        int uid = GetUnitTypeId(u)
+        real x = GetUnitX(u)
+        real y = GetUnitY(u)
+        UnitTimerAddSkill(CreateUnit(GetOwningPlayer(u),uid,x,y,GetUnitFacing(u)),'Avul',0.5)
+        LocAddEffectSetSize(x,y,"Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageCaster.mdl",1.5)
+        LocAddEffectSetSize(x,y,"Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageCaster.mdl",1.5)
+        flush locals
+    endfunction
+
+    function SpellAXBB(unit u)
+        real x = GetUnitX(u)
+        real y = GetUnitY(u)
+        unit u2 = null
+        group gg = CreateGroup()
+        GroupEnumUnitsInRange(gg,x,y,1000,null)
+        loop
+            u2 = FirstOfGroup(gg)
+            exitwhen u2 == null
+            if  IsUnitInGroup(u2,AttackUnitGroup) == true
+                AddUnitRealStateTimer(u2,9,200,4)
+            endif
+            GroupRemoveUnit(gg,u2)
+        endloop
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function SpellAXBF(unit wu)
+        unit u = wu
+        int uid = GetUnitTypeId(u)
+        real x = 0
+        real y = 0
+        UnitAddAbility(u,'AXBN')
+        TimerStart(1,true)
+        {
+            group gg = null
+            real damage = GetUnitRealState(u,1)*2
+            if  GetUnitTypeId(u) == uid
+                gg = CreateGroup()
+                GroupEnumUnitsInRange(gg,x,y,600,GroupNormalNoStr(GetOwningPlayer(u),"Abilities\\Spells\\NightElf\\Immolation\\ImmolationDamage.mdl","origin",0))
+                UnitDamageGroup(u,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                GroupClear(gg)
+                DestroyGroup(gg)
+            else
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
 
 endlibrary

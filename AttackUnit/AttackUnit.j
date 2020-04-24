@@ -288,10 +288,63 @@ library AttackUnit uses DamageCode,PassCheckMission
                 IssuePointOrderById(GetEnumUnit(),851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
             endif
         endif
+        if  GetUnitAbilityLevel(GetEnumUnit(),'AXAE') > 0
+            if  GetUnitAbilityLevel(GetEnumUnit(),'AZ01') > 0 or GetUnitAbilityLevel(GetEnumUnit(),'AZ92') > 0 or GetUnitAbilityLevel(GetEnumUnit(),'AZ91') > 0 
+                SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,GetUnitState(GetEnumUnit(),UNIT_STATE_LIFE)+GetUnitState(GetEnumUnit(),UNIT_STATE_MAX_LIFE)*0.03)
+            else
+                SetUnitState(GetEnumUnit(),UNIT_STATE_LIFE,GetUnitState(GetEnumUnit(),UNIT_STATE_LIFE)+GetUnitState(GetEnumUnit(),UNIT_STATE_MAX_LIFE)*0.3)                                                  
+            endif
+            UnitAddEffect(GetEnumUnit(),"Abilities\\Spells\\vOrc\\HealingWave\\HealingWaveTarget.mdl")
+        endif
     endfunction
     
     function AttackUnitGroupTimer()
         ForGroup(AttackUnitGroup,function AttackUnitGroupFunc)
+    endfunction
+
+    function IntUnitVariation(unit u)
+        if  GetUnitAbilityLevel(u,'AZ01') > 0 or GetUnitAbilityLevel(u,'AZ92') > 0 or GetUnitAbilityLevel(u,'AZ91') > 0
+            SetUnitMoveSpeed(u,422)
+        else
+            SetUnitMoveSpeed(u,522)
+        endif
+        AddUnitRealState(u,9,30)
+    endfunction
+
+    function AddUnitVariation(unit u,int ty)
+        int sid = 0
+        if  ty == 0
+            sid = 'AXAA'+12//GetRandomInt(0,12)
+        elseif  ty == 1
+            sid = 'AXBA'+GetRandomInt(0,9)
+        endif
+        UnitAddAbility(u,sid)
+        if  sid == 'AXAA'
+            SetUnitRealState(u,1,GetUnitRealState(u,1)*1.4)
+        elseif  sid == 'AXAB'
+            SetUnitRealState(u,5,GetUnitRealState(u,5)*1.4)   
+        elseif  sid == 'AXAF'
+            AddUnitRealState(u,10,15)
+        elseif  sid == 'AXAH'
+            if  GetUnitAbilityLevel(u,'AZ01') > 0 or GetUnitAbilityLevel(u,'AZ92') > 0 or GetUnitAbilityLevel(u,'AZ91') > 0
+                AddUnitRealState(u,21,15) 
+            else
+                AddUnitRealState(u,21,150) 
+            endif
+        elseif  sid == 'AXAJ'
+            AddUnitRealState(u,19,20)
+        elseif  sid == 'AXAK'
+            AddUnitRealState(u,20,800)
+        elseif  sid == 'AXAL'
+            UnitAddAbility(u,'AXAM')
+        //////////////////////////////
+        elseif  sid == 'AXBA'
+            UnitAddAbility(u,'AXAM')
+        elseif  sid == 'AXBE'
+            UnitAddAbility(u,'AXBM')
+        elseif  sid == 'AXBF'
+            SpellAXBF.execute(u)
+        endif
     endfunction
 
     function AddBossAttachUnitState(unit u,int id)

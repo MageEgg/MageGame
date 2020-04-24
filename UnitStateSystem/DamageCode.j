@@ -278,6 +278,12 @@ library DamageCode uses UnitStateSet
     //冷却缩减
     function GetUnitLsState(unit wu)->real
         real s = GetUnitRealState(wu,25)
+        if  GetUnitAbilityLevel(wu,'BXBM') > 0
+            s = s - 40
+        endif
+        if  s < 0
+            s = 0
+        endif
         return s
     endfunction
     function GetUnitLs(unit wu)->real
