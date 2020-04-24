@@ -209,12 +209,32 @@ library GameChallenge12 uses GameChallengeBase
         flush locals
     endfunction
 
+    function FlushGameTeamChallengeStock2TimerNew(real time)
+        TimerStart(time,false)
+        {
+            for pid = 0,3
+                RemoveItemFromStock(GameChallengeUnit[90],'IZ06')
+                AddItemToStock(GameChallengeUnit[90],'IZ06',1,1)
+            end
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
     
     function FlushGameTeamChallengeStock2()
+        int time = 150
+        if  GmaeMode == 3
+            time = 75
+            FlushGameTeamChallengeStock2TimerNew(time)
+        endif
         for pid = 0,3
             RemoveItemFromStock(GameChallengeUnit[90],'IZ06')
             AddItemToStock(GameChallengeUnit[90],'IZ06',0,1)
-            AddUnitIntStateTimer(GameChallengeUnit[90],'IZ06',1,150)
+            AddUnitIntStateTimer(GameChallengeUnit[90],'IZ06',1,time)
 
             if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ01') == 0
                 RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')

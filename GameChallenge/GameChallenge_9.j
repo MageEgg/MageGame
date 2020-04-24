@@ -391,11 +391,32 @@ library GameChallenge9 uses GameChallengeBase
         flush locals
     endfunction
 
+    function FlushGameTeamChallengeStockTimerNew(real time)
+        TimerStart(time,false)
+        {
+            for pid = 0,3
+                RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
+                AddItemToStock(GameChallengeUnit[90],'IZ01',1,1)
+            end
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-万仙阵|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-万仙阵|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-万仙阵|r冷却已刷新！！！")
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
     function FlushGameTeamChallengeStock()
+        int time = 150
+        if  GmaeMode == 3
+            time = 75
+            FlushGameTeamChallengeStockTimerNew(time)
+        endif
         for pid = 0,3
             RemoveItemFromStock(GameChallengeUnit[90],'IZ01')
             AddItemToStock(GameChallengeUnit[90],'IZ01',0,1)
-            AddUnitIntStateTimer(GameChallengeUnit[90],'IZ01',1,150)
+            AddUnitIntStateTimer(GameChallengeUnit[90],'IZ01',1,time)
 
             if  GameTeamChallengeBool[20] == true
                 if  GetUnitIntState(GameChallengePlayerUnit[pid][90],'IZ06') == 0

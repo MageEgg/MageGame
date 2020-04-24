@@ -234,6 +234,18 @@ library AttackUnit uses DamageCode,PassCheckMission
                 AttackUnitNextTime[18] = 70
             endif
             DzConA[11] = DzConA[11] + 1
+        elseif  GameMode == 3
+            if  lv > 1
+                for num = 1,20
+                    AttackUnitNextTime[num] = 60
+                end
+                AttackUnitNextTime[21] = 120
+            else
+                for num = 1,17
+                    AttackUnitNextTime[num] = 60
+                end
+                AttackUnitNextTime[18] = 120
+            endif
         endif
         ExecuteFunc("InitAttackUnitChallengeState")
     endfunction
@@ -542,7 +554,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
-            if  GameMode == 1
+            if  GameMode == 1 or GameMode == 3
                 if  AttackUnitWN == 5
                     if  IsGameOperaA == false
                         IsGameOperaA = true
