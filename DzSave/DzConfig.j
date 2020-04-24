@@ -19,6 +19,10 @@ library DzConfig uses SystemCodes
                     DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00通关积分活动开启中！通关积分+"+I2S(50*n)+"%|r")
                 endif
             endif
+
+            if  DzConA[24] == 1
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00劳动节狂欢活动开启中！")
+            endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,60, "|cffffcc00[系统]：|r|cffff0000地图存档未开启！|r")
         endif
@@ -38,6 +42,10 @@ library DzConfig uses SystemCodes
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00通关积分活动开启中！通关积分+"+I2S(50*n)+"%|r")
                 endif
             endif
+
+            if  DzConA[24] == 1
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00劳动节狂欢活动开启中！")
+            endif
         endif
     endfunction
     
@@ -45,7 +53,7 @@ library DzConfig uses SystemCodes
         string S = ""
         S = DzCon("QJ")
         if  S == ""
-            S = "110000000000111110000000010000000000000000000000000000000000"
+            S = "110000000000111110000000110000000000000000000000000000000000"
         endif
         for n = 0,59
             DzConA[n] = S2I(SubString(S,n,n+1))

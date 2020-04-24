@@ -43,7 +43,8 @@ library DzDataSetting uses DzBase
     // 组15 彩蛋    30组
     // 组16 10组 1战勋点 2当天战勋点
     // 组17 20组 == 1疯狂总次数 2+通关难疯狂度次数 
-    // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 
+    // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 4积分2上限
+    // 组19 皮肤    30组
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -91,8 +92,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(16) = 6
         DzDataGroupLength(17) = 3
         DzDataGroupLength(18) = 5
-        /*DzDataGroupLength(19) = 0
-        DzDataGroupLength(20) = 0
+        DzDataGroupLength(19) = 2
+        /*DzDataGroupLength(20) = 0
         DzDataGroupLength(21) = 0
         DzDataGroupLength(22) = 0
         DzDataGroupLength(23) = 0
@@ -194,10 +195,14 @@ library DzDataSetting uses DzBase
                 max = Holiday51*2
             elseif  flag == 3
                 max = 1000
-            elseif  flag > 3
+            elseif  flag == 4
+                max = 2
+            elseif  flag > 4
                 max = 0
             endif
-        elseif  Group > 18 //未使用
+        elseif  Group == 19 //不用管
+
+        elseif  Group > 19 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)

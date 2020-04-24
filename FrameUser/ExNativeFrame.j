@@ -16,6 +16,7 @@ library ExNativeFrame uses GameFrame
     FRAME ReHeroButton = 0
     FRAME ReHeroNumber = 0
     
+    
       
     //鼠标显示符印
     function BoxShowRuneFrame(int pid,int index)
@@ -53,6 +54,8 @@ library ExNativeFrame uses GameFrame
 
         ShowTipsUISetPosition(0.0,0.1)
     endfunction
+    
+    
     //刷新符印显示
     function ReRuneFrame(int pid)
         int lv = 0
@@ -89,6 +92,8 @@ library ExNativeFrame uses GameFrame
             end
         endif
     endfunction
+
+    
 
     function AddUnitRune(unit wu,int id,int num)
         

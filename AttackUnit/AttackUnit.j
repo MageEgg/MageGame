@@ -554,7 +554,22 @@ library AttackUnit uses DamageCode,PassCheckMission
                 CreateChangeGodStage.execute(AttackUnitNextTime[i])
             endif
         else
-            if  GameMode == 1 or GameMode == 3
+
+            if  DzConA[24] == 1 //劳动节活动
+                if  GameMode == 1 or GameMode == 2
+                    if  AttackUnitWN < AttackUnitWNOver - 3
+                        if  GetRandomInt(1,100) <= 50
+                            CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uh02',-6900,-6594,270)
+                            CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uh02',-6900,-6594,270)
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|Cffffc926好吃懒做的恶徒|r寻衅滋事，麻烦少侠们守护西岐的安定！|r")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|Cffffc926好吃懒做的恶徒|r寻衅滋事，麻烦少侠们守护西岐的安定！|r")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|Cffffc926好吃懒做的恶徒|r寻衅滋事，麻烦少侠们守护西岐的安定！|r")
+                        endif
+                    endif
+                endif
+            endif
+
+            if  GameMode == 1
                 if  AttackUnitWN == 5
                     if  IsGameOperaA == false
                         IsGameOperaA = true

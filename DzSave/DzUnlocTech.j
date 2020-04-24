@@ -13,10 +13,12 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int Unloc_Type_LvRank = 12
 
     int Unloc_Type_Comment = 13
+    int Unloc_Type_Day51 = 51
     
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
     
+    int array HolidayChangeData[12][680]
 
 
     function IsPlayerInRank(int pid,int data)->bool
@@ -197,6 +199,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return DzAPI_Map_GetServerValue(Player(pid), "maptest2020") == "1" or DzAPI_Map_GetServerValue(Player(pid), "preset_map_award") == "1"
         elseif  Type == Unloc_Type_Comment
             return DzAPI_Map_CommentCount(Player(pid)) > 0
+        elseif  Type == Unloc_Type_Day51
+            return Holiday51 >= data
         endif
         return false
     endfunction
@@ -487,7 +491,11 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4O',InitCond1(1,Unloc_Type_Level,16),InitCond2(0,Unloc_Type_Load,GameDataList(14,15,15)),0,0,0)
         InitUnlocTechConditions('RY1E',InitCond1(1,Unloc_Type_Level,20),InitCond2(0,Unloc_Type_Load,GameDataList(11,5,5)),0,0,0)
         InitUnlocTechConditions('RY3E',InitCond1(1,Unloc_Type_Level,24),InitCond2(0,Unloc_Type_Load,GameDataList(13,5,5)),0,0,0)
+
+        InitUnlocTechConditions('RJ2G',InitCond1(1,Unloc_Type_Level,6),InitCond2(1,Unloc_Type_Day51,2),InitCond3(0,Unloc_Type_Load,GameDataList(10,7,7)),0,0)
+        InitUnlocTechConditions('RP1B',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day51,5),InitCond3(0,Unloc_Type_Load,GameDataList(19,2,2)),0,0)
         
+
 
         InitUnlocTechConditions('RY2I',InitCond1(2,Unloc_Type_Level,35),0,0,0,0)
 
