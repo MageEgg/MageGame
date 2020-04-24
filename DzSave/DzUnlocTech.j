@@ -427,10 +427,12 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RP1A',InitCond1(2,Unloc_Type_Shop,ShopList("PF1")),0,0,0,0)
         InitUnlocTechConditions('RY3F',InitCond1(2,Unloc_Type_Shop,ShopList("WQ2")),0,0,0,0)
 
+        InitUnlocTechConditions('RJ1Y',InitCond1(2,Unloc_Type_Shop,ShopList("LB5")),0,0,0,0)
+
         InitUnlocTechConditions('RTX1',InitCond1(2,Unloc_Type_Shop,ShopList("RWK")),0,0,0,0)
         InitUnlocTechConditions('RTX2',InitCond1(2,Unloc_Type_Shop,ShopList("RWK2")),0,0,0,0)
         
-
+        
 
         //成就  
         InitUnlocTechConditions('RJ1I',InitCond1(2,Unloc_Type_Level,1),0,0,0,0)

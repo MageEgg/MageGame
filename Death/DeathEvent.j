@@ -622,10 +622,15 @@ scope DeathEvent initializer InitDeathEvent
                     endif
                 endif
             end
-            if  GetRandomInt(1,100) <= 30
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RJ1Y',true) > 0
                 CreateItem('CS53',GetUnitX(tu),GetUnitY(tu))
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具劳动节礼包，必定掉落高级附魔石！")
             else
-                CreateItem('CS52',GetUnitX(tu),GetUnitY(tu))
+                if  GetRandomInt(1,100) <= 30
+                    CreateItem('CS53',GetUnitX(tu),GetUnitY(tu))
+                else
+                    CreateItem('CS52',GetUnitX(tu),GetUnitY(tu))
+                endif
             endif
         endif
 
