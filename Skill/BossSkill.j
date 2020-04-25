@@ -1567,7 +1567,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int uid = GetUnitTypeId(u)
         real x = GetUnitX(u)
         real y = GetUnitY(u)
-        UnitTimerAddSkill(CreateUnit(GetOwningPlayer(u),uid,x,y,GetUnitFacing(u)),'Avul',0.5)
+        unit u = CreateUnit(GetOwningPlayer(u),'m001',x,y,GetUnitFacing(u))
+        DzSetUnitModel(u,YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,uid,"file"))
+        SetUnitRealStateOfOtherId(u,uid)
+        UnitTimerAddSkill(u,'Avul',1)
         LocAddEffectSetSize(x,y,"Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageCaster.mdl",1.5)
         LocAddEffectSetSize(x,y,"Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageCaster.mdl",1.5)
         flush locals
