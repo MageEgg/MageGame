@@ -241,18 +241,29 @@ library DamageCode uses UnitStateSet
         
         lv = GetUnitIntState(wu,'FM0I')
         if  lv > 0
-            s = s + lv * 1
+            s = s + lv * 2
         endif
 
         lv = GetUnitIntState(wu,'FM1N')
         if  lv > 0
-            s = s + lv * 2.5
+            s = s + lv * 4
         endif
 
         lv = GetUnitIntState(wu,'FM2K')
         if  lv > 0
-            s = s + lv * 5
+            s = s + lv * 6
         endif
+
+        lv = GetUnitIntState(wu,'FY05')
+        if  lv > 0
+            s = s + lv 
+        endif
+
+        if  GetPlayerTechCount(GetOwningPlayer(wu),'KTAC',true) > 0
+            s = s + 4
+        endif
+        
+
 
         BJDebugMsg("法吸"+R2S(s))
 
