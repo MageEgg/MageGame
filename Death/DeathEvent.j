@@ -595,7 +595,7 @@ scope DeathEvent initializer InitDeathEvent
             endif
         elseif  uid == 'uh02'//狂欢活动恶霸
             for jfpid = 0,3
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")
+                DisplayTimedTextToPlayer(Player(jfpid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")
                 if  IsPlaying(jfpid) == true 
                     if  GetDzPlayerData(jfpid,18,3) <= 990
                         AddDzPlayerData(jfpid,18,1,10)
