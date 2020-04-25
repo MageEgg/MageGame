@@ -27,7 +27,7 @@ library DzDataSetting uses DzBase
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包
-    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 
+    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4变异积分
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
@@ -42,12 +42,15 @@ library DzDataSetting uses DzBase
     // 组14 称号	30组
     // 组15 彩蛋    30组
     // 组16 10组 1战勋点 2当天战勋点
-    // 组17 20组 == 1疯狂总次数 2+通关难疯狂度次数 
+    // 组17 20组 == 1疯狂总次数 2+通关难度次数 
     // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 4积分2上限
     // 组19 皮肤    30组
+    // 组20 20组 == 1变异总次数 2+通关难度次数 
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
+
+        //经典
         DzPlayerInitTGCos[1] = 15
         DzPlayerInitTGCos[2] = 15
         DzPlayerInitTGCos[3] = 15
@@ -59,6 +62,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[9] = 15
         //DzPlayerInitTGCos[10] = 10
 
+        //疯狂
         DzPlayerInitCrazyTGCos[1] = 1
         DzPlayerInitCrazyTGCos[2] = 1
         DzPlayerInitCrazyTGCos[3] = 1
@@ -69,6 +73,18 @@ library DzDataSetting uses DzBase
         DzPlayerInitCrazyTGCos[8] = 1
         DzPlayerInitCrazyTGCos[9] = 1
         //DzPlayerInitCrazyTGCos[10] = 1
+
+        //变异
+        DzPlayerInitVariationTGCos[1] = 1
+        DzPlayerInitVariationTGCos[2] = 1
+        DzPlayerInitVariationTGCos[3] = 1
+        /*DzPlayerInitVariationTGCos[4] = 1
+        DzPlayerInitVariationTGCos[5] = 1
+        DzPlayerInitVariationTGCos[6] = 1
+        DzPlayerInitVariationTGCos[7] = 1
+        DzPlayerInitVariationTGCos[8] = 1
+        DzPlayerInitVariationTGCos[9] = 1
+        DzPlayerInitVariationTGCos[10] = 1*/
     endfunction
     
     function DzDataGroupSetting()
@@ -93,8 +109,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(17) = 3
         DzDataGroupLength(18) = 5
         DzDataGroupLength(19) = 2
-        /*DzDataGroupLength(20) = 0
-        DzDataGroupLength(21) = 0
+        DzDataGroupLength(20) = 3
+        /*DzDataGroupLength(21) = 0
         DzDataGroupLength(22) = 0
         DzDataGroupLength(23) = 0
         DzDataGroupLength(24) = 0
@@ -135,7 +151,12 @@ library DzDataSetting uses DzBase
                 endif
             elseif  flag == 3 //万魔窟
                 max = InfiniteModeACosNum 
-            elseif  flag >= 4 //未使用
+            elseif  flag == 4 //变异积分
+                max = R2I(Pow(DzPlayerLv(Player(pid)),2)*255)
+                if  max > 5000
+                    max = 5000
+                endif
+            elseif  flag >= 5 //未使用
                 max = 0
             endif
         elseif  Group == 3
@@ -202,7 +223,15 @@ library DzDataSetting uses DzBase
             endif
         elseif  Group == 19 //不用管
 
-        elseif  Group > 19 //未使用
+        elseif  Group == 20 
+            if  flag == 1 //变异总通关次数
+                max = DzPlayerGames(Player(pid))+1
+            elseif  flag >= 2 and flag <= MaxGameLevel-2 //变异通关难度
+                max = DzPlayerInitVariationTGCos[flag-1]
+            elseif  flag >= MaxGameLevel-1 //未开启的难度
+                max = 0
+            endif
+        elseif  Group > 20 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)
