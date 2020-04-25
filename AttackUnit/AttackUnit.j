@@ -449,6 +449,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                             GroupAddUnit(AttackUnitGroup,u)
                             AttackBOSSLastCos = AttackBOSSLastCos + 1
                             CreateBossAttachUnit(u,pex[k],pey[k],0.1)
+                            if  GameMode == 3
+                                IntUnitVariation(u)
+                                AddUnitVariation(u,0)
+                                AddUnitVariation(u,1)
+                            endif
                             if  puid[k] == LastAttackBossId
                                 AddBossAnger(u)
                             endif
@@ -521,6 +526,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 SetUnitXY(u,psx[k],psy[k])
                                 IssuePointOrderById(u,851983,pex[k],pey[k])
                                 GroupAddUnit(AttackUnitGroup,u)
+                                if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
+                                    IntUnitVariation(u)
+                                    AddUnitVariation(u,0)
+                                endif
                             endif
                         end
                     endif
@@ -557,6 +566,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                         SetUnitXY(u,psx[k],psy[k])
                         IssuePointOrderById(u,851983,pex[k],pey[k])
                         GroupAddUnit(AttackUnitGroup,u)
+                        if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
+                            IntUnitVariation(u)
+                            AddUnitVariation(u,0)
+                        endif
                     end
                 endif
             endif
