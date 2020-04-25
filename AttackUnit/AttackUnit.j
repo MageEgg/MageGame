@@ -327,7 +327,11 @@ library AttackUnit uses DamageCode,PassCheckMission
         if  sid == 'AXAA'
             SetUnitRealState(u,1,GetUnitRealState(u,1)*1.4)
         elseif  sid == 'AXAB'
-            SetUnitRealState(u,5,GetUnitRealState(u,5)*1.4)   
+            if  GetUnitAbilityLevel(u,'AZ01') > 0 or GetUnitAbilityLevel(u,'AZ92') > 0 or GetUnitAbilityLevel(u,'AZ91') > 0
+                SetUnitRealState(u,5,GetUnitRealState(u,5)*1.4)   
+            else
+                SetUnitRealState(u,5,GetUnitRealState(u,5)*12)   
+            endif
         elseif  sid == 'AXAF'
             AddUnitRealState(u,10,15)
         elseif  sid == 'AXAH'
