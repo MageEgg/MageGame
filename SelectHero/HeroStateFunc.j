@@ -50,12 +50,6 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             num = num + 1
         endif
 
-        if  DzShop(Player(pid),"LB5") == true
-            num = num + 1
-        endif
-
-        
-
 
         return num
     endfunction
