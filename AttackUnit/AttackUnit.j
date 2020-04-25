@@ -309,14 +309,15 @@ library AttackUnit uses DamageCode,PassCheckMission
             SetUnitMoveSpeed(u,522)
         endif
         AddUnitRealState(u,9,30)
+        SetUnitVertexColor(u,255,155,155,125)
     endfunction
 
     function AddUnitVariation(unit u,int ty)
         int sid = 0
         if  ty == 0
-            sid = 'AXAA'+12//GetRandomInt(0,12)
+            sid = 'AXAA'+GetRandomInt(0,11)
         elseif  ty == 1
-            sid = 'AXBA'+GetRandomInt(0,9)
+            sid = 'AXBA'+GetRandomInt(0,8)
         else
             sid = ty
         endif
@@ -352,6 +353,10 @@ library AttackUnit uses DamageCode,PassCheckMission
             UnitAddAbility(u,'AXBM')
         elseif  sid == 'AXBF'
             SpellAXBF.execute(u)
+        elseif  sid == 'AXBG'
+            SpellAXBG.execute(u)
+        elseif  sid == 'AXBI'
+            SpellAXBI.execute(u)
         endif
     endfunction
 
@@ -859,22 +864,33 @@ library AttackUnit uses DamageCode,PassCheckMission
         for pid = 0,5
             if  IsPlaying(pid) == true
                 //存档
-                AddDzPlayerData(pid,3,1,1) //总通关次数
-                AddDzPlayerData(pid,3,GameLevel+1,1) //通关难度次数
+                if  GameMode < 3
+                    AddDzPlayerData(pid,3,1,1) //总通关次数
+                    AddDzPlayerData(pid,3,GameLevel+1,1) //通关难度次数
 
-                if  GameMode == 2
-                    AddDzPlayerData(pid,17,1,1) //疯狂总通关次数
-                    AddDzPlayerData(pid,17,GameLevel+1,1) //疯狂通关难度次数
-                endif
+                    if  GameMode == 2
+                        AddDzPlayerData(pid,17,1,1) //疯狂总通关次数
+                        AddDzPlayerData(pid,17,GameLevel+1,1) //疯狂通关难度次数
+                    endif
 
-                jfadd = 10*GameLevel
-                jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
-                AddDzPlayerData(pid,2,1,jfadd) //通关积分
+                    jfadd = 10*GameLevel
+                    jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
+                    AddDzPlayerData(pid,2,1,jfadd) //通关积分
 
-                if  GameMode == 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
-                elseif  GameMode == 2
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
+                    if  GameMode == 1
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
+                    elseif  GameMode == 2
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
+                    endif
+                elseif  GameMode == 3
+                    AddDzPlayerData(pid,20,1,1) //变异总通关次数
+                    AddDzPlayerData(pid,20,GameLevel-2,1) //变异通关难度次数
+
+                    jfadd = 10*(GameLevel-3)
+                    jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
+                    AddDzPlayerData(pid,2,4,jfadd) //变异积分
+
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点变异积分！|r")
                 endif
 
                 AddDzHeroExp(Pu[1],1+GameLevel)

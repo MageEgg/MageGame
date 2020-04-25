@@ -1652,4 +1652,158 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
+    function SpellAXBGFireDamage(unit u,real x,real y)
+        group gg = CreateGroup()
+        real damage = 0
+        unit u2 = null
+        LocAddEffect(x,y,"Abilities\\Spells\\Other\\Doom\\DoomDeath.mdl")
+        LocAddEffect(x,y,"effect_az_tormentedsoul_t1.mdl")
+        GroupEnumUnitsInRange(gg,x,y,360,GroupNormalNoStr(GetOwningPlayer(u),"Abilities\\Spells\\Other\\BreathOfFire\\BreathOfFireDamage.mdl","origin",0))
+        loop
+            u2 = FirstOfGroup(gg)
+            exitwhen u2 == null
+            if  GetUnitState(u2,UNIT_STATE_LIFE) > GetUnitState(u2,UNIT_STATE_MAX_LIFE)*0.1
+                SetUnitState(u2,UNIT_STATE_LIFE,GetUnitState(u2,UNIT_STATE_LIFE)-GetUnitState(u2,UNIT_STATE_MAX_LIFE)*0.1)
+            else
+                UnitDamageTarget(u,u2,GetUnitRealState(u2,5),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNIVERSAL,null)
+            endif
+            GroupRemoveUnit(gg,u2)
+        endloop
+        GroupClear(gg)
+        DestroyGroup(gg)
+        flush locals
+    endfunction
+
+    function SpellAXBGFire(unit wu)
+        unit u1 = wu
+        real x = GetUnitX(u1)
+        real y = GetUnitY(u1)
+        int uid = GetUnitTypeId(u1)
+        unit u2 = CreateTmUnit(GetOwningPlayer(u1),"Abilities\\Spells\\Other\\SoulBurn\\SoulBurnbuff.mdl",x,y,0,0,3.5)
+        int time = 0
+        SpellAXBGFireDamage(u1,x,y)
+        TimerStart(1,true)
+        {
+            group gg = null
+            if  time >= 2 or GetUnitTypeId(u1) != uid
+                gg = CreateGroup()
+                LocAddEffect(x,y,"Abilities\\Spells\\Other\\Doom\\DoomDeath.mdl")
+                LocAddEffect(x,y,"effect_AA_bwaxec.mdl")
+                LocAddEffect(x,y,"effect_az_tormentedsoul_t1.mdl")
+                GroupEnumUnitsInRange(gg,x,y,360,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
+                UnitDamageGroup(u1,gg,GetUnitRealState(u1,1)*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                GroupClear(gg)
+                DestroyGroup(gg)
+                RemoveUnit(u2)
+                endtimer
+            else
+                time = time + 1
+                SpellAXBGFireDamage(u1,x,y)
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellAXBG(unit wu)
+        unit u1 = wu
+        int uid = GetUnitTypeId(u1)
+        TimerStart(2,true)
+        {   
+            if  GetUnitTypeId(u1) != uid
+                endtimer
+            else
+                SpellAXBGFire(u1)
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function IsAXBICanFire(unit u)->int
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  Udis(Pu[1],u) < 1800
+                    return pid
+                endif
+            endif
+        end
+        return -1
+    endfunction
+
+    function SpellAXBIFire(unit wu,unit tu)
+        unit u1 = wu
+        unit u2 = tu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real x2 = GetUnitX(u2)
+        real y2 = GetUnitY(u2)
+        real Ang = Atan2(y2-y1,x2-x1)
+        real xx = 30*Cos(Ang)
+        real yy = 30*Sin(Ang)
+        int time = R2I(Pdis(x1,y1,x2,y2)/30)
+        unit u3 = CreateTmUnit(GetOwningPlayer(u1),"Abilities\\Weapons\\LavaSpawnMissile\\LavaSpawnBirthMissile.mdl",x1,y1,Ang/0.01745,250,5)
+        unit u4 = CreateUnit(GetOwningPlayer(u1),RAC_A_400,x2,y2,0)
+        LocAddText(x1,y1,"|cffff0000[自爆！！！]",255,255,255,255,0,0.04)
+        LocAddText(x1,y1,"|cffff0000[自爆！！！]",255,255,255,255,90,0.04)
+        LocAddText(x1,y1,"|cffff0000[自爆！！！]",255,255,255,255,180,0.04)
+        LocAddText(x1,y1,"|cffff0000[自爆！！！]",255,255,255,255,270,0.04)
+        SetUnitScale(u1,0.01,0.01,0.01)
+        ShowUnit(u1,false)
+        TimerStart(0.02,true)
+        {
+            group gg = null
+            unit uu = null
+            time = time - 1
+            if  time > 0
+                x1 = x1 + xx
+                y1 = y1 + yy
+                SetUnitPosition(u3,x1,y1)
+            else
+                SetUnitPosition(u1,x1,y1)
+                gg = CreateGroup()
+                LocAddEffectTimer(x1,y1,"effect_huozhu.mdl",2.5)
+                LocAddEffectSetSize(x1,y1,"Abilities\\Spells\\Other\\Doom\\DoomDeath.mdl",1)
+                LocAddEffectSetSize(x1,y1,"effect_AA_bwaxec.mdl",1.5)
+                LocAddEffectSetSize(x1,y1,"effect_AA_bwaxec.mdl",1.5)
+                GroupEnumUnitsInRange(gg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
+                loop
+                    uu = FirstOfGroup(gg)
+                    exitwhen uu == null
+                    KillUnit(uu)
+                    GroupRemoveUnit(gg,uu)
+                endloop
+                GroupClear(gg)
+                DestroyGroup(gg)
+                KillUnit(u1)
+                RemoveUnit(u3)
+                RemoveUnit(u4)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellAXBI(unit wu)
+        unit u1 = wu
+        int uid = GetUnitTypeId(u1)
+        bool fire = false
+        TimerStart(0.03,true)
+        {   
+            int pid = 0
+            if  fire == true or GetUnitTypeId(u1) != uid
+                endtimer
+            else
+                if  IsAXBICanFire(u1) >= 0
+                    pid = IsAXBICanFire(u1)
+                    SpellAXBIFire(u1,Pu[1])
+                    fire = true
+                endif
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
 endlibrary
