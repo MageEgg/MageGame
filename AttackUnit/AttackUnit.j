@@ -309,14 +309,15 @@ library AttackUnit uses DamageCode,PassCheckMission
             SetUnitMoveSpeed(u,522)
         endif
         AddUnitRealState(u,9,30)
+        SetUnitVertexColor(u,255,155,155,155)
     endfunction
 
     function AddUnitVariation(unit u,int ty)
         int sid = 0
         if  ty == 0
-            sid = 'AXAA'+12//GetRandomInt(0,12)
+            sid = 'AXAA'+GetRandomInt(0,11)
         elseif  ty == 1
-            sid = 'AXBA'+GetRandomInt(0,9)
+            sid = 'AXBA'+GetRandomInt(0,8)
         else
             sid = ty
         endif
