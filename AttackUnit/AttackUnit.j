@@ -352,6 +352,10 @@ library AttackUnit uses DamageCode,PassCheckMission
             UnitAddAbility(u,'AXBM')
         elseif  sid == 'AXBF'
             SpellAXBF.execute(u)
+        elseif  sid == 'AXBG'
+            SpellAXBG.execute(u)
+        elseif  sid == 'AXBI'
+            SpellAXBI.execute(u)
         endif
     endfunction
 
