@@ -1517,10 +1517,10 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ3F'
             JJFuncSpell99(u1)
         elseif  id == 'AZ3G'
-            damage = attack*10
+            damage = attack*50
             BossFuncStart(u1,u1,RAC_A_600,ang,damage,0.01,"BossFuncSpell58")
         elseif  id == 'AZ3H'
-            damage = attack*10
+            damage = attack*50
             BossFuncStart(u1,u2,RAC_A_400,ang,damage,0.01,"BossFuncSpell59")
 
         ////////////////////////////分割线////////////////////////////////
@@ -1691,7 +1691,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 LocAddEffect(x,y,"effect_AA_bwaxec.mdl")
                 LocAddEffect(x,y,"effect_az_tormentedsoul_t1.mdl")
                 GroupEnumUnitsInRange(gg,x,y,360,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
-                UnitDamageGroup(u1,gg,GetUnitRealState(u1,1)*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageGroup(u1,gg,GetUnitRealState(u1,1)*50,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
                 GroupClear(gg)
                 DestroyGroup(gg)
                 RemoveUnit(u2)

@@ -21,6 +21,8 @@ library AttackUnit uses DamageCode,PassCheckMission
     #define LastAttackBossId            AttackUnitInt[0][5]     //最终BOSS
     
     #define AttackUnitWNBoss            AttackUnitInt[0][10]    //Boss次数
+    #define AttackUnitVariationNumA     AttackUnitInt[0][11]    //变异参数A
+    #define AttackUnitVariationNumB     AttackUnitInt[0][12]    //变异参数B
     
     #define AttackUnitArray             AttackUnitInt[1]        //序号
     #define AttackUnitRoad              AttackUnitInt[2]        //进攻线路
@@ -237,12 +239,12 @@ library AttackUnit uses DamageCode,PassCheckMission
         elseif  GameMode == 3
             if  lv > 1
                 for num = 1,20
-                    AttackUnitNextTime[num] = 60
+                    AttackUnitNextTime[num] = 61
                 end
                 AttackUnitNextTime[21] = 120
             else
                 for num = 1,17
-                    AttackUnitNextTime[num] = 60
+                    AttackUnitNextTime[num] = 61
                 end
                 AttackUnitNextTime[18] = 120
             endif
@@ -325,7 +327,11 @@ library AttackUnit uses DamageCode,PassCheckMission
         if  sid == 'AXAA'
             SetUnitRealState(u,1,GetUnitRealState(u,1)*1.4)
         elseif  sid == 'AXAB'
-            SetUnitRealState(u,5,GetUnitRealState(u,5)*1.4)   
+            if  GetUnitAbilityLevel(u,'AZ01') > 0 or GetUnitAbilityLevel(u,'AZ92') > 0 or GetUnitAbilityLevel(u,'AZ91') > 0
+                SetUnitRealState(u,5,GetUnitRealState(u,5)*1.4)   
+            else
+                SetUnitRealState(u,5,GetUnitRealState(u,5)*12)   
+            endif
         elseif  sid == 'AXAF'
             AddUnitRealState(u,10,15)
         elseif  sid == 'AXAH'
@@ -456,8 +462,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                             CreateBossAttachUnit(u,pex[k],pey[k],0.1)
                             if  GameMode == 3
                                 IntUnitVariation(u)
-                                AddUnitVariation(u,0)
-                                AddUnitVariation(u,1)
+                                AddUnitVariation(u,AttackUnitVariationNumA)
+                                AddUnitVariation(u,AttackUnitVariationNumB)
                             endif
                             if  puid[k] == LastAttackBossId
                                 AddBossAnger(u)
@@ -533,7 +539,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 GroupAddUnit(AttackUnitGroup,u)
                                 if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
                                     IntUnitVariation(u)
-                                    AddUnitVariation(u,0)
+                                    AddUnitVariation(u,AttackUnitVariationNumA)
                                 endif
                             endif
                         end
@@ -558,6 +564,10 @@ library AttackUnit uses DamageCode,PassCheckMission
         unit u = null
         int Attacknum = 0
         real BossTime = 0
+        if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
+            AttackUnitVariationNumA = 'AXAA'+GetRandomInt(0,11)
+            AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
+        endif
         for k = 0,3
             if  IsPlaying(k) == true
                 puid[k] = AttackUnitID(k)[ordernum]
@@ -573,7 +583,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                         GroupAddUnit(AttackUnitGroup,u)
                         if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
                             IntUnitVariation(u)
-                            AddUnitVariation(u,0)
+                            AddUnitVariation(u,AttackUnitVariationNumA)
                         endif
                     end
                 endif
