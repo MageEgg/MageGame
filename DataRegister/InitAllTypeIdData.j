@@ -235,7 +235,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1V',"金币礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1V.BLP","开局金币+2000")
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")
         call InitTypeIdStrings('RJ1X',"赞助礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1X.BLP","伤害加成+10%\n每秒攻击+20\n每秒生命+100\n山灵挑战成功额外奖励5玄铁")
-        call InitTypeIdStrings('RJ1Y',"劳动节礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1Y.BLP","每秒攻击+8\n每秒业力+10\n\n击杀不屈的山必定获得高级附魔石\n进入愚公移山副本积分消耗减半")
+        call InitTypeIdStrings('RJ1Y',"劳动节礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1Y.BLP","每秒攻击+8\n每秒业力+10\n\n击杀不屈的山必定获得高级附魔石\n进入愚公移山副本积分消耗减半\n\n该道具不计入商城套装效果")
         call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","业力加成+20%\n每秒业力+20\n\n开局奖励：时渊入场券x1\n\n宠物攻击力=英雄业力\n小狐狸攻击间隔1秒，暴击率20%，继承英雄暴击伤害。\n宠物攻击5%概率造成业力*400%范围伤害\n\n解锁宠物|Cffffd24d小狐妖|r")
         call InitTypeIdStrings('RP1A',"笑天犬","ReplaceableTextures\\CommandButtons\\BTNPF01.BLP","每秒攻击+10\n每秒业力+15\n\n解锁助手皮肤|Cffff0000笑天犬|r")
         call InitTypeIdStrings('RP1B',"GM-小咸鱼","ReplaceableTextures\\CommandButtons\\BTNRV02.BLP","")
