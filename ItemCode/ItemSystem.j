@@ -294,8 +294,14 @@ scope ItemSystem initializer InitItemSystem
             
             if  DzConA[24] == 1
                 if  Player51unit == 0
-                    if  GetDzPlayerData(pid,18,1) >= 150
-                        AddDzPlayerData(pid,18,1,-150)
+                    
+                    if  GetPlayerTechCount(Player(pid),'RJ1Y',true) == 1 //劳动礼包
+                        i1 = 75
+                    else
+                        i1 = 150
+                    endif
+                    if  GetDzPlayerData(pid,18,1) >= i1
+                        AddDzPlayerData(pid,18,1,-i1)
                         Player51unit = 1
                         if  pid == 0
                             Pu[40] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uh01',-8576,11008,315)
@@ -307,7 +313,7 @@ scope ItemSystem initializer InitItemSystem
                             Pu[40] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),'uh01',-8576,10112,45)
                         endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：兑换失败！狂欢积分不足|cff00ff00150 |r无法进入!")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：兑换失败！狂欢积分不足|cff00ff00"+I2S(i1)+" |r无法进入!")
                     endif
                     
                 endif
