@@ -1311,7 +1311,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 DestroyEffect(eff)
                 newang = Atan2(200*Sin(((time-1)*30+270)*0.01745),200*Cos(((time-1)*30+270)*0.01745))
                 //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-                CreateTm(u1,'e00P',x1,y1,newang,damage,1,0,210,900,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                CreateTm(u1,'e00P',x1,y1,newang,damage,1,0,180,900,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
             else
                 endtimer                
             endif
@@ -1552,7 +1552,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function SpellAXAG(unit u)
         real x = GetUnitX(u)
         real y = GetUnitY(u)
-        real damage = GetUnitRealState(u,1)*4
+        real damage = GetUnitRealState(u,1)*100
         group gg = CreateGroup()
         LocAddEffectSetSize(x,y,"effect3_red-zhendi.mdl",1.5)
         LocAddEffectSetSize(x,y,"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",1)

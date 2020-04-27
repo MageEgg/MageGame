@@ -564,9 +564,14 @@ library AttackUnit uses DamageCode,PassCheckMission
         unit u = null
         int Attacknum = 0
         real BossTime = 0
-        if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
-            AttackUnitVariationNumA = 'AXAA'+GetRandomInt(0,11)
-            AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
+        if  GameMode == 3 
+            if  ModuloInteger(AttackUnitWN,3) == 0
+                AttackUnitVariationNumA = 'AXAA'+GetRandomInt(0,11)
+                AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
+                ShowVariationUIEx(true)
+            elseif  ModuloInteger(AttackUnitWN-1,3) == 0 and AttackUnitWN > 3
+                ShowVariationUIEx(false)
+            endif
         endif
         for k = 0,3
             if  IsPlaying(k) == true

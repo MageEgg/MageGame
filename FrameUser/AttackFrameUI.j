@@ -7,11 +7,14 @@ library AttackFrameUI uses GameFrame
 
     FRAME AttackShowUI
 
+    FRAME VariationShowUI
+    FRAME VariationTextUI 
+    FRAME VariationTextExUI 
+
     function ShowAttackTimerUI(bool flag)
         AttackTimerUI.show = flag
     endfunction
 
-    
     function CloseAttackShowUI()
         int time = 0
         real x = 0
@@ -71,6 +74,61 @@ library AttackFrameUI uses GameFrame
         }
         flush locals
     endfunction
+    
+    function ShowVariationUI(bool flag)
+        VariationShowUI.show = flag
+    endfunction
+
+    function OpenVariationUI()
+        int time = 0
+        ShowVariationUI(true)
+        TimerStart(0.05,true)
+        {
+            time = time + 1
+            if  time < 17
+                if  ModuloInteger(time,2) == 0
+                    ShowVariationUI(true)
+                else
+                    ShowVariationUI(false)
+                endif
+            else
+                ShowVariationUI(true)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function CloseVariationUI()
+        int time = 0
+        ShowVariationUI(false)
+        TimerStart(0.05,true)
+        {
+            time = time + 1
+            if  time < 17
+                if  ModuloInteger(time,2) == 0
+                    ShowVariationUI(false)
+                else
+                    ShowVariationUI(true)
+                endif
+            else
+                ShowVariationUI(false)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function ShowVariationUIEx(bool flag)
+        BJDebugMsg("ShowVariationUIEx")
+        if  flag == true
+            OpenVariationUI()
+        else
+            CloseVariationUI()
+        endif
+    endfunction
 
     function InitAttackFrameUI()
 
@@ -78,6 +136,10 @@ library AttackFrameUI uses GameFrame
         AttackTimerUI = FRAME.create() 
         AttackTimerTextUI = FRAME.create()  
         AttackTimerTextExUI = FRAME.create()  
+
+        VariationShowUI = FRAME.create()
+        VariationTextUI = FRAME.create()
+        VariationTextExUI = FRAME.create()
 
         //背景设置
         AttackTimerUI.frameid = FRAME.Tag("BACKDROP","AttackTimerUI",GameUI,0)
@@ -110,6 +172,26 @@ library AttackFrameUI uses GameFrame
         AttackShowUI.SetPoint(4,GameUI,4,0,0.16)
 
         AttackShowUI.show = false
+
+        VariationShowUI = FRAME.create() 
+        VariationShowUI.frameid = FRAME.Tag("BACKDROP","VariationShowUI",GameUI,0)
+        VariationShowUI.SetSize(0.12,0.052)
+        VariationShowUI.SetTexture("war3mapImported\\UI_ShowVariation_Back.tga",0)
+        VariationShowUI.SetPoint(0,GameUI,0,0.2,-0.025)
+
+        //文本设置
+        VariationTextUI.frameid = FRAME.Fdf("centertext015",VariationShowUI.frameid,VariationTextUI)
+        VariationTextUI.SetPoint(1,VariationShowUI.frameid,1,0,-0.001)
+        VariationTextUI.SetSize(0.117,0.03)
+        VariationTextUI.SetText("|cffffcc00异变词缀|r")
+
+        //设置快捷键文本
+        VariationTextExUI.frameid = FRAME.Fdf("centertext015",VariationTextUI.frameid,VariationTextExUI)
+        VariationTextExUI.SetPoint(1,VariationTextUI.frameid,4,0,-0.005)
+        VariationTextExUI.SetSize(0.117,0.03)
+        VariationTextExUI.SetText("|cffff0000生机，恐怖袭击|r")
+
+        VariationShowUI.show = false
 
     endfunction
 
