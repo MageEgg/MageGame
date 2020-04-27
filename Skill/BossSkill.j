@@ -1588,6 +1588,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             u2 = FirstOfGroup(gg)
             exitwhen u2 == null
             if  IsUnitInGroup(u2,AttackUnitGroup) == true
+                BJDebugMsg("AXBB 死亡增加"+GetUnitName(u)+"攻速")
                 AddUnitRealStateTimer(u2,9,200,4)
             endif
             GroupRemoveUnit(gg,u2)
