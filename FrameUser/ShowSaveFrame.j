@@ -197,14 +197,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0)//通关疯狂N7
         RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
         RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGBA','RGBA',0,0,0,0)//通关异变N1
         RegisterShowSaveFrameData(0,'RGBB','RGBB',0,0,0,0)//通关异变N2
         RegisterShowSaveFrameData(0,'RGBC','RGBC',0,0,0,0)//通关异变N3
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGCA','RGCA',0,0,0,0)//通关异变N1 8次
         RegisterShowSaveFrameData(0,'RGCB','RGCB',0,0,0,0)//通关异变N2 8次
