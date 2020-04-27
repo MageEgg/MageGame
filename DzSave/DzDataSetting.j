@@ -4,7 +4,7 @@ library DzDataSetting uses DzBase
     //使用的宏定义
     #define MaxGameLevel 9
 
-    #define MaxHeroExpLevel 3 //最大等级
+    #define MaxHeroExpLevel 4 //最大等级
     #define MaxHeroNeedExp0 12 //经验需求
     #define MaxHeroNeedExp1 24 //经验需求
     #define MaxHeroNeedExp2 36 //经验需求
@@ -152,11 +152,10 @@ library DzDataSetting uses DzBase
             elseif  flag == 3 //万魔窟
                 max = InfiniteModeACosNum 
             elseif  flag == 4 //变异积分
-                //max = R2I(Pow(DzPlayerLv(Player(pid)),2)*255)
-                //if  max > 5000
-                //    max = 5000
-                //endif
-                max = 0
+                max = R2I(Pow(DzPlayerLv(Player(pid)),2)*255)
+                if  max > 5000
+                    max = 5000
+                endif
             elseif  flag >= 5 //未使用
                 max = 0
             endif
@@ -187,9 +186,9 @@ library DzDataSetting uses DzBase
                 max = 0
             endif
         elseif  Group == 7
-            max = MaxHeroNeedExp2 //MaxHeroNeedExp4
+            max = MaxHeroNeedExp3 //MaxHeroNeedExp4
         elseif  Group == 8
-            max = MaxHeroNeedExp2 //MaxHeroNeedExp4
+            max = MaxHeroNeedExp3 //MaxHeroNeedExp4
         elseif  Group == 9
             max = MaxHeroExpLevel
         elseif  Group >= 10 and Group <= 15 //不用管
@@ -225,14 +224,13 @@ library DzDataSetting uses DzBase
         elseif  Group == 19 //不用管
 
         elseif  Group == 20 
-            //if  flag == 1 //变异总通关次数
-            //    max = DzPlayerGames(Player(pid))+1
-            //elseif  flag >= 2 and flag <= MaxGameLevel-2 //变异通关难度
-            //    max = DzPlayerInitVariationTGCos[flag-1]
-            //elseif  flag >= MaxGameLevel-1 //未开启的难度
-            //    max = 0
-            //endif
-            max = 0
+            if  flag == 1 //变异总通关次数
+                max = DzPlayerGames(Player(pid))+1
+            elseif  flag >= 2 and flag <= MaxGameLevel-2 //变异通关难度
+                max = DzPlayerInitVariationTGCos[flag-1]
+            elseif  flag >= MaxGameLevel-1 //未开启的难度
+                max = 0
+            endif
         elseif  Group > 20 //未使用
             max = 0
         endif

@@ -1311,7 +1311,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 DestroyEffect(eff)
                 newang = Atan2(200*Sin(((time-1)*30+270)*0.01745),200*Cos(((time-1)*30+270)*0.01745))
                 //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
-                CreateTm(u1,'e00P',x1,y1,newang,damage,1,0,210,900,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+                CreateTm(u1,'e00P',x1,y1,newang,damage,1,0,180,900,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
             else
                 endtimer                
             endif
@@ -1552,7 +1552,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function SpellAXAG(unit u)
         real x = GetUnitX(u)
         real y = GetUnitY(u)
-        real damage = GetUnitRealState(u,1)*4
+        real damage = GetUnitRealState(u,1)*100
         group gg = CreateGroup()
         LocAddEffectSetSize(x,y,"effect3_red-zhendi.mdl",1.5)
         LocAddEffectSetSize(x,y,"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",1)
@@ -1625,7 +1625,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int uid = GetUnitTypeId(u1)
         TimerStart(0.1,true)
         {
-            if  GetUnitTypeId(u1) != uid
+            if  GetUnitTypeId(u1) != uid and uid != 0
                 KillUnit(u2)
                 endtimer
             endif
@@ -1690,13 +1690,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         TimerStart(1,true)
         {
             group gg = null
-            if  time >= 2 or GetUnitTypeId(u1) != uid
+            if  time >= 2 or (GetUnitTypeId(u1) != uid and uid != 0)
                 gg = CreateGroup()
                 LocAddEffect(x,y,"Abilities\\Spells\\Other\\Doom\\DoomDeath.mdl")
                 LocAddEffect(x,y,"effect_AA_bwaxec.mdl")
                 LocAddEffect(x,y,"effect_az_tormentedsoul_t1.mdl")
                 GroupEnumUnitsInRange(gg,x,y,360,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
                 UnitDamageGroup(u1,gg,GetUnitRealState(u1,1)*50,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                BJDebugMsg("最后一次爆炸 伤害来源"+GetUnitName(u1)+" 伤害 "+R2S(GetUnitRealState(u1,1)*50))
                 GroupClear(gg)
                 DestroyGroup(gg)
                 RemoveUnit(u2)
@@ -1715,7 +1716,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int uid = GetUnitTypeId(u1)
         TimerStart(2,true)
         {   
-            if  GetUnitTypeId(u1) != uid
+            if  GetUnitTypeId(u1) != uid and uid != 0
                 endtimer
             else
                 SpellAXBGFire(u1)
@@ -1797,7 +1798,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         TimerStart(0.03,true)
         {   
             int pid = 0
-            if  fire == true or GetUnitTypeId(u1) != uid
+            if  fire == true or (GetUnitTypeId(u1) != uid and uid != 0)
                 endtimer
             else
                 if  IsAXBICanFire(u1) >= 0
