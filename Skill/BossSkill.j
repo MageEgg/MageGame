@@ -1625,7 +1625,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int uid = GetUnitTypeId(u1)
         TimerStart(0.1,true)
         {
-            if  GetUnitTypeId(u1) != uid
+            if  GetUnitTypeId(u1) != uid and uid != 0
                 KillUnit(u2)
                 endtimer
             endif
@@ -1690,7 +1690,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         TimerStart(1,true)
         {
             group gg = null
-            if  time >= 2 or GetUnitTypeId(u1) != uid
+            if  time >= 2 or (GetUnitTypeId(u1) != uid and uid != 0)
                 gg = CreateGroup()
                 LocAddEffect(x,y,"Abilities\\Spells\\Other\\Doom\\DoomDeath.mdl")
                 LocAddEffect(x,y,"effect_AA_bwaxec.mdl")
@@ -1715,7 +1715,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int uid = GetUnitTypeId(u1)
         TimerStart(2,true)
         {   
-            if  GetUnitTypeId(u1) != uid
+            if  GetUnitTypeId(u1) != uid and uid != 0
                 endtimer
             else
                 SpellAXBGFire(u1)
@@ -1797,7 +1797,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         TimerStart(0.03,true)
         {   
             int pid = 0
-            if  fire == true or GetUnitTypeId(u1) != uid
+            if  fire == true or (GetUnitTypeId(u1) != uid and uid != 0)
                 endtimer
             else
                 if  IsAXBICanFire(u1) >= 0
