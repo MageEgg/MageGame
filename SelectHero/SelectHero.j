@@ -50,8 +50,13 @@ scope SelectHero
                 value = GetTypeIdReal(id,200+s)
                 AddUnitRealState(Pu[1],state,value)
             endif
-
         end
+        if  dzlv >= 4
+            AddUnitRealState(Pu[1],20,30)
+            if  GameMode == 3
+                AddUnitRealState(Pu[1],52,30)
+            endif
+        endif
         
 
         
@@ -78,6 +83,10 @@ scope SelectHero
             ReHeroButton.show = false
         endif
                 
+        
+        if  GetDzPlayerData(pid,2,3) > 60
+            BuryingPointData(pid,9,1,1)//作弊埋点
+        endif
 
     endfunction
 

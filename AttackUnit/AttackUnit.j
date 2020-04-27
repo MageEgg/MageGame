@@ -921,6 +921,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                 SaveDzRoom(pid) //刷新房间显示
 
                 BuryingPointData(pid,1,GameLevel,1)//通关埋点
+                if  GetUnitTypeId(Pu[1]) == 'H030'
+                    BuryingPointData(pid,8,0,1)//后羿埋点
+                else
+                    BuryingPointData(pid,8,1,1)//非后羿埋点
+                endif
             endif
         end
         ExecuteFunc("GameWin")

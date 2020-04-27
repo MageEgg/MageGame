@@ -1,4 +1,4 @@
-library UnitStateSet initializer UnitStateSetInit uses State
+library UnitStateSet uses State
     //属性加载
     
     int MosterLevel = 0
@@ -266,11 +266,19 @@ library UnitStateSet initializer UnitStateSetInit uses State
     
     
     function LoadDzConData1()
-        string con = DzCon("ND1_7")
-        if  con == ""
-            con = "00000050000000500000006500000090000001400030021000400300"
-            
+        string con = ""
+        if  GameMode == 3
+            con = DzCon("ND1_7Ex")
+            if  con == ""
+                con = "00000050000000500000006500000090000001800030030000400450"
+            endif
+        else
+            con = DzCon("ND1_7")
+            if  con == ""
+                con = "00000050000000500000006500000090000001400030021000400300"
+            endif
         endif
+        
         int data1 = 0 
         int data2 = 0
         int index = 0
@@ -292,10 +300,19 @@ library UnitStateSet initializer UnitStateSetInit uses State
         end
     endfunction
     function LoadDzConData2()
-        string con = DzCon("ND8_14")
-        if  con == ""
-            con = "00400420004007500000000000000000000000000000000000000000"
+        string con = ""
+        if  GameMode == 3
+            con = DzCon("ND8_14Ex")
+            if  con == ""
+                con = "00400750004009000000000000000000000000000000000000000000"
+            endif
+        else
+            con = DzCon("ND8_14")
+            if  con == ""
+                con = "00400420004007500000000000000000000000000000000000000000"
+            endif
         endif
+
         int data1 = 0 
         int data2 = 0
         int index = 0
@@ -325,16 +342,28 @@ library UnitStateSet initializer UnitStateSetInit uses State
     endfunction
     function UnitStateSetInit()
 
-        InitMostetStateRatio(1,0,50)
-        InitMostetStateRatio(2,0,50)
-        InitMostetStateRatio(3,0,65)
-        InitMostetStateRatio(4,0,90)
-        InitMostetStateRatio(5,30,140)
-        InitMostetStateRatio(6,30,210)
-        InitMostetStateRatio(7,40,300)
+        if  GameMode == 3
+            InitMostetStateRatio(1,0,50)
+            InitMostetStateRatio(2,0,50)
+            InitMostetStateRatio(3,0,65)
+            InitMostetStateRatio(4,0,90)
+            InitMostetStateRatio(5,0,180)
+            InitMostetStateRatio(6,30,300)
+            InitMostetStateRatio(7,40,450)
+            InitMostetStateRatio(8,40,750)
+            InitMostetStateRatio(9,40,900)
+        else
+            InitMostetStateRatio(1,0,50)
+            InitMostetStateRatio(2,0,50)
+            InitMostetStateRatio(3,0,65)
+            InitMostetStateRatio(4,0,90)
+            InitMostetStateRatio(5,30,140)
+            InitMostetStateRatio(6,30,210)
+            InitMostetStateRatio(7,40,300)
 
-        InitMostetStateRatio(8,40,420)
-        InitMostetStateRatio(9,40,750)
+            InitMostetStateRatio(8,40,420)
+            InitMostetStateRatio(9,40,750)
+        endif
 
         LoadDzConData1()
         LoadDzConData2()

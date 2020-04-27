@@ -365,7 +365,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化|cff00ff00成功率+5%")
                         endif
-                        IncEquipModelFunc(pid,2)
+                        //IncEquipModelFunc(pid,2)
                         
                     endif
                     
@@ -475,15 +475,20 @@ library ItemEquip uses DamageCode,ItemGameFunc
 
         int id = GetIncEquipId(pid,i-1)
 
-        if  i == 4
-            UnitAddItemById(Pu[1],'CS41')
-        else
-            if  id > 0
-                GemIncEquip(Pu[1],id)
-            else
+        if  PlayerDeathBool == false
+            if  i == 4
                 UnitAddItemById(Pu[1],'CS41')
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+            else
+                if  id > 0
+                    GemIncEquip(Pu[1],id)
+                else
+                    UnitAddItemById(Pu[1],'CS41')
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+                endif
             endif
+        else
+            UnitAddItemById(Pu[2],'CS41')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：死亡状态无法使用！|r")
         endif
     endfunction
 
@@ -492,15 +497,20 @@ library ItemEquip uses DamageCode,ItemGameFunc
         int i = Dialog.GetButtonid()
 
         int id = GetIncEquipIdEx(pid,i-1)
-        if  i == 4
-            UnitAddItemById(Pu[1],'CS42')
-        else
-            if  id > 0
-                GemIncEquip(Pu[1],id)
-            else
+        if  PlayerDeathBool == false
+            if  i == 4
                 UnitAddItemById(Pu[1],'CS42')
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+            else
+                if  id > 0
+                    GemIncEquip(Pu[1],id)
+                else
+                    UnitAddItemById(Pu[1],'CS42')
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+                endif
             endif
+        else
+            UnitAddItemById(Pu[2],'CS42')
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：死亡状态无法使用！|r")
         endif
     endfunction
 
@@ -532,7 +542,8 @@ library ItemEquip uses DamageCode,ItemGameFunc
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
             endif
         else
-            
+            UnitAddItemById(wu,itemid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：死亡状态无法使用！|r")
         endif
     endfunction
 

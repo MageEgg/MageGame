@@ -519,7 +519,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 endif
 
                 
-                if  lv == 3
+                if  lv == 4
                     SetTipsData(1,"",GetTypeIdName(id)+" Lv.Max")
                     SetTipsData(10,"","|cff808080熟练度：|r")
                     SetTipsData(11,"","|cff00ff000|r/0\n ")
@@ -537,14 +537,12 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     value = GetTypeIdReal(id,200+s)
                     SetTipsData(11+s,"",GetShowLevelTip(s,lv)+"：提高该英雄"+I2S(R2I(value))+StateName[1000+state]+StateName[state])
                 end
-  
-                /*
-                SetTipsData(15,"",GetShowLevelTip(4,lv)+"：提高该英雄10%伤害加成")
-                SetTipsData(16,"",GetShowLevelTip(5,lv)+"：提高该英雄5%暴击率")
-                */
 
-                SetTipsData(15,"","")
-                SetTipsData(16,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
+                SetTipsData(15,"",GetShowLevelTip(4,lv)+"：提高该英雄30%暴击伤害，异变模式下经验加成+30%")
+
+
+                SetTipsData(16,"","")
+                SetTipsData(17,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
                 
                 
                 if  id == 'RH36'

@@ -67,6 +67,8 @@ library DzConfig uses SystemCodes
             QQNumber = "1035838574"
         elseif  DzConA[1] == 4
             QQNumber = "784736238"
+        elseif  DzConA[1] == 4
+            QQNumber = "798103390"
         endif
 
         if  DzCon("TEST") == "1"
