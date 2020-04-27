@@ -153,8 +153,8 @@ library DzDataSetting uses DzBase
                 max = InfiniteModeACosNum 
             elseif  flag == 4 //变异积分
                 max = R2I(Pow(DzPlayerLv(Player(pid)),2)*255)
-                if  max > 5000
-                    max = 5000
+                if  max > 1000
+                    max = 1000
                 endif
             elseif  flag >= 5 //未使用
                 max = 0
