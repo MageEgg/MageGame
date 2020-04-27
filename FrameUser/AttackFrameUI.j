@@ -82,7 +82,7 @@ library AttackFrameUI uses GameFrame
     function OpenVariationUI()
         int time = 0
         ShowVariationUI(true)
-        TimerStart(0.05,true)
+        TimerStart(0.06,true)
         {
             time = time + 1
             if  time < 17
@@ -103,7 +103,7 @@ library AttackFrameUI uses GameFrame
     function CloseVariationUI()
         int time = 0
         ShowVariationUI(false)
-        TimerStart(0.05,true)
+        TimerStart(0.06,true)
         {
             time = time + 1
             if  time < 17
