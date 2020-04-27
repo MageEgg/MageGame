@@ -86,6 +86,12 @@ scope SelectHero
         
         if  GetDzPlayerData(pid,2,3) > 60
             BuryingPointData(pid,9,1,1)//作弊埋点
+        else
+            BuryingPointData(pid,9,0,1)//非作弊埋点
+        endif
+
+        if  GameMode == 3
+            AddUnitRealState(Pu[1],52,20)
         endif
 
     endfunction
