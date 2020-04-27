@@ -311,7 +311,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             SetUnitMoveSpeed(u,522)
         endif
         AddUnitRealState(u,9,30)
-        SetUnitVertexColor(u,255,155,155,125)
+        SetUnitVertexColor(u,255,155,155,185)
     endfunction
 
     function AddUnitVariation(unit u,int ty)
