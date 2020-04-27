@@ -54,7 +54,7 @@ scope SelectHero
         if  dzlv >= 4
             AddUnitRealState(Pu[1],20,30)
             if  GameMode == 3
-                AddUnitRealState(Pu[1],52,30)
+                AddUnitRealState(Pu[1],64,30)
             endif
         endif
         
@@ -91,7 +91,7 @@ scope SelectHero
         endif
 
         if  GameMode == 3
-            AddUnitRealState(Pu[1],52,20)
+            AddUnitRealState(Pu[1],64,20)
         endif
 
     endfunction
