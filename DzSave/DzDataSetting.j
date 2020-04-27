@@ -75,16 +75,16 @@ library DzDataSetting uses DzBase
         //DzPlayerInitCrazyTGCos[10] = 1
 
         //变异
-        DzPlayerInitVariationTGCos[1] = 1
-        DzPlayerInitVariationTGCos[2] = 1
-        DzPlayerInitVariationTGCos[3] = 1
-        /*DzPlayerInitVariationTGCos[4] = 1
-        DzPlayerInitVariationTGCos[5] = 1
-        DzPlayerInitVariationTGCos[6] = 1
-        DzPlayerInitVariationTGCos[7] = 1
-        DzPlayerInitVariationTGCos[8] = 1
-        DzPlayerInitVariationTGCos[9] = 1
-        DzPlayerInitVariationTGCos[10] = 1*/
+        DzPlayerInitVariationTGCos[1] = 8
+        DzPlayerInitVariationTGCos[2] = 8
+        DzPlayerInitVariationTGCos[3] = 8
+        /*DzPlayerInitVariationTGCos[4] = 8
+        DzPlayerInitVariationTGCos[5] = 8
+        DzPlayerInitVariationTGCos[6] = 8
+        DzPlayerInitVariationTGCos[7] = 8
+        DzPlayerInitVariationTGCos[8] = 8
+        DzPlayerInitVariationTGCos[9] = 8
+        DzPlayerInitVariationTGCos[10] = 8*/
     endfunction
     
     function DzDataGroupSetting()
