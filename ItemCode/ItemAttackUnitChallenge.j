@@ -231,11 +231,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  s == "|CffFFD24D挑战消耗：|r"
             s = ""
         endif
-        if  AttackUnitChallengeCombat[GameLevel][combat] > 0
-            if  s == ""
-                s = "|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
-            else
-                s = s + "|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
+        if  GameMode == 3
+            s = "|CffFFD24D战斗力推荐：|r|n|cffff0000？？？|r"
+        else
+            if  AttackUnitChallengeCombat[GameLevel][combat] > 0
+                if  s == ""
+                    s = "|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
+                else
+                    s = s + "|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][combat])+"|r"
+                endif
             endif
         endif
         if  s == ""
@@ -295,10 +299,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             else
                 id = 'IT00'+i
             endif
-            if  i <= 7
-                YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][250+i-1]) )
+            if  GameMode == 3
+                YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n|cffff0000？？？")
             else
-                YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n？？？")
+                if  i <= 7
+                    YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n"+I2S(AttackUnitChallengeCombat[GameLevel][250+i-1]) )
+                else
+                    YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n？？？")
+                endif
             endif
         end
        
