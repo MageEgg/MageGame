@@ -210,9 +210,14 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
             RemoveUnit(Pu[27])
             
             Pu[27]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np28',x+512,y+512,270)
-            SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,800)
+            if  GameMode == 3
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,400)
+                SetTextTagText(AttackTexttag[pid],"0/400",0.03)
+            else
+                SetUnitState(Pu[27],UNIT_STATE_MAX_LIFE,800)
+                SetTextTagText(AttackTexttag[pid],"0/800",0.03)
+            endif
             SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-            SetTextTagText(AttackTexttag[pid],"0/800",0.03)
             SetTextTagPos(AttackTexttag[pid],x+432,y+412,0)
             UnitAddEffectOfNPC(Pu[27])
             
@@ -276,42 +281,6 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
         end
     endfunction
     
-    function AstrologyFunc(int pid)//占星
-        real x = AttackRoomPostion[pid][1]
-        real y = AttackRoomPostion[pid][2]
-        int num = AttackRoomZXNum
-        int id = 'u0CA'+num
-        if  AttackRoomZXNum < 12
-            AttackRoomZXNum = AttackRoomZXNum + 1
-        endif
-
-        bj_lastCreatedUnit = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),id,x+500,y+500,270)
-        IssuePointOrderById(bj_lastCreatedUnit, 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
-        SetPlayerOnlyDamage(bj_lastCreatedUnit,pid)
-        //UnitAddAbility(bj_lastCreatedUnit,'AZ31')
-        UnitApplyTimedLife(bj_lastCreatedUnit, 'BHwe', 20 )
-        bj_lastCreatedUnit = null
-        
-
-        if  GetUnitTypeId(Pu[1]) == 'H031'
-            int lv = GetHeroAbilityLevel(Pu[1],'S531')
-            int jj = GetUnitIntState(Pu[1],150)
-            if  jj > 0
-                if  lv >= 3
-                    AddUnitRealState(Pu[1],2,jj * 500)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:姜子牙料事如神，法强|Cffff8000+"+I2S(jj*500)+"|r")
-                elseif  lv >= 2
-                    AddUnitRealState(Pu[1],2,jj * 400)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:姜子牙料事如神，法强|Cffff8000+"+I2S(jj*400)+"|r")
-                else
-                    AddUnitRealState(Pu[1],2,jj * 300)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:姜子牙料事如神，法强|Cffff8000+"+I2S(jj*300)+"|r")
-                endif
-            endif
-            
-        endif
-    endfunction
-
     //周天星辰阵
     function SoulTimer2FuncGivePrize(int pid)
         int num = AttackRoomXCNum
@@ -375,14 +344,23 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                 real maxlife = GetUnitState(Pu[27],UNIT_STATE_MAX_LIFE)
                 if  maxlife > 0
                     SetUnitState(Pu[27],UNIT_STATE_LIFE,life)
-                    SetTextTagText(AttackTexttag[pid],I2S(R2I(life+0.001))+"/800",0.03)
+
+                    if  GameMode == 3
+                        SetTextTagText(AttackTexttag[pid],I2S(R2I(life+0.001))+"/400",0.03)
+                    else
+                        SetTextTagText(AttackTexttag[pid],I2S(R2I(life+0.001))+"/800",0.03)
+                    endif
                     
                     //SetUnitVertexColor(Pu[27],255,255,255,55+R2I(205*(life/maxlife)))
                 
                     if  life+0.5 >= maxlife
                         
                         SetUnitState(Pu[27],UNIT_STATE_LIFE,1)
-                        SetTextTagText(AttackTexttag[pid],"0/800",0.03)
+                        if  GameMode == 3
+                            SetTextTagText(AttackTexttag[pid],"0/400",0.03)
+                        else
+                            SetTextTagText(AttackTexttag[pid],"0/800",0.03)
+                        endif
                         LocAddEffect(GetUnitX(Pu[27]),GetUnitY(Pu[27]),"effect_az_bw_lina_t1-2.mdl")
                         SoulTimer2FuncGivePrize(pid)
                     endif
