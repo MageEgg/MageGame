@@ -187,8 +187,6 @@ scope ItemSystem initializer InitItemSystem
             PlayerAbilityDraw(pid,1,itemid)
         elseif  itemid >= 'IS06' and itemid <= 'IS08'
             PlayerAbilityDraw(pid,2,itemid)
-        elseif  itemid == 'IS11'
-            AstrologyFunc(pid)
         elseif  itemid == 'IS13'
             IncOrnaments(pid,Pu[1])
         elseif  itemid == 'IS14'

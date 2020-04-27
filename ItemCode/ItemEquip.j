@@ -510,25 +510,29 @@ library ItemEquip uses DamageCode,ItemGameFunc
         int id1 = 0
         int id2 = 0
         int id3 = 0
-        if  itemid == 'CS41'
-            id1 = GetIncEquipId(pid,0)
-            id2 = GetIncEquipId(pid,1)
-            id3 = GetIncEquipId(pid,2)
-        else
-            id1 = GetIncEquipIdEx(pid,0)
-            id2 = GetIncEquipIdEx(pid,1)
-            id3 = GetIncEquipIdEx(pid,2)
-        endif
-
-        if  id1 != 0 or id2 != 0 or id3 != 0
+        if  PlayerDeathBool == false
             if  itemid == 'CS41'
-                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,1),GetIncEquipName(id3,2),"取消","","","","","","","","","PlayerUseIncEquipGemFunc1")
+                id1 = GetIncEquipId(pid,0)
+                id2 = GetIncEquipId(pid,1)
+                id3 = GetIncEquipId(pid,2)
             else
-                Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,1),GetIncEquipName(id3,2),"取消","","","","","","","","","PlayerUseIncEquipGemFunc2")
+                id1 = GetIncEquipIdEx(pid,0)
+                id2 = GetIncEquipIdEx(pid,1)
+                id3 = GetIncEquipIdEx(pid,2)
+            endif
+
+            if  id1 != 0 or id2 != 0 or id3 != 0
+                if  itemid == 'CS41'
+                    Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,1),GetIncEquipName(id3,2),"取消","","","","","","","","","PlayerUseIncEquipGemFunc1")
+                else
+                    Dialog.create(Player(pid),"请选择要升级的装备",GetIncEquipName(id1,0),GetIncEquipName(id2,1),GetIncEquipName(id3,2),"取消","","","","","","","","","PlayerUseIncEquipGemFunc2")
+                endif
+            else
+                UnitAddItemById(wu,itemid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
             endif
         else
-            UnitAddItemById(wu,itemid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：当前没有可升级的装备！|r")
+            
         endif
     endfunction
 
