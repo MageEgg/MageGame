@@ -1697,6 +1697,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 LocAddEffect(x,y,"effect_az_tormentedsoul_t1.mdl")
                 GroupEnumUnitsInRange(gg,x,y,360,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
                 UnitDamageGroup(u1,gg,GetUnitRealState(u1,1)*50,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                BJDebugMsg("最后一次爆炸 伤害来源"+GetUnitName(u1)+" 伤害 "+R2S(GetUnitRealState(u1,1)*50))
                 GroupClear(gg)
                 DestroyGroup(gg)
                 RemoveUnit(u2)
