@@ -1573,6 +1573,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         DzSetUnitModel(u2,YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,uid,"file"))
         SetUnitRealStateOfOtherId(u2,uid)
         UnitTimerAddSkill(u2,'Avul',1)
+        GroupAddUnit(AttackUnitGroup,u2)
         LocAddEffectSetSize(x,y,"Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageCaster.mdl",1.5)
         LocAddEffectSetSize(x,y,"Abilities\\Spells\\Orc\\MirrorImage\\MirrorImageCaster.mdl",1.5)
         flush locals
@@ -1588,7 +1589,6 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             u2 = FirstOfGroup(gg)
             exitwhen u2 == null
             if  IsUnitInGroup(u2,AttackUnitGroup) == true
-                BJDebugMsg("AXBB 死亡增加"+GetUnitName(u2)+"攻速")
                 AddUnitRealStateTimer(u2,9,200,4)
             endif
             GroupRemoveUnit(gg,u2)
@@ -1698,7 +1698,6 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
                 LocAddEffect(x,y,"effect_az_tormentedsoul_t1.mdl")
                 GroupEnumUnitsInRange(gg,x,y,360,GroupNormalNoStr(GetOwningPlayer(u1),"","origin",0))
                 UnitDamageGroup(u1,gg,GetUnitRealState(u1,1)*50,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
-                BJDebugMsg("最后一次爆炸 伤害来源"+GetUnitName(u1)+" 伤害 "+R2S(GetUnitRealState(u1,1)*50))
                 GroupClear(gg)
                 DestroyGroup(gg)
                 RemoveUnit(u2)
