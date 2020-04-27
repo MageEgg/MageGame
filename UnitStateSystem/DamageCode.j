@@ -262,6 +262,12 @@ library DamageCode uses UnitStateSet
         if  GetPlayerTechCount(GetOwningPlayer(wu),'KTAC',true) > 0
             s = s + 4
         endif
+        if  GetPlayerTechCount(GetOwningPlayer(wu),'RGBB',true) > 0
+            s = s + 1
+        endif
+
+
+        
         
 
 

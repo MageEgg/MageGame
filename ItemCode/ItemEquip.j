@@ -266,7 +266,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
         int next = GetTypeIdData(id,106)
         int uid = GetTypeIdData(id,105)
         int index = 0
-        int gl = GetTypeIdData(id,104)//概率
+        real gl = GetTypeIdData(id,104)//概率
         int fmid = 0
 
         if  id >= 'E001' and id <= 'E029'
@@ -275,6 +275,16 @@ library ItemEquip uses DamageCode,ItemGameFunc
         else
             BJDebugMsg("强化概率+"+I2S(IncEquipAddition2))
             gl = gl + IncEquipAddition2
+        endif
+
+        if  GetPlayerTechCount(Player(pid),'RDAP',true) > 0
+            gl = gl + 1.25
+        endif
+        if  GetPlayerTechCount(Player(pid),'RDAY',true) > 0
+            gl = gl + 1.25
+        endif
+        if  GetPlayerTechCount(Player(pid),'RGBA',true) > 0
+            gl = gl + 1.25
         endif
 
         if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
@@ -287,7 +297,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
         endif
         
 
-        BJDebugMsg("强化成功率"+I2S(gl))
+        BJDebugMsg("强化成功率"+R2S(gl))
         if  next > 0
             
             if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=gold
@@ -321,7 +331,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
                     endif
                 else
                     AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                    if  GetRandomInt(1,100)<= gl
+                    if  GetRandomReal(1,100)<= gl
 
                         fmid = GetItemIntState(it,'FMID')
                         RemoveItem(it)
