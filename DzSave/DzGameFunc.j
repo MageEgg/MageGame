@@ -20,18 +20,20 @@ piece DzGameFunc
 
     function ShowPlayerDzTGJF(int pid)//显示通关
         if  DzConA[0] == 1 
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00游戏局数：|r"+I2S(DzPlayerGames(Player(pid)))+"局")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00总通关次数：|r"+I2S(GetDzPlayerData(pid,3,1))+"次")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难1：|r"+I2S(GetDzPlayerData(pid,3,2))+"/"+I2S(DzPlayerInitTGCos[1]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难2：|r"+I2S(GetDzPlayerData(pid,3,3))+"/"+I2S(DzPlayerInitTGCos[2]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难3：|r"+I2S(GetDzPlayerData(pid,3,4))+"/"+I2S(DzPlayerInitTGCos[3]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难4：|r"+I2S(GetDzPlayerData(pid,3,5))+"/"+I2S(DzPlayerInitTGCos[4]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难5：|r"+I2S(GetDzPlayerData(pid,3,6))+"/"+I2S(DzPlayerInitTGCos[5]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难6：|r"+I2S(GetDzPlayerData(pid,3,7))+"/"+I2S(DzPlayerInitTGCos[6]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难7：|r"+I2S(GetDzPlayerData(pid,3,8))+"/"+I2S(DzPlayerInitTGCos[7]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难8：|r"+I2S(GetDzPlayerData(pid,3,9))+"/"+I2S(DzPlayerInitTGCos[8]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难9：|r"+I2S(GetDzPlayerData(pid,3,10))+"/"+I2S(DzPlayerInitTGCos[9]))
-            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关难10：|r"+I2S(GetDzPlayerData(pid,3,11))+"/"+I2S(DzPlayerInitTGCos[10]))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00游戏局数：|r"+I2S(DzPlayerGames(Player(pid)))+"局  |cffffcc00总通关次数：|r"+I2S(GetDzPlayerData(pid,3,1))+"次")
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00经典模式：|r")
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难1  |r"+I2S(GetDzPlayerData(pid,3,2))+"/"+I2S(DzPlayerInitTGCos[1])+"  |cffffcc00难2  |r"+I2S(GetDzPlayerData(pid,3,3))+"/"+I2S(DzPlayerInitTGCos[2])+"  |cffffcc00难3  |r"+I2S(GetDzPlayerData(pid,3,4))+"/"+I2S(DzPlayerInitTGCos[3]))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难4  |r"+I2S(GetDzPlayerData(pid,3,5))+"/"+I2S(DzPlayerInitTGCos[4])+"  |cffffcc00难5  |r"+I2S(GetDzPlayerData(pid,3,6))+"/"+I2S(DzPlayerInitTGCos[5])+"  |cffffcc00难6  |r"+I2S(GetDzPlayerData(pid,3,7))+"/"+I2S(DzPlayerInitTGCos[6]))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难7  |r"+I2S(GetDzPlayerData(pid,3,8))+"/"+I2S(DzPlayerInitTGCos[7])+"  |cffffcc00难8  |r"+I2S(GetDzPlayerData(pid,3,9))+"/"+I2S(DzPlayerInitTGCos[8])+"  |cffffcc00难9  |r"+I2S(GetDzPlayerData(pid,3,10))+"/"+I2S(DzPlayerInitTGCos[9]))
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难10：|r"+I2S(GetDzPlayerData(pid,3,11))+"/"+I2S(DzPlayerInitTGCos[10]))
+            
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00异变模式：|r")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难1  |r"+I2S(GetDzPlayerData(pid,20,2))+"/"+I2S(DzPlayerInitVariationTGCos[1])+"  |cffffcc00难2  |r"+I2S(GetDzPlayerData(pid,20,3))+"/"+I2S(DzPlayerInitVariationTGCos[2])+"  |cffffcc00难3  |r"+I2S(GetDzPlayerData(pid,20,4))+"/"+I2S(DzPlayerInitVariationTGCos[3]))
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难4  |r"+I2S(GetDzPlayerData(pid,20,5))+"/"+I2S(DzPlayerInitVariationTGCos[4])+"  |cffffcc00难5  |r"+I2S(GetDzPlayerData(pid,20,6))+"/"+I2S(DzPlayerInitVariationTGCos[5])+"  |cffffcc00难6  |r"+I2S(GetDzPlayerData(pid,20,7))+"/"+I2S(DzPlayerInitVariationTGCos[6]))
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难7  |r"+I2S(GetDzPlayerData(pid,20,8))+"/"+I2S(DzPlayerInitVariationTGCos[7])+"  |cffffcc00难8  |r"+I2S(GetDzPlayerData(pid,20,9))+"/"+I2S(DzPlayerInitVariationTGCos[8])+"  |cffffcc00难9  |r"+I2S(GetDzPlayerData(pid,20,10))+"/"+I2S(DzPlayerInitVariationTGCos[9]))
+            //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难10：|r"+I2S(GetDzPlayerData(pid,20,11))+"/"+I2S(DzPlayerInitVariationTGCos[10]))
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“JF”查看游戏积分|r")
         else
