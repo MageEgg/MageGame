@@ -385,6 +385,11 @@ library AttackUnit uses DamageCode,PassCheckMission
             SetUnitXY(u,sx,sy)
             IssuePointOrderById(u,851983,ex,ey)
             GroupAddUnit(AttackUnitGroup,u)
+            if  GameMode == 3
+                IntUnitVariation(u)
+                AddUnitVariation(u,AttackUnitVariationNumA)
+                AddUnitVariation(u,AttackUnitVariationNumB)
+            endif
         end
         BJDebugMsg("CreateBossAttachUnit")
         u = null
