@@ -575,8 +575,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                 AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
                 VariationTextExUI.SetText("|cffff0000"+SubString(GetObjectName(AttackUnitVariationNumA),7,StringLength(GetObjectName(AttackUnitVariationNumA)))+"，"+SubString(GetObjectName(AttackUnitVariationNumB),13,StringLength(GetObjectName(AttackUnitVariationNumB)))+"|r")
                 ShowVariationUIEx(true)
+                Blood.show = true
             elseif  ModuloInteger(AttackUnitWN-1,3) == 0 and AttackUnitWN > 3
                 ShowVariationUIEx(false)
+                Blood.show = false
             endif
         endif
         for k = 0,3

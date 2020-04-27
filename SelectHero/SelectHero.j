@@ -25,11 +25,14 @@ scope SelectHero
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
         UnitAddAbility(Pu[1],'AG0B')
 
+
+        LoadPlayerTechState.execute(pid)
+
+
+
         InitPlayerDzShopState.execute(pid)//商城属性
 
         InitPlayerMeridiansState.execute(pid)//经脉
-
-        LoadPlayerTechState.execute(pid)//读取存档属性
 
         PlayerLoadPassCheck.execute(pid)//读取通行证
 

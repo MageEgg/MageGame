@@ -17,6 +17,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
+    int UnlocTechData_index2 = 0
     
     int array HolidayChangeData[12][680]
 
@@ -255,17 +256,38 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     endfunction
     
     
-    
-    
-    
-    function LoadPlayerTechState(int pid)
+    function LoadPlayerTechState2(int pid)
         int id = 0
-        for i = 1,UnlocTechData_index
+        int min = UnlocTechData_index2+1
+        int max = UnlocTechData_index
+        for i = min,max
             id = UnlocTechData_TechId[i]
             if  IsPlayerHasTech(Player(pid),id) == true
                 AddEquipState(Pu[1],id)
             endif
+            BJDebugMsg(I2S(id))
         end
+        BJDebugMsg(I2S(min)+":"+I2S(max))
+    endfunction
+
+    function LoadPlayerTechState1(int pid)
+        int id = 0
+        int min = 1
+        int max = UnlocTechData_index2
+        for i = min,max
+            id = UnlocTechData_TechId[i]
+            if  IsPlayerHasTech(Player(pid),id) == true
+                AddEquipState(Pu[1],id)
+            endif
+            BJDebugMsg(I2S(id))
+        end
+        BJDebugMsg(I2S(min)+":"+I2S(max))
+    endfunction
+    
+    
+    function LoadPlayerTechState(int pid)
+        LoadPlayerTechState1.execute(pid)
+        LoadPlayerTechState2.execute(pid)
     endfunction
     
 
@@ -543,6 +565,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4N',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_Test,1),0,0,0)
         
 
+        UnlocTechData_index2 = UnlocTechData_index
+
         //	InitUnlocTechConditions('RDAA',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,1,1)),0,0,0)
             InitUnlocTechConditions('RDAB',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,2,2)),0,0,0)
             InitUnlocTechConditions('RDAC',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(15,3,3)),0,0,0)
@@ -584,8 +608,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,13619)),0,0,0)
             InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,11),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,18180)),0,0,0)
             /*
-            InitUnlocTechConditions('RY9G',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,23198)),0,0,0)
-            InitUnlocTechConditions('RY9H',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,28718)),0,0,0)
+            InitUnlocTechConditions('RY9I',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,23198)),0,0,0)
+            InitUnlocTechConditions('RY9J',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(16,1,28718)),0,0,0)
             */
 
     endfunction

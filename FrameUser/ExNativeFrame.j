@@ -16,7 +16,7 @@ library ExNativeFrame uses GameFrame
     FRAME ReHeroButton = 0
     FRAME ReHeroNumber = 0
     
-    private FRAME Blood = 0
+    FRAME Blood = 0
     
       
     //鼠标显示符印
@@ -378,6 +378,7 @@ library ExNativeFrame uses GameFrame
         Blood.SetModel("war3mapImported\\UI_xueliangx.mdx",1,0)
         Blood.SetAnimate(0,true)
         Blood.SetSize(0.00001,0.00001)
+        Blood.show = false
 
     endfunction
 endlibrary
