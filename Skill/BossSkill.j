@@ -1645,7 +1645,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             sx = x + 20*Cos((180*num)*0.01745)
             sy = y + 20*Sin((180*num)*0.01745)
             u2 = CreateUnit(Player(11),'z106',GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),GetUnitFacing(wu))
-            AddBossAttachUnitState(u2,GetUnitTypeId(u2))
+            AddBossAttachUnitState(u2,GetUnitTypeId(u1))
             AddUnitRealState(u2,19,10)
             AddUnitRealState(u2,20,2000)
             SetUnitXY(u2,sx,sy)
