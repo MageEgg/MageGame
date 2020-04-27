@@ -2374,7 +2374,7 @@ endfunction
 
 
 
-    
+
 
 function InitTypeStateNandu9()
 BJDebugMsg("注册难度9属性")
@@ -2818,10 +2818,10 @@ InitTypeStateEx('ut11',8643749,8614289)
 InitTypeStateEx('ut12',10680779,25842867)
 InitTypeStateEx('ut13',8643749,8614289)
 InitTypeStateEx('ut14',8643749,8614289)
-InitTypeStateEx('u001',168618,79143)
-InitTypeStateEx('u002',1316379,1173374)
-InitTypeStateEx('u003',2239989,3784320)
-InitTypeStateEx('u004',1699102,8945607)
+InitTypeStateEx('u001',12406,6227)
+InitTypeStateEx('u002',140473,68630)
+InitTypeStateEx('u003',280584,197378)
+InitTypeStateEx('u004',266611,683691)
 InitTypeStateEx('u0CA',11250,384)
 InitTypeStateEx('u0CB',29516,705)
 InitTypeStateEx('u0CC',75292,1389)
@@ -3115,10 +3115,10 @@ InitTypeStateEx('ut11',12965624,8614289)
 InitTypeStateEx('ut12',16021168,25842867)
 InitTypeStateEx('ut13',12965624,8614289)
 InitTypeStateEx('ut14',12965624,8614289)
-InitTypeStateEx('u001',252928,79143)
-InitTypeStateEx('u002',1974569,1173374)
-InitTypeStateEx('u003',3359983,3784320)
-InitTypeStateEx('u004',2548654,8945607)
+InitTypeStateEx('u001',73893,18625)
+InitTypeStateEx('u002',519363,174302)
+InitTypeStateEx('u003',945008,553789)
+InitTypeStateEx('u004',718023,1669980)
 InitTypeStateEx('u0CA',16875,384)
 InitTypeStateEx('u0CB',44275,705)
 InitTypeStateEx('u0CC',112938,1389)

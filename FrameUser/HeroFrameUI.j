@@ -270,7 +270,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 RemoveUnit(Pu[21])
                 Pu[21]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np29',AttackRoomPostion[pid][1]+128,AttackRoomPostion[pid][2]+512,270)//境界
                 if  GetLocalPlayer() == Player(pid)
-                    YDWESetItemDataString('IT11',3,"|cffffff00需求：|r\n - |cff808080难度6\n - 金仙境[10]\n - 万魔窟20层\n"+GetTypeIdTips('IT11'))
+                    if  GameMode == 3
+                        YDWESetItemDataString('IT11',3,"|cffffff00需求：|r\n - |cff808080难度3\n - 金仙境[10]\n - 万魔窟20层\n"+GetTypeIdTips('IT11'))
+                    else
+                        YDWESetItemDataString('IT11',3,"|cffffff00需求：|r\n - |cff808080难度6\n - 金仙境[10]\n - 万魔窟20层\n"+GetTypeIdTips('IT11'))
+                    endif
                 endif
                 IsCanFruit11(pid)
             endif
