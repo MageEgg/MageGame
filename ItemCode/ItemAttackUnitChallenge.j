@@ -266,8 +266,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         s = s + AttackUnitChallengeStateTypeString[zu][wei]
         if  Player(pid) == GetLocalPlayer()
             YDWESetUnitAbilityDataString(Pu[42],id,1,218,s)
-            YDWESetUnitAbilityState(Pu[42],id,1,time)
         endif
+        YDWESetUnitAbilityState(Pu[42],id,1,time)
     endfunction
 
     function InitAttackUnitChallengeStateStock()
