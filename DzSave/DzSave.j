@@ -411,7 +411,7 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 4
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        LoadingDzPlayerData(pid) //加载游戏数据
+                        LoadingDzPlayerData.execute(pid) //加载游戏数据
                     endif
                 end
             elseif  time == 5
@@ -435,7 +435,7 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 7
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        SaveDzRoom(pid) //刷新房间显示
+                        SaveDzRoom.execute(pid) //刷新房间显示
                         //加载科技
                         LoadPlayerAllUnlocTech.execute(pid)
                     endif
