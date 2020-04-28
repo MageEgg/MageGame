@@ -18,6 +18,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
     int UnlocTechData_index2 = 0
+    int UnlocTechData_index3 = 0
+    int UnlocTechData_index4 = 0
     
     int array HolidayChangeData[12][680]
 
@@ -255,19 +257,44 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         return false
     endfunction
     
-    
-    function LoadPlayerTechState2(int pid)
+    function LoadPlayerTechState4(int pid)
         int id = 0
-        int min = UnlocTechData_index2+1
+        int min = UnlocTechData_index4+1
         int max = UnlocTechData_index
         for i = min,max
             id = UnlocTechData_TechId[i]
             if  IsPlayerHasTech(Player(pid),id) == true
                 AddEquipState(Pu[1],id)
             endif
-            BJDebugMsg(I2S(id))
+            //BJDebugMsg(I2S(id))
         end
-        BJDebugMsg(I2S(min)+":"+I2S(max))
+        BJDebugMsg("加属性"+I2S(min)+":"+I2S(max))
+    endfunction
+    function LoadPlayerTechState3(int pid)
+        int id = 0
+        int min = UnlocTechData_index3+1
+        int max = UnlocTechData_index4
+        for i = min,max
+            id = UnlocTechData_TechId[i]
+            if  IsPlayerHasTech(Player(pid),id) == true
+                AddEquipState(Pu[1],id)
+            endif
+            //BJDebugMsg(I2S(id))
+        end
+        BJDebugMsg("加属性"+I2S(min)+":"+I2S(max))
+    endfunction
+    function LoadPlayerTechState2(int pid)
+        int id = 0
+        int min = UnlocTechData_index2+1
+        int max = UnlocTechData_index3
+        for i = min,max
+            id = UnlocTechData_TechId[i]
+            if  IsPlayerHasTech(Player(pid),id) == true
+                AddEquipState(Pu[1],id)
+            endif
+            //BJDebugMsg(I2S(id))
+        end
+        BJDebugMsg("加属性"+I2S(min)+":"+I2S(max))
     endfunction
 
     function LoadPlayerTechState1(int pid)
@@ -279,29 +306,89 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             if  IsPlayerHasTech(Player(pid),id) == true
                 AddEquipState(Pu[1],id)
             endif
-            BJDebugMsg(I2S(id))
+            //BJDebugMsg(I2S(id))
         end
-        BJDebugMsg(I2S(min)+":"+I2S(max))
+        BJDebugMsg("加属性"+I2S(min)+":"+I2S(max))
     endfunction
     
     
     function LoadPlayerTechState(int pid)
         LoadPlayerTechState1.execute(pid)
         LoadPlayerTechState2.execute(pid)
+        LoadPlayerTechState3.execute(pid)
+        LoadPlayerTechState4.execute(pid)
     endfunction
     
 
-    function LoadPlayerAllUnlocTech(int pid)
+    function LoadPlayerAllUnlocTech4(int pid)
+        int min = UnlocTechData_index4+1
+        int max = UnlocTechData_index
         if  GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
-            for i = 1,UnlocTechData_index
+            for i = min,max
                 if  IsPlayerUnlocTech(pid,UnlocTechData_TechId[i]) == true
                     SetPlayerTechResearched(Player(pid),UnlocTechData_TechId[i],1)
-                    BJDebugMsg("unlock"+GetObjectName(UnlocTechData_TechId[i]))
+                    //BJDebugMsg("unlock"+GetObjectName(UnlocTechData_TechId[i]))
                 else
                     //BJDebugMsg("lock"+I2S(UnlocTechData_TechId[i]))
                 endif
             end
+            BJDebugMsg("读存档"+I2S(min)+":"+I2S(max))
         endif
+        
+    endfunction
+    function LoadPlayerAllUnlocTech3(int pid)
+        int min = UnlocTechData_index3+1
+        int max = UnlocTechData_index4
+        if  GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
+            for i = min,max
+                if  IsPlayerUnlocTech(pid,UnlocTechData_TechId[i]) == true
+                    SetPlayerTechResearched(Player(pid),UnlocTechData_TechId[i],1)
+                    //BJDebugMsg("unlock"+GetObjectName(UnlocTechData_TechId[i]))
+                else
+                    //BJDebugMsg("lock"+I2S(UnlocTechData_TechId[i]))
+                endif
+            end
+            BJDebugMsg("读存档"+I2S(min)+":"+I2S(max))
+        endif
+        
+    endfunction
+    function LoadPlayerAllUnlocTech2(int pid)
+        int min = UnlocTechData_index2+1
+        int max = UnlocTechData_index3
+        if  GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
+            for i = min,max
+                if  IsPlayerUnlocTech(pid,UnlocTechData_TechId[i]) == true
+                    SetPlayerTechResearched(Player(pid),UnlocTechData_TechId[i],1)
+                    //BJDebugMsg("unlock"+GetObjectName(UnlocTechData_TechId[i]))
+                else
+                    //BJDebugMsg("lock"+I2S(UnlocTechData_TechId[i]))
+                endif
+            end
+            BJDebugMsg("读存档"+I2S(min)+":"+I2S(max))
+        endif
+        
+    endfunction
+    function LoadPlayerAllUnlocTech1(int pid)
+        int min = 1
+        int max = UnlocTechData_index2
+        if  GetPlayerController(Player(pid)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(pid)) == PLAYER_SLOT_STATE_PLAYING
+            for i = min,max
+                if  IsPlayerUnlocTech(pid,UnlocTechData_TechId[i]) == true
+                    SetPlayerTechResearched(Player(pid),UnlocTechData_TechId[i],1)
+                    //BJDebugMsg("unlock"+GetObjectName(UnlocTechData_TechId[i]))
+                else
+                    //BJDebugMsg("lock"+I2S(UnlocTechData_TechId[i]))
+                endif
+            end
+            BJDebugMsg("读存档"+I2S(min)+":"+I2S(max))
+        endif
+    endfunction
+
+    function LoadPlayerAllUnlocTech(int pid)
+        LoadPlayerAllUnlocTech1.execute(pid)
+        LoadPlayerAllUnlocTech2.execute(pid)
+        LoadPlayerAllUnlocTech3.execute(pid)
+        LoadPlayerAllUnlocTech4.execute(pid)
     endfunction
     
     
@@ -474,6 +561,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
 
 
+        set UnlocTechData_index2 = UnlocTechData_index
+
+
         InitUnlocTechConditions('RGAA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,2,1)),0,0,0)
         InitUnlocTechConditions('RGAB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(17,3,1)),0,0,0)
         InitUnlocTechConditions('RGAC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(17,4,1)),0,0,0)
@@ -540,6 +630,13 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY1E',InitCond1(1,Unloc_Type_Level,20),InitCond2(0,Unloc_Type_Load,GameDataList(11,5,5)),0,0,0)
         InitUnlocTechConditions('RY3E',InitCond1(1,Unloc_Type_Level,24),InitCond2(0,Unloc_Type_Load,GameDataList(13,5,5)),0,0,0)
 
+
+        set UnlocTechData_index3 = UnlocTechData_index
+
+        
+
+
+
         InitUnlocTechConditions('RJ2G',InitCond1(1,Unloc_Type_Level,6),InitCond2(1,Unloc_Type_Day51,2),InitCond3(0,Unloc_Type_Load,GameDataList(10,7,7)),0,0)
         InitUnlocTechConditions('RP1B',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day51,4),InitCond3(0,Unloc_Type_Load,GameDataList(19,2,2)),0,0)
         
@@ -565,7 +662,10 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY4N',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_Test,1),0,0,0)
         
 
-        UnlocTechData_index2 = UnlocTechData_index
+        
+
+        set UnlocTechData_index4 = UnlocTechData_index
+
 
         //	InitUnlocTechConditions('RDAA',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_JF,GameDataList(15,1,1)),0,0,0)
             InitUnlocTechConditions('RDAB',InitCond1(1,Unloc_Type_Level,4),InitCond2(0,Unloc_Type_JF,GameDataList(15,2,2)),0,0,0)
