@@ -1547,7 +1547,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         flush locals
     endfunction
 
-    ///////////////////////////变异模式技能分割//////////////////////////////////
+    ///////////////////////////异变模式技能分割//////////////////////////////////
 
     function SpellAXAG(unit u)
         real x = GetUnitX(u)

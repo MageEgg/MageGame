@@ -216,9 +216,9 @@ library GameChallenge12 uses GameChallengeBase
                 RemoveItemFromStock(GameChallengeUnit[90],'IZ06')
                 AddItemToStock(GameChallengeUnit[90],'IZ06',1,1)
             end
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[变异模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[异变模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[异变模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[异变模式]：|r|cffff8000团队副本-虚空圣战|r冷却已刷新！！！")
             endtimer
             flush locals
         }

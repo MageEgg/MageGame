@@ -21,8 +21,8 @@ library AttackUnit uses DamageCode,PassCheckMission
     #define LastAttackBossId            AttackUnitInt[0][5]     //最终BOSS
     
     #define AttackUnitWNBoss            AttackUnitInt[0][10]    //Boss次数
-    #define AttackUnitVariationNumA     AttackUnitInt[0][11]    //变异参数A
-    #define AttackUnitVariationNumB     AttackUnitInt[0][12]    //变异参数B
+    #define AttackUnitVariationNumA     AttackUnitInt[0][11]    //异变参数A
+    #define AttackUnitVariationNumB     AttackUnitInt[0][12]    //异变参数B
     
     #define AttackUnitArray             AttackUnitInt[1]        //序号
     #define AttackUnitRoad              AttackUnitInt[2]        //进攻线路
@@ -906,14 +906,14 @@ library AttackUnit uses DamageCode,PassCheckMission
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
                     endif
                 elseif  GameMode == 3
-                    AddDzPlayerData(pid,20,1,1) //变异总通关次数
-                    AddDzPlayerData(pid,20,GameLevel-2,1) //变异通关难度次数
+                    AddDzPlayerData(pid,20,1,1) //异变总通关次数
+                    AddDzPlayerData(pid,20,GameLevel-2,1) //异变通关难度次数
 
                     jfadd = 10*(GameLevel-3)
                     jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
-                    AddDzPlayerData(pid,2,4,jfadd) //变异积分
+                    AddDzPlayerData(pid,2,4,jfadd) //异变积分
 
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点变异积分！|r")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点异变积分！|r")
                 endif
 
                 AddDzHeroExp(Pu[1],1+GameLevel)

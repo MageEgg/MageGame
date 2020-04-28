@@ -27,7 +27,7 @@ library DzDataSetting uses DzBase
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包
-    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4变异积分
+    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
@@ -45,7 +45,7 @@ library DzDataSetting uses DzBase
     // 组17 20组 == 1疯狂总次数 2+通关难度次数 
     // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 4积分2上限
     // 组19 皮肤    30组
-    // 组20 20组 == 1变异总次数 2+通关难度次数 
+    // 组20 20组 == 1异变总次数 2+通关难度次数 
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -74,7 +74,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitCrazyTGCos[9] = 1
         //DzPlayerInitCrazyTGCos[10] = 1
 
-        //变异
+        //异变
         DzPlayerInitVariationTGCos[1] = 8
         DzPlayerInitVariationTGCos[2] = 8
         DzPlayerInitVariationTGCos[3] = 8
@@ -151,7 +151,7 @@ library DzDataSetting uses DzBase
                 endif
             elseif  flag == 3 //万魔窟
                 max = InfiniteModeACosNum 
-            elseif  flag == 4 //变异积分
+            elseif  flag == 4 //异变积分
                 max = R2I(Pow(DzPlayerLv(Player(pid)),2)*255)
                 if  max > 1000
                     max = 1000
@@ -224,9 +224,9 @@ library DzDataSetting uses DzBase
         elseif  Group == 19 //不用管
 
         elseif  Group == 20 
-            if  flag == 1 //变异总通关次数
+            if  flag == 1 //异变总通关次数
                 max = DzPlayerGames(Player(pid))+1
-            elseif  flag >= 2 and flag <= MaxGameLevel-2 //变异通关难度
+            elseif  flag >= 2 and flag <= MaxGameLevel-2 //异变通关难度
                 max = DzPlayerInitVariationTGCos[flag-1]
             elseif  flag >= MaxGameLevel-1 //未开启的难度
                 max = 0

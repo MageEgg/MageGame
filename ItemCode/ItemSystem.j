@@ -285,8 +285,11 @@ scope ItemSystem initializer InitItemSystem
                     RemoveItemFromStock(GameChallengePlayerUnit[pid][90],'IZ01')
                     AddItemToStock(GameChallengePlayerUnit[pid][90],'IZ01',1,1)
                 endif
-
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度5或以上才能激活！！！")
+                if  GameMode == 3
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本异变模式难度2或以上才能激活！！！")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度5或以上才能激活！！！")
+                endif
             endif
         elseif  itemid == 'IZ07'
             
