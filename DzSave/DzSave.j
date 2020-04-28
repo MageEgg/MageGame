@@ -411,7 +411,7 @@ library DzSave initializer InitDzData uses DzDataSetting
             elseif  time == 4
                 for pid = 0,5
                     if  IsPlaying(pid) == true
-                        LoadingDzPlayerData.execute(pid) //加载游戏数据
+                        LoadingDzPlayerData(pid) //加载游戏数据
                     endif
                 end
             elseif  time == 5
@@ -427,7 +427,7 @@ library DzSave initializer InitDzData uses DzDataSetting
                 for pid = 0,5
                     if  IsPlaying(pid) == true
                         SaveDzServerTime(pid) //更新版本
-                        InitDzPlayerTG(pid) //加载通关
+                        InitDzPlayerTG.execute(pid) //加载通关
                         InitDzHeroExpData.execute(pid) //加载熟练度
                         InitInfiniteModelJF(pid) //排行榜类加载
                     endif
