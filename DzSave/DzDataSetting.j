@@ -78,7 +78,8 @@ library DzDataSetting uses DzBase
         DzPlayerInitVariationTGCos[1] = 8
         DzPlayerInitVariationTGCos[2] = 8
         DzPlayerInitVariationTGCos[3] = 8
-        /*DzPlayerInitVariationTGCos[4] = 8
+        DzPlayerInitVariationTGCos[4] = 8
+        /*
         DzPlayerInitVariationTGCos[5] = 8
         DzPlayerInitVariationTGCos[6] = 8
         DzPlayerInitVariationTGCos[7] = 8
@@ -211,7 +212,7 @@ library DzDataSetting uses DzBase
             endif
         elseif  Group == 18 //活动存档组
             if  flag == 1
-                max = 3000
+                max = 4500
             elseif  flag == 2
                 max = Holiday51*2
             elseif  flag == 3

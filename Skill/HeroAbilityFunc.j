@@ -1956,6 +1956,11 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
     function SpellS536(unit wu,real sx,real sy,real damage,int lv)
 
+        if  IsHasHeroType('H037') == true
+            damage = damage * 1.3
+        endif
+
+
         LocAddEffectSetRotateSize(sx+50,sy,0,2,"effect_193.mdx")
         LocAddEffectSetRotateSize(sx+50*Cos(2.094),sy+50*Sin(2.094),120,2,"effect_193.mdx")
         LocAddEffectSetRotateSize(sx+50*Cos(4.188),sy+50*Sin(4.188),240,2,"effect_193.mdx")
@@ -1976,6 +1981,65 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         endif
 
         AddUnitIntState(wu,'S536',1)
+    endfunction
+
+
+    function SpellS537Boom(unit wu,int lv)
+        unit uu = null
+        real damage = 0
+        IndexGroup g = IndexGroup.create()
+        if  lv >= 3
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+        else
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        endif
+        loop
+            uu = FirstOfGroup(g.ejg)
+            exitwhen uu == null
+            damage = GetUnitState(uu,UNIT_STATE_LIFE)*0.05
+            UnitDamageTarget(wu,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNKNOWN,null)
+            GroupRemoveUnit(g.ejg,uu)
+        endloop
+        g.destroy()
+        flush locals
+    endfunction
+
+    function SpellS537(unit wu,real dam,int level)
+        unit u1 = wu
+        int lv = level 
+        int time = 4
+        int num = GetUnitIntState(wu.'S537')
+        real damage = dam / 4
+        real size = 1.0 + I2R(num+1) * 0.2
+        if  num == 5
+            SetUnitIntState(wu.'S537',0)
+            SetUnitScale(wu,0,0,0)
+        else
+            SetUnitIntState(wu.'S537',num+1)
+            SetUnitScale(wu,size,size,size)
+        endif
+
+        
+
+        TimerStart(1,true)
+
+        {
+            
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),500,GroupNormalNoStr(GetOwningPlayer(u1),"effect2_az_magina[2]_v.mdl","origin",0))
+            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+
+            time = time - 1 
+
+            if  time <= 0
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+        
+
     endfunction
     
 

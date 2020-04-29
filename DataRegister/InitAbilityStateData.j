@@ -107,7 +107,7 @@ call InitAbilityData('S533',1,0,1,3,0,0,0,0,2,0,0,"咆哮风暴","哮天犬攻�
 call InitAbilityData('S534',1,0,2,6,0,0,0,0,2,0,4,"开山力士","释放技能时召唤|Cffffc9262|r个|Cffffc926开山力士|r1秒后自爆，每个造成|Cffffc926业力*600%|r伤害。\n拥有法宝|Cffffc926七宝妙树|r时，开山力士数量|Cffffc926+1|r。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926淡漠品煙|r","ReplaceableTextures\\CommandButtons\\BTNS534.blp")
 call InitAbilityData('S535',1,0,2,7.5,0,0,0,0,2,0,1,"五光石","攻击|Cffffc92616|r次发射|Cffffc9261|r枚五光石，造成|Cffffc926业力*750%|r伤害，并获得一层|Cffffc926石心|r。\n|Cffffc926石心|r超过|Cffffc9267|r层时，下一次五光石附带|Cffffc9261|r秒眩晕。\n\n【|Cffffc926生死相随|r】\n与|Cffffc926土行孙|r同时出战时，五光石伤害|Cffffc926+25%|r。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926一个做梦的人。|r","ReplaceableTextures\\CommandButtons\\BTNS535.blp")
 call InitAbilityData('S536',3,0,99,5.5,0,0,0,0,2,8,2,"又鸽又菜","向目标范围发动鞭击，造成|Cffffc926（攻击+业力）*550%|r伤害，并获得1层|Cffffc926鸽印|r。\n|Cffffc926鸽印|r达到|Cffffc9263层|r时，下一次攻击发动|Cffffc926咕咕空袭|r，对直线敌方单位造成|Cffffc926（攻击+业力）*300%|r伤害和|Cffffc9261秒|r炫晕。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926狗策划|r","ReplaceableTextures\\CommandButtons\\BTNS536.blp")
-
+call InitAbilityData('S537',2,0,99,6,0,0,0,0,2,8,1,"膨胀了","苟策划每次膨胀都会让身边的人很难受，|Cffffc9264秒|r内受到|Cffffc926（攻击+业力）*600%|r伤害。膨胀次数达到|Cffffc9266次|r时会爆炸，对周围造成|Cffffc9265%当前最大生命值|r伤害。|n|n|Cff00ff7f膨胀爆炸伤害为真实伤害，不享受任何加成。|r","ReplaceableTextures\\CommandButtons\\BTNS537.blp")
 
 
 

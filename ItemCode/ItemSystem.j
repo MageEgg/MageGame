@@ -414,6 +414,31 @@ scope ItemSystem initializer InitItemSystem
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！每局只可兑换一次！")
                 endif
+            elseif  itemid == 'IV04'
+                if  GetDzPlayerData(pid,14,19) != 19
+                    if  DzPlayerLv(Player(pid)) >= 8
+                        if  GetDzPlayerData(pid,18,1) >= 4500
+                            if  GetDzPlayerData(pid,18,2) >= 7
+                                if  Holiday51 >= 4
+                                    AddDzPlayerData(pid,18,1,-4500)
+                                    AddDzPlayerData(pid,18,2,-7)
+                                    AddDzPlayerData(pid,14,19,19)
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
+                                else
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:还不到第4天，你哪来的矿铲！")
+                                endif
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！祖传矿铲不足|cff00ff007")
+                            endif
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！狂欢积分不足|cff00ff004500")
+                        endif
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff008")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
+                endif
             endif
         endif
 

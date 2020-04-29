@@ -1913,6 +1913,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 SpellS527(u1.u,u2.u,lv)
             elseif  id == 'S536'
                 SpellS536(u1.u,sx,sy,damage,lv)
+            elseif  id == 'S537'
+                SpellS537(u1.u,damage,lv)
             endif
         endif
        

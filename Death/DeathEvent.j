@@ -665,6 +665,7 @@ scope DeathEvent initializer InitDeathEvent
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int slv = 0
         int uid = GetUnitTypeId(tu)
+        real ran = 0
         
         //AddUnitIntState(Pu[1],101,1+R2I(GetUnitRealState(wu,70)))
         
@@ -682,7 +683,12 @@ scope DeathEvent initializer InitDeathEvent
                 CreateItem('IN30',GetUnitX(tu),GetUnitY(tu))
             endif
         elseif  uid == 'ut20'
-            if  GetRandomReal(1,10000)<=60
+            if  GetPlayerTechCount(Player(pid),'RY4S',true) > 0
+                ran = 60*1.3
+            else
+                ran = 60
+            endif
+            if  GetRandomReal(1,10000)<=ran
                 CreateItem('CS51',GetUnitX(tu),GetUnitY(tu))
             endif
         endif

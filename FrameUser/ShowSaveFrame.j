@@ -129,6 +129,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
         RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
+        RegisterShowSaveFrameData(1,'RY4S','RY4S',0,0,0,0)//劳动节称号
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
         RegisterShowSaveFrameData(1,'RY4N','RY4N',0,0,0,0)//测试先锋
@@ -197,14 +198,19 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0)//通关疯狂N7
         RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
         RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGBA','RGBA',0,0,0,0)//通关异变N1
         RegisterShowSaveFrameData(0,'RGBB','RGBB',0,0,0,0)//通关异变N2
         RegisterShowSaveFrameData(0,'RGBC','RGBC',0,0,0,0)//通关异变N3
+        RegisterShowSaveFrameData(0,'RGBD','RGBD',0,0,0,0)//通关异变N4
 
         RegisterShowSaveFrameData(0,'RGCA','RGCA',0,0,0,0)//通关异变N1 8次
         RegisterShowSaveFrameData(0,'RGCB','RGCB',0,0,0,0)//通关异变N2 8次
         RegisterShowSaveFrameData(0,'RGCC','RGCC',0,0,0,0)//通关异变N3 8次
+        RegisterShowSaveFrameData(0,'RGCD','RGCD',0,0,0,0)//通关异变N4 8次
 
         
 
@@ -280,6 +286,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH34','RH34',0,0,0,0)//准提道人
         RegisterShowSaveFrameData(3,'RH35','RH35',0,0,0,0)//邓婵玉
         RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0)//苟作者
+        RegisterShowSaveFrameData(3,'RH37','RH37',0,0,0,0)//苟策划
 
 
 
@@ -300,7 +307,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
         RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
         RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
-//        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
+        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
 //        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
     endfunction
 
