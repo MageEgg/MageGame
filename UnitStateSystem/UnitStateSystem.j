@@ -366,7 +366,7 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
     endfunction
     
     function GetUnitLqMax(unit wu)->int
-        int max = 200
+        int max = 400
         return max
     endfunction
     

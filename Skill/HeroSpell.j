@@ -1879,7 +1879,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
          if   id >= 'S501' and id <= 'S540'  
             if  id == 'S501'
-                SpellS501(u1.u,GetPlayerSkillPostionX(pid,7),GetPlayerSkillPostionY(pid,7),damage,lv)
+                SpellS501(u1.u,sx,sy,damage,lv)
             elseif  id == 'S502'
                 SpellS502(u1.u,sx,sy,damage,lv)
             elseif  id == 'S504'

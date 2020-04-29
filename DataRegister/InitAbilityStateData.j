@@ -72,7 +72,7 @@ call InitAbilityData('S236',3,0,99,10,0,0,0,0,2,30,9,"神威一击","突刺至�
 call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,9,"道法自然","|CffFFC9266|r秒内|Cffffc926冷却缩减+100%|r，|Cffffc926伤害加成+10%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH08.blp")
 
 
-call InitAbilityData('S501',2,0,1,3.33,0,0,0,0,2,12,0,"天罚连击","突刺至目标区域并挥砍|Cffffc9263|r次，每次造成|Cffffc926攻击*333%|r伤害。\n\n拥有法宝|CFFFF26FF方天画戟|r时:额外引动5次天罚,每次造成|CFFFFC926攻击*160%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
+call InitAbilityData('S501',3,0,1,3.33,0,0,0,0,2,12,0,"天罚连击","突刺至目标区域并挥砍|Cffffc9263|r次，每次造成|Cffffc926攻击*333%|r伤害。\n\n拥有法宝|CFFFF26FF方天画戟|r时:额外引动5次天罚,每次造成|CFFFFC926攻击*160%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")
 call InitAbilityData('S502',3,0,1,3,0,0,0,0,2,10,0,"土遁袭杀","钻入地底突进至目标身后进行|Cffffc9262次|r爪击，每次造成|Cffffc926攻击*300%|r伤害。\n\n拥有法宝|Cff00bfff捆仙绳|r时：每75%攻速增加一次爪击。\n\n【|Cffffc926生死相随|r】\n与|Cffffc926邓婵玉|r同时出战时，爪击次数|Cffffc926+2|r。","ReplaceableTextures\\CommandButtons\\BTNS502.blp")
 call InitAbilityData('S503',1,0,2,10,0,0,0,0,2,4,1,"玉清合荒","若1200码范围内，有敌/友军|Cffffc926释放主动技能|r，你对自身周围造成|Cffffc926业力*1000%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS503.blp")
 call InitAbilityData('S504',3,0,1,2.88,0,0,0,0,2,10,2,"火尖枪舞","突向前方瞬间刺击|Cffffc9263|r次，每次造成|Cffffc926攻击*288%|r伤害。\n\n拥有法宝|Cffff26ff火尖枪|r时：额外发动一次弑龙枪，造成|Cffffc926攻击*750%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS504.blp")
@@ -106,9 +106,8 @@ call InitAbilityData('S532',1,0,1,1,0,0,0,0,1,0,4,"军团战争","攻击时|Cfff
 call InitAbilityData('S533',1,0,1,3,0,0,0,0,2,0,0,"咆哮风暴","哮天犬攻击|Cffffc9266%|r概率撕咬周围敌人|Cffffc9262|r次，每次造成|Cffffc926攻击*300%|r伤害。\n拥有法宝|Cffffc926哮天犬|r时，触发时召唤主人神兵杨戬发动天罚，造成|Cffffc926攻击*700%|r伤害。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926阿呆|r","ReplaceableTextures\\CommandButtons\\BTNS533.blp")
 call InitAbilityData('S534',1,0,2,6,0,0,0,0,2,0,4,"开山力士","释放技能时召唤|Cffffc9262|r个|Cffffc926开山力士|r1秒后自爆，每个造成|Cffffc926业力*600%|r伤害。\n拥有法宝|Cffffc926七宝妙树|r时，开山力士数量|Cffffc926+1|r。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926淡漠品煙|r","ReplaceableTextures\\CommandButtons\\BTNS534.blp")
 call InitAbilityData('S535',1,0,2,7.5,0,0,0,0,2,0,1,"五光石","攻击|Cffffc92616|r次发射|Cffffc9261|r枚五光石，造成|Cffffc926业力*750%|r伤害，并获得一层|Cffffc926石心|r。\n|Cffffc926石心|r超过|Cffffc9267|r层时，下一次五光石附带|Cffffc9261|r秒眩晕。\n\n【|Cffffc926生死相随|r】\n与|Cffffc926土行孙|r同时出战时，五光石伤害|Cffffc926+25%|r。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926一个做梦的人。|r","ReplaceableTextures\\CommandButtons\\BTNS535.blp")
-call InitAbilityData('S536',3,0,99,5.5,0,0,0,0,2,8,2,"又鸽又菜","向目标范围发动鞭击，造成|Cffffc926（攻击+业力）*550%|r伤害，并获得1层|Cffffc926鸽印|r。\n|Cffffc926鸽印|r达到|Cffffc9263层|r时，下一次攻击发动|Cffffc926咕咕空袭|r，对直线敌方单位造成|Cffffc926（攻击+业力）*300%|r伤害和|Cffffc9261秒|r炫晕。\n\n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926狗策划|r","ReplaceableTextures\\CommandButtons\\BTNS536.blp")
-call InitAbilityData('S537',2,0,99,6,0,0,0,0,2,8,1,"膨胀了","苟策划每次膨胀都会让身边的人很难受，|Cffffc9264秒|r内受到|Cffffc926（攻击+业力）*600%|r伤害。膨胀次数达到|Cffffc9266次|r时会爆炸，对周围造成|Cffffc9265%当前最大生命值|r伤害。|n|n|Cff00ff7f膨胀爆炸伤害为真实伤害，不享受任何加成。|r","ReplaceableTextures\\CommandButtons\\BTNS537.blp")
-
+call InitAbilityData('S536',3,0,99,5.5,0,0,0,0,2,8,2,"又鸽又菜","向目标范围发动鞭击，造成|Cffffc926（攻击+业力）*550%|r伤害，并获得1层|Cffffc926鸽印|r。|n|Cffffc926鸽印|r达到|Cffffc9263层|r时，下一次攻击发动|Cffffc926咕咕空袭|r，对直线敌方单位造成|Cffffc926（攻击+业力）*300%|r伤害和|Cffffc9261秒|r炫晕。|n|n|Cffffc926【未来之星】|n|r和|Cffffc926苟策划|r同时出战时，鞭击伤害|Cffffc926+30%|r。|n|n|Cffaaaaaa【英雄设计大赛】-Designed by：|r|Cffffc926狗策划|r","ReplaceableTextures\\CommandButtons\\BTNS536.blp")
+call InitAbilityData('S537',2,0,99,6,0,0,0,0,2,8,1,"膨胀了","苟策划每次膨胀都会让身边的人很难受，|Cffffc9264秒|r内受到|Cffffc926（攻击+业力）*600%|r伤害。|n膨胀次数达到|Cffffc9266次|r时会爆炸，对周围造成|Cffffc9265%当前生命值|r伤害。|n|Cffffc926【未来之星】|n|r和|Cffffc926苟作者|r同时出战时，膨胀伤害|Cffffc926+30%|r。|n|n|Cff00ff7f膨胀爆炸伤害为真实伤害，不享受任何加成。|r","ReplaceableTextures\\CommandButtons\\BTNS537.blp")
 
 
 
@@ -152,7 +151,7 @@ InitAbilityStringEx('S533',"撕咬使敌人进入流血状态，承受伤害+15%
 InitAbilityStringEx('S534',"自爆伤害+40%","自爆附带1秒眩晕。","开山力士数量+1","","")
 InitAbilityStringEx('S535',"攻击次数降低至12次","额外发射一枚五光石","额外发射两枚五光石","","")
 InitAbilityStringEx('S536',"鞭击时3秒内增加30点护甲穿透。","鞭击时恢复6%最大生命值。","攻击3%概率触发又鸽又菜，该伤害只有50%效果。","","")
-
+InitAbilityStringEx('S537',"释放主动技能50%几率触发一次膨胀。","膨胀爆炸时造成1秒眩晕。","攻击3%概率触发膨胀，该伤害只有50%效果。","","")
 
 
 

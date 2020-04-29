@@ -1958,6 +1958,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
 
         if  IsHasHeroType('H037') == true
             damage = damage * 1.3
+            BJDebugMsg("伤害+30%")
         endif
 
 
@@ -1987,11 +1988,12 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     function SpellS537Boom(unit wu,int lv)
         unit uu = null
         real damage = 0
+        LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_fire-boom-new.mdl")
         IndexGroup g = IndexGroup.create()
         if  lv >= 3
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),700,GroupNormalNoStrAddBuff(GetOwningPlayer(wu),"",Buffxy,1,0))
         else
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),500,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),700,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
         endif
         loop
             uu = FirstOfGroup(g.ejg)
@@ -2008,27 +2010,44 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         unit u1 = wu
         int lv = level 
         int time = 4
-        int num = GetUnitIntState(wu.'S537')
+        int num = GetUnitIntState(wu,'S537')
         real damage = dam / 4
         real size = 1.0 + I2R(num+1) * 0.2
-        if  num == 5
-            SetUnitIntState(wu.'S537',0)
-            SetUnitScale(wu,0,0,0)
-        else
-            SetUnitIntState(wu.'S537',num+1)
-            SetUnitScale(wu,size,size,size)
+
+        if  IsHasHeroType('H036') == true
+            damage = damage * 1.3
+            BJDebugMsg("伤害+30%")
         endif
 
+        if  num == 5
+            SetUnitIntState(wu,'S537',0)
+            SetUnitScale(wu,1,1,1)
+            SpellS537Boom(wu,lv)
+        else
+            SetUnitIntState(wu,'S537',num+1)
+            SetUnitScale(wu,size,size,size)
+        endif
+        
+            
+        hyred(CreateTmUnit(GetOwningPlayer(wu),YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,GetUnitTypeId(wu),"file"),GetUnitX(wu),GetUnitY(wu),GetUnitFacing(wu),0,1))
         
 
         TimerStart(1,true)
 
         {
-            
+            real sx = GetUnitX(u1)
+            real sy = GetUnitY(u1)
             IndexGroup g = IndexGroup.create()
-            GroupEnumUnitsInRange(g.ejg,GetUnitX(u1),GetUnitY(u1),500,GroupNormalNoStr(GetOwningPlayer(u1),"effect2_az_magina[2]_v.mdl","origin",0))
-            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            GroupEnumUnitsInRange(g.ejg,sx,sy,700,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             g.destroy()
+
+            LocAddEffect(sx+300,sy,"effect2_az_magina[2]_v.mdl")
+            LocAddEffect(sx+300*Cos(1.2564),sy+300*Sin(1.2564),"effect2_az_magina[2]_v.mdl")
+            LocAddEffect(sx+300*Cos(2.5128),sy+300*Sin(2.5128),"effect2_az_magina[2]_v.mdl")
+            LocAddEffect(sx+300*Cos(3.7692),sy+300*Sin(3.7692),"effect2_az_magina[2]_v.mdl")
+            LocAddEffect(sx+300*Cos(5.0256),sy+300*Sin(5.0256),"effect2_az_magina[2]_v.mdl")
+            
 
             time = time - 1 
 

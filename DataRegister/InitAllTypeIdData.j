@@ -1011,6 +1011,7 @@ InitEquipData('E234',0,0,0,0,0,'E235',0,0)
         InitHeroProficiency('RH34',17,5,18,3,75,15,0,0,0,0)
         InitHeroProficiency('RH35',17,5,18,3,9,20,0,0,0,0)
         InitHeroProficiency('RH36',17,5,18,3,16,20,0,0,0,0)
+        InitHeroProficiency('RH37',17,5,18,3,16,20,0,0,0,0)
     endfunction
     function InitUnitDropData()
         //初始化单位掉落
