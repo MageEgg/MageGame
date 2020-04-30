@@ -91,7 +91,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FY05',"土之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_05.blp","技能吸血提高|Cffffc9261%*土之符印数量|r")
         call InitTypeIdStrings('FY06',"光之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_06.blp","|CffFFC9265%*光之符印数量|r概率额外释放一次技能")
         call InitTypeIdStrings('FY07',"雷之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_07.blp","攻击恢复|Cffffc9261%*雷之符印数量|r的已损失生命值")
-        call InitTypeIdStrings('FY08',"暗之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","释放主动技能时，总技能伤害提高|Cffffc9266%*暗之符印数量|r，持续4秒，冷却4秒")
+        call InitTypeIdStrings('FY08',"暗之符印","ReplaceableTextures\\CommandButtons\\BTNUI_Fuin_08.blp","释放主动技能时，总技能伤害提高|Cffffc9264%*暗之符印数量|r，持续4秒，冷却4秒")
         call InitTypeIdStrings('FJ01',"武器","ReplaceableTextures\\CommandButtons\\BTNFJ01.BLP","")
         call InitTypeIdStrings('FJ02',"副手","ReplaceableTextures\\CommandButtons\\BTNFJ02.BLP","")
         call InitTypeIdStrings('FJ03',"护具","ReplaceableTextures\\CommandButtons\\BTNFJ03.BLP","")
@@ -160,9 +160,9 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('IT09',"境界挑战9","","渡过该劫后可结成|Cffff0000至圣道果|r。\n\n|Cffff0000至圣道果：|r\n攻击+141250\n业力+113000\n生命值+2825000\n生命回复+56500\n攻击伤害+24%\n技能伤害+20%\n\n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT10',"境界挑战10","","渡过该劫后可结成|Cffff0000混沌道果|r。\n\n|Cffff0000混沌道果：|r\n攻击+191250\n业力+153000\n生命值+3825000\n生命回复+76500\n攻击伤害+36%\n技能伤害+30%\n\n|Cff00FF7F完成任意渡劫均可突破境界。|r")
         call InitTypeIdStrings('IT11',"境界挑战11","","渡过该劫后可结成|Cffff0000无极道果|r。\n\n|Cffff0000无极道果：|r\n攻击+250000\n业力+200000\n生命值+5000000\n生命回复+100000\n攻击伤害+36%\n技能伤害+30%\n\n|Cffffc926战力推荐：|r\n？？？\n\n|Cffaaaaaa历经三灾五难，天人五衰，终成准圣之境。自此长生不死，神魂不灭。离无上圣人仅剩半步之遥，却也可能是无法跨越的鸿沟。|r")
-        call InitTypeIdStrings('IT12',"境界挑战12","","渡过该劫后可结成|Cffff0000圣人本源|r。\n\n|Cffff0000圣人本源：|r\n攻击+312500\n业力+250000\n生命值+6250000\n生命回复+125000\n攻击伤害+36%\n技能伤害+30%\n")
-        call InitTypeIdStrings('IT13',"境界挑战13","","渡过该劫后可结成|Cffff0000道祖传承|r。\n\n|Cffff0000道祖传承：|r\n攻击+382500\n业力+306000\n生命值+7650000\n生命回复+153000\n攻击伤害+48%\n技能伤害+36%\n")
-        call InitTypeIdStrings('IT14',"境界挑战14","","渡过该劫后可结成|Cffff0000创世之证|r。\n\n|Cffff0000创世之证：|r\n攻击+462500\n业力+370000\n生命值+9250000\n生命回复+185000\n攻击伤害+48%\n技能伤害+36%\n")
+        call InitTypeIdStrings('IT12',"境界挑战12","","渡过该劫后可结成|Cffff0000圣人本源|r。\n\n|Cffff0000圣人本源：|r\n攻击+312500\n业力+250000\n生命值+6250000\n生命回复+125000\n攻击伤害+36%\n技能伤害+30%")
+        call InitTypeIdStrings('IT13',"境界挑战13","","渡过该劫后可结成|Cffff0000道祖传承|r。\n\n|Cffff0000道祖传承：|r\n攻击+382500\n业力+306000\n生命值+7650000\n生命回复+153000\n攻击伤害+48%\n技能伤害+36%")
+        call InitTypeIdStrings('IT14',"境界挑战14","","渡过该劫后可结成|Cffff0000创世之证|r。\n\n|Cffff0000创世之证：|r\n攻击+462500\n业力+370000\n生命值+9250000\n生命回复+185000\n攻击伤害+48%\n技能伤害+36%")
         call InitTypeIdStrings('IJ5A',"炼气士[0]","","")
         call InitTypeIdStrings('IJ5B',"筑基境[1]","","")
         call InitTypeIdStrings('IJ5C',"金丹境[2]","","")
@@ -218,6 +218,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY4Q',"九五之尊","ReplaceableTextures\\CommandButtons\\BTNCH03.BLP","")
         call InitTypeIdStrings('RY4R',"无极修罗","ReplaceableTextures\\CommandButtons\\BTNCH09.BLP","")
         call InitTypeIdStrings('RY4S',"五月狂欢节","ReplaceableTextures\\CommandButtons\\BTNRY4S.BLP","寻宝秘境掉宝率+30%")
+        call InitTypeIdStrings('RY4T',"暗黑天王","ReplaceableTextures\\CommandButtons\\BTNCH01.BLP","")
         call InitTypeIdStrings('RJ1A',"小有成就","ReplaceableTextures\\CommandButtons\\BTNRJ1A.BLP","")
         call InitTypeIdStrings('RJ1B',"老油条","ReplaceableTextures\\CommandButtons\\BTNRJ1B.BLP","")
         call InitTypeIdStrings('RJ1C',"心肝宝贝","ReplaceableTextures\\CommandButtons\\BTNRJ1C.BLP","")
@@ -249,6 +250,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG0G',"难7通关5次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","七命玄门丹x1\n重随英雄次数+1")
         call InitTypeIdStrings('RG0H',"难8通关5次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","复活时间-1秒")
         call InitTypeIdStrings('RG0I',"难9通关5次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
+        call InitTypeIdStrings('RG0J',"难10通关5次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
         call InitTypeIdStrings('RG1A',"难1通关15次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","")
         call InitTypeIdStrings('RG1B',"难2通关15次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1C',"难3通关15次","ReplaceableTextures\\CommandButtons\\BTNTG03.BLP","法宝稀有度+15%")
@@ -257,7 +259,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG1F',"难6通关15次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1G',"难7通关15次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","法宝稀有度+15%")
         call InitTypeIdStrings('RG1H',"难8通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
-        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
+        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
+        call InitTypeIdStrings('RG1J',"难10通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
         call InitTypeIdStrings('RGAA',"通关疯狂N1","ReplaceableTextures\\CommandButtons\\BTNCJFK01.BLP","开局金币+500")
         call InitTypeIdStrings('RGAB',"通关疯狂N2","ReplaceableTextures\\CommandButtons\\BTNCJFK02.BLP","")
         call InitTypeIdStrings('RGAC',"通关疯狂N3","ReplaceableTextures\\CommandButtons\\BTNCJFK03.BLP","")
@@ -267,6 +270,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RGAG',"通关疯狂N7","ReplaceableTextures\\CommandButtons\\BTNCJFK07.BLP","")
         call InitTypeIdStrings('RGAH',"通关疯狂N8","ReplaceableTextures\\CommandButtons\\BTNCJFK08.BLP","")
         call InitTypeIdStrings('RGAI',"通关疯狂N9","ReplaceableTextures\\CommandButtons\\BTNCJFK09.BLP","")
+        call InitTypeIdStrings('RGAJ',"通关疯狂N10","ReplaceableTextures\\CommandButtons\\BTNCJFK10.BLP","复活时间-1秒")
         call InitTypeIdStrings('RGBA',"通关异变N1","ReplaceableTextures\\CommandButtons\\BTNCJYB01.BLP","强化成功率+1.25%")
         call InitTypeIdStrings('RGBB',"通关异变N2","ReplaceableTextures\\CommandButtons\\BTNCJYB02.BLP","技能吸血+1%")
         call InitTypeIdStrings('RGBC',"通关异变N3","ReplaceableTextures\\CommandButtons\\BTNCJYB03.BLP","")
@@ -545,7 +549,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FM1J',"附魔","","|CffBF00FF最大生命+12%|r")
         call InitTypeIdStrings('FM1K',"附魔","","|CffBF00FF致命倍率+120%|r")
         call InitTypeIdStrings('FM1L',"附魔","","|CffBF00FF护甲穿透+80|r")
-        call InitTypeIdStrings('FM1M',"附魔","","|CffBF00FF触发概率+4%|r")
+        call InitTypeIdStrings('FM1M',"附魔","","|CffBF00FF触发概率+2%|r")
         call InitTypeIdStrings('FM1N',"附魔","","|CffBF00FF技能吸血+4%|r")
 
         call InitTypeIdStrings('FM2A',"附魔","","|CffFF0000承受致死伤害时，立即恢复100%生命值，冷却60秒。|r")
@@ -560,11 +564,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FM2J',"附魔","","|CffFF0000必定命中|r")
         call InitTypeIdStrings('FM2K',"附魔","","|CffFF0000技能吸血+6%|r")
         call InitTypeIdStrings('FM2L',"附魔","","|CffFF0000多重施法次数+1|r")
-
-        
-
-
-
 
 
 

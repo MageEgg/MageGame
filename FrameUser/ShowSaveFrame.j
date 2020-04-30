@@ -125,6 +125,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//独孤求败 N7
         RegisterShowSaveFrameData(1,'RY4Q','RY4Q',0,0,0,0)//九五之尊 N8
         RegisterShowSaveFrameData(1,'RY4R','RY4R',0,0,0,0)//无极修罗 N9
+        RegisterShowSaveFrameData(1,'RY4T','RY4T',0,0,0,0)//无极修罗 N10
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
         RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
@@ -176,6 +177,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0)//难7通关5次
         RegisterShowSaveFrameData(0,'RG0H','RG0H',0,0,0,0)//难8通关5次
         RegisterShowSaveFrameData(0,'RG0I','RG0I',0,0,0,0)//难9通关5次
+        RegisterShowSaveFrameData(0,'RG0J','RG0J',0,0,0,0)//难10通关5次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
 
         RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关15次
@@ -186,7 +191,11 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关15次
         RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关15次
         RegisterShowSaveFrameData(0,'RG1I','RG1I',0,0,0,0)//难9通关15次
-        
+        RegisterShowSaveFrameData(0,'RG1J','RG1J',0,0,0,0)//难10通关15次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+    
 
 
         RegisterShowSaveFrameData(0,'RGAA','RGAA',0,0,0,0)//通关疯狂N1
@@ -198,19 +207,25 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0)//通关疯狂N7
         RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
         RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
+        RegisterShowSaveFrameData(0,'RGAJ','RGAJ',0,0,0,0)//通关疯狂N10
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
 
         RegisterShowSaveFrameData(0,'RGBA','RGBA',0,0,0,0)//通关异变N1
         RegisterShowSaveFrameData(0,'RGBB','RGBB',0,0,0,0)//通关异变N2
         RegisterShowSaveFrameData(0,'RGBC','RGBC',0,0,0,0)//通关异变N3
         RegisterShowSaveFrameData(0,'RGBD','RGBD',0,0,0,0)//通关异变N4
+        RegisterShowSaveFrameData(0,'RGBE','RGBE',0,0,0,0)//通关异变N5
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGCA','RGCA',0,0,0,0)//通关异变N1 8次
         RegisterShowSaveFrameData(0,'RGCB','RGCB',0,0,0,0)//通关异变N2 8次
         RegisterShowSaveFrameData(0,'RGCC','RGCC',0,0,0,0)//通关异变N3 8次
         RegisterShowSaveFrameData(0,'RGCD','RGCD',0,0,0,0)//通关异变N4 8次
+        RegisterShowSaveFrameData(0,'RGCE','RGCE',0,0,0,0)//通关异变N5 8次
 
         
 

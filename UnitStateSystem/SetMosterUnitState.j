@@ -270,7 +270,7 @@ library UnitStateSet uses State
         if  GameMode == 3
             con = DzCon("ND1_7Ex")
             if  con == ""
-                con = "00000050000000500000006500000090000001800030030000400450"
+                con = "00000000000000000000000000000090000001800030030000400450"
             endif
         else
             con = DzCon("ND1_7")

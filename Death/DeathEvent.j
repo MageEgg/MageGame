@@ -101,6 +101,9 @@ scope DeathEvent initializer InitDeathEvent
         if  GetPlayerTechCount(Player(pid),'RG0H',true) > 0
             time = time - 1
         endif
+        if  GetPlayerTechCount(Player(pid),'RGAJ',true) > 0
+            time = time - 1
+        endif
         
 
         PlayerDeathBool = true
