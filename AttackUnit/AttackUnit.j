@@ -840,6 +840,12 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 endif
                             endif
                         endif
+                        if  GetPlayerTechCount(Player(pid),'RJ1Z',true) == 1
+                            if  ModuloInteger(AttackUnitWN,3) == 0
+                                UnitAddPoolItemShow.execute(Pu[1],16)
+                            endif
+                        endif
+
                     endif
                 end     
             else

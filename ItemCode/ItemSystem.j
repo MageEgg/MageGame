@@ -6,7 +6,11 @@ scope ItemSystem initializer InitItemSystem
         if  id >= 'IC00' and id <= 'IC99'
             //不显示
         else
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 "+GetObjectName(id)+"x1")
+            if  prizeid == 16
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过|cff00ff00《良心赞助》|r获得 "+GetObjectName(id)+"x1")
+            else
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过抽奖获得 "+GetObjectName(id)+"x1")
+            endif
         endif
     endfunction
     

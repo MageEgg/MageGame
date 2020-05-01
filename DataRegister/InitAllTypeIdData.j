@@ -238,6 +238,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")
         call InitTypeIdStrings('RJ1X',"赞助礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1X.BLP","伤害加成+10%\n每秒攻击+20\n每秒生命+100\n山灵挑战成功额外奖励5玄铁")
         call InitTypeIdStrings('RJ1Y',"劳动节礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1Y.BLP","每秒攻击+8\n每秒业力+10\n\n击杀不屈的山必定获得高级附魔石\n进入愚公移山副本积分消耗减半\n\n该道具不计入商城套装效果")
+        call InitTypeIdStrings('RJ1Z',"良心赞助","ReplaceableTextures\\CommandButtons\\BTNRJ1Z.BLP","每3波获得随机奖励：\n小银行，大金矿，来点玄铁，招魂幡lv.4，中级附魔石，高级附魔石，炽星魔盒，补天石，鸿蒙结晶，虚空神石，技能进化石（A升S），时渊入场券")
         call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","业力加成+20%\n每秒业力+20\n\n开局奖励：时渊入场券x1\n\n宠物攻击力=英雄业力\n小狐狸攻击间隔1秒，暴击率20%，继承英雄暴击伤害。\n宠物攻击5%概率造成业力*400%范围伤害\n\n解锁宠物|Cffffd24d小狐妖|r")
         call InitTypeIdStrings('RP1A',"笑天犬","ReplaceableTextures\\CommandButtons\\BTNPF01.BLP","每秒攻击+10\n每秒业力+15\n\n解锁助手皮肤|Cffff0000笑天犬|r")
         call InitTypeIdStrings('RP1B',"GM-小咸鱼","ReplaceableTextures\\CommandButtons\\BTNRV02.BLP","")
@@ -250,7 +251,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG0G',"难7通关5次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","七命玄门丹x1\n重随英雄次数+1")
         call InitTypeIdStrings('RG0H',"难8通关5次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","复活时间-1秒")
         call InitTypeIdStrings('RG0I',"难9通关5次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
-        call InitTypeIdStrings('RG0J',"难10通关5次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
+        call InitTypeIdStrings('RG0J',"难10通关5次","ReplaceableTextures\\CommandButtons\\BTNTG10.BLP","")
         call InitTypeIdStrings('RG1A',"难1通关15次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","")
         call InitTypeIdStrings('RG1B',"难2通关15次","ReplaceableTextures\\CommandButtons\\BTNTG02.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1C',"难3通关15次","ReplaceableTextures\\CommandButtons\\BTNTG03.BLP","法宝稀有度+15%")
@@ -259,8 +260,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RG1F',"难6通关15次","ReplaceableTextures\\CommandButtons\\BTNTG06.BLP","项链升级成功率+5%")
         call InitTypeIdStrings('RG1G',"难7通关15次","ReplaceableTextures\\CommandButtons\\BTNTG07.BLP","法宝稀有度+15%")
         call InitTypeIdStrings('RG1H',"难8通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","强化成功率+3%")
-        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
-        call InitTypeIdStrings('RG1J',"难10通关15次","ReplaceableTextures\\CommandButtons\\BTNTG08.BLP","")
+        call InitTypeIdStrings('RG1I',"难9通关15次","ReplaceableTextures\\CommandButtons\\BTNTG09.BLP","")
+        call InitTypeIdStrings('RG1J',"难10通关15次","ReplaceableTextures\\CommandButtons\\BTNTG10.BLP","")
         call InitTypeIdStrings('RGAA',"通关疯狂N1","ReplaceableTextures\\CommandButtons\\BTNCJFK01.BLP","开局金币+500")
         call InitTypeIdStrings('RGAB',"通关疯狂N2","ReplaceableTextures\\CommandButtons\\BTNCJFK02.BLP","")
         call InitTypeIdStrings('RGAC',"通关疯狂N3","ReplaceableTextures\\CommandButtons\\BTNCJFK03.BLP","")
@@ -564,8 +565,6 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FM2J',"附魔","","|CffFF0000必定命中|r")
         call InitTypeIdStrings('FM2K',"附魔","","|CffFF0000技能吸血+6%|r")
         call InitTypeIdStrings('FM2L',"附魔","","|CffFF0000多重施法次数+1|r")
-
-
 
         BJDebugMsg("init1end")
     endfunction

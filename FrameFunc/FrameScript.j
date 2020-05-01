@@ -92,7 +92,7 @@
                 SetTipsData(15,""," - 最高增加400%")
                 SetTipsData(16,"","冷却：")
                 SetTipsData(17,""," - 每点降低主动技能冷却时间")
-                SetTipsData(18,""," - 冷却时间最小值为1秒")
+                SetTipsData(18,""," - 冷却时间最小值为0.5秒")
                 SetTipsData(19,""," ")
                 ShowTipsUI()
                 ShowNewDzFrameTooltip(0.121)

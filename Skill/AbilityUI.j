@@ -163,11 +163,13 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                 r1 = r1 - 2
             elseif  id == 'S053'//落魂咒
                 return r1
+            elseif  id == 'S237'
+                return r1
             endif
 
             r1 = r1 / (1+r2)
-            if  r1 < 1
-                r1 = 1
+            if  r1 < 0.5
+                r1 = 0.5
             endif
 
         endif

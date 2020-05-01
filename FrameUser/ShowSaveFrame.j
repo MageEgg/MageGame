@@ -74,6 +74,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0)//通行证2
 
         RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
+        RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
         
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
