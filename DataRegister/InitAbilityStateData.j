@@ -69,7 +69,7 @@ call InitAbilityData('S233',2,0,1,10,0,0,0,0,2,30,9,"冰封之域","对自身周
 call InitAbilityData('S234',7,0,2,12.5,0,0,0,0,2,30,9,"离魂秘术","对目标范围内的单位造成大量伤害，使其|Cffffc9266s|r内攻击力降低70%，|Cffffc926承受技能伤害+40%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH05.blp")
 call InitAbilityData('S235',2,0,0,0,0,0,0,0,0,30,9,"修罗之怒","释放时根据当前血量增加自身|Cffffc9265%~25%暴击|r，|Cffffc9264秒|r内|Cffffc926每次暴击|r增加自身|Cffffc92620%|r暴击伤害。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH06.blp")
 call InitAbilityData('S236',3,0,99,10,0,0,0,0,2,30,9,"神威一击","突刺至目标身后并造成伤害。随后|Cffffc9266秒|r内|Cffffc926攻击速度+75%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH07.blp")
-call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,9,"道法自然","|CffFFC9263|r秒内|Cffffc926冷却缩减+400%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH08.blp")
+call InitAbilityData('S237',2,0,0,0,0,0,0,0,0,30,9,"道法自然","|CffFFC9263|r秒内冷却缩减增加至|Cffffc9261000%|r。\n\n|Cff00ff7f不受冷却缩减、暗裔、火神效果影响。|r","ReplaceableTextures\\CommandButtons\\BTNIH08.blp")
 
 
 call InitAbilityData('S501',3,0,1,3.33,0,0,0,0,2,12,0,"天罚连击","突刺至目标区域并挥砍|Cffffc9263|r次，每次造成|Cffffc926攻击*333%|r伤害。\n\n拥有法宝|CFFFF26FF方天画戟|r时:额外引动5次天罚,每次造成|CFFFFC926攻击*160%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS501_1.blp")

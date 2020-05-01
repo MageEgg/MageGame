@@ -309,7 +309,7 @@ library UnitStateSet uses State
         else
             con = DzCon("ND8_14")
             if  con == ""
-                con = "00400420004007500000000000000000000000000000000000000000"
+                con = "00400420004007500050110000000000000000000000000000000000"
             endif
         endif
 
@@ -352,6 +352,7 @@ library UnitStateSet uses State
             InitMostetStateRatio(7,40,450)
             InitMostetStateRatio(8,40,750)
             InitMostetStateRatio(9,40,900)
+            InitMostetStateRatio(10,50,1100)
         else
             InitMostetStateRatio(1,0,50)
             InitMostetStateRatio(2,0,50)
@@ -363,6 +364,7 @@ library UnitStateSet uses State
 
             InitMostetStateRatio(8,40,420)
             InitMostetStateRatio(9,40,750)
+            InitMostetStateRatio(10,50,1100)
         endif
 
         LoadDzConData1()

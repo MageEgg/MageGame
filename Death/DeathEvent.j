@@ -604,7 +604,7 @@ scope DeathEvent initializer InitDeathEvent
             for jfpid = 0,3
                 DisplayTimedTextToPlayer(Player(jfpid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")
                 if  IsPlaying(jfpid) == true 
-                    if  GetDzPlayerData(jfpid,18,3) <= 990
+                    if  GetDzPlayerData(jfpid,18,3) <= 1490
                         AddDzPlayerData(jfpid,18,1,10)
                         AddDzPlayerData(jfpid,18,3,10)
                     else
@@ -618,7 +618,7 @@ scope DeathEvent initializer InitDeathEvent
             for spid = 0,3
                 if  IsPlaying(spid) == true
                     if  tu == PlayerUnit[spid][40]
-                        if  GetDzPlayerData(spid,18,4) < 2
+                        if  GetDzPlayerData(spid,18,4) < 3
                             AddDzPlayerData(spid,18,2,1)
                             AddDzPlayerData(spid,18,4,1)
                             

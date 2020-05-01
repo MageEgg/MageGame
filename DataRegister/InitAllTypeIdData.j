@@ -195,6 +195,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY3C',"崩鸣刃","ReplaceableTextures\\CommandButtons\\BTNRY3C.BLP","")
         call InitTypeIdStrings('RY3E',"凛霜战锤","ReplaceableTextures\\CommandButtons\\BTNRY3E.BLP","")
         call InitTypeIdStrings('RY3G',"五火七禽扇","ReplaceableTextures\\CommandButtons\\BTNWQ05.BLP","")
+        call InitTypeIdStrings('RY3H',"方天画戟","ReplaceableTextures\\CommandButtons\\BTNWQ03.BLP","对万魔窟伤害+5%")
         call InitTypeIdStrings('RY3A',"凝霜","ReplaceableTextures\\CommandButtons\\BTNRY3A.BLP","")
         call InitTypeIdStrings('RY3B',"破阙","ReplaceableTextures\\CommandButtons\\BTNRY3B.BLP","")
         call InitTypeIdStrings('RY3D',"戮仙剑","ReplaceableTextures\\CommandButtons\\BTNRY3D.BLP","暴击率+10%\n暴击伤害+50%\n伤害加成+30%\n攻击5%范围攻击力*5技能伤害\n\n开局奖励：\n随机符印箱x1\n\n解锁外观|cffff0000戮仙剑\n|r")

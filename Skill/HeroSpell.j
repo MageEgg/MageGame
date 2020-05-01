@@ -1626,9 +1626,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     function SpellS237(unit u)
         shenshou(CreateTmUnit(GetOwningPlayer(u),"shenshou_kongque.mdl",GetUnitX(u),GetUnitY(u),GetUnitFacing(u),0,1))
         CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u)),12,1,0.5)
-        AddUnitStateExTimer(u,25,400,6)
-        AddUnitStateExTimer(u,17,10,6)
-        UnitTimerAddSkill(u,'A237',6)
+        AddUnitStateExTimer(u,25,1000,3)
+        UnitTimerAddSkill(u,'A237',3)
         flush locals
     endfunction
 

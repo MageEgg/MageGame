@@ -60,7 +60,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[7] = 15
         DzPlayerInitTGCos[8] = 15
         DzPlayerInitTGCos[9] = 15
-        DzPlayerInitTGCos[10] = 10
+        DzPlayerInitTGCos[10] = 15
 
         //疯狂
         DzPlayerInitCrazyTGCos[1] = 1
@@ -214,11 +214,11 @@ library DzDataSetting uses DzBase
             if  flag == 1
                 max = 4500
             elseif  flag == 2
-                max = Holiday51*2
+                max = Holiday51*3
             elseif  flag == 3
-                max = 1000
+                max = 1500
             elseif  flag == 4
-                max = 2
+                max = 3
             elseif  flag > 4
                 max = 0
             endif

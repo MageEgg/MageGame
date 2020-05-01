@@ -100,6 +100,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
         RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
+        RegisterShowSaveFrameData(2,'RY3H','RY3H',0,0,0,0)//方天画戟
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
