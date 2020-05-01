@@ -231,7 +231,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  s == "|CffFFD24D挑战消耗：|r"
             s = ""
         endif
-        if  GameMode == 3
+        if  GameMode == 3 or GameLevel > 9
             s = "|CffFFD24D战斗力推荐：|r|n|cffff0000？？？|r"
         else
             if  AttackUnitChallengeCombat[GameLevel][combat] > 0
@@ -299,7 +299,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             else
                 id = 'IT00'+i
             endif
-            if  GameMode == 3
+            if  GameMode == 3 or GameLevel > 9
                 YDWESetItemDataString(id, 3,GetTypeIdTips(id)+"|n|n|CffFFD24D战斗力推荐：|r|n|cffff0000？？？")
             else
                 if  i <= 7

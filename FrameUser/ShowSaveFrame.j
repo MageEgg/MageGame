@@ -660,12 +660,43 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                     if  unlock == 1
                         lv = DzPlayerLv(Player(pid))
                         if  lv > 35
-                            SetTipsData(h,"","伤害加成+10%(|cff00ff00+"+I2S(lv-35)+"%|r)")
+                            SetTipsData(h,"","每秒攻击+10\n每秒业力+10\n伤害加成+10%")
+                            h = h + 1
+                            SetTipsData(h,"","")
+                            h = h + 1
+                            
+
+                            num = lv - 35
+                            SetTipsData(h,"","伤害加成+|cff00ff00"+I2S(num)+"|r%")
+                            h = h + 1
+
+                            num = (lv - 35) / 3
+                            if  num > 0
+                                SetTipsData(h,"","暴击伤害+|cff00ff00"+I2S(num*3)+"|r%")
+                                h = h + 1
+                            endif
+
+                            num = (lv - 35) / 2
+                            if  num > 0
+                                SetTipsData(h,"","攻击伤害+|cff00ff00"+I2S(num*2)+"|r%")
+                                h = h + 1
+                                SetTipsData(h,"","技能伤害+|cff00ff00"+I2S(num*2)+"|r%")
+                                h = h + 1
+                            endif
+
+                            num = (lv - 35) / 5
+                            if  num > 0
+                                SetTipsData(h,"","攻击加成+|cff00ff00"+I2S(num*3)+"|r%")
+                                h = h + 1
+                                SetTipsData(h,"","业力加成+|cff00ff00"+I2S(num*3)+"|r%")
+                                h = h + 1
+                            endif
+
                         else
-                            SetTipsData(h,"","伤害加成+10%")
+                            SetTipsData(h,"","每秒攻击+10\n每秒业力+10\n伤害加成+10%")
                         endif
                     else
-                        SetTipsData(h,"","|cff808080伤害加成+10%|r")
+                        SetTipsData(h,"","|cff808080每秒攻击+10\n每秒业力+10\n伤害加成+10%|r")
                     endif
                 else
                     if  unlock == 1

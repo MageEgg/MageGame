@@ -734,6 +734,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         ReExChangeTips(pid,'IY4O')
         ReExChangeTips(pid,'IY1E')
         ReExChangeTips(pid,'IY3E')
+        ReExChangeTips(pid,'IY3H')
     endfunction
 
     //物品兑换注册

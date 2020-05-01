@@ -157,7 +157,7 @@ library GameUIInit initializer init uses OriginGameFrame
         for x = 0,3
             for y = 0,2
                 call DzFrameClearAllPoints(DzFrameGetCommandBarButton(y,x))
-                call DzFrameSetSize(DzFrameGetCommandBarButton(y,x),.033,.033)
+                call DzFrameSetSize(DzFrameGetCommandBarButton(y,x),.034,.034)
             end
         end
         
@@ -195,7 +195,7 @@ library GameUIInit initializer init uses OriginGameFrame
         for w = 0,5 
             DzFrameClearAllPoints(DzFrameGetItemBarButton(w))
         end
-        DzFrameSetPoint( DzFrameGetItemBarButton(0), 4, DzGetGameUI(), 7, 0.1312, 0.096 )
+        DzFrameSetPoint( DzFrameGetItemBarButton(0), 4, DzGetGameUI(), 7, 0.14, 0.098 )
         DzFrameSetPoint( DzFrameGetItemBarButton(1), 4, DzGetGameUI(), 7, 0.1687, 0.096 )
         DzFrameSetPoint( DzFrameGetItemBarButton(2), 4, DzGetGameUI(), 7, 0.1312, 0.0594 )
         DzFrameSetPoint( DzFrameGetItemBarButton(3), 4, DzGetGameUI(), 7, 0.1687, 0.0594 )

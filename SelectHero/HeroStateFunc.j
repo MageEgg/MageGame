@@ -398,8 +398,33 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         endif
         
 
+        int add = 0
         if  GetPlayerTechCount(Player(pid),'RY2I',true) > 0
-            AddUnitRealState(Pu[1],17,10+(lv-35))
+            AddUnitRealState(Pu[1],17,10)
+            AddUnitRealState(Pu[1],47,10)
+            AddUnitRealState(Pu[1],48,10)
+
+            add = lv - 35
+            if  add > 0
+                AddUnitRealState(Pu[1],17,add)
+            endif
+
+            add = (lv - 35) / 2
+            if  add > 0
+                AddUnitRealState(Pu[1],15,add*2)
+                AddUnitRealState(Pu[1],16,add*2)
+            endif
+
+            add = (lv - 35) / 3
+            if  add > 0
+                AddUnitRealState(Pu[1],20,add*3)
+            endif
+
+            add = (lv - 35) / 5
+            if  add > 0
+                AddUnitRealState(Pu[1],32,add*3)
+                AddUnitRealState(Pu[1],33,add*3)
+            endif
         endif
         
 

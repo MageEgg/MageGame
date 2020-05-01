@@ -186,7 +186,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RY2B',"圣灵之翼","ReplaceableTextures\\CommandButtons\\BTNRY2B.BLP","")
         call InitTypeIdStrings('RY2D',"幻莲仙翼","ReplaceableTextures\\CommandButtons\\BTNRY2D.BLP","每秒生命+300\n伤害减免+12%\n攻击速度+30%\n\n开局奖励：\n高级技能书x1\n\n解锁外观|cffff0000幻莲仙翼|r")
         call InitTypeIdStrings('RY2H',"魅惑之翼","ReplaceableTextures\\CommandButtons\\BTNCB11.BLP","")
-        call InitTypeIdStrings('RY2I',"断罪神灵","ReplaceableTextures\\CommandButtons\\BTNCB03.BLP","地图等级35级开始，每提升一级，伤害加成+1%。")
+        call InitTypeIdStrings('RY2I',"断罪神灵","ReplaceableTextures\\CommandButtons\\BTNCB03.BLP","35级开始，每级伤害加成+1%，每2级攻击和技能伤害+2%，每3级暴击伤害+3%，每5级攻击和业力+3%")
         call InitTypeIdStrings('RY1C',"天乾地坤","ReplaceableTextures\\CommandButtons\\BTNRY1C.BLP","")
         call InitTypeIdStrings('RY1E',"麒麟光环","ReplaceableTextures\\CommandButtons\\BTNRY1E.BLP","")
         call InitTypeIdStrings('RY1A',"血灵光环","ReplaceableTextures\\CommandButtons\\BTNRY1A.BLP","")

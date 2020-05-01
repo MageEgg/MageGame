@@ -8,8 +8,8 @@ piece DzGameFunc
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00万魔窟：|r"+I2S(GetDzPlayerData(pid,2,3))+"层")
 
             if  DzConA[24] == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00狂欢积分：|r"+I2S(GetDzPlayerData(pid,18,1)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,3))+"/1000")
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00祖传矿铲：|r"+I2S(GetDzPlayerData(pid,18,2)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,4))+"/2")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00狂欢积分：|r"+I2S(GetDzPlayerData(pid,18,1)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,3))+"/1500")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00祖传矿铲：|r"+I2S(GetDzPlayerData(pid,18,2)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,4))+"/3")
             endif
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
