@@ -1561,7 +1561,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         loop
             u2 = FirstOfGroup(gg)
             exitwhen u2 == null
-            if  IsUnitType(u2, UNIT_TYPE_MELEE_ATTACKER) == true
+            if  GetUnitRealState(u2,51) > 400
                 UnitDamageTarget(u,u2,damage*100,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
                 UnitDamageTarget(u,u2,damage*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
