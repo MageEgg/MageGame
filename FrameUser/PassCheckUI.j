@@ -100,7 +100,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(31,0,'RT31')
         RegisterPassCheckPrize(32,'RS32','RT32')
         RegisterPassCheckPrize(33,0,'RT33')
-        RegisterPassCheckPrize(34,'RJ2C','RJ2E')
+        RegisterPassCheckPrize(34,'RJ2C','RJ2F')
         RegisterPassCheckPrize(35,'IP02','RT35')
         RegisterPassCheckPrize(36,'RS36','RT36')
         RegisterPassCheckPrize(37,0,'RT37')
