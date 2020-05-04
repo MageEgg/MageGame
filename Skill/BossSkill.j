@@ -1552,12 +1552,21 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
     function SpellAXAG(unit u)
         real x = GetUnitX(u)
         real y = GetUnitY(u)
-        real damage = GetUnitRealState(u,1)*100
+        real damage = GetUnitRealState(u,1)
         group gg = CreateGroup()
         LocAddEffectSetSize(x,y,"effect3_red-zhendi.mdl",1.5)
         LocAddEffectSetSize(x,y,"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",1)
         GroupEnumUnitsInRange(gg,x,y,350,GroupNormalNoStr(GetOwningPlayer(u),"","origin",0))
-        UnitDamageGroup(u,gg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        loop
+            u2 = FirstOfGroup(gg)
+            exitwhen u2 == null
+            if  IsUnitType(u2, UNIT_TYPE_MELEE_ATTACKER) == true
+                UnitDamageGroup(u,gg,damage*100,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            else
+                UnitDamageGroup(u,gg,damage*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            endif
+            GroupRemoveUnit(gg,u2)
+        endloop
         GroupClear(gg)
         DestroyGroup(gg)
         flush locals

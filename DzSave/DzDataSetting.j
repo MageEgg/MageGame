@@ -180,7 +180,14 @@ library DzDataSetting uses DzBase
 
         elseif  Group == 6 //不用管
             if  flag == 1 //经脉最大上限
-                max = MeridiansDay*DzMeridiansDayNum -3
+                if  (DzPlayerGames(Player(pid))+1)*2-3 < MeridiansDay*DzMeridiansDayNum -3
+                    max = (DzPlayerGames(Player(pid))+1)*2-3
+                else
+                    max = MeridiansDay*DzMeridiansDayNum -3
+                endif
+                if  max < 0
+                    max = 0
+                endif
             elseif  flag >= 2 and flag <= 9 //经脉等级
                 max = MeridiansMaxLv
             elseif  flag >= 10
