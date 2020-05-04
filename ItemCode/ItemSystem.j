@@ -344,7 +344,7 @@ scope ItemSystem initializer InitItemSystem
                 ClearSelection()
                 SelectUnit(Pu[41],true)
             endif
-        elseif  itemid >= 'IY1A' and itemid <= 'IY5Z'//积分兑换
+        elseif  itemid >= 'IY0A' and itemid <= 'IY5Z'//积分兑换
             if  IsCanExChange(pid,itemid) == true
                 ExChangeItem(pid,itemid)
             else

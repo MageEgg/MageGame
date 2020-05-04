@@ -425,7 +425,12 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             int index = GetTypeIdData(itemid,0x10010)
             int list = data_list
             int pos = data_pos
-            return GetDzPlayerData(pid,list,pos) == 0
+            int data = data_data
+            int Get = GetDzPlayerData(pid,list,pos)
+            if  Get == 0 or Get != data
+                return true
+            endif
+            return false
         endfunction
         function IsHasExChange(int pid,int itemid)->bool
             int index = GetTypeIdData(itemid,0x10010)
@@ -475,6 +480,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             if  data_uselist == 2
                 if  data_usepos == 1
                     tip = tip + "|r 通关积分且地图"
+                elseif  data_usepos == 4
+                    tip = tip + "|r 异变积分且地图"
                 endif
             endif
 
@@ -635,6 +642,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY3E',InitCond1(1,Unloc_Type_Level,18),InitCond2(0,Unloc_Type_Load,GameDataList(13,5,5)),0,0,0)
         InitUnlocTechConditions('RY3H',InitCond1(1,Unloc_Type_Level,18),InitCond2(0,Unloc_Type_Load,GameDataList(13,8,8)),0,0,0)
 
+        InitUnlocTechConditions('RY0A',InitCond1(1,Unloc_Type_Level,6),InitCond2(0,Unloc_Type_Load,GameDataList(10,1,2)),0,0,0)
+        InitUnlocTechConditions('RY3I',InitCond1(1,Unloc_Type_Level,8),InitCond2(0,Unloc_Type_Load,GameDataList(13,9,7)),0,0,0)
+
 
         set UnlocTechData_index3 = UnlocTechData_index
 
@@ -735,6 +745,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         ReExChangeTips(pid,'IY1E')
         ReExChangeTips(pid,'IY3E')
         ReExChangeTips(pid,'IY3H')
+        ReExChangeTips(pid,'IY0A')
+        ReExChangeTips(pid,'IY3I')
     endfunction
 
     //物品兑换注册
@@ -753,6 +765,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         ExChangeList('IY3E',18,2,1,3300,13,5,5)
 
         ExChangeList('IY3H',18,2,1,4000,13,8,8)
+
+        ExChangeList('IY0A',6,2,1,1100,10,1,2)
+        ExChangeList('IY3I',8,2,4,1250,13,9,7)
 
     endfunction
 

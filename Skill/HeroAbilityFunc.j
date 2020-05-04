@@ -2060,6 +2060,89 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         
 
     endfunction
+
+    function SpellS538(unit wu,real damage,int lv)
+        int max = 1 + GetHeroSummonNum(wu)
+        real x1 = GetUnitX(wu)
+        real y1 = GetUnitY(wu)
+
+
+        for i = 1,max
+            bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(wu),'z107',x1,y1,0)
+            
+            
+            SetUnitRealState(bj_lastCreatedUnit,3,GetUnitRealState(wu,3)*0.5)
+            
+
+
+            if  lv >= 2
+                SetUnitRealState(bj_lastCreatedUnit,18,20)
+            endif
+   
+
+            if  lv >= 3
+                SetUnitRealState(bj_lastCreatedUnit,1,damage*1.5)
+                UnitAddAbility(bj_lastCreatedUnit,'A00I')
+            else
+                SetUnitRealState(bj_lastCreatedUnit,1,damage)
+            endif
+            if  lv >= 4
+                UnitAddAbility(bj_lastCreatedUnit,'A00J')
+                SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5)*2)
+            else
+                SetUnitRealState(bj_lastCreatedUnit,5,GetUnitRealState(wu,5))
+            endif
+
+            SetUnitRealState(bj_lastCreatedUnit,15,GetUnitRealState(wu,15))
+            SetUnitRealState(bj_lastCreatedUnit,17,GetUnitRealState(wu,17))
+            SetUnitRealState(bj_lastCreatedUnit,19,GetUnitRealState(wu,19))
+            SetUnitRealState(bj_lastCreatedUnit,20,GetUnitRealState(wu,20))
+
+            
+            if  GetUnitIntState(wu,'FB49') > 0
+                SetUnitState(bj_lastCreatedUnit, ConvertUnitState(0x25), GetUnitState(bj_lastCreatedUnit, ConvertUnitState(0x25)) - 0.1)
+            endif
+
+            UnitApplyTimedLife(bj_lastCreatedUnit,'BHwe',4)
+            bj_lastCreatedUnit = null
+        end
+        
+        
+    endfunction
+
+
+    function SpellS539(unit wu,real damage,int lv)
+        if  YDWEGetUnitAbilityState(wu,'AC05', 1) == 0
+            YDWESetUnitAbilityDataReal( wu,'AC05', 1, 105, 8 )
+            YDWESetUnitAbilityState( wu, 'AC05', 1, 8)
+
+            
+            if  lv >= 3
+                if  GetUnitIntState(wu,'S539') == 0
+                    AddUnitIntStateTimer(wu,'S539',1,6)
+                endif
+            endif
+
+            if  GetUnitIntState(wu,'S539') > 0
+                damage = damage * 1.4
+            endif
+
+
+            real sx = GetUnitX(wu)
+            real sy = GetUnitY(wu)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,sx,sy,700,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+
+            LocAddEffectSetSize(sx,sy,"effect_hero_grandmagus_n1s_z_down.mdl",2.0)
+            LocAddEffectSetSize(sx,sy,"effect_hero_grandmagus_n1s_z_down.mdl",2.0)
+            LocAddEffectSetSize(sx,sy,"effect_hero_grandmagus_n1s_z_down.mdl",2.0)
+
+
+            UnitAddLife(wu,GetUnitState(wu,UNIT_STATE_MAX_LIFE)*0.07)
+        endif
+    endfunction
     
 
 endlibrary

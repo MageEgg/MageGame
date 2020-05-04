@@ -1814,6 +1814,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         endif
 
 
+        if  GetUnitTypeId(wu) == 'H038'
+            SpellS538(wu,GetAbilityDamage(wu,'S538',1),GetHeroAbilityLevel(wu,'S538'))
+        endif
+
+
         if  id >= 'S000' and id <= 'S300'
             if  id == 'S005'
                 SpellS005(u1.u,sx,sy,damage)

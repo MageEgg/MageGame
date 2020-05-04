@@ -416,7 +416,15 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
         function PlayerRemGemByIndex(int pid,int index)
             int id = GetPlayerGemByIndex(pid,index)
-            UnitAddItemById(Pu[1],id)
+            if  Pu[5] == Pu[2]
+                if  UnitCanGetItem(Pu[2]) == true
+                    UnitAddItemById(Pu[2],id)
+                else
+                    UnitAddItemById(Pu[1],id)
+                endif
+            else
+                UnitAddItemById(Pu[1],id)
+            endif
             SetGemState(Pu[1],id,-1)
             SetPlayerGemByIndex(pid,index,0)
             ReGemFrame(pid)

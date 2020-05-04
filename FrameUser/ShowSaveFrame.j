@@ -74,7 +74,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0)//通行证2
 
         RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
-        RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
+       // RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
         
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
@@ -101,6 +101,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
         RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
         RegisterShowSaveFrameData(2,'RY3H','RY3H',0,0,0,0)//方天画戟
+        RegisterShowSaveFrameData(2,'RY3I','RY3I',0,0,0,0)//异变之刃
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
@@ -169,7 +170,7 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(0,'RJ2E','RJ2E',0,0,0,0)//荣耀之光
         RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0)//中流砥柱
         RegisterShowSaveFrameData(0,'RJ2G','RJ2G',0,0,0,0)//劳动光荣
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RY0A','RY0A',0,0,0,0)//异变之光
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
@@ -304,6 +305,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(3,'RH35','RH35',0,0,0,0)//邓婵玉
         RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0)//苟作者
         RegisterShowSaveFrameData(3,'RH37','RH37',0,0,0,0)//苟策划
+        RegisterShowSaveFrameData(3,'RH38','RH38',0,0,0,0)//女娲
+        RegisterShowSaveFrameData(3,'RH39','RH39',0,0,0,0)//孔宣
 
 
 
