@@ -1554,6 +1554,7 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         real y = GetUnitY(u)
         real damage = GetUnitRealState(u,1)
         group gg = CreateGroup()
+        unit u2 = null
         LocAddEffectSetSize(x,y,"effect3_red-zhendi.mdl",1.5)
         LocAddEffectSetSize(x,y,"effect_hero_emberspirit_n3s_f_ribbon_misslie.mdl",1)
         GroupEnumUnitsInRange(gg,x,y,350,GroupNormalNoStr(GetOwningPlayer(u),"","origin",0))
@@ -1561,9 +1562,9 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             u2 = FirstOfGroup(gg)
             exitwhen u2 == null
             if  IsUnitType(u2, UNIT_TYPE_MELEE_ATTACKER) == true
-                UnitDamageGroup(u,gg,damage*100,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageTarget(u,u2,damage*100,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             else
-                UnitDamageGroup(u,gg,damage*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                UnitDamageTarget(u,u2,damage*10,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
             endif
             GroupRemoveUnit(gg,u2)
         endloop
