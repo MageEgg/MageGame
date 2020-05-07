@@ -162,6 +162,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 num = 8
                 if  GameGiftBool[num] == false
                     GameGiftBool[num] = true
+                    SetDzPlayerData(pid,1,23,1)
                     AddUnitRealState(Pu[1],61,1)
                     AddPlayerFoodByIndex(pid,2,6)
                     DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，练功房怪物数量+1，当局钻石+6！") 
@@ -247,7 +248,9 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             elseif  time == 4
                 UnitAddItemEx(Pu[1],'IB07')//自动领取
             elseif  time == 5
-                ItemGameGift(pid,"魔芝") //自动领取
+                if  GetDzPlayerData(pid,1,23) == 1
+                    ItemGameGift(pid,"魔芝") //自动领取
+                endif
             else
                 endtimer
             endif
