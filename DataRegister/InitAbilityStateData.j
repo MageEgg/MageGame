@@ -40,19 +40,17 @@ call InitAbilityData('S022',8,2,5,0,0,0.51,0.62,0.73,2,8,2,"强攻阵","火莲�
 call InitAbilityData('S102',1,4,2,0,3,4.6,5.2,6.2,2,0,2,"黑龙之灵","释放1条|Cff999999黑龙之灵|r，每秒对敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS102.blp")
 call InitAbilityData('S081',8,2,5,0,0,0,0.85,1,2,8,3,"真空领域","将目标范围内的所有单位聚卷入中心，每|Cffffc9260.5|r秒造成伤害。\n\n|Cff00ff7f4秒内，攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害|r","ReplaceableTextures\\CommandButtons\\BTNS081.blp")
 call InitAbilityData('S083',2,4,1,0,3.2,3.8,4.5,5.5,2,8,3,"十方飓风破","自身每|Cff00bfff0.75|r秒向周围逸散暴风，造成伤害。\n\n|Cff00ff7f4秒内提高|r|Cffffc92615%闪避|r|Cff00ff7f。|r\n|Cff00ff7f效果不可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS083.blp")
-call InitAbilityData('S095',1,2,5,0,0,0,0.41,0.47,2,0,3,"佛陀法身","被攻击|Cff00bfff8%|r概率对周围敌人伤害","ReplaceableTextures\\CommandButtons\\BTNS095.blp")
-call InitAbilityData('S015',1,5,5,0.23,0.26,0.29,0.33,0.38,2,0,3,"反震","被攻击|Cff00bfff8%|r概率对周围敌人伤害","ReplaceableTextures\\CommandButtons\\BTNS015.blp")
+call InitAbilityData('S095',1,2,5,0,0,0,0.58,0.7,2,0,3,"佛陀法身","被攻击|Cff00bfff8%|r概率对周围敌人伤害","ReplaceableTextures\\CommandButtons\\BTNS095.blp")
+call InitAbilityData('S015',1,5,5,0.276,0.345,0.432,0.54,0.675,2,0,3,"反震","被攻击|Cff00bfff8%|r概率对周围敌人伤害","ReplaceableTextures\\CommandButtons\\BTNS015.blp")
 call InitAbilityData('S014',1,5,2,9,10.2,11.4,13.2,15,2,0,3,"后发制人","|CffFFC926闪避|r时对周围敌人伤害。","ReplaceableTextures\\CommandButtons\\BTNS014.blp")
 call InitAbilityData('S096',1,2,1,7.2,8.2,9.1,10.6,12,2,0,3,"酒仙剑舞","|CffFFC926闪避|r时对周围敌人伤害。","ReplaceableTextures\\CommandButtons\\BTNS096.blp")
-call InitAbilityData('S097',1,3,5,0,0,0.36,0.41,0.47,2,0,3,"佛怒","被攻击|Cffffc92616次|r对自身范围内敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS097.blp")
+call InitAbilityData('S097',1,3,5,0,0,0.672,0.84,1.05,2,0,3,"佛怒","被攻击|Cffffc92616次|r对自身范围内敌人造成伤害。","ReplaceableTextures\\CommandButtons\\BTNS097.blp")
 call InitAbilityData('S101',7,5,5,0.5,0.6,0.7,0.85,1,2,8,3,"雷光破","对目标范围造成造成伤害。\n\n|Cff00ff7f4.5秒内|r|Cffffc926佛门系技能|r|Cff00ff7f触发概率|r|Cffffc926+6%|r|Cff00ff7f。|r","ReplaceableTextures\\CommandButtons\\BTNS101.blp")
 call InitAbilityData('S104',2,4,5,0,0.12,0.15,0.18,0.3,2,8,3,"熔炉之身","每秒对自身范围内敌人造成伤害。\n\n|Cff00ff7f攻击附带|r|Cffffc926自身最大生命*1%|r|Cff00ff7f伤害，持续6秒。|r","ReplaceableTextures\\CommandButtons\\BTNS104.blp")
 call InitAbilityData('S082',1,2,99,0,0,0,0.2,0.25,2,0,4,"雷神之子","召唤|Cffffc9263朵|r雷云环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS082.blp")
 call InitAbilityData('S086',1,5,1,0.2,0.26,0.32,0.4,0.5,2,0,4,"幻影剑阵","召唤|Cffffc9263把|r飞剑环绕自身。","ReplaceableTextures\\CommandButtons\\BTNS086.blp")
 call InitAbilityData('S089',2,4,99,0,0.24,0.28,0.32,0.4,2,8,4,"天神道兵","召唤|Cffffc9261|r个天神道兵，持续6秒。\n|Cff00ff7f道兵拥有致命一击和分裂|r","ReplaceableTextures\\CommandButtons\\BTNS089.blp")
 call InitAbilityData('S090',8,3,2,0,0,2.25,2.6,2.9,2,10,4,"噬魂龙魄","召唤1个噬魂龙魄，使其周围600码单位生机骤减，每|Cffffc9260.5|r秒造成伤害，持续|Cffffc9264秒|r。\n|Cff00ff7f多个噬魂灵魄伤害可叠加。|r","ReplaceableTextures\\CommandButtons\\BTNS090.blp")
-
-
 
 
 

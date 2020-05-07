@@ -75,9 +75,9 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0)//通行证3
 
         RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
-        if  DzConA[18] == 1
-            RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
-        endif
+        
+        RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
+        
         
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
@@ -88,9 +88,9 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
         RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0)//商城13件套
         RegisterShowSaveFrameData(5,'RSHG','RSHG',0,0,0,0)//商城14件套
-        if  DzConA[18] == 1
-            RegisterShowSaveFrameData(5,'RSHH','RSHH',0,0,0,0)//商城16件套
-        endif
+        
+        RegisterShowSaveFrameData(5,'RSHH','RSHH',0,0,0,0)//商城16件套
+        
         
         
 
@@ -102,6 +102,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//麒麟光环
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
+        RegisterShowSaveFrameData(2,'RY1F','RY1F',0,0,0,0)//墨麟光环
 
         
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
@@ -120,6 +121,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
         RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
         RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0)//魅惑之翼
+        RegisterShowSaveFrameData(2,'RY2J','RY2J',0,0,0,0)//神灵之翼
         RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0)//断罪神灵
         RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0)//GM-小咸鱼
 
@@ -177,6 +179,14 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0)//中流砥柱
         RegisterShowSaveFrameData(0,'RJ2G','RJ2G',0,0,0,0)//劳动光荣
         RegisterShowSaveFrameData(0,'RY0A','RY0A',0,0,0,0)//异变之光
+        RegisterShowSaveFrameData(0,'RJ2H','RJ2H',0,0,0,0)//狂欢序幕
+        RegisterShowSaveFrameData(0,'RJ2I','RJ2I',0,0,0,0)//狂欢进行时
+        RegisterShowSaveFrameData(0,'RJ2J','RJ2J',0,0,0,0)//狂欢派对
+        RegisterShowSaveFrameData(0,'RJ2K','RJ2K',0,0,0,0)//派对之王
+        RegisterShowSaveFrameData(0,'RJ2L','RJ2L',0,0,0,0)//前奏
+        RegisterShowSaveFrameData(0,'RJ2M','RJ2M',0,0,0,0)//闪耀之星
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
