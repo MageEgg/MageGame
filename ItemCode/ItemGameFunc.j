@@ -271,6 +271,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 UnitAddItemEx(Pu[1],'IB06')//自动领取
             elseif  time == 4
                 UnitAddItemEx(Pu[1],'IB07')//自动领取
+            elseif  time == 5
+                ItemGameGift(pid,"魔芝") //自动领取
             else
                 endtimer
             endif
