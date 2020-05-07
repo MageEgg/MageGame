@@ -150,7 +150,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
 
         
 
-
+        RegisterShowSaveFrameData(0,'RQD0','RQD0',0,0,0,0)//签到说明
         RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
         RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
@@ -169,7 +169,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ1M','RJ1M',0,0,0,0)//我超强
         RegisterShowSaveFrameData(0,'RJ1N','RJ1N',0,0,0,0)//我究极强
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
 
         RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
         RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0)//荣耀之信
@@ -547,6 +547,18 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                 end
 
 
+            elseif  id == 'RQD0'
+                int sign = GetDzPlayerData(pid,1,5) //今日
+                int Lsign = GetDzPlayerData(pid,1,6) //连续
+                int Asign = GetDzPlayerData(pid,1,7) //累积
+                SetTipsData(1,"","签到")
+
+                SetTipsData(10,"","|cffffcc00累计签到：|r"+I2S(Asign))
+                SetTipsData(11,"","|cffffcc00连续签到：|r"+I2S(Lsign))
+                SetTipsData(12,"","")
+
+                SetTipsData(13,"","|cff00ff00 每日签到奖励：6+连签天数个签到钻石。最多上限为14")
+                
 
             elseif  id >= 'RH01' and id <= 'RH99'
                 uid = id-'RH00'+'H000'

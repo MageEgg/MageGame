@@ -187,7 +187,7 @@ scope ItemSystem initializer InitItemSystem
             //AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
-        elseif  itemid >= 'IL0A' and itemid <= 'IL1Z'
+        elseif  itemid >= 'IL1A' and itemid <= 'IL5Z'
             PlayerBuyExShopItem(pid,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS03'
             PlayerAbilityDraw(pid,1,itemid)

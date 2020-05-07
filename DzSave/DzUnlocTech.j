@@ -555,7 +555,10 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RTX2',InitCond1(2,Unloc_Type_Shop,ShopList("RWK2")),0,0,0,0)
         InitUnlocTechConditions('RTX3',InitCond1(2,Unloc_Type_Shop,ShopList("RWK3")),0,0,0,0)
         
+
+        InitUnlocTechConditions('RQD0',InitCond1(2,Unloc_Type_Level,1),0,0,0,0)
         
+
 
         //成就  
         InitUnlocTechConditions('RJ1I',InitCond1(2,Unloc_Type_Level,1),0,0,0,0)

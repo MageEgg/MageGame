@@ -120,9 +120,11 @@ piece DzGameFunc
         int use = u
         if  PlayerFoodStart > 0
             if  PlayerFoodStart >= use
+                //BJDebugMsg("使用当局钻石"+I2S(use)+"个")
                 PlayerFoodStart = PlayerFoodStart - use
                 use = 0
             else
+                //BJDebugMsg("使用当局钻石"+I2S(PlayerFoodStart)+"个")
                 use = use - PlayerFoodStart
                 PlayerFoodStart = 0
             endif
@@ -136,13 +138,19 @@ piece DzGameFunc
                 use = use - PlayerFoodFree
                 PlayerFoodFree = 0
             endif
-            SetDzPlayerData(pid,2,5,PlayerFoodFree)
+            if  DzBool == false
+                SetDzPlayerData(pid,2,5,PlayerFoodFree)
+            else
+                BJDebugMsg("设置签到钻石为"+I2S(PlayerFoodFree))
+            endif
         endif
         
         if  PlayerFoodShop > 0 and use > 0
             PlayerFoodShop = PlayerFoodShop - use
             if  DzBool == false
                 DzAPI_Map_ConsumeMallItem(Player(pid), "FOOD", use )
+            else
+                BJDebugMsg("使用特殊钻石"+I2S(use)+"个")
             endif
         endif
         RePlayerFoodShow(pid)
@@ -161,29 +169,32 @@ piece DzGameFunc
         int Asign = GetDzPlayerData(pid,1,7) //累积
         int give = 0
         if  sign == 0
-            give = 6+Lsign+1
-            if  give > 14
-                give = 14
-            endif
+            
             SetDzPlayerData(pid,2,5,give)
             AddPlayerFoodByIndex(pid,2,give)
             SetDzPlayerData(pid,1,5,1)
             AddDzPlayerData(pid,1,7,1)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:签到成功！奖励签到钻石x|cff00ff00"+I2S(give)+"，签到钻石仅当天有效！")
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[累积签到]|r:"+I2S(Asign+1)+"天！")
+            
             if  Lsign > 0
                 if  IsDzPalyerSignInCon(pid) == true
                     AddDzPlayerData(pid,1,6,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[连续签到]|r:"+I2S(Lsign+1)+"天！")
+                    Lsign = Lsign + 1
                 else
                     SetDzPlayerData(pid,1,6,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[连续签到]|r:1天！")
+                    Lsign = 1
                 endif
             else
-                SetDzPlayerData(pid,1,6,1)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[连续签到]|r:1天！")
+                SetDzPlayerData(pid,1,6,1)//第一天
+                Lsign = 1
             endif
-            
+            give = 6+Lsign
+            if  give > 14
+                give = 14
+            endif
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:签到成功！奖励签到钻石x|cff00ff00"+I2S(give)+"，签到钻石仅当天有效！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[累积签到]|r:"+I2S(Asign+1)+"天！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[连续签到]|r:"+I2S(Lsign)+"天！")
+
             
             SetDzPlayerData(pid,1,4,TimeDay)
             DzSaveDzTime(pid)

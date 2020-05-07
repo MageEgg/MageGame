@@ -781,15 +781,14 @@ library AttackUnit uses DamageCode,PassCheckMission
 
     function AddExShopItem(unit wu,int index,int id)
         int num = 1
-        if  id == 'IL0A'
+        if  id == 'IL0A' or id == 'IL1A' or id == 'IL2A'
             num = GetRandomInt(1,3)
-        elseif  id == 'IL0B'
+        elseif  id == 'IL0B' or id == 'IL1B' or id == 'IL2B'
             num = GetRandomInt(1,6)
-        elseif  id == 'IL0C'
+        elseif  id == 'IL0C' or id == 'IL1C' or id == 'IL2C'
             num = GetRandomInt(1,4)
-        elseif  id == 'IL0D'
+        elseif  id == 'IL0D' or id == 'IL1D' or id == 'IL2D'
             num = GetRandomInt(1,2)
-        
         endif
 
         ExShopData[index][1] = id
@@ -850,16 +849,21 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         id1 = GetReExShopItem(0,0)
         id2 = GetReExShopItem(id1,0)
-        id3 = GetReExShopItem(id1,id2)
+        //id3 = GetReExShopItem(id1,id2)
+
+        id1 = id1 + 0x100
+        id2 = id2 + 0x200
+        //id3 = id3 + 0x300
+
         if  GameLevel >= 4
-            id4 = 'IL1A'+GetRandomInt(0,6)
+            id4 = 'IL4A'+GetRandomInt(0,6)
         else
-            id4 = 'IL1A'+GetRandomInt(0,4)
+            id4 = 'IL4A'+GetRandomInt(0,4)
         endif
 
         AddExShopItem(ExShopNpc,1, id1)
         AddExShopItem(ExShopNpc,2, id2)
-        AddExShopItem(ExShopNpc,3, id3)
+        //AddExShopItem(ExShopNpc,3, id3)
         AddExShopItem(ExShopNpc,4, id4)
 
 
