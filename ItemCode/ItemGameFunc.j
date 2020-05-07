@@ -231,7 +231,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             ItemGameGift(pid,"老铁")
         elseif  itid == 'IB10'
             SetGifeItemStock(pid)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取，关注公众号回复“钻石礼包”即可获取！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取，关注公众号回复“|cff00ff00钻石礼包|r”即可获取！")
         else
             SetGifeItemStock(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")

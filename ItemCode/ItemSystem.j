@@ -463,7 +463,7 @@ scope ItemSystem initializer InitItemSystem
             ItemLuckOfMonsterSoul(pid)
         endif
         ItemEventOfAttackUnitChallengeState(pid,itemid)
-        if  (itemid >= 'IB00' and itemid <= 'IB09') or (itemid >= 'IB50' and itemid <= 'IB59')
+        if  (itemid >= 'IB00' and itemid <= 'IB10') or (itemid >= 'IB50' and itemid <= 'IB60')
             PlayerGetGameGift(pid,itemid)
         endif
         

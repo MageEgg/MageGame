@@ -50,7 +50,7 @@ library DzConfig uses SystemCodes
     endfunction
 
 
-    string gzhkl = "GZZ0508"
+    string gzhkl = "gzz0508"
     
     function InitDzConfig()
         string S = ""
