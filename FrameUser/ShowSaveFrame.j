@@ -600,6 +600,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                 
                 if  id == 'RH36'
                     SetTipsData(17,"","地图等级16级加入随机英雄池，30级可手选。")
+                elseif  id == 'RH37'
+                    SetTipsData(17,"","地图等级36级可手选。")
                 endif
             
                 
@@ -635,8 +637,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/13)")
                         elseif  id == 'RSHG' and num < 14
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/14)")
-                        elseif  id == 'RSHH' and num < 15
-                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/15)")
+                        elseif  id == 'RSHH' and num < 16
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/16)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
                         endif

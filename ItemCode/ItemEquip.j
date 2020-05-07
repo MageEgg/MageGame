@@ -295,6 +295,11 @@ library ItemEquip uses DamageCode,ItemGameFunc
             gl = gl + 3
             BJDebugMsg("13件套+3")
         endif
+        if  GetPlayerTechCount(Player(pid),'RDBB',true) > 0
+            gl = gl + 3
+            BJDebugMsg("钻石大亨件套+3")
+        endif
+        
         
 
         BJDebugMsg("强化成功率"+R2S(gl))

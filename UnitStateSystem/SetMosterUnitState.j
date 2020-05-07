@@ -351,7 +351,7 @@ library UnitStateSet uses State
             InitMostetStateRatio(6,30,300)
             InitMostetStateRatio(7,40,450)
             InitMostetStateRatio(8,40,750)
-            InitMostetStateRatio(9,40,900)
+            InitMostetStateRatio(9,50,1100)
             InitMostetStateRatio(10,50,1100)
         else
             InitMostetStateRatio(1,0,50)

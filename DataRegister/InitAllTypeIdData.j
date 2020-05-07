@@ -316,7 +316,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RSHE',"商城11件套","ReplaceableTextures\\CommandButtons\\BTNSCX11.blp","每秒业力+30\n伤害减免+3%\n完美技能进阶石*1\n商城道具属性叠加效果提升至100%\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RSHF',"商城13件套","ReplaceableTextures\\CommandButtons\\BTNSCX13.blp","每秒业力+50\n强化成功率+3%\n对Boss伤害+10%\n法宝稀有度+15%\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RSHG',"商城14件套","ReplaceableTextures\\CommandButtons\\BTNSCX14.blp","对Boss伤害+6%\n法宝稀有度+6%\n开局黄级道果晋升为地级道果\n\n等级赠送道具不计入套装效果")
-        call InitTypeIdStrings('RSHH',"商城16件套","ReplaceableTextures\\CommandButtons\\BTNSCX16.blp","地图等级判定+6\n\n等级赠送道具不计入套装效果")
+        call InitTypeIdStrings('RSHH',"商城16件套","ReplaceableTextures\\CommandButtons\\BTNSCX16.blp","攻击伤害+10%\n技能伤害+10%\n经验加成+5%\n地图等级判定+6\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RDAA',"果然暴君","ReplaceableTextures\\CommandButtons\\BTNCD01.blp","")
         call InitTypeIdStrings('RDAB',"我真的知错了","ReplaceableTextures\\CommandButtons\\BTNCD02.blp","")
         call InitTypeIdStrings('RDAC',"老婆别打了","ReplaceableTextures\\CommandButtons\\BTNCD03.blp","")
