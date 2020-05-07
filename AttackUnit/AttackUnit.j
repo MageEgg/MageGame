@@ -799,20 +799,17 @@ library AttackUnit uses DamageCode,PassCheckMission
 
     function ReExShopItem(int id,int use)
         int index = 0
+
         for i = 1,4
             if  ExShopData[i][1] == id
-                index = i
-                exitwhen true
+                ExShopData[i][2] = ExShopData[i][2] - use
+            endif
+            if  ExShopData[i][2] > 0
+                RemoveItemFromStock(ExShopNpc,ExShopData[i][1])
+                AddItemToStock(ExShopNpc, ExShopData[i][1], ExShopData[i][2], ExShopData[i][2])
             endif
         end
 
-        if  index != 0
-            ExShopData[index][2] = ExShopData[index][2] - use
-            if  ExShopData[index][2] > 0
-                RemoveItemFromStock(ExShopNpc,id)
-                AddItemToStock(ExShopNpc, id, ExShopData[index][2], ExShopData[index][2])
-            endif
-        endif
     endfunction
     function PlayerBuyExShopItem(int pid,int id)
         int use = GetTypeIdData(id,103)

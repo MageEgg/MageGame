@@ -511,6 +511,7 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseIncEquipGem(u1,itemid)
         elseif  itemid == 'CS42'
             PlayerUseIncEquipGem(u1,itemid)
+        
         elseif  itemid == 'IP06'
             if  PlayerReRandomPrize(pid,1.0) == false
                 UnitAddItemById(u1,itemid)
@@ -521,6 +522,10 @@ scope ItemSystem initializer InitItemSystem
                 UnitAddItemById(u1,itemid)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前没有符印奖励选项！")
             endif
+        elseif  itemid == 'IP08'
+            PlayerUseBoxIP08(pid)
+        elseif  itemid == 'IP09'
+            PlayerUseBoxIP09(pid)
         elseif  itemid >= 'I051' and itemid <= 'I055'
             PlayerUseSuperSoul(u1,GetManipulatedItem())
         elseif  itemid >= 'IK01' and itemid <= 'IK8Z'

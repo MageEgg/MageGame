@@ -48,6 +48,9 @@ library DzConfig uses SystemCodes
             endif
         endif
     endfunction
+
+
+    string gzhkl = "GZZ0508"
     
     function InitDzConfig()
         string S = ""
@@ -67,7 +70,7 @@ library DzConfig uses SystemCodes
             QQNumber = "1035838574"
         elseif  DzConA[1] == 4
             QQNumber = "784736238"
-        elseif  DzConA[1] == 4
+        elseif  DzConA[1] == 5
             QQNumber = "798103390"
         endif
 
@@ -77,6 +80,11 @@ library DzConfig uses SystemCodes
             DzBool = true
             textbool = true
         endif
+        
+        if  DzCon("MZRPG") != ""
+            gzhkl = DzCon("MZRPG")
+        endif
+
 
         
     endfunction     

@@ -31,6 +31,17 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 endif
             endif
         end
+
+
+        //礼包10
+        RemoveItemFromStock(Pu[26],'IB10')
+        RemoveItemFromStock(Pu[26],'IB60')
+        if  GameGiftBool[10] == false
+            AddItemToStock(Pu[26],'IB10',1,1)
+        else
+            AddItemToStock(Pu[26],'IB60',1,1)
+        endif
+
     endfunction
 
     function ItemGameGift(int pid,string gift)  
@@ -168,6 +179,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                 endif
+
             elseif  gift == "老铁"    
                 num = 9
                 if  GetPublicMapLevel(pid) > 0
@@ -180,6 +192,15 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                     endif
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
+                endif
+            elseif  gift == "钻石礼包"
+                num = 10
+                if  GameGiftBool[num] == false
+                    GameGiftBool[num] = true
+                    AddPlayerFoodByIndex(pid,2,8)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，当局钻石+8！") 
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                 endif
             endif
         endif
@@ -208,6 +229,9 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取！")
         elseif  itid == 'IB09'
             ItemGameGift(pid,"老铁")
+        elseif  itid == 'IB10'
+            SetGifeItemStock(pid)
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取，关注公众号回复“钻石礼包”即可获取！")
         else
             SetGifeItemStock(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
@@ -235,6 +259,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         AddItemToStock(Pu[26],'IB06',1,1)
         AddItemToStock(Pu[26],'IB07',1,1)
         AddItemToStock(Pu[26],'IB08',1,1)
+        AddItemToStock(Pu[26],'IB10',1,1)
         TimerStart(0.1,true)
         {
             time = time + 1
@@ -916,6 +941,61 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             AddUnitRealState(Pu[1],5,200000)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r使用"+GetObjectName(itid)+"，生命|cff00ff00+200000")
         endif
+    endfunction
+
+
+
+
+
+
+
+
+    function PlayerUseBoxIP08Func()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+        int id = 'IK00' + i
+
+        if  Pu[5] == Pu[2]
+            if  RemoveUnitHasItem(Pu[2],'IP08') == true
+                UnitAddItemById(Pu[2],id)
+            elseif  RemoveUnitHasItem(Pu[1],'IP08') == true
+                UnitAddItemById(Pu[2],id)
+            endif
+        else
+            if  RemoveUnitHasItem(Pu[1],'IP08') == true
+                UnitAddItemById(Pu[1],id)
+            elseif  RemoveUnitHasItem(Pu[2],'IP08') == true
+                UnitAddItemById(Pu[2],id)
+            endif
+        endif
+    endfunction
+    function PlayerUseBoxIP08(int pid)
+        Dialog.create(Player(pid),"请选择宝物",GetObjectName('IK01'),GetObjectName('IK02'),GetObjectName('IK03'),GetObjectName('IK04'),GetObjectName('IK05'),GetObjectName('IK06'),GetObjectName('IK07'),GetObjectName('IK08'),"","","","","PlayerUseBoxIP08Func")
+    endfunction
+
+    function PlayerUseBoxIP09Func()
+        int pid = Dialog.GetPlayerid()
+        int i = Dialog.GetButtonid()
+
+        int id = 'IK90' + i
+
+        if  Pu[5] == Pu[2]
+            if  RemoveUnitHasItem(Pu[2],'IP09') == true
+                UnitAddItemById(Pu[2],id)
+            elseif  RemoveUnitHasItem(Pu[1],'IP09') == true
+                UnitAddItemById(Pu[2],id)
+            endif
+        else
+            if  RemoveUnitHasItem(Pu[1],'IP09') == true
+                UnitAddItemById(Pu[1],id)
+            elseif  RemoveUnitHasItem(Pu[2],'IP09') == true
+                UnitAddItemById(Pu[1],id)
+            endif
+        endif
+    endfunction
+    function PlayerUseBoxIP09(int pid)
+        Dialog.create(Player(pid),"请选择刻印",GetObjectName('IK91'),GetObjectName('IK92'),GetObjectName('IK93'),GetObjectName('IK94'),GetObjectName('IK95'),GetObjectName('IK96'),GetObjectName('IK97'),GetObjectName('IK98'),"","","","","PlayerUseBoxIP09Func")
     endfunction
 
 endlibrary

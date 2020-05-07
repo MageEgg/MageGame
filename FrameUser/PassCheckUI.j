@@ -108,6 +108,32 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(39,0,'RT39')
         RegisterPassCheckPrize(40,'RJ2D','RY3G')
 
+
+
+        RegisterPassCheckPrize(41,'RS41','IN30')
+        RegisterPassCheckPrize(42,'RJ2H','RJ2L')
+        RegisterPassCheckPrize(43,-2,-2)
+        RegisterPassCheckPrize(44,1000,1500)
+        RegisterPassCheckPrize(45,'RS45','RT45')
+        RegisterPassCheckPrize(46,-3,'RT46')
+        RegisterPassCheckPrize(47,'RS47','RT47')
+        RegisterPassCheckPrize(48,'RJ2I','RY2J')
+        RegisterPassCheckPrize(49,'CS51','CS52')
+        RegisterPassCheckPrize(50,'RS50','RT50')
+        RegisterPassCheckPrize(51,0,'RT51')
+        RegisterPassCheckPrize(52,'RS52','RT52')
+        RegisterPassCheckPrize(53,0,'RT53')
+        RegisterPassCheckPrize(54,'RJ2J','RJ2M')
+        RegisterPassCheckPrize(55,-3,'RT55')
+        RegisterPassCheckPrize(56,0,'RT56')
+        RegisterPassCheckPrize(57,0,'RT57')
+        RegisterPassCheckPrize(58,'IP08','IP08')
+        RegisterPassCheckPrize(59,0,'RT59')
+        RegisterPassCheckPrize(60,'RJ2K','RY1F')
+
+
+
+
         
     endfunction
 
@@ -324,7 +350,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         function PlayerMissionComplete(int pid,int missionid)//任务完成
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
-                if  MissionDay >= 21
+                if  MissionDay > 41
+                    AddDzPlayerData(pid,4,1,exp)
+                    AddDzPlayerData(pid,4,2,exp)
+                    AddDzPlayerData(pid,4,3,exp)
+                elseif  MissionDay > 20
                     AddDzPlayerData(pid,4,1,exp)
                     AddDzPlayerData(pid,4,2,exp)
                 else
@@ -429,7 +459,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             int id = GetPassCheckPrize(index,num)
             real x = AttackRoomPostion[pid][1]
             real y = AttackRoomPostion[pid][2]
-            if  id > 0
+            if  id != 0
                 
                 if  id >= 'RS01' and id <= 'RS99'//普通通行证属性
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---普通属性")
@@ -440,6 +470,9 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 elseif  id >= 'R000' and id <= 'RZZZ'
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---道具类")
                     SetPlayerTechResearchedEx(Player(pid),id)
+                elseif  id < 0
+                    BJDebugMsg("PassPrize :钻石"+I2S(-id)+"---资源类")
+                    AddPlayerFoodByIndex(pid,2,-id)
                 elseif  id < 500
                     BJDebugMsg("PassPrize :玄铁"+I2S(id)+"---资源类")
                     AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
@@ -453,6 +486,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 endif
             endif
         endfunction
+
 
 
 
@@ -487,6 +521,21 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 endif
             end
 
+
+            lv = GetPlayerPassLevel(pid,2)
+            shop = 0
+            if  DzShop(Player(pid),"RWK3") == true
+                shop = 1
+            endif
+            for i2 = 1,MaxPassCheckPrizeNum
+                if  lv >= i2
+                    GivePassCheckPrize(pid,i2+40,1)
+                    
+                    if  shop == 1
+                        GivePassCheckPrize(pid,i2+40,2)
+                    endif
+                endif
+            end
 
 
         endfunction
@@ -579,6 +628,10 @@ library PassCheckUI uses GameFrame,PassCheckMission
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
                     elseif  DzShop(Player(pid),"RWK2") == false and Step == 1
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    elseif  DzShop(Player(pid),"RWK3") == false and Step == 2
+                        DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    elseif  DzShop(Player(pid),"RWK4") == false and Step == 3
+                        DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
                     else
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\alpha.tga",0)
                     endif
@@ -594,8 +647,10 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
                 for y = 1,2
                     id = GetPassCheckPrize(index+Step*20,y)
-                    if  id > 0
-                        if  id < 500
+                    if  id != 0
+                        if  id <= 0
+                            DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\food.blp",0)
+                        elseif  id < 500
                             DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\UI_PlayerState2.tga",0)
                         elseif  id < 1000000
                             DzFrameSetTexture(BUTTON_Back[610+y*10+i][1],"war3mapImported\\UI_PlayerState1.tga",0)
@@ -825,9 +880,11 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateButton(662,Button.frameid,TYPE_BUTTON,2,Button.frameid,1,0.03,-0.012,0.015,0.015,"war3mapImported\\UI_Pass_Right.tga")
 
 
-        CreateButton(671,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.02,0.005,0.03,0.03,"war3mapImported\\UI_fs1.tga")
+        CreateButton(671,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.02,0.005,0.03,0.03,"war3mapImported\\UI_S1.tga")
 
-        CreateButton(672,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.06,0.005,0.03,0.03,"war3mapImported\\UI_ry1.tga")
+        CreateButton(672,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.06,0.005,0.03,0.03,"war3mapImported\\UI_S2.tga")
+
+        CreateButton(673,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.1,0.005,0.03,0.03,"war3mapImported\\UI_S3.tga")
     endfunction
 
     function PassCheckUIInit()
@@ -855,8 +912,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
         CreateFrameButton1()
 
-
-        if  MissionDay >= 21
+        if  MissionDay >= 42
+            Step = 2
+        elseif  MissionDay >= 21
             Step = 1
         else
             Step = 0
