@@ -24,6 +24,11 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int array HolidayChangeData[12][680]
 
 
+
+    
+
+
+
     function IsPlayerInRank(int pid,int data)->bool
         int n = DzAPI_Map_GetMapLevelRank(Player(pid))
         if  n <= data
@@ -85,12 +90,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return DzShop(Player(pid),Data_Shop[index])==true
         endfunction
         
-        function AllShopUnloc(int pid)->bool
-            if  DzShop(Player(pid),"RWK")==false
-                return false
-            endif
-            
-            return true
+        function AllShopUnloc(int pid,int data)->bool
+            int num = GetPlayerBuyShopNumber(pid)
+            return num >= data
         endfunction
         
     endscope
@@ -195,7 +197,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         elseif  Type == Unloc_Type_API
             return DzConA[data] == 1
         elseif  Type == Unloc_Type_Dad
-            return AllShopUnloc(pid)==true
+            return AllShopUnloc(pid,data)==true
         elseif  Type == Unloc_Type_LvRank
             return IsPlayerInRank(pid,data)
         elseif  Type == Unloc_Type_Test
@@ -451,7 +453,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             if  DzPlayerLv(Player(pid)) >= level
                 if  GetDzPlayerData(pid,uselist,usepos) >= use
                     AddDzPlayerData(pid,uselist,usepos,-use)
-                    AddDzPlayerData(pid,list,pos,data)
+                    SetDzPlayerData(pid,list,pos,data)
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
                     return true
                 else
@@ -527,6 +529,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     //科技注册
     function InitAllUnlocTechFunc1()    
 
+        InitUnlocTechConditions('RL01',InitCond1(2,Unloc_Type_Dad,16),0,0,0,0)
+        
+        InitUnlocTechConditions('RJ1Z',InitCond1(2,Unloc_Type_Shop,ShopList("LB6")),0,0,0,0)
 
         //商城
         InitUnlocTechConditions('RY1D',InitCond1(2,Unloc_Type_Shop,ShopList("GH1")),0,0,0,0)
@@ -544,10 +549,11 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY3F',InitCond1(2,Unloc_Type_Shop,ShopList("WQ2")),0,0,0,0)
 
         InitUnlocTechConditions('RJ1Y',InitCond1(2,Unloc_Type_Shop,ShopList("LB5")),0,0,0,0)
-        InitUnlocTechConditions('RJ1Z',InitCond1(2,Unloc_Type_Shop,ShopList("LB6")),0,0,0,0)
+        
 
         InitUnlocTechConditions('RTX1',InitCond1(2,Unloc_Type_Shop,ShopList("RWK")),0,0,0,0)
         InitUnlocTechConditions('RTX2',InitCond1(2,Unloc_Type_Shop,ShopList("RWK2")),0,0,0,0)
+        InitUnlocTechConditions('RTX3',InitCond1(2,Unloc_Type_Shop,ShopList("RWK3")),0,0,0,0)
         
         
 
@@ -766,7 +772,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
         ExChangeList('IY3H',18,2,1,4000,13,8,8)
 
-        ExChangeList('IY0A',6,2,1,1100,10,1,2)
+        ExChangeList('IY0A',6,2,4,1100,10,1,2)
         ExChangeList('IY3I',8,2,4,1250,13,9,7)
 
     endfunction

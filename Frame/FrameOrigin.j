@@ -35,6 +35,21 @@ library OriginGameFrame uses ejtimer,System
     int TYPE_NOT = 99
     
 
+
+    function GetResourceBarFrame takes integer index returns integer
+        if  index == 0 then
+            return DzSimpleFontStringFindByName("ResourceBarGoldText",0)
+        elseif  index == 1 then
+            return DzSimpleFontStringFindByName("ResourceBarLumberText",0)
+        elseif  index == 2 then
+            return DzSimpleFontStringFindByName("ResourceBarSupplyText",0)
+        elseif  index == 3 then
+            return DzSimpleFontStringFindByName("ResourceBarUpkeepText",0)
+        endif
+        return 0
+    endfunction
+    
+
     //获取物品名称
     function GetFrameItemNameFrame takes nothing returns integer
         return DzSimpleFontStringFindByName("SimpleItemNameValue",3)

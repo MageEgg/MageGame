@@ -347,6 +347,10 @@ library SystemCodes uses ServerTime,Define1
         SetPlayerState(Player(pid),whichPlayerState,GetPlayerState(Player(pid),whichPlayerState)+value)
     endfunction
 
+
+    
+
+
     //物品处理
     function AddItemCharges(unit wu,item wi)
         int ItemId = GetItemTypeId(wi)

@@ -525,17 +525,18 @@ scope DeathEvent initializer InitDeathEvent
             
 
             if  uid == 'u001'//占星NPC
-                Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x-512,y-128,270)//兽魂神通
-                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc03',x-512,y-128,270)//兽魂神通
+                Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x-512,y,270)//兽魂神通
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc03',x-512,y,270)//兽魂神通
                 if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
                     if  GetLocalPlayer() == Player(pid)
                         YDWESetItemDataString('IS13',3,"|cfff0f0f0白色强化价格：|r|cffffd24d2500\n|r|cff00ff7f绿色|r|cfff0f0f0强化价格：|r|cffffd24d5000\n|r|cff00bfff蓝色|r|cfff0f0f0强化价格：|r|cffffd24d10000\n|r|cffbf00ff紫色|r|cfff0f0f0强化价格：|r|cffffd24d20000\n黄色|r|cfff0f0f0强化价格：|r|cffffd24d30000\n|r|cffff0000红色|r|cfff0f0f0强化价格：|r|cffffd24d50000\n\n|r|cff00ff7f消耗金币，100%几率提高饰品1级。|r")
                     endif
                 endif
-                //Pu[25]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np05',x-512,y+256,270)//占星抽奖
+
                 UnitAddEffectOfNPC(Pu[28])
-                //UnitAddEffectOfNPC(Pu[25])
-                //AddItemToStock(Pu[28],'IS12',1,1)
+
+                
+                
             endif
             if  uid != 'u004'
                 CreateNewForg(pid,uid)
@@ -604,7 +605,7 @@ scope DeathEvent initializer InitDeathEvent
             for jfpid = 0,3
                 DisplayTimedTextToPlayer(Player(jfpid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")
                 if  IsPlaying(jfpid) == true 
-                    if  GetDzPlayerData(jfpid,18,3) <= 1490
+                    if  GetDzPlayerData(jfpid,18,3) <= 1990
                         AddDzPlayerData(jfpid,18,1,10)
                         AddDzPlayerData(jfpid,18,3,10)
                     else
@@ -618,7 +619,7 @@ scope DeathEvent initializer InitDeathEvent
             for spid = 0,3
                 if  IsPlaying(spid) == true
                     if  tu == PlayerUnit[spid][40]
-                        if  GetDzPlayerData(spid,18,4) < 3
+                        if  GetDzPlayerData(spid,18,4) < 4
                             AddDzPlayerData(spid,18,2,1)
                             AddDzPlayerData(spid,18,4,1)
                             

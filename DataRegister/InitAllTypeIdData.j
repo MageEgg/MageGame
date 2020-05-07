@@ -241,7 +241,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1W',"木材礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1W.BLP","开局玄铁+5")
         call InitTypeIdStrings('RJ1X',"赞助礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1X.BLP","伤害加成+10%\n每秒攻击+20\n每秒生命+100\n山灵挑战成功额外奖励5玄铁")
         call InitTypeIdStrings('RJ1Y',"劳动节礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1Y.BLP","每秒攻击+8\n每秒业力+10\n\n击杀不屈的山必定获得高级附魔石\n进入愚公移山副本积分消耗减半\n\n该道具不计入商城套装效果")
-        call InitTypeIdStrings('RJ1Z',"良心赞助","ReplaceableTextures\\CommandButtons\\BTNRJ1Z.BLP","每3波获得随机奖励：\n小银行，大金矿，来点玄铁，招魂幡lv.4，中级附魔石，高级附魔石，炽星魔盒，补天石，鸿蒙结晶，虚空神石，技能进化石（A升S），时渊入场券")
+        call InitTypeIdStrings('RJ1Z',"良心赞助","ReplaceableTextures\\CommandButtons\\BTNRJ1Z.BLP","开局钻石+10\n练功房数量+1\n经验加成+12%\n地图等级判定+4")
         call InitTypeIdStrings('RK1A',"小狐妖","ReplaceableTextures\\CommandButtons\\BTNRK1A.BLP","业力加成+20%\n每秒业力+20\n\n开局奖励：时渊入场券x1\n\n宠物攻击力=英雄业力\n小狐狸攻击间隔1秒，暴击率20%，继承英雄暴击伤害。\n宠物攻击5%概率造成业力*400%范围伤害\n\n解锁宠物|Cffffd24d小狐妖|r")
         call InitTypeIdStrings('RP1A',"笑天犬","ReplaceableTextures\\CommandButtons\\BTNPF01.BLP","每秒攻击+10\n每秒业力+15\n\n解锁助手皮肤|Cffff0000笑天犬|r")
         call InitTypeIdStrings('RP1B',"GM-小咸鱼","ReplaceableTextures\\CommandButtons\\BTNRV02.BLP","")
@@ -304,6 +304,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RGDI',"异变N9通关16次","ReplaceableTextures\\CommandButtons\\BTNCJYB09.BLP","")
         call InitTypeIdStrings('RTX1',"封神通行证","ReplaceableTextures\\CommandButtons\\BTNRTX1.blp","点击F6查看通行证奖励")
         call InitTypeIdStrings('RTX2',"荣耀通行证","ReplaceableTextures\\CommandButtons\\BTNRTX2.blp","点击F6查看通行证奖励")
+        call InitTypeIdStrings('RTX3',"狂欢通行证","ReplaceableTextures\\CommandButtons\\BTNRTX3.blp","点击F6查看通行证奖励")
         call InitTypeIdStrings('RSHA',"商城3件套","ReplaceableTextures\\CommandButtons\\BTNSCX3.blp","每秒生命+100\n伤害减免+1%\n初级被动技能书*1\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RSHB',"商城5件套","ReplaceableTextures\\CommandButtons\\BTNSCX5.blp","每秒生命+200\n伤害减免+2%\n完美技能进阶石*1\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RSHC',"商城8件套","ReplaceableTextures\\CommandButtons\\BTNSCX8.blp","每秒生命+300\n伤害减免+3%\n开局补天石+2\n\n等级赠送道具不计入套装效果")
@@ -311,6 +312,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RSHE',"商城11件套","ReplaceableTextures\\CommandButtons\\BTNSCX11.blp","每秒业力+30\n伤害减免+3%\n完美技能进阶石*1\n商城道具属性叠加效果提升至100%\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RSHF',"商城13件套","ReplaceableTextures\\CommandButtons\\BTNSCX13.blp","每秒业力+50\n强化成功率+3%\n对Boss伤害+10%\n法宝稀有度+15%\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RSHG',"商城14件套","ReplaceableTextures\\CommandButtons\\BTNSCX14.blp","对Boss伤害+6%\n法宝稀有度+6%\n开局黄级道果晋升为地级道果\n\n等级赠送道具不计入套装效果")
+        call InitTypeIdStrings('RSHH',"商城16件套","ReplaceableTextures\\CommandButtons\\BTNSCX16.blp","攻击伤害+10%\n技能伤害+10%\n经验加成+5%\n地图等级判定+6\n\n等级赠送道具不计入套装效果")
         call InitTypeIdStrings('RDAA',"果然暴君","ReplaceableTextures\\CommandButtons\\BTNCD01.blp","")
         call InitTypeIdStrings('RDAB',"我真的知错了","ReplaceableTextures\\CommandButtons\\BTNCD02.blp","")
         call InitTypeIdStrings('RDAC',"老婆别打了","ReplaceableTextures\\CommandButtons\\BTNCD03.blp","")
@@ -337,6 +339,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RDAX',"龙王出来喷水","ReplaceableTextures\\CommandButtons\\BTNCD24.blp","")
         call InitTypeIdStrings('RDAY',"今天爆率真高啊","ReplaceableTextures\\CommandButtons\\BTNCD25.blp","强化成功率+1.25%")
         call InitTypeIdStrings('RDAZ',"夸我帅","ReplaceableTextures\\CommandButtons\\BTNH036.blp","|cff808080据说评论多了会触发隐藏成就？|r")
+        call InitTypeIdStrings('RDBA',"小富豪","ReplaceableTextures\\CommandButtons\\BTNRDBA.blp","|cff808080花完了就不是富豪了|r")
+        call InitTypeIdStrings('RDBB',"钻石大亨","ReplaceableTextures\\CommandButtons\\BTNRDBB.blp","对Boss伤害+5%\n强化成功率+3%\n|cff808080花完了就不是大亨了|r")
         call InitTypeIdStrings('RHD1',"小有所成","ReplaceableTextures\\CommandButtons\\BTNSLD01.blp","")
         call InitTypeIdStrings('RHD2',"炉火纯青","ReplaceableTextures\\CommandButtons\\BTNSLD02.blp","")
         call InitTypeIdStrings('RHD3',"一代宗师","ReplaceableTextures\\CommandButtons\\BTNSLD03.blp","")
@@ -381,6 +385,8 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RH35',"邓婵玉","ReplaceableTextures\\CommandButtons\\BTNH035.blp","")
         call InitTypeIdStrings('RH36',"苟作者","ReplaceableTextures\\CommandButtons\\BTNH036.blp","")
         call InitTypeIdStrings('RH37',"苟策划","ReplaceableTextures\\CommandButtons\\BTNPET02.blp","")
+        call InitTypeIdStrings('RH38',"女娲","ReplaceableTextures\\CommandButtons\\BTNH007.blp","")
+        call InitTypeIdStrings('RH39',"孔宣","ReplaceableTextures\\CommandButtons\\BTNH039.blp","")
         call InitTypeIdStrings('RM10',"任脉","ReplaceableTextures\\CommandButtons\\BTNQJBM01.blp","")
         call InitTypeIdStrings('RM20',"督脉","ReplaceableTextures\\CommandButtons\\BTNQJBM02.blp","")
         call InitTypeIdStrings('RM30',"冲脉","ReplaceableTextures\\CommandButtons\\BTNQJBM03.blp","")
@@ -568,6 +574,15 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FM2J',"附魔","","|CffFF0000必定命中|r")
         call InitTypeIdStrings('FM2K',"附魔","","|CffFF0000技能吸血+6%|r")
         call InitTypeIdStrings('FM2L',"附魔","","|CffFF0000多重施法次数+1|r")
+
+
+        call InitTypeIdStrings('AS0A',"购买：炽星魔盒","","开启后获得|Cffffd24d随机奖励|r。")
+        call InitTypeIdStrings('AS0B',"购买：高级附魔石","","为指定装备附魔一条强大的额外属性。|n|n|cffff0000只可附魔紫色及以上品质装备|r")
+        call InitTypeIdStrings('AS0C',"购买：练功房数量","","练功房数量+1")
+        call InitTypeIdStrings('AS0D',"购买：鸿蒙结晶","","使用后|cffff0000鸿蒙结晶|r数量|cffffc926+1|r(F4内查看)|n|n|cfff0f0f0消耗|r|cffffd24d1|r|cfff0f0f0个|r|cffff0000鸿蒙结晶|r|cfff0f0f0，可重置为|r|cffffd24d高一品质|r|cfff0f0f0的|r|cffffd24d随机法宝|r|cfff0f0f0。")
+        call InitTypeIdStrings('AS0E',"购买：创世碎片","","点击后可将|Cffffc926神|r|Cfff7a049话|r|Cffef786d品|r|Cffe85091质|r的|Cffffc926lv4|r装备提升至|Cffff73ff创|r|Cffff56bf世|r|Cffff397f品|r|Cffff1c3f质|r。")
+        call InitTypeIdStrings('AS0F',"购买：稀有宝物","","使用后自选一个|CffBF00FF稀有品质宝物|r")
+        call InitTypeIdStrings('AS0G',"购买：宝物刻印","","使用后自选一个|CffFFD24D宝物刻印|r")
 
         BJDebugMsg("init1end")
     endfunction
@@ -881,6 +896,22 @@ InitEquipData('E234',0,0,0,0,0,'E235',0,0)
 
 
 
+InitEquipData('IL0A',0,0,6,0,0,'IN31',0,0)
+InitEquipData('IL0B',0,0,2,0,0,'CS51',0,0)
+InitEquipData('IL0C',0,0,4,0,0,'CS52',0,0)
+InitEquipData('IL0D',0,0,8,0,0,'CS53',0,0)
+InitEquipData('IL0E',0,0,1,0,0,'IN17',0,0)
+InitEquipData('IL0F',0,0,4,0,0,'IN23',0,0)
+InitEquipData('IL0G',0,0,8,0,0,'CS41',0,0)
+InitEquipData('IL0H',0,0,1,0,0,'IN22',0,0)
+InitEquipData('IL0I',0,0,4,0,0,'IP02',0,0)
+InitEquipData('IL1A',0,0,15,0,0,'CS22',0,0)
+InitEquipData('IL1B',0,0,6,0,0,'I015',0,0)
+InitEquipData('IL1C',0,0,6,0,0,'IP01',0,0)
+InitEquipData('IL1D',0,0,30,0,0,'IP03',0,0)
+InitEquipData('IL1E',0,0,20,0,0,'CS42',0,0)
+InitEquipData('IL1F',0,0,20,0,0,'IP08',0,0)
+InitEquipData('IL1G',0,0,30,0,0,'IP09',0,0)
 
 
 
@@ -1013,6 +1044,8 @@ InitEquipData('E234',0,0,0,0,0,'E235',0,0)
         InitHeroProficiency('RH35',17,5,18,3,9,20,0,0,0,0)
         InitHeroProficiency('RH36',17,5,18,3,16,20,0,0,0,0)
         InitHeroProficiency('RH37',17,5,18,3,16,20,0,0,0,0)
+        InitHeroProficiency('RH38',17,5,18,3,75,15,0,0,0,0)
+        InitHeroProficiency('RH39',17,5,18,3,31,10,0,0,0,0)
     endfunction
     function InitUnitDropData()
         //初始化单位掉落

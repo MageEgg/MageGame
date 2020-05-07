@@ -107,6 +107,8 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(38,5,'CS02')
         RegisterPassCheckPrize(39,0,'RT39')
         RegisterPassCheckPrize(40,'RJ2D','RY3G')
+
+        
     endfunction
 
     function InitRegisterMission()//注册任务
@@ -151,7 +153,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
     function InitRegisterDay()//注册每日任务
     
         //代码输出
-        RegisterPassCheckDay(1,1,4,5,31,0,0)
+        RegisterPassCheckDay(1,1,4,5,32,0,0)
         RegisterPassCheckDay(2,1,6,18,30,0,0)
         RegisterPassCheckDay(3,1,8,9,21,0,0)
         RegisterPassCheckDay(4,1,10,18,34,0,0)
@@ -168,7 +170,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(15,1,10,18,23,0,0)
         RegisterPassCheckDay(16,1,12,7,24,0,0)
         RegisterPassCheckDay(17,1,14,18,26,0,0)
-        RegisterPassCheckDay(18,1,16,17,31,0,0)
+        RegisterPassCheckDay(18,1,16,17,32,0,0)
         RegisterPassCheckDay(19,1,18,2,30,0,0)
         RegisterPassCheckDay(20,1,3,13,32,0,0)
         RegisterPassCheckDay(21,1,18,11,34,0,0)
@@ -181,11 +183,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(28,1,14,18,26,0,0)
         RegisterPassCheckDay(29,1,16,17,27,0,0)
         RegisterPassCheckDay(30,1,18,2,22,0,0)
-        RegisterPassCheckDay(31,1,3,13,25,0,0)
+        RegisterPassCheckDay(32,1,3,13,25,0,0)
         RegisterPassCheckDay(32,1,18,11,23,0,0)
         RegisterPassCheckDay(33,1,10,15,24,0,0)
         RegisterPassCheckDay(34,1,4,5,26,0,0)
-        RegisterPassCheckDay(35,1,6,18,31,0,0)
+        RegisterPassCheckDay(35,1,6,18,32,0,0)
         RegisterPassCheckDay(36,1,8,9,30,0,0)
         RegisterPassCheckDay(37,1,10,18,32,0,0)
         RegisterPassCheckDay(38,1,12,7,34,0,0)
@@ -202,6 +204,55 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(49,1,14,18,23,0,0)
         RegisterPassCheckDay(50,1,16,17,24,0,0)
         RegisterPassCheckDay(51,1,18,2,26,0,0)
+        RegisterPassCheckDay(52,1,4,5,32,0,0)
+        RegisterPassCheckDay(53,1,6,18,30,0,0)
+        RegisterPassCheckDay(54,1,8,9,21,0,0)
+        RegisterPassCheckDay(55,1,10,18,34,0,0)
+        RegisterPassCheckDay(56,1,12,7,33,0,0)
+        RegisterPassCheckDay(57,1,14,18,21,0,0)
+        RegisterPassCheckDay(58,1,16,17,22,0,0)
+        RegisterPassCheckDay(59,1,18,2,23,0,0)
+        RegisterPassCheckDay(60,1,3,13,24,0,0)
+        RegisterPassCheckDay(61,1,18,11,25,0,0)
+        RegisterPassCheckDay(62,1,10,15,26,0,0)
+        RegisterPassCheckDay(63,1,4,5,27,0,0)
+        RegisterPassCheckDay(64,1,6,18,22,0,0)
+        RegisterPassCheckDay(65,1,8,9,25,0,0)
+        RegisterPassCheckDay(66,1,10,18,23,0,0)
+        RegisterPassCheckDay(67,1,12,7,24,0,0)
+        RegisterPassCheckDay(68,1,14,18,26,0,0)
+        RegisterPassCheckDay(69,1,16,17,32,0,0)
+        RegisterPassCheckDay(70,1,18,2,30,0,0)
+        RegisterPassCheckDay(71,1,3,13,32,0,0)
+        RegisterPassCheckDay(72,1,18,11,34,0,0)
+        RegisterPassCheckDay(73,1,10,15,33,0,0)
+        RegisterPassCheckDay(74,1,4,5,21,0,0)
+        RegisterPassCheckDay(75,1,6,18,22,0,0)
+        RegisterPassCheckDay(76,1,8,9,23,0,0)
+        RegisterPassCheckDay(77,1,10,18,24,0,0)
+        RegisterPassCheckDay(78,1,12,7,25,0,0)
+        RegisterPassCheckDay(79,1,14,18,26,0,0)
+        RegisterPassCheckDay(80,1,16,17,27,0,0)
+        RegisterPassCheckDay(81,1,18,2,22,0,0)
+        RegisterPassCheckDay(82,1,3,13,25,0,0)
+        RegisterPassCheckDay(83,1,18,11,23,0,0)
+        RegisterPassCheckDay(84,1,10,15,24,0,0)
+        RegisterPassCheckDay(85,1,4,5,26,0,0)
+        RegisterPassCheckDay(86,1,6,18,32,0,0)
+        RegisterPassCheckDay(87,1,8,9,30,0,0)
+        RegisterPassCheckDay(88,1,10,18,32,0,0)
+        RegisterPassCheckDay(89,1,12,7,34,0,0)
+        RegisterPassCheckDay(90,1,14,18,33,0,0)
+        RegisterPassCheckDay(91,1,16,17,21,0,0)
+        RegisterPassCheckDay(92,1,18,2,22,0,0)
+        RegisterPassCheckDay(93,1,3,13,23,0,0)
+        RegisterPassCheckDay(94,1,18,11,24,0,0)
+        RegisterPassCheckDay(95,1,10,15,25,0,0)
+        RegisterPassCheckDay(96,1,6,18,26,0,0)
+        RegisterPassCheckDay(97,1,8,9,27,0,0)
+        RegisterPassCheckDay(98,1,10,18,22,0,0)
+        RegisterPassCheckDay(99,1,12,7,25,0,0)
+        RegisterPassCheckDay(100,1,14,18,23,0,0)
                 
     endfunction
 
@@ -306,6 +357,9 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 endif
                 SetDzPlayerData(pid,5,index,PlayerPassData[index])
                 RePassClickFrame.execute(pid)
+                if  missionid == 1
+                    DzPalyerSignInEx(pid)
+                endif
             else
                 BJDebugMsg(I2S(missionid)+"任务已完成")
             endif

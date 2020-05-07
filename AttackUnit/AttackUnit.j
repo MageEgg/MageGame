@@ -761,6 +761,114 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackElseTimer = CreateTimer()
         TimerStart(AttackElseTimer,time,false,function OpenStopAttackTimer)
     endfunction
+
+    unit ExShopNpc = null
+    //黑心商店
+    function GetReExShopItem(int id1,int id2)->int
+        int new = 'IL0A'+GetRandomInt(0,8)
+        loop
+            exitwhen new != id1 and new != id2
+            new = 'IL0A'+GetRandomInt(0,8)
+        endloop
+        return new
+    endfunction
+
+
+
+
+
+    int array ExShopData[1000][2]
+
+    function AddExShopItem(unit wu,int index,int id)
+        int num = 1
+        if  id == 'IL0A'
+            num = GetRandomInt(1,3)
+        elseif  id == 'IL0B'
+            num = GetRandomInt(1,6)
+        elseif  id == 'IL0C'
+            num = GetRandomInt(1,4)
+        elseif  id == 'IL0D'
+            num = GetRandomInt(1,2)
+        
+        endif
+
+        ExShopData[index][1] = id
+        ExShopData[index][2] = num
+        AddItemToStock(wu, id, num, num)
+    endfunction
+
+    function ReExShopItem(int id,int use)
+        int index = 0
+        for i = 1,4
+            if  ExShopData[i][1] == id
+                index = i
+                exitwhen true
+            endif
+        end
+
+        if  index != 0
+            ExShopData[index][2] = ExShopData[index][2] - use
+            if  ExShopData[index][2] > 0
+                RemoveItemFromStock(ExShopNpc,id)
+                AddItemToStock(ExShopNpc, id, ExShopData[index][2], ExShopData[index][2])
+            endif
+        endif
+    endfunction
+    function PlayerBuyExShopItem(int pid,int id)
+        int use = GetTypeIdData(id,103)
+        int next = GetTypeIdData(id,106)
+        BJDebugMsg("钻石需求"+I2S(use))
+        if  GetPlayerFood(pid) >= use
+            ReExShopItem(id,1)
+            UsePlayerFood(pid,use)
+            if  Udis(Pu[1],ExShopNpc) < Udis(Pu[2],ExShopNpc)
+                UnitAddItemById(Pu[1],next)
+            else
+                UnitAddItemById(Pu[2],next)
+            endif
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r购买成功！")
+        else
+            ReExShopItem(id,0)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r钻石不足|cffff0000"+I2S(use)+"|r，无法购买！")
+        endif
+
+    endfunction
+
+
+    
+
+
+    function ReExShop()
+        int id1 = 0
+        int id2 = 0
+        int id3 = 0
+        int id4 = 0
+        if  GetUnitTypeId(ExShopNpc) != 0
+            RemoveUnit(ExShopNpc)
+        endif
+
+        ExShopNpc = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-6644,-5923,270)//新商店
+        
+
+
+        id1 = GetReExShopItem(0,0)
+        id2 = GetReExShopItem(id1,0)
+        id3 = GetReExShopItem(id1,id2)
+        if  GameLevel >= 4
+            id4 = 'IL1A'+GetRandomInt(0,6)
+        else
+            id4 = 'IL1A'+GetRandomInt(0,4)
+        endif
+
+        AddExShopItem(ExShopNpc,1, id1)
+        AddExShopItem(ExShopNpc,2, id2)
+        AddExShopItem(ExShopNpc,3, id3)
+        AddExShopItem(ExShopNpc,4, id4)
+
+
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[作者]：|r黑心，不对，|cff00ff00《良心商店》|r刷新啦！！！！")
+    endfunction
+
     
     function StartAttackUnit()
         int cos = 0
@@ -840,14 +948,20 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 endif
                             endif
                         endif
+                        /*
                         if  GetPlayerTechCount(Player(pid),'RJ1Z',true) == 1
                             if  ModuloInteger(AttackUnitWN,3) == 0
                                 UnitAddPoolItemShow.execute(Pu[1],16)
                             endif
                         endif
+                        */
 
                     endif
                 end     
+
+                if  ModuloInteger(AttackUnitWN,3) == 0
+                    ReExShop()
+                endif
             else
                 for pid = 0,5
                     if  IsPlaying(pid) == true

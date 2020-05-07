@@ -626,4 +626,44 @@ library ItemEquip uses DamageCode,ItemGameFunc
     endfunction
 
 
+
+    function GetExShopUse(int sid)->int
+        int use = 0
+        return use
+    endfunction
+
+    function PlayerBuyExShop(unit wu,int sid)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        int use = GetExShopUse(sid)
+
+        if  use > 0
+            if  GetPlayerFood(pid) >= use
+                UsePlayerFood(pid,use)
+
+                if  sid == 'AS0A'
+                    UnitAddItemById(Pu[1],'IN31')
+                elseif  sid == 'AS0B'
+                    UnitAddItemById(Pu[1],'CS53')
+                elseif  sid == 'AS0C'
+                    AddUnitRealState(Pu[1],61,1)
+                endif
+
+                
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r购买成功！")
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r钻石不足|cffff0000"+I2S(use)+"|r，无法购买！")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r已达到购买上限，无法购买！")
+        endif
+    endfunction
+
+
+
+    
+
+    
+    
+
+
 endlibrary

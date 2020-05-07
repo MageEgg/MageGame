@@ -1,5 +1,5 @@
 
-library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,MagicItemCollectCode
+library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     /*
     581-600 左侧按钮
     */
@@ -72,9 +72,12 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
 
         RegisterShowSaveFrameData(5,'RTX1','RTX1',0,0,0,0)//通行证1
         RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0)//通行证2
+        RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0)//通行证3
 
         RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
-       // RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
+        if  DzConA[18] == 1
+            RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
+        endif
         
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
@@ -85,6 +88,9 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
         RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0)//商城13件套
         RegisterShowSaveFrameData(5,'RSHG','RSHG',0,0,0,0)//商城14件套
+        if  DzConA[18] == 1
+            RegisterShowSaveFrameData(5,'RSHH','RSHH',0,0,0,0)//商城16件套
+        endif
         
         
 
@@ -258,6 +264,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
         RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
         RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
         RegisterShowSaveFrameData(6,'RDAZ','RDAZ',0,0,0,0)//评论
+        RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0)//小富豪
+        RegisterShowSaveFrameData(6,'RDBB','RDBB',0,0,0,0)//钻石大亨
 
         
 
@@ -585,9 +593,10 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                 endif
             
                 
-            elseif  id >= 'RDAA' and id <= 'RDAZ'
+            elseif  id >= 'RDAA' and id <= 'RDBZ'
                 if  IsSaveFrameTechUnLock(pid,index) == true
                     SetTipsData(1,"",GetTypeIdName(id))
+                    
                     SetTipsData(10,"",GetTypeIdStateTips(id))
                     SetTipsData(11,"",GetTypeIdTips(id))
                 else
@@ -616,6 +625,8 @@ library ShowSaveFrameFunction initializer InitShowSaveFrameData uses GameFrame,M
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/13)")
                         elseif  id == 'RSHG' and num < 14
                             SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/14)")
+                        elseif  id == 'RSHH' and num < 15
+                            SetTipsData(1,"",GetTypeIdName(id)+"(|cffff0000"+I2S(num)+"|r/15)")
                         else
                             SetTipsData(1,"",GetTypeIdName(id))
                         endif

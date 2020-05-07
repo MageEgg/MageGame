@@ -2,14 +2,15 @@ piece DzGameFunc
 
     function ShowPlayerDzJF(int pid) //显示积分
         if  DzConA[0] == 1 
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00地图等级：|r"+I2S(DzPlayerLv(Player(pid))-DzPlayerLvAdd(Player(pid)))+"+|cff00ff00"+I2S(DzPlayerLvAdd(Player(pid))))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关积分：|r"+I2S(GetDzPlayerData(pid,2,1)))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00异变积分：|r"+I2S(GetDzPlayerData(pid,2,4)))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(896))//MaxHeroBaseMedal*MaxGameLevel))  
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00万魔窟：|r"+I2S(GetDzPlayerData(pid,2,3))+"层")
 
             if  DzConA[24] == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00狂欢积分：|r"+I2S(GetDzPlayerData(pid,18,1)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,3))+"/1500")
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00祖传矿铲：|r"+I2S(GetDzPlayerData(pid,18,2)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,4))+"/3")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00狂欢积分：|r"+I2S(GetDzPlayerData(pid,18,1)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,3))+"/2000")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00祖传矿铲：|r"+I2S(GetDzPlayerData(pid,18,2)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,4))+"/4")
             endif
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
@@ -45,6 +46,7 @@ piece DzGameFunc
     function DzPalyerSignInRefresh(int pid,int week,int mission)
         BJDebugMsg("week:"+I2S(week)+" @@ TimeWeek:"+I2S(TimeWeek))
         if  week != TimeWeek
+
             SetDzPlayerData(pid,1,10,0) //经脉
             SetDzPlayerData(pid,16,2,0) //当天战勋点
             SetDzPlayerData(pid,18,3,0) //活动刷新
@@ -54,6 +56,7 @@ piece DzGameFunc
         if  mission != DzMissionWeek
             BJDebugMsg("通行证刷新")
             SetDzPlayerData(pid,1,5,0) //今日签到
+            SetDzPlayerData(pid,2,5,0) //每日钻石清空
             DzFlushOfGroupZero(pid,5)
         endif
     endfunction
@@ -102,15 +105,71 @@ piece DzGameFunc
             endif
         endif
     endfunction
+
+
+    //使用钻石
+    function GetPlayerFood(int pid)->int
+        return PlayerFoodFree + PlayerFoodStart + PlayerFoodShop
+    endfunction
+    function RePlayerFoodShow(int pid)
+        int food = PlayerFoodFree + PlayerFoodStart + PlayerFoodShop
+        SetPlayerState(Player(pid),PLAYER_STATE_RESOURCE_FOOD_USED,food)
+    endfunction
+    function UsePlayerFood(int id,int u)
+        int pid = id
+        int use = u
+        if  PlayerFoodStart > 0
+            if  PlayerFoodStart >= use
+                PlayerFoodStart = PlayerFoodStart - use
+                use = 0
+            else
+                use = use - PlayerFoodStart
+                PlayerFoodStart = 0
+            endif
+        endif
+        
+        if  PlayerFoodFree > 0 and use > 0
+            if  PlayerFoodFree >= use
+                PlayerFoodFree = PlayerFoodFree - use
+                use = 0
+            else
+                use = use - PlayerFoodFree
+                PlayerFoodFree = 0
+            endif
+            SetDzPlayerData(pid,2,5,PlayerFoodFree)
+        endif
+        
+        if  PlayerFoodShop > 0 and use > 0
+            PlayerFoodShop = PlayerFoodShop - use
+            if  DzBool == false
+                DzAPI_Map_ConsumeMallItem(Player(pid), "FOOD", use )
+            endif
+        endif
+        RePlayerFoodShow(pid)
+    endfunction
+    
+    function AddPlayerFoodByIndex(int pid,int index,int num)
+        PlayerInt[pid][50+index] = PlayerInt[pid][50+index] + num
+        RePlayerFoodShow(pid)
+    endfunction
+
+
     
     function DzPalyerSignInEx(int pid) //签到
         int sign = GetDzPlayerData(pid,1,5) //今日
         int Lsign = GetDzPlayerData(pid,1,6) //连续
         int Asign = GetDzPlayerData(pid,1,7) //累积
+        int give = 0
         if  sign == 0
+            give = 6+Lsign+1
+            if  give > 14
+                give = 14
+            endif
+            SetDzPlayerData(pid,2,5,give)
+            AddPlayerFoodByIndex(pid,2,give)
             SetDzPlayerData(pid,1,5,1)
             AddDzPlayerData(pid,1,7,1)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:签到成功！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:签到成功！奖励签到钻石x|cff00ff00"+I2S(give)+"，签到钻石仅当天有效！")
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[累积签到]|r:"+I2S(Asign+1)+"天！")
             if  Lsign > 0
                 if  IsDzPalyerSignInCon(pid) == true
@@ -124,6 +183,8 @@ piece DzGameFunc
                 SetDzPlayerData(pid,1,6,1)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[连续签到]|r:1天！")
             endif
+            
+            
             SetDzPlayerData(pid,1,4,TimeDay)
             DzSaveDzTime(pid)
         else
@@ -427,6 +488,9 @@ piece DzGameFunc
             BJDebugMsg("万魔窟排行榜存储："+I2S(jf)+"层")
         endif
     endfunction
+
+
+    
 
 endpiece
 

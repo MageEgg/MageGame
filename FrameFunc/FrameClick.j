@@ -76,9 +76,12 @@ scope FrameButton
                         PlayerClickRunePrize(pid,id-910)
                     elseif  id >= 921 and id <=923//符印奖励
                         PlayerClickRunePrize(pid,id-920)
+                    elseif  id == 920//符印重随
+                        ClickReRunePrizeFrame(pid)
+                    elseif  id == 420//副本重随
+                        ClickRePrizeFrame(pid)
                     elseif  id == 950//重随
                         ReHeroPrePare(pid)
-
                     endif
                 elseif  Type == TYPE_FUNC
                     if  id >= 301 and id <= 308//选择副本按钮
@@ -204,6 +207,9 @@ endscope
 //! runtextmacro AddFrameFunc("412")
 //! runtextmacro AddFrameFunc("413")
 
+//重置按钮
+//! runtextmacro AddFrameFunc("420")
+
 //! runtextmacro AddFrameFunc("421")
 //! runtextmacro AddFrameFunc("422")
 //! runtextmacro AddFrameFunc("423")
@@ -273,6 +279,9 @@ endscope
 //! runtextmacro AddFrameFunc("911")
 //! runtextmacro AddFrameFunc("912")
 //! runtextmacro AddFrameFunc("913")
+
+//重置按钮
+//! runtextmacro AddFrameFunc("920")
 
 //! runtextmacro AddFrameFunc("921")
 //! runtextmacro AddFrameFunc("922")

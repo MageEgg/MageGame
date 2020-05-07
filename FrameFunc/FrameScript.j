@@ -23,7 +23,7 @@
         //BJDebugMsg( R2S(GetPostionAsMouseX())+","+R2S(GetPostionAsMouseY()))
         DzFrameShow(UI_TipsHead, false)
     endfunction
-
+    
     function ShowUIUnitDefense(int pid)
         real r1 = 0
         if  Pu[5] != null
@@ -99,7 +99,7 @@
             endif
         endif
     endfunction
-
+    
     function BoxShowResources(int pid,int id)
         DzFrameShow(UI_TipsHead, true)
         if  id == 309
@@ -110,6 +110,7 @@
             int use = num*5
             SetTipsData(1,"","需要 - 玄铁x15")
             SetTipsData(10,"","点击刷新时渊副本奖励")
+
         elseif  id == 21
             SetTipsData(10,"","|cffcccccc重铸法宝：|n|r|cfff0f0f0消耗|r|cffffd24d1|r|cfff0f0f0个|r|cffffd24d补天石|r|cfff0f0f0，可重置为|r|cffffd24d同品质|r|cfff0f0f0的|r|cffffd24d随机法宝|r|cfff0f0f0。|n消耗|r|cffffc9263|r个|cffffc926补天石|r，可使法宝品质晋升为|cffffc926造化至宝|r。|n|n|cff00ff7f操作提示：点击指定法宝，再点击【重铸按钮】。|r")
         elseif  id == 22
@@ -429,7 +430,12 @@
                         if  boxid > 0
                             BoxShowTips(pid,boxid)
                         endif
-
+                    elseif  id == 420
+                        BoxShowRePrize(pid,1)
+                        DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                    elseif  id == 920
+                        BoxShowRePrize(pid,2)
+                        DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                     else
                         //UIDebugShowIndex(id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)

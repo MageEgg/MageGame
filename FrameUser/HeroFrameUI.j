@@ -554,25 +554,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         //DzFrameClearAllPoints(DzFrameGetPortrait())
         //DzFrameSetPoint(DzFrameGetPortrait(),1,GetFrameUnitNameFrame(),7,0.0,-0.01)
         DzFrameSetSize(DzFrameGetPortrait(),0.08,0.06)
-        
-        /*
-        DzFrameClearAllPoints(DzFrameFindByName("UnitsCheckBox",0))
-        DzFrameClearAllPoints(DzFrameFindByName("UnitsCheckBox",6))
-
-        DzFrameSetPoint(DzFrameFindByName("UnitsCheckBox",0),0,GameUI,0,-0.1,0.1)
-
-        DzFrameSetPoint(DzFrameFindByName("UnitsCheckBox",6),1,DzFrameFindByName("UnitsCheckBox",0),7,0.0,-0.01)
-        for x = 1,5
-            DzFrameClearAllPoints(DzFrameFindByName("UnitsCheckBox",x))
-            DzFrameClearAllPoints(DzFrameFindByName("UnitsCheckBox",x+6))
-            DzFrameSetScale(DzFrameFindByName("UnitsCheckBox",x),0.5)
-            DzFrameSetScale(DzFrameFindByName("UnitsCheckBox",x+6),0.5)
-
-            DzFrameSetPoint(DzFrameFindByName("UnitsCheckBox",x),3,DzFrameFindByName("UnitsCheckBox",x-1),5,0.0,0.0)
-            DzFrameSetPoint(DzFrameFindByName("UnitsCheckBox",x+6),3,DzFrameFindByName("UnitsCheckBox",x+6-1),5,0.0,0.0)
-        end
-        */
-
+   
         //控件设置
         
         Button.frameid = FRAME.Tag("BUTTON","Hero",GameUI,Button)
@@ -622,6 +604,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         DzFrameSetPoint(GetFrameItemTipsFrame(),1,origin,7,0.0,-0.018)
         DzFrameSetSize(GetFrameItemTipsFrame(),0.2,0.0)
         DzFrameSetScale(GetFrameItemTipsFrame(),1.3)
+
+
         
         
         

@@ -18,8 +18,8 @@ scope SelectHero
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
         
-        CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+128,270)//技能商店
-        Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+128,270)//技能商店
+        CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+256,270)//技能商店
+        Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+256,270)//技能商店
 
         SetPlayerTechResearched(Player(pid),'R000',1)
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
@@ -194,6 +194,11 @@ scope SelectHero
             if  GetUnitTypeId(Pu[1]) != 'H036'
                 if  DzPlayerLv(Player(pid)) >= 30
                     PoolAddHeroId(pid,'H036')
+                endif
+            endif
+            if  GetUnitTypeId(Pu[1]) != 'H037'
+                if  DzPlayerLv(Player(pid)) >= 36
+                    PoolAddHeroId(pid,'H037')
                 endif
             endif
             

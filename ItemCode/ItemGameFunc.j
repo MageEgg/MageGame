@@ -163,7 +163,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 if  GameGiftBool[num] == false
                     GameGiftBool[num] = true
                     AddUnitRealState(Pu[1],61,1)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，练功房怪物数量+1！") 
+                    AddPlayerFoodByIndex(pid,2,6)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，练功房怪物数量+1，当局钻石+6！") 
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                 endif

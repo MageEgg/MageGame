@@ -2066,6 +2066,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real x1 = GetUnitX(wu)
         real y1 = GetUnitY(wu)
 
+        real add = GetUnitAttack(wu)
 
         for i = 1,max
             bj_lastCreatedUnit = CreateUnit(GetOwningPlayer(wu),'z107',x1,y1,0)
@@ -2081,7 +2082,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
    
 
             if  lv >= 3
-                SetUnitRealState(bj_lastCreatedUnit,1,damage*1.5)
+                SetUnitRealState(bj_lastCreatedUnit,1,damage+add)
                 UnitAddAbility(bj_lastCreatedUnit,'A00I')
             else
                 SetUnitRealState(bj_lastCreatedUnit,1,damage)

@@ -187,6 +187,8 @@ scope ItemSystem initializer InitItemSystem
             //AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
+        elseif  itemid >= 'IL0A' and itemid <= 'IL1Z'
+            PlayerBuyExShopItem(pid,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS03'
             PlayerAbilityDraw(pid,1,itemid)
         elseif  itemid >= 'IS06' and itemid <= 'IS08'
@@ -510,7 +512,7 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'CS42'
             PlayerUseIncEquipGem(u1,itemid)
         elseif  itemid == 'IP06'
-            if  PlayerReRandomPrize(pid) == false
+            if  PlayerReRandomPrize(pid,1.0) == false
                 UnitAddItemById(u1,itemid)
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前没有副本奖励选项！")
             endif

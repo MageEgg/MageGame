@@ -295,14 +295,16 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
 
     
+    
 
 
     //读取奖励法宝池序号
-    function GetPlotPrizeMagicIndex(int pid,int index)->int
+    function GetPlotPrizeMagicIndex(int pid,int index,real r)->int
         int prizeid = 0
 
         real ran = GetRandomInt(1,100)
         real cj = 1.0
+        real add = 0
 
         real green = 60
         real zi = index * 3
@@ -311,34 +313,35 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         
 
         if  GetPlayerTechCount(Player(pid),'RG1A',true)>0
-            cj = cj + 0.15
+            add = add + 0.15
         endif
         if  GetPlayerTechCount(Player(pid),'RG1C',true)>0
-            cj = cj + 0.15
+            add = add + 0.15
         endif
         if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
-            cj = cj + 0.15
+            add = add + 0.15
         endif
         if  GetPlayerTechCount(Player(pid),'RSHF',true)>0
-            cj = cj + 0.15
+            add = add + 0.15
         endif
         if  GetPlayerTechCount(Player(pid),'RSHG',true)>0
-            cj = cj + 0.06
+            add = add + 0.06
         endif
-
         
-
+        
+        
+        cj = cj + add * r
         
 
         blue = blue *cj
         zi = zi * cj
         green = 100-blue-zi
-/*
+
         BJDebugMsg("法宝加成:"+R2S(cj*100)+"%")
-        BJDebugMsg("法宝概率:绿"+R2S(green*100)+"%")
-        BJDebugMsg("法宝概率:蓝"+R2S(blue*100)+"%")
-        BJDebugMsg("法宝概率:紫"+R2S(zi*100)+"%")
-*/
+        BJDebugMsg("法宝概率:绿"+R2S(green)+"%")
+        BJDebugMsg("法宝概率:蓝"+R2S(blue)+"%")
+        BJDebugMsg("法宝概率:紫"+R2S(zi)+"%")
+
         if  ran <= green
             prizeid = 15
         elseif  ran <= 100-zi
@@ -367,7 +370,8 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
 
 
-    function PlayerReRandomPrize(int pid)->bool
+    //刷新副本
+    function PlayerReRandomPrize(int pid,real r)->bool
         int rid = 0
         int index = GetNowOverPlotIndex(pid)
 
@@ -386,10 +390,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
                     endif
                 end
                 
-                id3 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
-                id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+                id3 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index,r),true)
+                id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index,r),true)
                 if  GameLevel >= 3
-                    id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+                    id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index,r),true)
                 endif
                 GivePlayerPrize(pid,'CF01',0,id3,id4,id5)
 
@@ -398,6 +402,34 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         //endif
         return false
     endfunction
+
+
+    //钻石刷新副本
+
+    
+    function ClickRePrizeFrame(int pid)
+        int use = (PlayerRePrizeNum1+1)*2
+        if  use > 8
+            use = 8
+        endif
+        if  GetPlayerFood(pid) >= use
+            PlayerRePrizeNum1 = PlayerRePrizeNum1 + 1
+            BJDebugMsg("刷副本次数"+I2S(PlayerRePrizeNum1))
+            if  PlayerReRandomPrize(pid,0.5) == true    
+                UsePlayerFood(pid,use)
+                if  GetLocalPlayer() == Player(pid)
+                    if  Frame2Id(LastFrame) == 420
+                        BoxShowRePrize(pid,1)
+                    endif
+                endif
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r钻石不足|cffff0000"+I2S(use)+"|r，无法重置！")
+        endif
+    endfunction
+
+
+
 
     //给玩家副本奖励
     function GivePlayerFinishPlotPrize(int pid,int index)
@@ -418,10 +450,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             BJDebugMsg("普通奖励")
             id1 = GetPlayerPlotPrizeId(pid,index,1)
             //id2 = GetPlayerPlotPrizeId(pid,index,2)
-            id3 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
-            id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+            id3 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index,1.0),true)
+            id4 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index,1.0),true)
             if  GameLevel >= 3
-                id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index),true)
+                id5 = GetPrize(pid,GetPlotPrizeMagicIndex(pid,index,1.0),true)
 
                 if  index == 3 and GameLevel >= 4
                     if  GetMagicItemMaxColor(pid) > 3

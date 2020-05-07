@@ -126,8 +126,10 @@ library DzDataSetting uses DzBase
         int max = GetDzDataGroupMaxValue(Group)
         //在此处添加 组 位 最大值
         if  Group == 1
-            if  flag == 7
-                max = GamePuOverDay //累积签到 
+            if  flag == 6
+                max = GamePuOverDay - 38 //连续签到
+            elseif  flag == 7
+                max = GamePuOverDay - 38 //累积签到 
             elseif  flag == 9 //未使用
                 max = 0
             elseif  flag == 10 //经脉今日上限
@@ -157,7 +159,9 @@ library DzDataSetting uses DzBase
                 if  max > 1500
                     max = 1500
                 endif
-            elseif  flag >= 5 //未使用
+            elseif  flag == 5 //每日钻石
+                max = 14
+            elseif  flag >= 6 //未使用
                 max = 0
             endif
         elseif  Group == 3
@@ -219,13 +223,13 @@ library DzDataSetting uses DzBase
             endif
         elseif  Group == 18 //活动存档组
             if  flag == 1
-                max = 4500
+                max = 5000
             elseif  flag == 2
                 max = Holiday51*3
             elseif  flag == 3
-                max = 1500
+                max = 2000
             elseif  flag == 4
-                max = 3
+                max = 4
             elseif  flag > 4
                 max = 0
             endif

@@ -79,6 +79,10 @@ library ExNativeFrame uses GameFrame
     //刷新符印奖励UI
     function ReRunePrizeFrame(int pid)
         int id = 0
+        int use = (PlayerRePrizeNum2+1)*2
+        if  use > 8
+            use = 8
+        endif
         if  GetLocalPlayer() == Player(pid)
             for i = 1,3
                 id = GetUnitIntState(Pu[1],910+i)
@@ -91,8 +95,11 @@ library ExNativeFrame uses GameFrame
                     DzFrameSetText(BUTTON_Text[920+i],"")
                 endif
             end
+            DzFrameSetText(BUTTON_Text[920],"钻石x"+I2S(use))
         endif
     endfunction
+
+    
 
     
 
@@ -134,24 +141,33 @@ library ExNativeFrame uses GameFrame
         endif
     endfunction
 
-    
+    function GetNewRunePrize(int id1,int id2)->int
+        int new = 'FY00'+GetRandomInt(1,8)
+        loop
+            exitwhen new != id1 and new != id2
+            new = 'FY00'+GetRandomInt(1,8)
+        endloop
+        return new
+    endfunction
 
     function GivePlayerRunePrizeFrame(int pid)
         int id = GetUnitIntState(Pu[1],911)
-        int prize = GetRandomInt(1,8)
+        
         if  id >= 'FY01' and id <= 'FY08'
             //给一个 防止上一个窗口残留
             AddUnitRune(Pu[1],id,1)
             ReRuneFrame(pid)
         endif
 
-        for i = 1,3
-            prize = prize+5
-            if  prize > 8
-                prize = prize - 8
-            endif
-            SetUnitIntState(Pu[1],910+i,'FY00'+prize)
-        end
+        int id1 = GetNewRunePrize(0,0)
+        int id2 = GetNewRunePrize(id1,0)
+        int id3 = GetNewRunePrize(id1,id2)
+
+        SetUnitIntState(Pu[1],911,id1)
+        SetUnitIntState(Pu[1],912,id2)
+        SetUnitIntState(Pu[1],913,id3)
+        
+        PlayerRePrizeNum2 = 0
 
         if  GetLocalPlayer() == Player(pid)
             Button.show = true
@@ -161,18 +177,15 @@ library ExNativeFrame uses GameFrame
 
 
     function PlayerReRuneRandomPrize(int pid)->bool
-        int id = 0
-        int prize = GetRandomInt(1,8)
-        int prizeadd = GetRandomInt(1,7)
         if  GetUnitIntState(Pu[1],911) > 0
 
-            for i = 1,3
-                prize = prize+6
-                if  prize > 8
-                    prize = prize - 8
-                endif
-                SetUnitIntState(Pu[1],910+i,'FY00'+prize)
-            end
+            int id1 = GetNewRunePrize(0,0)
+            int id2 = GetNewRunePrize(id1,0)
+            int id3 = GetNewRunePrize(id1,id2)
+
+            SetUnitIntState(Pu[1],911,id1)
+            SetUnitIntState(Pu[1],912,id2)
+            SetUnitIntState(Pu[1],913,id3)
 
             if  GetLocalPlayer() == Player(pid)
                 Button.show = true
@@ -184,6 +197,61 @@ library ExNativeFrame uses GameFrame
         return false
     endfunction
 
+    function BoxShowRePrize(int pid,int index)
+        int use = 0
+        DzFrameShow(UI_TipsHead, true)
+        if  index == 1
+            use = (PlayerRePrizeNum1 + 1) * 2
+            if  use > 8
+                use = 8
+            endif
+        elseif  index == 2
+            use = (PlayerRePrizeNum2 + 1) * 2 
+            if  use > 8
+                use = 8
+            endif
+        endif
+        if  GetPlayerFood(pid) >= use
+            SetTipsData(1,"","需要 - 钻石x|cff00ff00"+I2S(use))
+        else
+            SetTipsData(1,"","需要 - 钻石x|cffff0000"+I2S(use))
+        endif
+        SetTipsData(10,"","点击刷新当前奖励")
+        SetTipsData(11,""," ")
+        SetTipsData(12,"","|cffffcc00当局钻石：|r"+I2S(PlayerFoodStart))
+        SetTipsData(13,"","|cffffcc00签到钻石：|r"+I2S(PlayerFoodFree))
+        SetTipsData(14,"","|cffffcc00特殊钻石：|r"+I2S(PlayerFoodShop))
+        /*
+        if  GameGiftBool[8] == false
+            SetTipsData(15,""," ")
+            SetTipsData(16,"","|cff00ff00输入mzrpg，奖励开局钻石x6！")
+        endif
+        */
+
+        SetTipsData(15,"","|cffff0000切勿沉迷刷新！！！")
+        ShowTipsUI()
+    endfunction
+
+    //刷新符印
+    function ClickReRunePrizeFrame(int pid)
+        int use = (PlayerRePrizeNum2+1)*2
+        if  use > 8
+            use = 8
+        endif
+        if  GetPlayerFood(pid) >= use
+            PlayerRePrizeNum2 = PlayerRePrizeNum2 + 1
+            if  PlayerReRuneRandomPrize(pid) == true    
+                UsePlayerFood(pid,use)
+                if  GetLocalPlayer() == Player(pid)
+                    if  Frame2Id(LastFrame) == 920
+                        BoxShowRePrize(pid,2)
+                    endif
+                endif
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r钻石不足|cffff0000"+I2S(use)+"|r，无法重置！")
+        endif
+    endfunction
     
 
     
@@ -350,23 +418,26 @@ library ExNativeFrame uses GameFrame
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","Prize2",GameUI,Button)
         Button.SetPoint(4,GameUI,4,0,0)
-        Button.SetSize(0.134,0.12)
+        Button.SetSize(0.134,0.134)
         origin = Button.frameid
 
         //背景设置
         Back.frameid = FRAME.Tag("BACKDROP","Prize2",origin,Back)
         Back.SetPoint(4,origin,4,0,0)
-        Back.SetSize(0.134,0.12)
+        Back.SetSize(0.134,0.134)
         Back.SetTexture("war3mapImported\\UI_Prize_Back2.tga",0)
 
 
         for x = 0,2
-            CreateButton(911+x,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+x*0.042,0.012,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack0.tga")
+            CreateButton(911+x,Button.frameid,TYPE_BUTTON,6,Button.frameid,6,0.005+x*0.042,0.034,0.04,0.060,"war3mapImported\\UI_Prize_ButtonBack0.tga")
             CreateButton(921+x,Button.frameid,TYPE_BUTTON,1,BUTTON_Back[911+x][0],1,0.0,-0.002,0.036,0.036,"war3mapImported\\alpha.tga")
             CreateText(921+x,Button.frameid,"centertext008",1,7,0.0,-0.005,"|cff999999物品名称|r")
         end
         CreateButton(910,Button.frameid,TYPE_CLOSE,2,Button.frameid,2,0.0,0.0,0.03,0.016,"war3mapImported\\UI_ESC.tga")
 
+        CreateButton(920,Button.frameid,TYPE_BUTTON,7,Button.frameid,7,0.0,0.005,0.08,0.022,"war3mapImported\\UI_RePrize_Button.tga")
+        CreateText(920,Button.frameid,"text008",3,4,0.005,0.0,"")
+        
         Button.show = false
         
 

@@ -1,61 +1,6 @@
 library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
-    function GetPlayerBuyShopNumber(int pid)->int
-        int num = 0
-        if  DzShop(Player(pid),"GH1") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"CB1") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"WQ1") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"CH1") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"CW1") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"LB1") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"LB2") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"LB3") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"RWK") == true
-            num = num + 1
-        endif
-
-        //新增
-        if  DzShop(Player(pid),"LB4") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"CB2") == true
-            num = num + 1
-        endif
-
-        if  DzShop(Player(pid),"PF1") == true
-            num = num + 1
-        endif
-
-        if  DzShop(Player(pid),"WQ2") == true
-            num = num + 1
-        endif
-
-        if  DzShop(Player(pid),"RWK2") == true
-            num = num + 1
-        endif
-        if  DzShop(Player(pid),"LB6") == true
-            num = num + 1
-        endif
-
-
-        return num
-    endfunction
+    
 
 
     function InitPlayerDzShopState(int pid)
@@ -289,6 +234,9 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         if  GetPlayerTechCount(Player(pid),'RJ1Z',true) == 1 //良心赞助
             shopnum = shopnum + 1
+            AddUnitRealState(Pu[1],64,12)
+            AddUnitRealState(Pu[1],61,1)
+            AddPlayerFoodByIndex(pid,2,10)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00良心赞助|r》已激活！")
         endif
 
@@ -346,6 +294,14 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  buynum >= 14
             AddPlayerTechResearched(Player(pid),'RSHG',1)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0014件套|r》已激活！")
+        endif
+        if  buynum >= 16
+            AddUnitRealState(Pu[1],15,10)
+            AddUnitRealState(Pu[1],16,10)
+            AddUnitRealState(Pu[1],64,5)
+            AddPlayerTechResearched(Player(pid),'RSHH',1)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0016件套|r》已激活！")
+
         endif
 
         
@@ -429,6 +385,18 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         
 
 
+        add = GetDzPlayerData(pid,2,5)
+        if  add > 0
+            AddPlayerFoodByIndex(pid,1,add)
+        endif
+
+        add = DzAPI_Map_GetMallItemCount(Player(pid), "FOOD")
+        if  DzBool == true
+            add = add + 188
+        endif
+        if  add > 0
+            AddPlayerFoodByIndex(pid,3,add)
+        endif
 
     endfunction
 

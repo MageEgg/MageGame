@@ -253,7 +253,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         int id = AttackUnitChallengeStateTypeValueA[zu][wei]
         int zero = AttackUnitChallengeStateTypeValueA[zu][0]
         string s = ""
-        real time = 5
+        real time = 2//挑战时间
         if  GameMode == 3
             time = 1
         endif
