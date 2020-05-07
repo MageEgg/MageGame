@@ -26,7 +26,7 @@ library DzDataSetting uses DzBase
     
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
-    // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包
+    // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包 23魔芝礼包
     // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
@@ -136,9 +136,9 @@ library DzDataSetting uses DzBase
                 max = DzMeridiansDayNum
             elseif  flag >= 11 and flag <= 20
                 max = 0
-            elseif  flag == 21 or flag == 22 //公众号礼包 入群礼包
+            elseif  flag == 21 or flag == 22 or flag == 23 //公众号礼包 入群礼包 魔芝礼包
                 max = 1
-            elseif  flag >= 23 //未使用
+            elseif  flag >= 24 //未使用
                 max = 0
             endif
         elseif  Group == 2
