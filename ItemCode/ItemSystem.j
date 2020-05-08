@@ -242,6 +242,8 @@ scope ItemSystem initializer InitItemSystem
             OpenLastAttack(pid)
         elseif  itemid == 'IZ05'
             OpenMeridiansChallenge(pid)
+        elseif  itemid == 'IZ08'
+            SendUnitToDragonKing(pid)
         elseif  itemid == 'IZ01'
             if  GameLevel >= 2
                 if  GameTeamChallengeBool[21] == false

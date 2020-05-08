@@ -33,6 +33,7 @@ scope SelectHero
         InitPlayerDzShopState.execute(pid)//商城属性
 
         InitPlayerMeridiansState.execute(pid)//经脉
+        InitPlayerDragonKingState.execute(pid)//龙宫城
 
         PlayerLoadPassCheck.execute(pid)//读取通行证
 
