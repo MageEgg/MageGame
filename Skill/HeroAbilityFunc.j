@@ -2159,12 +2159,15 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             ang = Pang(S540X,S540Y,x,y)
             SetUnitX(GetEnumUnit(),S540X+(S540R)*Cos(ang))
             SetUnitY(GetEnumUnit(),S540Y+(S540R)*Sin(ang))
+            
         endif
     endfunction
 
     function SpellS540(unit wu,real sx,real sy,real dam,int level)
         unit u1 = wu
-        effect eff = AddSpecialEffect("effect_S540.mdl",sx,sy)
+        effect eff1 = AddSpecialEffect("effect_S540.mdl",sx,sy)
+        effect eff2 = AddSpecialEffect("effect_S540.mdl",sx,sy)
+        effect eff3 = AddSpecialEffect("effect_S540.mdl",sx,sy)
         real x1 = sx
         real y1 = sy
         int time = 300
@@ -2180,8 +2183,12 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
                 rac = 200
             endif
 
-            EXEffectMatReset(eff)
-            EXEffectMatScale(eff,rac/600,rac/600, 1 )
+            EXEffectMatReset(eff1)
+            EXEffectMatScale(eff1,rac/600,rac/600, 1 )
+            EXEffectMatReset(eff2)
+            EXEffectMatScale(eff2,rac/600,rac/600, 1 )
+            EXEffectMatReset(eff3)
+            EXEffectMatScale(eff3,rac/600,rac/600, 1 )
 
             S540R = rac-50
             S540X = x1
@@ -2203,7 +2210,9 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             
 
             if  time <= 0
-                DestroyEffect(eff)
+                DestroyEffect(eff1)
+                DestroyEffect(eff2)
+                DestroyEffect(eff3)
                 endtimer
             endif
             flush locals

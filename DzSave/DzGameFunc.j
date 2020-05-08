@@ -5,7 +5,7 @@ piece DzGameFunc
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00地图等级：|r"+I2S(DzPlayerLv(Player(pid))-DzPlayerLvAdd(Player(pid)))+"+|cff00ff00"+I2S(DzPlayerLvAdd(Player(pid))))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00通关积分：|r"+I2S(GetDzPlayerData(pid,2,1)))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00异变积分：|r"+I2S(GetDzPlayerData(pid,2,4)))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00龙宫秘宝：|r"+I2S(GetDzPlayerData(pid,2,6))+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,1,12))+"/12")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00龙宫积分：|r"+I2S(GetDzPlayerData(pid,2,6))+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,1,12))+"/12")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00战勋点：|r"+I2S(GetDzPlayerData(pid,16,1))+"  |cffffcc00当局获得：|r"+I2S(DzHeroMedalGameExp)+"/"+I2S(GameLevel*32)+"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,16,2))+"/"+I2S(896))//MaxHeroBaseMedal*MaxGameLevel))  
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00万魔窟：|r"+I2S(GetDzPlayerData(pid,2,3))+"层")
 

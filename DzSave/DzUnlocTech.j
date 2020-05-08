@@ -583,6 +583,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RJ1K',InitCond1(2,Unloc_Type_Level,27),0,0,0,0)
         InitUnlocTechConditions('RJ1M',InitCond1(2,Unloc_Type_Level,30),0,0,0,0)
         InitUnlocTechConditions('RJ1N',InitCond1(2,Unloc_Type_Level,33),0,0,0,0)
+        InitUnlocTechConditions('RJ1O',InitCond1(2,Unloc_Type_Level,45),0,0,0,0)
 
 
 
@@ -605,8 +606,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGBC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(20,4,1)),0,0,0)
         InitUnlocTechConditions('RGBD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(20,5,1)),0,0,0)
         InitUnlocTechConditions('RGBE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(20,6,1)),0,0,0)
-        /*
         InitUnlocTechConditions('RGBF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(20,7,1)),0,0,0)
+        /*
         InitUnlocTechConditions('RGBG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(20,8,1)),0,0,0)
         InitUnlocTechConditions('RGBH',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(20,9,1)),0,0,0)
         InitUnlocTechConditions('RGBI',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(20,10,1)),0,0,0)

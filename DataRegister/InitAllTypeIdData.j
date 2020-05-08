@@ -239,6 +239,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ1K',"我最强","ReplaceableTextures\\CommandButtons\\BTNRJ1K.BLP","")
         call InitTypeIdStrings('RJ1M',"我超强","ReplaceableTextures\\CommandButtons\\BTNRJ1M.BLP","")
         call InitTypeIdStrings('RJ1N',"我究极强","ReplaceableTextures\\CommandButtons\\BTNRJ1N.BLP","")
+        call InitTypeIdStrings('RJ1O',"我强无敌","ReplaceableTextures\\CommandButtons\\BTNRJ1O.BLP","承受暴击伤害减少10%")
         call InitTypeIdStrings('RJ1I',"停服补偿","ReplaceableTextures\\CommandButtons\\BTNAM40.blp","第1赛季通行证经验+6\n\n加强防控，一起加油。众志成城，抗击疫情。致敬英雄共悼逝者！！")
         call InitTypeIdStrings('RJ1L',"延期补偿","ReplaceableTextures\\CommandButtons\\BTNGE.blp","第2赛季通行证经验+6\n\n我从来没鸽过，你们要相信我，是真的！")
         call InitTypeIdStrings('RJ1U',"封神礼包","ReplaceableTextures\\CommandButtons\\BTNRJ1U.BLP","每秒业力+10\n经验加成+10%\n开局玄铁+10\n装备升级失败返还20%金币")

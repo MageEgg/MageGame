@@ -168,7 +168,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
 
         RegisterShowSaveFrameData(0,'RJ1M','RJ1M',0,0,0,0)//我超强
         RegisterShowSaveFrameData(0,'RJ1N','RJ1N',0,0,0,0)//我究极强
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RJ1O','RJ1O',0,0,0,0)//我强无敌
 
 
         RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
@@ -654,7 +654,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                 elseif  id == 'RH37'
                     SetTipsData(17,"","地图等级36级可手选。")
                 elseif  id == 'RH40'
-                    SetTipsData(17,"","龙宫秘宝达到48个时可选择，输入“JF”查询。")
+                    SetTipsData(17,"","龙宫积分达到48个时可选择，输入“JF”查询。")
                 endif
             
                 

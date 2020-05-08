@@ -279,9 +279,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         if  GetDzPlayerData(pid,1,12) < DragonKingDayNum*3
             AddDzPlayerData(pid,2,6,3)
             AddDzPlayerData(pid,1,12,3)
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r成功击杀"+GetObjectName('utJD')+"，|cffffff80龙宫秘宝积分+3|r！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r成功击杀"+GetObjectName('utJD')+"，|cffffff80龙宫积分+3|r！")
         else
-            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r成功击杀"+GetObjectName('utJD')+"，但您|cffff0000今日龙宫秘宝积分已达上限|r，无法继续获得！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r成功击杀"+GetObjectName('utJD')+"，但您|cffff0000今日龙宫积分已达上限|r，无法继续获得！")
         endif
     endfunction
 
