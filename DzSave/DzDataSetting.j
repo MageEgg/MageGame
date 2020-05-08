@@ -31,7 +31,7 @@ library DzDataSetting uses DzBase
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
-    // 组6 20组 1经脉最大上限 2-9经脉 11龙宫最大上限 12-19碎片
+    // 组6 20组 1经脉最大上限 2-9经脉 11龙素材最大上限 12-19龙素材 *********
     // 组7 英雄熟练度 30组
     // 组8 英雄熟练度 30组
     // 组9 熟练度等级 60组
@@ -136,9 +136,9 @@ library DzDataSetting uses DzBase
             elseif  flag == 10 //经脉今日上限
                 max = DzMeridiansDayNum
             elseif  flag == 11 //龙王今日上限
-                max = LongDayNum
+                max = DragonKingNum
             elseif  flag == 12 //龟丞相今日上限
-                max = LongDayNum*3
+                max = DragonKingNum*3
             elseif  flag >= 13 and flag <= 20
                 max = 0
             elseif  flag == 21 or flag == 22 or flag == 23 //公众号礼包 入群礼包 魔芝礼包
@@ -167,7 +167,7 @@ library DzDataSetting uses DzBase
             elseif  flag == 5 //每日钻石
                 max = 14
             elseif  flag == 6 //龙宫积分
-                max = LongDay * 12
+                max = DragonKing*DragonKingNum*3
             elseif  flag >= 7 //未使用
                 max = 0
             endif
@@ -203,7 +203,17 @@ library DzDataSetting uses DzBase
                 endif
             elseif  flag >= 2 and flag <= 9 //经脉等级
                 max = MeridiansMaxLv
-            elseif  flag >= 10
+            elseif  flag == 10
+                max = 0
+            elseif  flag == 11 //龙素材最大上限
+                if  (DzPlayerGames(Player(pid))+1) < DragonKing*DragonKingNum
+                    max = (DzPlayerGames(Player(pid))+1)
+                else
+                    max = DragonKing*DragonKingNum
+                endif
+            elseif  flag >= 12 and flag <= 19 //龙素材等级
+                max = DragonKingMaxLv
+            elseif  flag == 20
                 max = 0
             endif
         elseif  Group == 7

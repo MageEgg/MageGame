@@ -15,7 +15,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
         int DzMissionWeek = 0
         int GamePuOverDay = 0
         int MeridiansDay = 0
-        int LongDay = 0
+        int DragonKing = 0
 
         int Holiday51 = 0
 
@@ -186,9 +186,9 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
                 MeridiansDay = 0
             endif
 
-            LongDay = (ServerTime-1588867200)/86400 //龙宫
-            if  LongDay < 0
-                LongDay = 0
+            DragonKing = (ServerTime-1588867200)/86400 //龙宫
+            if  DragonKing < 0
+                DragonKing = 0
             endif
 
             Holiday51 = (ServerTime-1587657600)/86400 //51活动日
@@ -197,7 +197,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             endif
             BJDebugMsg.execute("初始化天数 51活动：："+I2S(Holiday51))
             BJDebugMsg.execute("初始化天数 经脉日：："+I2S(MeridiansDay))
-            BJDebugMsg.execute("初始化天数 龙宫日：："+I2S(LongDay))
+            BJDebugMsg.execute("初始化天数 龙宫日：："+I2S(DragonKing))
             BJDebugMsg.execute("初始化天数 已发布：："+I2S(GamePuOverDay))
             BJDebugMsg.execute("初始化天数 通行证：："+I2S(MissionDay))
             
