@@ -206,7 +206,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
 
     endfunction
 
-    int DragonKingNum = 4
+    int DragonKingDayNum = 4
     int DragonKingMaxLv = 5
 
     function GetDragonKingName(int num)->string
@@ -276,8 +276,9 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     
     function DragonKingChallengeDeathEx(int pid)
         BJDebugMsg(I2S(GetDzPlayerData(pid,1,12)))
-        if  GetDzPlayerData(pid,1,12) < DragonKingNum*3
+        if  GetDzPlayerData(pid,1,12) < DragonKingDayNum*3
             AddDzPlayerData(pid,2,6,3)
+            AddDzPlayerData(pid,1,12,3)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r成功击杀"+GetObjectName('utJD')+"，|cffffff80龙宫秘宝积分+3|r！")
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r成功击杀"+GetObjectName('utJD')+"，但您|cffff0000今日龙宫秘宝积分已达上限|r，无法继续获得！")
@@ -288,13 +289,13 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         int num = GetRandomInt(1,8)
         real ran = 0
         BJDebugMsg(I2S(GetDzPlayerData(pid,1,11)))
-        if  GetDzPlayerData(pid,1,11) < DragonKingNum
+        if  GetDzPlayerData(pid,1,11) < DragonKingDayNum
             if  GetDzPlayerData(pid,6,num+11) < DragonKingMaxLv
                 AddDzPlayerData(pid,1,11,1)
                 AddDzPlayerData(pid,6,num+11,1)
                 AddDzPlayerData(pid,6,11,1)
                 AddPlayerDragonKingStateOfLevel(pid,num,GetDzPlayerData(pid,6,num+11))
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r恭喜你成功突破|cffffff00“"+GetDragonKingName(num)+"”|r！|r[今日成功突破龙宫城 |cffffcc00"+I2S(GetDzPlayerData(pid,1,11))+"/"+I2S(DragonKingNum)+"|r]")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r恭喜你成功突破|cffffff00“"+GetDragonKingName(num)+"”|r！|r[今日成功突破龙宫城 |cffffcc00"+I2S(GetDzPlayerData(pid,1,11))+"/"+I2S(DragonKingDayNum)+"|r]")
             else
                 AddDzPlayerData(pid,2,1,20)
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r您突破的|cffffff00“"+GetDragonKingName(num)+"”已满级，自动转化为20点通关积分！")
