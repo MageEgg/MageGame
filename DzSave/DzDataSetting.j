@@ -3,7 +3,6 @@ library DzDataSetting uses DzBase
     //////////////////////////////////////////////////////////
     //使用的宏定义
     #define MaxGameLevel 10
-    #define LongDayNum 4
 
     #define MaxHeroExpLevel 4 //最大等级
     #define MaxHeroNeedExp0 12 //经验需求

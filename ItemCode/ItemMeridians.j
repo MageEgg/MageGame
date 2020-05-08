@@ -203,7 +203,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     int LongDayNum2 = 12
     int DragonKingMaxLv = 5
 
-    function CreateMeridiansNPC()
+    /*function CreateMeridiansNPC()
         CreateUnit(Player(9),'np43',-1300,-7100,270)
         CreateUnit(Player(9),'np44',-1300,-7100,270)
         SetUnitScale(CreateUnit(Player(9),'eZ08',-1300,-7100,270),1.9,1.9,1.9)
@@ -338,33 +338,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
             AddDzPlayerData(pid,2,1,20)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-经脉]：|r您今日突破经脉次数已达上限，自动转化为20点通关积分！")
         endif
-    endfunction
-
-    endfunction
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    endfunction*/
 
 
 endlibrary
