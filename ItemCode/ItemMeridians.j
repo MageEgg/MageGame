@@ -274,7 +274,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         end
     endfunction
     
-    function DragonKingChallengeDeathEx(int pid)
+    function DragonKingChallengeDeath2Ex(int pid)
         BJDebugMsg(I2S(GetDzPlayerData(pid,1,12)))
         if  GetDzPlayerData(pid,1,12) < DragonKingDayNum*3
             AddDzPlayerData(pid,2,6,3)
@@ -285,7 +285,15 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         endif
     endfunction
 
-    function DragonKingChallengeDeath(int pid)
+    function DragonKingChallengeDeath2()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                DragonKingChallengeDeath2Ex(pid)
+            endif
+        end
+    endfunction
+
+    function DragonKingChallengeDeath1Ex(int pid)
         int num = GetRandomInt(1,8)
         real ran = 0
         BJDebugMsg(I2S(GetDzPlayerData(pid,1,11)))
@@ -304,6 +312,14 @@ library ItemMeridians uses DamageCode,ItemGameFunc
             AddDzPlayerData(pid,2,1,20)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[通关挑战-龙宫城]：|r您今日突破龙宫城次数已达上限，自动转化为20点通关积分！")
         endif
+    endfunction
+
+    function DragonKingChallengeDeath1()
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                DragonKingChallengeDeath1Ex(pid)
+            endif
+        end
     endfunction
 
 

@@ -926,9 +926,9 @@ scope DeathEvent initializer InitDeathEvent
                     if  uid == 'utJA'
                         MeridiansChallengeDeath()
                     elseif  uid == 'utJE'
-                        DragonKingChallengeDeath(pid2)
+                        DragonKingChallengeDeath1()
                     elseif  uid == 'utJD'
-                        DragonKingChallengeDeathEx(pid2)
+                        DragonKingChallengeDeath2()
                     endif
                     if  uid >= 'uT0A' and uid <= 'uTZZ'
                         AttackUnitChallengeStateDeathEvent(pid2,u1)
