@@ -334,6 +334,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(3,'RH37','RH37',0,0,0,0)//苟策划
         RegisterShowSaveFrameData(3,'RH38','RH38',0,0,0,0)//女娲
         RegisterShowSaveFrameData(3,'RH39','RH39',0,0,0,0)//孔宣
+        RegisterShowSaveFrameData(3,'RH40','RH40',0,0,0,0)//龟丞相
 
 
 
@@ -346,6 +347,18 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)//阳跷脉
         RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)//阴维脉
         RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)//阳维脉
+        RegisterShowSaveFrameData(7,'RX10','RX1A',0,0,0,0)//龙筋
+        RegisterShowSaveFrameData(7,'RX20','RX2A',0,0,0,0)//龙鳞
+        RegisterShowSaveFrameData(7,'RX30','RX3A',0,0,0,0)//龙血
+        RegisterShowSaveFrameData(7,'RX40','RX4A',0,0,0,0)//龙骨
+        RegisterShowSaveFrameData(7,'RX50','RX5A',0,0,0,0)//龙爪
+        RegisterShowSaveFrameData(7,'RX60','RX6A',0,0,0,0)//龙角
+        RegisterShowSaveFrameData(7,'RX70','RX7A',0,0,0,0)//龙皮
+        RegisterShowSaveFrameData(7,'RX80','RX8A',0,0,0,0)//龙心
+
+
+
+
         RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv1
         RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv2
         RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv3
@@ -536,10 +549,10 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
             DzFrameSetTexture(BUTTON_Back[index+500][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
             DzFrameShow(UI_TipsHead, true)
             
-            if  page == 7
+            if  id >= 'RM10' and id <= 'RM80'
                 lv = GetDzPlayerData(pid,6,index+1)
                 SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
-                //当前经脉最高5级
+                //当前经脉最高10级
                 if  lv == 0
                     SetTipsData(10,"","|cffffff00需求：|r\n - |cff808080解锁该经脉|r")
                 else
@@ -555,7 +568,24 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                     h = h + 1
                 end
 
-
+            elseif  id >= 'RX10' and id <= 'RX80'
+                lv = GetDzPlayerData(pid,6,index+11)
+                SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
+                //当前龙宫最高5级
+                if  lv == 0
+                    SetTipsData(10,"","|cffffff00需求：|r\n - |cff808080解锁该宝物|r")
+                else
+                    SetTipsData(10,""," ")
+                endif
+                h = 11
+                for i = 1,5
+                    if  lv >= i
+                        SetTipsData(h,"","Lv."+I2S(i)+"："+GetTypeIdName(id+i+16))
+                    else
+                        SetTipsData(h,"","|cff808080Lv."+I2S(i)+"："+GetTypeIdName(id+i+16)+"|r")
+                    endif
+                    h = h + 1
+                end
             elseif  id == 'RQD0'
                 int sign = GetDzPlayerData(pid,1,5) //今日
                 int Lsign = GetDzPlayerData(pid,1,6) //连续
@@ -623,6 +653,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                     SetTipsData(17,"","地图等级16级加入随机英雄池，30级可手选。")
                 elseif  id == 'RH37'
                     SetTipsData(17,"","地图等级36级可手选。")
+                elseif  id == 'RH40'
+                    SetTipsData(17,"","龙宫秘宝达到48个时可选择，输入“JF”查询。")
                 endif
             
                 

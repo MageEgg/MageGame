@@ -392,6 +392,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RH37',"苟策划","ReplaceableTextures\\CommandButtons\\BTNPET02.blp","")
         call InitTypeIdStrings('RH38',"女娲","ReplaceableTextures\\CommandButtons\\BTNH007.blp","")
         call InitTypeIdStrings('RH39',"孔宣","ReplaceableTextures\\CommandButtons\\BTNH039.blp","")
+        call InitTypeIdStrings('RH40',"龟丞相","ReplaceableTextures\\CommandButtons\\BTNH040.blp","")
         call InitTypeIdStrings('RM10',"任脉","ReplaceableTextures\\CommandButtons\\BTNQJBM01.blp","")
         call InitTypeIdStrings('RM20',"督脉","ReplaceableTextures\\CommandButtons\\BTNQJBM02.blp","")
         call InitTypeIdStrings('RM30',"冲脉","ReplaceableTextures\\CommandButtons\\BTNQJBM03.blp","")

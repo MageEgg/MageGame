@@ -74,12 +74,7 @@ library DzConfig uses SystemCodes
             QQNumber = "798103390"
         endif
 
-        if  DzCon("TEST") == "1"
-            DzBool = true
-        elseif  DzCon("TEST") == "2"
-            DzBool = true
-            textbool = true
-        endif
+        
         
         if  DzCon("MZRPG") != ""
             gzhkl = DzCon("MZRPG")

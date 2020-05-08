@@ -1315,6 +1315,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         if  GetPlayerTechCount(GetOwningPlayer(u),'RM1J',true) > 0
             gl = gl + 10
         endif
+        if  GetPlayerTechCount(GetOwningPlayer(u),'RX3E',true) > 0
+            gl = gl + 3
+        endif
+        
         if  GetPlayerTechCount(GetOwningPlayer(u),'RM1E',true) > 0
             add = add + 0.5
         endif
@@ -1753,6 +1757,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         if  GetPlayerTechCount(GetOwningPlayer(wu),'RM6J',true) > 0
             time = time + 3
         endif
+        if  GetPlayerTechCount(GetOwningPlayer(wu),'RX5E',true) > 0
+            time = time + 3
+        endif
+        
 
 
         TimerStart(time,false)

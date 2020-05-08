@@ -108,7 +108,7 @@ call InitAbilityData('S536',3,0,99,5.5,0,0,0,0,2,8,2,"又鸽又菜","向目标�
 call InitAbilityData('S537',2,0,99,6,0,0,0,0,2,8,1,"膨胀了","苟策划每次膨胀都会让身边的人很难受，|Cffffc9264秒|r内受到|Cffffc926（攻击+业力）*600%|r伤害。|n膨胀次数达到|Cffffc9266次|r时会爆炸，对周围造成|Cffffc9265%当前生命值|r伤害。|n|Cffffc926【未来之星】|n|r和|Cffffc926苟作者|r同时出战时，膨胀伤害|Cffffc926+30%|r。|n|n|Cff00ff7f膨胀爆炸伤害为真实伤害，不享受任何加成。|r","ReplaceableTextures\\CommandButtons\\BTNS537.blp")
 call InitAbilityData('S538',1,0,1,2,0,0,0,0,1,0,4,"抟土造人","释放技能时在前方召唤|Cffffc9261|r个|Cffffc926土著|r，持续|Cffffc9264秒。\n拥有法宝|Cffffc926山河社稷图|r时，土著攻击间隔|Cffffc926-0.1秒|r。\n\n|Cff00ff7f土著继承本体200%攻击力，100%生命值，50%护甲。","ReplaceableTextures\\CommandButtons\\BTNS538.blp")
 call InitAbilityData('S539',1,0,5,0.4,0,0,0,0,2,8,3,"五色神光","攻击时释放|Cffffc926五色神光|r，对周围敌人造成|Cffffc926生命*40%|r伤害，并回复自身|Cffffc9267%|r生命。","ReplaceableTextures\\CommandButtons\\BTNS539.blp")
-
+call InitAbilityData('S540',8,0,2,0.72,0,0,0,0,2,0,2,"水漫金山","龟丞相从哪悟得此等囚牢神通，不得而知。只见声势浩大，杀伤力惊人。|n对目标范围每|Cffffc9260.3秒|r造成|Cffffc926业力*72%|r伤害，持续|Cffffc9263|r秒。|Cffffc926|r|n|Cff00ff7f受影响单位无法逃脱。|r","ReplaceableTextures\\CommandButtons\\BTNS540.blp")
 
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
@@ -149,7 +149,7 @@ InitAbilityStringEx('S536',"鞭击时3秒内增加30点护甲穿透。","鞭击�
 InitAbilityStringEx('S537',"释放主动技能50%几率触发一次膨胀。","膨胀爆炸时造成1秒眩晕。","攻击3%概率触发膨胀，该伤害只有50%效果。","","")
 InitAbilityStringEx('S538',"土著免疫技能眩晕，伤害减免+20%","土著拥有多重射击，攻击力+100%。","土著生命值+200%，拥有致命一击。","","")
 InitAbilityStringEx('S539',"攻击6%概率降低五色神光1秒冷却。","触发五色神光后，3秒内免疫死亡及神光伤害提高40%。（无法免疫斩杀）冷却6秒。","被攻击10%概率刷新神光冷却。","","")
-
+InitAbilityStringEx('S540',"水牢伤害+40%","水牢退散时发动一次额外爆炸，造成业力*600%伤害。","水牢爆炸伤害翻倍","","")
 
 
 

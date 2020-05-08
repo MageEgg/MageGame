@@ -786,20 +786,27 @@ scope DeathEvent initializer InitDeathEvent
 
     
     function SpellRY3F(unit wu)->bool
+        real gl = 0
         if  GetPlayerTechCount(GetOwningPlayer(wu),'RY3F',true) > 0
-            if  GetRandomInt(1,100) <= 20
-
-                ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
-                LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
-                if  GetOwningPlayer(wu)==GetLocalPlayer()
-                    ClearSelection()
-                    SelectUnit(wu,true)
-                    PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
-                endif
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+GetPlayerNameOfColor(GetPlayerId(GetOwningPlayer(wu)))+"原地重生了！")
-                return true
-            endif
+            gl = gl + 20
         endif
+        if  GetPlayerTechCount(GetOwningPlayer(wu),'RX4E',true) > 0
+            gl = gl + 5
+        endif
+        
+        if  GetRandomReal(1,100) <= gl
+
+            ReviveHero(wu,GetUnitX(wu),GetUnitY(wu),true)
+            LocAddEffectTimer(GetUnitX(wu),GetUnitY(wu),"effect_SetItems_N4_Immortal.mdx",1.0)
+            if  GetOwningPlayer(wu)==GetLocalPlayer()
+                ClearSelection()
+                SelectUnit(wu,true)
+                PanCameraToTimed(GetUnitX(wu),GetUnitY(wu),0)
+            endif
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r玩家"+GetPlayerNameOfColor(GetPlayerId(GetOwningPlayer(wu)))+"原地重生了！")
+            return true
+        endif
+        
         return false
     endfunction
 

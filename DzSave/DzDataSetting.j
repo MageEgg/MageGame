@@ -139,7 +139,7 @@ library DzDataSetting uses DzBase
             elseif  flag == 11 //龙王今日上限
                 max = LongDayNum
             elseif  flag == 12 //龟丞相今日上限
-                max = LongDayNum*40
+                max = LongDayNum*3
             elseif  flag >= 13 and flag <= 20
                 max = 0
             elseif  flag == 21 or flag == 22 or flag == 23 //公众号礼包 入群礼包 魔芝礼包
@@ -168,7 +168,7 @@ library DzDataSetting uses DzBase
             elseif  flag == 5 //每日钻石
                 max = 14
             elseif  flag == 6 //龙宫积分
-                max = LongDay * 40
+                max = LongDay * 12
             elseif  flag >= 7 //未使用
                 max = 0
             endif

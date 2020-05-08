@@ -352,6 +352,10 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RGAA',true) > 0
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
         endif
+        if  GetPlayerTechCount(Player(pid),'RX2E',true) > 0
+            AddPlayerFoodByIndex(pid,2,2)
+        endif
+        
         
 
         int add = 0
@@ -399,7 +403,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerFoodByIndex(pid,3,add)
         endif
         */
-        
+
     endfunction
 
 
