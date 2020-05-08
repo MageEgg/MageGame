@@ -1094,6 +1094,7 @@ InitEquipData('IL4G',0,0,30,0,0,'IP09',0,0)
         InitHeroProficiency('RH37',17,5,18,3,16,20,0,0,0,0)
         InitHeroProficiency('RH38',17,5,18,3,75,15,0,0,0,0)
         InitHeroProficiency('RH39',17,5,18,3,31,10,0,0,0,0)
+        InitHeroProficiency('RH40',17,5,18,3,20,25,0,0,0,0)
     endfunction
     function InitUnitDropData()
         //初始化单位掉落

@@ -550,7 +550,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
             DzFrameShow(UI_TipsHead, true)
             
             if  id >= 'RM10' and id <= 'RM80'
-                lv = GetDzPlayerData(pid,6,index+1)
+                lv = GetDzPlayerData(pid,6,(id - 'RM00')/256+1)
                 SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
                 //当前经脉最高10级
                 if  lv == 0
@@ -569,7 +569,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                 end
 
             elseif  id >= 'RX10' and id <= 'RX80'
-                lv = GetDzPlayerData(pid,6,index+11)
+                lv = GetDzPlayerData(pid,6,(id - 'RX00')/256+11)
                 SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
                 //当前龙宫最高5级
                 if  lv == 0

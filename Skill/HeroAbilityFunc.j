@@ -2144,6 +2144,73 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             UnitAddLife(wu,GetUnitState(wu,UNIT_STATE_MAX_LIFE)*0.07)
         endif
     endfunction
+
+
+    real S540X = 0
+    real S540Y = 0
+    real S540R = 0
+
+    function SpellS540ForGroup()
+        real x = GetUnitX(GetEnumUnit())
+        real y = GetUnitY(GetEnumUnit())
+        real dis = Pdis(S540X,S540Y,x,y)
+        real ang = 0
+        if  dis >= S540R
+            ang = Pang(S540X,S540Y,x,y)
+            SetUnitX(GetEnumUnit(),S540X+(S540R)*Cos(ang))
+            SetUnitY(GetEnumUnit(),S540Y+(S540R)*Sin(ang))
+        endif
+    endfunction
+
+    function SpellS540(unit wu,real sx,real sy,real dam,int level)
+        unit u1 = wu
+        effect eff = AddSpecialEffect("effect_S540.mdl",sx,sy)
+        real x1 = sx
+        real y1 = sy
+        int time = 300
+        real damage = dam
+        group g1 = CreateGroup()
+        TimerStart(0.01,true)
+        {
+            time = time - 1
+            IndexGroup g = IndexGroup.create()
+            real rac = I2R(time) * 4 - 600
+
+            if  rac < 200
+                rac = 200
+            endif
+
+            EXEffectMatReset(eff)
+            EXEffectMatScale(eff,rac/600,rac/600, 1 )
+
+            S540R = rac-50
+            S540X = x1
+            S540Y = y1
+            
+            GroupEnumUnitsInRange(g.ejg,x1,y1,rac,GroupHasUnit(GetOwningPlayer(u1),g1,""))
+            GroupAddGroup(g.ejg,g1)
+            ForGroup(g1,function SpellS540ForGroup)
+            
+            
+            if  ModuloInteger(time,30) == 0
+                GroupClear(g.ejg)
+                GroupAddGroup(g1,g.ejg)
+                UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            endif
+
+            
+            
+            
+
+            if  time <= 0
+                DestroyEffect(eff)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+
+    endfunction
     
 
 endlibrary

@@ -1889,7 +1889,7 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             endif
          endif   
 
-         if   id >= 'S501' and id <= 'S540'  
+         if   id >= 'S501' and id <= 'S550'  
             if  id == 'S501'
                 SpellS501(u1.u,sx,sy,damage,lv)
             elseif  id == 'S502'
@@ -1927,6 +1927,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 SpellS536(u1.u,sx,sy,damage,lv)
             elseif  id == 'S537'
                 SpellS537(u1.u,damage,lv)
+            elseif  id == 'S540'
+                SpellS540(u1.u,sx,sy,damage,lv)
             endif
         endif
        
