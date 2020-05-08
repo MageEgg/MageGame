@@ -389,7 +389,8 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  add > 0
             AddPlayerFoodByIndex(pid,1,add)
         endif
-
+        
+        /*
         add = DzAPI_Map_GetMallItemCount(Player(pid), "FOOD")
         if  DzBool == true
             add = add + 188
@@ -397,7 +398,8 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  add > 0
             AddPlayerFoodByIndex(pid,3,add)
         endif
-
+        */
+        
     endfunction
 
 

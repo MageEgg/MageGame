@@ -3,6 +3,7 @@ library DzDataSetting uses DzBase
     //////////////////////////////////////////////////////////
     //使用的宏定义
     #define MaxGameLevel 10
+    #define LongDayNum 4
 
     #define MaxHeroExpLevel 4 //最大等级
     #define MaxHeroNeedExp0 12 //经验需求
@@ -27,11 +28,11 @@ library DzDataSetting uses DzBase
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包 23魔芝礼包
-    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分
+    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分 5当日钻石 6龙宫积分
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
-    // 组6 20组 1经脉最大上限 2-9经脉 10+未使用
+    // 组6 20组 1经脉最大上限 2-9经脉 11龙宫最大上限 12-19碎片
     // 组7 英雄熟练度 30组
     // 组8 英雄熟练度 30组
     // 组9 熟练度等级 60组
@@ -75,13 +76,14 @@ library DzDataSetting uses DzBase
         DzPlayerInitCrazyTGCos[10] = 1
 
         //异变
-        DzPlayerInitVariationTGCos[1] = 8
-        DzPlayerInitVariationTGCos[2] = 8
-        DzPlayerInitVariationTGCos[3] = 8
-        DzPlayerInitVariationTGCos[4] = 8
-        DzPlayerInitVariationTGCos[5] = 8
-        /*
+        DzPlayerInitVariationTGCos[1] = 15
+        DzPlayerInitVariationTGCos[2] = 15
+        DzPlayerInitVariationTGCos[3] = 15
+        DzPlayerInitVariationTGCos[4] = 15
+        DzPlayerInitVariationTGCos[5] = 15
+        
         DzPlayerInitVariationTGCos[6] = 8
+        /*
         DzPlayerInitVariationTGCos[7] = 8
         DzPlayerInitVariationTGCos[8] = 8
         DzPlayerInitVariationTGCos[9] = 8
@@ -134,7 +136,11 @@ library DzDataSetting uses DzBase
                 max = 0
             elseif  flag == 10 //经脉今日上限
                 max = DzMeridiansDayNum
-            elseif  flag >= 11 and flag <= 20
+            elseif  flag == 11 //龙王今日上限
+                max = LongDayNum
+            elseif  flag == 12 //龟丞相今日上限
+                max = LongDayNum*40
+            elseif  flag >= 13 and flag <= 20
                 max = 0
             elseif  flag == 21 or flag == 22 or flag == 23 //公众号礼包 入群礼包 魔芝礼包
                 max = 1
@@ -161,7 +167,9 @@ library DzDataSetting uses DzBase
                 endif
             elseif  flag == 5 //每日钻石
                 max = 14
-            elseif  flag >= 6 //未使用
+            elseif  flag == 6 //龙宫积分
+                max = LongDay * 40
+            elseif  flag >= 7 //未使用
                 max = 0
             endif
         elseif  Group == 3

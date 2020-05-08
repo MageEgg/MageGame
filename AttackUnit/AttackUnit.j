@@ -855,10 +855,14 @@ library AttackUnit uses DamageCode,PassCheckMission
         id2 = id2 + 0x200
         //id3 = id3 + 0x300
 
-        if  GameLevel >= 4
-            id4 = 'IL4A'+GetRandomInt(0,6)
+        if  GetRandomInt(1,100) <= 15
+            id4 = 'IL3A'+GetRandomInt(0,8)
         else
-            id4 = 'IL4A'+GetRandomInt(0,4)
+            if  GameLevel >= 4
+                id4 = 'IL4A'+GetRandomInt(0,6)
+            else
+                id4 = 'IL4A'+GetRandomInt(0,4)
+            endif
         endif
 
         AddExShopItem(ExShopNpc,1, id1)

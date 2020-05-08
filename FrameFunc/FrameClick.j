@@ -47,6 +47,7 @@ scope FrameButton
                     elseif  id == 655//签到
                         if  GameTime >= 60
                             TimerMissionAddNumFunc(pid,1,1)
+                            DzPalyerSignIn(pid)
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r游戏开局1分钟后可以签到！")
                         endif

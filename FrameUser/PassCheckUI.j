@@ -387,9 +387,6 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 endif
                 SetDzPlayerData(pid,5,index,PlayerPassData[index])
                 RePassClickFrame.execute(pid)
-                if  missionid == 1
-                    DzPalyerSignInEx(pid)
-                endif
             else
                 BJDebugMsg(I2S(missionid)+"任务已完成")
             endif

@@ -99,7 +99,22 @@
             endif
         endif
     endfunction
-    
+    function BoxShowQD(int pid)
+        int sign = GetDzPlayerData(pid,1,5) //今日
+        int Lsign = GetDzPlayerData(pid,1,6) //连续
+        int Asign = GetDzPlayerData(pid,1,7) //累积
+        DzFrameShow(UI_TipsHead, true)
+        SetTipsData(1,"","签到")
+
+        SetTipsData(10,"","|cffffcc00累计签到：|r"+I2S(Asign))
+        SetTipsData(11,"","|cffffcc00连续签到：|r"+I2S(Lsign))
+        SetTipsData(12,"","")
+
+        SetTipsData(13,"","|cff00ff00 每日签到奖励：6+连签天数个签到钻石。最多上限为14")
+        ShowTipsUI()
+
+    endfunction
+
     function BoxShowResources(int pid,int id)
         DzFrameShow(UI_TipsHead, true)
         if  id == 309
@@ -263,8 +278,8 @@
         elseif  id != 0
             if  id < 0
                 DzFrameShow(UI_TipsHead, true)
-                SetTipsData(1,"","钻石")
-                SetTipsData(10,"","钻石+"+I2S(-id))
+                SetTipsData(1,"","开局钻石")
+                SetTipsData(10,"","开局钻石+"+I2S(-id))
                 ShowTipsUI()
             elseif  id < 500
                 DzFrameShow(UI_TipsHead, true)
@@ -396,27 +411,27 @@
                         BoxShowResources(pid,id)
                     elseif  id >= 321 and id <= 328
                         boxid = GetPlayerPlotPrizeId(pid,id-320,1)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id >= 331 and id <= 338
                         boxid = GetPlayerPlotPrizeId(pid,id-330,2)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id == 401 or id == 402
                         boxid = GetUnitIntState(Pu[1],id)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id >= 411 and id <= 413
                         boxid = GetUnitIntState(Pu[1],id-410+402)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id >= 421 and id <= 423
                         boxid = GetUnitIntState(Pu[1],id-420+402)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id >= 501 and id <= 516
@@ -427,31 +442,33 @@
                     elseif  id >= 621 and id <= 630
                         boxid = GetPassCheckPrizeId(id-620,1)
                         //BJDebugMsg("boxid"+I2S(boxid))
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                         endif
                     elseif  id >= 631 and id <= 640
                         boxid = GetPassCheckPrizeId(id-630,2)
                         //BJDebugMsg("boxid"+I2S(boxid))
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                         endif
                     elseif  id == 652 or id == 653
                         BoxShowResources(pid,id)
+                    elseif  id == 655
+                        BoxShowQD(pid)
                     elseif  id >= 751 and id <= 756
                         BoxShowGem(pid,id-750)
                     elseif  id >= 901 and id <= 908
                         BoxShowRuneFrame(pid,id-900)
                     elseif  id >= 911 and id <= 913
                         boxid = GetUnitIntState(Pu[1],id)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id >= 921 and id <= 923
                         boxid = GetUnitIntState(Pu[1],id-10)
-                        if  boxid > 0
+                        if  boxid != 0
                             BoxShowTips(pid,boxid)
                         endif
                     elseif  id == 420

@@ -220,7 +220,7 @@ library ExNativeFrame uses GameFrame
         SetTipsData(11,""," ")
         SetTipsData(12,"","|cffffcc00当局钻石：|r"+I2S(PlayerFoodStart))
         SetTipsData(13,"","|cffffcc00签到钻石：|r"+I2S(PlayerFoodFree))
-        SetTipsData(14,"","|cffffcc00特殊钻石：|r"+I2S(PlayerFoodShop))
+        //SetTipsData(14,"","|cffffcc00特殊钻石：|r"+I2S(PlayerFoodShop))
         /*
         if  GameGiftBool[8] == false
             SetTipsData(15,""," ")

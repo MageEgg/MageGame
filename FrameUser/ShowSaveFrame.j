@@ -236,7 +236,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGBC','RGBC',0,0,0,0)//通关异变N3
         RegisterShowSaveFrameData(0,'RGBD','RGBD',0,0,0,0)//通关异变N4
         RegisterShowSaveFrameData(0,'RGBE','RGBE',0,0,0,0)//通关异变N5
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGBF','RGBF',0,0,0,0)//通关异变N6
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
@@ -245,6 +245,15 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGCC','RGCC',0,0,0,0)//通关异变N3 8次
         RegisterShowSaveFrameData(0,'RGCD','RGCD',0,0,0,0)//通关异变N4 8次
         RegisterShowSaveFrameData(0,'RGCE','RGCE',0,0,0,0)//通关异变N5 8次
+        RegisterShowSaveFrameData(0,'RGCF','RGCF',0,0,0,0)//通关异变N6 8次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
+        RegisterShowSaveFrameData(0,'RGDA','RGDA',0,0,0,0)//通关异变N1 15次
+        RegisterShowSaveFrameData(0,'RGDB','RGDB',0,0,0,0)//通关异变N2 15次
+        RegisterShowSaveFrameData(0,'RGDC','RGDC',0,0,0,0)//通关异变N3 15次
+        RegisterShowSaveFrameData(0,'RGDD','RGDD',0,0,0,0)//通关异变N4 15次
+        RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0)//通关异变N5 15次
 
         
 

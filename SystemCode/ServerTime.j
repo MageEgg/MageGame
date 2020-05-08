@@ -15,6 +15,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
         int DzMissionWeek = 0
         int GamePuOverDay = 0
         int MeridiansDay = 0
+        int LongDay = 0
 
         int Holiday51 = 0
 
@@ -150,9 +151,12 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             endif
             InitArray()
             DzPuTime = ttttime
+            
+
+            //获取服务器时间   如果为0  则设置到5月8日0点
             ServerTime = DzAPI_Map_GetGameStartTime()
             if  ServerTime < DzPuTime
-                ServerTime = DzPuTime //+ 86400 * 3
+                ServerTime = 1588867200
             endif
             
             ServerTime = ServerTime + GetRandomInt(1,10)
@@ -182,12 +186,18 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
                 MeridiansDay = 0
             endif
 
-            Holiday51 = (ServerTime-1587657600)/86400 //经脉日
+            LongDay = (ServerTime-1588867200)/86400 //龙宫
+            if  LongDay < 0
+                LongDay = 0
+            endif
+
+            Holiday51 = (ServerTime-1587657600)/86400 //51活动日
             if  Holiday51 < 0
                 Holiday51 = 0
             endif
             BJDebugMsg.execute("初始化天数 51活动：："+I2S(Holiday51))
             BJDebugMsg.execute("初始化天数 经脉日：："+I2S(MeridiansDay))
+            BJDebugMsg.execute("初始化天数 龙宫日：："+I2S(LongDay))
             BJDebugMsg.execute("初始化天数 已发布：："+I2S(GamePuOverDay))
             BJDebugMsg.execute("初始化天数 通行证：："+I2S(MissionDay))
             
