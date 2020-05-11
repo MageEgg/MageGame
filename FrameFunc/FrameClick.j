@@ -71,6 +71,8 @@ scope FrameButton
                         ClickShowSaveFrame(pid)
                     elseif  id == 706 //F6
                         ClickPassFrame(pid)
+                    elseif  id == 709
+                        ClickButtonWXBZ(pid)
                     elseif  id >= 751 and id <= 756
                         PlayerClickGemItem(pid,id-750)
                     elseif  id >= 911 and id <=913//符印奖励
@@ -266,6 +268,8 @@ endscope
 //! runtextmacro AddFrameFunc("706")
 //! runtextmacro AddFrameFunc("707")
 //! runtextmacro AddFrameFunc("708")
+
+//! runtextmacro AddFrameFunc("709")
 
 //! runtextmacro AddFrameFunc("751")
 //! runtextmacro AddFrameFunc("752")

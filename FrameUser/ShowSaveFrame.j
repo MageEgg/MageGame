@@ -283,8 +283,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
         RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
         RegisterShowSaveFrameData(6,'RDAZ','RDAZ',0,0,0,0)//评论
-        RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0)//小富豪
-        RegisterShowSaveFrameData(6,'RDBB','RDBB',0,0,0,0)//钻石大亨
+        //RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0)//小富豪
+        RegisterShowSaveFrameData(6,'RDBB','RDBB',0,0,0,0)//万匹斯
 
         
 

@@ -1001,6 +1001,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu))
             id = GetItemTypeId(bj_lastCreatedItem)
             UnitAddItemExEx(wu,bj_lastCreatedItem)
+            bj_lastCreatedItem = null
             return id
         endfunction
         function GetPoolItemId(int index)->int
@@ -1008,6 +1009,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],0,0)
             id = GetItemTypeId(bj_lastCreatedItem)
             RemoveItem(bj_lastCreatedItem)
+            bj_lastCreatedItem = null
             return id
         endfunction
         function RegisterItemPool(int index,int id,real r)

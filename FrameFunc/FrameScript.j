@@ -233,6 +233,17 @@
         endif
     endfunction
     
+    function BoxShowWXBZ(int pid)
+        DzFrameShow(UI_TipsHead, true)
+        SetTipsData(1,"","万仙宝藏")
+
+        SetTipsData(10,"","点击消耗1个|cffffcc00万仙宝藏|r开启\n开启后获得|CffFFCC00随机奖励|r，当局钻石+|cff00ff0010")
+
+        SetTipsData(11,""," ")
+        SetTipsData(12,"","|cffffcc00剩余数量：|r"+I2S(DzMallNum(Player(pid),"WXBZ")))
+        
+        ShowTipsUI()
+    endfunction
     
     function BoxShowTips(int pid,int id)
         //BJDebugMsg("show"+YDWEId2S(id))
@@ -457,6 +468,8 @@
                         BoxShowResources(pid,id)
                     elseif  id == 655
                         BoxShowQD(pid)
+                    elseif  id == 709
+                        BoxShowWXBZ(pid)
                     elseif  id >= 751 and id <= 756
                         BoxShowGem(pid,id-750)
                     elseif  id >= 901 and id <= 908

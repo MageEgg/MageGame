@@ -118,7 +118,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(46,-3,'RT46')
         RegisterPassCheckPrize(47,'RS47','RT47')
         RegisterPassCheckPrize(48,'RJ2I','RY2J')
-        RegisterPassCheckPrize(49,'CS51','CS52')
+        RegisterPassCheckPrize(49,'CS51','CS53')
         RegisterPassCheckPrize(50,'RS50','RT50')
         RegisterPassCheckPrize(51,0,'RT51')
         RegisterPassCheckPrize(52,'RS52','RT52')
@@ -219,66 +219,66 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(38,1,12,7,34,0,0)
         RegisterPassCheckDay(39,1,14,18,33,0,0)
         RegisterPassCheckDay(40,1,16,17,21,0,0)
-        RegisterPassCheckDay(41,1,18,2,22,0,0)
+        RegisterPassCheckDay(41,1,17,2,22,0,0)
         RegisterPassCheckDay(42,1,3,13,23,0,0)
         RegisterPassCheckDay(43,1,18,11,24,0,0)
         RegisterPassCheckDay(44,1,10,15,25,0,0)
-        RegisterPassCheckDay(45,1,6,18,26,0,0)
+        RegisterPassCheckDay(45,1,6,17,26,0,0)
         RegisterPassCheckDay(46,1,8,9,27,0,0)
         RegisterPassCheckDay(47,1,10,18,22,0,0)
         RegisterPassCheckDay(48,1,12,7,25,0,0)
-        RegisterPassCheckDay(49,1,14,18,23,0,0)
+        RegisterPassCheckDay(49,1,14,17,23,0,0)
         RegisterPassCheckDay(50,1,16,17,24,0,0)
         RegisterPassCheckDay(51,1,18,2,26,0,0)
         RegisterPassCheckDay(52,1,4,5,32,0,0)
-        RegisterPassCheckDay(53,1,6,18,30,0,0)
+        RegisterPassCheckDay(53,1,6,17,30,0,0)
         RegisterPassCheckDay(54,1,8,9,21,0,0)
         RegisterPassCheckDay(55,1,10,18,34,0,0)
         RegisterPassCheckDay(56,1,12,7,33,0,0)
-        RegisterPassCheckDay(57,1,14,18,21,0,0)
+        RegisterPassCheckDay(57,1,14,17,21,0,0)
         RegisterPassCheckDay(58,1,16,17,22,0,0)
         RegisterPassCheckDay(59,1,18,2,23,0,0)
         RegisterPassCheckDay(60,1,3,13,24,0,0)
-        RegisterPassCheckDay(61,1,18,11,25,0,0)
+        RegisterPassCheckDay(61,1,17,11,25,0,0)
         RegisterPassCheckDay(62,1,10,15,26,0,0)
         RegisterPassCheckDay(63,1,4,5,27,0,0)
         RegisterPassCheckDay(64,1,6,18,22,0,0)
         RegisterPassCheckDay(65,1,8,9,25,0,0)
-        RegisterPassCheckDay(66,1,10,18,23,0,0)
+        RegisterPassCheckDay(66,1,10,17,23,0,0)
         RegisterPassCheckDay(67,1,12,7,24,0,0)
         RegisterPassCheckDay(68,1,14,18,26,0,0)
         RegisterPassCheckDay(69,1,16,17,32,0,0)
-        RegisterPassCheckDay(70,1,18,2,30,0,0)
+        RegisterPassCheckDay(70,1,17,2,30,0,0)
         RegisterPassCheckDay(71,1,3,13,32,0,0)
         RegisterPassCheckDay(72,1,18,11,34,0,0)
         RegisterPassCheckDay(73,1,10,15,33,0,0)
         RegisterPassCheckDay(74,1,4,5,21,0,0)
-        RegisterPassCheckDay(75,1,6,18,22,0,0)
+        RegisterPassCheckDay(75,1,6,17,22,0,0)
         RegisterPassCheckDay(76,1,8,9,23,0,0)
         RegisterPassCheckDay(77,1,10,18,24,0,0)
         RegisterPassCheckDay(78,1,12,7,25,0,0)
-        RegisterPassCheckDay(79,1,14,18,26,0,0)
+        RegisterPassCheckDay(79,1,14,17,26,0,0)
         RegisterPassCheckDay(80,1,16,17,27,0,0)
         RegisterPassCheckDay(81,1,18,2,22,0,0)
         RegisterPassCheckDay(82,1,3,13,25,0,0)
-        RegisterPassCheckDay(83,1,18,11,23,0,0)
+        RegisterPassCheckDay(83,1,17,11,23,0,0)
         RegisterPassCheckDay(84,1,10,15,24,0,0)
         RegisterPassCheckDay(85,1,4,5,26,0,0)
         RegisterPassCheckDay(86,1,6,18,32,0,0)
         RegisterPassCheckDay(87,1,8,9,30,0,0)
-        RegisterPassCheckDay(88,1,10,18,32,0,0)
+        RegisterPassCheckDay(88,1,10,17,32,0,0)
         RegisterPassCheckDay(89,1,12,7,34,0,0)
         RegisterPassCheckDay(90,1,14,18,33,0,0)
         RegisterPassCheckDay(91,1,16,17,21,0,0)
-        RegisterPassCheckDay(92,1,18,2,22,0,0)
+        RegisterPassCheckDay(92,1,17,2,22,0,0)
         RegisterPassCheckDay(93,1,3,13,23,0,0)
         RegisterPassCheckDay(94,1,18,11,24,0,0)
         RegisterPassCheckDay(95,1,10,15,25,0,0)
-        RegisterPassCheckDay(96,1,6,18,26,0,0)
+        RegisterPassCheckDay(96,1,6,17,26,0,0)
         RegisterPassCheckDay(97,1,8,9,27,0,0)
         RegisterPassCheckDay(98,1,10,18,22,0,0)
         RegisterPassCheckDay(99,1,12,7,25,0,0)
-        RegisterPassCheckDay(100,1,14,18,23,0,0)
+        RegisterPassCheckDay(100,1,14,17,23,0,0)
                 
     endfunction
 
@@ -307,6 +307,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             endif
             int level = exp / MaxPassCheckDayExp
             if  level > 20
+                level = 20
+            endif
+
+            if  DzBool == true
                 level = 20
             endif
             return level
@@ -450,12 +454,42 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             end
         endfunction
 
+        function CreatePassPrizeItem(int pid,int id)
+            real x = AttackRoomPostion[pid][1]-512-64
+            real y = AttackRoomPostion[pid][2]-512
+            int s = 0
+            int a = 0
+            int b = 0
+            bj_lastCreatedItem = CreateItem(id,0,0)
+            
+            if  (id >= 'CS51' and id <= 'CS53') or (id >= 'CS21' and id <= 'CS23')
+                s = PassPrizeNum1
+                a = s / 10
+                b = s - a*10
+                PassPrizeNum1 = PassPrizeNum1 + 1
+            elseif  GetItemType(bj_lastCreatedItem) == ITEM_TYPE_CHARGED
+                s = PassPrizeNum2
+                a = s / 10
+                b = s - a*10
+                a = a + 4
+                PassPrizeNum2 = PassPrizeNum2 + 1
+            else
+                s = PassPrizeNum3
+                a = s / 10
+                b = s - a*10
+                a = a + 2
+                PassPrizeNum3 = PassPrizeNum3 + 1
+            endif
+            
+            SetItemPosition(bj_lastCreatedItem,x + 64 * I2R(a),y + 64 * I2R(b))
 
+            DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cff00ff00[奖励]：|r"+GetItemName(bj_lastCreatedItem)+"已创建至练功房左下角!")
+            bj_lastCreatedItem = null
+        endfunction
 
         function GivePassCheckPrize(int pid,int index,int num)
             int id = GetPassCheckPrize(index,num)
-            real x = AttackRoomPostion[pid][1]
-            real y = AttackRoomPostion[pid][2]
+            
             if  id != 0
                 
                 if  id >= 'RS01' and id <= 'RS99'//普通通行证属性
@@ -477,19 +511,20 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                     BJDebugMsg("PassPrize :金币"+I2S(id)+"---资源类")
                     AdjustPlayerStateBJ(id, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cff00ff00[通行证奖励]：|r"+GetItemName(CreateItem(id,x-512,y-512))+"已创建至练功房左下角!")
-                    
+                    CreatePassPrizeItem(pid,id)
                     BJDebugMsg("PassPrize :"+GetTypeIdName(id)+"---物品类")
                 endif
             endif
         endfunction
 
 
-
+        
 
         function PlayerAddPassPrize(int pid)
             int lv = GetPlayerPassLevel(pid,0)
             int shop = 0
+
+            
             if  DzShop(Player(pid),"RWK") == true
                 shop = 1
             endif

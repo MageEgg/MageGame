@@ -244,6 +244,10 @@ library ItemMeridians uses DamageCode,ItemGameFunc
             for n = 1,lv
                 id = 'RX1A'+(num-1)*256
                 SetPlayerTechResearchedEx(Player(pid),id+n-1)
+                if  id+n-1 == 'RX2E'
+                    AddPlayerFoodByIndex(pid,2,2)
+                endif
+                
             end
         endif
     endfunction

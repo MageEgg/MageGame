@@ -210,6 +210,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return DzAPI_Map_CommentCount(Player(pid)) > 0
         elseif  Type == Unloc_Type_Day51
             return Holiday51 >= data
+        elseif  Type == Unloc_Type_ShopNum
+            return DzMallNum(Player(pid),"WXBZ") >=data
         endif
         return false
     endfunction
@@ -563,8 +565,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RQD0',InitCond1(2,Unloc_Type_Level,1),0,0,0,0)
 
 
-        InitUnlocTechConditions('RDBA',InitCond1(2,Unloc_Type_ShopNum,88),0,0,0,0)
-        InitUnlocTechConditions('RDBB',InitCond1(2,Unloc_Type_ShopNum,488),0,0,0,0)
+        
+        InitUnlocTechConditions('RDBB',InitCond1(2,Unloc_Type_ShopNum,38),0,0,0,0)
         
 
 

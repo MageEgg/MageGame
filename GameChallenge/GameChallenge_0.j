@@ -113,6 +113,9 @@ library GameChallenge0 uses GameChallengeBase
                             for i = 2,3
                                 DzFrameShow(BUTTON_Back[700+i][0], true)
                             end
+                            if  DzMallNum(Player(pid), "WXBZ") >= 0 then
+                                DzFrameShow(BUTTON_Back[709][0], true)
+                            endif
                         endif
                     endif
                 endif

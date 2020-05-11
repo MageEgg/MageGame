@@ -86,7 +86,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
             shopnum = shopnum + 1
-            UnitAddItemEx(Pu[1],'CS01')
+            CreatePassPrizeItem(pid,'CS01')
             
             
             if  lv >= 18 and DzShop(Player(pid),"CB1") == true
@@ -110,7 +110,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         if  GetPlayerTechCount(Player(pid),'RY3D',true) == 1 //戮仙剑
             shopnum = shopnum + 1
-            UnitAddItemEx(Pu[1],'CS02')
+            CreatePassPrizeItem(pid,'CS02')
             
 
             
@@ -144,7 +144,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 //金鼠送福
             shopnum = shopnum + 1
 
-            UnitAddItemEx(Pu[2],'I015')
+            CreatePassPrizeItem(pid,'I015')
             
             
             if  lv >= 22 and DzShop(Player(pid),"CH1") == true
@@ -211,9 +211,9 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddUnitRealState(Pu[1],16,20)
             AddUnitRealState(Pu[1],31,20)
             if  buynum >= 14
-                UnitAddItemEx(Pu[2],'ID16')
+                CreatePassPrizeItem(pid,'ID16')
             else
-                UnitAddItemEx(Pu[2],'ID14')
+                CreatePassPrizeItem(pid,'ID14')
             endif
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00幽冥之翼|r》已激活！")
         endif
@@ -249,7 +249,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RSHA',1)
             AddUnitRealState(Pu[1],18,1)
             AddUnitRealState(Pu[1],49,100)
-            UnitAddItemEx(Pu[2],'CS03')
+            CreatePassPrizeItem(pid,'CS03')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff003件套|r》已激活！")
         endif
         if  buynum >= 4
@@ -266,7 +266,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RSHB',1)
             AddUnitRealState(Pu[1],18,2)
             AddUnitRealState(Pu[1],49,200)
-            UnitAddItemEx(Pu[2],'CS21')
+            CreatePassPrizeItem(pid,'CS21')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff005件套|r》已激活！")
         endif
         if  buynum >= 8
@@ -281,7 +281,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RSHE',1)
             AddUnitRealState(Pu[1],18,3)
             AddUnitRealState(Pu[1],48,30)
-            UnitAddItemEx(Pu[2],'CS21')
+            CreatePassPrizeItem(pid,'CS21')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff0011件套|r》已激活！")
         endif
 
@@ -314,32 +314,31 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         //加载存档的物品道具
         if  GetPlayerTechCount(Player(pid),'RY4I',true) == 1 //剑血浮生
-            bj_lastCreatedItem = CreateItem('IN30',GetUnitX(Pu[2]),GetUnitY(Pu[2]))
-            SetItemCharges(bj_lastCreatedItem,2)
-            UnitAddItem(Pu[2],bj_lastCreatedItem)
-            bj_lastCreatedItem = null
+            CreatePassPrizeItem(pid,'IN30')
+            CreatePassPrizeItem(pid,'IN30')
+            CreatePassPrizeItem(pid,'IN30')
         endif
 
         if  GetPlayerTechCount(Player(pid),'RGAE',true) > 0//通关疯5
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
-            UnitAddItem(Pu[2],CreateItem('IN30',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            CreatePassPrizeItem(pid,'IN30')
         endif
 
         if  GetPlayerTechCount(Player(pid),'RG0C',true) > 0//通关难3
-            UnitAddItem(Pu[2],CreateItem('IN34',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
-            UnitAddItem(Pu[2],CreateItem('IN37',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            CreatePassPrizeItem(pid,'IN34')
+            CreatePassPrizeItem(pid,'IN37')
         endif
 
         if  GetPlayerTechCount(Player(pid),'RG0D',true) > 0//通关难4
-            UnitAddItem(Pu[2],CreateItem('I013',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            CreatePassPrizeItem(pid,'I013')
         endif
 
         if  GetPlayerTechCount(Player(pid),'RG0E',true) > 0//通关难5
-            UnitAddItem(Pu[2],CreateItem('CS21',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            CreatePassPrizeItem(pid,'CS21')
         endif
 
         if  GetPlayerTechCount(Player(pid),'RG0G',true) > 0//通关难7
-            UnitAddItem(Pu[2],CreateItem('IN40',GetUnitX(Pu[2]),GetUnitY(Pu[2])))
+            CreatePassPrizeItem(pid,'IN40')
         endif
 
         
@@ -352,9 +351,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RGAA',true) > 0
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,500)
         endif
-        if  GetPlayerTechCount(Player(pid),'RX2E',true) > 0
-            AddPlayerFoodByIndex(pid,2,2)
-        endif
+        
         
         
 

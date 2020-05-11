@@ -297,7 +297,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
         endif
         if  GetPlayerTechCount(Player(pid),'RDBB',true) > 0
             gl = gl + 3
-            BJDebugMsg("钻石大亨件套+3")
+            BJDebugMsg("万匹斯件套+3")
         endif
         
         

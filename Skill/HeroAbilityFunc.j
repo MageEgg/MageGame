@@ -2149,6 +2149,7 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     real S540X = 0
     real S540Y = 0
     real S540R = 0
+    group S540G = null
 
     function SpellS540ForGroup()
         real x = GetUnitX(GetEnumUnit())
@@ -2157,9 +2158,14 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         real ang = 0
         if  dis >= S540R
             ang = Pang(S540X,S540Y,x,y)
-            SetUnitX(GetEnumUnit(),S540X+(S540R)*Cos(ang))
-            SetUnitY(GetEnumUnit(),S540Y+(S540R)*Sin(ang))
-            
+            real x2 = S540X+(S540R)*Cos(ang)
+            real y2 = S540Y+(S540R)*Sin(ang)
+            if  IsCanFlyTerrain(x2,y2) == true
+                SetUnitX(GetEnumUnit(),x2)
+                SetUnitY(GetEnumUnit(),y2)
+            else
+                GroupRemoveUnit(S540G,GetEnumUnit())
+            endif
         endif
     endfunction
 
@@ -2170,25 +2176,35 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         effect eff3 = AddSpecialEffect("effect_S540.mdl",sx,sy)
         real x1 = sx
         real y1 = sy
-        int time = 300
+        int time = 500
         real damage = dam
+        int lv = level
         group g1 = CreateGroup()
+        EXEffectMatScale(eff1,1.0,1.0, 1.2 )
+        EXEffectMatScale(eff2,1.0,1.0, 1.2 )
+        EXEffectMatScale(eff3,1.0,1.0, 1.2 )
+        LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_war3_shuangdongxinxing.mdl",2)
+        LocAddEffectSetSizeAndZ(x1,y1,200,"effect2_by_wood_effect2_war3_shuangdongxinxing.mdl",1.6)
+        if  lv >= 2
+            damage = damage * 1.4
+        endif
+
         TimerStart(0.01,true)
         {
             time = time - 1
             IndexGroup g = IndexGroup.create()
-            real rac = I2R(time) * 4 - 600
+            real rac = I2R(time) * 4 - 1400
 
             if  rac < 200
                 rac = 200
             endif
 
             EXEffectMatReset(eff1)
-            EXEffectMatScale(eff1,rac/600,rac/600, 1 )
+            EXEffectMatScale(eff1,rac/600,rac/600, 1.2 )
             EXEffectMatReset(eff2)
-            EXEffectMatScale(eff2,rac/600,rac/600, 1 )
+            EXEffectMatScale(eff2,rac/600,rac/600, 1.2 )
             EXEffectMatReset(eff3)
-            EXEffectMatScale(eff3,rac/600,rac/600, 1 )
+            EXEffectMatScale(eff3,rac/600,rac/600, 1.2 )
 
             S540R = rac-50
             S540X = x1
@@ -2196,24 +2212,45 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
             
             GroupEnumUnitsInRange(g.ejg,x1,y1,rac,GroupHasUnit(GetOwningPlayer(u1),g1,""))
             GroupAddGroup(g.ejg,g1)
+            S540G = g1
             ForGroup(g1,function SpellS540ForGroup)
-            
+            S540G = null
             
             if  ModuloInteger(time,30) == 0
                 GroupClear(g.ejg)
                 GroupAddGroup(g1,g.ejg)
                 UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                
             endif
+            g.destroy()
 
             
             
             
 
             if  time <= 0
+                if  lv >= 3
+                    g = IndexGroup.create()
+                    GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+                    if  lv >= 4
+                        UnitDamageGroup(u1,g.ejg,GetHeroStr(u1,true)*12,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    else
+                        UnitDamageGroup(u1,g.ejg,GetHeroStr(u1,true)*6,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    endif
+                    LocAddEffectSetSize(x1,y1,"effect2_az_magina[2]_v.mdl",2.0)
+                    g.destroy()
+
+                endif
                 DestroyEffect(eff1)
                 DestroyEffect(eff2)
                 DestroyEffect(eff3)
+                DestroyGroup(g1)
                 endtimer
+            else
+                if  ModuloInteger(time,120) == 0
+                    LocAddEffectSetSize(x1,y1,"effect2_by_wood_effect2_war3_shuangdongxinxing.mdl",0.6*(rac/200))
+                    LocAddEffectSetSizeAndZ(x1,y1,200,"effect2_by_wood_effect2_war3_shuangdongxinxing.mdl",0.6*(rac/200)*0.8)
+                endif
             endif
             flush locals
         }

@@ -202,7 +202,11 @@ scope SelectHero
                     PoolAddHeroId(pid,'H037')
                 endif
             endif
-            
+            if  GetUnitTypeId(Pu[1]) != 'H040'
+                if  GetDzPlayerData(pid,2,6) >= 48
+                    PoolAddHeroId(pid,'H040')
+                endif
+            endif
 
             ReHeroFrameUI(pid)
 

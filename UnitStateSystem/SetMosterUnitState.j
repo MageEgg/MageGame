@@ -304,7 +304,7 @@ library UnitStateSet uses State
         if  GameMode == 3
             con = DzCon("ND8_14Ex")
             if  con == ""
-                con = "00400750004009000000000000000000000000000000000000000000"
+                con = "00400750005011000000000000000000000000000000000000000000"
             endif
         else
             con = DzCon("ND8_14")

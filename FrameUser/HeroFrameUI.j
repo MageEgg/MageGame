@@ -499,6 +499,40 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             endif
             bj_lastCreatedItem = null
         endfunction
+
+
+        function ClickButtonWXBZGive(unit wu,int index)->int
+            int id = 0
+            bj_lastCreatedItem = PlaceRandomItem(ItemPool[index],GetUnitX(wu),GetUnitY(wu))
+            id = GetItemTypeId(bj_lastCreatedItem)
+            UnitAddItem(wu,bj_lastCreatedItem)
+            bj_lastCreatedItem = null
+            return id
+        endfunction
+
+        function ClickButtonWXBZFunc(unit wu)
+            int pid = GetPlayerId(GetOwningPlayer(wu))
+            int id = ClickButtonWXBZGive(wu,15)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过|cffffcc00万仙宝藏|r获得 "+GetObjectName(id)+"x1，钻石+|cff00ff0010")
+        endfunction
+
+        function ClickButtonWXBZ(int pid)
+            int num = DzMallNum(Player(pid),"WXBZ")
+            if  num > 0
+                if  DzBool == false
+                    DzAPI_Map_ConsumeMallItem(Player(pid), "WXBZ", 1 )
+                endif
+                AddPlayerFoodByIndex(pid,2,10)
+                if  Pu[5] == Pu[2]
+                    ClickButtonWXBZFunc(Pu[2])
+                else
+                    ClickButtonWXBZFunc(Pu[1])
+                endif
+
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r万仙宝藏不足！无法开启！")
+            endif
+        endfunction
     endscope
 
 
@@ -674,6 +708,8 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         //CreateButton(705,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI003.blp")
         //CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
 
+        CreateButton(709,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.32,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNWXBZ3.blp")
+        DzFrameShow(BUTTON_Back[709][0], false)
         
         for i2 = 2,4
             DzFrameShow(BUTTON_Back[700+i2][0], false)
