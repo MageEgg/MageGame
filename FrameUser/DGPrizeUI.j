@@ -4,31 +4,35 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
     private FRAME Back = 0
     private int origin = 0
 
-    /*
-    //刷新符印显示
-    function ReRuneFrame(int pid)
-        int lv = 0
-        int index = 0
+    
+  
+
+    
+    //刷新符印奖励UI
+    function ReDGPrizeFrame(int pid)
+        int id = 0
+        int use = 10000
         if  GetLocalPlayer() == Player(pid)
-            for i = 1,8
-                index = 900 + i
-                lv = GetUnitIntState(Pu[1],'FY00'+i)
-                if  lv > 0
-                    DzFrameSetTexture(BUTTON_Back[index][0],"war3mapImported\\UI_Fuin_Back0"+I2S(i)+".tga",0)
-                    DzFrameSetTexture(BUTTON_Back[index][1],"war3mapImported\\UI_Fuin_num"+I2S(lv)+".tga",0)
+            for i = 1,3
+                id = GetUnitIntState(Pu[1],930+i)
+                
+                if  id > 0
+                    DzFrameSetTexture(BUTTON_Back[940+i][1],GetTypeIdIcon(id),0)
+                    DzFrameSetText(BUTTON_Text[940+i],GetTypeIdName(id))
                 else
-                    DzFrameSetTexture(BUTTON_Back[index][0],"war3mapImported\\UI_Fuin_DisBack0"+I2S(i)+".tga",0)
-                    DzFrameSetTexture(BUTTON_Back[index][1],"war3mapImported\\alpha.tga",0)
+                    DzFrameSetTexture(BUTTON_Back[940+i][1],"war3mapImported\\alpha.tga",0)
+                    DzFrameSetText(BUTTON_Text[940+i],"")
                 endif
             end
+            DzFrameSetText(BUTTON_Text[940],"10000经验")
         endif
-    endfunction
-
-    */
-    function ReDGFrame(int pid)
     endfunction
     function GivePlayerHeroDG(int pid,int id)
 
+    endfunction
+
+    function GetNewDGPrize(int pid)->int
+        return 0
     endfunction
 
     function GivePlayerDGPrizeFrame(int pid)
@@ -36,23 +40,22 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         
         if  id >= 'IJ01' and id <= 'IJ15'
             //给一个 防止上一个窗口残留
-            GivePlayerHeroDG(Pu[1],id)
-            ReRuneFrame(pid)
+            GivePlayerHeroDG(pid,id)
         endif
 
-        int id1 = GetNewRunePrize(0,0)
-        int id2 = GetNewRunePrize(id1,0)
-        int id3 = GetNewRunePrize(id1,id2)
+        int id1 = GetNewDGPrize(pid)
+        int id2 = GetNewDGPrize(pid)
+        int id3 = GetNewDGPrize(pid)
 
-        SetUnitIntState(Pu[1],911,id1)
-        SetUnitIntState(Pu[1],912,id2)
-        SetUnitIntState(Pu[1],913,id3)
+        SetUnitIntState(Pu[1],931,id1)
+        SetUnitIntState(Pu[1],932,id2)
+        SetUnitIntState(Pu[1],933,id3)
         
-        PlayerRePrizeNum2 = 0
+        //PlayerRePrizeNum3 = 0
 
         if  GetLocalPlayer() == Player(pid)
             Button.show = true
-            ReRunePrizeFrame(pid)
+            ReDGPrizeFrame(pid)
         endif
     endfunction
 
@@ -81,8 +84,8 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         end
         CreateButton(930,Button.frameid,TYPE_CLOSE,2,Button.frameid,2,0.0,0.0,0.03,0.016,"war3mapImported\\UI_ESC.tga")
 
-        CreateButton(940,Button.frameid,TYPE_BUTTON,7,Button.frameid,7,0.0,0.005,0.1,0.022,"war3mapImported\\UI_ReDG_Button.tga")
-        CreateText(940,Button.frameid,"text008",3,4,0.005,0.0,"")
+        CreateButton(940,Button.frameid,TYPE_BUTTON,7,Button.frameid,7,0.0,0.005,0.1,0.024,"war3mapImported\\UI_ReDG_Button.tga")
+        CreateText(940,Button.frameid,"text008",3,4,-0.005,0.0,"10000经验")
         
         //Button.show = false
     endfunction
