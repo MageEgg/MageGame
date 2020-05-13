@@ -73,6 +73,17 @@ library AttackUnit uses DamageCode,PassCheckMission
     function ReflushAttackTimerUI()
         int cos = 0
         if  GameLevel > 0
+            if  GameMode == 4
+                if  I2R(CountUnitsInGroup(AttackUnitGroup))/I2R(70+50*PlayerNum) < 0.8
+                    VariationTextExUI.SetText("|cff00ff00"+I2S(CountUnitsInGroup(AttackUnitGroup))+"/"+I2S(70+50*PlayerNum)+"|r")
+                else
+                    VariationTextExUI.SetText("|cffff0000"+I2S(CountUnitsInGroup(AttackUnitGroup))+"/"+I2S(70+50*PlayerNum)+"|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,1,"|cffffcc00[系统]：|r|cffff0000当前怪物数量超过80%！！！|r")
+                endif
+                if  CountUnitsInGroup(AttackUnitGroup) > (70+50*PlayerNum)
+                    ExecuteFunc("GameOverEx")
+                endif
+            endif
             if  AttackTimer != null
                 if  InfiniteAttackBool == false
                     if  AttackUnitWN == 0
@@ -314,14 +325,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         InitAttackUnitData(59,0,20,6,40,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(60,0,10,7,20,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
 
-        InitAttackUnitData(121,0,0,1,2,1,-4096,11776,'mb01','mb01','mb01','mb01',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(122,0,0,1,2,1,-4096,11776,'mb02','mb02','mb02','mb02',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(123,0,0,1,2,1,-4096,11776,'mb03','mb03','mb03','mb03',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(124,0,0,1,2,1,-4096,11776,'mb04','mb04','mb04','mb04',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(125,0,0,1,2,1,-4096,11776,'mb05','mb05','mb05','mb05',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(126,0,0,1,2,1,-4096,11776,'mb06','mb06','mb06','mb06',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-    
+        InitAttackUnitData(101,0,0,1,2,1,-4096,11776,'mb01','mb01','mb01','mb01',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(102,0,0,1,2,1,-4096,11776,'mb02','mb02','mb02','mb02',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(103,0,0,1,2,1,-4096,11776,'mb03','mb03','mb03','mb03',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(104,0,0,1,2,1,-4096,11776,'mb04','mb04','mb04','mb04',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(105,0,0,1,2,1,-4096,11776,'mb05','mb05','mb05','mb05',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(106,0,0,1,2,1,-4096,11776,'mb06','mb06','mb06','mb06',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+
         ExecuteFunc("InitAttackUnitChallengeState")
+
+        VariationShowUI.SetPoint(0,GameUI,0,0.22,-0.025)
+        VariationTextUI.SetText("|cffffcc00怪物上限|r")
+        VariationTextExUI.SetText("|cff00ff00/"+I2S(70+50*PlayerNum)+"|r")
+        ShowVariationUIEx(true)
     endfunction
 
     function InitAttackUnit()
@@ -640,7 +656,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     endif
                     if  puid[k] != 0
                         for j = 1,unitnum
-                            if  CountUnitsInGroup(AttackUnitGroup) <= 50
+                            if  CountUnitsInGroup(AttackUnitGroup) <= 50 or GameMode == 4
                                 u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                                 SetUnitXY(u,psx[k],psy[k])
                                 IssuePointOrderById(u,851983,pex[k],pey[k])
@@ -761,6 +777,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 bossmod = 3
             endif
             if  ModuloInteger(AttackUnitWN,bossmod) == 0
+                BJDebugMsg("BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 Attacknum = 100
                 BossTime = 0
                 AttackUnitWNBoss = AttackUnitWNBoss + 1

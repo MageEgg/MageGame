@@ -760,8 +760,34 @@ scope DeathEvent initializer InitDeathEvent
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了"+GetObjectName('IN30')+"！|r")
     endfunction
 
+    function GameOverEx()
+        GameOverBoolJu = true
+        
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000怪物超过上限！游戏失败!!")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000怪物超过上限！游戏失败!!")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000怪物超过上限！游戏失败!!")
+
+        for pid = 0,3
+            if  IsPlaying(pid) == true 
+                if  AttackUnitWN >= 20
+                    AddDzHeroExp(Pu[1],2)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00增加"+GetUnitName(Pu[1])+"20点熟练度！|r")
+                endif
+            endif
+        end
+        
+        TimerStart(1,false)
+        {
+            for pid = 0,3
+                CustomDefeatBJ(Player(pid), "游戏结束！" )
+            end
+            endtimer
+        }
+    endfunction
+
     function GameOver()
         GameOverBoolJu = true
+        
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffff0000封神榜已经被摧毁！游戏失败!!")
