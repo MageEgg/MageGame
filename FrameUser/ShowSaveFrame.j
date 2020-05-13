@@ -137,6 +137,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(1,'RY4Q','RY4Q',0,0,0,0)//九五之尊 N8
         RegisterShowSaveFrameData(1,'RY4R','RY4R',0,0,0,0)//无极修罗 N9
         RegisterShowSaveFrameData(1,'RY4T','RY4T',0,0,0,0)//无极修罗 N10
+        RegisterShowSaveFrameData(1,'RY4U','RY4U',0,0,0,0)//魅影无双 N11
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
         RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
@@ -197,11 +198,12 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RG0H','RG0H',0,0,0,0)//难8通关5次
         RegisterShowSaveFrameData(0,'RG0I','RG0I',0,0,0,0)//难9通关5次
         RegisterShowSaveFrameData(0,'RG0J','RG0J',0,0,0,0)//难10通关5次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG0K','RG0K',0,0,0,0)//难11通关5次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
 
+        RegisterShowSaveFrameData(0,'RG1A','RG1A',0,0,0,0)//难1通关15次
         RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关15次
         RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0)//难3通关15次
         RegisterShowSaveFrameData(0,'RG1D','RG1D',0,0,0,0)//难4通关15次
@@ -211,8 +213,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关15次
         RegisterShowSaveFrameData(0,'RG1I','RG1I',0,0,0,0)//难9通关15次
         RegisterShowSaveFrameData(0,'RG1J','RG1J',0,0,0,0)//难10通关15次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG1K','RG1K',0,0,0,0)//难11通关15次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
     
 
@@ -227,7 +228,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
         RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
         RegisterShowSaveFrameData(0,'RGAJ','RGAJ',0,0,0,0)//通关疯狂N10
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGAK','RGAK',0,0,0,0)//通关疯狂N11
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
 
@@ -283,7 +284,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
         RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
         RegisterShowSaveFrameData(6,'RDAZ','RDAZ',0,0,0,0)//评论
-        //RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0)//小富豪
+        RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0)//小富豪
         RegisterShowSaveFrameData(6,'RDBB','RDBB',0,0,0,0)//万匹斯
 
         
@@ -368,7 +369,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
         RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
         RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
-//        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
+        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
     endfunction
 
 

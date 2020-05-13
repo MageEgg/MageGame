@@ -504,7 +504,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,165,GroupNormalNoStrAddBuffJJ11(GetOwningPlayer(u1),"",Buffxy,5,0))
-            UnitDamageGroup(u1,g.ejg,50*Pow(10,10),false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*200,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             endtimer
@@ -527,6 +527,7 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
             IndexGroup g = IndexGroup.create()
             LocAddEffect(x1,y1,"effect2_by_wood_effect2_yubanmeiqin_lightning_luolei.mdl")
             GroupEnumUnitsInRange(g.ejg,x1,y1,165,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*200,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_NORMAL,null)
             g.destroy()
             RemoveUnit(u2)
             num = num - 1
@@ -570,5 +571,95 @@ library BossSkill2 uses AbilityUI,OtherDamageTimer
 
     endfunction
 
+    //大地坠击
+    function JJFuncSpell98Timer(unit wu,real x,real y)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real ang = Atan2(y-y1,x-x1)
+        real dis = Pdis(x1,y1,x,y)
+        
+        real sp = dis/50
+        real x2 = sp*Cos(ang)
+        real y2 = sp*Sin(ang)
+        real time = 0
+        real height = dis*2
+        if  height < 500
+            height = 500
+        endif
+        
+        SetUnitFacing(u1,ang/0.01745)
+        EXSetUnitFacing(u1,ang/0.01745)
+        TimerStart(0.01,true)
+        {
+            time = time + sp
+            x1 = GetUnitX(u1) + x2
+            y1 = GetUnitY(u1) + y2
+            if  IsCanFlyTerrain(x1,y1) == true
+                SetUnitX(u1,x1)
+                SetUnitY(u1,y1)
+                UnitAddAbility(u1,'Arav')
+                SetUnitFlyHeight(u1,Sin(time/dis*3.1415926)*height,0)
+                UnitRemoveAbility(u1,'Arav')
+                SetUnitFacing(u1,ang/0.01745)
+                EXSetUnitFacing(u1,ang/0.01745)
+            else
+                time = dis+1
+            endif
+            if  time >= dis
+                UnitAddAbility(u1,'Arav')
+                SetUnitFlyHeight(u1,0,0)
+                UnitRemoveAbility(u1,'Arav')
+                SetUnitFacing(u1,ang/0.01745)
+                EXSetUnitFacing(u1,ang/0.01745)
+                IssueImmediateOrderById( u1, 851972 )
+                LocAddEffectSetSize(GetUnitX(u1),GetUnitY(u1),"effect_[dz.spell]002.mdl",1.5)
+                
+                IndexGroup gg = IndexGroup.create()
+                GroupEnumUnitsInRange(gg.ejg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,2,0))
+                
+                UnitDamageGroup(u1,gg.ejg,GetUnitAttack(u1)*500,false, false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC, null )
+                                   
+                gg.destroy()
+                
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction 
+
+
+    function JJFuncSpell98(unit wu,unit tu)
+        unit u1 = wu
+        unit u2 = tu
+        real x = GetUnitX(u2)
+        real y = GetUnitY(u2)
+        unit u3 = CreateTmUnit(GetOwningPlayer(wu),"A_yujing_boss_yuan_0.mdl",x,y,0,30,3)
+        int time = 200
+        TimerStart(0.01,true)
+        {
+            time = time - 1
+
+            if  time > 50
+                x = GetUnitX(u2)
+                y = GetUnitY(u2)
+                SetUnitX(u3,x)
+                SetUnitY(u3,y)
+            endif
+            if  time <= 0
+                JJFuncSpell98Timer(u1,x,y)
+                RemoveUnit(u3)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+
+    endfunction
+
+    
+
 
 endlibrary
+

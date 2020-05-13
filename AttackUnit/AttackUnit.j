@@ -822,6 +822,14 @@ library AttackUnit uses DamageCode,PassCheckMission
             else
                 UnitAddItemById(Pu[2],next)
             endif
+            AddUnitIntState(Pu[1],'RDBA',1)
+            if  GetUnitIntState(Pu[1],'RDBA') == 6
+                if  GetPlayerTechCount(Player(pid),'RDBA',true) == 0
+                        SetDzPlayerData(pid,15,27,1)
+                        SetPlayerTechResearchedEx(Player(pid),'RDBA')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000小富豪？|r（永久存档）！")
+                    endif
+            endif
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r购买成功！")
         else
             ReExShopItem(id,0)

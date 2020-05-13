@@ -1082,6 +1082,24 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(16,'CS22',1)
             RegisterItemPool(16,'IP01',2)
             
+
+            //万仙宝藏
+            RegisterItemPool(18,'IP04',1)
+            RegisterItemPool(18,'IP02',4)
+            RegisterItemPool(18,'IP03',1)
+            RegisterItemPool(18,'IN23',2)
+            RegisterItemPool(18,'IN34',12)
+            RegisterItemPool(18,'IN37',12)
+            RegisterItemPool(18,'IN40',12)
+            RegisterItemPool(18,'IN18',2)
+            RegisterItemPool(18,'IN20',3)
+            RegisterItemPool(18,'I015',3)
+            RegisterItemPool(18,'CS21',1)
+            RegisterItemPool(18,'CS22',1)
+            RegisterItemPool(18,'IP01',1)
+            RegisterItemPool(18,'CS01',2)
+            RegisterItemPool(18,'CS52',8)
+
         endfunction
 
 

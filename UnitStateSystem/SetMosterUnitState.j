@@ -304,12 +304,12 @@ library UnitStateSet uses State
         if  GameMode == 3
             con = DzCon("ND8_14Ex")
             if  con == ""
-                con = "00400750005011000000000000000000000000000000000000000000"
+                con = "00400750010011000100150000000000000000000000000000000000"
             endif
         else
             con = DzCon("ND8_14")
             if  con == ""
-                con = "00400420004007500050110000000000000000000000000000000000"
+                con = "00400420007007500070110001001500000000000000000000000000"
             endif
         endif
 
@@ -333,7 +333,6 @@ library UnitStateSet uses State
 
         end
     endfunction
-    
 
 
     function InitMostetStateRatio(int level,real r1,real r2)
@@ -353,6 +352,7 @@ library UnitStateSet uses State
             InitMostetStateRatio(8,40,750)
             InitMostetStateRatio(9,50,1100)
             InitMostetStateRatio(10,50,1100)
+            InitMostetStateRatio(11,100,1500)
         else
             InitMostetStateRatio(1,0,50)
             InitMostetStateRatio(2,0,50)
@@ -365,6 +365,7 @@ library UnitStateSet uses State
             InitMostetStateRatio(8,40,420)
             InitMostetStateRatio(9,40,750)
             InitMostetStateRatio(10,50,1100)
+            InitMostetStateRatio(11,100,1500)
         endif
 
         LoadDzConData1()

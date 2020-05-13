@@ -418,6 +418,10 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     tip = tip + "\n\n|cffdddddd冷却："+R2S2(cd)+"s|r"
                 endif
 
+                if  id == 'S236' or id == 'S501' or id == 'S502' or id == 'S504' or id == 'S510' or id == 'S513'   
+                    tip = tip + "\n\n|cffff0000该技能无法自动施法|r"
+                endif
+
                 magicid = GetUnitIntState(wu,125+index)
                 if  magicid > 0
                     tip = tip + "\n\n|Cff00FF7F附魔：|r"+GetTypeIdStateTips(magicid)

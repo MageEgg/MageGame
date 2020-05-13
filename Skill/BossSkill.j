@@ -1512,10 +1512,26 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             damage = attack*6
             BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell56")
         elseif  id == 'AZ3E'
-            damage = attack*12
+            if  GameLevel >= 11
+                damage = attack*36
+            else
+                damage = attack*12
+            endif
             BossFuncStart(u1,u2,'e000',ang,damage,0.1,"BossFuncSpell57")
         elseif  id == 'AZ3F'
-            JJFuncSpell99(u1)
+            
+            if  GameLevel >= 11
+                if  GetRandomInt(1,100)<=70
+                    JJFuncSpell98(u1,u2)
+                    BJDebugMsg("踩人")
+                else
+                    JJFuncSpell99(u1)
+                    BJDebugMsg("电人")
+                endif
+            else
+                JJFuncSpell99(u1)
+            endif
+
         elseif  id == 'AZ3G'
             damage = attack*50
             BossFuncStart(u1,u1,RAC_A_600,ang,damage,0.01,"BossFuncSpell58")
@@ -1541,7 +1557,9 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
             elseif  id == 'AZ2J'
                 JJFuncSpell10(u1,x2,y2)
             elseif  id == 'AZ2K'
+            
                 JJFuncSpell11(u1,x2,y2)
+                
             endif
         endif
         flush locals

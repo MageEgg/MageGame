@@ -510,13 +510,15 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             return id
         endfunction
 
-        function ClickButtonWXBZFunc(unit wu)
+        function ClickButtonWXBZShow(unit wu)
             int pid = GetPlayerId(GetOwningPlayer(wu))
-            int id = ClickButtonWXBZGive(wu,15)
+            int id = ClickButtonWXBZGive(wu,18)
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过|cffffcc00万仙宝藏|r获得 "+GetObjectName(id)+"x1，钻石+|cff00ff0010")
         endfunction
 
-        function ClickButtonWXBZ(int pid)
+         
+
+        function ClickButtonWXBZFuncEx(int pid)
             int num = DzMallNum(Player(pid),"WXBZ")
             if  num > 0
                 if  DzBool == false
@@ -524,13 +526,28 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 endif
                 AddPlayerFoodByIndex(pid,2,10)
                 if  Pu[5] == Pu[2]
-                    ClickButtonWXBZFunc(Pu[2])
+                    ClickButtonWXBZShow(Pu[2])
                 else
-                    ClickButtonWXBZFunc(Pu[1])
+                    ClickButtonWXBZShow(Pu[1])
                 endif
-
+                PlayerUseWXBZ = PlayerUseWXBZ + 1
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r万仙宝藏不足！无法开启！")
+            endif
+        endfunction
+        function ClickButtonWXBZFunc()
+            int pid = Dialog.GetPlayerid()
+            int i = Dialog.GetButtonid()
+            if  i == 1
+                ClickButtonWXBZFuncEx(pid)
+            endif
+        endfunction
+
+        function ClickButtonWXBZ(int pid)
+            if  PlayerUseWXBZ == 0
+                Dialog.create(Player(pid),"万仙宝藏为|cffffcc00一次性消耗|r道具，当局有效。\n|cffff0000使用后不可恢复！！！|r","确定(不再提示)","取消","","","","","","","","","","","ClickButtonWXBZFunc")
+            else
+                ClickButtonWXBZFuncEx(pid)
             endif
         endfunction
     endscope
@@ -708,7 +725,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         //CreateButton(705,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI003.blp")
         //CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
 
-        CreateButton(709,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.32,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNWXBZ3.blp")
+        CreateButton(709,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNWXBZ3.blp")
         DzFrameShow(BUTTON_Back[709][0], false)
         
         for i2 = 2,4

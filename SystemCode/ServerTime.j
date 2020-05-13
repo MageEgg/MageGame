@@ -156,8 +156,10 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             //获取服务器时间   如果为0  则设置到5月8日0点
             ServerTime = DzAPI_Map_GetGameStartTime()
             if  ServerTime < DzPuTime
-                ServerTime = 1588867200
+                ServerTime = DzPuTime
+                //S2I(EXExecuteScript("os.time()"))
             endif
+             
             
             ServerTime = ServerTime + GetRandomInt(1,10)
 

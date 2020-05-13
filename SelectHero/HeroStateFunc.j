@@ -86,7 +86,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         endif
         if  GetPlayerTechCount(Player(pid),'RY2D',true) == 1 //幻莲仙翼
             shopnum = shopnum + 1
-            CreatePassPrizeItem(pid,'CS01')
+            UnitAddItemToSlotById(Pu[1],'CS01',5)
             
             
             if  lv >= 18 and DzShop(Player(pid),"CB1") == true
@@ -135,7 +135,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         if  GetPlayerTechCount(Player(pid),'RY3F',true) == 1 //诛仙剑
             shopnum = shopnum + 1
-            UnitAddItemEx(Pu[2],'I051')
+            UnitAddItemToSlotById(Pu[1],'I051',3)
             AddUnitRealState(Pu[1],17,30)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00诛仙剑|r》已激活！")
         endif
@@ -249,7 +249,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             AddPlayerTechResearched(Player(pid),'RSHA',1)
             AddUnitRealState(Pu[1],18,1)
             AddUnitRealState(Pu[1],49,100)
-            CreatePassPrizeItem(pid,'CS03')
+            UnitAddItemToSlotById(Pu[1],'CS03',4)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城成就《|cff00ff003件套|r》已激活！")
         endif
         if  buynum >= 4
@@ -304,6 +304,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         endif
 
+
+        if  buynum >= 7
+            BuryingPointData(pid,7,2,1)//7件埋点
+        elseif  buynum >= 3
+            BuryingPointData(pid,7,1,1)//付费埋点
+        else
+            BuryingPointData(pid,7,0,1)//免费埋点
+        endif
+
         
 
         if  shopnum > 0
@@ -353,6 +362,9 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         endif
         
         
+        if  GetPlayerTechCount(Player(pid),'RG0K',true) > 0
+            AddPlayerFoodByIndex(pid,2,2)
+        endif
         
 
         int add = 0

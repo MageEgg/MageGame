@@ -407,32 +407,58 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     
     function SpellS006(unit wu,real x,real y,real dam)
         unit u1 = wu
-        real ux = GetUnitX(wu)
-        real uy = GetUnitY(wu)
         real x1 = x
         real y1 = y
         real damage = dam/5
         int num = 5
         effect tx=AddSpecialEffectTarget("effect_blue-shandian-huaban-toushewu.mdl",wu,"origin")
+        real ux = GetUnitRealState(wu,'S60x')
+        real uy = GetUnitRealState(wu,'S60y')
+        AddUnitIntState(wu,'S006',1)
+        if  ux == 0 or uy == 0
+            SetUnitRealState(wu,'S60x',GetUnitX(wu))
+            SetUnitRealState(wu,'S60y',GetUnitY(wu))
+            ux = GetUnitX(wu)
+            uy = GetUnitY(wu)
+        endif
         SpellS006Attack(u1,x1,y1,damage)
         TimerStart(0.07,true)
         {
+            
             num = num - 1
             if  GetUnitAbilityLevel(u1,'AZ98') == 0 
                 if  num <= 0
                     SetUnitX(u1,ux)
                     SetUnitY(u1,uy)
                     DestroyEffect(tx)
+                    AddUnitIntState(u1,'S006',-1)
+                    if  GetUnitIntState(u1,'S006') <= 0
+                        SetUnitIntState(u1,'S006',0)
+                        SetUnitRealState(u1,'S60x',0)
+                        SetUnitRealState(u1,'S60y',0)
+                    endif
                     endtimer
                 else
                     if  SpellS006Attack(u1,x1,y1,damage) == false
                         SetUnitX(u1,ux)
                         SetUnitY(u1,uy)
                         DestroyEffect(tx)
+                        AddUnitIntState(u1,'S006',-1)
+                        if  GetUnitIntState(u1,'S006') <= 0
+                            SetUnitIntState(u1,'S006',0)
+                            SetUnitRealState(u1,'S60x',0)
+                            SetUnitRealState(u1,'S60y',0)
+                        endif
                         endtimer
                     endif
                 endif
             else
+                AddUnitIntState(u1,'S006',-1)
+                if  GetUnitIntState(u1,'S006') <= 0
+                    SetUnitIntState(u1,'S006',0)
+                    SetUnitRealState(u1,'S60x',0)
+                    SetUnitRealState(u1,'S60y',0)
+                endif
                 DestroyEffect(tx)
                 endtimer
             endif
@@ -1281,20 +1307,26 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         flush locals
     endfunction
 
-    function SpellS104(unit u1,real dam)
-        unit u=u1
-        effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u,"origin") 
+    function SpellS104(unit wu,real dam)
+        unit u1=wu
+        effect tx = AddSpecialEffectTarget("effect_orboffire.mdl",u1,"origin") 
         int time = 0
         real damage = dam
-        UnitAddAbility(u,'S104')
-        SpellS104Ex(u,damage)
+        AddUnitIntState(u1,'S104',1)
+        if  GetUnitIntState(u1,'S104') == 1
+            UnitAddAbility(u1,'S104')
+        endif
+        SpellS104Ex(u1,damage)
         TimerStart(1,true)
         {
             if  time < 5
                 time = time + 1
-                SpellS104Ex(u,damage)
+                SpellS104Ex(u1,damage)
             else
-                UnitRemoveAbility(u,'S104')
+                AddUnitIntState(u1,'S104',-1)
+                if  GetUnitIntState(u1,'S104') == 0
+                    UnitRemoveAbility(u1,'S104')
+                endif
                 DestroyEffect(tx)
                 endtimer
             endif
