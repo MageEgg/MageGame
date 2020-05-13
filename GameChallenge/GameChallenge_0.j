@@ -8,8 +8,8 @@ library GameChallenge0 uses GameChallengeBase
             end
             SetUnitAPOfBool(GameBiaoJI[6],3)
             if  GameMode == 4
-                PlayerReviveX = GetUnitX(GameDefendUnit)+200
-                PlayerReviveY = GetUnitY(GameDefendUnit)-200
+                PlayerReviveX = -6752
+                PlayerReviveY = -6752
             else
                 PlayerReviveX = -6656
                 PlayerReviveY = -6656
@@ -23,10 +23,10 @@ library GameChallenge0 uses GameChallengeBase
                     PlayerReviveX = -3344
                     PlayerReviveY = 12496
                 elseif  pid == 2
-                    PlayerReviveX = -4816
+                    PlayerReviveX = -3344
                     PlayerReviveY = 11056
                 elseif  pid == 3
-                    PlayerReviveX = -3344
+                    PlayerReviveX = -4816
                     PlayerReviveY = 11056
                 endif
             else
@@ -129,7 +129,14 @@ library GameChallenge0 uses GameChallengeBase
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,5)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励玄铁x5！")
                         SetPlayerTaskUIChatOfPlayer(pid,"周文王","今飞熊应召，上天垂象，特赐大贤助我皇基，是我西岐的福泽。此后山有一莲池，乃修行宝地。大贤可前去修炼一番，以征战商汤。",0)
-                        SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
+                        if  GameMode == 4
+                            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff欢迎来到碧游宫|r",0)
+                            AttackRoomPostion[pid][1] = PlayerReviveX
+                            AttackRoomPostion[pid][2] = PlayerReviveY
+                            HeroMoveToRoom.execute(pid)
+                        else
+                            SetPlayerTaskUITaskOfPlayer(pid,"|cff00ffff使用F3传送至修炼池|r",0)
+                        endif
                         if  GetLocalPlayer() == Player(pid)
                             for i = 2,3
                                 DzFrameShow(BUTTON_Back[700+i][0], true)

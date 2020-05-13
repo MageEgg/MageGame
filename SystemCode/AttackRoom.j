@@ -471,18 +471,34 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                     SetPlayerTaskUIChatOfPlayer(pid," "," ",0)
                     SetPlayerTaskUITaskOfPlayer(pid," ",0)
                     InitPlayerGameGift.execute(pid)//加载礼包
-                    if  pid == 0
-                        PlayerReviveX = -6912
-                        PlayerReviveY = -5824
-                    elseif  pid == 1
-                        PlayerReviveX = -5824
-                        PlayerReviveY = -6912
-                    elseif  pid == 2
-                        PlayerReviveX = -6912
-                        PlayerReviveY = -7968
-                    elseif  pid == 3
-                        PlayerReviveX = -7968
-                        PlayerReviveY = -6912
+                    if  GameMode == 4
+                        if  pid == 0
+                            PlayerReviveX = AttackRoomPostion[pid][1]+380
+                            PlayerReviveY = AttackRoomPostion[pid][2]-380
+                        elseif  pid == 1
+                            PlayerReviveX = AttackRoomPostion[pid][1]-380
+                            PlayerReviveY = AttackRoomPostion[pid][2]-380
+                        elseif  pid == 2
+                            PlayerReviveX = AttackRoomPostion[pid][1]-380
+                            PlayerReviveY = AttackRoomPostion[pid][2]+380
+                        elseif  pid == 3
+                            PlayerReviveX = AttackRoomPostion[pid][1]+380
+                            PlayerReviveY = AttackRoomPostion[pid][2]+380
+                        endif
+                    else
+                        if  pid == 0
+                            PlayerReviveX = -6912
+                            PlayerReviveY = -5824
+                        elseif  pid == 1
+                            PlayerReviveX = -5824
+                            PlayerReviveY = -6912
+                        elseif  pid == 2
+                            PlayerReviveX = -6912
+                            PlayerReviveY = -7968
+                        elseif  pid == 3
+                            PlayerReviveX = -7968
+                            PlayerReviveY = -6912
+                        endif
                     endif
                 endif
             endif

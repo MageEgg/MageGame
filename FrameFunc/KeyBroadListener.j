@@ -94,7 +94,11 @@ scope KeyEvent initializer InitKeyBroadListener
                 endif
             elseif  key == 114 //F3
                 if  PlayerDeathBool == false 
-                    HeroMoveToRoom(pid)
+                    if  GameMode == 4
+                        HeroMoveToHome(pid)
+                    else
+                        HeroMoveToRoom(pid)
+                    endif
                 endif
             elseif  key == 115 //F4
                 ClickCollectFrame(pid)
