@@ -911,6 +911,9 @@ scope DeathEvent initializer InitDeathEvent
             if  GetUnitAbilityLevel(u1,'AXAI') > 0
                 SpellAXAI(u1)
             endif
+            if  GetUnitAbilityLevel(u1,'AXCA') > 0 and GetRandomReal(1,100) > 40
+                SpellAXAI(u1)
+            endif
             if  GetUnitAbilityLevel(u1,'AXBB') > 0
                 SpellAXBB(u1)
             endif

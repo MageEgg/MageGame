@@ -7,11 +7,32 @@ library GameChallenge0 uses GameChallengeBase
                 SetUnitAPOfBool(GameBiaoJI[n],2)
             end
             SetUnitAPOfBool(GameBiaoJI[6],3)
-            PlayerReviveX = -6656
-            PlayerReviveY = -6656
+            if  GameMode == 4
+                PlayerReviveX = GetUnitX(GameDefendUnit)+200
+                PlayerReviveY = GetUnitY(GameDefendUnit)-200
+            else
+                PlayerReviveX = -6656
+                PlayerReviveY = -6656
+            endif
             SendPlayerUnit(pid,PlayerReviveX,PlayerReviveY)
-            PlayerReviveX = -6752
-            PlayerReviveY = -6752
+            if  GameMode == 4
+                if  pid == 0
+                    PlayerReviveX = -4816
+                    PlayerReviveY = 12496
+                elseif  pid == 1
+                    PlayerReviveX = -3344
+                    PlayerReviveY = 12496
+                elseif  pid == 2
+                    PlayerReviveX = -4816
+                    PlayerReviveY = 11056
+                elseif  pid == 3
+                    PlayerReviveX = -3344
+                    PlayerReviveY = 11056
+                endif
+            else
+                PlayerReviveX = -6752
+                PlayerReviveY = -6752
+            endif
             UnitAddItemEx(Pu[1],'E101')
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[完成任务]：|r奖励"+GetObjectName('E101')+"！")
             SetPlayerTaskUIChatOfPlayer(pid,"剧情","前日卜算，只知有一将星出世，想必就是阁下了。商汤气微，封神大典即将拉开序幕。道友可去西岐历练一番，日后可成大功！",0)

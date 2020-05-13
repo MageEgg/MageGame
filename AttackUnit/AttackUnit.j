@@ -268,6 +268,9 @@ library AttackUnit uses DamageCode,PassCheckMission
         if  GameMode == 4
             AttackUnitWNOver = 60  //最终波
             LastAttackBossId = 'mb06'
+
+            RemoveUnit(GameDefendUnit)
+            GameDefendUnit = CreateUnit(Player(9),'np20',-4096,11776,270)
         else
             if  GameLevel > 1
                 AttackUnitWNOver = 24  //最终波
@@ -442,6 +445,8 @@ library AttackUnit uses DamageCode,PassCheckMission
         }
         flush locals
     endfunction
+    
+    ////////////////////模式4分割//////////////////////
 
     function GetGameMode4AttackUnitId()->int
         int uid = 0
@@ -455,6 +460,13 @@ library AttackUnit uses DamageCode,PassCheckMission
         endif
         return uid
     endfunction
+
+    function SetGameMode4AttackUnitState(unit u)
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*10)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*15)
+    endfunction
+
+    ////////////////////模式4分割//////////////////////
 
     function OpenCreateBossTimer()
         timer t = GetExpiredTimer()
@@ -567,10 +579,17 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 elseif  GameMode == 4
-                                    if  ModuloInteger(AttackUnitWN,2) == 0 or ModuloInteger(AttackUnitWN,5) == 0
+                                    UnitAddAbility(u,'AXCA')
+                                    if  ModuloInteger(AttackUnitWN,2) == 0 
+                                        if  GetRandomReal(1,100) <= 3
+                                            SetGameMode4AttackUnitState(u)
+                                            IntUnitVariation(u)
+                                            AddUnitVariation(u,AttackUnitVariationNumA)
+                                        endif
+                                    elseif  ModuloInteger(AttackUnitWN,5) == 0
                                         IntUnitVariation(u)
                                         AddUnitVariation(u,AttackUnitVariationNumA)
-                                   endif
+                                    endif
                                 endif
                             endif
                         end
@@ -640,7 +659,13 @@ library AttackUnit uses DamageCode,PassCheckMission
                             IntUnitVariation(u)
                             AddUnitVariation(u,AttackUnitVariationNumA)
                         elseif  GameMode == 4
-                            if  ModuloInteger(AttackUnitWN,2) == 0 or ModuloInteger(AttackUnitWN,5) == 0
+                            if  ModuloInteger(AttackUnitWN,2) == 0 
+                                if  GetRandomReal(1,100) <= 3
+                                    SetGameMode4AttackUnitState(u)
+                                    IntUnitVariation(u)
+                                    AddUnitVariation(u,AttackUnitVariationNumA)
+                                endif
+                            elseif  ModuloInteger(AttackUnitWN,5) == 0
                                 IntUnitVariation(u)
                                 AddUnitVariation(u,AttackUnitVariationNumA)
                             endif
