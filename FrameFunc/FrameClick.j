@@ -279,18 +279,29 @@ endscope
 //! runtextmacro AddFrameFunc("756")
 
 
-
+//重置按钮910-923  910esc  920Re
 //! runtextmacro AddFrameFunc("910")
 //! runtextmacro AddFrameFunc("911")
 //! runtextmacro AddFrameFunc("912")
 //! runtextmacro AddFrameFunc("913")
 
-//重置按钮
 //! runtextmacro AddFrameFunc("920")
 
 //! runtextmacro AddFrameFunc("921")
 //! runtextmacro AddFrameFunc("922")
 //! runtextmacro AddFrameFunc("923")
+
+//重置按钮930-943  930esc  940Re
+//! runtextmacro AddFrameFunc("930")
+//! runtextmacro AddFrameFunc("931")
+//! runtextmacro AddFrameFunc("932")
+//! runtextmacro AddFrameFunc("933")
+
+//! runtextmacro AddFrameFunc("940")
+
+//! runtextmacro AddFrameFunc("941")
+//! runtextmacro AddFrameFunc("942")
+//! runtextmacro AddFrameFunc("943")
 
 //重随英雄
 //! runtextmacro AddFrameFunc("950")

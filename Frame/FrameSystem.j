@@ -238,6 +238,8 @@ library GameUIInit initializer init uses OriginGameFrame
         
 
         ExecuteFunc("HeroFrameUIInit")
+
+        ExecuteFunc("DGPrizeFrameInit")
         
         ExecuteFunc("BossLifeBarFrameInit")
         
