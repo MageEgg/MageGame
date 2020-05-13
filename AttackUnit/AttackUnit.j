@@ -684,6 +684,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         unit u = null
         int Attacknum = 0
         real BossTime = 0
+        int bossmod = 0
         if  GameMode == 3 
             if  ModuloInteger(AttackUnitWN,3) == 0
                 AttackUnitVariationNumA = 'AXAA'+GetRandomInt(0,11)
@@ -730,12 +731,14 @@ library AttackUnit uses DamageCode,PassCheckMission
                             AddUnitVariation(u,AttackUnitVariationNumA)
                         elseif  GameMode == 4
                             if  ModuloInteger(AttackUnitWN,2) == 0 
+                                BJDebugMsg("ModuloInteger(AttackUnitWN,2)")
                                 if  GetRandomReal(1,100) <= 3
                                     SetGameMode4AttackUnitState(u)
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 endif
                             elseif  ModuloInteger(AttackUnitWN,5) == 0
+                                BJDebugMsg("ModuloInteger(AttackUnitWN,5)")
                                 IntUnitVariation(u)
                                 AddUnitVariation(u,AttackUnitVariationNumA)
                             endif
@@ -752,7 +755,12 @@ library AttackUnit uses DamageCode,PassCheckMission
             OpenAttackShowUI("UI_AttackShow_0.tga",2)
         endif
         if  InfiniteAttackBool == false
-            if  ModuloInteger(AttackUnitWN,3) == 0
+            if  GameMode == 4
+                bossmod = 10
+            else
+                bossmod = 3
+            endif
+            if  ModuloInteger(AttackUnitWN,bossmod) == 0
                 Attacknum = 100
                 BossTime = 0
                 AttackUnitWNBoss = AttackUnitWNBoss + 1
@@ -799,7 +807,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             endif
         else
 
-            if  DzConA[24] == 1 //劳动节活动
+            if  DzConA[24] == 1 and GameMode != 4//劳动节活动
                 
                     if  AttackUnitWN < AttackUnitWNOver - 3
                         if  GetRandomInt(1,100) <= 50
