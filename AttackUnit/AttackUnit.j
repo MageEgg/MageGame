@@ -265,14 +265,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         real ey = 0
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
-        if  GameLevel > 1
-            AttackUnitWNOver = 24  //最终波
-            LastAttackBossId = 'mb08'
+        if  GameMode == 4
+            AttackUnitWNOver = 60  //最终波
+            LastAttackBossId = 'mb06'
         else
-            AttackUnitWNOver = 21  //最终波
-            LastAttackBossId = 'mb07'
+            if  GameLevel > 1
+                AttackUnitWNOver = 24  //最终波
+                LastAttackBossId = 'mb08'
+            else
+                AttackUnitWNOver = 21  //最终波
+                LastAttackBossId = 'mb07'
+            endif
         endif
-        
+            
         //序号 进攻类型（事件） 下一波时间 创建数量 创建次数 刷新时间 进攻坐标 单位id 1-4 创建坐标1-4
         InitAttackUnitOfLevel()
         InitAttackUnitOfLevelEx(GameLevel)
@@ -438,6 +443,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         flush locals
     endfunction
 
+    function GetGameMode4AttackUnitId()->int
+        int uid = 0
+        real ran = GetRandomReal(1,100)
+        if  ran > 40
+            uid = 'm10A'
+        elseif  ran > 10
+            uid = 'm10B'
+        else
+            uid = 'm10C'
+        endif
+        return uid
+    endfunction
+
     function OpenCreateBossTimer()
         timer t = GetExpiredTimer()
         int FlushNum = LoadInteger(ht,GetHandleId(t),1)
@@ -465,7 +483,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                             GroupAddUnit(AttackUnitGroup,u)
                             AttackBOSSLastCos = AttackBOSSLastCos + 1
                             CreateBossAttachUnit(u,pex[k],pey[k],0.1)
-                            if  GameMode == 3
+                            if  GameMode == 3 or GameMode == 4
                                 IntUnitVariation(u)
                                 AddUnitVariation(u,AttackUnitVariationNumA)
                                 AddUnitVariation(u,AttackUnitVariationNumB)
@@ -535,6 +553,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                     psy[k] = AttackUnitStartY(k)[ordernum]
                     pex[k] = AttackUnitEndX(k)[ordernum]
                     pey[k] = AttackUnitEndY(k)[ordernum]
+                    if  GameMode == 4
+                        puid[k] = GetGameMode4AttackUnitId()
+                    endif
                     if  puid[k] != 0
                         for j = 1,unitnum
                             if  CountUnitsInGroup(AttackUnitGroup) <= 50
@@ -545,6 +566,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
+                                elseif  GameMode == 4
+                                    if  ModuloInteger(AttackUnitWN,2) == 0 or ModuloInteger(AttackUnitWN,5) == 0
+                                        IntUnitVariation(u)
+                                        AddUnitVariation(u,AttackUnitVariationNumA)
+                                   endif
                                 endif
                             endif
                         end
@@ -586,6 +612,13 @@ library AttackUnit uses DamageCode,PassCheckMission
                 ShowVariationUIEx(false)
                 Blood.show = false
             endif
+        elseif GameMode == 4
+            if  ModuloInteger(AttackUnitWN,2) == 0 or ModuloInteger(AttackUnitWN,5) == 0
+                AttackUnitVariationNumA = 'AXAA'+GetRandomInt(0,11)
+            endif
+            if  ModuloInteger(AttackUnitWN,10) == 0
+                AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
+            endif
         endif
         for k = 0,3
             if  IsPlaying(k) == true
@@ -594,6 +627,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                 psy[k] = AttackUnitStartY(k)[ordernum]
                 pex[k] = AttackUnitEndX(k)[ordernum]
                 pey[k] = AttackUnitEndY(k)[ordernum]
+                if  GameMode == 4
+                    puid[k] = GetGameMode4AttackUnitId()
+                endif
                 if  puid[k] != 0
                     for j = 1,unitnum
                         u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
@@ -603,6 +639,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                         if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
                             IntUnitVariation(u)
                             AddUnitVariation(u,AttackUnitVariationNumA)
+                        elseif  GameMode == 4
+                            if  ModuloInteger(AttackUnitWN,2) == 0 or ModuloInteger(AttackUnitWN,5) == 0
+                                IntUnitVariation(u)
+                                AddUnitVariation(u,AttackUnitVariationNumA)
+                            endif
                         endif
                     end
                 endif
@@ -742,6 +783,14 @@ library AttackUnit uses DamageCode,PassCheckMission
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处购买道具提前进入大决战！！！|r")
                 elseif  AttackUnitWN == 12
                     ShowGameTeamChallengeNPC_C.execute(AttackUnitWN+1)                
+                endif
+            elseif  GameMode == 4
+                if  AttackUnitWN == 17
+                    for pid = 0,3
+                        if  IsPlaying(pid) == true
+                            AddPlayerTechResearched(Player(pid),'RZ00',1)
+                        endif
+                    end
                 endif
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver-3)

@@ -256,6 +256,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         real time = 2//挑战时间
         if  GameMode == 3
             time = 1
+        elseif  GameMode == 4
+            if  zu == 200
+                time = 60
+            elseif  zu == 210
+                time = 160
+            elseif  zu == 220 
+                time = 240
+            endif
         endif
         //BJDebugMsg(YDWEId2S(id))
         UnitAddAbility(Pu[42],id)
@@ -267,6 +275,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  Player(pid) == GetLocalPlayer()
             YDWESetUnitAbilityDataString(Pu[42],id,1,218,s)
         endif
+        YDWESetUnitAbilityDataReal(Pu[42],id,1,105,time)
         YDWESetUnitAbilityState(Pu[42],id,1,time)
     endfunction
 
@@ -309,6 +318,10 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 endif
             endif
         end
+
+        if  GameMode == 4
+            InitAttackUnitChallengeStateData(220,4,0,5,0,0,Buy_Unit,'AT2E',1,0,0,"|CffFFD24D挑战奖励：|r|n|Cffff0000随机符印*1|n|n|r|Cffcccccc合理选择和搭配符印，可显著提高你的实力。|r")
+        endif
        
     endfunction
     
