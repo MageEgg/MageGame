@@ -17,7 +17,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
     private FRAME Button = 0
     private FRAME Exp0 = 0
     private FRAME Exp1 = 0
-    private FRAME ExpName = 0
+    FRAME ExpName = 0
 
     FRAME ExpModel = 0
     FRAME IncEquipModel = 0
@@ -516,13 +516,67 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r恭喜玩家"+GetPlayerNameOfColor(pid)+"通过|cffffcc00万仙宝藏|r获得 "+GetObjectName(id)+"x1，钻石+|cff00ff0010")
         endfunction
 
+        function BoxShowWXBZ(int pid)
+            DzFrameShow(UI_TipsHead, true)
+            
+            SetTipsData(1,"","万仙宝藏 剩余数量："+I2S(DzMallNum(Player(pid),"WXBZ")))
+            
+            SetTipsData(10,""," ")
+
+            SetTipsData(11,"","开启后获得|CffFFCC00随机奖励|r，当局钻石+|cff00ff0010")
+
+    
+            SetTipsData(12,""," ")
+
+            SetTipsData(13,"","拥有|cffffcc00万仙宝藏|r时，每次开局奖励免费次数+|cff00ff001")
+            SetTipsData(14,"","|cff00ff00免费次数：|r"+I2S(PlayerWXBZFree))
+            
+            SetTipsData(15,""," ")
+            if  AttackUnitWN < 2
+                SetTipsData(16,"","|cffff00003波后可开启该宝箱")
+            else
+                if  PlayerWXBZFree > 0
+                    SetTipsData(16,"","点击消耗1次|cffffcc00免费次数|r开启")
+                else
+                    SetTipsData(16,"","点击消耗1个|cffffcc00万仙宝藏|r开启")
+                endif
+            endif
+            
+            ShowTipsUI()
+        endfunction
+
          
+
+         
+        function SaveWXBZNum(int id)
+            int pid = id
+            TimerStart(0.0,false)
+            {
+                AddDzPlayerData(pid,2,7,1) //万仙宝藏
+                if  GetDzPlayerData(pid,2,7) >= 38
+                    if  GetPlayerTechCount(Player(pid),'RDBB',true) == 0
+                        SetDzPlayerData(pid,15,28,9)
+                        SetPlayerTechResearchedEx(Player(pid),'RDBB')
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[彩蛋]：|r恭喜"+GetPlayerNameOfColor(pid)+"激活|cffffcc00【彩蛋】|cffff8000万匹斯？|r（永久存档）！")
+                    endif
+                endif
+                endtimer
+                flush locals
+            }
+            flush locals
+        endfunction
 
         function ClickButtonWXBZFuncEx(int pid)
             int num = DzMallNum(Player(pid),"WXBZ")
-            if  num > 0
-                if  DzBool == false
-                    DzAPI_Map_ConsumeMallItem(Player(pid), "WXBZ", 1 )
+
+            if  num > 0 or PlayerWXBZFree > 0
+                if  PlayerWXBZFree > 0
+                    PlayerWXBZFree = PlayerWXBZFree - 1
+                else
+                    if  DzBool == false
+                        DzAPI_Map_ConsumeMallItem(Player(pid), "WXBZ", 1 )
+                    endif
+                    PlayerUseWXBZ = PlayerUseWXBZ + 1
                 endif
                 AddPlayerFoodByIndex(pid,2,10)
                 if  Pu[5] == Pu[2]
@@ -530,7 +584,13 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 else
                     ClickButtonWXBZShow(Pu[1])
                 endif
-                PlayerUseWXBZ = PlayerUseWXBZ + 1
+
+                if  GetLocalPlayer() == Player(pid)
+                    if  Frame2Id(LastFrame) == 709
+                        BoxShowWXBZ(pid)
+                    endif
+                endif
+                SaveWXBZNum(pid)
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r万仙宝藏不足！无法开启！")
             endif
@@ -544,10 +604,14 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         endfunction
 
         function ClickButtonWXBZ(int pid)
-            if  PlayerUseWXBZ == 0
-                Dialog.create(Player(pid),"万仙宝藏为|cffffcc00一次性消耗|r道具，当局有效。\n|cffff0000使用后不可恢复！！！|r","确定(不再提示)","取消","","","","","","","","","","","ClickButtonWXBZFunc")
+            if  AttackUnitWN >= 2
+                if  PlayerUseWXBZ == 0 and PlayerWXBZFree == 0
+                    Dialog.create(Player(pid),"万仙宝藏为|cffffcc00一次性消耗|r道具，当局有效。\n|cffff0000使用后不可恢复！！！|r","确定(不再提示)","取消","","","","","","","","","","","ClickButtonWXBZFunc")
+                else
+                    ClickButtonWXBZFuncEx(pid)
+                endif
             else
-                ClickButtonWXBZFuncEx(pid)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r进攻3波后可使用该道具！")
             endif
         endfunction
     endscope

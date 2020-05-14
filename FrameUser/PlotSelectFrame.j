@@ -312,13 +312,14 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
 
         
 
-        if  GetPlayerTechCount(Player(pid),'RG1A',true)>0
-            add = add + 0.15
-        endif
+   
         if  GetPlayerTechCount(Player(pid),'RG1C',true)>0
             add = add + 0.15
         endif
         if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
+            add = add + 0.15
+        endif
+        if  GetPlayerTechCount(Player(pid),'RG1G',true)>0
             add = add + 0.15
         endif
         if  GetPlayerTechCount(Player(pid),'RSHF',true)>0
@@ -326,6 +327,15 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
         endif
         if  GetPlayerTechCount(Player(pid),'RSHG',true)>0
             add = add + 0.06
+        endif
+        if  GetPlayerTechCount(Player(pid),'RGDB',true)>0
+            add = add + 0.05
+        endif
+        if  GetPlayerTechCount(Player(pid),'RGDD',true)>0
+            add = add + 0.05
+        endif
+        if  GetPlayerTechCount(Player(pid),'RGDF',true)>0
+            add = add + 0.05
         endif
         
         

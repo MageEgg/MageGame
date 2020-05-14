@@ -304,8 +304,13 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         endif
 
-
-        if  buynum >= 7
+        if  buynum >= 16
+            BuryingPointData(pid,7,5,1)//16件埋点
+        elseif  buynum >= 13
+            BuryingPointData(pid,7,4,1)//13件埋点
+        elseif  buynum >= 10
+            BuryingPointData(pid,7,3,1)//10件埋点
+        elseif  buynum >= 7
             BuryingPointData(pid,7,2,1)//7件埋点
         elseif  buynum >= 3
             BuryingPointData(pid,7,1,1)//付费埋点
@@ -402,16 +407,20 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  add > 0
             AddPlayerFoodByIndex(pid,1,add)
         endif
+
+
+        add = DzMallNum(Player(pid),"WXBZ")
+        if  add > 0 
+            PlayerWXBZFree = PlayerWXBZFree + 1
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：|cff00ff00拥有万仙宝藏，当局免费开启次数+1!|r")
+        endif
         
-        /*
-        add = DzAPI_Map_GetMallItemCount(Player(pid), "FOOD")
-        if  DzBool == true
-            add = add + 188
+
+        if  GetPlayerTechCount(Player(pid),'RDBB',true) == 0 and add >= 38
+            SetDzPlayerData(pid,15,28,9)
+            SetPlayerTechResearchedEx(Player(pid),'RDBB')
         endif
-        if  add > 0
-            AddPlayerFoodByIndex(pid,3,add)
-        endif
-        */
+
 
     endfunction
 

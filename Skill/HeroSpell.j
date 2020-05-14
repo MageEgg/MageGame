@@ -1961,6 +1961,8 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
                 SpellS537(u1.u,damage,lv)
             elseif  id == 'S540'
                 SpellS540(u1.u,sx,sy,damage,lv)
+            elseif  id == 'S541'
+                SpellS541(u1.u,sx,sy,damage,lv)
             endif
         endif
        

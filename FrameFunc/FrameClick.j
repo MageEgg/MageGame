@@ -81,6 +81,10 @@ scope FrameButton
                         PlayerClickRunePrize(pid,id-920)
                     elseif  id == 920//符印重随
                         ClickReRunePrizeFrame(pid)
+                    elseif  id >= 931 and id <= 933//道果奖励
+                        PlayerClickDGPrize(pid,id-930)
+                    elseif  id >= 941 and id <= 943//道果奖励
+                        PlayerClickDGPrize(pid,id-940)
                     elseif  id == 420//副本重随
                         ClickRePrizeFrame(pid)
                     elseif  id == 950//重随
@@ -94,6 +98,7 @@ scope FrameButton
                     elseif  id >= 311 and id <= 318//选择副本按钮
                         //PlayerTestPlot(pid,id-310)
                         OpenGameChallenge(pid,id-310,GetPlayerPlotType(pid))
+                    
                     elseif  id >= 951 and id <= 966
                         if  GameChallengePlayerBool[pid][0] == false
                             ReHeroPrePareByPool(pid,id-950)
