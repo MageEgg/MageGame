@@ -424,7 +424,7 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
     endfunction
 
-
+    
 
 
 
