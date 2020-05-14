@@ -320,6 +320,7 @@ piece DzGameFunc
                         SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
                     endif
                     SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
+                    BJDebugMsg("清除熟练度 "+I2S(num + k * 10))
                 endif
             end
         end
