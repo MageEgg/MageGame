@@ -89,6 +89,7 @@ library DzSave initializer InitDzData uses DzDataSetting
         if  pid == 0
             for flag = 1,MaxMember
                 DzS[Group] = DzS[Group]+GetStrZero(DzArrayPlayerInt0[Group][flag],DzDataGroupLength(Group))
+                //BJDebugMsg("玩家"+I2S(pid)+" Group:"+I2S(Group)+" flag:"+GetStrZero(DzArrayPlayerInt0[Group][flag],DzDataGroupLength(Group)))
             end
         elseif  pid == 1
             for flag = 1,MaxMember
