@@ -228,7 +228,7 @@ piece DzGameFunc
 
     function GetDzHeroExp(int pid,int uid)->int //获取英雄经验
         int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("GetDzHeroExp 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        //BJDebugMsg("GetDzHeroExp 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         int zu = 7
         int wei = id
         if  id > 30
@@ -244,7 +244,7 @@ piece DzGameFunc
 
     function GetDzHeroExpLevel(int pid,int uid)->int
         int id = GetDataBinaryConversion(uid,'H000')
-        BJDebugMsg("GetDzHeroExpLevel 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        //BJDebugMsg("GetDzHeroExpLevel 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         if  id > 0
             return GetDzPlayerData(pid,9,id)
         else
