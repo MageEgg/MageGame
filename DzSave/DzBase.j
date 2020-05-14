@@ -1,12 +1,12 @@
 library DzBase uses SystemCodes,DzAPI
 
     string array DzArrayString[12][680]
-    int array DzArrayPlayerInt0[200][40]
-    int array DzArrayPlayerInt1[200][40]
-    int array DzArrayPlayerInt2[200][40]
-    int array DzArrayPlayerInt3[200][40]
-    int array DzArrayPlayerInt4[200][40]
-    int array DzArrayPlayerInt5[200][40]
+    int array DzArrayPlayerInt0[200][100]
+    int array DzArrayPlayerInt1[200][100]
+    int array DzArrayPlayerInt2[200][100]
+    int array DzArrayPlayerInt3[200][100]
+    int array DzArrayPlayerInt4[200][100]
+    int array DzArrayPlayerInt5[200][100]
     int array DzArrayBaseInt
     bool array IsDzNewPlayer
     

@@ -228,7 +228,7 @@ piece DzGameFunc
 
     function GetDzHeroExp(int pid,int uid)->int //获取英雄经验
         int id = GetDataBinaryConversion(uid,'H000')
-        //BJDebugMsg("GetDzHeroExp 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        BJDebugMsg("GetDzHeroExp 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         int zu = 7
         int wei = id
         if  id > 30
@@ -244,7 +244,7 @@ piece DzGameFunc
 
     function GetDzHeroExpLevel(int pid,int uid)->int
         int id = GetDataBinaryConversion(uid,'H000')
-        //BJDebugMsg("GetDzHeroExpLevel 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
+        BJDebugMsg("GetDzHeroExpLevel 英雄为："+YDWEId2S(uid)+"，英雄熟练度引索："+I2S(id))
         if  id > 0
             return GetDzPlayerData(pid,9,id)
         else
@@ -290,6 +290,7 @@ piece DzGameFunc
             BJDebugMsg("其中英雄熟练度"+I2S(level)+"级总数量为"+I2S(DzHeroExpLevelCount[level]))
         end
     endfunction
+
     //初始化熟练度
     function InitDzHeroExpData(int pid)
         int game = DzPlayerGames(Player(pid))+1//局数
@@ -303,6 +304,7 @@ piece DzGameFunc
                 levelexp = GetDzHeroNeedExp(GetDzHeroExpLevel(pid,'H000' + num + k * 256))
                 nowexp = GetDzHeroExp(pid,'H000' + num + k * 256)
                 allexp = levelexp + nowexp
+                //BJDebugMsg("熟练度循环 "+I2S(num + k * 10))
                 if  maxexp > 0
                     maxexp = maxexp - allexp
                     if  maxexp < 0
@@ -312,6 +314,7 @@ piece DzGameFunc
                             SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
                         endif
                         SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
+                        //BJDebugMsg("清除熟练度1111 "+I2S(num + k * 10))
                     endif
                 else    
                     if  k >= 3
@@ -320,14 +323,14 @@ piece DzGameFunc
                         SetDzPlayerDataOnlyValue(pid,7,num + k * 10,0)
                     endif
                     SetDzPlayerDataOnlyValue(pid,9,num + k * 10,0)
-                    BJDebugMsg("清除熟练度 "+I2S(num + k * 10))
+                    //BJDebugMsg("清除熟练度2222 "+I2S(num + k * 10))
                 endif
             end
         end
         SaveDzPlayerDataOfGroup.execute(pid,7)
         SaveDzPlayerDataOfGroup.execute(pid,8)
         SaveDzPlayerDataOfGroup.execute(pid,9)
-        InitDzHeroExpDataEx(pid)
+        InitDzHeroExpDataEx.execute(pid)
     endfunction
 
     //单英雄增加熟练度

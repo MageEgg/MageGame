@@ -220,9 +220,9 @@ library DzDataSetting uses DzBase
                 max = 0
             endif
         elseif  Group == 7
-            max = MaxHeroNeedExp3 //MaxHeroNeedExp4
+            max = MaxHeroNeedExp4
         elseif  Group == 8
-            max = MaxHeroNeedExp3 //MaxHeroNeedExp4
+            max = MaxHeroNeedExp4
         elseif  Group == 9
             max = MaxHeroExpLevel
         elseif  Group >= 10 and Group <= 15 //不用管
