@@ -255,6 +255,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGDC','RGDC',0,0,0,0)//通关异变N3 15次
         RegisterShowSaveFrameData(0,'RGDD','RGDD',0,0,0,0)//通关异变N4 15次
         RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0)//通关异变N5 15次
+        RegisterShowSaveFrameData(0,'RGDF','RGDF',0,0,0,0)//通关异变N6 15次
 
         
 
@@ -336,6 +337,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(3,'RH38','RH38',0,0,0,0)//女娲
         RegisterShowSaveFrameData(3,'RH39','RH39',0,0,0,0)//孔宣
         RegisterShowSaveFrameData(3,'RH40','RH40',0,0,0,0)//龟丞相
+        RegisterShowSaveFrameData(3,'RH41','RH41',0,0,0,0)//巨灵神
 
 
 

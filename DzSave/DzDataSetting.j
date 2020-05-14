@@ -27,7 +27,7 @@ library DzDataSetting uses DzBase
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包 23魔芝礼包
-    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分 5当日钻石 6龙宫积分
+    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分 5当日钻石 6龙宫积分 7 宝藏使用数量
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
@@ -45,7 +45,7 @@ library DzDataSetting uses DzBase
     // 组17 20组 == 1疯狂总次数 2+通关难度次数 
     // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 4积分2上限
     // 组19 皮肤    30组
-    // 组20 20组 == 1异变总次数 2+通关难度次数 
+    // 组20 20组 == 1异变总次数 2+通关难度次数
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -83,7 +83,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitVariationTGCos[4] = 15
         DzPlayerInitVariationTGCos[5] = 15
         
-        DzPlayerInitVariationTGCos[6] = 8
+        DzPlayerInitVariationTGCos[6] = 15
         /*
         DzPlayerInitVariationTGCos[7] = 8
         DzPlayerInitVariationTGCos[8] = 8
@@ -170,8 +170,9 @@ library DzDataSetting uses DzBase
                 max = 14
             elseif  flag == 6 //龙宫积分
                 max = DragonKing*DragonKingDayNum*3
-            elseif  flag >= 7 //未使用
-                max = 0
+            elseif  flag == 7 //宝箱使用数量
+                max = 999
+            elseif  flag >= 8 //未使用
             endif
         elseif  Group == 3
             if  flag == 1 //总通关次数

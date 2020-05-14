@@ -2257,6 +2257,134 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
         flush locals
 
     endfunction
-    
+    function SpellS541_2(unit wu)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+
+        TimerStart(0.3,false)
+        {
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x1,y1,600,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,GetUnitAttack(u1)*8,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+            LocAddEffectSetSize(x1,y1,"effect_az_tormentedsoul_t1.mdl",2)
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    //大地坠击
+    function SpellS541(unit wu,real x,real y,real dam,int level)
+        unit u1 = wu
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real ang = Atan2(y-y1,x-x1)
+        real dis = Pdis(x1,y1,x,y)
+        
+        real sp = dis/50
+
+        real x2 = sp*Cos(ang)
+        real y2 = sp*Sin(ang)
+        real time = 0
+        real height = dis
+        real damage = dam
+        int lv = level
+
+        int num = 0
+        if  lv >= 4
+            num = 3
+        elseif  lv >= 2
+            num = 1
+        endif
+
+        if  height < 800
+            height = 800
+        endif
+        
+        SetUnitFacing(u1,ang/0.01745)
+        EXSetUnitFacing(u1,ang/0.01745)
+
+        TimerStart(0.01,true)
+        {
+            unit uu = null
+            int uid = 0
+            time = time + sp
+            x1 = GetUnitX(u1) + x2
+            y1 = GetUnitY(u1) + y2
+            if  IsCanFlyTerrain(x1,y1) == true
+                SetUnitX(u1,x1)
+                SetUnitY(u1,y1)
+                UnitAddAbility(u1,'Arav')
+                SetUnitFlyHeight(u1,Sin(time/dis*3.1415926)*height,0)
+                UnitRemoveAbility(u1,'Arav')
+                SetUnitFacing(u1,ang/0.01745)
+                EXSetUnitFacing(u1,ang/0.01745)
+                
+            else
+                time = dis+1
+            endif
+            if  time >= dis
+                UnitAddAbility(u1,'Arav')
+                SetUnitFlyHeight(u1,0,0)
+                UnitRemoveAbility(u1,'Arav')
+                SetUnitFacing(u1,ang/0.01745)
+                EXSetUnitFacing(u1,ang/0.01745)
+                
+                LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_fire-boom-new.mdl")
+                LocAddEffect(GetUnitX(u1),GetUnitY(u1),"effect_AA_bwaxec.mdl")
+                
+               
+                
+
+                CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(u1)),8,1,0.2)
+
+                
+                
+                IndexGroup gg = IndexGroup.create()
+                GroupEnumUnitsInRange(gg.ejg,GetUnitX(u1),GetUnitY(u1),600,GroupNormalNoStrAddBuff(GetOwningPlayer(u1),"",Buffxy,1,0))
+                loop
+                    uu = FirstOfGroup(gg.ejg)
+                    exitwhen uu == null
+                    uid = GetUnitTypeId(uu)
+                    if  (uid >= 'm001' and uid <= 'm099') or (uid >= 'g00A' and uid <= 'g00E')
+                        UnitDamageTarget(u1,uu,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    elseif  lv >= 3
+                        UnitDamageTarget(u1,uu,damage,true,true,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,WEAPON_TYPE_WOOD_MEDIUM_STAB )
+                    else
+                        UnitDamageTarget(u1,uu,damage,true,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+                    endif
+                    
+                    GroupRemoveUnit(gg.ejg,uu)
+                endloop
+                
+                
+                                   
+                gg.destroy()
+
+                if  num > 0
+                    num = num - 1
+                    dis = 30
+                    x2 = 0
+                    y2 = 0
+                    time = 0
+                    sp = 1
+                    height = 300
+                endif
+                
+            endif
+
+            if  time >= dis
+                if  GetUnitIntState(u1,'FB38') > 0 or GetUnitIntState(u1,'FF38') > 0
+                    SpellS541_2(u1)
+                endif
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction 
+
 
 endlibrary

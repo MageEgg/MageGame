@@ -566,7 +566,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
 
         
-        InitUnlocTechConditions('RDBB',InitCond1(2,Unloc_Type_ShopNum,38),0,0,0,0)
+        
         
 
 
@@ -631,6 +631,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGDC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(20,4,15)),0,0,0)
         InitUnlocTechConditions('RGDD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(20,5,15)),0,0,0)
         InitUnlocTechConditions('RGDE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(20,6,15)),0,0,0)
+        InitUnlocTechConditions('RGDF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(20,7,15)),0,0,0)
 
         
 
@@ -749,6 +750,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             InitUnlocTechConditions('RDAZ',InitCond1(2,Unloc_Type_Comment,1),0,0,0,0)
 
             InitUnlocTechConditions('RDBA',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_Load,GameDataList(15,27,1)),0,0,0)
+            InitUnlocTechConditions('RDBB',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_Load,GameDataList(15,28,9)),0,0,0)
             
             
 

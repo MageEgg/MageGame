@@ -197,8 +197,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 num = 10
                 if  GameGiftBool[num] == false
                     GameGiftBool[num] = true
-                    AddPlayerFoodByIndex(pid,2,8)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，当局钻石+8！") 
+                    PlayerWXBZFree = PlayerWXBZFree + 1
+                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"】|r，万仙宝藏免费次数+1！") 
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                 endif

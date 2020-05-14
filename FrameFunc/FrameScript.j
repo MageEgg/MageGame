@@ -233,17 +233,7 @@
         endif
     endfunction
     
-    function BoxShowWXBZ(int pid)
-        DzFrameShow(UI_TipsHead, true)
-        SetTipsData(1,"","万仙宝藏")
-
-        SetTipsData(10,"","点击消耗1个|cffffcc00万仙宝藏|r开启\n开启后获得|CffFFCC00随机奖励|r，当局钻石+|cff00ff0010")
-
-        SetTipsData(11,""," ")
-        SetTipsData(12,"","|cffffcc00剩余数量：|r"+I2S(DzMallNum(Player(pid),"WXBZ")))
-        
-        ShowTipsUI()
-    endfunction
+    
     
     function BoxShowTips(int pid,int id)
         //BJDebugMsg("show"+YDWEId2S(id))
@@ -490,6 +480,16 @@
                     elseif  id == 920
                         BoxShowRePrize(pid,2)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                    elseif  id >= 931 and id <= 933
+                        boxid = GetUnitIntState(Pu[1],id)
+                        if  boxid != 0
+                            BoxShowTips(pid,boxid)
+                        endif
+                    elseif  id >= 941 and id <= 943
+                        boxid = GetUnitIntState(Pu[1],id-10)
+                        if  boxid != 0
+                            BoxShowTips(pid,boxid)
+                        endif
                     else
                         //UIDebugShowIndex(id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
