@@ -289,9 +289,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 AddAttackUnitChallengeStateStock(pid,220,0)
                 
                 //AttackUnitChallengeStateTypeString[200][0] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0])+"|r|n|n"+AttackUnitChallengeStateTypeString[200][0]
-                if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
-                    if  Player(pid) == GetLocalPlayer()
-                        AttackUnitChallengeStateTypeString[200][0] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(5)+"|r(|cff00ff00+5|r)"
+                if  GameSaveClose == 0
+                    if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                        if  Player(pid) == GetLocalPlayer()
+                            AttackUnitChallengeStateTypeString[200][0] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(5)+"|r(|cff00ff00+5|r)"
+                        endif
                     endif
                 endif
                 AddAttackUnitChallengeStateStock(pid,200,0)
@@ -745,9 +747,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         endif
                         //AttackUnitChallengeStateTypeString[zu][wei] = "|cffffff00推荐：|n - 战斗力"+I2S(AttackUnitChallengeCombat[GameLevel][0+AttackUnitChallengePlayerWeiNum(challenge)])+"|r|n|n|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
                         AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r"
-                        if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
-                            if  Player(pid) == GetLocalPlayer()
-                                AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r(|cff00ff00+5|r)"
+                        if  GameSaveClose == 0
+                            if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                                if  Player(pid) == GetLocalPlayer()
+                                    AttackUnitChallengeStateTypeString[zu][wei] = "|cffffcc00挑战奖励：|r|n玄铁|Cffffc926+"+I2S(nextlumber)+"|r(|cff00ff00+5|r)"
+                                endif
                             endif
                         endif
                     else
@@ -755,7 +759,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         lumber = 20
                     endif
 
-                    if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0
+                    if  GetPlayerTechCount(Player(pid),'RJ1X',true) > 0 and GameSaveClose == 0
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,lumber+5)
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你完成"+GetUnitName(u)+",|cffffff00奖励玄铁x"+I2S(lumber)+"|r！")
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r拥有《|cff00ff00赞助礼包|r》,|cffffff00奖励玄铁x5|r")

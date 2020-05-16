@@ -121,10 +121,11 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
             HeroIncLevel(Pu[1])
             HeroAddExp(Pu[1],1)
 
-            
-            if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
-                SetEquipStateOfPlayer(Pu[1],id,0.08)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具诛仙剑，额外获得8%道果属性！")
+            if  GameSaveClose == 0
+                if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
+                    SetEquipStateOfPlayer(Pu[1],id,0.08)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具诛仙剑，额外获得8%道果属性！")
+                endif
             endif
             if  GetUnitTypeId(wu) == 'H018'
                 SpellS518.execute(Pu[1],id)//九转神功
@@ -174,16 +175,40 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         endif 
     endfunction
 
+
+    function GetOpenDgUse(int pid,int index)->int
+        int use = 0
+        use = 10000
+        return use
+    endfunction
+
+    
+    
+    function BoxShowOpenDg(int pid,int index)
+        int use = GetOpenDgUse(pid,index)
+        DzFrameShow(UI_TipsHead, true)
+        SetTipsData(1,"","开启随机道果")
+        SetTipsData(10,"","|cffffcc00消耗经验：|r"+I2S(use))
+        ShowTipsUI()
+    endfunction
+
     
 
     function PlayerClickDGPrize(int pid,int index)
         int id = GetUnitIntState(Pu[1],930+index)
+        int use = 0
         if  id == 0
             //开道果
-            SetUnitIntState(Pu[1],930+index,GetNewDGPrize(pid))
-            if  GetLocalPlayer() == Player(pid)
-                Button.show = true
-                ReDGPrizeFrame(pid)
+
+            use = GetOpenDgUse(pid,index)
+            if  HeroExExp >= use
+                HeroExExp = HeroExExp - use
+                SetUnitIntState(Pu[1],930+index,GetNewDGPrize(pid))
+                if  GetLocalPlayer() == Player(pid)
+                    Button.show = true
+                    ReDGPrizeFrame(pid)
+                endif
+                ReHeroXpBar(pid)
             endif
         else
             //激活道果

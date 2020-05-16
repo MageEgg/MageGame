@@ -28,6 +28,11 @@ library FRAME initializer FRAMEInit uses OriginGameFrame
         static method Tag(string TagType,string name,int parent,int id)->int
             return DzCreateFrameByTagName(TagType,name, parent,"template",id)
         endmethod
+
+        method ClearPoints()
+            DzFrameClearAllPoints( .frameid )
+        endmethod
+        
         //设置锚点
         method SetPoint(integer point,integer frame,integer framepoint,real x,real y)
             DzFrameSetPoint(.frameid,point,frame,framepoint,x,y)

@@ -1343,20 +1343,23 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         real gl = 10
 
         
-        
-        if  GetPlayerTechCount(GetOwningPlayer(u),'RM1J',true) > 0
-            gl = gl + 10
+        if  GameSaveClose == 0
+            if  GetPlayerTechCount(GetOwningPlayer(u),'RM1J',true) > 0
+                gl = gl + 10
+            endif
+            if  GetPlayerTechCount(GetOwningPlayer(u),'RX3E',true) > 0
+                gl = gl + 3
+            endif
+            
+            if  GetPlayerTechCount(GetOwningPlayer(u),'RM1E',true) > 0
+                add = add + 0.5
+            endif
         endif
-        if  GetPlayerTechCount(GetOwningPlayer(u),'RX3E',true) > 0
-            gl = gl + 3
-        endif
-        
-        if  GetPlayerTechCount(GetOwningPlayer(u),'RM1E',true) > 0
-            add = add + 0.5
-        endif
+
         if  GetUnitAbilityLevel(u,'A009') > 0
             add = add + 0.5
         endif
+
         
         damage = damage * (1+add)
 
@@ -1786,11 +1789,13 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
         
         CameraSetTargetNoiseTimer(GetPlayerId(GetOwningPlayer(wu)),8,1,0.2)
 
-        if  GetPlayerTechCount(GetOwningPlayer(wu),'RM6J',true) > 0
-            time = time + 3
-        endif
-        if  GetPlayerTechCount(GetOwningPlayer(wu),'RX5E',true) > 0
-            time = time + 3
+        if  GameSaveClose == 0
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RM6J',true) > 0
+                time = time + 3
+            endif
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RX5E',true) > 0
+                time = time + 3
+            endif
         endif
         
 

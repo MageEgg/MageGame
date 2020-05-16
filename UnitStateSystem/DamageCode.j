@@ -259,11 +259,14 @@ library DamageCode uses UnitStateSet
             s = s + lv 
         endif
 
-        if  GetPlayerTechCount(GetOwningPlayer(wu),'KTAC',true) > 0
-            s = s + 4
-        endif
-        if  GetPlayerTechCount(GetOwningPlayer(wu),'RGBB',true) > 0
-            s = s + 1
+
+        if  GameSaveClose == 0
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'KTAC',true) > 0
+                s = s + 4
+            endif
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RGBB',true) > 0
+                s = s + 1
+            endif
         endif
 
 

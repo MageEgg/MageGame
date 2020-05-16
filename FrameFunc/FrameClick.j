@@ -45,11 +45,15 @@ scope FrameButton
                         SetPlayerShowSavePage(pid,id-581)
                     
                     elseif  id == 655//签到
-                        if  GameTime >= 60
-                            TimerMissionAddNumFunc(pid,1,1)
-                            DzPalyerSignIn(pid)
+                        if  GameSaveClose == 0
+                            if  GameTime >= 60
+                                TimerMissionAddNumFunc(pid,1,1)
+                                DzPalyerSignIn(pid)
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r游戏开局1分钟后可以签到！")
+                            endif
                         else
-                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r游戏开局1分钟后可以签到！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该模式下无法签到！")
                         endif
                     elseif  id == 661 //通行证翻页
                         PassFreamClickLast(pid)
@@ -114,6 +118,17 @@ scope FrameButton
                         PlayerClickPrize(pid,0)
                     elseif  id == 910
                         PlayerClickRunePrize(pid,1)
+                    endif
+                endif
+            elseif  GameSaveClose == 1
+                if  id >= 951 and id <= 966
+                    if  GameChallengePlayerBool[pid][0] == false
+                        ReHeroPrePareByPoolEx(pid,id-950)
+                    else
+                        if  ReHeroButton.show == true    
+                            ReHeroButton.show = false
+                        endif
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r接取任务后无法更换英雄!")
                     endif
                 endif
             endif

@@ -1,4 +1,4 @@
-library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,GameChallengeDeath
+library AttackRoom uses System,State,PlayerGlobals,GameChallengeDeath
     
     real array AttackRoomPostion[12][600] 
     bool array AttackRoomUnitBool
@@ -470,7 +470,11 @@ library AttackRoom initializer AttackRoomInit uses System,State,PlayerGlobals,Ga
                     ShowPlayerTaskUIOfPlayer(pid,false,0)
                     SetPlayerTaskUIChatOfPlayer(pid," "," ",0)
                     SetPlayerTaskUITaskOfPlayer(pid," ",0)
-                    InitPlayerGameGift.execute(pid)//加载礼包
+                    if  GameSaveClose == 0
+                        InitPlayerGameGift.execute(pid)//加载礼包
+                    else
+                        SetGifeItemStock.execute(pid)
+                    endif
                     if  GameMode == 4
                         if  pid == 0
                             PlayerReviveX = AttackRoomPostion[pid][1]+380

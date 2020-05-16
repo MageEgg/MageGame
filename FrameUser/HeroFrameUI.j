@@ -87,11 +87,19 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         endif
     endfunction
 
+    function GetExExpMax(int pid)->int
+        int max = 30000
+        real add = GetUnitRealState(Pu[1],52)+0.001
+        
+        max = max + R2I(add)
+        return max
+    endfunction
 
     function ReHeroXpBar(int pid)
         int last = 0
         int now = 0
         int use = 0
+
         if  GetLocalPlayer() == Player(pid)
             
             if  GetHeroLevel(Pu[1]) == 1
@@ -100,8 +108,17 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 last = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])-1)
             endif
             
-            now = GetHeroXP(Pu[1])-last
-            use = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))-last
+
+            
+
+            if  GameMode == 4
+                now = HeroExExp
+                use = GetExExpMax(pid)
+            else
+                now = GetHeroXP(Pu[1])-last
+                use = DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1]))-last
+            endif
+
             Exp1.width = 0.2199*(I2R(now)/I2R(use))+0.0001
         endif
     endfunction
@@ -118,13 +135,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         flush locals
     endfunction
 
-    function GetExExpMax(int pid)->int
-        int max = 30000
-        real add = GetUnitRealState(Pu[1],52)+0.001
-        
-        max = max + R2I(add)
-        return max
-    endfunction
+    
     function HeroAddExp(unit wu,int exp)
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int last = 0
@@ -132,40 +143,49 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         int max = DzGetUnitNeededXP(wu,GetHeroLevel(wu))-1
         int exmax = GetExExpMax(pid)
         int lv = 0
-        if  now > max
-            HeroExExp = HeroExExp + (now-max)
+
+        if  GameMode == 4
+            HeroExExp = HeroExExp + exp
             if  HeroExExp > exmax
                 HeroExExp = exmax
             endif
-            now = max
+            ReHeroXpBar(pid)
         else
-            if  HeroExExp > 0
-                if  now + HeroExExp <= max
-                    now = now + HeroExExp
-                    HeroExExp = 0 
-                else
-                    HeroExExp = HeroExExp - (max-now)
-                    now = max
+            if  now > max
+                HeroExExp = HeroExExp + (now-max)
+                if  HeroExExp > exmax
+                    HeroExExp = exmax
+                endif
+                now = max
+            else
+                if  HeroExExp > 0
+                    if  now + HeroExExp <= max
+                        now = now + HeroExExp
+                        HeroExExp = 0 
+                    else
+                        HeroExExp = HeroExExp - (max-now)
+                        now = max
+                    endif
                 endif
             endif
-        endif
 
-        lv = GetHeroLevel(wu)
-        if  now != GetHeroXP(wu)
-            SetHeroXP(wu,now,true)
-            ReHeroXpBar(GetPlayerId(GetOwningPlayer(wu)))
-        elseif  lv != MaxHeroLevel+1
-            if  GetLocalPlayer() == Player(pid)
-                ExpModel.show =true
-            endif
-            if  HeroExpMaxTips == false
-                HeroExpMaxTips = true
-                HeroExpMaxTipsTimer(pid)
-                if  lv <= 10
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战任意雷劫获得道果晋级")
-                elseif  lv == 11 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0
+            lv = GetHeroLevel(wu)
+            if  now != GetHeroXP(wu)
+                SetHeroXP(wu,now,true)
+                ReHeroXpBar(pid)
+            elseif  lv != MaxHeroLevel+1
+                if  GetLocalPlayer() == Player(pid)
+                    ExpModel.show =true
+                endif
+                if  HeroExpMaxTips == false
+                    HeroExpMaxTips = true
+                    HeroExpMaxTipsTimer(pid)
+                    if  lv <= 10
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战任意雷劫获得道果晋级")
+                    elseif  lv == 11 and GetPlayerTechCount(Player(pid),'KNDF',true) > 0
 
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战三灾五难劫获得道果晋级")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：境界经验已满，请挑战三灾五难劫获得道果晋级")
+                    endif
                 endif
             endif
         endif
@@ -217,9 +237,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             HeroAddExp(Pu[1],1)
 
             
-            if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
-                SetEquipStateOfPlayer(Pu[1],id,0.08)
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具诛仙剑，额外获得8%道果属性！")
+            if  GameSaveClose == 0
+                if  GetPlayerTechCount(Player(pid),'RY3F',true) > 0
+                    SetEquipStateOfPlayer(Pu[1],id,0.08)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：拥有商城道具诛仙剑，额外获得8%道果属性！")
+                endif
             endif
             if  GetUnitTypeId(wu) == 'H018'
                 SpellS518.execute(Pu[1],id)//九转神功
@@ -599,14 +621,22 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             int pid = Dialog.GetPlayerid()
             int i = Dialog.GetButtonid()
             if  i == 1
-                ClickButtonWXBZFuncEx(pid)
+                if  GameSaveClose == 0
+                    ClickButtonWXBZFuncEx(pid)
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r全民竞速模式下无法开启付费宝箱！")
+                endif
             endif
         endfunction
 
         function ClickButtonWXBZ(int pid)
             if  AttackUnitWN >= 2
                 if  PlayerUseWXBZ == 0 and PlayerWXBZFree == 0
-                    Dialog.create(Player(pid),"万仙宝藏为|cffffcc00一次性消耗|r道具，当局有效。\n|cffff0000使用后不可恢复！！！|r","确定(不再提示)","取消","","","","","","","","","","","ClickButtonWXBZFunc")
+                    if  GameSaveClose == 0
+                        Dialog.create(Player(pid),"万仙宝藏为|cffffcc00一次性消耗|r道具，当局有效。\n|cffff0000使用后不可恢复！！！|r","确定(不再提示)","取消","","","","","","","","","","","ClickButtonWXBZFunc")
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r全民竞速模式下无法开启付费宝箱！")
+                    endif
                 else
                     ClickButtonWXBZFuncEx(pid)
                 endif

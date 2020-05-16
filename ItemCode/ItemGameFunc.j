@@ -42,6 +42,18 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
             AddItemToStock(Pu[26],'IB60',1,1)
         endif
 
+
+        //礼包11
+        if  DzConA[17] == 1
+            RemoveItemFromStock(Pu[26],'IB11')
+            RemoveItemFromStock(Pu[26],'IB61')
+            if  GameGiftBool[11] == false
+                AddItemToStock(Pu[26],'IB11',1,1)
+            else
+                AddItemToStock(Pu[26],'IB61',1,1)
+            endif
+        endif
+
     endfunction
 
     function ItemGameGift(int pid,string gift)  
@@ -126,48 +138,60 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 endif
             elseif  gift == "重置版"
                 num = 5
-                if  DzAPI_Map_IsBuyReforged(Player(pid)) == true
-                    if  GameGiftBool[num] == false
-                        GameGiftBool[num] = true
-                        UnitAddItemEx(Pu[1],'I013')
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，获得"+GetObjectName('I013')+"！") 
+                if  GameSaveClose == 0
+                    if  DzAPI_Map_IsBuyReforged(Player(pid)) == true
+                        if  GameGiftBool[num] == false
+                            GameGiftBool[num] = true
+                            UnitAddItemEx(Pu[1],'I013')
+                            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，获得"+GetObjectName('I013')+"！") 
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                        endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r全民竞速模式下无法领取该礼包")
                 endif
             elseif  gift == "公会"
                 num = 6
-                if  IsPlayerIn_MZRPG_Cooperate_Guild(pid) == true
-                    if  GameGiftBool[num] == false
-                        GameGiftBool[num] = true
-                        AddUnitRealState(Pu[1],49,50)
-                        AddUnitRealState(Pu[1],27,1)
-                        AddUnitRealState(Pu[1],25,10)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+50、被动触发概率+1%、冷却缩减+10%！") 
+                if  GameSaveClose == 0
+                    if  IsPlayerIn_MZRPG_Cooperate_Guild(pid) == true
+                        if  GameGiftBool[num] == false
+                            GameGiftBool[num] = true
+                            AddUnitRealState(Pu[1],49,50)
+                            AddUnitRealState(Pu[1],27,1)
+                            AddUnitRealState(Pu[1],25,10)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，每秒生命+50、被动触发概率+1%、冷却缩减+10%！") 
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                        endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r全民竞速模式下无法领取该礼包")
                 endif
             elseif  gift == "星耀"    
                 num = 7
-                if  IsPlayerIn_MZRPG_Star(pid) == true
-                    if  GameGiftBool[num] == false
-                        GameGiftBool[num] = true
-                        AddUnitRealState(Pu[1],49,200)
-                        AddUnitRealState(Pu[1],48,10)
-                        AddUnitRealState(Pu[1],27,2)
-                        AddUnitRealState(Pu[1],25,10)
-                        AddPlayerTechResearched(Player(pid),'RY4P',1)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，星耀称号已激活！") 
+                if  GameSaveClose == 0
+                    if  IsPlayerIn_MZRPG_Star(pid) == true
+                        if  GameGiftBool[num] == false
+                            GameGiftBool[num] = true
+                            AddUnitRealState(Pu[1],49,200)
+                            AddUnitRealState(Pu[1],48,10)
+                            AddUnitRealState(Pu[1],27,2)
+                            AddUnitRealState(Pu[1],25,10)
+                            AddPlayerTechResearched(Player(pid),'RY4P',1)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"礼包】|r，星耀称号已激活！") 
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                        endif
                     else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
                     endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r领取|cffffcc00【"+gift+"礼包】|r失败！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r全民竞速模式下无法领取该礼包")
                 endif
             elseif  gift == "魔芝"    
                 num = 8
@@ -202,6 +226,19 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
                 endif
+            elseif  gift == "补偿"
+                num = 11
+                if  GameSaveClose == 0
+                    if  GameGiftBool[num] == false
+                        GameGiftBool[num] = true
+                        PlayerWXBZFree = PlayerWXBZFree + 1
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]|r：|cff00ff00狗作者跪榴莲求原谅，当局万仙宝藏次数+1!|r")
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r全民竞速模式下无法领取该礼包")
+                endif
             endif
         endif
         SetGifeItemStock(pid)
@@ -232,6 +269,8 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         elseif  itid == 'IB10'
             SetGifeItemStock(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该礼包需要输入口令领取，关注公众号回复“|cff00ff00钻石礼包|r”即可获取！")
+        elseif  itid == 'IB11'
+            ItemGameGift(pid,"补偿")
         else
             SetGifeItemStock(pid)
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
@@ -260,6 +299,11 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         AddItemToStock(Pu[26],'IB07',1,1)
         AddItemToStock(Pu[26],'IB08',1,1)
         AddItemToStock(Pu[26],'IB10',1,1)
+
+        if  DzConA[17] == 1
+            AddItemToStock(Pu[26],'IB11',1,1)
+        endif
+
         TimerStart(0.1,true)
         {
             time = time + 1

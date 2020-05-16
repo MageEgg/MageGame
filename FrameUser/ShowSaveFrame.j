@@ -152,6 +152,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         
 
         RegisterShowSaveFrameData(0,'RQD0','RQD0',0,0,0,0)//签到说明
+        RegisterShowSaveFrameData(0,'RJ2N','RJ2N',0,0,0,0)//狗作者的道歉
         RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
         RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
@@ -187,7 +188,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ2L','RJ2L',0,0,0,0)//前奏
         RegisterShowSaveFrameData(0,'RJ2M','RJ2M',0,0,0,0)//闪耀之星
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
         RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次

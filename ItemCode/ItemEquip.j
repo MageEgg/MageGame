@@ -276,30 +276,30 @@ library ItemEquip uses DamageCode,ItemGameFunc
             BJDebugMsg("强化概率+"+I2S(IncEquipAddition2))
             gl = gl + IncEquipAddition2
         endif
+        if  GameSaveClose == 0
+            if  GetPlayerTechCount(Player(pid),'RDAP',true) > 0
+                gl = gl + 1.25
+            endif
+            if  GetPlayerTechCount(Player(pid),'RDAY',true) > 0
+                gl = gl + 1.25
+            endif
+            if  GetPlayerTechCount(Player(pid),'RGBA',true) > 0
+                gl = gl + 1.25
+            endif
 
-        if  GetPlayerTechCount(Player(pid),'RDAP',true) > 0
-            gl = gl + 1.25
+            if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
+                gl = gl + 3
+            endif
+            
+            if  GetPlayerTechCount(Player(pid),'RSHF',true) > 0
+                gl = gl + 3
+                BJDebugMsg("13件套+3")
+            endif
+            if  GetPlayerTechCount(Player(pid),'RDBB',true) > 0
+                gl = gl + 3
+                BJDebugMsg("万匹斯件套+3")
+            endif
         endif
-        if  GetPlayerTechCount(Player(pid),'RDAY',true) > 0
-            gl = gl + 1.25
-        endif
-        if  GetPlayerTechCount(Player(pid),'RGBA',true) > 0
-            gl = gl + 1.25
-        endif
-
-        if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
-            gl = gl + 3
-        endif
-        
-        if  GetPlayerTechCount(Player(pid),'RSHF',true) > 0
-            gl = gl + 3
-            BJDebugMsg("13件套+3")
-        endif
-        if  GetPlayerTechCount(Player(pid),'RDBB',true) > 0
-            gl = gl + 3
-            BJDebugMsg("万匹斯件套+3")
-        endif
-        
         
 
         BJDebugMsg("强化成功率"+R2S(gl))
@@ -373,7 +373,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
 
                         endif
 
-                        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0
+                        if  GetPlayerTechCount(Player(pid),'RJ1U',true) > 0 and  GameSaveClose == 0
                             AdjustPlayerStateBJ(gold/5, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：装备升级失败！下次强化|cff00ff00成功率+5%")
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00[系统]：拥有封神礼包！返还|cffffcc00"+I2S(gold/5)+"金币|r")
@@ -601,8 +601,10 @@ library ItemEquip uses DamageCode,ItemGameFunc
                 else
                     use = 100000
                 endif
-                if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
-                    use = use / 2
+                if  GameSaveClose == 0
+                    if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
+                        use = use / 2
+                    endif
                 endif
 
                 if  GetPlayerState(Player(pid), PLAYER_STATE_RESOURCE_GOLD)>=use

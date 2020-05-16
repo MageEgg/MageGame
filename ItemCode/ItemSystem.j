@@ -343,18 +343,18 @@ scope ItemSystem initializer InitItemSystem
         elseif  itemid == 'IC01'
             AdjustPlayerStateBJ(1, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：玄铁+1！")
-        elseif  itemid == 'IY00'
+        elseif  itemid == 'IY00' and GameSaveClose == 0
             if  GetLocalPlayer() == Player(pid) 
                 ClearSelection()
                 SelectUnit(Pu[41],true)
             endif
-        elseif  itemid >= 'IY0A' and itemid <= 'IY5Z'//积分兑换
+        elseif  itemid >= 'IY0A' and itemid <= 'IY5Z' and GameSaveClose == 0//积分兑换
             if  IsCanExChange(pid,itemid) == true
                 ExChangeItem(pid,itemid)
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
             endif
-        elseif  itemid >= 'IV01' and itemid <= 'IV99'//活动兑换
+        elseif  itemid >= 'IV01' and itemid <= 'IV99' and GameSaveClose == 0//活动兑换
             
                 
             if  itemid == 'IV01'
@@ -465,7 +465,7 @@ scope ItemSystem initializer InitItemSystem
             ItemLuckOfMonsterSoul(pid)
         endif
         ItemEventOfAttackUnitChallengeState(pid,itemid)
-        if  (itemid >= 'IB00' and itemid <= 'IB10') or (itemid >= 'IB50' and itemid <= 'IB60')
+        if  (itemid >= 'IB00' and itemid <= 'IB11') or (itemid >= 'IB50' and itemid <= 'IB61')
             PlayerGetGameGift(pid,itemid)
         endif
         

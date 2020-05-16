@@ -26,17 +26,6 @@ scope SelectHero
         UnitAddAbility(Pu[1],'AG0B')
 
 
-        LoadPlayerTechState.execute(pid)
-
-
-
-        InitPlayerDzShopState.execute(pid)//商城属性
-
-        InitPlayerMeridiansState.execute(pid)//经脉
-        InitPlayerDragonKingState.execute(pid)//龙宫城
-
-        PlayerLoadPassCheck.execute(pid)//读取通行证
-
         if  SubString(GetPlayerName(Player(pid)),0,6) == "星耀"
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]:|r检测到"+GetPlayerNameOfColor(pid)+"名称中带有星耀，奖励每秒金币+1、每秒攻击+1、每秒生命+5！")
             AddUnitRealState(Pu[1],47,1)
@@ -44,44 +33,59 @@ scope SelectHero
             AddUnitRealState(Pu[1],50,1)
         endif 
 
-        int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
-        int state = 0
-        real value = 0
-        int id = GetUnitTypeId(Pu[1])-'H000' + 'RH00'
-        for s = 1,3
-            if  dzlv >= s
-                state = GetTypeIdData(id,200+s)
-                value = GetTypeIdReal(id,200+s)
-                AddUnitRealState(Pu[1],state,value)
-            endif
-        end
-        if  dzlv >= 4
-            AddUnitRealState(Pu[1],20,30)
-            if  GameMode == 3
-                AddUnitRealState(Pu[1],64,30)
-            endif
-        endif
-        
+        if  GameSaveClose == 0
+            LoadPlayerTechState.execute(pid)
+
+            InitPlayerDzShopState.execute(pid)//商城属性
+
+            InitPlayerMeridiansState.execute(pid)//经脉
+            InitPlayerDragonKingState.execute(pid)//龙宫城
+
+            PlayerLoadPassCheck.execute(pid)//读取通行证
+            
 
         
-        int dzalllv =  DzHeroExpLevelCount[0]
 
-        if  dzalllv >= 6
-            SetPlayerTechResearchedEx(Player(pid),'RHD1')
+            int dzlv = GetDzHeroExpLevel(pid,GetUnitTypeId(Pu[1]))
+            int state = 0
+            real value = 0
+            int id = GetUnitTypeId(Pu[1])-'H000' + 'RH00'
+            for s = 1,3
+                if  dzlv >= s
+                    state = GetTypeIdData(id,200+s)
+                    value = GetTypeIdReal(id,200+s)
+                    AddUnitRealState(Pu[1],state,value)
+                endif
+            end
+            if  dzlv >= 4
+                AddUnitRealState(Pu[1],20,30)
+                if  GameMode == 3
+                    AddUnitRealState(Pu[1],64,30)
+                endif
+            endif
+            
+
+            
+            int dzalllv =  DzHeroExpLevelCount[0]
+
+            if  dzalllv >= 6
+                SetPlayerTechResearchedEx(Player(pid),'RHD1')
+            endif
+            if  dzalllv >= 12
+                SetPlayerTechResearchedEx(Player(pid),'RHD2')
+            endif
+            if  dzalllv >= 20
+                SetPlayerTechResearchedEx(Player(pid),'RHD3')
+            endif
+            if  dzalllv >= 34
+                SetPlayerTechResearchedEx(Player(pid),'RHD4')
+            endif
+            if  dzalllv >= 54
+                SetPlayerTechResearchedEx(Player(pid),'RHD5')
+            endif
+        else
+            AddUnitRealState(Pu[1],52,50000)
         endif
-        if  dzalllv >= 12
-            SetPlayerTechResearchedEx(Player(pid),'RHD2')
-        endif
-        if  dzalllv >= 20
-            SetPlayerTechResearchedEx(Player(pid),'RHD3')
-        endif
-        if  dzalllv >= 34
-            SetPlayerTechResearchedEx(Player(pid),'RHD4')
-        endif
-        if  dzalllv >= 54
-            SetPlayerTechResearchedEx(Player(pid),'RHD5')
-        endif
-        
 
         if  Player(pid)==GetLocalPlayer()
             ReHeroButton.show = false
@@ -147,6 +151,76 @@ scope SelectHero
         
     endfunction
 
+    function SelectHeroPrePareByUidTimer(int id)
+        int pid = id
+
+        
+
+        TimerStart(0.0,false)
+        {   
+            SelectHeroInitSkill(pid)//加载必要技能
+
+            GameChallenge_0Start(pid)//加载新手任务
+
+            ReTechFuncItemTips.execute(pid)//刷新道具兑换说明
+
+            ShowPlayerSignInLastTime(pid) //登陆刷新
+            
+            endtimer
+            flush locals
+        }
+        flush locals
+    endfunction
+    //手动选英雄
+    function SelectHeroPrePareByUid(int pid,int uid)
+        int ppid = pid
+        if  IsPlaying(pid) == true
+            
+            
+            Pu[1] = CreateUnit(Player(pid),uid,PlayerReviveX,PlayerReviveY,0)
+                
+            Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
+            Pu[200] = null
+
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
+            
+            
+
+            for i = 1,GameLevel
+                SetPlayerTechResearched(Player(pid),'KNDA'+i-1,1)
+            end
+            ReHeroButton.show = false
+
+
+            SelectHeroPrePareByUidTimer(pid)
+        endif
+        
+    endfunction
+    //手动选英雄
+    function SelectHeroPrePareFuncEx(int pid)
+        int num = 0 
+        if  Player(pid)==GetLocalPlayer()
+            SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
+            PanCameraToTimed(PlayerReviveX,PlayerReviveY, 0 )
+            SetCameraField( CAMERA_FIELD_TARGET_DISTANCE, 2200.00, 2.0)
+            SetCameraField( CAMERA_FIELD_FARZ, 10000.00, 2.0 )
+            ClearSelection()
+            SelectUnit(Pu[1],true)
+            ReHeroButton.show = true
+            DzFrameShow(BUTTON_Back[702][0], true)
+
+            loop
+                exitwhen num > 7
+                if  PoolAddHeroId(pid,GetHeroPoolTypeNew(pid,0)) == true
+                    num = num + 1
+                endif
+            endloop
+       
+            ReHeroFrameUI(pid)
+
+        endif
+    endfunction
+
    
     //正常选英雄
     function SelectHeroPrePareFunc(int pid)
@@ -156,7 +230,8 @@ scope SelectHero
             Pu[1] = CreateUnit(Player(pid),GetHeroPoolTypeEx(pid),PlayerReviveX,PlayerReviveY,0)
             
             Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
-            
+            Pu[200] = null
+
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
             
             SelectHeroInitSkill(pid)//加载必要技能
@@ -177,34 +252,37 @@ scope SelectHero
             else
                 HeroReNumber = 1
             endif
-            if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
-                HeroReNumber = HeroReNumber + 1
-            endif
-            if  GetPlayerTechCount(Player(pid),'RG0B',true) > 0
-                HeroReNumber = HeroReNumber + 1
-            endif
-            if  GetPlayerTechCount(Player(pid),'RG0G',true) > 0
-                HeroReNumber = HeroReNumber + 1
-            endif
-            if  DzAPI_Map_Returns(Player(pid),16) == true
-                HeroReNumber = HeroReNumber + 1
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"收藏地图，重随英雄次数+1")
-            endif
 
-            
-            if  GetUnitTypeId(Pu[1]) != 'H036'
-                if  DzPlayerLv(Player(pid)) >= 30
-                    PoolAddHeroId(pid,'H036')
+            if  GameSaveClose == 0
+                if  GetPlayerTechCount(Player(pid),'RY1D',true) > 0
+                    HeroReNumber = HeroReNumber + 1
                 endif
-            endif
-            if  GetUnitTypeId(Pu[1]) != 'H037'
-                if  DzPlayerLv(Player(pid)) >= 36
-                    PoolAddHeroId(pid,'H037')
+                if  GetPlayerTechCount(Player(pid),'RG0B',true) > 0
+                    HeroReNumber = HeroReNumber + 1
                 endif
-            endif
-            if  GetUnitTypeId(Pu[1]) != 'H040'
-                if  GetDzPlayerData(pid,2,6) >= 48
-                    PoolAddHeroId(pid,'H040')
+                if  GetPlayerTechCount(Player(pid),'RG0G',true) > 0
+                    HeroReNumber = HeroReNumber + 1
+                endif
+                if  DzAPI_Map_Returns(Player(pid),16) == true
+                    HeroReNumber = HeroReNumber + 1
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"收藏地图，重随英雄次数+1")
+                endif
+
+                
+                if  GetUnitTypeId(Pu[1]) != 'H036'
+                    if  DzPlayerLv(Player(pid)) >= 30
+                        PoolAddHeroId(pid,'H036')
+                    endif
+                endif
+                if  GetUnitTypeId(Pu[1]) != 'H037'
+                    if  DzPlayerLv(Player(pid)) >= 36
+                        PoolAddHeroId(pid,'H037')
+                    endif
+                endif
+                if  GetUnitTypeId(Pu[1]) != 'H040'
+                    if  GetDzPlayerData(pid,2,6) >= 48
+                        PoolAddHeroId(pid,'H040')
+                    endif
                 endif
             endif
 
@@ -274,6 +352,16 @@ scope SelectHero
             
         endif
     endfunction
+    
+
+    //重随
+    function ReHeroPrePareByPoolEx(int pid,int index)
+        int id = ReHeroPool[pid][index]
+        if  id > 0
+            SelectHeroPrePareByUid(pid,id)
+            PoolRemHeroId(pid,id)
+        endif
+    endfunction
 
     //重随
     function ReHeroPrePareByPool(int pid,int index)
@@ -314,7 +402,12 @@ scope SelectHero
             if  IsPlaying(pid) == true
                 PlayerReviveX = -4896
                 PlayerReviveY = -3168
-                SelectHeroPrePareFunc(pid)
+                if  GameSaveClose == 0
+                    SelectHeroPrePareFunc(pid)
+                else
+                    SelectHeroPrePareFuncEx(pid)
+                    
+                endif
                 BuryingPointData(pid,0,GameLevel,1)//选难度埋点
             endif
         end

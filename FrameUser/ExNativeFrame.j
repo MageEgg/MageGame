@@ -317,11 +317,13 @@ library ExNativeFrame uses GameFrame
         SetReHeroPoolMax(pid,max-1)
         ReReHeroFrameUI(pid)
     endfunction
-    function PoolAddHeroId(int pid,int id)
+    function PoolAddHeroId(int pid,int id)->bool
         if  IsPoolHasHero(pid,id) == false
             BJDebugMsg("增加"+GetTypeIdName(id))
             PoolAdd(pid,id)
+            return true
         endif
+        return false
     endfunction
     function PoolRemHeroId(int pid,int id)
         int index = GetHeroPoolIndex(pid,id)
@@ -334,7 +336,19 @@ library ExNativeFrame uses GameFrame
 
     function ReHeroFrameUI(int pid)
         if  GetLocalPlayer() == Player(pid)
-            ReHeroNumber.SetText( I2S(HeroReNumber))
+            
+            if  GameSaveClose == 0
+                ReHeroNumber.SetText( I2S(HeroReNumber))
+            else
+                DzFrameShow(BUTTON_Back[950][0],false)
+
+                ReHeroButton.ClearPoints()
+                ReHeroButton.SetPoint(4,GameUI,4,0.0,0.0)
+
+                ReHeroNumber.ClearPoints()
+                ReHeroNumber.SetPoint(7,ReHeroButton.frameid,7,0.0,0.005)
+                ReHeroNumber.SetText("请选择英雄")
+            endif
         endif
 
     endfunction

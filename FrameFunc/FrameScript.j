@@ -15,6 +15,8 @@
         elseif  Type == TYPE_FUNC
             if  id == 160
                 ShowHeroFrame(GetPlayerId(GetLocalPlayer()),false)
+            elseif  id >= 951 and id <= 966
+                DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\alpha.tga", 0)
             endif
         endif
         if  frame == 8000 or frame == 8001 or frame == 8002
@@ -328,8 +330,13 @@
         int use = DzGetUnitNeededXP(Pu[1],lv)-last
         DzFrameShow(UI_TipsHead, true)
         SetTipsData(10,"","|cffffcc00当前境界：|r"+I2S(lv-1))
-        SetTipsData(11,"","|cffffcc00境界经验：|r"+I2S(now+1)+"/"+I2S(use))
-        SetTipsData(12,"","|cffffcc00储存经验：|r"+I2S(HeroExExp)+"(最大值："+I2S(GetExExpMax(pid))+")")
+
+        if  GameMode == 4
+            SetTipsData(11,"","|cffffcc00储存经验：|r"+I2S(HeroExExp)+"(最大值："+I2S(GetExExpMax(pid))+")")
+        else
+            SetTipsData(11,"","|cffffcc00境界经验：|r"+I2S(now+1)+"/"+I2S(use))
+            SetTipsData(12,"","|cffffcc00储存经验：|r"+I2S(HeroExExp)+"(最大值："+I2S(GetExExpMax(pid))+")")
+        endif
         
         ShowTipsUI()
     endfunction
@@ -489,6 +496,8 @@
                         boxid = GetUnitIntState(Pu[1],id-10)
                         if  boxid != 0
                             BoxShowTips(pid,boxid)
+                        else
+                            BoxShowOpenDg(pid,id-940)
                         endif
                     else
                         //UIDebugShowIndex(id)
@@ -502,8 +511,24 @@
                     SetTiptoolPostionAsMouse()
                 endif
             elseif  Type == TYPE_FUNC
-
+                if  id >= 951 and id <= 966
+                    if  ReHeroPool[pid][id-950] > 0
+                        DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                    endif
+                endif
             elseif  Type == TYPE_CLOSE
+            endif
+        elseif  GameSaveClose == 1
+            if  Pu[1] == null
+                if  LastFrame != frame
+                    BJDebugMsg("in"+I2S(frame))
+                    UI_ScriptOut(LastFrame)
+                    if  id >= 951 and id <= 966
+                        if  ReHeroPool[pid][id-950] > 0
+                            DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
+                        endif
+                    endif
+                endif
             endif
         endif
         if  GetPostionAsMouseX() >= 0.362 and GetPostionAsMouseX() <= 0.404 

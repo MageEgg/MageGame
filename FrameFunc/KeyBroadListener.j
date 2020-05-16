@@ -77,6 +77,10 @@ scope KeyEvent initializer InitKeyBroadListener
                         elseif  GetPassFrameShow() == true
                             ClosePassFrame(pid)
                         endif
+
+                        if  PKUIButton.show == true
+                            PKUIButton.show = false
+                        endif
                         
                         if  HeroHDFrame.show == true
                             HeroHDFrame.show = false

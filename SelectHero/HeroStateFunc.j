@@ -370,6 +370,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RG0K',true) > 0
             AddPlayerFoodByIndex(pid,2,2)
         endif
+        if  GetPlayerTechCount(Player(pid),'RJ2N',true) > 0
+            AddPlayerFoodByIndex(pid,2,2)
+        endif
+
+        
         
 
         int add = 0
@@ -414,6 +419,8 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             PlayerWXBZFree = PlayerWXBZFree + 1
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：|cff00ff00拥有万仙宝藏，当局免费开启次数+1!|r")
         endif
+
+        
         
 
         if  GetPlayerTechCount(Player(pid),'RDBB',true) == 0 and add >= 38

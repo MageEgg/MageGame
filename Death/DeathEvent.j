@@ -95,16 +95,18 @@ scope DeathEvent initializer InitDeathEvent
     function RevivePlayerHero(int pid)
         timer wt = CreateTimer()
         int time = 8
-        if  GetPlayerTechCount(Player(pid),'RDAU',true) > 0
-            time = time - 1
+
+        if  GameSaveClose == 0
+            if  GetPlayerTechCount(Player(pid),'RDAU',true) > 0
+                time = time - 1
+            endif
+            if  GetPlayerTechCount(Player(pid),'RG0H',true) > 0
+                time = time - 1
+            endif
+            if  GetPlayerTechCount(Player(pid),'RGAJ',true) > 0
+                time = time - 1
+            endif
         endif
-        if  GetPlayerTechCount(Player(pid),'RG0H',true) > 0
-            time = time - 1
-        endif
-        if  GetPlayerTechCount(Player(pid),'RGAJ',true) > 0
-            time = time - 1
-        endif
-        
 
         PlayerDeathBool = true
         PetDeathPosition(pid)
@@ -224,14 +226,16 @@ scope DeathEvent initializer InitDeathEvent
                 gl = 100
             endif
 
-            if  GetPlayerTechCount(Player(pid),'RG1B',true)>0
-                gl = gl + 5
-            endif
-            if  GetPlayerTechCount(Player(pid),'RG1D',true)>0
-                gl = gl + 5
-            endif
-            if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
-                gl = gl + 5
+            if  GameSaveClose == 0
+                if  GetPlayerTechCount(Player(pid),'RG1B',true)>0
+                    gl = gl + 5
+                endif
+                if  GetPlayerTechCount(Player(pid),'RG1D',true)>0
+                    gl = gl + 5
+                endif
+                if  GetPlayerTechCount(Player(pid),'RG1E',true)>0
+                    gl = gl + 5
+                endif
             endif
 
             BJDebugMsg("项链成功率"+I2S(gl))
@@ -527,9 +531,11 @@ scope DeathEvent initializer InitDeathEvent
             if  uid == 'u001'//占星NPC
                 Pu[28]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np03',x-512,y,270)//兽魂神通
                 CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc03',x-512,y,270)//兽魂神通
-                if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
-                    if  GetLocalPlayer() == Player(pid)
-                        YDWESetItemDataString('IS13',3,"|cfff0f0f0白色强化价格：|r|cffffd24d2500\n|r|cff00ff7f绿色|r|cfff0f0f0强化价格：|r|cffffd24d5000\n|r|cff00bfff蓝色|r|cfff0f0f0强化价格：|r|cffffd24d10000\n|r|cffbf00ff紫色|r|cfff0f0f0强化价格：|r|cffffd24d20000\n黄色|r|cfff0f0f0强化价格：|r|cffffd24d30000\n|r|cffff0000红色|r|cfff0f0f0强化价格：|r|cffffd24d50000\n\n|r|cff00ff7f消耗金币，100%几率提高饰品1级。|r")
+                if  GameSaveClose == 0
+                    if  GetPlayerTechCount(Player(pid),'RSHD',true) > 0
+                        if  GetLocalPlayer() == Player(pid)
+                            YDWESetItemDataString('IS13',3,"|cfff0f0f0白色强化价格：|r|cffffd24d2500\n|r|cff00ff7f绿色|r|cfff0f0f0强化价格：|r|cffffd24d5000\n|r|cff00bfff蓝色|r|cfff0f0f0强化价格：|r|cffffd24d10000\n|r|cffbf00ff紫色|r|cfff0f0f0强化价格：|r|cffffd24d20000\n黄色|r|cfff0f0f0强化价格：|r|cffffd24d30000\n|r|cffff0000红色|r|cfff0f0f0强化价格：|r|cffffd24d50000\n\n|r|cff00ff7f消耗金币，100%几率提高饰品1级。|r")
+                        endif
                     endif
                 endif
 
@@ -813,11 +819,13 @@ scope DeathEvent initializer InitDeathEvent
     
     function SpellRY3F(unit wu)->bool
         real gl = 0
-        if  GetPlayerTechCount(GetOwningPlayer(wu),'RY3F',true) > 0
-            gl = gl + 20
-        endif
-        if  GetPlayerTechCount(GetOwningPlayer(wu),'RX4E',true) > 0
-            gl = gl + 5
+        if  GameSaveClose == 0
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RY3F',true) > 0
+                gl = gl + 20
+            endif
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RX4E',true) > 0
+                gl = gl + 5
+            endif
         endif
         
         if  GetRandomReal(1,100) <= gl
