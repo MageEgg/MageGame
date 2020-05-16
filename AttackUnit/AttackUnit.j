@@ -1286,7 +1286,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
         if  GameSaveClose == 1
-            ExecuteFunc("RePKUI")
+            RePKUI()
         endif
         ExecuteFunc("CreateMeridiansNPC")
         ExecuteFunc("GameWin")

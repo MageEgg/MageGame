@@ -456,10 +456,12 @@ library AttackRoom uses System,State,PlayerGlobals,GameChallengeDeath
                 ////BJDebugMsg("在练功房内")
             else
                 SendPlayerUnit(pid,x,y)
-                if  AttackRoomUnitBool[pid] == false
-                    RefreshAttackRoom(pid)
-                else
-                    BJDebugMsg("阻止F3刷怪")
+                if  GameMode != 4
+                    if  AttackRoomUnitBool[pid] == false
+                        RefreshAttackRoom(pid)
+                    else
+                        BJDebugMsg("阻止F3刷怪")
+                    endif
                 endif
 
                 if  GameChallengePlayerBool[pid][0] == true and GameChallengePlayerBool[pid][1] == true and GameChallengePlayerBool[pid][2] == true and GameChallengePlayerBool[pid][3] == true and GameChallengePlayerBool[pid][4] == false

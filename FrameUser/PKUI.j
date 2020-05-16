@@ -62,9 +62,12 @@ library PKUI uses GameFrame
 
     function RePKUI()
         int index = 0
-        TextDay.SetText(I2S(TimeYear) + "年" + I2S(TimeMon)+"月"+ I2S(TimeDay)+"日")
 
         TextTime.SetText(GetTimeTips())
+
+        TextDay.SetText(I2S(TimeYear) + "年" + I2S(TimeMon)+"月"+ I2S(TimeDay)+"日")
+
+        
 
         for pid = 0,3
             if  IsPlaying(pid) == true
