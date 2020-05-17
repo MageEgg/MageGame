@@ -611,6 +611,21 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         if  zu == 260 or zu == 270 or zu == 280
             punum = 46
         endif
+        if  GameMode == 4
+            if  pid == 0
+                x = -6016	
+                y = 13728	
+            elseif  pid == 1
+                x = -2144		
+                y = 13728	
+            elseif  pid == 2
+                x = -2144	
+                y = 9824	
+            elseif  pid == 3
+                x = -6016	
+                y = 9824		
+            endif
+        endif
         if  IsPlayerInAttackUnitChallenge(challenge) == 0
             if  IsCanGetAttackUnitChallengeState(pid,challenge) == true
                 if  AttackUnitChallengeStateType[zu][wei] == Buy_Tech
