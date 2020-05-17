@@ -1117,6 +1117,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         else
             UnitAddPoolItem(wu,20)
         endif
+        
         bj_lastCreatedItem = null
     endfunction
     function CreateMode4ChallengeUnit()
@@ -1139,9 +1140,15 @@ library AttackUnit uses DamageCode,PassCheckMission
                     y = GetRandomReal(11552,11936)
                 endif
                 u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
-                AddItemToStock( u,'IZ71', 1, 1 )
+                
                 UnitApplyTimedLife( u, 'BHwe', 300 )
                 ReChallengePrize(u)
+                UnitAddAbility(u,'Avul')
+                UnitAddAbility(u,'Asid')
+                UnitAddAbility(u,'Aneu')
+                UnitAddAbility(u,'Apit')
+                AddItemToStock( u,'IZ71', 1, 1 )
+                
 
             endif
         end
