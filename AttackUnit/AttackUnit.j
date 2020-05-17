@@ -1146,7 +1146,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 UnitAddAbility(u,'Avul')
                 UnitAddAbility(u,'Asid')
                 UnitAddAbility(u,'Aneu')
-                UnitAddAbility(u,'Apit')
+                //UnitAddAbility(u,'Apit')
                 AddItemToStock( u,'IZ71', 1, 1 )
                 
 
