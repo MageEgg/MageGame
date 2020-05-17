@@ -460,6 +460,22 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             int s = 0
             int a = 0
             int b = 0
+
+            if  GameMode == 4
+                if  pid == 0
+                    x = -4960
+                    y = 13440
+                elseif  pid == 1
+                    x = -2240
+                    y = 12160
+                elseif  pid == 2
+                    x = -3648
+                    y = 9472
+                elseif  pid == 3
+                    x = -6336
+                    y = 10752
+                endif
+            endif
             bj_lastCreatedItem = CreateItem(id,0,0)
             
             if  (id >= 'CS51' and id <= 'CS53') or (id >= 'CS21' and id <= 'CS23')

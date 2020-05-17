@@ -1108,7 +1108,16 @@ library AttackUnit uses DamageCode,PassCheckMission
         
         bj_lastCreatedItem = UnitAddItemById(wu,'IC02')
         SetItemCharges(bj_lastCreatedItem,GetRandomInt(5000,20000))
-
+        
+        UnitAddPoolItem(wu,19)
+        if  AttackUnitWN > 40
+            UnitAddPoolItem(wu,22)
+        elseif  AttackUnitWN > 20
+            UnitAddPoolItem(wu,21)
+        else
+            UnitAddPoolItem(wu,20)
+        endif
+        bj_lastCreatedItem = null
     endfunction
     function CreateMode4ChallengeUnit()
         real x = 0
