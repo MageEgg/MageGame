@@ -17,9 +17,12 @@ scope SelectHero
 
         real x = AttackRoomPostion[pid][1]
         real y = AttackRoomPostion[pid][2]
-        
-        CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+256,270)//技能商店
-        Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+256,270)//技能商店
+
+
+        if  GameMode != 4
+            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',x-512,y+256,270)//技能商店
+            Pu[22]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',x-512,y+256,270)//技能商店
+        endif
 
         SetPlayerTechResearched(Player(pid),'R000',1)
         UnitAddAbility(Pu[1],'AG0A')//F5 F6
@@ -179,7 +182,11 @@ scope SelectHero
             
             Pu[1] = CreateUnit(Player(pid),uid,PlayerReviveX,PlayerReviveY,0)
                 
-            Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
+            if  GameMode == 4
+                Pu[2] = CreateUnit(Player(pid),'hZ00',-4096,11776,0)
+            else
+                Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
+            endif
             Pu[200] = null
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")
@@ -229,7 +236,11 @@ scope SelectHero
             
             Pu[1] = CreateUnit(Player(pid),GetHeroPoolTypeEx(pid),PlayerReviveX,PlayerReviveY,0)
             
-            Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
+            if  GameMode == 4
+                Pu[2] = CreateUnit(Player(pid),'hZ00',-4096,11776,0)
+            else
+                Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
+            endif
             Pu[200] = null
 
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"选择了|cffffcc00"+GetUnitName(Pu[1])+"|r！")

@@ -332,7 +332,12 @@ scope DeathEvent initializer InitDeathEvent
         if  uid == 'ut20'
             gold = 35
             exp = 10
+        elseif  uid == 'm10A' and uid <= 'm10C'
+            gold = 10 + AttackUnitWN
+        elseif  uid == 'm11A' and uid <= 'm11C'
+            gold = 10 + AttackUnitWN
         endif
+
 
         
         
@@ -581,8 +586,8 @@ scope DeathEvent initializer InitDeathEvent
                     endif 
                 endif
             endif
-            
-        
+        elseif  uid >= 'm11A' and uid <= 'm11C'
+            CreateItem('IC01',GetUnitX(tu),GetUnitY(tu))
         endif
 
         if  (uid >= 'm001' and uid <= 'm050') or (uid >= 'ma01' and uid <= 'ma0z') or (uid >= 'mb01' and uid <= 'mb0z')

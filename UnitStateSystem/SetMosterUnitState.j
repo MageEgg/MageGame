@@ -154,8 +154,50 @@ library UnitStateSet uses State
         int pid = GetPlayerId(GetOwningPlayer(wu))
         int uid = GetUnitTypeId(wu)
         real value = 0
+        int AttackWN = AttackUnitInt[0][2]
+
+        if  (uid >= 'm10A' and uid <= 'm10E') or  (uid >= 'm11A' and uid <= 'm11E')
+            if  AttackWN < 10
+                uid = 'm100'+AttackWN
+            elseif  AttackWN < 20
+                uid = 'm110'+(AttackWN-10)
+            elseif  AttackWN < 30
+                uid = 'm120'+(AttackWN-20)
+            elseif  AttackWN < 40
+                uid = 'm130'+(AttackWN-30)
+            elseif  AttackWN < 50
+                uid = 'm140'+(AttackWN-40)
+            elseif  AttackWN < 60
+                uid = 'm150'+(AttackWN-50)
+            else
+                uid = 'm160'
+            endif
+        elseif  uid >= 'mf0A' and uid <= 'mf0H'
+            if  AttackWN >= 60
+                uid = 'mf06'
+            elseif  AttackWN >= 50
+                uid = 'mf05'
+            elseif  AttackWN >= 40
+                uid = 'mf04'
+            elseif  AttackWN >= 30
+                uid = 'mf03'
+            elseif  AttackWN >= 20
+                uid = 'mf02'
+            else
+                uid = 'mf01' 
+            endif
+        endif
+
+
         for i = 1,40
             value = GetTypeIdReal(uid,i)
+
+            if  uid >= 'mf01' and uid <= 'mf06'//超爽BOSS
+                if  i == 1 or i == 5
+                    BJDebugMsg("超爽BOSS 属性"+I2S(i)+"初始值:"+R2S(value))
+                    value = value * GetRandomReal(0.5,2)
+                endif
+            endif
 
             if  (pid >= 4 and pid <= 7) or pid == 10 or pid == 11 or pid == PLAYER_NEUTRAL_AGGRESSIVE
 

@@ -445,6 +445,89 @@ library MagicItemCollectCode uses MagicItemCollectFrame
 
     endfunction
 
+
+    function InitMagicItemTips(int id)
+        int fid = id - 'IF00' + 'FB00'
+        string s = GetMagicItemColorName(fid)
+        s = s + "\n|cff999999基础属性：|r" + GetMagicStateTips(fid,0)
+        if  GetTypeIdTips(fid) != ""
+            s = s + "\n|cffD9A300"+GetTypeIdTips(fid) + "|r"
+        endif
+        BJDebugMsg(s)
+        RemoveItem(CreateItem(id,0,0))
+        YDWESetItemDataString(id,3,s)
+    endfunction
+    
+    function InitAllMagicItemTips1()
+        InitMagicItemTips('IF01')
+        InitMagicItemTips('IF02')
+        InitMagicItemTips('IF03')
+        InitMagicItemTips('IF04')
+        InitMagicItemTips('IF05')
+        InitMagicItemTips('IF06')
+        InitMagicItemTips('IF07')
+        InitMagicItemTips('IF08')
+        InitMagicItemTips('IF09')
+        InitMagicItemTips('IF10')
+    endfunction
+    function InitAllMagicItemTips2()
+        InitMagicItemTips('IF11')
+        InitMagicItemTips('IF12')
+        InitMagicItemTips('IF13')
+        InitMagicItemTips('IF14')
+        InitMagicItemTips('IF15')
+        InitMagicItemTips('IF16')
+        InitMagicItemTips('IF17')
+        InitMagicItemTips('IF18')
+        InitMagicItemTips('IF19')
+        InitMagicItemTips('IF10')
+    endfunction
+    function InitAllMagicItemTips3()
+        InitMagicItemTips('IF21')
+        InitMagicItemTips('IF22')
+        InitMagicItemTips('IF23')
+        InitMagicItemTips('IF24')
+        InitMagicItemTips('IF25')
+        InitMagicItemTips('IF26')
+        InitMagicItemTips('IF27')
+        InitMagicItemTips('IF28')
+        InitMagicItemTips('IF29')
+        InitMagicItemTips('IF30')
+    endfunction
+    function InitAllMagicItemTips4()
+        InitMagicItemTips('IF31')
+        InitMagicItemTips('IF32')
+        InitMagicItemTips('IF33')
+        InitMagicItemTips('IF34')
+        InitMagicItemTips('IF35')
+        InitMagicItemTips('IF36')
+        InitMagicItemTips('IF37')
+        InitMagicItemTips('IF38')
+        InitMagicItemTips('IF39')
+        InitMagicItemTips('IF40')
+    endfunction
+    function InitAllMagicItemTips5()
+        InitMagicItemTips('IF41')
+        InitMagicItemTips('IF42')
+        InitMagicItemTips('IF43')
+        InitMagicItemTips('IF44')
+        InitMagicItemTips('IF45')
+        InitMagicItemTips('IF46')
+        InitMagicItemTips('IF47')
+        InitMagicItemTips('IF48')
+        InitMagicItemTips('IF49')
+        InitMagicItemTips('IF50')
+        InitMagicItemTips('IF51')
+        InitMagicItemTips('IF52')
+    endfunction
+    function InitAllMagicItemTips()
+        ExecuteFunc("InitAllMagicItemTips1")
+        ExecuteFunc("InitAllMagicItemTips2")
+        ExecuteFunc("InitAllMagicItemTips3")
+        ExecuteFunc("InitAllMagicItemTips4")
+        ExecuteFunc("InitAllMagicItemTips5")
+    endfunction
+
     function BoxShowMagicItemPublic(int pid,int id)
         int h = 10
         int value = 0

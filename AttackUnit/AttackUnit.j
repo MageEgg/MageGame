@@ -371,24 +371,34 @@ library AttackUnit uses DamageCode,PassCheckMission
                     if  pid == 0
                         Pu[42]=CreateUnit(Player(pid),'np42',-4544,12896,270)//挑战
                         CreateUnit(Player(pid),'nc42',-4544,12896,270)//挑战
-                        Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',-4256,12896,270)//礼包
-                        CreateUnit(Player(pid),'nc06',-4256,12896,270)//礼包
+                        Pu[46]=CreateUnit(Player(pid),'np46',-4256,12896,270)//挑战
+                        CreateUnit(Player(pid),'nc42',-4256,12896,270)//挑战
+                        Pu[26]=CreateUnit(Player(pid),'np06',-3936,12896,270)//礼包
+                        CreateUnit(Player(pid),'nc06',-3936,12896,270)//礼包
                     elseif  pid == 1
                         Pu[42]=CreateUnit(Player(pid),'np42',-2944,12224,270)//挑战
                         CreateUnit(Player(pid),'nc42',-2944,12224,270)//挑战
-                        Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',-2944,11904,270)//礼包
-                        CreateUnit(Player(pid),'nc06',-2944,11904,270)//礼包
+                        Pu[46]=CreateUnit(Player(pid),'np46',-2944,11904,270)//挑战
+                        CreateUnit(Player(pid),'nc42',-2944,11904,270)//挑战
+                        Pu[26]=CreateUnit(Player(pid),'np06',-2944,11584,270)//礼包
+                        CreateUnit(Player(pid),'nc06',-2944,11584,270)//礼包
                     elseif  pid == 2
                         Pu[42]=CreateUnit(Player(pid),'np42',-3648,10624,270)//挑战
                         CreateUnit(Player(pid),'nc42',-3648,10624,270)//挑战
-                        Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',-3936,10624,270)//礼包
-                        CreateUnit(Player(pid),'nc06',-3936,10624,270)//礼包
+                        Pu[46]=CreateUnit(Player(pid),'np46',-3936,10624,270)//礼包
+                        CreateUnit(Player(pid),'nc42',-3936,10624,270)//礼包
+                        Pu[26]=CreateUnit(Player(pid),'np06',-4256,10624,270)//礼包
+                        CreateUnit(Player(pid),'nc06',-4256,10624,270)//礼包
                     elseif  pid == 3
                         Pu[42]=CreateUnit(Player(pid),'np42',-5216,11296,270)//挑战
                         CreateUnit(Player(pid),'nc42',-5216,11296,270)//挑战
-                        Pu[26]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np06',-5216,11584,270)//礼包
-                        CreateUnit(Player(pid),'nc06',-5216,11584,270)//礼包
+                        Pu[46]=CreateUnit(Player(pid),'np46',-5216,11584,270)//礼包
+                        CreateUnit(Player(pid),'nc42',-5216,11584,270)//礼包
+                        Pu[26]=CreateUnit(Player(pid),'np06',-5216,11936,270)//礼包
+                        CreateUnit(Player(pid),'nc06',-5216,11936,270)//礼包
                     endif
+
+                    SetPlayerTechResearched(Player(pid),'RF0A',1)
                 endif
             end
             
@@ -1089,6 +1099,46 @@ library AttackUnit uses DamageCode,PassCheckMission
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[作者]：|r黑心，不对，|cff00ff00《良心商店》|r刷新啦！！！！")
     endfunction
 
+    function ReChallengePrize(unit wu)
+        for i = 0,5
+            if  UnitItemInSlot(wu,i)!=null
+                RemoveItem(UnitItemInSlot(wu,i))
+            endif
+        end
+        
+        bj_lastCreatedItem = UnitAddItemById(wu,'IC02')
+        SetItemCharges(bj_lastCreatedItem,GetRandomInt(5000,20000))
+
+    endfunction
+    function CreateMode4ChallengeUnit()
+        real x = 0
+        real y = 0
+        unit u = null
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                if  pid == 0
+                    x = GetRandomReal(-4256,-3904)
+                    y = GetRandomReal(13472,13856)
+                elseif  pid == 1
+                    x = GetRandomReal(-2400,-2048)
+                    y = GetRandomReal(11584,11968)
+                elseif  pid == 2
+                    x = GetRandomReal(-4256,-3904)
+                    y = GetRandomReal(9664,10048)
+                elseif  pid == 3
+                    x = GetRandomReal(-6144,-5792)
+                    y = GetRandomReal(11552,11936)
+                endif
+                u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
+                AddItemToStock( u,'IZ71', 1, 1 )
+                UnitApplyTimedLife( u, 'BHwe', 300 )
+                ReChallengePrize(u)
+
+            endif
+        end
+
+        u = null
+    endfunction
     
     function StartAttackUnit()
         int cos = 0
@@ -1182,6 +1232,13 @@ library AttackUnit uses DamageCode,PassCheckMission
                 if  ModuloInteger(AttackUnitWN,3) == 0
                     ReExShop()
                 endif
+
+                if  GameMode == 4
+                    if  ModuloInteger(AttackUnitWN,1) == 0
+                        CreateMode4ChallengeUnit()
+                    endif
+                endif
+                
             else
                 for pid = 0,5
                     if  IsPlaying(pid) == true
@@ -1223,57 +1280,64 @@ library AttackUnit uses DamageCode,PassCheckMission
         real ran = 0
         int jf = 0
         int jfadd = 0
-        if  GameMode < 3
+        if  GameSaveClose == 1
+            AddDzPlayerData(pid,2,8,1) //全民竞速
             AddDzPlayerData(pid,3,1,1) //总通关次数
-            AddDzPlayerData(pid,3,GameLevel+1,1) //通关难度次数
-
-            if  GameMode == 2
-                AddDzPlayerData(pid,17,1,1) //疯狂总通关次数
-                AddDzPlayerData(pid,17,GameLevel+1,1) //疯狂通关难度次数
-            endif
-
-            jfadd = 10*GameLevel
-            jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
-            AddDzPlayerData(pid,2,1,jfadd) //通关积分
-
-            if  GameMode == 1
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
-            elseif  GameMode == 2
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
-            endif
-        elseif  GameMode == 3
-            AddDzPlayerData(pid,20,1,1) //异变总通关次数
-            AddDzPlayerData(pid,20,GameLevel-2,1) //异变通关难度次数
-
-            jfadd = 10*(GameLevel-3)
-            jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
-            AddDzPlayerData(pid,2,4,jfadd) //异变积分
-
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点异变积分！|r")
-        endif
-
-        AddDzHeroExp(Pu[1],1+GameLevel)
-        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00增加"+GetUnitName(Pu[1])+I2S((1+GameLevel)*10)+"点熟练度！|r")
-
-        MissionAddNumFunc(pid,2,1) //任务
-        MissionAddNumFunc(pid,6,1) //任务
-        if  PlayerNum > 1 
-            MissionAddNumFunc(pid,11,1) //任务
-        endif
-        if  GameLevel >= 2
-            MissionAddNumFunc(pid,22,1) //任务
-        endif
-        if  GameLevel >= 3
-            MissionAddNumFunc(pid,23,1) //任务
-        endif
-
-        SaveDzRoom(pid) //刷新房间显示
-
-        BuryingPointData(pid,1,GameLevel,1)//通关埋点
-        if  GetUnitTypeId(Pu[1]) == 'H030'
-            BuryingPointData(pid,8,1,1)//后羿埋点
         else
-            BuryingPointData(pid,8,0,1)//非后羿埋点
+            if  GameMode < 3
+                AddDzPlayerData(pid,3,1,1) //总通关次数
+                AddDzPlayerData(pid,3,GameLevel+1,1) //通关难度次数
+
+                if  GameMode == 2
+                    AddDzPlayerData(pid,17,1,1) //疯狂总通关次数
+                    AddDzPlayerData(pid,17,GameLevel+1,1) //疯狂通关难度次数
+                endif
+                
+                    
+
+                jfadd = 10*GameLevel
+                jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
+                AddDzPlayerData(pid,2,1,jfadd) //通关积分
+
+                if  GameMode == 1
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分！|r")
+                elseif  GameMode == 2
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
+                endif
+            elseif  GameMode == 3
+                AddDzPlayerData(pid,20,1,1) //异变总通关次数
+                AddDzPlayerData(pid,20,GameLevel-2,1) //异变通关难度次数
+
+                jfadd = 10*(GameLevel-3)
+                jfadd = R2I(I2R(jfadd)*(1+DzConA[11]*0.5))
+                AddDzPlayerData(pid,2,4,jfadd) //异变积分
+
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点异变积分！|r")
+            endif
+
+            AddDzHeroExp(Pu[1],1+GameLevel)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00增加"+GetUnitName(Pu[1])+I2S((1+GameLevel)*10)+"点熟练度！|r")
+
+            MissionAddNumFunc(pid,2,1) //任务
+            MissionAddNumFunc(pid,6,1) //任务
+            if  PlayerNum > 1 
+                MissionAddNumFunc(pid,11,1) //任务
+            endif
+            if  GameLevel >= 2
+                MissionAddNumFunc(pid,22,1) //任务
+            endif
+            if  GameLevel >= 3
+                MissionAddNumFunc(pid,23,1) //任务
+            endif
+
+            SaveDzRoom(pid) //刷新房间显示
+
+            BuryingPointData(pid,1,GameLevel,1)//通关埋点
+            if  GetUnitTypeId(Pu[1]) == 'H030'
+                BuryingPointData(pid,8,1,1)//后羿埋点
+            else
+                BuryingPointData(pid,8,0,1)//非后羿埋点
+            endif
         endif
     endfunction
     

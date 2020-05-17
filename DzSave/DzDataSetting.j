@@ -27,7 +27,7 @@ library DzDataSetting uses DzBase
     //请在这里记录注释存档数据
     // 组0 用于存储玩家上一次游戏时间戳
     // 组1 30位 == 1月 2日 3星期 4签到日 5今日签到 6连续签到 7累积签到 8通行证刷新 9未使用 10-20刷新 21公众号礼包 22入群礼包 23魔芝礼包
-    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分 5当日钻石 6龙宫积分 7 宝藏使用数量
+    // 组2 12组 == 1通关积分 2守家积分 3万魔窟 4异变积分 5当日钻石 6龙宫积分 7 宝藏使用数量 8通关竞速次数
     // 组3 20组 == 1总通关次数 2+通关难度次数
     // 组4 12组 记录通行证经验
     // 组5 10组 记录通行证任务
@@ -172,7 +172,9 @@ library DzDataSetting uses DzBase
                 max = DragonKing*DragonKingDayNum*3
             elseif  flag == 7 //宝箱使用数量
                 max = 999
-            elseif  flag >= 8 //未使用
+            elseif  flag == 8 //全民竞速积分
+                max = 1
+            elseif  flag == 9 //未使用
             endif
         elseif  Group == 3
             if  flag == 1 //总通关次数
