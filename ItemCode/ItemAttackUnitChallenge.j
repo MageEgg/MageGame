@@ -294,6 +294,12 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 time = 160
             elseif  zu == 220 
                 time = 240
+            elseif  zu == 260
+                time = 120
+            elseif  zu == 270
+                time = 280
+            elseif  zu == 280
+                time = 30
             endif
         endif
         if  zu == 260 or zu == 270 or zu == 280
