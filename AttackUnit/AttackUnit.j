@@ -1065,7 +1065,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         endif
 
         if  GameMode == 4
-            ExShopNpc = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-4099,12712,270)//新商店
+            ExShopNpc = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-3883,12175,270)//新商店
         else
             ExShopNpc = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-6644,-5923,270)//新商店
         endif
@@ -1165,11 +1165,26 @@ library AttackUnit uses DamageCode,PassCheckMission
 
     function OpenNewChallenge1(int pid,unit tu)
         int num = NewChallengeNum1
-        real x = AttackRoomPostion[pid][1]
-        real y = AttackRoomPostion[pid][2]
+        real x = 0
+        real y = 0
+        if  GameMode == 4
+            if  pid == 0
+                x = -6016	
+                y = 13728	
+            elseif  pid == 1
+                x = -2144		
+                y = 13728	
+            elseif  pid == 2
+                x = -2144	
+                y = 9824	
+            elseif  pid == 3
+                x = -6016	
+                y = 9824		
+            endif
+        endif
+
         SetUnitOwner(tu,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
 
-        UnitRemoveAbility(tu,'A00K')
         UnitRemoveAbility(tu,'Avul')
         UnitRemoveAbility(tu,'Asid')
         UnitRemoveAbility(tu,'Aneu')
