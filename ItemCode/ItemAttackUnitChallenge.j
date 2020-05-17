@@ -835,6 +835,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     ///////////////////////分割判断/////////////////////
                     if  challenge == 6
                         //境界奖励
+                        GivePlayerDGPrizeFrame(pid)
                     elseif  challenge == 7
                         //宝物奖励
                     elseif  challenge == 8
