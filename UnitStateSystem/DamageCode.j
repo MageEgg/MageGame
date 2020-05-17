@@ -335,7 +335,7 @@ library DamageCode uses UnitStateSet
         gl= gl * 0.01 + s
 
         
-        BJDebugMsg("概率"+R2S(gl))
+        //BJDebugMsg("概率"+R2S(gl))
         
 
         return GetRandomReal(0, 1) <= gl

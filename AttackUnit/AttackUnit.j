@@ -1142,13 +1142,16 @@ library AttackUnit uses DamageCode,PassCheckMission
                 u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
                 
                 UnitApplyTimedLife( u, 'BHwe', 300 )
-                ReChallengePrize(u)
+                
+                UnitAddAbility(u,'A00K')
                 UnitAddAbility(u,'Avul')
                 UnitAddAbility(u,'Asid')
                 UnitAddAbility(u,'Aneu')
-                //UnitAddAbility(u,'Apit')
+                UnitAddAbility(u,'Apit')
                 AddItemToStock( u,'IZ71', 1, 1 )
-                
+                EXSetUnitMoveType( u, 0x01 )
+
+                ReChallengePrize(u)
 
             endif
         end

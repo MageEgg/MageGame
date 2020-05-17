@@ -654,7 +654,9 @@ scope ItemSystem initializer InitItemSystem
     endfunction
     
     function SellItemActions()
-        
+        unit u1 = GetTriggerUnit()
+        int itemid = GetItemTypeId(GetManipulatedItem())
+        BJDebugMsg(GetUnitName(u1)+"售出物品"+GetObjectName(itemid))
     endfunction
     
     

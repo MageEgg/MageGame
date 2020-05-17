@@ -56,7 +56,7 @@ library DzConfig uses SystemCodes
         string S = ""
         S = DzCon("QJ")
         if  S == ""
-            S = "110000001000111111100000110101000000000000000000000000000000"		
+            S = "110000001000111111100000010101000000000000000000000000000000"		
         endif
         for n = 0,59
             DzConA[n] = S2I(SubString(S,n,n+1))
