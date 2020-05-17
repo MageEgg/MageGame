@@ -274,7 +274,7 @@ library DamageCode uses UnitStateSet
         
 
 
-        BJDebugMsg("法吸"+R2S(s))
+        //BJDebugMsg("法吸"+R2S(s))
 
         return s
     endfunction

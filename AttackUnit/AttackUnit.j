@@ -1120,6 +1120,10 @@ library AttackUnit uses DamageCode,PassCheckMission
         
         bj_lastCreatedItem = null
     endfunction
+
+
+    
+
     function CreateMode4ChallengeUnit()
         real x = 0
         real y = 0
@@ -1158,6 +1162,26 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         u = null
     endfunction
+
+    function OpenNewChallenge1(int pid,unit tu)
+        int num = NewChallengeNum1
+        real x = AttackRoomPostion[pid][1]
+        real y = AttackRoomPostion[pid][2]
+        SetUnitOwner(tu,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+
+        UnitRemoveAbility(tu,'A00K')
+        UnitRemoveAbility(tu,'Avul')
+        UnitRemoveAbility(tu,'Asid')
+        UnitRemoveAbility(tu,'Aneu')
+        UnitRemoveAbility(tu,'Apit')
+
+        UnitAddAbility(tu,'AZ99')
+        SetUnitAbilityLevel(tu,'AZ99',pid+1)
+        SetUnitPosition(tu,x,y)
+
+        NewChallengeNum1 = NewChallengeNum1 + 1
+    endfunction
+
     
     function StartAttackUnit()
         int cos = 0

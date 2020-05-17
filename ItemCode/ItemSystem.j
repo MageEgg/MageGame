@@ -652,11 +652,26 @@ scope ItemSystem initializer InitItemSystem
 
         flush locals
     endfunction
+
+
+    
     
     function SellItemActions()
-        unit u1 = GetTriggerUnit()
-        int itemid = GetItemTypeId(GetManipulatedItem())
-        BJDebugMsg(GetUnitName(u1)+"售出物品"+GetObjectName(itemid))
+        unit u1 = GetBuyingUnit()
+        int itemid = GetItemTypeId(GetSoldItem())
+        int pid = GetPlayerId(GetOwningPlayer(u1))
+        
+
+
+        if  itemid == 'IZ71'
+            
+            OpenNewChallenge1(pid,GetSellingUnit())
+        endif
+
+        BJDebugMsg(GetUnitName(GetSellingUnit())+"售出物品"+GetObjectName(itemid))
+
+
+        flush locals
     endfunction
     
     
