@@ -761,11 +761,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[器灵挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             elseif  challenge == 3
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[符印挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
-            elseif  challenge == 6
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[境界挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             elseif  challenge == 7
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[宝物挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[境界挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             elseif  challenge == 8
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[宝物挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
+            elseif  challenge == 9
                 DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[将魂挑战]：|r成功击杀"+GetUnitName(u)+"(|cffffcc00"+I2S(AttackUnitChallengePlayerKillCos(challenge))+"/"+I2S(unitnum)+"|r)")
             endif
             ///////////////////////分割判断/////////////////////
