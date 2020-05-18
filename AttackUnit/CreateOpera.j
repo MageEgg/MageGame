@@ -10,7 +10,10 @@ library CreateOpera uses DamageCode
     int AttackUnitOperaBossDamageNum = 0
 
     function KillAttackUnitGroupFunc()
-        KillUnit(GetEnumUnit())
+        int uid = GetUnitTypeId(GetEnumUnit())
+        if  uid != 'mb55'
+            KillUnit(GetEnumUnit())
+        endif
     endfunction
 
     function KillAttackUnitGroup()

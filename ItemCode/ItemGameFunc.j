@@ -402,29 +402,40 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         endif
     endfunction
 
+
+
+    unit Createmb55 = null
     function OpenLastAttackmb55(int pid) //龙须虎
-        unit u = null
+        
         real x = 0
         real y = 0
-        if  AttackUnitWN >= AttackUnitWNOver - 3
-            AddItemToStock(GameDefendUnit,'IZ70',1,1)
+        if  Createmb55 == null
+            if  AttackUnitWN >= AttackUnitWNOver - 3
+                AddItemToStock(GameDefendUnit,'IZ70',1,1)
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
+                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
+            else
+                
+                x = GetUnitX(GameDefendUnit)
+                y = GetUnitY(GameDefendUnit) + 500
+                Createmb55 = CreateUnit(Player(11),'mb55',x,y,270)
+                IssuePointOrderById(Createmb55,851983,x,y)
+                GroupAddUnit(AttackUnitGroup,Createmb55)
+                AddBossAnger.execute(Createmb55)
+                
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+            endif
+        else
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
-        else
-            x = GetUnitX(GameDefendUnit)
-            y = GetUnitY(GameDefendUnit) + 500
-            u = CreateUnit(Player(11),'mb55'+GetRandomInt(0,8),x,y,270)
-            IssuePointOrderById(u,851983,x,y)
-            UnitAddAbility(u,'AZ01')
-            AddBossAnger.execute(u)
-            
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已召唤龙须虎！！！|r")
         endif
+
         flush locals
     endfunction
 
