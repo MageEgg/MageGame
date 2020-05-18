@@ -589,6 +589,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RJ1O',InitCond1(2,Unloc_Type_Level,45),0,0,0,0)
 
 
+        //全民竞速
+        InitUnlocTechConditions('RJ1O',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(2,8,1)),0,0,0)
+
 
         set UnlocTechData_index2 = UnlocTechData_index
 

@@ -496,12 +496,16 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
                 endif
             else
                 SetTipsData(1,"","宝物槽 - |cff808080未解锁|r")
-                if  index == 1 or index == 2
-                    max = 1
+                if  GameMode == 4
+                    SetTipsData(10,"","宝物挑战[|CffFFD24D"+I2S(index)+"|r]后解锁")
                 else
-                    max = index * 10 - 20
+                    if  index == 1 or index == 2
+                        max = 1
+                    else
+                        max = index * 10 - 20
+                    endif
+                    SetTipsData(10,"","万魔窟达到|CffFFD24D"+I2S(max)+"|r层后解锁")
                 endif
-                SetTipsData(10,"","万魔窟达到|CffFFD24D"+I2S(max)+"|r层后解锁")
             endif
             
             

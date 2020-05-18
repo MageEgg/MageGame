@@ -268,6 +268,8 @@ library ItemEquip uses DamageCode,ItemGameFunc
         int index = 0
         real gl = GetTypeIdData(id,104)//概率
         int fmid = 0
+        real x = 0
+        real y = 0
 
         if  id >= 'E001' and id <= 'E029'
             BJDebugMsg("强化概率+"+I2S(IncEquipAddition1))
@@ -313,13 +315,30 @@ library ItemEquip uses DamageCode,ItemGameFunc
                             if  GetUnitTypeId(Pu[100+index]) == 0
                                 AdjustPlayerStateBJ(-gold, Player(pid), PLAYER_STATE_RESOURCE_GOLD )
 
-
-                                Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,AttackRoomPostion[pid][1]-512,AttackRoomPostion[pid][2]+384,270)
+                                if  GameMode == 4
+                                    if  pid == 0
+                                        x = -6016
+                                        y = 13728
+                                    elseif  pid == 1
+                                        x = -2144
+                                        y = 13728
+                                    elseif  pid == 2
+                                        x = -2144
+                                        y = 9824
+                                    elseif  pid == 3
+                                        x = -6016
+                                        y = 9824
+                                    endif
+                                else
+                                    x = AttackRoomPostion[pid][1]-512
+                                    y = AttackRoomPostion[pid][2]+384
+                                endif
+                                Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,270)
                                 
                                 AddAttackSummonUnit(pid,Pu[100+index])
 
                                 SetPlayerOnlyDamage(Pu[100+index],pid)
-                                IssuePointOrderById( Pu[100+index], 851983, AttackRoomPostion[pid][1], AttackRoomPostion[pid][2] )
+                                IssuePointOrderById( Pu[100+index], 851983, GetUnitX(Pu[1]), GetUnitY(Pu[1]) )
                                 HeroMoveToRoom(pid)
 
                             else

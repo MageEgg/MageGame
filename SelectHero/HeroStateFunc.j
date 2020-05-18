@@ -19,42 +19,80 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
 
         
         if  DzAPI_Map_GetGuildName(Player(pid)) == "星辰俱乐部"
-            BJDebugMsg("DzAPI_Map_GetGuildName")
-            if  GetPlayerTechCount(Player(pid),'RY4D',true) == 0 //金鼠送福
-                AddPlayerTechResearched(Player(pid),'RY4D',1)
-                buynum = buynum + 1
-            endif
-            if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
-                AddPlayerTechResearched(Player(pid),'RK1A',1)
-                buynum = buynum + 1
-            endif
-            if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
-                AddPlayerTechResearched(Player(pid),'RY2D',1)
-                buynum = buynum + 1
-            endif
-            if  GetPlayerTechCount(Player(pid),'RJ1X',true) == 0 //赞助礼包
-                AddPlayerTechResearched(Player(pid),'RJ1X',1)
-                buynum = buynum + 1
-            endif
+            if  DzAPI_Map_GetGuildRole(Player(pid)) == 30 or DzAPI_Map_GetGuildRole(Player(pid)) == 20
+                BJDebugMsg("DzAPI_Map_GetGuildName")
+                if  GetPlayerTechCount(Player(pid),'RY4D',true) == 0 //金鼠送福
+                    AddPlayerTechResearched(Player(pid),'RY4D',1)
+                    buynum = buynum + 1
+                endif
+                if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
+                    AddPlayerTechResearched(Player(pid),'RK1A',1)
+                    buynum = buynum + 1
+                endif
+                if  GetPlayerTechCount(Player(pid),'RY2D',true) == 0 //幻莲仙翼
+                    AddPlayerTechResearched(Player(pid),'RY2D',1)
+                    buynum = buynum + 1
+                endif
+                if  GetPlayerTechCount(Player(pid),'RJ1X',true) == 0 //赞助礼包
+                    AddPlayerTechResearched(Player(pid),'RJ1X',1)
+                    buynum = buynum + 1
+                endif
 
-            if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 0 //封神礼包
-                AddPlayerTechResearched(Player(pid),'RJ1U',1)
-                buynum = buynum + 1
-            endif
+                if  GetPlayerTechCount(Player(pid),'RJ1U',true) == 0 //封神礼包
+                    AddPlayerTechResearched(Player(pid),'RJ1U',1)
+                    buynum = buynum + 1
+                endif
 
-            if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
-                AddPlayerTechResearched(Player(pid),'RY3D',1)
-                buynum = buynum + 1
-            endif
+                if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
+                    AddPlayerTechResearched(Player(pid),'RY3D',1)
+                    buynum = buynum + 1
+                endif
 
-            if  GetPlayerTechCount(Player(pid),'RY3F',true) == 0 //诛仙剑
-                AddPlayerTechResearched(Player(pid),'RY3F',1)
-                buynum = buynum + 1
-            endif
+                if  GetPlayerTechCount(Player(pid),'RY3F',true) == 0 //诛仙剑
+                    AddPlayerTechResearched(Player(pid),'RY3F',1)
+                    buynum = buynum + 1
+                endif
 
-            if  GetPlayerTechCount(Player(pid),'RY2G',true) == 0 //幽冥之翼
-                AddPlayerTechResearched(Player(pid),'RY2G',1)
-                buynum = buynum + 1
+                if  GetPlayerTechCount(Player(pid),'RY2G',true) == 0 //幽冥之翼
+                    AddPlayerTechResearched(Player(pid),'RY2G',1)
+                    buynum = buynum + 1
+                endif
+
+                if  GetPlayerTechCount(Player(pid),'RJ1Z',true) == 0 //良心赞助
+                    AddPlayerTechResearched(Player(pid),'RJ1Z',1)
+                    buynum = buynum + 1
+                endif
+
+                if  GetPlayerTechCount(Player(pid),'RP1A',true) == 0 //笑天犬
+                    AddPlayerTechResearched(Player(pid),'RP1A',1)
+                    buynum = buynum + 1
+                endif
+            else
+                if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
+                    AddPlayerTechResearched(Player(pid),'RY3D',1)
+                    buynum = buynum + 1
+                endif
+
+                if  GetPlayerTechCount(Player(pid),'RY3F',true) == 0 //诛仙剑
+                    AddPlayerTechResearched(Player(pid),'RY3F',1)
+                    buynum = buynum + 1
+                endif
+
+                if  GetPlayerTechCount(Player(pid),'RJ1Z',true) == 0 //良心赞助
+                    AddPlayerTechResearched(Player(pid),'RJ1Z',1)
+                    buynum = buynum + 1
+                endif
+
+                if  GetPlayerTechCount(Player(pid),'RK1A',true) == 0 //小狐妖
+                    AddPlayerTechResearched(Player(pid),'RK1A',1)
+                    buynum = buynum + 1
+                endif
+                
+                if  GetPlayerTechCount(Player(pid),'RJ1X',true) == 0 //赞助礼包
+                    AddPlayerTechResearched(Player(pid),'RJ1X',1)
+                    buynum = buynum + 1
+                endif
+
             endif
 
             
@@ -404,6 +442,10 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
                 AddUnitRealState(Pu[1],32,add*3)
                 AddUnitRealState(Pu[1],33,add*3)
             endif
+        endif
+        
+        if  GetPlayerTechCount(Player(pid),'RJ2O',true) > 0
+            PlayerWXBZFree = PlayerWXBZFree + 1
         endif
         
 

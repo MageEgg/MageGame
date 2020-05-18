@@ -1167,21 +1167,21 @@ library AttackUnit uses DamageCode,PassCheckMission
         int num = NewChallengeNum1
         real x = 0
         real y = 0
-        if  GameMode == 4
+        
             if  pid == 0
-                x = -6016	
-                y = 13728	
+                x = -6016
+                y = 13728
             elseif  pid == 1
-                x = -2144		
-                y = 13728	
+                x = -2144
+                y = 13728
             elseif  pid == 2
-                x = -2144	
-                y = 9824	
+                x = -2144
+                y = 9824
             elseif  pid == 3
-                x = -6016	
-                y = 9824		
+                x = -6016
+                y = 9824
             endif
-        endif
+        
 
         SetUnitOwner(tu,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
 
@@ -1192,7 +1192,10 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         UnitAddAbility(tu,'AZ99')
         SetUnitAbilityLevel(tu,'AZ99',pid+1)
+        EXSetUnitMoveType( tu, 0x02 )
         SetUnitPosition(tu,x,y)
+
+        IssuePointOrderById(tu,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
 
         NewChallengeNum1 = NewChallengeNum1 + 1
     endfunction
@@ -1292,7 +1295,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 endif
 
                 if  GameMode == 4
-                    if  ModuloInteger(AttackUnitWN,1) == 0
+                    if  ModuloInteger(AttackUnitWN,6) == 0
                         CreateMode4ChallengeUnit()
                     endif
                 endif

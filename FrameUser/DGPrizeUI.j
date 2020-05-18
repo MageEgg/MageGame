@@ -209,6 +209,8 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
                     ReDGPrizeFrame(pid)
                 endif
                 ReHeroXpBar(pid)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验不足|cffffcc00"+I2S(use)+"|r，无法开启！")
             endif
         else
             //激活道果
