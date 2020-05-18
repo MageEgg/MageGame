@@ -155,6 +155,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ2N','RJ2N',0,0,0,0)//狗作者的道歉
         RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
         RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
+        RegisterShowSaveFrameData(0,'RJ2O','RJ2O',0,0,0,0)//全民竞速
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
 

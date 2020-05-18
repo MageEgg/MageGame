@@ -491,6 +491,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RJ2L',"前奏","ReplaceableTextures\\CommandButtons\\BTNRJ2L.BLP","")
         call InitTypeIdStrings('RJ2M',"闪耀之星","ReplaceableTextures\\CommandButtons\\BTNRJ2M.BLP","")
         call InitTypeIdStrings('RJ2N',"狗作者的道歉","ReplaceableTextures\\CommandButtons\\BTNRJ2N.BLP","开局钻石+2\n\n打工是不可能打工的，这辈子不可能打工的！做起图来又菜又鸽，就是满足玩家需求，才可以不被大家打死这样子。")
+        call InitTypeIdStrings('RJ2O',"全民竞速","ReplaceableTextures\\CommandButtons\\BTNRJ2O.BLP","全民竞速活动期间，开局免费万仙宝藏次数+1。\n\n截止日期：2020年5月24日")
         call InitTypeIdStrings('IK01',"|CffBF00FF【稀有】白虎|r","ReplaceableTextures\\CommandButtons\\BTNSST01.blp","致命倍率|Cffffc926+150%\n\n|r|Cffff00bf【白虎】|r+|Cffff00bf【白虎】|r=|Cffffc926【神威虎爪】\n\n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK02',"|CffBF00FF【稀有】玄武|r","ReplaceableTextures\\CommandButtons\\BTNSST02.blp","最大生命|Cffffc926+10%\n\n|r|Cffff00bf【玄武】|r+|Cffff00bf【玄武】|r=|Cffffc926【佛陀舍利】\n\n|r|Cff00ff7f点击穿戴或脱卸。|r")
         call InitTypeIdStrings('IK03',"|CffBF00FF【稀有】帝魄|r","ReplaceableTextures\\CommandButtons\\BTNSST03.blp","道兵伤害|Cffffc926+30%\n\n|r|Cffff00bf【帝魄】|r+|Cffff00bf【帝魄】|r=|Cffffc926【昊天帝玉】\n\n|r|Cff00ff7f点击穿戴或脱卸。|r")
