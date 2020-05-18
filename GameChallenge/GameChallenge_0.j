@@ -142,7 +142,10 @@ library GameChallenge0 uses GameChallengeBase
                                 DzFrameShow(BUTTON_Back[700+i][0], true)
                             end
                             DzFrameShow(BUTTON_Back[709][0], true)
-
+                            if  GameMode == 4
+                                DzFrameShow(BUTTON_Back[704][0], true)
+                                CloseCollectFrame(pid)
+                            endif
                         endif
                     endif
                 endif

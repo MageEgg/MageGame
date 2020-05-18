@@ -353,6 +353,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         real ey = 0
         AttackUnitWN = 0
         AttackUnitWNBoss = 0
+        GameWinBoolJu = false
         if  GameMode == 4
             AttackUnitWNOver = 60  //最终波
             LastAttackBossId = 'mb06'
@@ -889,7 +890,13 @@ library AttackUnit uses DamageCode,PassCheckMission
                         CreateGameOperaA.execute(AttackUnitNextTime[i])
                     endif
                     ShowGameTeamChallengeNPC_A.execute(AttackUnitWN+1)
-                    
+                elseif  AttackUnitWN == 6
+                    if  GameSaveClose == 1
+                        AddItemToStock(GameDefendUnit,'IZ70',1,1)
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处挑战龙须虎提前通关！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处挑战龙须虎提前通关！！！|r")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[封神榜]：|r|cffffff00现在开始可在周文王处挑战龙须虎提前通关！！！|r")
+                    endif
                 elseif  AttackUnitWN == 11
                     if  IsGameOperaB == false
                         IsGameOperaB = true
@@ -1118,6 +1125,11 @@ library AttackUnit uses DamageCode,PassCheckMission
             UnitAddPoolItem(wu,20)
         endif
         
+        RemoveItemFromStock(wu,'IZ71')
+        RemoveItemFromStock(wu,'IZ72')
+        AddItemToStock( wu,'IZ71', 1, 1 )
+        AddItemToStock( wu,'IZ72', 1, 1 )
+
         bj_lastCreatedItem = null
     endfunction
 
@@ -1153,6 +1165,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 UnitAddAbility(u,'Aneu')
                 UnitAddAbility(u,'Apit')
                 AddItemToStock( u,'IZ71', 1, 1 )
+                AddItemToStock( u,'IZ72', 1, 1 )
                 EXSetUnitMoveType( u, 0x01 )
 
                 ReChallengePrize(u)
@@ -1198,6 +1211,13 @@ library AttackUnit uses DamageCode,PassCheckMission
         IssuePointOrderById(tu,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
 
         NewChallengeNum1 = NewChallengeNum1 + 1
+        if  num < 10
+            SetUnitRealStateOfOtherIdAddValue(tu,'mg00'+num,1.0)
+        else
+            SetUnitRealStateOfOtherIdAddValue(tu,'mg10',1.0 + (num-10) * 0.4)
+        endif
+
+        
     endfunction
 
     
@@ -1294,7 +1314,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     ReExShop()
                 endif
 
-                if  GameMode == 4
+                if  GameMode == 4//法宝挑战
                     if  ModuloInteger(AttackUnitWN,6) == 0
                         CreateMode4ChallengeUnit()
                     endif
@@ -1404,25 +1424,26 @@ library AttackUnit uses DamageCode,PassCheckMission
     
     function AttackUnitWin()
         
-        GameWinBoolJu = true
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
-        if  GameSaveClose == 1
-            RePKUI()
-        endif
-        ExecuteFunc("CreateMeridiansNPC")
-        ExecuteFunc("GameWin")
-        
-        for pid = 0,5
-            if  IsPlaying(pid) == true
-                //存档
-                PlayerAttackUnitWin.execute(pid)
+        if  GameWinBoolJu == false
+            GameWinBoolJu = true
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
+            if  GameSaveClose == 1
+                RePKUI()
             endif
-        end
-        
+            ExecuteFunc("CreateMeridiansNPC")
+            ExecuteFunc("GameWin")
+            
+            for pid = 0,5
+                if  IsPlaying(pid) == true
+                    //存档
+                    PlayerAttackUnitWin.execute(pid)
+                endif
+            end
+        endif
     endfunction
     
     function GameWin()

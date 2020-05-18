@@ -402,6 +402,32 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
         endif
     endfunction
 
+    function OpenLastAttackmb55(int pid) //龙须虎
+        unit u = null
+        real x = 0
+        real y = 0
+        if  AttackUnitWN >= AttackUnitWNOver - 3
+            AddItemToStock(GameDefendUnit,'IZ70',1,1)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
+            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
+        else
+            x = GetUnitX(GameDefendUnit)
+            y = GetUnitY(GameDefendUnit) + 500
+            u = CreateUnit(Player(11),'mb55'+GetRandomInt(0,8),x,y,270)
+            IssuePointOrderById(u,851983,x,y)
+            UnitAddAbility(u,'AZ01')
+            AddBossAnger.execute(u)
+            
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r|cffff0000龙须虎已经出现！！！请速速击杀|r")
+        endif
+        flush locals
+    endfunction
+
     function OpenLastAttack(int pid) //大决战
         int maxusenum = 0
         if  GameMode == 1
@@ -417,7 +443,7 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                             if  AttackUnitWN >= AttackUnitWNOver - 3
                                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000已经进入大决战阶段！！！|r")
                             else
                                 AttackUnitOrderNum = AttackUnitWNOver - 3
                                 AttackUnitWN = AttackUnitWNOver - 3
@@ -436,27 +462,27 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                         else
                             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r购买冷却中，请10秒后重新购买！")
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r购买冷却中，请10秒后重新购买！")
                         endif
                     else
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r该道具只能在"+I2S(maxusenum+1)+"波之后使用！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该道具只能在"+I2S(maxusenum+1)+"波之后使用！")
                     endif
                 else
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                     AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                    DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前处于暂停刷怪，无法提前进入大决战！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r当前处于暂停刷怪，无法提前进入大决战！")
                 endif
             else
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
                 AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-                DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为疯狂模式无法提前进入大决战！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r当前为疯狂模式无法提前进入大决战！")
             endif
         else
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,50000)
             AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,30)
-            DisplayTimedTextToPlayer(Player(pid),0,0,1,"|cffffcc00[系统]：|r当前为无尽模式无法提前进入大决战！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r当前为无尽模式无法提前进入大决战！")
         endif
     endfunction
 

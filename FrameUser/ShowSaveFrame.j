@@ -155,39 +155,46 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ2N','RJ2N',0,0,0,0)//狗作者的道歉
         RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
         RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
+
         RegisterShowSaveFrameData(0,'RJ2O','RJ2O',0,0,0,0)//全民竞速
         RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
         RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
-
         RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
+
         RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//铁石心肝
         RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
         RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
-
         RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
+
         RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0)//老司机
         RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0)//老司机
-
         RegisterShowSaveFrameData(0,'RJ1M','RJ1M',0,0,0,0)//我超强
+
         RegisterShowSaveFrameData(0,'RJ1N','RJ1N',0,0,0,0)//我究极强
         RegisterShowSaveFrameData(0,'RJ1O','RJ1O',0,0,0,0)//我强无敌
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
 
         RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
         RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0)//荣耀之信
         RegisterShowSaveFrameData(0,'RJ2C','RJ2C',0,0,0,0)//荣耀之心
         RegisterShowSaveFrameData(0,'RJ2D','RJ2D',0,0,0,0)//荣耀之证
+
         RegisterShowSaveFrameData(0,'RJ2E','RJ2E',0,0,0,0)//荣耀之光
         RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0)//中流砥柱
         RegisterShowSaveFrameData(0,'RJ2G','RJ2G',0,0,0,0)//劳动光荣
         RegisterShowSaveFrameData(0,'RY0A','RY0A',0,0,0,0)//异变之光
+
         RegisterShowSaveFrameData(0,'RJ2H','RJ2H',0,0,0,0)//狂欢序幕
         RegisterShowSaveFrameData(0,'RJ2I','RJ2I',0,0,0,0)//狂欢进行时
         RegisterShowSaveFrameData(0,'RJ2J','RJ2J',0,0,0,0)//狂欢派对
         RegisterShowSaveFrameData(0,'RJ2K','RJ2K',0,0,0,0)//派对之王
+
         RegisterShowSaveFrameData(0,'RJ2L','RJ2L',0,0,0,0)//前奏
         RegisterShowSaveFrameData(0,'RJ2M','RJ2M',0,0,0,0)//闪耀之星
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         
 

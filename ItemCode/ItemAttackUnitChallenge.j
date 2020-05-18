@@ -873,15 +873,18 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
     function ItemEventOfAttackUnitChallengeState(int pid,int itid)
         int ran = 0
         if  itid == 'IZ0D'
-            UnitAddAbility(Pu[1],'AG09')
-            UnitMakeAbilityPermanent(Pu[1],true,'AG09')
-            ShowUnit(Pu[24],true)
-            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc04',GetUnitX(Pu[24]),GetUnitY(Pu[24]),270)//副本入口
-            UnitAddEffectOfNPC.execute(Pu[24])
-            if  GetLocalPlayer() == Player(pid)
-                DzFrameShow(BUTTON_Back[700+4][0], true)
+            if  GameMode != 4
+
+                UnitAddAbility(Pu[1],'AG09')
+                UnitMakeAbilityPermanent(Pu[1],true,'AG09')
+                ShowUnit(Pu[24],true)
+                CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc04',GetUnitX(Pu[24]),GetUnitY(Pu[24]),270)//副本入口
+                UnitAddEffectOfNPC.execute(Pu[24])
+                if  GetLocalPlayer() == Player(pid)
+                    DzFrameShow(BUTTON_Back[700+4][0], true)
+                endif
+                CloseCollectFrame(pid)
             endif
-            CloseCollectFrame(pid)
         elseif  itid == 'IZ0E'
             HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
             for num = 1,3

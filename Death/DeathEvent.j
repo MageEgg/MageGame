@@ -507,7 +507,40 @@ scope DeathEvent initializer InitDeathEvent
     endfunction
     
    
+    function DropChallengeUnit(unit tu)
+        int pid = 0
+        int gold = 0
+        int fbid = 0
+        int id = 0
+        
 
+        for i = 0,2
+            id = GetItemTypeId(UnitItemInSlot(tu,i))
+            if  id >= 'IF01' and id <= 'IF52'
+                fbid = id - 'IF00' + 'FB00'
+            elseif  id == 'IC02'
+                gold = GetItemCharges(UnitItemInSlot(tu,i))
+            else
+                SetItemPosition(UnitItemInSlot(tu,i),GetUnitX(tu),GetUnitY(tu))
+            endif
+        end
+
+        pid = GetUnitAbilityLevel(tu,'AZ99')
+        if  pid > 0
+            pid = pid - 1
+
+            if  fbid > 0
+                GivePlayerMagicItem(pid,fbid)
+            endif
+            if  gold > 0
+                AdjustPlayerStateBJ(gold ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+                UnitAddTextPlayer(tu,Player(pid),"+"+I2S(gold),255,202,0,255,90,0.023)
+                
+            endif
+        endif
+
+
+    endfunction 
     
 
     function HeroKillMoster(unit wu,unit tu)
@@ -517,9 +550,17 @@ scope DeathEvent initializer InitDeathEvent
         int value = 0
         real x = AttackRoomPostion[pid][1] 
         real y = AttackRoomPostion[pid][2] 
+
+        
         
         
         MissionKillUnit(pid,uid)
+
+        if  uid >= 'mg0A' and uid <= 'mg0H'
+            
+            DropChallengeUnit(tu)
+        endif
+
 
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
@@ -937,6 +978,12 @@ scope DeathEvent initializer InitDeathEvent
 
         if  pid > 3
             RanDropItem.execute(u1,pid2)//非玩家单位死亡，掉落物品
+
+
+            if  uid == 'mb55'
+                AttackUnitWin()
+            endif
+
 
             //特殊判断无伤害来源可触发
             if  uid >= 'mb01' and uid <= 'mb20'
