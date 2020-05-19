@@ -402,6 +402,11 @@ library AttackUnit uses DamageCode,PassCheckMission
             SetPlayerAlliance( Player(i), Player(10), ALLIANCE_PASSIVE, true )
             SetPlayerAlliance( Player(i), Player(PLAYER_NEUTRAL_AGGRESSIVE), ALLIANCE_PASSIVE, true )
             SetPlayerAlliance( Player(i), Player(PLAYER_NEUTRAL_PASSIVE), ALLIANCE_PASSIVE, true )
+
+            SetPlayerAlliance( Player(9),Player(i),ALLIANCE_PASSIVE, true )
+            SetPlayerAlliance( Player(10),Player(i),ALLIANCE_PASSIVE, true )
+            SetPlayerAlliance( Player(PLAYER_NEUTRAL_AGGRESSIVE),Player(i),ALLIANCE_PASSIVE, true )
+            SetPlayerAlliance( Player(PLAYER_NEUTRAL_PASSIVE),Player(i),ALLIANCE_PASSIVE, true )
         end
 
         ShowVariationUIEx(true)
