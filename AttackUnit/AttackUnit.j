@@ -86,6 +86,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             GroupRemoveUnit(AttackUnitGroupCos,AttackUnitGroupCosUnit)
         endloop
         GroupClear(AttackUnitGroupCos)
+        AttackUnitGroupCosUnit = null
         return cos
     endfunction
     
