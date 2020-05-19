@@ -126,10 +126,15 @@ library AttackUnit uses DamageCode,PassCheckMission
                         AttackTimerTextExUI.SetText("|cff00ff00"+GetGameMode4Time()+"|r")
                     endif
                 else
-                    ExecuteFunc("AttackUnitWin")
+                    KillAttackUnitGroup()
                     PauseAllUnits( true )
                     AttackTimerTextUI.SetText("|cffffe100游戏胜利|r")
                     AttackTimerTextExUI.SetText("|cffffe100游戏胜利|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
                 endif
             else
                 if  AttackTimer != null
