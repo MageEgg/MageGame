@@ -420,6 +420,8 @@ library AttackUnit uses DamageCode,PassCheckMission
             ShowUnit(gg_unit_np00_0093,false)
             GameMode4ShopUnit = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np49',-4082,11772,270)
             GameDefendUnit = GameMode4ShopUnit
+            OriginalDefendX = GetUnitX(GameDefendUnit)
+            OriginalDefendY = GetUnitY(GameDefendUnit)
 
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',-4283,11772,270)
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',-4283,11772,270)
