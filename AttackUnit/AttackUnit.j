@@ -397,6 +397,13 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         GameModeTime = 1861
 
+        for i = 4,7
+            SetPlayerAlliance( Player(i), Player(9), ALLIANCE_PASSIVE, true )
+            SetPlayerAlliance( Player(i), Player(10), ALLIANCE_PASSIVE, true )
+            SetPlayerAlliance( Player(i), Player(PLAYER_NEUTRAL_AGGRESSIVE), ALLIANCE_PASSIVE, true )
+            SetPlayerAlliance( Player(i), Player(PLAYER_NEUTRAL_PASSIVE), ALLIANCE_PASSIVE, true )
+        end
+
         ShowVariationUIEx(true)
     endfunction
 
