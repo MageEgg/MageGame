@@ -791,7 +791,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 elseif  GameMode == 4
-                                    UnitAddAbility(u,'AXCA')
+                                    if  AttackUnitWN >= 20
+                                        UnitAddAbility(u,'AXCA')
+                                    endif
                                     if  ModuloInteger(AttackUnitWN,2) == 0 
                                         if  GM4 == true
                                             SetGameMode4AttackUnitState(u)
@@ -881,7 +883,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                             IntUnitVariation(u)
                             AddUnitVariation(u,AttackUnitVariationNumA)
                         elseif  GameMode == 4
-                            UnitAddAbility(u,'AXCA')
+                            if  AttackUnitWN >= 20
+                                UnitAddAbility(u,'AXCA')
+                            endif
                             if  ModuloInteger(AttackUnitWN,2) == 0 
                                 if  GM4 == true
                                     SetGameMode4AttackUnitState(u)
