@@ -89,6 +89,8 @@ scope FrameButton
                         PlayerClickDGPrize(pid,id-930)
                     elseif  id >= 941 and id <= 943//道果奖励
                         PlayerClickDGPrize(pid,id-940)
+                    elseif  id == 940
+                        ClickReDGPrize(pid)
                     elseif  id == 420//副本重随
                         ClickRePrizeFrame(pid)
                     elseif  id == 950//重随

@@ -82,7 +82,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
     //刷新道果奖励UI
     function ReDGPrizeFrame(int pid)
         int id = 0
-        int use = 10000
+        int use = 30000
         if  GetLocalPlayer() == Player(pid)
             for i = 1,3
                 id = GetUnitIntState(Pu[1],930+i)
@@ -97,7 +97,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
                     DzFrameSetText(BUTTON_Text[940+i],"")
                 endif
             end
-            DzFrameSetText(BUTTON_Text[940],"10000经验")
+            DzFrameSetText(BUTTON_Text[940],I2S(use)+"经验")
         endif
     endfunction
     
@@ -192,7 +192,22 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         ShowTipsUI()
     endfunction
 
-    
+    function ClickReDGPrize(int pid)
+        int use = 30000
+        if  HeroExExp >= use
+            HeroExExp = HeroExExp - use
+            SetUnitIntState(Pu[1],931,GetNewDGPrize(pid))
+            SetUnitIntState(Pu[1],932,GetNewDGPrize(pid))
+            SetUnitIntState(Pu[1],933,GetNewDGPrize(pid))
+            if  GetLocalPlayer() == Player(pid)
+                Button.show = true
+                ReDGPrizeFrame(pid)
+            endif
+            ReHeroXpBar(pid)
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验不足|cffffcc00"+I2S(use)+"|r，无法刷新！")
+        endif
+    endfunction
 
     function PlayerClickDGPrize(int pid,int index)
         int id = GetUnitIntState(Pu[1],930+index)
@@ -209,6 +224,10 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
                     ReDGPrizeFrame(pid)
                 endif
                 ReHeroXpBar(pid)
+
+                if  GetUnitIntState(Pu[1],931) > 0 and GetUnitIntState(Pu[1],932) > 0 and GetUnitIntState(Pu[1],933) > 0
+                    DzFrameShow(BUTTON_Back[940][0],true)
+                endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验不足|cffffcc00"+I2S(use)+"|r，无法开启！")
             endif
@@ -243,6 +262,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         if  GetLocalPlayer() == Player(pid)
             Button.show = true
             ReDGPrizeFrame(pid)
+            DzFrameShow(BUTTON_Back[940][0],false)
         endif
     endfunction
 
@@ -273,7 +293,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         CreateButton(930,Button.frameid,TYPE_CLOSE,2,Button.frameid,2,0.0,0.0,0.03,0.016,"war3mapImported\\UI_ESC.tga")
 
         CreateButton(940,Button.frameid,TYPE_BUTTON,7,Button.frameid,7,0.0,0.005,0.1,0.024,"war3mapImported\\UI_ReDG_Button.tga")
-        CreateText(940,Button.frameid,"text008",3,4,-0.005,0.0,"10000经验")
+        CreateText(940,BUTTON_Back[940][0],"text008",3,4,-0.005,0.0,"30000经验")
         
         Button.show = false
     endfunction
