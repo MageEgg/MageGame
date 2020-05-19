@@ -3,6 +3,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     group AttackUnitGroup = CreateGroup()
     private group AttackUnitGroupCos = CreateGroup()
     private unit AttackUnitGroupCosUnit = null
+    private int GameModeTime = 0
     unit array AttackUnitBoss
     int array AttackUnitInt[60][300]
     real array AttackUnitReal[60][300]
@@ -89,7 +90,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackUnitGroupCosUnit = null
         return cos
     endfunction
-    
+
+    function GetGameMode4Time()->string
+        int min = GameModeTime/60
+        int s = 0
+        if  min > 0
+            s = GameModeTime-60*min
+            return I2S(min)+"分"+I2S(s)+"秒"
+        else
+            s = GameModeTime
+            return I2S(s)+"秒"
+        endif
+    endfunction
+
     function ReflushAttackTimerUI()
         int cos = 0
         if  GameLevel > 0
@@ -103,60 +116,76 @@ library AttackUnit uses DamageCode,PassCheckMission
                 if  GetGameMode4AttackUnitGroupCos() > (70+50*PlayerNum)
                     ExecuteFunc("GameOverEx")
                 endif
-            endif
-            if  AttackTimer != null
-                if  InfiniteAttackBool == false
-                    if  AttackUnitWN == 0
-                        if  StopAttackBool == true
-                            if  TimerGetRemaining(AttackElseTimer) > 0
-                                AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
-                                AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
-                            else
-                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("")
-                            endif
-                        else 
-                            if  TimerGetRemaining(AttackTimer) > 0
-                                if  TimerGetRemaining(AttackTimer) < 11
-                                    AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
-                                    AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
-                                else
-                                    AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
-                                    AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
-                                endif
-                            else
-                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("")
-                            endif
-                        endif
+                if  GameModeTime > 0
+                    GameModeTime = GameModeTime - 1
+                    if  GameModeTime > 1800
+                        AttackTimerTextUI.SetText("|cffffe100准备时间|r")
+                        AttackTimerTextExUI.SetText("|cffffe100"+I2S(GameModeTime-1800)+"秒|r")
                     else
-                        if  StopAttackBool == true
-                            if  TimerGetRemaining(AttackElseTimer) > 0
-                                AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
-                                AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
-                            else
-                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("")
+                        AttackTimerTextUI.SetText("|cff00ff00生存时间|r")
+                        AttackTimerTextExUI.SetText("|cff00ff00"+GetGameMode4Time()+"|r")
+                    endif
+                else
+                    ExecuteFunc("AttackUnitWin")
+                    PauseAllUnits( true )
+                    AttackTimerTextUI.SetText("|cffffe100游戏胜利|r")
+                    AttackTimerTextExUI.SetText("|cffffe100游戏胜利|r")
+                endif
+            else
+                if  AttackTimer != null
+                    if  InfiniteAttackBool == false
+                        if  AttackUnitWN == 0
+                            if  StopAttackBool == true
+                                if  TimerGetRemaining(AttackElseTimer) > 0
+                                    AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
+                                    AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
+                                else
+                                    AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("")
+                                endif
+                            else 
+                                if  TimerGetRemaining(AttackTimer) > 0
+                                    if  TimerGetRemaining(AttackTimer) < 11
+                                        AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
+                                        AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                    else
+                                        AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
+                                        AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                    endif
+                                else
+                                    AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("")
+                                endif
                             endif
                         else
-                            if  TimerGetRemaining(AttackTimer) > 0
-                                if  TimerGetRemaining(AttackTimer) < 11
-                                    AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
-                                    AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                            if  StopAttackBool == true
+                                if  TimerGetRemaining(AttackElseTimer) > 0
+                                    AttackTimerTextUI.SetText("|cffffe100暂停进攻|r")
+                                    AttackTimerTextExUI.SetText("|cffffe100"+I2S(R2I(TimerGetRemaining(AttackElseTimer)))+"秒|r")
                                 else
-                                    AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
-                                    AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                    AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("")
                                 endif
                             else
-                                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                                AttackTimerTextExUI.SetText("")
+                                if  TimerGetRemaining(AttackTimer) > 0
+                                    if  TimerGetRemaining(AttackTimer) < 11
+                                        AttackTimerTextUI.SetText("|cffff0000"+AttackTimerUIText+"|r")
+                                        AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                    else
+                                        AttackTimerTextUI.SetText("|cff00ff00"+AttackTimerUIText+"|r")
+                                        AttackTimerTextExUI.SetText("|cff00ff00"+I2S(R2I(TimerGetRemaining(AttackTimer)))+"秒|r")
+                                    endif
+                                else
+                                    AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                                    AttackTimerTextExUI.SetText("")
+                                endif
                             endif
                         endif
                     endif
+                else
+                    AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
+                    AttackTimerTextExUI.SetText("")
                 endif
-            else
-                AttackTimerTextUI.SetText("|cffffcc00"+AttackTimerUIText+"|r")
-                AttackTimerTextExUI.SetText("")
             endif
         endif
     endfunction
@@ -334,16 +363,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         InitAttackUnitData(48,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(49,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(50,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(51,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(52,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(53,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(54,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(55,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(56,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(57,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(58,0,30,5,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(59,0,20,6,40,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(60,0,10,7,360,1,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(51,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(52,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(53,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(54,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(55,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(56,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(57,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(58,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(59,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(60,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(61,0,20,5,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(62,0,20,6,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(63,0,10,7,360,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
 
         InitAttackUnitData(101,0,0,1,2,1,-4096,11776,'mb01','mb01','mb01','mb01',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(102,0,0,1,2,1,-4096,11776,'mb02','mb02','mb02','mb02',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
@@ -357,6 +389,9 @@ library AttackUnit uses DamageCode,PassCheckMission
         VariationShowUI.SetPoint(0,GameUI,0,0.22,-0.025)
         VariationTextUI.SetText("|cffffcc00怪物上限|r")
         VariationTextExUI.SetText("|cff00ff00/"+I2S(70+50*PlayerNum)+"|r")
+
+        GameModeTime = 1861
+
         ShowVariationUIEx(true)
     endfunction
 
@@ -375,7 +410,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackUnitWNBoss = 0
         GameWinBoolJu = false
         if  GameMode == 4
-            AttackUnitWNOver = 60  //最终波
+            AttackUnitWNOver = 63  //最终波
             LastAttackBossId = 'mb06'
             ShowUnit(gg_unit_np00_0093,false)
             GameMode4ShopUnit = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np49',-4082,11772,270)
@@ -898,7 +933,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         else
             TimerStart(AttackTimer,5,false,function OpenAttackUnitTimer)
         endif*/
-        if  AttackUnitWN >= AttackUnitWNOver - 3
+        if  AttackUnitWN >= AttackUnitWNOver - 3 and GameMode != 4
             AttackTimerUIText = "最终大决战"
             if  IsChangeGodStage == false
                 IsChangeGodStage = true
