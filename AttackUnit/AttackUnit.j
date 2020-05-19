@@ -78,7 +78,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     VariationTextExUI.SetText("|cff00ff00"+I2S(CountUnitsInGroup(AttackUnitGroup))+"/"+I2S(70+50*PlayerNum)+"|r")
                 else
                     VariationTextExUI.SetText("|cffff0000"+I2S(CountUnitsInGroup(AttackUnitGroup))+"/"+I2S(70+50*PlayerNum)+"|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,1,"|cffffcc00[系统]：|r|cffff0000当前怪物数量超过60%！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,1,"|cffffcc00[系统]：|r|cffff0000当前怪物数量积压过多，请及时清理！！！|r")
                 endif
                 if  CountUnitsInGroup(AttackUnitGroup) > (70+50*PlayerNum)
                     ExecuteFunc("GameOverEx")
