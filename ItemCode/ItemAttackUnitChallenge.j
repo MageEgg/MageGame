@@ -263,7 +263,11 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             s = ""
         endif
         if  GameMode == 3 or GameLevel > 9 or GameMode == 4
-            s = "|CffFFD24D战斗力推荐：|r|n|cffff0000？？？|r"
+            if  s == ""
+                s = "|CffFFD24D战斗力推荐：|r|n|cffff0000？？？|r"
+            else
+                s = s + "|n|n|CffFFD24D战斗力推荐：|r|n|cffff0000？？？|r"
+            endif
         else
             if  AttackUnitChallengeCombat[GameLevel][combat] > 0
                 if  s == ""
