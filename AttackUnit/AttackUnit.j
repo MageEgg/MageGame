@@ -368,7 +368,8 @@ library AttackUnit uses DamageCode,PassCheckMission
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc03',-3885,11772,270)
 
             for pid = 0,3
-                if  true//IsPlaying(pid) == true
+                if  IsPlaying(pid) == true
+                    Pu[47] = CreateUnit(Player(pid),'np47',-4082,11772,270)
                     if  pid == 0
                         Pu[42]=CreateUnit(Player(pid),'np42',-4544,12896,270)//挑战
                         CreateUnit(Player(pid),'nc42',-4544,12896,270)//挑战
@@ -625,7 +626,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                             IssuePointOrderById(u,851983,pex[k],pey[k])
                             GroupAddUnit(AttackUnitGroup,u)
                             AttackBOSSLastCos = AttackBOSSLastCos + 1
-                            CreateBossAttachUnit(u,pex[k],pey[k],0.1)
+                            if  GameMode != 4//超爽模式不创建精英怪
+                                CreateBossAttachUnit(u,pex[k],pey[k],0.1)
+                            endif
                             if  GameMode == 3 or GameMode == 4
                                 IntUnitVariation(u)
                                 AddUnitVariation(u,AttackUnitVariationNumA)
@@ -688,6 +691,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         int ordernum = LoadInteger(ht,GetHandleId(t),2)
         int unitnum = AttackUnitNum(0)[ordernum]
         unit u = null
+        int j = 0
         if  FlushNum > 0 and GameWinBoolJu == false and LastBOSSOpera == false
             for k = 0,3
                 if  IsPlaying(k) == true
@@ -696,13 +700,20 @@ library AttackUnit uses DamageCode,PassCheckMission
                     psy[k] = AttackUnitStartY(k)[ordernum]
                     pex[k] = AttackUnitEndX(k)[ordernum]
                     pey[k] = AttackUnitEndY(k)[ordernum]
-                    if  GameMode == 4
-                        puid[k] = GetGameMode4AttackUnitId()
-                    endif
+                    
+                    
                     if  puid[k] != 0
                         for j = 1,unitnum
+
+                            j = 0
                             if  CountUnitsInGroup(AttackUnitGroup) <= 50 or GameMode == 4
-                                u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
+                                if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
+                                    u = CreateUnit(Player(10),puid[k]+0x100,pex[k],pey[k],0)
+                                    j = 1
+                                else    
+                                    u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
+                                endif
+                                
                                 SetUnitXY(u,psx[k],psy[k])
                                 IssuePointOrderById(u,851983,pex[k],pey[k])
                                 GroupAddUnit(AttackUnitGroup,u)
@@ -712,7 +723,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 elseif  GameMode == 4
                                     UnitAddAbility(u,'AXCA')
                                     if  ModuloInteger(AttackUnitWN,2) == 0 
-                                        if  GetRandomReal(1,100) <= 3
+                                        if  j == 1
                                             SetGameMode4AttackUnitState(u)
                                             IntUnitVariation(u)
                                             AddUnitVariation(u,AttackUnitVariationNumA)

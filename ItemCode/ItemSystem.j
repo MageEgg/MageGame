@@ -1,4 +1,5 @@
 
+
 scope ItemSystem initializer InitItemSystem
     function UnitAddPoolItemShow(unit wu,int prizeid)
         int pid = GetPlayerId(GetOwningPlayer(wu))
@@ -126,25 +127,187 @@ scope ItemSystem initializer InitItemSystem
     endfunction
 
 
-    unit GameMode4ShopUnit = null
-    int GameMode4ShopId1 = 0
-    int GameMode4ShopId2 = 0
-    int GameMode4ShopId3 = 0
+    
+        unit GameMode4ShopUnit = null
+        int GameMode4ShopId1 = 0
+        int GameMode4ShopId2 = 0
+        int GameMode4ShopId3 = 0
 
-    function ReGameMode4ShopNpc()
-        RemoveItemFromStock(GameMode4ShopUnit, GameMode4ShopId1)
-        RemoveItemFromStock(GameMode4ShopUnit, GameMode4ShopId2)
-        RemoveItemFromStock(GameMode4ShopUnit, GameMode4ShopId3)
-        GameMode4ShopId1 = GetRandomInt('IX0A','IX0R')
-        GameMode4ShopId2 = GetRandomInt('IX1A','IX1R')
-        GameMode4ShopId3 = GetRandomInt('IX2A','IX2R')
-        AddItemToStock(GameMode4ShopUnit,GameMode4ShopId1,1,1)
-        AddItemToStock(GameMode4ShopUnit,GameMode4ShopId2,1,1)
-        AddItemToStock(GameMode4ShopUnit,GameMode4ShopId3,1,1)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
-    endfunction
+        function ClearGameMode4ShopNpc(int pid)
+            RemoveItemFromStock(Pu[47], GameMode4ShopId1)
+            RemoveItemFromStock(Pu[47], GameMode4ShopId2)
+            RemoveItemFromStock(Pu[47], GameMode4ShopId3)
+        endfunction
+        function ReGameMode4ShopNpc(int pid)
+            ClearGameMode4ShopNpc(pid)
+            GameMode4ShopId1 = GetRandomInt('IX0A','IX0R')
+            GameMode4ShopId2 = GetRandomInt('IX1A','IX1R')
+            GameMode4ShopId3 = GetRandomInt('IX2A','IX2R')
+            AddItemToStock(Pu[47],GameMode4ShopId1,1,1)
+            AddItemToStock(Pu[47],GameMode4ShopId2,1,1)
+            AddItemToStock(Pu[47],GameMode4ShopId3,1,1)
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+        endfunction
+    //GetUnitIntState(u,'IX0A')
+        function GameMode4MissionTimer(int Pid,int Index)
+            int pid = Pid
+            int index = Index
+
+            int time =  Mode4MissionData[index][2]
+            int num =   Mode4MissionData[index][1]
+            int uid =   'mj0A' + index - 1
+            real x = 0
+            real y = 0
+            if  pid == 0
+                x = -6016
+                y = 13728
+            elseif  pid == 1
+                x = -2144
+                y = 13728
+            elseif  pid == 2
+                x = -2144
+                y = 9824
+            elseif  pid == 3
+                x = -6016
+                y = 9824
+            endif
+            TimerStart(0.5,true)
+            {
+                unit u = null
+                for i = 1,num
+                    u = CreateUnit(Player(10),uid,x,y,0)
+                    IssuePointOrderById(u,851983,x,y)
+                    GroupAddUnit(AttackUnitGroup,u)
+                end
+
+                time = time - 1
+                if  time <= 0
+                    endtimer
+                endif
+                flush locals
+            }
+            flush locals
+        endfunction
+
+        function GiveGameMode4Prize(int pid,int itemid,int index)
+            int prize = Mode4MissionData[index][3]
+            int prizemin = Mode4MissionData[index][4]
+            int prizemax = Mode4MissionData[index][5]
+            int give = 0
+            int ran = GetRandomInt(1,100)
+
+            if  prize == 1
+                give = GetRandomInt(prizemin,prizemax)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得金币x"+I2S(give))
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,give)
+            elseif  prize == 2
+                give = GetRandomInt(prizemin,prizemax)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得玄铁x"+I2S(give))
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,give)
+            elseif  prize == 3
+                give = GetRandomInt(prizemin,prizemax)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得经验x"+I2S(give))
+                HeroAddExp( Pu[1], give)
+            elseif  prize == 11
+                if  ran <= 70
+                    give = 'CS51'
+                elseif  ran <= 90
+                    give = 'CS52'
+                else
+                    give = 'CS53'
+                endif
+                UnitAddItemById(Pu[1],give)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得"+GetObjectName(give)+"x1")
+            elseif  prize == 20
+                if  ran <= 22
+                    give = GetPrize(pid,14,false)
+                elseif  ran <= 72
+                    give = GetPrize(pid,13,false)
+                elseif  ran <= 94
+                    give = GetPrize(pid,12,false)
+                else
+                    give = GetPrize(pid,11,false)
+                endif
+                GivePlayerMagicItem(pid,give)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得"+GetTypeIdName(give)+"x1")
+            elseif  prize >= 21 and prize <= 25
+                give = GetPrize(pid,prize - 10,false)
+                GivePlayerMagicItem(pid,give)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得"+GetTypeIdName(give)+"x1")
+            else
+                give = prize
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得"+GetObjectName(give)+"x"+I2S(prizemax))
+                SetItemCharges(UnitAddItemById(Pu[1],give),prizemax)
+            endif
+            /*
+            1 金币
+            2 玄铁
+            3 经验
+            11 随机附魔石
+            20 随机法宝
+            21 红色法宝
+            22 黄色法宝
+            23 紫色法宝
+            24 蓝色法宝
+            25 绿色法宝
+            */
+
+        endfunction
+        function PickupGameMode4Mission(int pid,int itemid)
+            int index = 0
+            if  itemid >= 'IX0A' and itemid <= 'IX0R'
+                index = itemid - 'IX0A' + 1
+            elseif  itemid >= 'IX1A' and itemid <= 'IX1R'
+                index = itemid - 'IX1A' + 1
+            elseif  itemid >= 'IX2A' and itemid <= 'IX2R'
+                index = itemid - 'IX2A' + 1
+            endif
+
+            if  index != 0
+                GiveGameMode4Prize(pid,itemid,index)
+                GameMode4MissionTimer(pid,index)
+
+                
+            endif
+
+            
+        endfunction
+
+
+        int array Mode4MissionData[100][80]
+        function RegisterGameMode4Mission(int index,int time,int num,int prize,int prizemin,int prizemax)
+            Mode4MissionData[index][1] = time
+            Mode4MissionData[index][2] = num
+            Mode4MissionData[index][3] = prize
+            Mode4MissionData[index][4] = prizemin
+            Mode4MissionData[index][5] = prizemax
+        endfunction
+        function InitGameMode4Mission()
+            
+            RegisterGameMode4Mission( 1,2,12,1,5000,12888)
+            RegisterGameMode4Mission( 2,3,16,1,16888,28888)
+            RegisterGameMode4Mission( 3,4,20,1,38888,88888)
+            RegisterGameMode4Mission( 4,3,12,2,2,15)
+            RegisterGameMode4Mission( 5,1,1,2,12,26)
+            RegisterGameMode4Mission( 6,3,16,'CS52',2,2)
+            RegisterGameMode4Mission( 7,2,12,11,1,1)
+            RegisterGameMode4Mission( 8,3,16,'IP02',1,1)
+            RegisterGameMode4Mission( 9,1,1,'IP03',1,1)
+            RegisterGameMode4Mission(10,3,16,23,1,1)
+            RegisterGameMode4Mission(11,4,20,20,1,1)
+            RegisterGameMode4Mission(12,4,30,22,1,1)
+            RegisterGameMode4Mission(13,1,1,21,1,1)
+            RegisterGameMode4Mission(14,3,16,'IN31',1,1)
+            RegisterGameMode4Mission(15,2,12,3,8888,1288)
+            RegisterGameMode4Mission(16,3,16,3,16888,22888)
+            RegisterGameMode4Mission(17,4,20,3,28888,36888)
+            RegisterGameMode4Mission(18,4,20,3,44888,52888)
+        endfunction
+    
+    
+
 
     
     
@@ -205,6 +368,8 @@ scope ItemSystem initializer InitItemSystem
             //AddPlayerImmortalFruit(u1,itemid)
         elseif  itemid >= 'IT01' and itemid <= 'IT15'
             PlayerHeroMoveToImmortal(u1,itemid)
+        elseif  (itemid >= 'IX0A' and itemid <= 'IX0R') or (itemid >= 'IX1A' and itemid <= 'IX1R') or (itemid >= 'IX2A' and itemid <= 'IX2R')
+            PickupGameMode4Mission(pid,itemid)
         elseif  itemid >= 'IL1A' and itemid <= 'IL5Z'
             PlayerBuyExShopItem(pid,itemid)
         elseif  itemid >= 'IS01' and itemid <= 'IS03'
@@ -739,6 +904,7 @@ scope ItemSystem initializer InitItemSystem
         end
         TriggerAddCondition(trig, function SellItemActions)
         trig = null
+        InitGameMode4Mission()
     end
 endscope
 

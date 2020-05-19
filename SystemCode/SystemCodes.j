@@ -755,8 +755,10 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             int id = GetPrizeData(page,pool,index)
             int id2 = GetPrizeData(page,pool,max)
             BJDebugMsg("max id is "+GetTypeIdName(id2)+" max"+I2S(max))
-            if  rem == true
-                RemPrizeData(page,pool,index)
+            if  GameMode != 4
+                if  rem == true
+                    RemPrizeData(page,pool,index)
+                endif
             endif
             return id
         endfunction
@@ -775,9 +777,13 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
         //技能奖池修正
             
         function RecoveryPrizePoolData(int page,int pool,int id)
-            BJDebugMsg(GetTypeIdName(id)+"回收"+I2S(pool))
-            AddPrizePoolMax(page,pool,1)
-            SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
+            if  GameMode != 4
+                BJDebugMsg(GetTypeIdName(id)+"回收"+I2S(pool))
+                AddPrizePoolMax(page,pool,1)
+                SetPrizeData(page,pool,GetPrizePoolMax(page,pool),id)
+            else
+                BJDebugMsg("阻止回收")
+            endif
         endfunction
 
         function RegisterPrizePoolData(int page,int pool,int id)
