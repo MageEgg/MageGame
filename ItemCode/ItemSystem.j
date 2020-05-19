@@ -138,11 +138,21 @@ scope ItemSystem initializer InitItemSystem
             RemoveItemFromStock(Pu[47], GameMode4ShopId2)
             RemoveItemFromStock(Pu[47], GameMode4ShopId3)
         endfunction
+
         function ReGameMode4ShopNpc(int pid)
+            int index = 23
+            if  AttackUnitWN <= 20
+                index = 23
+            elseif  AttackUnitWN <= 40
+                index = 24
+            else
+                index = 25
+            endif
+
             ClearGameMode4ShopNpc(pid)
-            GameMode4ShopId1 = GetRandomInt('IX0A','IX0R')
-            GameMode4ShopId2 = GetRandomInt('IX1A','IX1R')
-            GameMode4ShopId3 = GetRandomInt('IX2A','IX2R')
+            GameMode4ShopId1 = GetPoolItemId(index)
+            GameMode4ShopId2 = GetPoolItemId(index) + 0x100
+            GameMode4ShopId3 = GetPoolItemId(index) + 0x200
             AddItemToStock(Pu[47],GameMode4ShopId1,1,1)
             AddItemToStock(Pu[47],GameMode4ShopId2,1,1)
             AddItemToStock(Pu[47],GameMode4ShopId3,1,1)

@@ -1114,7 +1114,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(18,'CS52',8)
 
             //法宝Boss 石头奖池注册
-            RegisterItemPool(19,'CS51',60)
+            RegisterItemPool(19,'IN30',60)
             RegisterItemPool(19,'CS52',29)
             RegisterItemPool(19,'IP02',5)
             RegisterItemPool(19,'IP03',2)
@@ -1283,6 +1283,64 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(22,'IF50',25)
             RegisterItemPool(22,'IF51',25)
             RegisterItemPool(22,'IF52',40)
+
+            //悬赏任务奖池1~20波注册
+            RegisterItemPool(23,'IX0A',80)
+            RegisterItemPool(23,'IX0B',17)
+            RegisterItemPool(23,'IX0C',10)
+            RegisterItemPool(23,'IX0D',17)
+            RegisterItemPool(23,'IX0E',10)
+            RegisterItemPool(23,'IX0F',17)
+            RegisterItemPool(23,'IX0G',80)
+            RegisterItemPool(23,'IX0H',17)
+
+            RegisterItemPool(23,'IX0J',17)
+            RegisterItemPool(23,'IX0K',10)
+
+
+            RegisterItemPool(23,'IX0N',17)
+            RegisterItemPool(23,'IX0O',80)
+            RegisterItemPool(23,'IX0P',17)
+            RegisterItemPool(23,'IX0Q',10)
+            //悬赏任务奖池21~40波注册
+            RegisterItemPool(24,'IX0A',20)
+            RegisterItemPool(24,'IX0B',23)
+            RegisterItemPool(24,'IX0C',20)
+            RegisterItemPool(24,'IX0D',23)
+            RegisterItemPool(24,'IX0E',20)
+            RegisterItemPool(24,'IX0F',23)
+            RegisterItemPool(24,'IX0G',20)
+            RegisterItemPool(24,'IX0H',23)
+            RegisterItemPool(24,'IX0I',30)
+            RegisterItemPool(24,'IX0J',23)
+            RegisterItemPool(24,'IX0K',20)
+            RegisterItemPool(24,'IX0L',40)
+
+            RegisterItemPool(24,'IX0N',23)
+            RegisterItemPool(24,'IX0O',20)
+            RegisterItemPool(24,'IX0P',23)
+            RegisterItemPool(24,'IX0Q',20)
+            RegisterItemPool(24,'IX0R',30)
+            //悬赏任务奖池41~60波注册
+
+            RegisterItemPool(25,'IX0B',16)
+            RegisterItemPool(25,'IX0C',25)
+            RegisterItemPool(25,'IX0D',16)
+            RegisterItemPool(25,'IX0E',25)
+            RegisterItemPool(25,'IX0F',16)
+
+            RegisterItemPool(25,'IX0H',16)
+            RegisterItemPool(25,'IX0I',43)
+            RegisterItemPool(25,'IX0J',16)
+            RegisterItemPool(25,'IX0K',25)
+            RegisterItemPool(25,'IX0L',72)
+            RegisterItemPool(25,'IX0M',28)
+            RegisterItemPool(25,'IX0N',16)
+
+            RegisterItemPool(25,'IX0P',16)
+            RegisterItemPool(25,'IX0Q',25)
+            RegisterItemPool(25,'IX0R',43)
+
 
 
         endfunction

@@ -1485,6 +1485,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                 AddDzPlayerData(pid,2,4,jfadd) //异变积分
 
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点异变积分！|r")
+            elseif  GameMode == 4
+                AddDzPlayerData(pid,21,1,1) //超爽总通关次数
+                AddDzPlayerData(pid,21,GameLevel-2,1) //超爽通关难度次数
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关！|r")
             endif
 
             AddDzHeroExp(Pu[1],1+GameLevel)

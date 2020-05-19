@@ -46,6 +46,7 @@ library DzDataSetting uses DzBase
     // 组18 12组 活动常用组 1积分1 2积分2 3积分1上限 4积分2上限
     // 组19 皮肤    30组
     // 组20 20组 == 1异变总次数 2+通关难度次数
+    // 组21 21组 == 1超爽总次数 2+通关难度次数
 
     function DzDataBaseSetting()
         DzOriginServerNum = 49 //地图已申请的存档组
@@ -89,6 +90,18 @@ library DzDataSetting uses DzBase
         DzPlayerInitVariationTGCos[8] = 8
         DzPlayerInitVariationTGCos[9] = 8
         DzPlayerInitVariationTGCos[10] = 8*/
+
+        //超爽
+        DzPlayerInitSuperTGCos[1] = 1
+        DzPlayerInitSuperTGCos[2] = 1
+        DzPlayerInitSuperTGCos[3] = 1
+        DzPlayerInitSuperTGCos[4] = 1
+        DzPlayerInitSuperTGCos[5] = 1
+        DzPlayerInitSuperTGCos[6] = 0
+        DzPlayerInitSuperTGCos[7] = 0
+        DzPlayerInitSuperTGCos[8] = 0
+        DzPlayerInitSuperTGCos[9] = 0
+        DzPlayerInitSuperTGCos[10] = 0
     endfunction
     
     function DzDataGroupSetting()
@@ -114,7 +127,8 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(18) = 5
         DzDataGroupLength(19) = 2
         DzDataGroupLength(20) = 3
-        /*DzDataGroupLength(21) = 0
+        DzDataGroupLength(21) = 3
+        /*
         DzDataGroupLength(22) = 0
         DzDataGroupLength(23) = 0
         DzDataGroupLength(24) = 0
@@ -267,7 +281,15 @@ library DzDataSetting uses DzBase
             elseif  flag >= MaxGameLevel-1 //未开启的难度
                 max = 0
             endif
-        elseif  Group > 20 //未使用
+        elseif  Group == 21
+            if  flag == 1 //超爽总通关次数
+                max = DzPlayerGames(Player(pid))+1
+            elseif  flag >= 2 and flag <= MaxGameLevel+1 //超爽通关难度
+                max = DzPlayerInitSuperTGCos[flag-1]
+            elseif  flag >= MaxGameLevel+2 //未开启的难度
+                max = 0
+            endif
+        elseif  Group > 21 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)
