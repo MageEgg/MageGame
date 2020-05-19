@@ -197,7 +197,7 @@ scope SelectHero
             for i = 1,GameLevel
                 SetPlayerTechResearched(Player(pid),'KNDA'+i-1,1)
             end
-            ReHeroButton.show = false
+            
 
 
             SelectHeroPrePareByUidTimer(pid)
@@ -251,6 +251,14 @@ scope SelectHero
     //手动选英雄
     function SelectHeroPrePareFuncEx(int pid)
         int num = 0 
+
+        loop
+            exitwhen num > 7
+            if  PoolAddHeroId(pid,GetHeroPoolTypeNew(pid,'H030')) == true
+                num = num + 1
+            endif
+        endloop
+
         if  Player(pid)==GetLocalPlayer()
             SetPlayerCameraBoundsToRect(bj_mapInitialPlayableArea)
             PanCameraToTimed(PlayerReviveX,PlayerReviveY, 0 )
@@ -260,16 +268,7 @@ scope SelectHero
             SelectUnit(Pu[1],true)
             ReHeroButton.show = true
             DzFrameShow(BUTTON_Back[702][0], true)
-
-            loop
-                exitwhen num > 7
-                if  PoolAddHeroId(pid,GetHeroPoolTypeNew(pid,'H030')) == true
-                    num = num + 1
-                endif
-            endloop
-       
             ReHeroFrameUI(pid)
-
         endif
     endfunction
 

@@ -241,9 +241,10 @@ library ItemEquip uses DamageCode,ItemGameFunc
 
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备"+GetObjectName(itemid)+"突破成功！")
                 
+                /*
                 if  Pu[24] == null
                     if  IsHeroEquipCanOpenPlot(Pu[1]) == true
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备均达到|Cff00ff7f绿色|r，解锁|Cffff0000剧情副本挑战|r|Cfff0f0f0。|r")
+                        //DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备均达到|Cff00ff7f绿色|r，解锁|Cffff0000剧情副本挑战|r|Cfff0f0f0。|r")
 
                         
                         //LocAddEffect(GetUnitX(Pu[24]),GetUnitY(Pu[24]),"effect_az-blue-lizi-shangsheng.mdl")
@@ -251,6 +252,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
                         //PlayerUnLockPlot(pid,1)
                     endif
                 endif
+                */
             endif
         end
     endfunction

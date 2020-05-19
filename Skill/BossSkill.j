@@ -1595,7 +1595,12 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         int uid = GetUnitTypeId(u)
         real x = GetUnitX(u)
         real y = GetUnitY(u)
-        unit u2 = CreateUnit(GetOwningPlayer(u),'m001',x,y,GetUnitFacing(u))
+        unit u2 = null
+        if  GameMode == 4
+            u2 = CreateUnit(GetOwningPlayer(u),'m10A',x,y,GetUnitFacing(u))
+        else
+            u2 = CreateUnit(GetOwningPlayer(u),'m001',x,y,GetUnitFacing(u))
+        endif
         real size = GetUnitScale(u)
         SetUnitScale(u2,size,size,size)
         DzSetUnitModel(u2,YDWEGetObjectPropertyString(YDWE_OBJECT_TYPE_UNIT,uid,"file"))

@@ -376,6 +376,25 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         function GetGemMaxNum(int pid)->int
             int num = PlayerChallengeWMCos
             int max = 0
+
+            if  GameMode == 4
+                if  GetPlayerTechCount(Player(pid),'KT7F',true) > 0
+                    return 6
+                elseif  GetPlayerTechCount(Player(pid),'KT7E',true) > 0
+                    return 5
+                elseif  GetPlayerTechCount(Player(pid),'KT7D',true) > 0
+                    return 4
+                elseif  GetPlayerTechCount(Player(pid),'KT7C',true) > 0
+                    return 3
+                elseif  GetPlayerTechCount(Player(pid),'KT7B',true) > 0
+                    return 2
+                elseif  GetPlayerTechCount(Player(pid),'KT7A',true) > 0
+                    return 1
+                else
+                    return 0
+                endif
+            endif
+
             if  num > 0
                 max = 2 + num / 10
             endif

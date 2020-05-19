@@ -358,8 +358,8 @@ library AttackUnit uses DamageCode,PassCheckMission
             AttackUnitWNOver = 60  //最终波
             LastAttackBossId = 'mb06'
             ShowUnit(gg_unit_np00_0093,false)
-            GameDefendUnit = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np49',-4082,11772,270)
-            
+            GameMode4ShopUnit = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np49',-4082,11772,270)
+            GameDefendUnit = GameMode4ShopUnit
 
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np02',-4283,11772,270)
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc02',-4283,11772,270)
@@ -1177,7 +1177,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
 
     function OpenNewChallenge1(int pid,unit tu)
-        int num = NewChallengeNum1
+        int num = NewChallengeNum1+1
         real x = 0
         real y = 0
         
@@ -1210,14 +1210,13 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         IssuePointOrderById(tu,851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
 
-        NewChallengeNum1 = NewChallengeNum1 + 1
+        NewChallengeNum1 = num
         if  num < 10
             SetUnitRealStateOfOtherIdAddValue(tu,'mg00'+num,1.0)
         else
             SetUnitRealStateOfOtherIdAddValue(tu,'mg10',1.0 + (num-10) * 0.4)
         endif
-
-        
+  
     endfunction
 
     
@@ -1268,7 +1267,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                         endif
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,cos)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r敌军发起进攻，每人获得"+I2S(cos)+"金币奖励。")
-                        if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1
+                        if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 and GameSaveClose == 0
                             if  ModuloInteger(AttackUnitWN,3) == 0
                                 if  AttackUnitWN == 3
                                     gold = 3000

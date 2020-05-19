@@ -126,7 +126,25 @@ scope ItemSystem initializer InitItemSystem
     endfunction
 
 
-    
+    unit GameMode4ShopUnit = null
+    int GameMode4ShopId1 = 0
+    int GameMode4ShopId2 = 0
+    int GameMode4ShopId3 = 0
+
+    function ReGameMode4ShopNpc()
+        RemoveItemFromStock(GameMode4ShopUnit, GameMode4ShopId1)
+        RemoveItemFromStock(GameMode4ShopUnit, GameMode4ShopId2)
+        RemoveItemFromStock(GameMode4ShopUnit, GameMode4ShopId3)
+        GameMode4ShopId1 = GetRandomInt('IX0A','IX0R')
+        GameMode4ShopId2 = GetRandomInt('IX1A','IX1R')
+        GameMode4ShopId3 = GetRandomInt('IX2A','IX2R')
+        AddItemToStock(GameMode4ShopUnit,GameMode4ShopId1,1,1)
+        AddItemToStock(GameMode4ShopUnit,GameMode4ShopId2,1,1)
+        AddItemToStock(GameMode4ShopUnit,GameMode4ShopId3,1,1)
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+    endfunction
 
     
     

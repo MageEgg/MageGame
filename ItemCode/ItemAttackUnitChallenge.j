@@ -860,8 +860,14 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         GivePlayerDGPrizeFrame(pid)
                     elseif  challenge == 8
                         //宝物奖励
+                        ReGemFrame(pid)
+                        AddUnitRealState(Pu[1],31,30)
+                        AddUnitRealState(Pu[1],32,30)
+                        AddUnitRealState(Pu[1],33,30)
+                        UnitAddItemById(Pu[1],GetRandomInt('IK01','IK08'))
                     elseif  challenge == 9
                         //将魂奖励
+                        AddUnitRealState(Pu[1],41,5)
                     endif
 
                 endif

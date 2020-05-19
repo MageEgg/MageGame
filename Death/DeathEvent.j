@@ -332,10 +332,15 @@ scope DeathEvent initializer InitDeathEvent
         if  uid == 'ut20'
             gold = 35
             exp = 10
-        elseif  uid == 'm10A' and uid <= 'm10C'
-            gold = 10 + AttackUnitWN
-        elseif  uid == 'm11A' and uid <= 'm11C'
-            gold = 10 + AttackUnitWN
+        elseif  uid >= 'm10A' and uid <= 'm10C'
+            gold = AttackUnitWN/10*2+6
+            exp = 20
+        elseif  uid >= 'm11A' and uid <= 'm11C'
+            gold = AttackUnitWN/10*2+6
+            exp = 20
+        elseif  uid >= 'mf0A' and uid <= 'mf0H'
+            gold = AttackUnitWN/10*5000
+            exp = 500
         endif
 
 
