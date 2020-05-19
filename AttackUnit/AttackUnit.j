@@ -1,6 +1,8 @@
 library AttackUnit uses DamageCode,PassCheckMission
     
     group AttackUnitGroup = CreateGroup()
+    private group AttackUnitGroupCos = CreateGroup()
+    private unit AttackUnitGroupCosUnit = null
     unit array AttackUnitBoss
     int array AttackUnitInt[60][300]
     real array AttackUnitReal[60][300]
@@ -69,18 +71,36 @@ library AttackUnit uses DamageCode,PassCheckMission
     private real array psy
     private real array pex
     private real array pey
+
+    function GetGameMode4AttackUnitGroupCos()->int
+        int cos = 0
+        GroupAddGroup(AttackUnitGroup,AttackUnitGroupCos)
+        loop
+            AttackUnitGroupCosUnit = FirstOfGroup(AttackUnitGroupCos)
+            exitwhen AttackUnitGroupCosUnit == null
+            if  GetUnitIntState(AttackUnitGroupCosUnit,'IX0A') == 0
+                cos = cos + 1
+            else
+                cos = cos + GetUnitIntState(AttackUnitGroupCosUnit,'IX0A')
+            endif
+            GroupRemoveUnit(AttackUnitGroupCos,AttackUnitGroupCosUnit)
+        endloop
+        GroupClear(AttackUnitGroupCos)
+        AttackUnitGroupCosUnit = null
+        return cos
+    endfunction
     
     function ReflushAttackTimerUI()
         int cos = 0
         if  GameLevel > 0
             if  GameMode == 4
-                if  I2R(CountUnitsInGroup(AttackUnitGroup))/I2R(70+50*PlayerNum) < 0.8
-                    VariationTextExUI.SetText("|cff00ff00"+I2S(CountUnitsInGroup(AttackUnitGroup))+"/"+I2S(70+50*PlayerNum)+"|r")
+                if  I2R(GetGameMode4AttackUnitGroupCos())/I2R(70+50*PlayerNum) < 0.6
+                    VariationTextExUI.SetText("|cff00ff00"+I2S(GetGameMode4AttackUnitGroupCos())+"/"+I2S(70+50*PlayerNum)+"|r")
                 else
-                    VariationTextExUI.SetText("|cffff0000"+I2S(CountUnitsInGroup(AttackUnitGroup))+"/"+I2S(70+50*PlayerNum)+"|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,1,"|cffffcc00[系统]：|r|cffff0000当前怪物数量超过80%！！！|r")
+                    VariationTextExUI.SetText("|cffff0000"+I2S(GetGameMode4AttackUnitGroupCos())+"/"+I2S(70+50*PlayerNum)+"|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,1,"|cffffcc00[系统]：|r|cffff0000当前怪物数量积压过多，请及时清理！！！|r")
                 endif
-                if  CountUnitsInGroup(AttackUnitGroup) > (70+50*PlayerNum)
+                if  GetGameMode4AttackUnitGroupCos() > (70+50*PlayerNum)
                     ExecuteFunc("GameOverEx")
                 endif
             endif
