@@ -669,6 +669,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         if  GameMode == 4
                             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),270)
                             SetUnitXY(u,x,y)
+                            UnitAddAbility(u,'AZ79')
                         else
                             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-440,y+440,270)
                         endif
@@ -697,6 +698,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         if  GameMode == 4
                             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),270)
                             SetUnitXY(u,x,y)
+                            UnitAddAbility(u,'AZ79')
                         else
                             u = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x-440,y+440,270)
                         endif
