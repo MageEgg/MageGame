@@ -266,9 +266,10 @@ scope ItemSystem initializer InitItemSystem
             endif
 
             if  index != 0
+                ClearGameMode4ShopNpc(pid)
                 GiveGameMode4Prize(pid,itemid,index)
                 GameMode4MissionTimer(pid,index)
-
+                
                 
             endif
 

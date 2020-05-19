@@ -303,6 +303,8 @@ library ItemEquip uses DamageCode,ItemGameFunc
                 gl = gl + 3
                 BJDebugMsg("万匹斯件套+3")
             endif
+        else
+            gl = gl + 10
         endif
         
 
@@ -341,7 +343,10 @@ library ItemEquip uses DamageCode,ItemGameFunc
 
                                 SetPlayerOnlyDamage(Pu[100+index],pid)
                                 IssuePointOrderById( Pu[100+index], 851983, GetUnitX(Pu[1]), GetUnitY(Pu[1]) )
-                                HeroMoveToRoom(pid)
+
+                                if  GameMode != 4
+                                    HeroMoveToRoom(pid)
+                                endif
 
                             else
                                 HeroMoveToRoom(pid)

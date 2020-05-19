@@ -214,6 +214,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeCombatData(8,310,250000,390000,610000,860000,1200000,1700000,2300000,3500000,0,0,0,0)
         InitAttackUnitChallengeCombatData(9,310,370000,590000,910000,1300000,1800000,2500000,3500000,5200000,0,0,0,0)
 
+
+        if  GameMode == 4
+            InitAttackUnitChallengeStateData(0,0,0,0,0,0,Buy_Unit,'ATAA',6,0,0,"|CffFFD24D历练奖励：|r|n分裂攻击|Cffffc926+20%|r")
+            InitAttackUnitChallengeStateData(0,1,0,0,0,0,Buy_Unit,'ATAB',1,0,0,"|CffFFD24D历练奖励：|r|n攻击吸血|Cffffc926+5%|r")
+            InitAttackUnitChallengeStateData(0,3,0,0,0,0,Buy_Unit_Item,'ATAD',1,'IZ0D',0,"|CffFFD24D历练奖励：|r|n金币+5000|r")
+
+            SetTypeIdReal('KTAA',46,0)
+            SetTypeIdReal('KTAB',61,0)
+        endif
         ExecuteFunc("InitAttackUnitChallengeStateStock")
     endfunction
 
@@ -674,6 +683,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     end
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r为您召唤"+GetObjectName(uid)+"！")
                 endif
+
+                
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000当前正在挑战！")
@@ -870,7 +881,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         UnitAddItemById(Pu[1],GetRandomInt('IK01','IK08'))
                     elseif  challenge == 9
                         //将魂奖励
-                        AddUnitRealState(Pu[1],41,5)
+                        AddUnitRealState(Pu[1],41,20)
+                        AddUnitRealState(Pu[1],'AT8A',0.2)
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r挑战成功，金币加成+|cffffcc005%|r！敌人攻击&生命提高|cffffcc0020%|r！")
                     endif
 
                 endif
@@ -893,6 +906,8 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     DzFrameShow(BUTTON_Back[700+4][0], true)
                 endif
                 CloseCollectFrame(pid)
+            else
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,5000)
             endif
         elseif  itid == 'IZ0E'
             HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
