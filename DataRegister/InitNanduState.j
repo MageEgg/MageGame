@@ -7343,6 +7343,8 @@ endfunction
 
 
 
+
+
 function InitTypeStateNanduExPlus1()
 BJDebugMsg("注册超爽难度1属性")
 InitTypeStateEx('m001',859,364)
@@ -7720,8 +7722,8 @@ InitTypeStateEx('mj0M',534665153,15354876)
 InitTypeStateEx('mj0N',295637,53664)
 InitTypeStateEx('mj0O',44626,14238)
 InitTypeStateEx('mj0P',295637,53664)
-InitTypeStateEx('mj0O',1792671,235284)
-InitTypeStateEx('mj0P',10335043,976176)
+InitTypeStateEx('mj0Q',1792671,235284)
+InitTypeStateEx('mj0R',10335043,976176)
 InitTypeStateEx('uT6A',118298,7142)
 InitTypeStateEx('uT6B',1163579,39269)
 InitTypeStateEx('uT6C',3116038,83265)
@@ -7751,7 +7753,6 @@ InitTypeStateEx('uT8J',14640475,3070605)
 endfunction
 
 endscope
-
 
 
 
