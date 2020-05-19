@@ -657,6 +657,13 @@ library AttackUnit uses DamageCode,PassCheckMission
         SetUnitRealState(u,5,GetUnitRealState(u,5)*15)
     endfunction
 
+    function SetGameMode4AttackUnitStateValue(int pid,unit u)
+        real add = 1 + GetUnitRealState(Pu[1],'AT8A')
+        
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*add)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*add)
+    endfunction
+
     ////////////////////模式4分割//////////////////////
 
     function OpenCreateBossTimer()
@@ -788,6 +795,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                                         IntUnitVariation(u)
                                         AddUnitVariation(u,AttackUnitVariationNumA)
                                     endif
+
+                                    SetGameMode4AttackUnitStateValue(k,u)
                                 endif
                             endif
                         end
@@ -876,6 +885,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 IntUnitVariation(u)
                                 AddUnitVariation(u,AttackUnitVariationNumA)
                             endif
+
+                            SetGameMode4AttackUnitStateValue(k,u)
                         endif
                     end
                 endif
@@ -1382,15 +1393,12 @@ library AttackUnit uses DamageCode,PassCheckMission
                     endif
                 end     
 
-                if  ModuloInteger(AttackUnitWN,3) == 0
-                    ReExShop()
-                endif
-
-                if  GameMode == 4//法宝挑战
-                    if  ModuloInteger(AttackUnitWN,6) == 0
-                        CreateMode4ChallengeUnit()
+                if  GameMode != 4
+                    if  ModuloInteger(AttackUnitWN,3) == 0
+                        ReExShop()
                     endif
                 endif
+
                 
             else
                 for pid = 0,5

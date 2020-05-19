@@ -219,12 +219,16 @@ library ItemGameFunc uses DamageCode,AttackUnit,AttackRoom
                 endif
             elseif  gift == "钻石礼包"
                 num = 10
-                if  GameGiftBool[num] == false
-                    GameGiftBool[num] = true
-                    PlayerWXBZFree = PlayerWXBZFree + 1
-                    DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"】|r，万仙宝藏免费次数+1！") 
+                if  GameSaveClose == 0
+                    if  GameGiftBool[num] == false
+                        GameGiftBool[num] = true
+                        PlayerWXBZFree = PlayerWXBZFree + 1
+                        DisplayTimedTextToPlayer(Player(pid),0,0,8,"|cffffcc00[系统]：|r成功领取|cffffcc00【"+gift+"】|r，万仙宝藏免费次数+1！") 
+                    else
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                    endif
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r您已领取过该礼包！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r全民竞速模式下无法领取该礼包")
                 endif
             elseif  gift == "补偿"
                 num = 11

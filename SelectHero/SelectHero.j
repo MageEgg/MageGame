@@ -178,13 +178,28 @@ scope SelectHero
     function SelectHeroPrePareByUid(int pid,int uid)
         int ppid = pid
         real showvalue = 0
+        real x = 0
+        real y = 0
         if  IsPlaying(pid) == true
             
             
             Pu[1] = CreateUnit(Player(pid),uid,PlayerReviveX,PlayerReviveY,0)
                 
             if  GameMode == 4
-                Pu[2] = CreateUnit(Player(pid),'hZ00',-4096,11776,0)
+                if  pid == 0
+                    x = -6016
+                    y = 13728
+                elseif  pid == 1
+                    x = -2144
+                    y = 13728
+                elseif  pid == 2
+                    x = -2144
+                    y = 9824
+                elseif  pid == 3
+                    x = -6016
+                    y = 9824
+                endif
+                Pu[2] = CreateUnit(Player(pid),'hZ00',x,y,0)
             else
                 Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             endif
@@ -275,13 +290,28 @@ scope SelectHero
    
     //正常选英雄
     function SelectHeroPrePareFunc(int pid)
+        real x = 0
+        real y = 0
         if  IsPlaying(pid) == true
             
             
             Pu[1] = CreateUnit(Player(pid),GetHeroPoolTypeEx(pid),PlayerReviveX,PlayerReviveY,0)
             
             if  GameMode == 4
-                Pu[2] = CreateUnit(Player(pid),'hZ00',-4096,11776,0)
+                if  pid == 0
+                    x = -6016
+                    y = 13728
+                elseif  pid == 1
+                    x = -2144
+                    y = 13728
+                elseif  pid == 2
+                    x = -2144
+                    y = 9824
+                elseif  pid == 3
+                    x = -6016
+                    y = 9824
+                endif
+                Pu[2] = CreateUnit(Player(pid),'hZ00',x,y,0)
             else
                 Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             endif

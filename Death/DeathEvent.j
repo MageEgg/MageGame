@@ -333,13 +333,13 @@ scope DeathEvent initializer InitDeathEvent
             gold = 35
             exp = 10
         elseif  uid >= 'm10A' and uid <= 'm10C'
-            gold = AttackUnitWN/10*2+6
+            gold = AttackUnitWN/5*2+6
             exp = 20
         elseif  uid >= 'm11A' and uid <= 'm11C'
-            gold = AttackUnitWN/10*2+6
+            gold = AttackUnitWN/5*2+6
             exp = 20
         elseif  uid >= 'mf0A' and uid <= 'mf0H'
-            gold = AttackUnitWN/10*5000
+            gold = AttackUnitWN/5*5000
             exp = 500
         endif
 
@@ -633,7 +633,16 @@ scope DeathEvent initializer InitDeathEvent
                 endif
             endif
         elseif  uid >= 'm11A' and uid <= 'm11C'
-            CreateItem('IC01',GetUnitX(tu),GetUnitY(tu))
+            AdjustPlayerStateBJ(1, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r击杀精英怪，玄铁+1！")
+        elseif  uid >= 'mf0A' and uid <= 'mf0H'
+            if  GetRandomInt(1,100) <= 40
+                CreateItem('IN31',GetUnitX(tu),GetUnitY(tu))
+            elseif  GetRandomInt(1,100) <= 66
+                CreateItem(GetRandomInt('IK01','IK08'),GetUnitX(tu),GetUnitY(tu))
+            else
+                CreateItem(GetRandomInt('IK91','IK98'),GetUnitX(tu),GetUnitY(tu))
+            endif
         endif
 
         if  (uid >= 'm001' and uid <= 'm050') or (uid >= 'ma01' and uid <= 'ma0z') or (uid >= 'mb01' and uid <= 'mb0z')
