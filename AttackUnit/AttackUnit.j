@@ -871,7 +871,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     for j = 1,unitnum
                         GM4 = false
                         if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
-                            u = CreateUnit(Player(k+4)),puid[k]+0x100,pex[k],pey[k],0)
+                            u = CreateUnit(Player(k+4),puid[k]+0x100,pex[k],pey[k],0)
                             GM4 = true
                         else    
                             u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
