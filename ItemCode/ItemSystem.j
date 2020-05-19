@@ -177,8 +177,10 @@ scope ItemSystem initializer InitItemSystem
             {
                 unit u = null
                 for i = 1,num
-                    u = CreateUnit(Player(10),uid,x,y,0)
-                    IssuePointOrderById(u,851983,x,y)
+                    u = CreateUnit(Player(10),uid,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
+                    SetUnitX(u,x)
+                    SetUnitY(u,y)
+                    IssuePointOrderById(u,851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
                     GroupAddUnit(AttackUnitGroup,u)
                 end
 

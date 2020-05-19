@@ -7413,6 +7413,8 @@ endfunction
 
 
 
+
+
 function InitTypeStateNanduExPlus1()
 BJDebugMsg("注册超爽难度1属性")
 InitTypeStateEx('m001',859,364)
@@ -7821,6 +7823,13 @@ InitTypeStateEx('uT8J',14640475,3070605)
 endfunction
 
 endscope
+
+
+
+
+
+
+
 
 
 

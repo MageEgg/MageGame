@@ -395,6 +395,14 @@ library UnitStateSet uses State
             InitMostetStateRatio(9,50,1100)
             InitMostetStateRatio(10,50,1100)
             InitMostetStateRatio(11,100,1500)
+        elseif  GameMode == 4
+            InitMostetStateRatio(1,0,90)
+            InitMostetStateRatio(2,30,200)
+            InitMostetStateRatio(3,40,300)
+            InitMostetStateRatio(4,40,420)
+            InitMostetStateRatio(5,50,750)
+            InitMostetStateRatio(6,50,1200)
+            InitMostetStateRatio(7,50,1750)
         else
             InitMostetStateRatio(1,0,50)
             InitMostetStateRatio(2,0,50)
@@ -410,10 +418,13 @@ library UnitStateSet uses State
             InitMostetStateRatio(11,100,1500)
         endif
 
-        LoadDzConData1()
-        LoadDzConData2()
+        if  GameMode != 4
+            LoadDzConData1()
+            LoadDzConData2()
+        endif
     endfunction
 endlibrary
+
 
 
 
