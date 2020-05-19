@@ -102,7 +102,6 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
     endfunction
     
 
-
     
     
 //添加道果
@@ -246,7 +245,8 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
     function GivePlayerDGPrizeFrame(int pid)
         int id = GetUnitIntState(Pu[1],931)
         
-        if  id >= 'IJ01' and id >= 'IJ15'
+        
+        if  id >= 'IJ01' and id <= 'IJ15'
             //给一个 防止上一个窗口残留
             GivePlayerHeroDG(Pu[1],id)
         endif

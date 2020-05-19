@@ -81,6 +81,7 @@ library GameChallengeDeath uses GameChallenge0,GameChallenge1,GameChallenge2,Gam
     function GameChallengPlayerDeathEvent(unit wu)
         unit u1 = wu
         int pid = GetPlayerId(GetOwningPlayer(u1))
+        BJDebugMsg("清空挑战")
         if  IsPlayerInChallenge == true and PlayerInChallengeNumber > 0
             GameChallengeFluahAll(pid,0)
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[副本]：|r|cffff0000英雄死亡，挑战失败！！！|r")

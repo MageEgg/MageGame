@@ -130,11 +130,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                     PauseAllUnits( true )
                     AttackTimerTextUI.SetText("|cffffe100游戏胜利|r")
                     AttackTimerTextExUI.SetText("|cffffe100游戏胜利|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff0成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
                 endif
             else
                 if  AttackTimer != null
@@ -672,8 +672,8 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
 
     function SetGameMode4AttackUnitState(unit u)
-        SetUnitRealState(u,1,GetUnitRealState(u,1)*10)
-        SetUnitRealState(u,5,GetUnitRealState(u,5)*15)
+        SetUnitRealState(u,1,GetUnitRealState(u,1)*4)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*10)
     endfunction
 
     function SetGameMode4AttackUnitStateValue(int pid,unit u)
@@ -1304,7 +1304,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         
 
         SetUnitOwner(tu,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
-
+        UnitPauseTimedLife( tu, true )
         UnitRemoveAbility(tu,'Avul')
         UnitRemoveAbility(tu,'Asid')
         UnitRemoveAbility(tu,'Aneu')

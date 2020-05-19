@@ -453,7 +453,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  GetTypeIdTips(fid) != ""
             s = s + "\n|cffD9A300"+GetTypeIdTips(fid) + "|r"
         endif
-        BJDebugMsg(s)
+        //BJDebugMsg(s)
         RemoveItem(CreateItem(id,0,0))
         YDWESetItemDataString(id,3,s)
     endfunction

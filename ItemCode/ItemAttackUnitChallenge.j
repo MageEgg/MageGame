@@ -121,23 +121,24 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         InitAttackUnitChallengeStateData(260,8,30000,25,0,0,Buy_Unit,'AT6I',1,0,0,"|Cffffc926|n挑战奖励：|r|n境界突破1级|n随机道果|n|n|Cffbbbbbb拼脸是不可能拼脸的，只有存多点经验才能打高级点的道果这样紫。|r")
         InitAttackUnitChallengeStateData(260,9,50000,30,0,0,Buy_Unit,'AT6J',1,0,0,"|Cffffc926|n挑战奖励：|r|n境界突破1级|n随机道果|n|n|Cffbbbbbb拼脸是不可能拼脸的，只有存多点经验才能打高级点的道果这样紫。|r")
 
-        InitAttackUnitChallengeStateData(270,0,0,5,0,0,Buy_Unit,'AT7A',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+30%")
-        InitAttackUnitChallengeStateData(270,1,0,10,0,0,Buy_Unit,'AT7B',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+30%")
-        InitAttackUnitChallengeStateData(270,2,0,15,0,0,Buy_Unit,'AT7C',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+30%")
-        InitAttackUnitChallengeStateData(270,3,0,20,0,0,Buy_Unit,'AT7D',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+30%")
-        InitAttackUnitChallengeStateData(270,4,0,25,0,0,Buy_Unit,'AT7E',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+30%")
-        InitAttackUnitChallengeStateData(270,5,0,30,0,0,Buy_Unit,'AT7F',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+30%")
+        InitAttackUnitChallengeStateData(270,0,0,5,0,0,Buy_Unit,'AT7A',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+10%")
+        InitAttackUnitChallengeStateData(270,1,0,10,0,0,Buy_Unit,'AT7B',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+10%")
+        InitAttackUnitChallengeStateData(270,2,0,15,0,0,Buy_Unit,'AT7C',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+10%")
+        InitAttackUnitChallengeStateData(270,3,0,20,0,0,Buy_Unit,'AT7D',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+10%")
+        InitAttackUnitChallengeStateData(270,4,0,25,0,0,Buy_Unit,'AT7E',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+10%")
+        InitAttackUnitChallengeStateData(270,5,0,30,0,0,Buy_Unit,'AT7F',1,0,0,"|Cffffc926|n挑战奖励：|r|n随机宝物|n宝物槽|n攻击&业力&生命+10%")
 
-        InitAttackUnitChallengeStateData(280,0,0,5,0,0,Buy_Unit,'AT8A',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,1,0,10,0,0,Buy_Unit,'AT8B',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,2,0,10,0,0,Buy_Unit,'AT8C',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,3,0,15,0,0,Buy_Unit,'AT8D',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,4,0,15,0,0,Buy_Unit,'AT8E',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,5,0,20,0,0,Buy_Unit,'AT8F',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,6,0,20,0,0,Buy_Unit,'AT8G',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,7,0,25,0,0,Buy_Unit,'AT8H',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,8,0,25,0,0,Buy_Unit,'AT8I',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
-        InitAttackUnitChallengeStateData(280,9,0,25,0,0,Buy_Unit,'AT8J',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n怪物攻击&生命+30%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,0,0,5,0,0,Buy_Unit,'AT8A',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,1,0,10,0,0,Buy_Unit,'AT8B',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,2,0,10,0,0,Buy_Unit,'AT8C',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,3,0,15,0,0,Buy_Unit,'AT8D',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,4,0,15,0,0,Buy_Unit,'AT8E',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,5,0,20,0,0,Buy_Unit,'AT8F',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,6,0,20,0,0,Buy_Unit,'AT8G',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,7,0,25,0,0,Buy_Unit,'AT8H',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,8,0,25,0,0,Buy_Unit,'AT8I',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+        InitAttackUnitChallengeStateData(280,9,0,25,0,0,Buy_Unit,'AT8J',1,0,0,"|Cffffc926|n挑战奖励：|r|n金币加成+20%|n进攻怪攻击&生命+20%|n|n|Cffbbbbbb钱是会多不少，但后果自负噢。。|r")
+                
         //境界 引索
         InitAttackUnitChallengeCombatData(1,250,250,640,3000,10000,28000,68000,160000,360000,780000,1300000,0,0)
         InitAttackUnitChallengeCombatData(2,250,310,790,3700,13000,34000,83000,200000,440000,950000,1600000,0,0)
@@ -924,9 +925,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     elseif  challenge == 8
                         //宝物奖励
                         ReGemFrame(pid)
-                        AddUnitRealState(Pu[1],31,30)
-                        AddUnitRealState(Pu[1],32,30)
-                        AddUnitRealState(Pu[1],33,30)
+                        AddUnitRealState(Pu[1],31,10)
+                        AddUnitRealState(Pu[1],32,10)
+                        AddUnitRealState(Pu[1],33,10)
                         UnitAddItemById(Pu[1],GetRandomInt('IK01','IK08'))
                     elseif  challenge == 9
                         //将魂奖励
