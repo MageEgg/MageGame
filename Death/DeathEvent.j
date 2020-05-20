@@ -1012,7 +1012,7 @@ scope DeathEvent initializer InitDeathEvent
 
 
             //特殊判断无伤害来源可触发
-            if  uid >= 'mb01' and uid <= 'mb20'
+            if  (uid >= 'mb01' and uid <= 'mb20') or uid >= ('mf0A' and uid <= 'mf0Z')
                 AttackBossDeathEvent(u1)
             elseif  uid == 'ut20'
                 ut20UnitDeath(pid2,u1)
