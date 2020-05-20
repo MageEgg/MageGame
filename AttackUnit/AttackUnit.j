@@ -810,7 +810,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                         for j = 1,unitnum
                             GM4 = false
                             if  CountUnitsInGroup(AttackUnitGroup) <= 50 or GameMode == 4
-                                if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
+                                if  GameMode == 4 and ModuloInteger(AttackUnitWN,2) == 0 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
                                     BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                     u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                     GM4 = true
@@ -827,17 +827,15 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     if  AttackUnitWN >= 20
                                         UnitAddAbility(u,'AXCA')
                                     endif
-                                    if  ModuloInteger(AttackUnitWN,2) == 0 
-                                        if  GM4 == true
-                                            BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100)+" 运行设置属性")
-                                            IntUnitVariation(u)
-                                            AddUnitVariation(u,AttackUnitVariationNumA)
-                                        endif
-                                    elseif  ModuloInteger(AttackUnitWN,5) == 0
+                                    if  GM4 == true
+                                        BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100)+" 运行设置属性")
                                         IntUnitVariation(u)
                                         AddUnitVariation(u,AttackUnitVariationNumA)
                                     endif
-
+                                    if  ModuloInteger(AttackUnitWN,5) == 0
+                                        IntUnitVariation(u)
+                                        AddUnitVariation(u,AttackUnitVariationNumA)
+                                    endif
                                     SetGameMode4AttackUnitStateValue(k,u)
                                 endif
                             endif
@@ -904,7 +902,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     if  puid[k] != 0
                         for j = 1,unitnum
                             GM4 = false
-                            if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
+                            if  GameMode == 4 and ModuloInteger(AttackUnitWN,2) == 0 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
                                 BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                 u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                 GM4 = true
@@ -920,18 +918,16 @@ library AttackUnit uses DamageCode,PassCheckMission
                             elseif  GameMode == 4
                                 if  AttackUnitWN >= 20
                                     UnitAddAbility(u,'AXCA')
-                                endif
-                                if  ModuloInteger(AttackUnitWN,2) == 0 
-                                    if  GM4 == true
-                                        BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100)+" 运行设置属性")
-                                        IntUnitVariation(u)
-                                        AddUnitVariation(u,AttackUnitVariationNumA)
-                                    endif
-                                elseif  ModuloInteger(AttackUnitWN,5) == 0
+                                endif 
+                                if  GM4 == true
+                                    BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100)+" 运行设置属性")
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 endif
-
+                                if  ModuloInteger(AttackUnitWN,5) == 0
+                                    IntUnitVariation(u)
+                                    AddUnitVariation(u,AttackUnitVariationNumA)
+                                endif
                                 SetGameMode4AttackUnitStateValue(k,u)
                             endif
                         end
