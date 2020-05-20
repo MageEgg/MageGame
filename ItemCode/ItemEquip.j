@@ -1,5 +1,15 @@
 library ItemEquip uses DamageCode,ItemGameFunc
-
+    //读取饰品
+    function GetHeroOrnamentsItem(int pid)->item
+        int id = 0
+        for n = 0,5
+            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
+            if  id >= 'E101' and id <= 'E129'
+                return UnitItemInSlot(Pu[1],n)
+            endif
+        end
+        return null
+    endfunction
     
 
     function ReEquipTips(int pid,item it)
@@ -61,6 +71,9 @@ library ItemEquip uses DamageCode,ItemGameFunc
                     endif
                 else
                     s = s + "\n\n|Cff00ff7f击杀"+I2S(gold)+"只怪有"+I2S(gl)+"%概率升级|r"
+                    if  GameMode == 4
+                        s = s + "\n武器防具挑战成功时，项链自动晋阶1级"
+                    endif
                 endif
             else
                 if  GetTypeIdData(next,106) != 0
@@ -219,6 +232,26 @@ library ItemEquip uses DamageCode,ItemGameFunc
         return e1 == 1 and e2 == 1
     endfunction
 
+
+    function Mode4IncOrnamentsEx(int pid)
+        item it = GetHeroOrnamentsItem(pid)
+        int next = 0
+        int fmid = 0
+        if  it != null
+            int id = GetItemTypeId(it)
+            next = GetTypeIdData(id,106)
+            fmid = GetItemIntState(it,'FMID')
+            RemoveItem(it)
+            bj_lastCreatedItem = CreateItem(next,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+            SetItemIntState(bj_lastCreatedItem,'FMID',fmid)
+
+            UnitAddItem(Pu[1],bj_lastCreatedItem)
+            bj_lastCreatedItem = null
+
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：恭喜您额外将" + GetObjectName(id) + "晋升为" + GetObjectName(next))
+        endif
+    endfunction
+
     function IncEquipKillUnitFunc(unit u1,unit u2)
         int pid = GetPlayerId(GetOwningPlayer(u1))
         int uid = GetUnitTypeId(u2)
@@ -241,6 +274,11 @@ library ItemEquip uses DamageCode,ItemGameFunc
 
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r装备"+GetObjectName(itemid)+"突破成功！")
                 
+                if  GameMode == 4
+                    Mode4IncOrnamentsEx(pid)
+                    
+                endif
+                exitwhen true
                 /*
                 if  Pu[24] == null
                     if  IsHeroEquipCanOpenPlot(Pu[1]) == true
@@ -255,6 +293,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
                 */
             endif
         end
+        flush locals
     endfunction
 
     
@@ -593,17 +632,7 @@ library ItemEquip uses DamageCode,ItemGameFunc
 
 
     
-    //读取饰品
-    function GetHeroOrnamentsItem(int pid)->item
-        int id = 0
-        for n = 0,5
-            id = GetItemTypeId(UnitItemInSlot(Pu[1],n))
-            if  id >= 'E101' and id <= 'E129'
-                return UnitItemInSlot(Pu[1],n)
-            endif
-        end
-        return null
-    endfunction
+    
     //手动升级饰品
     function IncOrnaments(int pid,unit wu)
         item it = GetHeroOrnamentsItem(pid)
