@@ -96,7 +96,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitSuperTGCos[2] = 1
         DzPlayerInitSuperTGCos[3] = 1
         DzPlayerInitSuperTGCos[4] = 1
-        DzPlayerInitSuperTGCos[5] = 1
+        DzPlayerInitSuperTGCos[5] = 0
         DzPlayerInitSuperTGCos[6] = 0
         DzPlayerInitSuperTGCos[7] = 0
         DzPlayerInitSuperTGCos[8] = 0
