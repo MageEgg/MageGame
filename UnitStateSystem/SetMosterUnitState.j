@@ -197,7 +197,9 @@ library UnitStateSet uses State
             if  uid >= 'mf01' and uid <= 'mf06'//超爽BOSS
                 if  i == 1 or i == 5
                     BJDebugMsg("超爽BOSS 属性"+I2S(i)+"初始值:"+R2S(value))
-                    value = value * GetRandomReal(0.5,2)
+                    real ran = GetRandomReal(0.5,2)
+                    BJDebugMsg("超爽BOSS 属性倍数："+R2S(ran))
+                    value = value * ran
                 endif
             endif
 

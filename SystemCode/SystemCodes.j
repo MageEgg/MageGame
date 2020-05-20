@@ -1311,7 +1311,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(24,'IX0F',23)
             RegisterItemPool(24,'IX0G',20)
             RegisterItemPool(24,'IX0H',23)
-            RegisterItemPool(24,'IX0I',30)
+            RegisterItemPool(24,'IX0I',12)
             RegisterItemPool(24,'IX0J',23)
             RegisterItemPool(24,'IX0K',20)
             RegisterItemPool(24,'IX0L',40)
@@ -1320,7 +1320,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(24,'IX0O',20)
             RegisterItemPool(24,'IX0P',23)
             RegisterItemPool(24,'IX0Q',20)
-            RegisterItemPool(24,'IX0R',30)
+            RegisterItemPool(24,'IX0R',48)
             //悬赏任务奖池41~60波注册
 
             RegisterItemPool(25,'IX0B',16)
@@ -1330,7 +1330,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             RegisterItemPool(25,'IX0F',16)
 
             RegisterItemPool(25,'IX0H',16)
-            RegisterItemPool(25,'IX0I',43)
+            RegisterItemPool(25,'IX0I',24)
             RegisterItemPool(25,'IX0J',16)
             RegisterItemPool(25,'IX0K',25)
             RegisterItemPool(25,'IX0L',72)
@@ -1339,7 +1339,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
             RegisterItemPool(25,'IX0P',16)
             RegisterItemPool(25,'IX0Q',25)
-            RegisterItemPool(25,'IX0R',43)
+            RegisterItemPool(25,'IX0R',62)
 
 
 
