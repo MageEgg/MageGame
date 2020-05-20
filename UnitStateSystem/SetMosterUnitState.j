@@ -156,6 +156,8 @@ library UnitStateSet uses State
         real value = 0
         int AttackWN = AttackUnitInt[0][2]
 
+        
+
         if  (uid >= 'm10A' and uid <= 'm10E') or  (uid >= 'm11A' and uid <= 'm11E')
             if  AttackWN < 10
                 uid = 'm100'+AttackWN
@@ -196,6 +198,16 @@ library UnitStateSet uses State
                 if  i == 1 or i == 5
                     BJDebugMsg("超爽BOSS 属性"+I2S(i)+"初始值:"+R2S(value))
                     value = value * GetRandomReal(0.5,2)
+                endif
+            endif
+
+            if  uid >= 'm11A' and uid <= 'm11E'
+                if  i == 1
+                    value = value * 4
+                    BJDebugMsg("精英4倍攻击")
+                elseif  i == 5
+                    value = value * 10
+                    BJDebugMsg("精英10倍生命")
                 endif
             endif
 

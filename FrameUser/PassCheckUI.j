@@ -426,11 +426,11 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
 
         function MissionKillUnit(int pid,int uid)
-            if  uid >= 'm001' and uid <= 'm050'
+            if  (uid >= 'm001' and uid <= 'm050') or ( uid>='m10A' and uid <= 'm10C' )
                 MissionAddNumFunc(pid,3,1)
-            elseif  uid >= 'ma01' and uid <= 'ma0z'
+            elseif  (uid >= 'ma01' and uid <= 'ma0z') or ( uid>='m11A' and uid <= 'm11C' )
                 MissionAddNumFunc(pid,7,1)//精英怪
-            elseif  uid >= 'mb01' and uid <= 'mb0z'
+            elseif  (uid >= 'mb01' and uid <= 'mb0z') or ( uid>='mf0A' and uid <= 'mf0C' )
                 MissionAddNumFunc(pid,8,1)//进攻boss
                 MissionAddNumFunc(pid,32,1)//进攻boss
             elseif  uid >= 'u001' and uid <= 'u009'
