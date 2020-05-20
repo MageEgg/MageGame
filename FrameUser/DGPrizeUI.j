@@ -75,6 +75,63 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         BJDebugMsg(R2S(ran)+":"+GetTypeIdName(ID))
         return ID
     endfunction
+
+    function DGsort(int pid)
+        int max = GetUnitIntState(Pu[1],150)
+        int n = 1
+        int f = 0
+        int next = 0
+        int now = 0
+        int id = 0
+        if  max > 10
+            max = 10
+        endif
+        loop
+            n = 1
+            f = 0
+            loop
+                now = GetUnitIntState(Pu[1],150+n)
+                next = GetUnitIntState(Pu[1],150+n+1)
+                exitwhen next == 0
+                if  now > next
+                    SetUnitIntState(Pu[1],150+n,next)
+                    SetUnitIntState(Pu[1],150+n+1,now)
+                    HeroDGId[pid][n] = next
+                    HeroDGId[pid][n+1] = now
+                    f = 1
+                endif
+                n = n + 1
+            endloop
+            exitwhen f == 0
+        endloop
+
+        if  GetLocalPlayer() == Player(pid)
+            for num = 1,max
+                id = HeroDGId[pid][num]
+                if  num > 10
+                    DzFrameSetModel( BUTTON_Model[150+num-10], GetTypeIdIcon(id), 1, 0 )
+                    if  id == 'IJ10'
+                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber0.tga",0)
+                    elseif  id == 'IJ11'
+                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber11.tga",0)
+                    else
+                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
+                    endif
+                else
+                    DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 1, 0 )
+                    if  id == 'IJ10'
+                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber0.tga",0)
+                    elseif  id == 'IJ11'
+                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber11.tga",0)
+                    else
+                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
+                    endif
+                endif
+
+
+            end
+        endif
+    endfunction
     
   
 
@@ -133,29 +190,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
 
 
             if  GetLocalPlayer() == Player(pid)
-
-                if  num > 10
-                    DzFrameSetModel( BUTTON_Model[150+num-10], GetTypeIdIcon(id), 1, 0 )
-                    if  id == 'IJ10'
-                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber0.tga",0)
-                    elseif  id == 'IJ11'
-                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber11.tga",0)
-                    else
-                        DzFrameSetTexture(BUTTON_Back[190+num-10][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
-                    endif
-                else
-                    DzFrameSetModel( BUTTON_Model[150+num], GetTypeIdIcon(id), 1, 0 )
-                    if  id == 'IJ10'
-                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber0.tga",0)
-                    elseif  id == 'IJ11'
-                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber11.tga",0)
-                    else
-                        DzFrameSetTexture(BUTTON_Back[190+num][0],"war3mapImported\\DGnumber"+I2S(id-'IJ00')+".tga",0)
-                    endif
-                endif
-
                 ExpName.SetText(GetTypeIdName('IJ5A'+num))
-                
             endif
             SetBoardText(3,pid+2,GetTypeIdName('IJ5A'+num))
 
@@ -171,7 +206,15 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
 
             HeroDGId[pid][num] = id
 
+            DGsort(pid)
+
         endif 
+        SetUnitIntState(Pu[1],931,0)
+        SetUnitIntState(Pu[1],932,0)
+        SetUnitIntState(Pu[1],933,0)
+        if  GetLocalPlayer() == Player(pid)
+            Button.show = false
+        endif
     endfunction
 
 
@@ -233,9 +276,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         else
             //激活道果
             GivePlayerHeroDG(Pu[1],id)
-            SetUnitIntState(Pu[1],931,0)
-            SetUnitIntState(Pu[1],932,0)
-            SetUnitIntState(Pu[1],933,0)
+            
             if  GetLocalPlayer() == Player(pid)
                 Button.show = false
             endif

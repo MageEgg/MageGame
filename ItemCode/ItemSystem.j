@@ -129,14 +129,12 @@ scope ItemSystem initializer InitItemSystem
 
     
         unit GameMode4ShopUnit = null
-        int GameMode4ShopId1 = 0
-        int GameMode4ShopId2 = 0
-        int GameMode4ShopId3 = 0
+        int array GameMode4ShopIdData[12][600]
 
         function ClearGameMode4ShopNpc(int pid)
-            RemoveItemFromStock(Pu[47], GameMode4ShopId1)
-            RemoveItemFromStock(Pu[47], GameMode4ShopId2)
-            RemoveItemFromStock(Pu[47], GameMode4ShopId3)
+            for i = 1,3
+                RemoveItemFromStock(Pu[47], GameMode4ShopIdData[pid][i])
+            end
         endfunction
 
         function ReGameMode4ShopNpc(int pid)
@@ -150,12 +148,11 @@ scope ItemSystem initializer InitItemSystem
             endif
 
             ClearGameMode4ShopNpc(pid)
-            GameMode4ShopId1 = GetPoolItemId(index)
-            GameMode4ShopId2 = GetPoolItemId(index) + 0x100
-            GameMode4ShopId3 = GetPoolItemId(index) + 0x200
-            AddItemToStock(Pu[47],GameMode4ShopId1,1,1)
-            AddItemToStock(Pu[47],GameMode4ShopId2,1,1)
-            AddItemToStock(Pu[47],GameMode4ShopId3,1,1)
+            for i = 1,3
+                GameMode4ShopIdData[pid][i] = GetPoolItemId(index) + 0x100 * (i-1)
+                AddItemToStock(Pu[47],GameMode4ShopIdData[pid][i],1,1)
+            end
+   
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
@@ -187,7 +184,7 @@ scope ItemSystem initializer InitItemSystem
             {
                 unit u = null
                 for i = 1,num
-                    u = CreateUnit(Player(10),uid,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
+                    u = CreateUnit(Player(11),uid,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit),0)
                     SetUnitX(u,x)
                     SetUnitY(u,y)
                     IssuePointOrderById(u,851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
