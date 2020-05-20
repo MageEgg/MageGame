@@ -291,7 +291,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
         endif
     endfunction
 
-    function AddAttackUnitChallengeStateStockNow(int pid,int zu,int wei,real newtt)
+    piece AddAttackUnitChallengeStateStockPiece
         int id = AttackUnitChallengeStateTypeValueA[zu][wei]
         int zero = AttackUnitChallengeStateTypeValueA[zu][0]
         string s = ""
@@ -318,6 +318,9 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             punum = 46
         endif
         //BJDebugMsg(YDWEId2S(id))
+        if  GetUnitAbilityLevel(Pu[punum],id) > 0
+            UnitRemoveAbility(Pu[punum],id)
+        endif
         UnitAddAbility(Pu[punum],id)
         if  GetPlayerTechCount(Player(pid),id+167772160-1,true) > 0 or id == zero
             s = GetStockSkillConsume(pid,zu,wei)
@@ -328,61 +331,15 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             YDWESetUnitAbilityDataString(Pu[punum],id,1,218,s)
         endif
         YDWESetUnitAbilityDataReal(Pu[punum],id,1,105,time)
+    endpiece
+
+    function AddAttackUnitChallengeStateStockNow(int pid,int zu,int wei,real newtt)
+        insert AddAttackUnitChallengeStateStockPiece
         YDWESetUnitAbilityState(Pu[punum],id,1,newtt)
     endfunction
 
-    function AddAttackUnitChallengeStateStockZero(int pid,int zu,int wei)
-        int id = AttackUnitChallengeStateTypeValueA[zu][wei]
-        int zero = AttackUnitChallengeStateTypeValueA[zu][0]
-        string s = ""
-        int punum = 42
-        BJDebugMsg("AddAttackUnitChallengeStateStockZero")
-        if  zu == 260 or zu == 270 or zu == 280
-            punum = 46
-        endif
-        if  YDWEGetUnitAbilityState(Pu[punum],id,1) > 0
-            BJDebugMsg("大于0")
-            YDWESetUnitAbilityState(Pu[punum],id,1,0)
-        endif
-    endfunction
-
     function AddAttackUnitChallengeStateStock(int pid,int zu,int wei)
-        int id = AttackUnitChallengeStateTypeValueA[zu][wei]
-        int zero = AttackUnitChallengeStateTypeValueA[zu][0]
-        string s = ""
-        real time = 2//挑战时间
-        int punum = 42
-        if  GameMode == 3
-            time = 1
-        elseif  GameMode == 4
-            if  zu == 200
-                time = 60
-            elseif  zu == 210
-                time = 160
-            elseif  zu == 220 
-                time = 240
-            elseif  zu == 260
-                time = 120
-            elseif  zu == 270
-                time = 280
-            elseif  zu == 280
-                time = 30
-            endif
-        endif
-        if  zu == 260 or zu == 270 or zu == 280
-            punum = 46
-        endif
-        //BJDebugMsg(YDWEId2S(id))
-        UnitAddAbility(Pu[punum],id)
-        if  GetPlayerTechCount(Player(pid),id+167772160-1,true) > 0 or id == zero
-            s = GetStockSkillConsume(pid,zu,wei)
-            //BJDebugMsg("GetStockSkillConsume")
-        endif
-        s = s + AttackUnitChallengeStateTypeString[zu][wei]
-        if  Player(pid) == GetLocalPlayer()
-            YDWESetUnitAbilityDataString(Pu[punum],id,1,218,s)
-        endif
-        YDWESetUnitAbilityDataReal(Pu[punum],id,1,105,time)
+        insert AddAttackUnitChallengeStateStockPiece
         YDWESetUnitAbilityState(Pu[punum],id,1,time)
     endfunction
 
@@ -477,7 +434,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                             return true
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                            AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                            AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                             return false
                         endif
                     else
@@ -488,18 +445,18 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                             return true
                         else
                             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                            AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                            AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                             return false
                         endif
                     endif
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的玄铁不足"+I2S(lumber)+"！|r")
-                    AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                    AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                     return false
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的金币不足"+I2S(gold)+"！|r")
-                AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                 return false
             endif
         elseif  gold > 0 and lumber > 0 and other == 0
@@ -510,12 +467,12 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     return true
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的玄铁不足"+I2S(lumber)+"！|r")
-                    AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                    AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                     return false
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的金币不足"+I2S(gold)+"！|r")
-                AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                 return false
             endif
         elseif  gold > 0 and lumber == 0 and other > 0
@@ -528,7 +485,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         return true
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                        AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                        AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                         return false
                     endif
                 else
@@ -539,13 +496,13 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         return true
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                        AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                        AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                         return false
                     endif
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的金币不足"+I2S(gold)+"！|r")
-                AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                 return false
             endif
         elseif  gold == 0 and lumber > 0 and other > 0
@@ -558,7 +515,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         return true
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                        AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                        AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                         return false
                     endif
                 else
@@ -569,13 +526,13 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         return true
                     else
                         DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                        AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                        AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                         return false
                     endif
                 endif
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的玄铁不足"+I2S(lumber)+"！|r")
-                AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                 return false
             endif
         elseif  gold > 0 and lumber == 0 and other == 0
@@ -584,7 +541,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 return true
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的金币不足"+I2S(gold)+"！|r")
-                AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                 return false
             endif
         elseif  gold == 0 and lumber > 0 and other == 0
@@ -593,7 +550,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                 return true
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的玄铁不足"+I2S(lumber)+"！|r")
-                AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                 return false
             endif
         elseif  gold == 0 and lumber == 0 and other > 0
@@ -605,7 +562,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     return true
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                    AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                    AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                     return false
                 endif
             else
@@ -616,7 +573,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                     return true
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r|cffff0000您的"+StateName[othertype]+"不足"+I2S(other)+"！|r")
-                    AddAttackUnitChallengeStateStockZero(pid,zu,wei)
+                    AddAttackUnitChallengeStateStockNow(pid,zu,wei,0)
                     return false
                 endif
             endif
