@@ -712,7 +712,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
 
     function AttackUnitGroupRemoveFunc()
-        if  GetUnitIntState(GetEnumUnit(),'AGM4') == GameMode4LeaveGame
+        if  GetUnitAbilityLevel(GetEnumUnit(),'AGM4') == GameMode4LeaveGame
             KillUnit(GetEnumUnit())
         endif
     endfunction
@@ -757,7 +757,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 AddUnitVariation(u,AttackUnitVariationNumB)
                             endif
                             if  GameMode == 4
-                                SetUnitIntState(u,'AGM4',k+1)
+                                UnitAddAbility(u,'AGM4')
+                                SetUnitAbilityLevel(u,'AGM4',k+1)
                                 if  AttackUnitWNBoss == 6
                                     AddBossAnger(u)
                                 endif
@@ -840,7 +841,6 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                     u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                     GM4 = true
-                                    SetUnitIntState(u,'AGM4',k+1)
                                 else    
                                     u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                                 endif
@@ -851,6 +851,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 elseif  GameMode == 4
+                                    UnitAddAbility(u,'AGM4')
+                                    SetUnitAbilityLevel(u,'AGM4',k+1)
                                     if  AttackUnitWN >= 20
                                         UnitAddAbility(u,'AXCA')
                                     endif
@@ -933,7 +935,6 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                 u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                 GM4 = true
-                                SetUnitIntState(u,'AGM4',k+1)
                             else    
                                 u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                             endif
@@ -944,6 +945,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 IntUnitVariation(u)
                                 AddUnitVariation(u,AttackUnitVariationNumA)
                             elseif  GameMode == 4
+                                UnitAddAbility(u,'AGM4')
+                                SetUnitAbilityLevel(u,'AGM4',k+1)
                                 if  AttackUnitWN >= 20
                                     UnitAddAbility(u,'AXCA')
                                 endif 
