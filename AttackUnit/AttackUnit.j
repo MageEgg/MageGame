@@ -496,6 +496,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                         CreateUnit(Player(pid),'nc06',-5216,11936,270)//礼包
                     endif
 
+                    ReTechFuncItemTips.execute(pid)//刷新道具兑换说明
+
                     Pu[41]=CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np41',GetUnitX(Pu[26]),GetUnitY(Pu[26]),0)//积分兑换
 
                     SetPlayerTechResearched(Player(pid),'RF0A',1)
