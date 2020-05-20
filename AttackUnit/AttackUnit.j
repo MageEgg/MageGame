@@ -4,6 +4,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     private group AttackUnitGroupCos = CreateGroup()
     private unit AttackUnitGroupCosUnit = null
     private int GameMode4Time = 0
+    private int GameMode4LeaveGame = 0
     unit array AttackUnitBoss
     int array AttackUnitInt[60][300]
     real array AttackUnitReal[60][300]
@@ -710,6 +711,17 @@ library AttackUnit uses DamageCode,PassCheckMission
         SetUnitRealState(u,5,GetUnitRealState(u,5)*add)
     endfunction
 
+    function AttackUnitGroupRemoveFunc()
+        if  GetUnitIntState(GetEnumUnit(),'AGM4') == GameMode4LeaveGame
+            KillUnit(GetEnumUnit())
+        endif
+    endfunction
+
+    function RemoveGameMode4AttackUnit(int pid)
+        GameMode4LeaveGame = pid+1
+        ForGroup(AttackUnitGroup,function AttackUnitGroupRemoveFunc)
+    endfunction
+
     ////////////////////模式4分割//////////////////////
 
     function OpenCreateBossTimer()
@@ -745,6 +757,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 AddUnitVariation(u,AttackUnitVariationNumB)
                             endif
                             if  GameMode == 4
+                                SetUnitIntState(u,'AGM4',k)
                                 if  AttackUnitWNBoss == 6
                                     AddBossAnger(u)
                                 endif
@@ -827,6 +840,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                     u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                     GM4 = true
+                                    SetUnitIntState(u,'AGM4',k)
                                 else    
                                     u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                                 endif
@@ -919,6 +933,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                 u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                 GM4 = true
+                                SetUnitIntState(u,'AGM4',k)
                             else    
                                 u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                             endif
