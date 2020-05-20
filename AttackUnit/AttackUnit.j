@@ -130,19 +130,21 @@ library AttackUnit uses DamageCode,PassCheckMission
                     AttackTimerTextUI.SetText("|cffff0000怪物溢出|r")
                     AttackTimerTextExUI.SetText("|cffff0000游戏失败|r")
                 endif
-                if  GameMode4Time > 0 and GameOverBoolJu == false
-                    GameMode4Time = GameMode4Time - 1
-                    if  GameMode4Time > 1800
-                        AttackTimerTextUI.SetText("|cffffe100准备时间|r")
-                        AttackTimerTextExUI.SetText("|cffffe100"+I2S(GameMode4Time-1800)+"秒|r")
+                if  GameOverBoolJu == false
+                    if  GameMode4Time > 0
+                        GameMode4Time = GameMode4Time - 1
+                        if  GameMode4Time > 1800
+                            AttackTimerTextUI.SetText("|cffffe100准备时间|r")
+                            AttackTimerTextExUI.SetText("|cffffe100"+I2S(GameMode4Time-1800)+"秒|r")
+                        else
+                            AttackTimerTextUI.SetText("|cff00ff00生存时间|r")
+                            AttackTimerTextExUI.SetText("|cff00ff00"+GetGameMode4Time()+"|r")
+                        endif
                     else
-                        AttackTimerTextUI.SetText("|cff00ff00生存时间|r")
-                        AttackTimerTextExUI.SetText("|cff00ff00"+GetGameMode4Time()+"|r")
-                    endif
-                else
-                    if  GameWinBoolJu == false
-                        ExecuteFunc("AttackUnitWinGameMode4")
-                        ExecuteFunc("AttackUnitWin")
+                        if  GameWinBoolJu == false
+                            ExecuteFunc("AttackUnitWinGameMode4")
+                            ExecuteFunc("AttackUnitWin")
+                        endif
                     endif
                 endif
             else
@@ -744,7 +746,6 @@ library AttackUnit uses DamageCode,PassCheckMission
                             endif
                             if  GameMode == 4
                                 if  AttackUnitWNBoss == 6
-                                    LastAttackBossId = puid[k]
                                     AddBossAnger(u)
                                 endif
                             else
