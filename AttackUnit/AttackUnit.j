@@ -1356,6 +1356,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     function StartAttackUnit()
         int cos = 0
         int gold = 0
+        int bossmod = 3
         if  StopAttackBool == false
             AttackUnitOrderNum = AttackUnitOrderNum + 1
             if  InfiniteAttackBool == false
@@ -1401,20 +1402,23 @@ library AttackUnit uses DamageCode,PassCheckMission
                         AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,cos)
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r敌军发起进攻，每人获得"+I2S(cos)+"金币奖励。")
                         if  GetPlayerTechCount(Player(pid),'RY4D',true) == 1 and GameSaveClose == 0
-                            if  ModuloInteger(AttackUnitWN,3) == 0
-                                if  AttackUnitWN == 3
+                            if  GameMode == 4
+                                bossmod = 6
+                            endif
+                            if  ModuloInteger(AttackUnitWN,bossmod) == 0
+                                if  AttackUnitWN == bossmod*1
                                     gold = 3000
-                                elseif  AttackUnitWN == 6
+                                elseif  AttackUnitWN == bossmod*2
                                     gold = 6000
-                                elseif  AttackUnitWN == 9
+                                elseif  AttackUnitWN == bossmod*3
                                     gold = 10000
-                                elseif  AttackUnitWN == 12
+                                elseif  AttackUnitWN == bossmod*4
                                     gold = 15000
-                                elseif  AttackUnitWN == 15
+                                elseif  AttackUnitWN == bossmod*5
                                     gold = 20000
-                                elseif  AttackUnitWN == 18
+                                elseif  AttackUnitWN == bossmod*6
                                     gold = 25000
-                                elseif  AttackUnitWN == 21
+                                elseif  AttackUnitWN == bossmod*7
                                     gold = 30000
                                 endif
                                 if  DzPlayerLv(Player(pid)) >= 22 and DzShop(Player(pid),"CH1") == true
