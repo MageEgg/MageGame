@@ -92,6 +92,11 @@ library SystemCodes uses ServerTime,Define1
                 SetPlayerCameraBoundsToRect(gg_rct_GameRect)
             endif
             SetPlayerMap(pid,2)
+        elseif  IsLocInRect(gg_rct_GameRect3,x,y) == true
+            if  GetLocalPlayer() == Player(pid)
+                SetPlayerCameraBoundsToRect(gg_rct_GameRect3)
+            endif
+            SetPlayerMap(pid,3)
         else
             //大图
             if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true and IsLocInRect(gg_rct_GameRect,x,y) == false
@@ -118,6 +123,11 @@ library SystemCodes uses ServerTime,Define1
                 SetPlayerCameraBoundsToRect(gg_rct_GameRect)
             endif
             SetPlayerMap(pid,2)
+        elseif  IsLocInRect(gg_rct_GameRect3,x,y) == true
+            if  GetLocalPlayer() == Player(pid)
+                SetPlayerCameraBoundsToRect(gg_rct_GameRect3)
+            endif
+            SetPlayerMap(pid,3)
         else
             //大图
             if  IsLocInRect(gg_rct_GameRect,GetUnitX(Pu[1]),GetUnitY(Pu[1])) == true and IsLocInRect(gg_rct_GameRect,x,y) == false
@@ -531,36 +541,7 @@ library SystemCodes uses ServerTime,Define1
         return IsTerrainPathable(x,y,PATHING_TYPE_WALKABILITY) == false and IsCanFlyRcet(x,y) == true
     end
     
-    //坐标防止溢出
-    function SetUnitXEx(unit wu,real x)
-        if x > GetRectMaxX(bj_mapInitialPlayableArea)
-            x = GetRectMaxX(bj_mapInitialPlayableArea)
-        elseif x < GetRectMinX(bj_mapInitialPlayableArea)
-            x = GetRectMinX(bj_mapInitialPlayableArea)
-        endif
-        SetUnitX(wu,x)
-    endfunction
-    function SetUnitYEx(unit wu,real y)
-        if y > GetRectMaxY(bj_mapInitialPlayableArea)
-            y = GetRectMaxY(bj_mapInitialPlayableArea)
-        elseif y < GetRectMinY(bj_mapInitialPlayableArea)
-            y = GetRectMinY(bj_mapInitialPlayableArea)
-        endif
-        SetUnitY(wu,y)
-    endfunction
-    function SetUnitXY(unit wu,real x,real y)
-        if x > GetRectMaxX(bj_mapInitialPlayableArea)
-            x = GetRectMaxX(bj_mapInitialPlayableArea)
-        elseif x < GetRectMinX(bj_mapInitialPlayableArea)
-            x = GetRectMinX(bj_mapInitialPlayableArea)
-        endif
-        if y > GetRectMaxY(bj_mapInitialPlayableArea)
-            y = GetRectMaxY(bj_mapInitialPlayableArea)
-        elseif y < GetRectMinY(bj_mapInitialPlayableArea)
-            y = GetRectMinY(bj_mapInitialPlayableArea)
-        endif
-        SetUnitPosition(wu,x,y)
-    endfunction
+    
 
     function SetUnitFaceOfUnit(unit wu,unit tu)
         real ang = Atan2(GetUnitY(tu)-GetUnitY(wu),GetUnitX(tu)-GetUnitX(wu))
