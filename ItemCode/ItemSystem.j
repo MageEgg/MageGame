@@ -877,12 +877,31 @@ scope ItemSystem initializer InitItemSystem
         int pid = GetPlayerId(GetOwningPlayer(u1))
         
 
+        if  itemid >= 'IZ71' and itemid <= 'IZ73'
 
-        if  itemid == 'IZ71'
-            
-            OpenNewChallenge1(pid,GetSellingUnit())
-        elseif  itemid == 'IZ72'
-            ReChallengePrize(GetSellingUnit())
+            if  GetUnitIntState(GetSellingUnit(),'FBTZ') == pid+1
+
+                if  itemid == 'IZ71'
+                    
+                    OpenNewChallenge1(pid,GetSellingUnit())
+                elseif  itemid == 'IZ72'
+                    ReChallengePrize(GetSellingUnit())
+                elseif  itemid == 'IZ73'
+                    if  GetPlayerFood(pid) >= 3
+                        UsePlayerFood(pid,3)
+                        ReChallengePrize(GetSellingUnit())
+                    else
+                        AddItemToStock( GetSellingUnit(),itemid, 1, 1 )
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r钻石不足|cffff00003|r！")
+                    endif
+                endif
+            else
+                if  itemid == 'IZ72'
+                    AdjustPlayerStateBJ(8, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
+                endif
+                AddItemToStock( GetSellingUnit(),itemid, 1, 1 )
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r这个法宝挑战不是你的哦！")
+            endif
         endif
 
         BJDebugMsg(GetUnitName(GetSellingUnit())+"售出物品"+GetObjectName(itemid))
@@ -890,8 +909,7 @@ scope ItemSystem initializer InitItemSystem
 
         flush locals
     endfunction
-    
-    
+
     
     
         

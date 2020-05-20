@@ -1284,6 +1284,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         RemoveItemFromStock(wu,'IZ72')
         AddItemToStock( wu,'IZ71', 1, 1 )
         AddItemToStock( wu,'IZ72', 1, 1 )
+        AddItemToStock( wu,'IZ73', 1, 1 )
 
         bj_lastCreatedItem = null
     endfunction
@@ -1310,10 +1311,13 @@ library AttackUnit uses DamageCode,PassCheckMission
                     x = GetRandomReal(-6144,-5792)
                     y = GetRandomReal(11552,11936)
                 endif
-                u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
+                u = CreateUnit(Player(pid+4),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
                 
+                AddAttackSummonUnit.execute(pid,u)
+
                 UnitApplyTimedLife( u, 'BHwe', 300 )
-                
+                SetUnitIntState(u,'FBTZ',pid+1)
+
                 UnitAddAbility(u,'A00K')
                 UnitAddAbility(u,'Avul')
                 UnitAddAbility(u,'Asid')
@@ -1321,6 +1325,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 UnitAddAbility(u,'Apit')
                 AddItemToStock( u,'IZ71', 1, 1 )
                 AddItemToStock( u,'IZ72', 1, 1 )
+                AddItemToStock( u,'IZ73', 1, 1 )
                 EXSetUnitMoveType( u, 0x01 )
 
                 ReChallengePrize(u)

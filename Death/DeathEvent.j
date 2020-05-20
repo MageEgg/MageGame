@@ -525,10 +525,11 @@ scope DeathEvent initializer InitDeathEvent
     endfunction
     
    
-    function DropChallengeUnit(unit tu)
-        int pid = 0
+    function DropChallengeUnit(unit tu,unit wu)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
         int gold = 0
         int fbid = 0
+        int itid = 0
         int id = 0
         
 
@@ -539,22 +540,20 @@ scope DeathEvent initializer InitDeathEvent
             elseif  id == 'IC02'
                 gold = GetItemCharges(UnitItemInSlot(tu,i))
             else
-                SetItemPosition(UnitItemInSlot(tu,i),GetUnitX(tu),GetUnitY(tu))
+                itid = GetItemTypeId(UnitItemInSlot(tu,i))
             endif
         end
 
-        pid = GetUnitAbilityLevel(tu,'AZ99')
-        if  pid > 0
-            pid = pid - 1
+        if  fbid > 0
+            GivePlayerMagicItem(pid,fbid)
+        endif
+        if  gold > 0
+            AdjustPlayerStateBJ(gold ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
+            UnitAddTextPlayer(tu,Player(pid),"+"+I2S(gold),255,202,0,255,90,0.023)
+        endif
 
-            if  fbid > 0
-                GivePlayerMagicItem(pid,fbid)
-            endif
-            if  gold > 0
-                AdjustPlayerStateBJ(gold ,Player(pid), PLAYER_STATE_RESOURCE_GOLD )
-                UnitAddTextPlayer(tu,Player(pid),"+"+I2S(gold),255,202,0,255,90,0.023)
-                
-            endif
+        if  itid > 0
+            UnitAddItemById(wu,itid)
         endif
 
 
@@ -576,7 +575,7 @@ scope DeathEvent initializer InitDeathEvent
 
         if  uid >= 'mg0A' and uid <= 'mg0H'
             
-            DropChallengeUnit(tu)
+            DropChallengeUnit(tu,wu)
         endif
 
 
