@@ -810,7 +810,7 @@ scope DeathEvent initializer InitDeathEvent
         if  AttackBOSSDeathCos == AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             AttackBOSSLastCos = 0
-            if  GameLevel >= 5 
+            if  GameLevel >= 5 and GameMode != 4
                 if  GetUnitTypeId(boss) == LastAttackBossId
                     if  LastBOSSOpera == false
                         CreateOperaLastBoss()

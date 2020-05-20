@@ -451,7 +451,6 @@ library AttackUnit uses DamageCode,PassCheckMission
         GameWinBoolJu = false
         if  GameMode == 4
             AttackUnitWNOver = 62  //最终波
-            LastAttackBossId = 'mb06'
             ShowUnit(gg_unit_np00_0093,false)
             GameMode4ShopUnit = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np49',-4082,11772,270)
             GameDefendUnit = GameMode4ShopUnit
@@ -737,8 +736,15 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 AddUnitVariation(u,AttackUnitVariationNumA)
                                 AddUnitVariation(u,AttackUnitVariationNumB)
                             endif
-                            if  puid[k] == LastAttackBossId
-                                AddBossAnger(u)
+                            if  GameMode == 4
+                                if  AttackUnitWNBoss == 6
+                                    LastAttackBossId = puid[k]
+                                    AddBossAnger(u)
+                                endif
+                            else
+                                if  puid[k] == LastAttackBossId
+                                    AddBossAnger(u)
+                                endif
                             endif
                         end
                     endif
