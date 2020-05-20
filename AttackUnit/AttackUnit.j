@@ -3,7 +3,7 @@ library AttackUnit uses DamageCode,PassCheckMission
     group AttackUnitGroup = CreateGroup()
     private group AttackUnitGroupCos = CreateGroup()
     private unit AttackUnitGroupCosUnit = null
-    private int GameModeTime = 0
+    private int GameMode4Time = 0
     unit array AttackUnitBoss
     int array AttackUnitInt[60][300]
     real array AttackUnitReal[60][300]
@@ -92,13 +92,13 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
 
     function GetGameMode4Time()->string
-        int min = GameModeTime/60
+        int min = GameMode4Time/60
         int s = 0
         if  min > 0
-            s = GameModeTime-60*min
+            s = GameMode4Time-60*min
             return I2S(min)+"分"+I2S(s)+"秒"
         else
-            s = GameModeTime
+            s = GameMode4Time
             return I2S(s)+"秒"
         endif
     endfunction
@@ -128,11 +128,11 @@ library AttackUnit uses DamageCode,PassCheckMission
                 if  GetGameMode4AttackUnitGroupCos() > (70+50*PlayerNum)
                     ExecuteFunc("GameOverEx")
                 endif
-                if  GameModeTime > 0
-                    GameModeTime = GameModeTime - 1
-                    if  GameModeTime > 1800
+                if  GameMode4Time > 0
+                    GameMode4Time = GameMode4Time - 1
+                    if  GameMode4Time > 1800
                         AttackTimerTextUI.SetText("|cffffe100准备时间|r")
-                        AttackTimerTextExUI.SetText("|cffffe100"+I2S(GameModeTime-1800)+"秒|r")
+                        AttackTimerTextExUI.SetText("|cffffe100"+I2S(GameMode4Time-1800)+"秒|r")
                     else
                         AttackTimerTextUI.SetText("|cff00ff00生存时间|r")
                         AttackTimerTextExUI.SetText("|cff00ff00"+GetGameMode4Time()+"|r")
@@ -401,7 +401,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         VariationTextUI.SetText("|cffffcc00怪物上限|r")
         VariationTextExUI.SetText("|cff00ff00/"+I2S(70+50*PlayerNum)+"|r")
 
-        GameModeTime = 1861
+        GameMode4Time = 1861
 
         for i = 4,7
             SetPlayerAllianceEx(i,10,true)
@@ -1583,6 +1583,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                 endif
             end
             if  GameMode == 4
+                if  GameMode4Time > 0
+                    GameMode4Time = 0
+                endif
                 ExecuteFunc("AttackUnitWinGameMode4")
             endif
         endif
