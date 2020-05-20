@@ -388,12 +388,12 @@ library AttackUnit uses DamageCode,PassCheckMission
         InitAttackUnitData(61,0,20,6,40,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(62,0,10,7,360,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
 
-        InitAttackUnitData(101,0,0,1,2,1,-4096,11776,'mb01','mb01','mb01','mb01',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(102,0,0,1,2,1,-4096,11776,'mb02','mb02','mb02','mb02',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(103,0,0,1,2,1,-4096,11776,'mb03','mb03','mb03','mb03',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(104,0,0,1,2,1,-4096,11776,'mb04','mb04','mb04','mb04',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(105,0,0,1,2,1,-4096,11776,'mb05','mb05','mb05','mb05',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(106,0,0,1,2,1,-4096,11776,'mb06','mb06','mb06','mb06',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(101,0,0,1,2,1,-4096,11776,'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(102,0,0,1,2,1,-4096,11776,'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(103,0,0,1,2,1,-4096,11776,'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(104,0,0,1,2,1,-4096,11776,'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(105,0,0,1,2,1,-4096,11776,'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(106,0,0,1,2,1,-4096,11776,'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),'mf0A'+GetRandomInt(0,7),-6016,13728,-2144,13728,-2144,9824,-6016,9824)
 
         ExecuteFunc("InitAttackUnitChallengeState")
 
@@ -404,8 +404,8 @@ library AttackUnit uses DamageCode,PassCheckMission
         GameModeTime = 1861
 
         for i = 4,7
-            SetPlayerAllianceEx(i,9,true)
             SetPlayerAllianceEx(i,10,true)
+            SetPlayerAllianceEx(i,11,true)
             SetPlayerAllianceEx(i,PLAYER_NEUTRAL_AGGRESSIVE,true)
             SetPlayerAllianceEx(i,PLAYER_NEUTRAL_PASSIVE,true)
         end
@@ -696,11 +696,6 @@ library AttackUnit uses DamageCode,PassCheckMission
         return uid
     endfunction
 
-    function SetGameMode4AttackUnitState(unit u)
-        SetUnitRealState(u,1,GetUnitRealState(u,1)*4)
-        SetUnitRealState(u,5,GetUnitRealState(u,5)*10)
-    endfunction
-
     function SetGameMode4AttackUnitStateValue(int pid,unit u)
         real add = 1 + GetUnitRealState(Pu[1],'AT8A')
         
@@ -816,6 +811,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                             GM4 = false
                             if  CountUnitsInGroup(AttackUnitGroup) <= 50 or GameMode == 4
                                 if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
+                                    BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                     u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                     GM4 = true
                                 else    
@@ -833,7 +829,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     endif
                                     if  ModuloInteger(AttackUnitWN,2) == 0 
                                         if  GM4 == true
-                                            SetGameMode4AttackUnitState(u)
+                                            BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100)+" 运行设置属性")
                                             IntUnitVariation(u)
                                             AddUnitVariation(u,AttackUnitVariationNumA)
                                         endif
@@ -909,6 +905,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                         for j = 1,unitnum
                             GM4 = false
                             if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
+                                BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100))
                                 u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                 GM4 = true
                             else    
@@ -926,7 +923,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 endif
                                 if  ModuloInteger(AttackUnitWN,2) == 0 
                                     if  GM4 == true
-                                        SetGameMode4AttackUnitState(u)
+                                        BJDebugMsg("出现精英怪 id"+YDWEId2S(puid[k]+0x100)+" 运行设置属性")
                                         IntUnitVariation(u)
                                         AddUnitVariation(u,AttackUnitVariationNumA)
                                     endif
