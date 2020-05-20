@@ -97,6 +97,20 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
         endif
     endfunction
 
+    function AttackSummonUnitGroupFunc()
+        int pid = 0
+        if  GetUnitAbilityLevel(GetEnumUnit(),'AZ99') > 0
+            pid = GetUnitAbilityLevel(GetEnumUnit(),'AZ99')-1
+        endif
+        if  GetUnitCurrentOrder(GetEnumUnit()) == 0 
+            IssuePointOrderById(GetEnumUnit(),851983,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+        endif
+    endfunction
+    
+    function AttackSummonUnitGroupTimer(int pid)
+        ForGroup(AttackSummonUnitGroup[pid],function AttackSummonUnitGroupFunc)
+    endfunction
+
     function AddWMSummonUnit(int pid,unit u)
         GroupAddUnit(WMSummonUnitGroup[pid],u)
     endfunction
