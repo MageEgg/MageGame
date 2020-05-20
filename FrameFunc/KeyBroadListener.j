@@ -66,6 +66,8 @@ scope KeyEvent initializer InitKeyBroadListener
                     PlayerClickPrize(pid,0)
                 elseif  GetUnitIntState(Pu[1],911) > 0
                     PlayerClickRunePrize(pid,1)
+                elseif  GetUnitIntState(Pu[1],931) > 0
+                    GivePlayerHeroDG(Pu[1],GetUnitIntState(Pu[1],931))
                 else
                     if  GetLocalPlayer() == Player(pid)
                         if  GetPlotFrameShow() ==  true

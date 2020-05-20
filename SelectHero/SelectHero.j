@@ -186,19 +186,21 @@ scope SelectHero
             Pu[1] = CreateUnit(Player(pid),uid,PlayerReviveX,PlayerReviveY,0)
                 
             if  GameMode == 4
+                
                 if  pid == 0
-                    x = -6016
-                    y = 13728
+                    x = -4960
+                    y = 13440
                 elseif  pid == 1
-                    x = -2144
-                    y = 13728
+                    x = -2240
+                    y = 12160
                 elseif  pid == 2
-                    x = -2144
-                    y = 9824
+                    x = -3648
+                    y = 9472
                 elseif  pid == 3
-                    x = -6016
-                    y = 9824
+                    x = -6336
+                    y = 10752
                 endif
+                
                 Pu[2] = CreateUnit(Player(pid),'hZ00',x,y,0)
             else
                 Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
@@ -299,17 +301,17 @@ scope SelectHero
             
             if  GameMode == 4
                 if  pid == 0
-                    x = -6016
-                    y = 13728
+                    x = -4960
+                    y = 13440
                 elseif  pid == 1
-                    x = -2144
-                    y = 13728
+                    x = -2240
+                    y = 12160
                 elseif  pid == 2
-                    x = -2144
-                    y = 9824
+                    x = -3648
+                    y = 9472
                 elseif  pid == 3
-                    x = -6016
-                    y = 9824
+                    x = -6336
+                    y = 10752
                 endif
                 Pu[2] = CreateUnit(Player(pid),'hZ00',x,y,0)
             else

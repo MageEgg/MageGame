@@ -85,6 +85,10 @@ scope FrameButton
                         PlayerClickRunePrize(pid,id-920)
                     elseif  id == 920//符印重随
                         ClickReRunePrizeFrame(pid)
+                    elseif  id == 930
+                        if  GetUnitIntState(Pu[1],931) > 0
+                            GivePlayerHeroDG(Pu[1],GetUnitIntState(Pu[1],931))
+                        endif
                     elseif  id >= 931 and id <= 933//道果奖励
                         PlayerClickDGPrize(pid,id-930)
                     elseif  id >= 941 and id <= 943//道果奖励
