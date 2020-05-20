@@ -127,8 +127,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                 endif
                 if  GetGameMode4AttackUnitGroupCos() > (70+50*PlayerNum)
                     ExecuteFunc("GameOverEx")
+                    AttackTimerTextUI.SetText("|cffff0000怪物溢出|r")
+                    AttackTimerTextExUI.SetText("|cffff0000游戏失败|r")
                 endif
-                if  GameMode4Time > 0
+                if  GameMode4Time > 0 and GameOverBoolJu == false
                     GameMode4Time = GameMode4Time - 1
                     if  GameMode4Time > 1800
                         AttackTimerTextUI.SetText("|cffffe100准备时间|r")
