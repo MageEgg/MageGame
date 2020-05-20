@@ -302,8 +302,14 @@ scope DeathEvent initializer InitDeathEvent
         for i3 = 0,5
             id = GetItemTypeId(UnitItemInSlot(Pu[1],i3))
             if  id >= 'I051' and id <= 'I055'
-                if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i3),1) == true
-                    PlayerUseGoldBox(pid,id)
+                if  GameMode == 4
+                    if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i3),2) == true
+                        PlayerUseGoldBox(pid,id)
+                    endif
+                else
+                    if  PlayerItemGrowSuperFunc(pid,UnitItemInSlot(Pu[1],i3),1) == true
+                        PlayerUseGoldBox(pid,id)
+                    endif
                 endif
                 exitwhen true
             endif
