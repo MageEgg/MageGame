@@ -153,9 +153,10 @@ scope ItemSystem initializer InitItemSystem
                 AddItemToStock(Pu[47],GameMode4ShopIdData[pid][i],1,1)
             end
    
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r：悬赏任务刷新了！")
+            
         endfunction
     //GetUnitIntState(u,'IX0A')
         function GameMode4MissionTimer(int Pid,int Index)
