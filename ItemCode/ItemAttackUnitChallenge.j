@@ -933,7 +933,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
                         //将魂奖励
                         AddUnitRealState(Pu[1],41,20)
                         AddUnitRealState(Pu[1],'AT8A',0.2)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r挑战成功，金币加成+|cffffcc005%|r！敌人攻击&生命提高|cffffcc0020%|r！")
+                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r挑战成功，金币加成+|cffffcc0020%|r！敌人攻击&生命提高|cffffcc0020%|r！")
                     endif
 
                 endif

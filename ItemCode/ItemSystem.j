@@ -189,6 +189,9 @@ scope ItemSystem initializer InitItemSystem
                     SetUnitY(u,y)
                     IssuePointOrderById(u,851983,GetUnitX(GameDefendUnit),GetUnitY(GameDefendUnit))
                     GroupAddUnit(AttackUnitGroup,u)
+                    if  num == 1
+                        SetUnitIntState(u,'IX0A',30)
+                    endif
                 end
 
                 time = time - 1
