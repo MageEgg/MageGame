@@ -113,7 +113,6 @@ library AttackUnit uses DamageCode,PassCheckMission
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
-        ExecuteFunc("AttackUnitWin")
     endfunction
 
     function ReflushAttackTimerUI()
@@ -141,6 +140,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 else
                     if  GameWinBoolJu == false
                         ExecuteFunc("AttackUnitWinGameMode4")
+                        ExecuteFunc("AttackUnitWin")
                     endif
                 endif
             else
@@ -894,52 +894,54 @@ library AttackUnit uses DamageCode,PassCheckMission
                 AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
             endif
         endif
-        for k = 0,3
-            if  IsPlaying(k) == true
-                puid[k] = AttackUnitID(k)[ordernum]
-                psx[k] = AttackUnitStartX(k)[ordernum]
-                psy[k] = AttackUnitStartY(k)[ordernum]
-                pex[k] = AttackUnitEndX(k)[ordernum]
-                pey[k] = AttackUnitEndY(k)[ordernum]
-                if  GameMode == 4
-                    puid[k] = GetGameMode4AttackUnitId()
-                endif
-                if  puid[k] != 0
-                    for j = 1,unitnum
-                        GM4 = false
-                        if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
-                            u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
-                            GM4 = true
-                        else    
-                            u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
-                        endif
-                        SetUnitXY(u,psx[k],psy[k])
-                        IssuePointOrderById(u,851983,pex[k],pey[k])
-                        GroupAddUnit(AttackUnitGroup,u)
-                        if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
-                            IntUnitVariation(u)
-                            AddUnitVariation(u,AttackUnitVariationNumA)
-                        elseif  GameMode == 4
-                            if  AttackUnitWN >= 20
-                                UnitAddAbility(u,'AXCA')
+        if  GameWinBoolJu == false
+            for k = 0,3
+                if  IsPlaying(k) == true
+                    puid[k] = AttackUnitID(k)[ordernum]
+                    psx[k] = AttackUnitStartX(k)[ordernum]
+                    psy[k] = AttackUnitStartY(k)[ordernum]
+                    pex[k] = AttackUnitEndX(k)[ordernum]
+                    pey[k] = AttackUnitEndY(k)[ordernum]
+                    if  GameMode == 4
+                        puid[k] = GetGameMode4AttackUnitId()
+                    endif
+                    if  puid[k] != 0
+                        for j = 1,unitnum
+                            GM4 = false
+                            if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
+                                u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
+                                GM4 = true
+                            else    
+                                u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
                             endif
-                            if  ModuloInteger(AttackUnitWN,2) == 0 
-                                if  GM4 == true
-                                    SetGameMode4AttackUnitState(u)
+                            SetUnitXY(u,psx[k],psy[k])
+                            IssuePointOrderById(u,851983,pex[k],pey[k])
+                            GroupAddUnit(AttackUnitGroup,u)
+                            if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
+                                IntUnitVariation(u)
+                                AddUnitVariation(u,AttackUnitVariationNumA)
+                            elseif  GameMode == 4
+                                if  AttackUnitWN >= 20
+                                    UnitAddAbility(u,'AXCA')
+                                endif
+                                if  ModuloInteger(AttackUnitWN,2) == 0 
+                                    if  GM4 == true
+                                        SetGameMode4AttackUnitState(u)
+                                        IntUnitVariation(u)
+                                        AddUnitVariation(u,AttackUnitVariationNumA)
+                                    endif
+                                elseif  ModuloInteger(AttackUnitWN,5) == 0
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 endif
-                            elseif  ModuloInteger(AttackUnitWN,5) == 0
-                                IntUnitVariation(u)
-                                AddUnitVariation(u,AttackUnitVariationNumA)
-                            endif
 
-                            SetGameMode4AttackUnitStateValue(k,u)
-                        endif
-                    end
+                                SetGameMode4AttackUnitStateValue(k,u)
+                            endif
+                        end
+                    endif
                 endif
-            endif
-        end
+            end
+        endif
         //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffff0000开始进攻！！！|r")
         if  AttackUnitWN >= AttackUnitWNOver - 2
             OpenAttackShowUI("UI_AttackShow_1.tga",2)
@@ -1575,6 +1577,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                     PlayerAttackUnitWin.execute(pid)
                 endif
             end
+            if  GameMode == 4
+                ExecuteFunc("AttackUnitWinGameMode4")
+            endif
         endif
     endfunction
     
