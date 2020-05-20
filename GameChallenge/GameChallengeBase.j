@@ -89,8 +89,12 @@ library GameChallengeBase initializer InitGameChallengeFunc uses DamageCode,Plot
     endfunction
 
     function AttackSummonUnitGroupDeathEvent(int pid,unit u)
-        FlushAttackSummonUnitGroup(pid)
-        BJDebugMsg("死亡清空所有召唤的练功房怪")
+        if  GameMode != 4
+            FlushAttackSummonUnitGroup(pid)
+            BJDebugMsg("死亡清空所有召唤的练功房怪")
+        else
+            BJDebugMsg("超爽模式不清除怪")
+        endif
     endfunction
 
     function AddWMSummonUnit(int pid,unit u)

@@ -426,6 +426,12 @@ library AttackUnit uses DamageCode,PassCheckMission
         SetPlayerAllianceEx(3,5,true)
         SetPlayerAllianceEx(3,6,true)
 
+        for pid = 0,3
+            if  IsPlaying(pid) == true
+                AttackSummonUnitGroup[pid] = CreateGroup()
+            endif
+        end
+
         ShowVariationUIEx(true)
     endfunction
 
