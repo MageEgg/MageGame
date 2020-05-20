@@ -103,6 +103,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         endif
     endfunction
 
+    function AttackUnitWinGameMode4()
+        KillAttackUnitGroup()
+        PauseAllUnits( true )
+        AttackTimerTextUI.SetText("|cffffe100游戏胜利|r")
+        AttackTimerTextExUI.SetText("|cffffe100游戏胜利|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+        ExecuteFunc("AttackUnitWin")
+    endfunction
+
     function ReflushAttackTimerUI()
         int cos = 0
         if  GameLevel > 0
@@ -126,15 +139,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                         AttackTimerTextExUI.SetText("|cff00ff00"+GetGameMode4Time()+"|r")
                     endif
                 else
-                    KillAttackUnitGroup()
-                    PauseAllUnits( true )
-                    AttackTimerTextUI.SetText("|cffffe100游戏胜利|r")
-                    AttackTimerTextExUI.SetText("|cffffe100游戏胜利|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,8,"|cffffcc00[系统]：|r|cff00ff00成功生存30分钟！！！|r")
+                    if  GameWinBoolJu == false
+                        ExecuteFunc("AttackUnitWinGameMode4")
+                    endif
                 endif
             else
                 if  AttackTimer != null
@@ -368,19 +375,18 @@ library AttackUnit uses DamageCode,PassCheckMission
         InitAttackUnitData(48,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(49,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(50,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(51,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(52,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(53,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(54,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(55,0,30,3,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(56,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(57,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(58,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(59,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(60,0,20,4,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(61,0,20,5,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(62,0,20,6,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
-        InitAttackUnitData(63,0,10,7,360,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(51,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(52,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(53,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(54,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(55,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(56,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(57,0,30,4,54,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(58,0,20,5,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(59,0,20,5,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(60,0,20,5,36,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(61,0,20,6,40,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
+        InitAttackUnitData(62,0,10,7,360,0.5,-4096,11776,0,0,0,0,-6016,13728,-2144,13728,-2144,9824,-6016,9824)
 
         InitAttackUnitData(101,0,0,1,2,1,-4096,11776,'mb01','mb01','mb01','mb01',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
         InitAttackUnitData(102,0,0,1,2,1,-4096,11776,'mb02','mb02','mb02','mb02',-6016,13728,-2144,13728,-2144,9824,-6016,9824)
@@ -398,16 +404,27 @@ library AttackUnit uses DamageCode,PassCheckMission
         GameModeTime = 1861
 
         for i = 4,7
-            SetPlayerAlliance( Player(i), Player(9), ALLIANCE_PASSIVE, true )
-            SetPlayerAlliance( Player(i), Player(10), ALLIANCE_PASSIVE, true )
-            SetPlayerAlliance( Player(i), Player(PLAYER_NEUTRAL_AGGRESSIVE), ALLIANCE_PASSIVE, true )
-            SetPlayerAlliance( Player(i), Player(PLAYER_NEUTRAL_PASSIVE), ALLIANCE_PASSIVE, true )
-
-            SetPlayerAlliance( Player(9),Player(i),ALLIANCE_PASSIVE, true )
-            SetPlayerAlliance( Player(10),Player(i),ALLIANCE_PASSIVE, true )
-            SetPlayerAlliance( Player(PLAYER_NEUTRAL_AGGRESSIVE),Player(i),ALLIANCE_PASSIVE, true )
-            SetPlayerAlliance( Player(PLAYER_NEUTRAL_PASSIVE),Player(i),ALLIANCE_PASSIVE, true )
+            SetPlayerAllianceEx(i,9,true)
+            SetPlayerAllianceEx(i,10,true)
+            SetPlayerAllianceEx(i,PLAYER_NEUTRAL_AGGRESSIVE,true)
+            SetPlayerAllianceEx(i,PLAYER_NEUTRAL_PASSIVE,true)
         end
+
+        SetPlayerAllianceEx(0,5,true)
+        SetPlayerAllianceEx(0,6,true)
+        SetPlayerAllianceEx(0,7,true)
+
+        SetPlayerAllianceEx(1,4,true)
+        SetPlayerAllianceEx(1,6,true)
+        SetPlayerAllianceEx(1,7,true)
+
+        SetPlayerAllianceEx(2,4,true)
+        SetPlayerAllianceEx(2,5,true)
+        SetPlayerAllianceEx(2,7,true)
+
+        SetPlayerAllianceEx(3,4,true)
+        SetPlayerAllianceEx(3,5,true)
+        SetPlayerAllianceEx(3,6,true)
 
         ShowVariationUIEx(true)
     endfunction
@@ -427,7 +444,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         AttackUnitWNBoss = 0
         GameWinBoolJu = false
         if  GameMode == 4
-            AttackUnitWNOver = 63  //最终波
+            AttackUnitWNOver = 62  //最终波
             LastAttackBossId = 'mb06'
             ShowUnit(gg_unit_np00_0093,false)
             GameMode4ShopUnit = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np49',-4082,11772,270)
@@ -791,7 +808,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                             GM4 = false
                             if  CountUnitsInGroup(AttackUnitGroup) <= 50 or GameMode == 4
                                 if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
-                                    u = CreateUnit(Player(k+4),puid[k]+0x100,pex[k],pey[k],0)
+                                    u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                                     GM4 = true
                                 else    
                                     u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
@@ -883,7 +900,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     for j = 1,unitnum
                         GM4 = false
                         if  GameMode == 4 and GetRandomReal(1,100) <= 3//超爽模式变精英怪
-                            u = CreateUnit(Player(k+4),puid[k]+0x100,pex[k],pey[k],0)
+                            u = CreateUnit(Player(10+GetRandomInt(0,1)),puid[k]+0x100,pex[k],pey[k],0)
                             GM4 = true
                         else    
                             u = CreateUnit(Player(10),puid[k],pex[k],pey[k],0)
