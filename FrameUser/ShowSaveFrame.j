@@ -265,6 +265,26 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGDD','RGDD',0,0,0,0)//通关异变N4 15次
         RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0)//通关异变N5 15次
         RegisterShowSaveFrameData(0,'RGDF','RGDF',0,0,0,0)//通关异变N6 15次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
+        RegisterShowSaveFrameData(0,'RGEA','RGEA',0,0,0,0)//通关超爽N1&地图3级
+        RegisterShowSaveFrameData(0,'RGEB','RGEB',0,0,0,0)//通关超爽N2&地图3级
+        RegisterShowSaveFrameData(0,'RGEC','RGEC',0,0,0,0)//通关超爽N3&地图5级
+        RegisterShowSaveFrameData(0,'RGED','RGED',0,0,0,0)//通关超爽N4&地图7级
+        RegisterShowSaveFrameData(0,'RGEE','RGEE',0,0,0,0)//通关超爽N5&地图9级
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
+        RegisterShowSaveFrameData(0,'RGFA','RGFA',0,0,0,0)//超爽N1通关5次&地图3级
+        RegisterShowSaveFrameData(0,'RGFB','RGFB',0,0,0,0)//超爽N2通关5次&地图3级
+        RegisterShowSaveFrameData(0,'RGFC','RGFC',0,0,0,0)//超爽N3通关5次&地图5级
+        RegisterShowSaveFrameData(0,'RGFD','RGFD',0,0,0,0)//超爽N4通关5次&地图7级
+        RegisterShowSaveFrameData(0,'RGFE','RGFE',0,0,0,0)//超爽N5通关5次&地图9级
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         
 

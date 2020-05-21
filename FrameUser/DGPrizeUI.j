@@ -167,7 +167,7 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         int num = GetUnitIntState(Pu[1],150)
         if  num < MaxHeroLevel
 
-            BJDebugMsg(GetTypeIdIcon(id))
+            //BJDebugMsg(GetTypeIdIcon(id))
             num = num + 1
             SetUnitIntState(Pu[1],150+num,id)
             SetUnitIntState(Pu[1],150,num)
@@ -257,21 +257,22 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         if  id == 0
             //开道果
 
-            use = GetOpenDgUse(pid,index)
-            if  HeroExExp >= use
-                HeroExExp = HeroExExp - use
-                SetUnitIntState(Pu[1],930+index,GetNewDGPrize(pid))
-                if  GetLocalPlayer() == Player(pid)
-                    Button.show = true
-                    ReDGPrizeFrame(pid)
-                endif
-                ReHeroXpBar(pid)
+            if  GetUnitIntState(Pu[1],931) > 0
+                use = GetOpenDgUse(pid,index)
+                if  HeroExExp >= use
+                    HeroExExp = HeroExExp - use
+                    SetUnitIntState(Pu[1],930+index,GetNewDGPrize(pid))
+                    if  GetLocalPlayer() == Player(pid)
+                        ReDGPrizeFrame(pid)
+                    endif
+                    ReHeroXpBar(pid)
 
-                if  GetUnitIntState(Pu[1],931) > 0 and GetUnitIntState(Pu[1],932) > 0 and GetUnitIntState(Pu[1],933) > 0
-                    DzFrameShow(BUTTON_Back[940][0],true)
+                    if  GetUnitIntState(Pu[1],931) > 0 and GetUnitIntState(Pu[1],932) > 0 and GetUnitIntState(Pu[1],933) > 0
+                        DzFrameShow(BUTTON_Back[940][0],true)
+                    endif
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验不足|cffffcc00"+I2S(use)+"|r，无法开启！")
                 endif
-            else
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验不足|cffffcc00"+I2S(use)+"|r，无法开启！")
             endif
         else
             //激活道果
@@ -290,6 +291,9 @@ library DGPrizeFrame uses GameFrame,HeroFrameUI
         if  id >= 'IJ01' and id <= 'IJ15'
             //给一个 防止上一个窗口残留
             GivePlayerHeroDG(Pu[1],id)
+            if  GetLocalPlayer() == Player(pid)
+                Button.show = false
+            endif
         endif
 
         int id1 = GetNewDGPrize(pid)

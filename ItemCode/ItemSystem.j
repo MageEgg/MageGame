@@ -885,11 +885,11 @@ scope ItemSystem initializer InitItemSystem
                     
                     OpenNewChallenge1(pid,GetSellingUnit())
                 elseif  itemid == 'IZ72'
-                    ReChallengePrize(GetSellingUnit())
+                    ReChallengePrize(pid,GetSellingUnit())
                 elseif  itemid == 'IZ73'
                     if  GetPlayerFood(pid) >= 3
                         UsePlayerFood(pid,3)
-                        ReChallengePrize(GetSellingUnit())
+                        ReChallengePrize(pid,GetSellingUnit())
                     else
                         AddItemToStock( GetSellingUnit(),itemid, 1, 1 )
                         DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r钻石不足|cffff00003|r！")

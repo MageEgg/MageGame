@@ -40,7 +40,7 @@ piece DzGameFunc
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00超爽模式：|r")
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难1  |r"+I2S(GetDzPlayerData(pid,21,2))+"/"+I2S(DzPlayerInitSuperTGCos[1])+"  |cffffcc00难2  |r"+I2S(GetDzPlayerData(pid,21,3))+"/"+I2S(DzPlayerInitSuperTGCos[2])+"  |cffffcc00难3  |r"+I2S(GetDzPlayerData(pid,21,4))+"/"+I2S(DzPlayerInitSuperTGCos[3]))
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难4  |r"+I2S(GetDzPlayerData(pid,21,5))+"/"+I2S(DzPlayerInitSuperTGCos[4]))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难4  |r"+I2S(GetDzPlayerData(pid,21,5))+"/"+I2S(DzPlayerInitSuperTGCos[4])+"  |cffffcc00难5  |r"+I2S(GetDzPlayerData(pid,21,6))+"/"+I2S(DzPlayerInitSuperTGCos[5]))
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“JF”查看游戏积分|r")
         else

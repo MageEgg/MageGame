@@ -1264,15 +1264,18 @@ library AttackUnit uses DamageCode,PassCheckMission
         DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[作者]：|r黑心，不对，|cff00ff00《良心商店》|r刷新啦！！！！")
     endfunction
 
-    function ReChallengePrize(unit wu)
+    function ReChallengePrize(int pid,unit wu)
+        int gold = 0
         for i = 0,5
             if  UnitItemInSlot(wu,i)!=null
                 RemoveItem(UnitItemInSlot(wu,i))
             endif
         end
+
+        gold = R2I(I2R((NewChallengeNum1+2)*2500) * GetRandomReal(0.6,1.4))
         
         bj_lastCreatedItem = UnitAddItemById(wu,'IC02')
-        SetItemCharges(bj_lastCreatedItem,GetRandomInt(5000,20000))
+        SetItemCharges(bj_lastCreatedItem,gold)
         
         UnitAddPoolItem(wu,19)
         if  AttackUnitWN > 40
@@ -1314,7 +1317,8 @@ library AttackUnit uses DamageCode,PassCheckMission
                     x = GetRandomReal(-6144,-5792)
                     y = GetRandomReal(11552,11936)
                 endif
-                u = CreateUnit(Player(pid+4),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
+                
+                u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
                 
                 AddAttackSummonUnit.execute(pid,u)
 
@@ -1331,7 +1335,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 AddItemToStock( u,'IZ73', 1, 1 )
                 EXSetUnitMoveType( u, 0x01 )
 
-                ReChallengePrize(u)
+                ReChallengePrize(pid,u)
 
             endif
         end
@@ -1359,7 +1363,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             endif
         
 
-        SetUnitOwner(tu,Player(PLAYER_NEUTRAL_AGGRESSIVE),true)
+        SetUnitOwner(tu,Player(pid+4),true)
         UnitPauseTimedLife( tu, true )
         UnitRemoveAbility(tu,'Avul')
         UnitRemoveAbility(tu,'Asid')
@@ -1476,7 +1480,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                     endif
                 end     
 
-                if  GameMode != 4
+                if  GameSaveClose == 0
                     if  ModuloInteger(AttackUnitWN,3) == 0
                         ReExShop()
                     endif

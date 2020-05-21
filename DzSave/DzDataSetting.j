@@ -92,11 +92,11 @@ library DzDataSetting uses DzBase
         DzPlayerInitVariationTGCos[10] = 8*/
 
         //超爽
-        DzPlayerInitSuperTGCos[1] = 1
-        DzPlayerInitSuperTGCos[2] = 1
-        DzPlayerInitSuperTGCos[3] = 1
-        DzPlayerInitSuperTGCos[4] = 1
-        DzPlayerInitSuperTGCos[5] = 0
+        DzPlayerInitSuperTGCos[1] = 5
+        DzPlayerInitSuperTGCos[2] = 5
+        DzPlayerInitSuperTGCos[3] = 5
+        DzPlayerInitSuperTGCos[4] = 5
+        DzPlayerInitSuperTGCos[5] = 5
         DzPlayerInitSuperTGCos[6] = 0
         DzPlayerInitSuperTGCos[7] = 0
         DzPlayerInitSuperTGCos[8] = 0

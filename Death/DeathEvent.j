@@ -109,11 +109,10 @@ scope DeathEvent initializer InitDeathEvent
                 time = time - 1
             endif
         endif
-
+        PTimer[0] = CreateTimer()
         PlayerDeathBool = true
         PetDeathPosition(pid)
         SetHandleData(PTimer[0],pid)
-        PTimer[0] = CreateTimer()
         Pdia[0] = CreateTimerDialog(PTimer[0])
         TimerDialogSetTitle(Pdia[0],GetPN(pid)+GetUnitName(Pu[1])+"复活时间:" )
         TimerDialogDisplay(Pdia[0], true)
