@@ -967,7 +967,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             end
         endif
         //DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffff0000开始进攻！！！|r")
-        if  AttackUnitWN >= AttackUnitWNOver - 2
+        if  AttackUnitWN >= AttackUnitWNOver - 2 and GameMode != 4
             OpenAttackShowUI("UI_AttackShow_1.tga",2)
 
         else
