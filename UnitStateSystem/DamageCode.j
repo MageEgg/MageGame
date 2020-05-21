@@ -53,9 +53,6 @@ library DamageCode uses UnitStateSet
     function GetUnitMsState(unit wu)->real
         real s = GetUnitRealState(wu,11)
         int lv = 0
-        if  s > 100
-            s = 100
-        endif
         return s
     endfunction
     function GetUnitMs(unit wu)->real

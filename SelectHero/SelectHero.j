@@ -202,6 +202,11 @@ scope SelectHero
                 endif
                 
                 Pu[2] = CreateUnit(Player(pid),'hZ00',x,y,0)
+                UnitAddAbility(Pu[2],'AZC7')
+                UnitAddAbility(Pu[2],'AZC8')
+                UnitMakeAbilityPermanent(Pu[1],true,'AZC7')
+                UnitMakeAbilityPermanent(Pu[1],true,'AZC8')
+
             else
                 Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             endif
@@ -314,6 +319,10 @@ scope SelectHero
                     y = 10752
                 endif
                 Pu[2] = CreateUnit(Player(pid),'hZ00',x,y,0)
+                UnitAddAbility(Pu[2],'AZC7')
+                UnitAddAbility(Pu[2],'AZC8')
+                UnitMakeAbilityPermanent(Pu[1],true,'AZC7')
+                UnitMakeAbilityPermanent(Pu[1],true,'AZC8')
             else
                 Pu[2] = CreateUnit(Player(pid),'hZ00',AttackRoomPostion[pid][1],AttackRoomPostion[pid][2],0)
             endif

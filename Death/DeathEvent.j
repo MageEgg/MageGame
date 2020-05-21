@@ -87,13 +87,15 @@ scope DeathEvent initializer InitDeathEvent
         DestroyTimerDialog(Pdia[0])
         PauseTimer(GetExpiredTimer())
         DestroyTimer(GetExpiredTimer())
+        Pdia[0] = null
+        PTimer[0] = null
     endfunction
 
 
 
 
     function RevivePlayerHero(int pid)
-        timer wt = CreateTimer()
+        
         int time = 8
 
         if  GameSaveClose == 0
@@ -110,12 +112,12 @@ scope DeathEvent initializer InitDeathEvent
 
         PlayerDeathBool = true
         PetDeathPosition(pid)
-        SetHandleData(wt,pid)
-        Pdia[0] = CreateTimerDialog(wt)
+        SetHandleData(PTimer[0],pid)
+        PTimer[0] = CreateTimer()
+        Pdia[0] = CreateTimerDialog(PTimer[0])
         TimerDialogSetTitle(Pdia[0],GetPN(pid)+GetUnitName(Pu[1])+"复活时间:" )
         TimerDialogDisplay(Pdia[0], true)
-        TimerStart(wt,time,false,function RevivePlayerHeroTimer)
-        wt = null
+        TimerStart(PTimer[0],time,false,function RevivePlayerHeroTimer)
     endfunction
     
     

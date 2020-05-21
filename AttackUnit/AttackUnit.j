@@ -853,7 +853,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 elseif  GameMode == 4
                                     UnitAddAbility(u,'AGM4')
                                     SetUnitAbilityLevel(u,'AGM4',k+1)
-                                    if  AttackUnitWN >= 20
+                                    if  AttackUnitWN >= 20//裂变的
                                         UnitAddAbility(u,'AXCA')
                                     endif
                                     if  GM4 == true
