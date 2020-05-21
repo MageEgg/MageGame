@@ -2,7 +2,7 @@ library GameFrame uses FRAME
     int array BUTTON_Button //按钮
     int array BUTTON_Model //模型
     int array BUTTON_Text //文字
-    int array BUTTON_Back[1000][5] //贴图
+    int array BUTTON_Back[1500][5] //贴图
 
     function FrameSetScriptByExecute(int frame,integer eventId,int framenumber,int Type)
         InitFrame(frame,framenumber,Type)

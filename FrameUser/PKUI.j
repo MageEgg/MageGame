@@ -85,8 +85,6 @@ library PKUI uses GameFrame
                     index = 800 + i + pid*10
                     DzFrameSetModel( BUTTON_Model[index], GetTypeIdIcon(HeroDGId[pid][i]), 1, 0 )
                 end
-            
-
             endif
         end
         

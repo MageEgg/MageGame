@@ -249,7 +249,10 @@ library GameUIInit initializer init uses OriginGameFrame
 
         ExecuteFunc("InitAttackTipUI")
 
+        ExecuteFunc("InitPKRankingFrame")
+
         ExecuteFunc("PKUIInit")
+        
 
         ExecuteFunc("TipsToolInit")
 
