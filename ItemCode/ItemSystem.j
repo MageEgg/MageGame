@@ -730,9 +730,15 @@ scope ItemSystem initializer InitItemSystem
             PlayerUseIncEquipGem(u1,itemid)
         
         elseif  itemid == 'IP06'
-            if  PlayerReRandomPrize(pid,1.0) == false
-                UnitAddItemById(u1,itemid)
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前没有副本奖励选项！")
+            if  GameMode == 4
+                i1 = GetRandomInt(8,28)
+                AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,i1)
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r恭喜你获得玄铁x"+I2S(i1)+"！")
+            else
+                if  PlayerReRandomPrize(pid,1.0) == false
+                    UnitAddItemById(u1,itemid)
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前没有副本奖励选项！")
+                endif
             endif
         elseif  itemid == 'IP07'
             if  PlayerReRuneRandomPrize(pid) == false
@@ -836,16 +842,26 @@ scope ItemSystem initializer InitItemSystem
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
             endif
         elseif  itemid >= 'ID11' and itemid <= 'ID20'//道果
-            if  GetUnitIntState(Pu[1],150) < 10
-                if  DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]) == 1
-                    AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00',0)
+            if  GameMode == 4
+                if  itemid < 'ID20'
+                    i1 = (itemid - 'ID10') * 10000
+                else
+                    i1 = (itemid - 'ID20' + 10) * 10000
+                endif
+                HeroAddExp(Pu[1],i1)
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r道果使用成功，经验增加"+I2S(i1)+"点！")
+            else
+                if  GetUnitIntState(Pu[1],150) < 10
+                    if  DzGetUnitNeededXP(Pu[1],GetHeroLevel(Pu[1])) -  GetHeroXP(Pu[1]) == 1
+                        AddPlayerImmortalFruit(Pu[1],itemid - 'ID10' + 'IJ00',0)
+                    else
+                        UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
+                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r境界经验不足，无法晋升境界！")
+                    endif
                 else
                     UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
-                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r境界经验不足，无法晋升境界！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
                 endif
-            else
-                UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
-                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r等级已满，无法晋升境界！")
             endif
         endif
         

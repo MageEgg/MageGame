@@ -15,7 +15,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     private int array Page
     private int array Step
 
-    int array ShowSaveData[10][800]
+    int array ShowSaveData[10][1600]
 
     
 
@@ -38,7 +38,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     endfunction
     //获取需求科技
     function GetShowSaveTech(int page,int index,int num)->int
-        return ShowSaveData[page][100*num+index]
+        return ShowSaveData[page][200*num+index]
     endfunction
 
 
@@ -46,11 +46,11 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     function RegisterShowSaveFrameData(int page,int id,int use1,int use2,int use3,int use4,int use5)
         int index = ShowSaveData[page][0] + 1
         ShowSaveData[page][index] = id
-        ShowSaveData[page][100+index] = use1
-        ShowSaveData[page][200+index] = use2
-        ShowSaveData[page][300+index] = use3
-        ShowSaveData[page][400+index] = use4
-        ShowSaveData[page][500+index] = use5
+        ShowSaveData[page][200+index] = use1
+        ShowSaveData[page][400+index] = use2
+        ShowSaveData[page][600+index] = use3
+        ShowSaveData[page][800+index] = use4
+        ShowSaveData[page][1200+index] = use5
         ShowSaveData[page][0] = index
     endfunction
     //初始化函数

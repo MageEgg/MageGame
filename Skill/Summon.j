@@ -52,23 +52,25 @@ library Summon uses AbilityUI,OtherDamageTimer
         return num
     endfunction
 
-    function Z103DamageEx(unit wu,unit u,real damage)
+    function Z103DamageEx(unit wu,real x,real y,real damage)
         IndexGroup g = IndexGroup.create()
-        GroupEnumUnitsInRange(g.ejg,GetUnitX(u),GetUnitY(u),600,GroupNormalNoStr(GetOwningPlayer(wu),"Abilities\\Spells\\Human\\Feedback\\ArcaneTowerAttack.mdl","origin",0))
+        GroupEnumUnitsInRange(g.ejg,x,y,600,GroupNormalNoStr(GetOwningPlayer(wu),"Abilities\\Spells\\Human\\Feedback\\ArcaneTowerAttack.mdl","origin",0))
         UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
         g.destroy()
     endfunction
 
-    function Z103Damage(unit wu,unit tu,real dam)
+    function Z103Damage(unit wu,real sx,real sy,real dam)
         unit u1 = wu
-        unit u2 = tu
         real damage = dam
-        Z103DamageEx(u1,u2,damage)
+        real x = sx
+        real y = sy
+        int time = 7
+        Z103DamageEx(u1,x,y,damage)
         TimerStart(0.5,true)
         {
-            if  GetUnitState(u2, UNIT_STATE_LIFE) >= 0.4 and GetUnitTypeId(u2) == 'z103'
-                Z103DamageEx(u1,u2,damage)
-            else
+            time = time - 1
+            Z103DamageEx(u1,x,y,damage)
+            if  time <= 0
                 endtimer
             endif
             flush locals
@@ -107,8 +109,11 @@ library Summon uses AbilityUI,OtherDamageTimer
 
 
     function HeroSpellSummon(unit u,real x,real y,integer id,real damage)
+        int pid = GetPlayerId(GetOwningPlayer(u))
         integer num = GetHeroSummonNum(u)
         unit u2 = null
+        real x2 = 0
+        real y2 = 0
         if  id == 'z102'
             num = num + 1
             for k = 1,num
@@ -129,16 +134,20 @@ library Summon uses AbilityUI,OtherDamageTimer
         if  id == 'z103'
             num = num + 1
             if  num == 1
-                u2 = CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u))
-                SetUnitRealState(u2,1,damage)
-                UnitApplyTimedLife(u2,'BHwe',4)
-                Z103Damage(u,u2,damage)    
+                Z103Damage(u,x,y,damage)
+                if  ShowEffect == true
+                    UnitApplyTimedLife(CreateUnit(GetOwningPlayer(u),id,x,y,GetUnitFacing(u)),'BHwe',4)
+                endif
             else
                 for k = 1,num
-                    u2 = CreateUnit(GetOwningPlayer(u),id,x+GetRandomReal(-125,125),y+GetRandomReal(-125,125),GetRandomReal(0,360))
-                    SetUnitRealState(u2,1,damage)
-                    UnitApplyTimedLife(u2,'BHwe',4)
-                    Z103Damage(u,u2,damage)               
+                    x2 = x+GetRandomReal(-125,125)
+                    y2 = y+GetRandomReal(-125,125)
+                    Z103Damage(u,x2,y2,damage)
+
+                    if  ShowEffect == true
+                        UnitApplyTimedLife(CreateUnit(GetOwningPlayer(u),id,x2,y2,GetRandomReal(0,360)),'BHwe',4)
+                    endif
+                    
                 end
             endif
         endif

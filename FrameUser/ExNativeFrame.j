@@ -287,7 +287,7 @@ library ExNativeFrame uses GameFrame
     function ReReHeroFrameUI(int pid)
         int id = 0
         if  GetLocalPlayer() == Player(pid)
-            for i = 1,8
+            for i = 1,12
                 id = ReHeroPool[pid][i]
                 if  id > 0
                     DzFrameSetTexture(BUTTON_Back[950+i][0],GetTypeIdIcon(id),0)
@@ -372,13 +372,13 @@ library ExNativeFrame uses GameFrame
         //控件设置
         ReHeroButton.frameid = FRAME.Tag("BUTTON","ReHero",GameUI,ReHeroButton)
         ReHeroButton.SetPoint(0,GameUI,0,0.13,-0.05)
-        ReHeroButton.SetSize(0.173,0.142)
+        ReHeroButton.SetSize(0.173,0.186)
         //0.23
 
         //背景设置
         ReHeroBack.frameid = FRAME.Tag("BACKDROP","ReHero",ReHeroButton.frameid,ReHeroBack)
         ReHeroBack.SetPoint(4,ReHeroButton.frameid,4,0,0)
-        ReHeroBack.SetSize(0.173,0.142)
+        ReHeroBack.SetSize(0.173,0.186)
         ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
 
         CreateButton(950,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.01,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
@@ -388,7 +388,7 @@ library ExNativeFrame uses GameFrame
         ReHeroNumber.SetText("1")
 
         for hx = 0,3
-            for hy = 0,1
+            for hy = 0,2
                 index = hy * 4 + hx + 1
                 CreateButton(950+index,ReHeroButton.frameid,TYPE_FUNC,0,ReHeroButton.frameid,0,0.01+0.04*hx,-0.01-hy*0.044,0.033,0.033,"war3mapImported\\alpha.tga")
                 CreateText(950+index,ReHeroButton.frameid,"centertext008",1,7,0.0,-0.002,"")

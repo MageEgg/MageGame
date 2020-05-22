@@ -9154,6 +9154,8 @@ endfunction
 
 
 
+
+
 function InitTypeStateNanduExPlus5()
 BJDebugMsg("注册超爽难度5属性")
 InitTypeStateEx('m001',74,63)

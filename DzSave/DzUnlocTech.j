@@ -669,17 +669,17 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
         set UnlocTechData_index3 = UnlocTechData_index
 
-        InitUnlocTechConditions('RGEA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,2,5)),0,0,0)
-        InitUnlocTechConditions('RGEB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,3,5)),0,0,0)
-        InitUnlocTechConditions('RGEC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(21,4,5)),0,0,0)
-        InitUnlocTechConditions('RGED',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(21,5,5)),0,0,0)
-        InitUnlocTechConditions('RGEE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(21,6,5)),0,0,0)
+        InitUnlocTechConditions('RGEA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,2,1)),0,0,0)
+        InitUnlocTechConditions('RGEB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,3,1)),0,0,0)
+        InitUnlocTechConditions('RGEC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(21,4,1)),0,0,0)
+        InitUnlocTechConditions('RGED',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(21,5,1)),0,0,0)
+        InitUnlocTechConditions('RGEE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(21,6,1)),0,0,0)
 
-        InitUnlocTechConditions('RGFA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,2,12)),0,0,0)
-        InitUnlocTechConditions('RGFB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,3,12)),0,0,0)
-        InitUnlocTechConditions('RGFC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(21,4,12)),0,0,0)
-        InitUnlocTechConditions('RGFD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(21,5,12)),0,0,0)
-        InitUnlocTechConditions('RGFE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(21,6,12)),0,0,0)
+        InitUnlocTechConditions('RGFA',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,2,5)),0,0,0)
+        InitUnlocTechConditions('RGFB',InitCond1(1,Unloc_Type_Level,3),InitCond2(0,Unloc_Type_JF,GameDataList(21,3,5)),0,0,0)
+        InitUnlocTechConditions('RGFC',InitCond1(1,Unloc_Type_Level,5),InitCond2(0,Unloc_Type_JF,GameDataList(21,4,5)),0,0,0)
+        InitUnlocTechConditions('RGFD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(21,5,5)),0,0,0)
+        InitUnlocTechConditions('RGFE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(21,6,5)),0,0,0)
 
 
 

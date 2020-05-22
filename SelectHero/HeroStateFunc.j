@@ -411,6 +411,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
         if  GetPlayerTechCount(Player(pid),'RJ2N',true) > 0
             AddPlayerFoodByIndex(pid,2,2)
         endif
+        if  GetPlayerTechCount(Player(pid),'RGGB',true) > 0
+            AddPlayerFoodByIndex(pid,2,2)
+        endif
+
+        
 
         
         

@@ -313,7 +313,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RGDH',"异变N8通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB08.BLP","")
         call InitTypeIdStrings('RGDI',"异变N9通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB09.BLP","")
         call InitTypeIdStrings('RGEA',"通关超爽N1","ReplaceableTextures\\CommandButtons\\BTNCJCS01.BLP","")
-        call InitTypeIdStrings('RGEB',"通关超爽N2","ReplaceableTextures\\CommandButtons\\BTNCJCS02.BLP","")
+        call InitTypeIdStrings('RGEB',"通关超爽N2","ReplaceableTextures\\CommandButtons\\BTNCJCS02.BLP","技能吸血+1%")
         call InitTypeIdStrings('RGEC',"通关超爽N3","ReplaceableTextures\\CommandButtons\\BTNCJCS03.BLP","")
         call InitTypeIdStrings('RGED',"通关超爽N4","ReplaceableTextures\\CommandButtons\\BTNCJCS04.BLP","")
         call InitTypeIdStrings('RGEE',"通关超爽N5","ReplaceableTextures\\CommandButtons\\BTNCJCS05.BLP","承受暴击伤害降低8%")

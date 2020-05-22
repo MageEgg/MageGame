@@ -108,6 +108,10 @@ scope DeathEvent initializer InitDeathEvent
             if  GetPlayerTechCount(Player(pid),'RGAJ',true) > 0
                 time = time - 1
             endif
+            if  GetPlayerTechCount(Player(pid),'RGFF',true) > 0
+                time = time - 1
+            endif
+            
         endif
         PTimer[0] = CreateTimer()
         PlayerDeathBool = true
@@ -899,6 +903,12 @@ scope DeathEvent initializer InitDeathEvent
             if  GetPlayerTechCount(GetOwningPlayer(wu),'RX4E',true) > 0
                 gl = gl + 5
             endif
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RGGE',true) > 0
+                gl = gl + 5
+            endif
+
+
+            
         endif
         
         if  GetRandomReal(1,100) <= gl

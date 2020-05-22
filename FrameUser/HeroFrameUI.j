@@ -671,7 +671,7 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
 
     function HeroFrameUIInit()
-        
+
         
         Back = FRAME.create()   //注册主背景
 
@@ -716,6 +716,9 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         DzFrameClearAllPoints(GetFrameHeroPanelIcon())
         DzFrameSetPoint(GetFrameHeroPanelIcon(),3,GetFrameHeroPanel(),3,0.004,0.0005)
         DzFrameSetSize(GetFrameHeroPanelIcon(),0.021,0.063)
+
+
+        
         
         
         

@@ -358,7 +358,14 @@ library SystemCodes uses ServerTime,Define1
     endfunction
 
 
-    
+    //设置物品说明Ex
+
+    function SetItemTipsEx(int itid,string tip)
+        bj_lastCreatedItem = CreateItem(itid,0,0)
+        YDWESetItemDataString(itid,3,tip)
+        RemoveItem(bj_lastCreatedItem)
+        bj_lastCreatedItem = null
+    endfunction
 
 
     //物品处理

@@ -359,6 +359,10 @@ scope SelectHero
                 if  GetPlayerTechCount(Player(pid),'RG0G',true) > 0
                     HeroReNumber = HeroReNumber + 1
                 endif
+                if  GetPlayerTechCount(Player(pid),'RGFA',true) > 0
+                    HeroReNumber = HeroReNumber + 1
+                endif
+                
                 if  DzAPI_Map_Returns(Player(pid),16) == true
                     HeroReNumber = HeroReNumber + 1
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[系统]：|r"+GetPlayerNameOfColor(pid)+"收藏地图，重随英雄次数+1")
@@ -492,6 +496,28 @@ scope SelectHero
         endif
     endfunction
     
+
+    
+    function Mode4SetItemFunc()
+        //物品池删除部分道具
+        ItemPoolRemoveItemType( ItemPool[15], 'IN10' )
+        SetItemTipsEx('ID11',"当前为超爽模式，使用后增加英雄|cffffcc0010000|r点经验")
+        SetItemTipsEx('ID12',"当前为超爽模式，使用后增加英雄|cffffcc0020000|r点经验")
+        SetItemTipsEx('ID13',"当前为超爽模式，使用后增加英雄|cffffcc0030000|r点经验")
+        SetItemTipsEx('ID14',"当前为超爽模式，使用后增加英雄|cffffcc0040000|r点经验")
+        SetItemTipsEx('ID15',"当前为超爽模式，使用后增加英雄|cffffcc0050000|r点经验")
+        SetItemTipsEx('ID16',"当前为超爽模式，使用后增加英雄|cffffcc0060000|r点经验")
+        SetItemTipsEx('ID17',"当前为超爽模式，使用后增加英雄|cffffcc0070000|r点经验")
+        SetItemTipsEx('ID18',"当前为超爽模式，使用后增加英雄|cffffcc0080000|r点经验")
+        SetItemTipsEx('ID19',"当前为超爽模式，使用后增加英雄|cffffcc0090000|r点经验")
+        SetItemTipsEx('ID20',"当前为超爽模式，使用后增加英雄|cffffcc00100000|r点经验")
+
+        SetItemTipsEx('IP06',"当前为超爽模式，使用后玄铁|Cffffc926+8~28|r！")
+
+        
+
+
+    endfunction 
     
     function InitSelectHero()
         for pid = 0,3
@@ -512,6 +538,10 @@ scope SelectHero
         if  DzConA[4] == 1
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np39',-5110,-2862,270)
             CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc39',-5110,-3090,270)
+        endif
+
+        if  GameMode == 4
+            Mode4SetItemFunc()
         endif
 
     endfunction
