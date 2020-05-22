@@ -1582,6 +1582,18 @@ library AttackUnit uses DamageCode,PassCheckMission
                 MissionAddNumFunc(pid,23,1) //任务
             endif
 
+            if  DzConA[25] == 1
+                if  GetDzPlayerData(pid,18,8) < 2
+                    AddDzPlayerData(pid,18,6,1)
+                    AddDzPlayerData(pid,18,8,1)
+                    
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000通关成功！棒棒糖+1！|r")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000通关成功！(棒棒糖今日已达上限)|r")
+                endif
+            endif
+            
+
             SaveDzRoom(pid) //刷新房间显示
 
             BuryingPointData(pid,1,GameLevel,1)//通关埋点

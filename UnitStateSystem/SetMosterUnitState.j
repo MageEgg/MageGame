@@ -282,6 +282,8 @@ library UnitStateSet uses State
             SetUnitRealState(wu,5,700)
         elseif  id == 'uh02'
             SetUnitRealState(wu,5,100)
+        elseif  id == 'uh03'
+            SetUnitRealState(wu,5,200)
         elseif  id >= 'u0DA' and id <= 'u0DZ'
             //周天星辰阵
             SetMosterUnitState(wu)

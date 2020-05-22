@@ -108,7 +108,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
         RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
         RegisterShowSaveFrameData(2,'RY3H','RY3H',0,0,0,0)//方天画戟
-        RegisterShowSaveFrameData(2,'RY3I','RY3I',0,0,0,0)//异变之刃
+        RegisterShowSaveFrameData(2,'RY3I','RY3I',0,0,0,0)//异变之刃    
+        RegisterShowSaveFrameData(2,'RY3K','RY3K',0,0,0,0)//糖葫芦
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
@@ -123,7 +124,11 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0)//魅惑之翼
         RegisterShowSaveFrameData(2,'RY2J','RY2J',0,0,0,0)//神灵之翼
         RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0)//断罪神灵
+        RegisterShowSaveFrameData(2,'RY2K','RY2K',0,0,0,0)//风筝
+
         RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0)//GM-小咸鱼
+        RegisterShowSaveFrameData(5,'RP1C','RP1C',0,0,0,0)//福娃
+        
 
         
         
@@ -533,6 +538,9 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                     elseif  sid == 'AP1B'
                         DzSetUnitModel(Pu[2],"moster_sumo.mdl")
                         SetUnitScale(Pu[2],1,1,1)
+                    elseif  sid == 'AP1C'
+                        DzSetUnitModel(Pu[2],"AttackRoom_renshenwawaA1.mdl")
+                        SetUnitScale(Pu[2],0.8,0.8,0.8)
                     endif
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r助手皮肤替换成功！")
                 else

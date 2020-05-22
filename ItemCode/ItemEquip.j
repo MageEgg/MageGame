@@ -376,7 +376,11 @@ library ItemEquip uses DamageCode,ItemGameFunc
                                     x = AttackRoomPostion[pid][1]-512
                                     y = AttackRoomPostion[pid][2]+384
                                 endif
-                                Pu[100+index] = CreateUnit(Player(pid+4),uid,x,y,270)
+                                if  GameMode == 4
+                                    Pu[100+index] = CreateUnit(Player(pid+4),uid,x,y,270)
+                                else
+                                    Pu[100+index] = CreateUnit(Player(PLAYER_NEUTRAL_AGGRESSIVE),uid,x,y,270)
+                                endif
                                 
                                 
                                 AddAttackSummonUnit(pid,Pu[100+index])

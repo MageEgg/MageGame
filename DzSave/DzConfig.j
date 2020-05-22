@@ -21,7 +21,10 @@ library DzConfig uses SystemCodes
             endif
 
             if  DzConA[24] == 1
-                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00劳动节狂欢活动开启中！")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00劳动节狂欢活动开启中！")
+            endif
+            if  DzConA[25] == 1
+                DisplayTimedTextToPlayer(Player(pid),0,0,10, "|cffffcc00[活动]：|r|cff00ff00儿童节活动开启中！")
             endif
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,60, "|cffffcc00[系统]：|r|cffff0000地图存档未开启！|r")
@@ -45,6 +48,9 @@ library DzConfig uses SystemCodes
 
             if  DzConA[24] == 1
                 DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00劳动节狂欢活动开启中！")
+            endif
+            if  DzConA[25] == 1
+                DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10, "|cffffcc00[活动]：|r|cff00ff00儿童节活动开启中！")
             endif
         endif
     endfunction

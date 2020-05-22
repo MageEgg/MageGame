@@ -18,6 +18,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     int Unloc_Type_ShopNum = 14
 
     int Unloc_Type_Day51 = 51
+    int Unloc_Type_Day61 = 61
     
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
@@ -210,6 +211,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return DzAPI_Map_CommentCount(Player(pid)) > 0
         elseif  Type == Unloc_Type_Day51
             return Holiday51 >= data
+        elseif  Type == Unloc_Type_Day61
+            return Holiday61 >= data
         elseif  Type == Unloc_Type_ShopNum
             return DzMallNum(Player(pid),"WXBZ") >=data
         endif
@@ -705,10 +708,13 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
 
 
+        InitUnlocTechConditions('RY2K',InitCond1(1,Unloc_Type_Level,6),InitCond2(1,Unloc_Type_Day61,2),InitCond3(0,Unloc_Type_Load,GameDataList(12,10,10)),0,0)
+        InitUnlocTechConditions('RY3K',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day61,4),InitCond3(0,Unloc_Type_Load,GameDataList(13,10,10)),0,0)
+        InitUnlocTechConditions('RP1C',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day61,4),InitCond3(0,Unloc_Type_Load,GameDataList(19,10,10)),0,0)
+        
         InitUnlocTechConditions('RJ2G',InitCond1(1,Unloc_Type_Level,6),InitCond2(1,Unloc_Type_Day51,2),InitCond3(0,Unloc_Type_Load,GameDataList(10,7,7)),0,0)
         InitUnlocTechConditions('RP1B',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day51,4),InitCond3(0,Unloc_Type_Load,GameDataList(19,2,2)),0,0)
         InitUnlocTechConditions('RY4S',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_Day51,4),InitCond3(0,Unloc_Type_Load,GameDataList(14,19,19)),0,0)
-        
 
 
         InitUnlocTechConditions('RY2I',InitCond1(2,Unloc_Type_Level,35),0,0,0,0)

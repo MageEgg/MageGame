@@ -18,6 +18,7 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
         int DragonKing = 0
 
         int Holiday51 = 0
+        int Holiday61 = 0
 
         int TimeTestDay = 0
         int TimeMon = 0
@@ -197,6 +198,13 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             if  Holiday51 < 0
                 Holiday51 = 0
             endif
+
+            Holiday61 = (ServerTime-1590508800)/86400 //61活动日
+            if  Holiday61 < 0
+                Holiday61 = 0
+            endif
+
+            BJDebugMsg.execute("初始化天数 61活动：："+I2S(Holiday61))
             BJDebugMsg.execute("初始化天数 51活动：："+I2S(Holiday51))
             BJDebugMsg.execute("初始化天数 经脉日：："+I2S(MeridiansDay))
             BJDebugMsg.execute("初始化天数 龙宫日：："+I2S(DragonKing))

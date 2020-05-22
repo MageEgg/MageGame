@@ -13,6 +13,10 @@ piece DzGameFunc
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00狂欢积分：|r"+I2S(GetDzPlayerData(pid,18,1)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,3))+"/2000")
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00祖传矿铲：|r"+I2S(GetDzPlayerData(pid,18,2)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,4))+"/4")
             endif
+            if  DzConA[25] == 1
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00六一积分：|r"+I2S(GetDzPlayerData(pid,18,5)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,7))+"/1000")
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00棒棒糖：|r"+I2S(GetDzPlayerData(pid,18,6)) +"  |cffffcc00今日获得：|r"+I2S(GetDzPlayerData(pid,18,8))+"/2")
+            endif
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cff00ff00输入“TG”查看通关次数|r")
         else

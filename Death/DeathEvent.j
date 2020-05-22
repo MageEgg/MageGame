@@ -684,6 +684,26 @@ scope DeathEvent initializer InitDeathEvent
                     endif
                 endif
             endif
+        elseif  uid == 'uh03'//熊孩子
+            
+            if  GetPlayerTechCount(Player(pid),'xxxx',true) > 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000成功教育熊孩子！六一积分+20，当局钻石+|cff00ff002|r")
+                AddPlayerFoodByIndex(pid,2,2)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000成功教育熊孩子！六一积分+20，当局钻石+|cff00ff001|r")
+                AddPlayerFoodByIndex(pid,2,1)
+            endif
+        
+            if  GetDzPlayerData(pid,18,7) <= 990
+                AddDzPlayerData(pid,18,5,10)
+                AddDzPlayerData(pid,18,7,10)
+            else
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r六一积分今日已达上限!")
+            endif
+            
+            
+                
+            
         elseif  uid == 'uh02'//狂欢活动恶霸
             for jfpid = 0,3
                 DisplayTimedTextToPlayer(Player(jfpid),0,0,5,"|cffffcc00[51狂欢]：|r|cffff8000成功击杀好吃懒做的恶徒！狂欢积分+10，玄铁+2|r")

@@ -268,7 +268,16 @@ library DzDataSetting uses DzBase
                 max = 2000
             elseif  flag == 4
                 max = 4
-            elseif  flag > 4
+
+            elseif  flag == 5
+                max = 5000
+            elseif  flag == 6
+                max = Holiday61*2
+            elseif  flag == 8
+                max = 1000
+            elseif  flag == 9
+                max = 2
+            elseif  flag > 9
                 max = 0
             endif
         elseif  Group == 19 //不用管
