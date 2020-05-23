@@ -127,7 +127,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY2K','RY2K',0,0,0,0)//风筝
 
         RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0)//GM-小咸鱼
-        RegisterShowSaveFrameData(5,'RP1C','RP1C',0,0,0,0)//福娃
+        RegisterShowSaveFrameData(2,'RP1C','RP1C',0,0,0,0)//福娃
         
 
         
