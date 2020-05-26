@@ -19,6 +19,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
     int Unloc_Type_Day51 = 51
     int Unloc_Type_Day61 = 61
+    int Unloc_Type_HuYa = 50
     
     int array UnlocTechData_TechId
     int UnlocTechData_index = 0
@@ -30,7 +31,157 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
 
 
-    
+    scope HuYaActivity
+        private string array NameData
+        private int NameMax = 0
+
+        function AddHuYaName(string s)
+            NameMax = NameMax + 1
+            NameData[NameMax] = s
+        endfunction
+        function InitHuYaActivity()
+            AddHuYaName("a沉默不语冷依然")
+            AddHuYaName("a星耀丶沙果")
+            AddHuYaName("a星耀微风")
+            AddHuYaName("a醉卧听风雨灬")
+            AddHuYaName("aMvp丶 小炎")
+            AddHuYaName("aZzn我老婆")
+            AddHuYaName("a阿库娅neru")
+            AddHuYaName("a青春五点半")
+            AddHuYaName("a星耀丶云牧歌")
+            AddHuYaName("a无法感动的决心")
+            AddHuYaName("a战三国之大神")
+            AddHuYaName("a剑昊")
+            AddHuYaName("a嘟噜噜噜噜丶")
+            AddHuYaName("a魔法少女莉莉周")
+            AddHuYaName("a端木佳慧")
+            AddHuYaName("a林MMMMM")
+            AddHuYaName("a亲王走位")
+            AddHuYaName("a偏执的沁")
+            AddHuYaName("a鬼舞")
+            AddHuYaName("a星耀丶酒仙呐")
+            AddHuYaName("a凤求凰灬李白")
+            AddHuYaName("a好多版本狗")
+            AddHuYaName("a防蚊贴")
+            AddHuYaName("a磊仔菜J")
+            AddHuYaName("a邬天莹")
+            AddHuYaName("a别叫我隐十")
+            AddHuYaName("a星悦丶丨怵丨")
+            AddHuYaName("a至臻丶白鲨")
+            AddHuYaName("aflack")
+            AddHuYaName("a红桃づ")
+            AddHuYaName("a星耀、梦里陌")
+            AddHuYaName("a乔碧萝（殿下）")
+            AddHuYaName("aksq123")
+            AddHuYaName("a蜡萌小新")
+            AddHuYaName("a风之雨010")
+            AddHuYaName("a青马培训员")
+            AddHuYaName("a巩秋莲")
+            AddHuYaName("a深沉的景承嗣")
+            AddHuYaName("a吃芒果的虾扯蛋")
+            AddHuYaName("aWrysunny")
+            AddHuYaName("a星耀咕咕鸡")
+            AddHuYaName("a星耀丶Maple")
+            AddHuYaName("a声声520")
+            AddHuYaName("a凛冬初雪")
+            AddHuYaName("a贼懒的树袋熊")
+            AddHuYaName("a星耀丶摇头驴")
+            AddHuYaName("aあ狂あ")
+            AddHuYaName("a牛BBB")
+            AddHuYaName("a星耀丶西瓜")
+            AddHuYaName("a麒麟77")
+            AddHuYaName("a星耀丶懒哟")
+            AddHuYaName("a白梦仙")
+            AddHuYaName("aV丶3UMY8O")
+            AddHuYaName("a苏杭大棒子啪啪啪")
+            AddHuYaName("a沐北清歌瀚丶")
+            AddHuYaName("at涛jr大")
+            AddHuYaName("a乳尺惊人")
+            AddHuYaName("a蓝丁素客")
+            AddHuYaName("a星耀丶大圣人")
+            AddHuYaName("a嗯，同意")
+            AddHuYaName("a怎堪")
+            AddHuYaName("a人王伏羲")
+            AddHuYaName("a对象的祖宗")
+            AddHuYaName("aChen独秀你坐下")
+            AddHuYaName("astark222")
+            AddHuYaName("aDemon陽")
+            AddHuYaName("a苍月澜")
+            AddHuYaName("a麻辣帝君")
+            AddHuYaName("a1717171717171717")
+            AddHuYaName("a星耀丶赞恩")
+            AddHuYaName("a盖世猫咪")
+            AddHuYaName("a星耀丶 记忆天籁")
+            AddHuYaName("a云牧歌丶")
+            AddHuYaName("a雷咯")
+            AddHuYaName("a昭阳辞落日")
+            AddHuYaName("a星悦丶爱笑")
+            AddHuYaName("a至臻丶玉溪")
+            AddHuYaName("a日暮旅人")
+            AddHuYaName("a哈滴")
+            AddHuYaName("a星耀丶陌心")
+            AddHuYaName("a星耀丶摸比")
+            AddHuYaName("a星耀丶祁一")
+            AddHuYaName("a星耀迪欧")
+            AddHuYaName("a星耀丶记忆的天籁")
+            AddHuYaName("a恒总GZ")
+            AddHuYaName("a星耀丶怀旧y")
+            AddHuYaName("aY西瓜Y")
+            AddHuYaName("a红笔写黑字")
+            AddHuYaName("a这丿真灬有丶意思")
+            AddHuYaName("a星耀丶脸白")
+            AddHuYaName("a再青春")
+            AddHuYaName("a万象天成丶")
+            AddHuYaName("a星耀丶基陛大帝")
+            AddHuYaName("a西楼丷丷")
+            AddHuYaName("a星耀丶木头")
+            AddHuYaName("a维多利亚彪哥")
+            AddHuYaName("a七彩箐紫越")
+            AddHuYaName("a左小染")
+            AddHuYaName("a都是弟弟ii")
+            AddHuYaName("a星耀丶博士")
+            AddHuYaName("a星耀丶白痴")
+            AddHuYaName("a星耀丶紫苑")
+            AddHuYaName("a星耀丶硬邦邦")
+            AddHuYaName("a星耀丶紫翼")
+            AddHuYaName("a松zm")
+            AddHuYaName("a星耀丶15逆")
+            AddHuYaName("aHuangNinja")
+            AddHuYaName("a星耀丶锋雪")
+            AddHuYaName("a璐哥二号")
+            AddHuYaName("a暗之殇珩")
+            AddHuYaName("a星悦丶莫忆")
+            AddHuYaName("a大鹏魔头")
+            AddHuYaName("a尝尽温柔了吗")
+            AddHuYaName("a（浪）")
+            AddHuYaName("a神王出世")
+            AddHuYaName("a星悦丶影魔")
+            AddHuYaName("a星耀丶Lee")
+            AddHuYaName("a丶大人物")
+            AddHuYaName("a星耀丶地狱")
+            AddHuYaName("a星耀丶原痕")
+            AddHuYaName("a药药00")
+            AddHuYaName("a堕落111")
+            AddHuYaName("a无聊的阿西吧")
+            AddHuYaName("a一泽啊")
+            AddHuYaName("a荷里话大盗")
+            AddHuYaName("aMm2651")
+            AddHuYaName("a星耀丶猛猛打")
+            AddHuYaName("a星悦丶巅峰对决")
+            AddHuYaName("aWorldEdit")
+            
+        endfunction
+        function IsPlayerHuYa(int pid)->bool
+            int max = NameMax
+            string name = "a" + GetPlayerName(Player(pid))
+            for i = 1,max
+                if  name == NameData[i]
+                    return true
+                endif
+            end
+            return false
+        endfunction
+    endscope
 
 
 
@@ -215,6 +366,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return Holiday61 >= data
         elseif  Type == Unloc_Type_ShopNum
             return DzMallNum(Player(pid),"WXBZ") >=data
+        elseif  Type == Unloc_Type_HuYa
+            return IsPlayerHuYa((pid)) == true
         endif
         return false
     endfunction
@@ -558,11 +711,14 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RY3F',InitCond1(2,Unloc_Type_Shop,ShopList("WQ2")),0,0,0,0)
 
         InitUnlocTechConditions('RJ1Y',InitCond1(2,Unloc_Type_Shop,ShopList("LB5")),0,0,0,0)
+        InitUnlocTechConditions('RJ1Z',InitCond1(2,Unloc_Type_Shop,ShopList("LB6")),0,0,0,0)
+        InitUnlocTechConditions('RJ1P',InitCond1(2,Unloc_Type_Shop,ShopList("LB7")),0,0,0,0)
         
 
         InitUnlocTechConditions('RTX1',InitCond1(2,Unloc_Type_Shop,ShopList("RWK")),0,0,0,0)
         InitUnlocTechConditions('RTX2',InitCond1(2,Unloc_Type_Shop,ShopList("RWK2")),0,0,0,0)
         InitUnlocTechConditions('RTX3',InitCond1(2,Unloc_Type_Shop,ShopList("RWK3")),0,0,0,0)
+        InitUnlocTechConditions('RTX4',InitCond1(2,Unloc_Type_Shop,ShopList("RWK4")),0,0,0,0)
         
 
         InitUnlocTechConditions('RQD0',InitCond1(2,Unloc_Type_Level,1),0,0,0,0)
@@ -594,6 +750,9 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
         //全民竞速
         InitUnlocTechConditions('RJ2O',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(2,8,1)),0,0,0)
+        InitUnlocTechConditions('RY4W',InitCond1(1,Unloc_Type_Level,1),InitCond2(0,Unloc_Type_JF,GameDataList(2,8,1)),0,0,0)
+        InitUnlocTechConditions('RY4V',InitCond1(2,Unloc_Type_HuYa,0),0,0,0,0)
+        
 
 
         set UnlocTechData_index2 = UnlocTechData_index
@@ -841,7 +1000,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
         ExecuteFunc("InitAllUnlocTechFunc1")
 
-        
+        ExecuteFunc("InitHuYaActivity")
     endfunction
     
     

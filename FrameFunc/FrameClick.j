@@ -75,6 +75,8 @@ scope FrameButton
                         ClickShowSaveFrame(pid)
                     elseif  id == 706 //F6
                         ClickPassFrame(pid)
+                    elseif  id == 708
+                        ClickButtonHYHD(pid)
                     elseif  id == 709
                         ClickButtonWXBZ(pid)
                     elseif  id >= 751 and id <= 756
@@ -99,6 +101,8 @@ scope FrameButton
                         ClickRePrizeFrame(pid)
                     elseif  id == 950//重随
                         ReHeroPrePare(pid)
+                    elseif  id == 1000//祝福
+                        ClickButtonBless(pid)
                     endif
                 elseif  Type == TYPE_FUNC
                     if  id >= 301 and id <= 308//选择副本按钮
@@ -350,6 +354,8 @@ endscope
 
 
 //1001-1012排行榜名称
+//! runtextmacro AddFrameFunc("1000")
+
 
 
 

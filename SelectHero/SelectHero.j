@@ -86,6 +86,12 @@ scope SelectHero
             if  dzalllv >= 54
                 SetPlayerTechResearchedEx(Player(pid),'RHD5')
             endif
+            if  dzalllv >= 80
+                SetPlayerTechResearchedEx(Player(pid),'RHD6')
+            endif
+            if  dzalllv >= 112
+                SetPlayerTechResearchedEx(Player(pid),'RHD7')
+            endif
         else
             AddUnitRealState(Pu[1],52,50000)
         endif
@@ -103,6 +109,13 @@ scope SelectHero
 
         if  GameMode == 3
             AddUnitRealState(Pu[1],64,20)
+        elseif  GameMode == 4
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_GOLD,10000)
+            AddPlayerState(pid,PLAYER_STATE_RESOURCE_LUMBER,15)
+            AddUnitRealState(Pu[1],52,20000)
+            UnitAddItemById(Pu[2],'IN34')
+            UnitAddItemById(Pu[2],'IN37')
+            UnitAddItemById(Pu[2],'IN40')
         endif
 
     endfunction

@@ -141,6 +141,7 @@ library GameChallenge0 uses GameChallengeBase
                             for i = 2,3
                                 DzFrameShow(BUTTON_Back[700+i][0], true)
                             end
+                            DzFrameShow(BUTTON_Back[708][0], true)
                             DzFrameShow(BUTTON_Back[709][0], true)
                             if  GameMode == 4
                                 DzFrameShow(BUTTON_Back[704][0], true)

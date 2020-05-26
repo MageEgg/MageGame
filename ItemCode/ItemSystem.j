@@ -887,6 +887,15 @@ scope ItemSystem initializer InitItemSystem
 
         elseif  (itemid >= 'IN07' and itemid <= 'IN24') or (itemid >= 'IN33' and itemid <= 'IN40')
             PlayerUsesstrangeItem(pid,itemid)
+        elseif  itemid == 'IN41'
+            HeroAddExp(Pu[1],20000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验丹使用成功，经验增加|cff00ff0020000|r点！")
+        elseif  itemid == 'IN42'
+            HeroAddExp(Pu[1],40000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验丹使用成功，经验增加|cff00ff0040000|r点！")
+        elseif  itemid == 'IN43'
+            HeroAddExp(Pu[1],80000)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r经验丹使用成功，经验增加|cff00ff0080000|r点！")
         elseif  itemid == 'IN30'//幸运星盒IN30注册
             
             UnitAddPoolItemShow(u1,15)

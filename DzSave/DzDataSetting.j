@@ -205,7 +205,9 @@ library DzDataSetting uses DzBase
                 max = (MissionDay-20)*6
             elseif  flag == 3 //通行证经验
                 max = (MissionDay-41)*6
-            elseif  flag >= 4 //未使用
+            elseif  flag == 4 //通行证经验
+                max = (MissionDay-62)*6
+            elseif  flag >= 5 //未使用
                 max = 0
             endif
         elseif  Group == 5 //不用管

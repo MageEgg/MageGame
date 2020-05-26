@@ -80,6 +80,10 @@ scope KeyEvent initializer InitKeyBroadListener
                             ClosePassFrame(pid)
                         endif
 
+                        if  HYHDButton.show == true
+                            HYHDButton.show = false
+                        endif
+
                         if  PKUIButton.show == true
                             PKUIButton.show = false
                         endif

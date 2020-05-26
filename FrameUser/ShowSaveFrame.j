@@ -73,12 +73,13 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(5,'RTX1','RTX1',0,0,0,0)//通行证1
         RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0)//通行证2
         RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0)//通行证3
+        RegisterShowSaveFrameData(5,'RTX4','RTX4',0,0,0,0)//通行证3
 
-        RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
         
         RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
         
-        
+        RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
+        RegisterShowSaveFrameData(5,'RJ1P','RJ1P',0,0,0,0)//儿童节礼包
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
         RegisterShowSaveFrameData(5,'RSHD','RSHD',0,0,0,0)//商城4件套
@@ -90,6 +91,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(5,'RSHG','RSHG',0,0,0,0)//商城14件套
         
         RegisterShowSaveFrameData(5,'RSHH','RSHH',0,0,0,0)//商城16件套
+
+        
         
         
         
@@ -113,6 +116,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
         RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
         RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
+        RegisterShowSaveFrameData(2,'RY3J','RY3J',0,0,0,0)//穿刺利刃
+        
         
 
 
@@ -148,6 +153,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
         RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
         RegisterShowSaveFrameData(1,'RY4S','RY4S',0,0,0,0)//劳动节称号
+        RegisterShowSaveFrameData(1,'RY4V','RY4V',0,0,0,0)//天罡星
+        RegisterShowSaveFrameData(1,'RY4W','RY4W',0,0,0,0)//小虎牙
         RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
         RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
         RegisterShowSaveFrameData(1,'RY4N','RY4N',0,0,0,0)//测试先锋
@@ -199,8 +206,12 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
 
         RegisterShowSaveFrameData(0,'RJ2L','RJ2L',0,0,0,0)//前奏
         RegisterShowSaveFrameData(0,'RJ2M','RJ2M',0,0,0,0)//闪耀之星
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RJ2P','RJ2P',0,0,0,0)//夏日赠礼
+        RegisterShowSaveFrameData(0,'RJ2Q','RJ2Q',0,0,0,0)//火热开场
+        RegisterShowSaveFrameData(0,'RJ2R','RJ2R',0,0,0,0)//酷爽时刻
+        RegisterShowSaveFrameData(0,'RJ2S','RJ2S',0,0,0,0)//清凉一夏
+        RegisterShowSaveFrameData(0,'RJ2T','RJ2T',0,0,0,0)//夏日之星
+        RegisterShowSaveFrameData(0,'RJ2U','RJ2U',0,0,0,0)//火力全开
         
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
@@ -329,8 +340,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(3,'RHD3','RHD3',0,0,0,0)//一代宗师
         RegisterShowSaveFrameData(3,'RHD4','RHD4',0,0,0,0)//名震一方
         RegisterShowSaveFrameData(3,'RHD5','RHD5',0,0,0,0)//名扬四海
-//        RegisterShowSaveFrameData(3,'RHD6','RHD6',0,0,0,0)//封神之巅
-//        RegisterShowSaveFrameData(3,'RHD7','RHD7',0,0,0,0)//创世之初
+        RegisterShowSaveFrameData(3,'RHD6','RHD6',0,0,0,0)//封神之巅
+        RegisterShowSaveFrameData(3,'RHD7','RHD7',0,0,0,0)//创世之初
 //        RegisterShowSaveFrameData(3,'RHD8','RHD8',0,0,0,0)//创世元神
         RegisterShowSaveFrameData(3,'RH01','RH01',0,0,0,0)//神兵杨戬
         RegisterShowSaveFrameData(3,'RH02','RH02',0,0,0,0)//土行孙

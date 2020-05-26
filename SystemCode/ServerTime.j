@@ -158,11 +158,14 @@ library ServerTime initializer UpdateTimeAll uses ejtimer
             ServerTime = DzAPI_Map_GetGameStartTime()
             if  ServerTime < DzPuTime
                 ServerTime = DzPuTime
-                //S2I(EXExecuteScript("os.time()"))
+
             endif
              
-            
-            ServerTime = ServerTime + GetRandomInt(1,10)
+            if  DzBool == true
+                ServerTime = S2I(EXExecuteScript("os.time()"))
+            else
+                ServerTime = ServerTime + GetRandomInt(1,10)
+            endif
 
             ServerTime = ServerTime - 18000
             GetDate(ServerTime)

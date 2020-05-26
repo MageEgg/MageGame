@@ -1231,8 +1231,10 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         if  GameMode == 4
             ExShopNpc = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-3883,12175,270)//新商店
+            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc31',-3883,12175-213,270)//新商店
         else
             ExShopNpc = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'np31',-6644,-5923,270)//新商店
+            CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),'nc31',-6644,-5923-213,270)//新商店
         endif
         
 

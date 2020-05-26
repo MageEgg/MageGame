@@ -133,7 +133,26 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
 
 
 
-
+        RegisterPassCheckPrize(61,'RS61','IN30')	
+        RegisterPassCheckPrize(62,'RJ2P','RJ2T')	
+        RegisterPassCheckPrize(63,'RS63','IN41')	
+        RegisterPassCheckPrize(64,2,5)	
+        RegisterPassCheckPrize(65,'RS65',1000)	
+        RegisterPassCheckPrize(66,'RS66','RT66')	
+        RegisterPassCheckPrize(67,'RS67','RT67')	
+        RegisterPassCheckPrize(68,'RY4N','RJ2Q')	
+        RegisterPassCheckPrize(69,'RS69','IN42')	
+        RegisterPassCheckPrize(70,'RS70','RT70')	
+        RegisterPassCheckPrize(71,0,'RT71')	
+        RegisterPassCheckPrize(72,'RS72','RT72')	
+        RegisterPassCheckPrize(73,0,'IP03')	
+        RegisterPassCheckPrize(74,'RJ2R','RJ2U')	
+        RegisterPassCheckPrize(75,-3,'RT75')	
+        RegisterPassCheckPrize(76,'RS76','RT76')	
+        RegisterPassCheckPrize(77,0,'RT77')	
+        RegisterPassCheckPrize(78,5,'IP09')	
+        RegisterPassCheckPrize(79,0,'RT79')	
+        RegisterPassCheckPrize(80,'RJ2S','RY3J')	
         
     endfunction
 
@@ -310,7 +329,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 level = 20
             endif
 
-            if  DzBool == true
+            if  savebool == true
                 level = 20
             endif
             return level
@@ -354,7 +373,12 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         function PlayerMissionComplete(int pid,int missionid)//任务完成
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
-                if  MissionDay > 41
+                if  MissionDay > 62
+                    AddDzPlayerData(pid,4,1,exp)
+                    AddDzPlayerData(pid,4,2,exp)
+                    AddDzPlayerData(pid,4,3,exp)
+                    AddDzPlayerData(pid,4,4,exp)
+                elseif  MissionDay > 41
                     AddDzPlayerData(pid,4,1,exp)
                     AddDzPlayerData(pid,4,2,exp)
                     AddDzPlayerData(pid,4,3,exp)
@@ -534,57 +558,44 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         endfunction
 
 
-        
-
-        function PlayerAddPassPrize(int pid)
-            int lv = GetPlayerPassLevel(pid,0)
+        function PlayerAddPassPrizeByIndex(int pid,int index)
+            int lv = GetPlayerPassLevel(pid,index)
             int shop = 0
-
-            
-            if  DzShop(Player(pid),"RWK") == true
-                shop = 1
+            if  index == 0
+                if  DzShop(Player(pid),"RWK") == true
+                    shop = 1
+                endif
+            elseif  index == 1
+                if  DzShop(Player(pid),"RWK2") == true
+                    shop = 1
+                endif
+            elseif  index == 2
+                if  DzShop(Player(pid),"RWK3") == true
+                    shop = 1
+                endif
+            elseif  index == 3
+                if  DzShop(Player(pid),"RWK4") == true
+                    shop = 1
+                endif
             endif
+
             for i = 1,MaxPassCheckPrizeNum
                 if  lv >= i
-                    GivePassCheckPrize(pid,i,1)
+                    GivePassCheckPrize(pid,i+20*index,1)
                     
                     if  shop == 1
-                        GivePassCheckPrize(pid,i,2)
+                        GivePassCheckPrize(pid,i+20*index,2)
                     endif
                 endif
             end
 
-            lv = GetPlayerPassLevel(pid,1)
-            shop = 0
-            if  DzShop(Player(pid),"RWK2") == true
-                shop = 1
-            endif
-            for i2 = 1,MaxPassCheckPrizeNum
-                if  lv >= i2
-                    GivePassCheckPrize(pid,i2+20,1)
-                    
-                    if  shop == 1
-                        GivePassCheckPrize(pid,i2+20,2)
-                    endif
-                endif
-            end
+        endfunction
 
-
-            lv = GetPlayerPassLevel(pid,2)
-            shop = 0
-            if  DzShop(Player(pid),"RWK3") == true
-                shop = 1
-            endif
-            for i2 = 1,MaxPassCheckPrizeNum
-                if  lv >= i2
-                    GivePassCheckPrize(pid,i2+40,1)
-                    
-                    if  shop == 1
-                        GivePassCheckPrize(pid,i2+40,2)
-                    endif
-                endif
-            end
-
+        function PlayerAddPassPrize(int pid)
+            PlayerAddPassPrizeByIndex.execute(pid,0)
+            PlayerAddPassPrizeByIndex.execute(pid,1)
+            PlayerAddPassPrizeByIndex.execute(pid,2)
+            PlayerAddPassPrizeByIndex.execute(pid,3)
 
         endfunction
 
@@ -932,7 +943,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
         CreateButton(672,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.06,0.005,0.03,0.03,"war3mapImported\\UI_S2.tga")
 
-        CreateButton(673,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.1,0.005,0.03,0.03,"war3mapImported\\UI_S3.tga")
+        CreateButton(673,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.10,0.005,0.03,0.03,"war3mapImported\\UI_S3.tga")
+
+        CreateButton(674,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.14,0.005,0.03,0.03,"war3mapImported\\UI_S4.tga")
     endfunction
 
     function PassCheckUIInit()
@@ -960,7 +973,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
         CreateFrameButton1()
 
-        if  MissionDay >= 42
+        if  MissionDay >= 63
+            Step = 3
+        elseif  MissionDay >= 42
             Step = 2
         elseif  MissionDay >= 21
             Step = 1

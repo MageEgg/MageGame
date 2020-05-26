@@ -63,6 +63,8 @@ piece DzGameFunc
             SetDzPlayerData(pid,16,2,0) //当天战勋点
             SetDzPlayerData(pid,18,3,0) //活动刷新
             SetDzPlayerData(pid,18,4,0) //活动刷新
+            SetDzPlayerData(pid,18,7,0) //活动刷新
+            SetDzPlayerData(pid,18,8,0) //活动刷新
             BJDebugMsg("刷新！！！！！！！！！！")
         endif
         if  mission != DzMissionWeek

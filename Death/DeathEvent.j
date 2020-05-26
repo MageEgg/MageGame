@@ -572,6 +572,7 @@ scope DeathEvent initializer InitDeathEvent
         int value = 0
         real x = AttackRoomPostion[pid][1] 
         real y = AttackRoomPostion[pid][2] 
+        int add = 0
 
         
         
@@ -686,17 +687,24 @@ scope DeathEvent initializer InitDeathEvent
             endif
         elseif  uid == 'uh03'//熊孩子
             
-            if  GetPlayerTechCount(Player(pid),'xxxx',true) > 0
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000成功教育熊孩子！六一积分+20，当局钻石+|cff00ff002|r")
+            if  GetPlayerTechCount(Player(pid),'RJ1P',true) > 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000成功教育熊孩子！六一积分+30，当局钻石+|cff00ff001|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[儿童节礼包]：|r拥有儿童节礼包，|cffff8000当局钻石额外+|cff00ff001|r")
                 AddPlayerFoodByIndex(pid,2,2)
+                add = 30
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000成功教育熊孩子！六一积分+20，当局钻石+|cff00ff001|r")
                 AddPlayerFoodByIndex(pid,2,1)
+                add = 20
+            endif
+
+            if  add + GetDzPlayerData(pid,18,7) > 1000
+                add = 1000 - GetDzPlayerData(pid,18,7)
             endif
         
-            if  GetDzPlayerData(pid,18,7) <= 990
-                AddDzPlayerData(pid,18,5,10)
-                AddDzPlayerData(pid,18,7,10)
+            if  add > 0
+                AddDzPlayerData(pid,18,5,add)
+                AddDzPlayerData(pid,18,7,add)
             else
                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r六一积分今日已达上限!")
             endif

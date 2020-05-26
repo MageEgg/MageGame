@@ -590,6 +590,17 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
             ShowTipsUI()
         endfunction
 
+        function BoxShowHYHD(int pid)
+            DzFrameShow(UI_TipsHead, true)
+            
+            SetTipsData(1,"","全民竞速")
+            
+            SetTipsData(10,""," ")
+
+            SetTipsData(11,"","点击查看全民竞速")
+            ShowTipsUI()
+        endfunction
+
          
 
          
@@ -844,6 +855,10 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateModelEx(704,BUTTON_Back[704][0],TYPE_NOT,4,BUTTON_Back[704][0],4,-0.0185,-0.0185,"")
         //CreateButton(705,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI003.blp")
         //CreateButton(706,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNUI004.blp")
+
+
+        CreateButton(708,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.240,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNHYJS.blp")
+        DzFrameShow(BUTTON_Back[708][0], false)
 
         CreateButton(709,GameUI,TYPE_BUTTON,4,DzFrameGetHeroBarButton(0),4,0.0,-0.192,0.038,0.038,"replaceabletextures\\commandbuttons\\BTNWXBZ3.blp")
         DzFrameShow(BUTTON_Back[709][0], false)

@@ -270,6 +270,15 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00劳动节礼包|r》已激活！")
         endif
 
+        if  GetPlayerTechCount(Player(pid),'RJ1P',true) == 1 //儿童礼包
+            shopnum = shopnum + 1
+            AddUnitRealState(Pu[1],47,8)
+            AddUnitRealState(Pu[1],48,10)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00儿童节节礼包|r》已激活！")
+        endif
+
+        
+
         if  GetPlayerTechCount(Player(pid),'RJ1Z',true) == 1 //良心赞助
             shopnum = shopnum + 1
             AddUnitRealState(Pu[1],64,12)
@@ -449,9 +458,11 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             endif
         endif
         
+        /*
         if  GetPlayerTechCount(Player(pid),'RJ2O',true) > 0
             PlayerWXBZFree = PlayerWXBZFree + 1
         endif
+        */
         
 
 
