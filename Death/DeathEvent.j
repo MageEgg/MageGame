@@ -111,6 +111,11 @@ scope DeathEvent initializer InitDeathEvent
             if  GetPlayerTechCount(Player(pid),'RGFF',true) > 0
                 time = time - 1
             endif
+            if  GetPlayerTechCount(Player(pid),'RGCG',true) > 0
+                time = time - 1
+            endif
+
+            
             
         endif
         PTimer[0] = CreateTimer()
@@ -983,6 +988,8 @@ scope DeathEvent initializer InitDeathEvent
             else
                 if  uid == 'H005'
                     SpellS505Damage(u1)
+                elseif  uid == 'z102' or uid == 'z103' or uid == 'z104' or uid == 'z107'
+                    SpellFY03_12(Pu[1],GetUnitX(u1),GetUnitY(u1))
                 endif
             endif
         endif

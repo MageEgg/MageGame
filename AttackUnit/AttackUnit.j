@@ -1298,51 +1298,56 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
 
 
-    
-
-    function CreateMode4ChallengeUnit()
+    function CreateMode4ChallengeUnitByPid(int pid)
         real x = 0
         real y = 0
         unit u = null
-        for pid = 0,3
-            if  IsPlaying(pid) == true
-                if  pid == 0
-                    x = GetRandomReal(-4256,-3904)
-                    y = GetRandomReal(13472,13856)
-                elseif  pid == 1
-                    x = GetRandomReal(-2400,-2048)
-                    y = GetRandomReal(11584,11968)
-                elseif  pid == 2
-                    x = GetRandomReal(-4256,-3904)
-                    y = GetRandomReal(9664,10048)
-                elseif  pid == 3
-                    x = GetRandomReal(-6144,-5792)
-                    y = GetRandomReal(11552,11936)
-                endif
-                
-                u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
-                
-                AddAttackSummonUnit.execute(pid,u)
-
-                UnitApplyTimedLife( u, 'BHwe', 300 )
-                SetUnitIntState(u,'FBTZ',pid+1)
-
-                UnitAddAbility(u,'A00K')
-                UnitAddAbility(u,'Avul')
-                UnitAddAbility(u,'Asid')
-                UnitAddAbility(u,'Aneu')
-                UnitAddAbility(u,'Apit')
-                AddItemToStock( u,'IZ71', 1, 1 )
-                AddItemToStock( u,'IZ72', 1, 1 )
-                AddItemToStock( u,'IZ73', 1, 1 )
-                EXSetUnitMoveType( u, 0x01 )
-
-                ReChallengePrize(pid,u)
-
+        if  IsPlaying(pid) == true
+            if  pid == 0
+                x = GetRandomReal(-4256,-3904)
+                y = GetRandomReal(13472,13856)
+            elseif  pid == 1
+                x = GetRandomReal(-2400,-2048)
+                y = GetRandomReal(11584,11968)
+            elseif  pid == 2
+                x = GetRandomReal(-4256,-3904)
+                y = GetRandomReal(9664,10048)
+            elseif  pid == 3
+                x = GetRandomReal(-6144,-5792)
+                y = GetRandomReal(11552,11936)
             endif
+            
+            u = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE),GetRandomInt('mg0A','mg0H'),x,y,GetRandomReal(0,360))
+            
+            AddAttackSummonUnit.execute(pid,u)
+
+            UnitApplyTimedLife( u, 'BHwe', 300 )
+            SetUnitIntState(u,'FBTZ',pid+1)
+
+            UnitAddAbility(u,'A00K')
+            UnitAddAbility(u,'Avul')
+            UnitAddAbility(u,'Asid')
+            UnitAddAbility(u,'Aneu')
+            UnitAddAbility(u,'Apit')
+            AddItemToStock( u,'IZ71', 1, 1 )
+            AddItemToStock( u,'IZ72', 1, 1 )
+            AddItemToStock( u,'IZ73', 1, 1 )
+            EXSetUnitMoveType( u, 0x01 )
+
+            ReChallengePrize(pid,u)
+
+        endif
+        u = null
+    endfunction
+    
+
+    function CreateMode4ChallengeUnit()
+        
+        for pid = 0,3
+            CreateMode4ChallengeUnitByPid(pid)
         end
 
-        u = null
+        
     endfunction
 
     function OpenNewChallenge1(int pid,unit tu)

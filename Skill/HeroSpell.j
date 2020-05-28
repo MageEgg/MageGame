@@ -1817,6 +1817,80 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
     endfunction
 
 
+    function SpellFY04_12(unit wu)
+        unit uu = null
+        real damage = 0
+        LocAddEffect(GetUnitX(wu),GetUnitY(wu),"effect_fire-boom-new.mdl")
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,GetUnitX(wu),GetUnitY(wu),700,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        loop
+            uu = FirstOfGroup(g.ejg)
+            exitwhen uu == null
+            damage = GetUnitState(uu,UNIT_STATE_LIFE)*0.01
+            UnitDamageTarget(wu,uu,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_UNKNOWN,null)
+            GroupRemoveUnit(g.ejg,uu)
+        endloop
+        g.destroy()
+        flush locals
+    endfunction
+
+    function SpellFY06_12Func(unit wu)
+        unit u1 = wu
+        int time = 0
+        real x1 = GetUnitX(u1)
+        real y1 = GetUnitY(u1)
+        real damage = (GetUnitAttack(wu)+GetHeroStr(wu,true))*3
+        BJDebugMsg("符印伤害"+R2S(damage))
+        TimerStart(0.1,true)
+        {
+            effect eff = null
+            real newang = 0
+            time = time + 1
+            if  time <= 12
+                newang = Atan2(200*Sin(((time-1)*30+270)*0.01745),200*Cos(((time-1)*30+270)*0.01745))
+                //伤害来源,马甲id,x1,y1,初始角度,伤害,数量,间距角度,伤害范围,最远距离,伤害类型,移动时间间隔,马甲高度
+                CreateTm(u1,'e00P',x1,y1,newang,damage,1,0,180,900,0,50,false,false,ATTACK_TYPE_CHAOSa,DAMAGE_TYPE_MAGICa)
+            else
+                endtimer                
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+
+
+    function SpellFY06_12(unit wu)
+        int num = GetUnitIntState(wu,'FD06')
+        if  num >= 15
+            SpellFY06_12Func(wu)
+            SetUnitIntState(wu,'FD06',0)
+        else
+            SetUnitIntState(wu,'FD06',num+1)
+        endif
+    endfunction
+
+    function SpellFY03_12(unit wu,real x1,real y1)
+        if  GetUnitIntState(wu,'FY03') >= 12
+            real damage = (GetUnitAttack(wu)+GetHeroStr(wu,true))
+            LocAddEffectSetSize(x1,y1,"effect_fire-boom-new.mdl",0.5)
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+            UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+        endif
+    endfunction
+
+    function SpellFY02_12(unit wu,real x1,real y1,real damage)
+
+        LocAddEffectSetSize(x1,y1,"effect_forestbolt.mdl",4.0)
+        IndexGroup g = IndexGroup.create()
+        GroupEnumUnitsInRange(g.ejg,x1,y1,400,GroupNormalNoStr(GetOwningPlayer(wu),"","",0))
+        UnitDamageGroup(wu,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+        g.destroy()
+        
+    endfunction
+
 
     //-----------------------------------------------------------------------------
     function SpellHeroSkillAction(unit wu,unit tu,real sx,real sy,int id,int lv)
@@ -1866,6 +1940,10 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
 
         if  GetUnitTypeId(wu) == 'H038'
             SpellS538(wu,GetAbilityDamage(wu,'S538',1),GetHeroAbilityLevel(wu,'S538'))
+        endif
+
+        if GetUnitIntState(wu,'FY06') >= 12
+            SpellFY06_12(wu)
         endif
 
 

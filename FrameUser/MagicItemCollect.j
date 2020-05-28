@@ -8,6 +8,7 @@ library MagicItemCollectFrame uses GameFrame,ExNativeFrame
     23      补天石  ui\\widgets\\escmenu\\human\\alliance-gold.blp
     24      鸿蒙结晶ui\\widgets\\escmenu\\human\\alliance-lumber.blp
     25      出售
+    26      神炼
     51-75   羁绊按钮
     */
 
@@ -158,11 +159,12 @@ library MagicItemCollectFrame uses GameFrame,ExNativeFrame
         //创建羁绊按钮
         CreateMagicItemButton3()
         
-        CreateButton(21,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.061,0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Recast.tga")
-        CreateButton(22,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.01,0.01,0.04,0.022,"war3mapImported\\UI_MagicItem_Forge.tga")
+        CreateButton(21,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.075,0.01,0.024,0.022,"war3mapImported\\UI_MagicItem_New1.tga")
+        CreateButton(22,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.043,0.01,0.024,0.022,"war3mapImported\\UI_MagicItem_New2.tga")
+        CreateButton(26,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.011,0.01,0.024,0.022,"war3mapImported\\UI_MagicItem_New3.tga")
 
-        CreateButton(23,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[21][0],1,0.0,0.008,0.04,0.02,"war3mapImported\\UI_MagicItem_Resources1.tga")
-        CreateButton(24,Button.frameid,TYPE_BUTTON,7,BUTTON_Back[22][0],1,0.0,0.008,0.04,0.02,"war3mapImported\\UI_MagicItem_Resources2.tga")
+        CreateButton(23,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.061,0.04,0.04,0.02,"war3mapImported\\UI_MagicItem_Resources1.tga")
+        CreateButton(24,Button.frameid,TYPE_BUTTON,8,Back.frameid,8,-0.010,0.04,0.04,0.02,"war3mapImported\\UI_MagicItem_Resources2.tga")
         CreateText(23,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
         CreateText(24,Button.frameid,"righttext008",5,5,-0.005,0.0,"0")
 
@@ -324,6 +326,8 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             return "|Cff00BFFF后天仙器|r"
         elseif  color == 5
             return "|Cff00FF7F通天灵宝|r"
+        elseif  color == 6
+            return "|CffFFDC73宇|r|Cffffa576宙|r|Cffff6e79洪|r|Cffff377c荒|r"
         endif
         return ""
     endfunction
@@ -340,6 +344,8 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             return "|Cff00BFFF后天仙器-"+ GetTypeIdName(id) + "|r"
         elseif  color == 5
             return "|Cff00FF7F通天灵宝-"+ GetTypeIdName(id) + "|r"
+        elseif  color == 6
+            return  GetTypeIdName(id)
         endif
         return ""
     endfunction
@@ -795,8 +801,9 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             RemMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,-1)
-
-            if  GetTypeIdData(id,101) == 1//红装+2
+            if  GetTypeIdData(id,101) == 6//彩装+3
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),-3)
+            elseif  GetTypeIdData(id,101) == 1//红装+2
                 AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),-2)
             else    
                 AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),-1)
@@ -824,7 +831,11 @@ library MagicItemCollectCode uses MagicItemCollectFrame
             AddMagicState(Pu[1],id)
             AddUnitIntState(Pu[1],id,1)
 
-            if  GetTypeIdData(id,101) == 1//红装+2
+            if  GetTypeIdData(id,101) == 6//彩装+3
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
+                AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
+            elseif  GetTypeIdData(id,101) == 1//红装+2
                 AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
                 AddUnitRune(Pu[1],'FY00'+GetTypeIdData(id,100),1)
             else    
@@ -948,6 +959,40 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         else
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r当前未选中法宝！")
         endif
+    endfunction
+
+    //神炼法宝
+    function GodIncMagicItem(int pid)
+        int id1 = 0
+        int id2 = 0
+        int k = 0
+        for i1 = 1,9
+            id1 = GetPlayerMagicItem(pid,8+i1)
+            for i2 = 1,9
+                if  i1 != i2
+                    id2 = GetPlayerMagicItem(pid,8+i2)
+                    if  id1 == id2
+                        if  GetTypeIdData(id1,101) == 1
+                            k = 1
+                            RemPlayerMagicItemByIndex(pid,8+i1)
+                            RemPlayerMagicItemByIndex(pid,8+i2)
+                                                    
+
+                            GivePlayerMagicItem(pid,'FB70'+GetRandomInt(1,8))
+                            SetPlayerMagicItemLast(pid,0)
+                            exitwhen true
+                        endif
+                    endif
+                endif
+                
+            end
+            exitwhen k == 1
+        end
+
+        if  k == 0
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包栏内无相同红色法宝！")
+        endif
+
     endfunction
 
     //重置法宝

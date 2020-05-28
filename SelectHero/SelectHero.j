@@ -138,6 +138,11 @@ scope SelectHero
         SetUnitRealState(Pu[1],5,1000)
 
         UnitAddAbility(Pu[1],'MF01')//魔法书
+        if  GameMode == 4
+            UnitRemoveAbility(Pu[1],'AM21')
+            UnitRemoveAbility(Pu[1],'AM23')
+            UnitRemoveAbility(Pu[1],'AM24')
+        endif
 
         UnitAddAbility(Pu[1],'AG01')
         UnitAddAbility(Pu[1],'AG02')

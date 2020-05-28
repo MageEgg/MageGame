@@ -42,23 +42,20 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         function InitHuYaActivity()
             AddHuYaName("a沉默不语冷依然")
             AddHuYaName("a星耀丶沙果")
-            AddHuYaName("a星耀微风")
             AddHuYaName("a醉卧听风雨灬")
-            AddHuYaName("aMvp丶 小炎")
+            AddHuYaName("aMvp丶小炎")
             AddHuYaName("aZzn我老婆")
             AddHuYaName("a阿库娅neru")
             AddHuYaName("a青春五点半")
             AddHuYaName("a星耀丶云牧歌")
-            AddHuYaName("a无法感动的决心")
             AddHuYaName("a战三国之大神")
             AddHuYaName("a剑昊")
             AddHuYaName("a嘟噜噜噜噜丶")
             AddHuYaName("a魔法少女莉莉周")
             AddHuYaName("a端木佳慧")
             AddHuYaName("a林MMMMM")
-            AddHuYaName("a亲王走位")
+            AddHuYaName("a秦王走位")
             AddHuYaName("a偏执的沁")
-            AddHuYaName("a鬼舞")
             AddHuYaName("a星耀丶酒仙呐")
             AddHuYaName("a凤求凰灬李白")
             AddHuYaName("a好多版本狗")
@@ -79,7 +76,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a巩秋莲")
             AddHuYaName("a深沉的景承嗣")
             AddHuYaName("a吃芒果的虾扯蛋")
-            AddHuYaName("aWrysunny")
+            AddHuYaName("aWrysunny。")
             AddHuYaName("a星耀咕咕鸡")
             AddHuYaName("a星耀丶Maple")
             AddHuYaName("a声声520")
@@ -89,7 +86,6 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("aあ狂あ")
             AddHuYaName("a牛BBB")
             AddHuYaName("a星耀丶西瓜")
-            AddHuYaName("a麒麟77")
             AddHuYaName("a星耀丶懒哟")
             AddHuYaName("a白梦仙")
             AddHuYaName("aV丶3UMY8O")
@@ -100,7 +96,6 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a蓝丁素客")
             AddHuYaName("a星耀丶大圣人")
             AddHuYaName("a嗯，同意")
-            AddHuYaName("a怎堪")
             AddHuYaName("a人王伏羲")
             AddHuYaName("a对象的祖宗")
             AddHuYaName("aChen独秀你坐下")
@@ -159,7 +154,6 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a星耀丶Lee")
             AddHuYaName("a丶大人物")
             AddHuYaName("a星耀丶地狱")
-            AddHuYaName("a星耀丶原痕")
             AddHuYaName("a药药00")
             AddHuYaName("a堕落111")
             AddHuYaName("a无聊的阿西吧")
@@ -168,7 +162,26 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("aMm2651")
             AddHuYaName("a星耀丶猛猛打")
             AddHuYaName("a星悦丶巅峰对决")
-            AddHuYaName("aWorldEdit")
+            AddHuYaName("a无法撼动的决心")
+            AddHuYaName("a星耀丶微风")
+            AddHuYaName("a怎堪丶")
+            AddHuYaName("a星耀丶淘气")
+            AddHuYaName("a星耀丶原痕")
+            AddHuYaName("a浮生—若梦")
+            AddHuYaName("a、大人物")
+            AddHuYaName("aWrysunny。")
+            AddHuYaName("a温州热心市民")
+            AddHuYaName("aMvp丶小炎")
+            AddHuYaName("a麒麒77")
+            AddHuYaName("a鬼舞辻無慘")
+            AddHuYaName("a恒总Gz")
+            AddHuYaName("a都是垃圾啊")
+            AddHuYaName("a星耀丶樱月幻")
+            AddHuYaName("a再見青春")
+            AddHuYaName("a汪涛的大哥")
+            AddHuYaName("aぁ狂ぁ")
+            AddHuYaName("a番哥大魔王")
+
             
         endfunction
         function IsPlayerHuYa(int pid)->bool
@@ -181,6 +194,11 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             end
             return false
         endfunction
+
+        
+        
+
+
     endscope
 
 
@@ -776,8 +794,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGBD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(20,5,1)),0,0,0)
         InitUnlocTechConditions('RGBE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(20,6,1)),0,0,0)
         InitUnlocTechConditions('RGBF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(20,7,1)),0,0,0)
-        /*
         InitUnlocTechConditions('RGBG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(20,8,1)),0,0,0)
+        /*
         InitUnlocTechConditions('RGBH',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(20,9,1)),0,0,0)
         InitUnlocTechConditions('RGBI',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(20,10,1)),0,0,0)
         */
@@ -787,8 +805,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGCD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(20,5,8)),0,0,0)
         InitUnlocTechConditions('RGCE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(20,6,8)),0,0,0)
         InitUnlocTechConditions('RGCF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(20,7,8)),0,0,0)
-        /*
         InitUnlocTechConditions('RGCG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(20,8,8)),0,0,0)
+        /*
         InitUnlocTechConditions('RGCH',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(20,9,8)),0,0,0)
         InitUnlocTechConditions('RGCI',InitCond1(1,Unloc_Type_Level,15),InitCond2(0,Unloc_Type_JF,GameDataList(20,10,8)),0,0,0)
         */
@@ -798,6 +816,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGDD',InitCond1(1,Unloc_Type_Level,7),InitCond2(0,Unloc_Type_JF,GameDataList(20,5,15)),0,0,0)
         InitUnlocTechConditions('RGDE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(20,6,15)),0,0,0)
         InitUnlocTechConditions('RGDF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(20,7,15)),0,0,0)
+        InitUnlocTechConditions('RGDG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(20,8,15)),0,0,0)
 
         
 

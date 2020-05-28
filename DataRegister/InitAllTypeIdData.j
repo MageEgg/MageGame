@@ -53,6 +53,14 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('FB50',"|Cff00BFFF招妖幡|r","ReplaceableTextures\\CommandButtons\\BTNFB50.BLP","木之符印+1")
         call InitTypeIdStrings('FB51',"|Cff00BFFF九曲黄河阵|r","ReplaceableTextures\\CommandButtons\\BTNFB51.BLP","光之符印+1")
         call InitTypeIdStrings('FB52',"|CffBF00FF紫绶仙衣|r","ReplaceableTextures\\CommandButtons\\BTNFB52.BLP","")
+        call InitTypeIdStrings('FB71',"|CffFFDC73阴|r|Cffff9277阳|r|Cffff497b镜|r","ReplaceableTextures\\CommandButtons\\BTNFB71.BLP","雷之符印+3")
+        call InitTypeIdStrings('FB72',"|CffFFDC73定|r|Cffff9277海|r|Cffff497b珠|r","ReplaceableTextures\\CommandButtons\\BTNFB72.BLP","水之符印+3")
+        call InitTypeIdStrings('FB73',"|CffFFDC73盘|r|Cffff9277古|r|Cffff497b幡|r","ReplaceableTextures\\CommandButtons\\BTNFB73.BLP","光之符印+3")
+        call InitTypeIdStrings('FB74',"|CffFFDC73风|r|Cffffa576火|r|Cffff6e79蒲|r|Cffff377c团|r","ReplaceableTextures\\CommandButtons\\BTNFB74.BLP","火之符印+3")
+        call InitTypeIdStrings('FB75',"|CffFFDC73先|r|Cffffb075天|r|Cffff8477五|r|Cffff587a行|r|Cffff2c7c旗|r","ReplaceableTextures\\CommandButtons\\BTNFB75.BLP","木之符印+3")
+        call InitTypeIdStrings('FB76',"|CffFFDC73六|r|Cffff9277魂|r|Cffff497b幡|r","ReplaceableTextures\\CommandButtons\\BTNFB76.BLP","暗之符印+3")
+        call InitTypeIdStrings('FB77',"|CffFFDC73九|r|Cffffa576品|r|Cffff6e79莲|r|Cffff377c台|r","ReplaceableTextures\\CommandButtons\\BTNFB77.BLP","土之符印+3")
+        call InitTypeIdStrings('FB78',"|CffFFDC73诛|r|Cffffa576仙|r|Cffff6e79剑|r|Cffff377c阵|r","ReplaceableTextures\\CommandButtons\\BTNFB78.BLP","金之符印+3")
         call InitTypeIdStrings('FF02',"|CffFFD24D中央戊己旗|r","ReplaceableTextures\\CommandButtons\\BTNFF02.BLP","")
         call InitTypeIdStrings('FF04',"|CffFFD24D三尖两刃刀|r","ReplaceableTextures\\CommandButtons\\BTNFF04.BLP","")
         call InitTypeIdStrings('FF05',"|CffFFD24D八爪龙纹黄袍|r","ReplaceableTextures\\CommandButtons\\BTNFF05.BLP","土之符印+1")
@@ -688,7 +696,7 @@ scope AllTypeIdData initializer init
     endfunction
 
     function InitDataString2 takes nothing returns nothing
-
+        /*
         call InitTypeIdJbStateOnec('FJ01' , "提高150000攻击力" , "提高300000攻击力" , "提高450000攻击力")
         call InitTypeIdJbStateOnec('FJ02' , "提高6%攻击伤害" , "提高12%攻击伤害" , "提高24%攻击伤害")
         call InitTypeIdJbStateOnec('FJ03' , "提高3%闪避/物理抵抗" , "提高6%闪避/物理抵抗" , "提高9%闪避/物理抵抗")
@@ -707,14 +715,16 @@ scope AllTypeIdData initializer init
         call InitTypeIdJbState('FJ07' , 2 , "|Cff999999秘宝(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f2|r|Cff999999/3/6%暴击，|r|Cff00ff7f50|r|Cff999999/100/150%暴击伤害|r" , 3 , "|Cff999999秘宝(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高2/|r|Cff00ff7f3|r|Cff999999/6%暴击，50/|r|Cff00ff7f100|r|Cff999999/150%暴击伤害|r" , 4 , "|Cff999999秘宝(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高2/3/|r|Cff00ff7f6|r|Cff999999%暴击，50/100/|r|Cff00ff7f150|r|Cff999999%暴击伤害|r" , "|Cff999999秘宝(|r|Cffdddddd2/3/4|r|Cff999999)\n提高|r|Cffdddddd2/3/6%|r|Cff999999暴击，|r|Cffdddddd50/100/150%|r|Cff999999暴击伤害|r")
         call InitTypeIdJbState('FJ08' , 2 , "|Cff999999坐骑(|r|Cff00ff7f2|r|Cff999999/3/4)\n法术抵抗|r|Cff00ff7f4|r|Cff999999/8/12%|r" , 3 , "|Cff999999坐骑(2/|r|Cff00ff7f3|r|Cff999999/4)\n法术抵抗4/|r|Cff00ff7f8|r|Cff999999/12%|r" , 4 , "|Cff999999坐骑(2/3/|r|Cff00ff7f4|r|Cff999999)\n法术抵抗4/8/|r|Cff00ff7f12|r|Cff999999%|r" , "|Cff999999坐骑(|r|Cffdddddd2/3/4|r|Cff999999)\n法术抵抗|r|Cffdddddd4/8/12%|r")
         call InitTypeIdJbState('FJ09' , 2 , "|Cff999999法器(|r|Cff00ff7f2|r|Cff999999/3/4)\n提高|r|Cff00ff7f6|r|Cff999999/12/24%技能伤害|r" , 3 , "|Cff999999法器(2/|r|Cff00ff7f3|r|Cff999999/4)\n提高6/|r|Cff00ff7f12|r|Cff999999/24%技能伤害|r" , 4 , "|Cff999999法器(2/3/|r|Cff00ff7f4|r|Cff999999)\n提高6/12/|r|Cff00ff7f24|r|Cff999999%技能伤害|r" , "|Cff999999法器(|r|Cffdddddd2/3/4|r|Cff999999)\n提高|r|Cffdddddd6/12/24%|r|Cff999999技能伤害|r")
-        InitTypeIdJbStateOnec('FY01',"触发致命一击时，攻击伤害+30%，持续3秒，冷却5秒。","触发暴击时，下一次攻击造成12倍致命一击，冷却2秒。","")
-        InitTypeIdJbStateOnec('FY02',"被动触发概率+6%","被攻击4%概率恢复15%最大生命值，冷却1秒。","")
-        InitTypeIdJbStateOnec('FY03',"道兵数量+1","道兵数量+2","")
-        InitTypeIdJbStateOnec('FY04',"火神：攻击32次重置主动技能冷却","火神触发要求降低至攻击20次。","对E和R技能不生效。")
-        InitTypeIdJbStateOnec('FY05',"释放技能后3秒内回复自身（攻击+业力）*75%的生命值。","对Boss造成的伤害增加25%","")
-        InitTypeIdJbStateOnec('FY06',"额外释放技能概率+20%","额外释放技能次数+2","")
-        InitTypeIdJbStateOnec('FY07',"攻击命中后立即追加三次普通攻击。冷却2秒","对生命低于35%的单位造成额外50%伤害","")
-        InitTypeIdJbStateOnec('FY08',"暗裔：释放主动技能25%几率不进入冷却","暗裔触发几率提升至50%","对E和R技能不生效。")
+        */      
+
+        InitTypeIdJbStateOnec('FY01',"触发致命一击时，攻击伤害+30%，持续3秒，冷却5秒。","触发暴击时，下一次攻击造成12倍致命一击，冷却2秒。","致命一击倍率+1200%","")
+        InitTypeIdJbStateOnec('FY02',"被动触发概率+6%","木卫：被攻击4%概率恢复15%最大生命值，冷却1秒。","木卫冷却时间移除，并对周围单位造成等同于回复量*400%伤害","")
+        InitTypeIdJbStateOnec('FY03',"道兵数量+1","道兵数量+2","道兵死亡或消失时，对周围造成（攻击+业力）*200%伤害","")
+        InitTypeIdJbStateOnec('FY04',"火神：攻击32次重置主动技能冷却","火神触发要求降低至攻击20次。","火神触发时对周围造成1%最大生命值伤害。","对E和R技能不生效。")
+        InitTypeIdJbStateOnec('FY05',"释放技能后3秒内回复自身（攻击+业力）*75%的生命值。","对Boss造成的伤害增加25%","对Boss造成的伤害增加35%","")
+        InitTypeIdJbStateOnec('FY06',"额外释放技能概率+20%","额外释放技能次数+2","每次释放主动技能获得1枚印记，光之印记超过15次时，对自身周围进行光之审判，造成（攻击+业力）*1200%伤害。","")
+        InitTypeIdJbStateOnec('FY07',"攻击命中后立即追加三次普通攻击。冷却2秒","对生命低于35%的单位造成额外50%伤害","对生命高于35%的单位造成额外60%伤害","")
+        InitTypeIdJbStateOnec('FY08',"暗裔：释放主动技能25%几率不进入冷却","暗裔触发几率提升至50%","暗之符印基础效果提升50%","对E和R技能不生效。")
         call BJDebugMsgEx("init2end")
     endfunction
 
@@ -772,6 +782,14 @@ scope AllTypeIdData initializer init
         InitTypeIdData('FB50',2,4,4,0,0,0,0,0,0,0,0,0)
         InitTypeIdData('FB51',6,4,6,0,0,0,0,0,0,0,0,0)
         InitTypeIdData('FB52',0,3,3,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB71',7,6,7,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB72',3,6,7,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB73',6,6,4,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB74',4,6,8,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB75',2,6,4,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB76',8,6,4,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB77',5,6,8,0,0,0,0,0,0,0,0,0)
+        InitTypeIdData('FB78',1,6,6,0,0,0,0,0,0,0,0,0)
 
 
         InitTypeIdData('FF02',0,2,4,0,0,0,0,0,0,0,0,0)

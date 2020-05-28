@@ -364,7 +364,36 @@ library DamageCode uses UnitStateSet
         return s*0.01
     endfunction
 
- 
+    
+    //会心
+    function GetUnitHxState(unit wu)->real
+        real s = GetUnitRealState(wu,54)
+        return s
+    endfunction
+
+    function GetUnitHx(unit wu)->real
+        real s = GetUnitHxState(wu)
+        return s*0.01
+    endfunction
+    function GetUnitHsState(unit wu)->real
+        real s = GetUnitRealState(wu,55)
+        return s
+    endfunction
+
+    function GetUnitHs(unit wu)->real
+        real s = GetUnitHsState(wu)
+        return s*0.01
+    endfunction
+
+    function GetUnitZsState(unit wu)->real
+        real s = GetUnitRealState(wu,56)
+        return s
+    endfunction
+
+    function GetUnitZs(unit wu)->real
+        real s = GetUnitZsState(wu)
+        return s*0.01
+    endfunction
  
 
 

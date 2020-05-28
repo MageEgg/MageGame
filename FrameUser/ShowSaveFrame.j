@@ -272,7 +272,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGCD','RGCD',0,0,0,0)//通关异变N4 8次
         RegisterShowSaveFrameData(0,'RGCE','RGCE',0,0,0,0)//通关异变N5 8次
         RegisterShowSaveFrameData(0,'RGCF','RGCF',0,0,0,0)//通关异变N6 8次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGCG','RGCG',0,0,0,0)//通关异变N7 8次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGDA','RGDA',0,0,0,0)//通关异变N1 15次
@@ -281,7 +281,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGDD','RGDD',0,0,0,0)//通关异变N4 15次
         RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0)//通关异变N5 15次
         RegisterShowSaveFrameData(0,'RGDF','RGDF',0,0,0,0)//通关异变N6 15次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGDG','RGDG',0,0,0,0)//通关异变N7 15次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGEA','RGEA',0,0,0,0)//通关超爽N1&地图3级

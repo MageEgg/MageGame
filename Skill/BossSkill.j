@@ -1514,6 +1514,8 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ3E'
             if  GameLevel >= 11
                 damage = attack*36
+            elseif  GameMode == 2 and GameLevel >= 10
+                damage = attack*36
             else
                 damage = attack*12
             endif
@@ -1521,6 +1523,14 @@ library BossSkill uses AbilityUI,OtherDamageTimer,BossSkill2
         elseif  id == 'AZ3F'
             
             if  GameLevel >= 11
+                if  GetRandomInt(1,100)<=70
+                    JJFuncSpell98(u1,u2)
+                    BJDebugMsg("踩人")
+                else
+                    JJFuncSpell99(u1)
+                    BJDebugMsg("电人")
+                endif
+            elseif  GameMode == 3 and GameLevel >= 10
                 if  GetRandomInt(1,100)<=70
                     JJFuncSpell98(u1,u2)
                     BJDebugMsg("踩人")

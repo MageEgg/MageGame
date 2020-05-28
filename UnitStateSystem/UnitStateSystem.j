@@ -37,10 +37,11 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         SetTypeIdData(id,122,use2)
         SetTypeIdData(id,123,use3)
     end
-    func InitTypeIdJbStateOnec(int id,string tip1,string tip2,string tip3)
+    func InitTypeIdJbStateOnec(int id,string tip1,string tip2,string tip3,string tip4)
         SetTypeIdString(id,131,tip1)
         SetTypeIdString(id,132,tip2)
         SetTypeIdString(id,133,tip3)
+        SetTypeIdString(id,134,tip4)
     end
     
     
@@ -224,6 +225,10 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[50]="每秒金币"
         StateName[51]="攻击距离"
         StateName[52]="经验存储"
+        StateName[53]="无视伤害减免%"	
+        StateName[54]="会心概率"	
+        StateName[55]="会心伤害"	
+        StateName[56]="最终伤害"	
         StateName[64]="经验加成"
 
 
@@ -303,6 +308,10 @@ library State initializer StateLibraryInit uses ejtimer,System,Define2
         StateName[1049]=""
         StateName[1050]=""
         StateName[1051]=""
+        StateName[1053]="%"
+        StateName[1054]="%"
+        StateName[1055]="%"
+        StateName[1056]="%"
         StateName[1064]="%"
         StateName[1071]="%"
         StateName[1072]="%"

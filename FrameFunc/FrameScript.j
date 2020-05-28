@@ -141,7 +141,9 @@
         elseif  id == 25
             SetTipsData(10,"","|CffF0F0F0出售法宝，获得|r|Cffffd24d2|r|Cfff0f0f0玄铁。|n|n|r|Cff00ff7f操作提示：点击指定法宝，再点击出售按钮。|r")
             DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_MagicItem_Sale0.tga",0)
-            
+        elseif  id == 26
+        
+            SetTipsData(10,"","|CffCCCCCC神炼法宝：|n|r|Cfff0f0f0消耗法宝背包栏内|r|Cffffd24d2|r|Cfff0f0f0个相同的|r|Cffff0000红色法宝|r|Cfff0f0f0，可神炼为|r随机|CffFFDC73彩|r|Cffffa576色|r|Cffff6e79法|r|Cffff377c宝|r|n|n|Cff00ff7f操作提示：将相同的红色法宝放在法宝背包栏，再点击【神炼按钮】。|r")
         elseif  id == 652 or id == 653
             int step = GetPassCheckStep()
             int exp = GetDzPlayerData(pid,4,1+step)
@@ -389,7 +391,7 @@
                     if  id >= 1 and id <= 20
                         BoxShowMagicItem(pid,id)
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
-                    elseif  id >= 21 and id <= 25
+                    elseif  id >= 21 and id <= 26
                         BoxShowResources(pid, id)
                     elseif  id >= 31 and id <= 38
                         BoxShowMagicItem(pid,id-30)
@@ -527,7 +529,7 @@
                 endif
             elseif  Type == TYPE_BUTTON
                 if  id >= 901 and id <= 908
-                    SetTiptoolPosition(0.0,0.1)
+                    SetTiptoolPosition(0.0,0.14)
                 else
                     SetTiptoolPostionAsMouse()
                 endif

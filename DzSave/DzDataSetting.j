@@ -85,8 +85,9 @@ library DzDataSetting uses DzBase
         DzPlayerInitVariationTGCos[5] = 15
         
         DzPlayerInitVariationTGCos[6] = 15
+        
+        DzPlayerInitVariationTGCos[7] = 15
         /*
-        DzPlayerInitVariationTGCos[7] = 8
         DzPlayerInitVariationTGCos[8] = 8
         DzPlayerInitVariationTGCos[9] = 8
         DzPlayerInitVariationTGCos[10] = 8*/

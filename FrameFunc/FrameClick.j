@@ -19,7 +19,8 @@ scope FrameButton
                         ForgePlayerMagicItem(pid)
                     elseif  id == 25//出售
                         SalePlayerMagicItem(pid)
-                        
+                    elseif  id == 26//神炼
+                        GodIncMagicItem(pid)
                     elseif  id >= 101 and id <= 103//选择备选学习技能
                         PlayerSelectLearnAbility(pid,id-100)
                     elseif  id >= 111 and id <= 113//选择备选学习技能
@@ -128,6 +129,10 @@ scope FrameButton
                         PlayerClickPrize(pid,0)
                     elseif  id == 910
                         PlayerClickRunePrize(pid,1)
+                    elseif  id == 1020
+                        if  GetLocalPlayer() == Player(pid)
+                            HYHDButton.show = false
+                        endif
                     endif
                 endif
             elseif  GameSaveClose == 1
@@ -191,6 +196,7 @@ endscope
 //! runtextmacro AddFrameFunc("21")
 //! runtextmacro AddFrameFunc("22")
 //! runtextmacro AddFrameFunc("25")
+//! runtextmacro AddFrameFunc("26")
 
 
 //! runtextmacro AddFrameFunc("101")
@@ -355,6 +361,7 @@ endscope
 
 //1001-1012排行榜名称
 //! runtextmacro AddFrameFunc("1000")
+//! runtextmacro AddFrameFunc("1020")
 
 
 

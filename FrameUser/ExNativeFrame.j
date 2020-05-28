@@ -46,14 +46,20 @@ library ExNativeFrame uses GameFrame
             SetTipsData(12,"","\n|cff808080"+GetTypeIdName(id)+"x6\n"+GetTypeIdString(id,132))
         endif
 
+        if  lv >= 12
+            SetTipsData(13,"","\n|cff00ff00"+GetTypeIdName(id)+"x12\n"+GetTypeIdString(id,133))
+        else
+            SetTipsData(13,"","\n|cff808080"+GetTypeIdName(id)+"x12\n"+GetTypeIdString(id,133))
+        endif
 
-        if  GetTypeIdString(id,133)!=""
-            SetTipsData(13,"","\n|cff808080"+GetTypeIdString(id,133))
+
+        if  GetTypeIdString(id,134)!=""
+            SetTipsData(14,"","\n|cff808080"+GetTypeIdString(id,134))
         endif
 
 
 
-        ShowTipsUISetPosition(0.0,0.1)
+        ShowTipsUISetPosition(0.0,0.14)
     endfunction
     
     

@@ -71,6 +71,8 @@ library Summon uses AbilityUI,OtherDamageTimer
             time = time - 1
             Z103DamageEx(u1,x,y,damage)
             if  time <= 0
+
+                SpellFY03_12.execute(u1,x,y)
                 endtimer
             endif
             flush locals
