@@ -1359,6 +1359,11 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             if  GetPlayerTechCount(GetOwningPlayer(u),'RM1E',true) > 0
                 add = add + 0.5
             endif
+
+            if  GetPlayerTechCount(GetOwningPlayer(u),'RXCE',true) > 0
+                add = add + 0.5
+            endif
+
         endif
 
         if  GetUnitAbilityLevel(u,'A009') > 0
@@ -1801,6 +1806,12 @@ library HeroSpell uses HeroAbilityFunc,BossSkill,Summon
             if  GetPlayerTechCount(GetOwningPlayer(wu),'RX5E',true) > 0
                 time = time + 3
             endif
+            if  GetPlayerTechCount(GetOwningPlayer(wu),'RXEE',true) > 0
+                time = time + 3
+            endif
+
+            
+
         endif
         
 

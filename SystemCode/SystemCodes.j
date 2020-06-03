@@ -851,7 +851,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
         function GetHeroPoolTypeEx(int pid)->int
             if  GameSaveClose == 0
-                if  DzPlayerLv(Player(pid)) >= 16
+                if  DzPlayerLv(Player(pid)) >= 16 and DzPlayerLv(Player(pid)) < 30
                     if  GetRandomReal(1,100) <= 2.7
                         return 'H036'
                     endif

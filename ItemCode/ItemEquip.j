@@ -333,6 +333,9 @@ library ItemEquip uses DamageCode,ItemGameFunc
             if  GetPlayerTechCount(Player(pid),'RG1H',true) > 0
                 gl = gl + 3
             endif
+            if  GetPlayerTechCount(Player(pid),'RGBG',true) > 0
+                gl = gl + 3
+            endif
             if  GetPlayerTechCount(Player(pid),'RGDG',true) > 0
                 gl = gl + 3
             endif

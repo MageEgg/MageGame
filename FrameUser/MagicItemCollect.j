@@ -966,33 +966,36 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         int id1 = 0
         int id2 = 0
         int k = 0
-        for i1 = 1,9
-            id1 = GetPlayerMagicItem(pid,8+i1)
-            for i2 = 1,9
-                if  i1 != i2
-                    id2 = GetPlayerMagicItem(pid,8+i2)
-                    if  id1 == id2
-                        if  GetTypeIdData(id1,101) == 1
-                            k = 1
-                            RemPlayerMagicItemByIndex(pid,8+i1)
-                            RemPlayerMagicItemByIndex(pid,8+i2)
-                                                    
+        if  GameMode == 4
+            for i1 = 1,9
+                id1 = GetPlayerMagicItem(pid,8+i1)
+                for i2 = 1,9
+                    if  i1 != i2
+                        id2 = GetPlayerMagicItem(pid,8+i2)
+                        if  id1 == id2
+                            if  GetTypeIdData(id1,101) == 1
+                                k = 1
+                                RemPlayerMagicItemByIndex(pid,8+i1)
+                                RemPlayerMagicItemByIndex(pid,8+i2)
+                                                        
 
-                            GivePlayerMagicItem(pid,'FB70'+GetRandomInt(1,8))
-                            SetPlayerMagicItemLast(pid,0)
-                            exitwhen true
+                                GivePlayerMagicItem(pid,'FB70'+GetRandomInt(1,8))
+                                SetPlayerMagicItemLast(pid,0)
+                                exitwhen true
+                            endif
                         endif
                     endif
-                endif
-                
+                    
+                end
+                exitwhen k == 1
             end
-            exitwhen k == 1
-        end
 
-        if  k == 0
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包栏内无相同红色法宝！")
+            if  k == 0
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r背包栏内无相同红色法宝！")
+            endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该功能仅在超爽模式下可用！")
         endif
-
     endfunction
 
     //重置法宝
@@ -1010,22 +1013,31 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
                 if  num > 0
                     color = GetTypeIdData(id,101)
-                    if  GetPrizePoolMax(pid,10+color) > 0
-                        
+                    if  color == 6
                         SetPlayerMagicItemResources(pid,1,num-1)
-                        
-                        newid = GetPrize(pid,10+color,true)
-                        RecoveryMagicPoolData(pid,10+color,id)//回收法宝
-
-                        //重铸
+                        newid = GetRandomInt(1,8) + 'FB70'
                         RemPlayerMagicItemByIndex(pid,last)
                         SetPlayerMagicItem(pid,last,newid)
-
-                        //重置玩家选择
                         SetPlayerMagicItemLast(pid,0)
                     else
-                        SetPlayerMagicItemLast(pid,0)
-                        DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无法重铸该法宝！")
+                        if  GetPrizePoolMax(pid,10+color) > 0
+                            
+                            SetPlayerMagicItemResources(pid,1,num-1)
+                            
+                            newid = GetPrize(pid,10+color,true)
+                            RecoveryMagicPoolData(pid,10+color,id)//回收法宝
+
+                            //重铸
+                            RemPlayerMagicItemByIndex(pid,last)
+                            SetPlayerMagicItem(pid,last,newid)
+
+                            //重置玩家选择
+                            SetPlayerMagicItemLast(pid,0)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r重铸成功！获得法宝"+GetMagicItemName(newid))
+                        else
+                            SetPlayerMagicItemLast(pid,0)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无法重铸该法宝！")
+                        endif
                     endif
                 else
                     SetPlayerMagicItemLast(pid,0)
@@ -1054,7 +1066,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                 num = GetPlayerMagicItemResources(pid,1)//获取补天石数量
                 if  num >= 3
                     color = GetTypeIdData(id,101)
-                    if  color > 2
+                    if  color > 2 and color != 6
                         newid = id + 0x40000
                         if  GetTypeIdData(newid,101) == 2
                             SetPlayerMagicItemResources(pid,1,num-3)
@@ -1071,6 +1083,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                             
                             //重置玩家选择
                             SetPlayerMagicItemLast(pid,0)
+                            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r点金成功！获得法宝"+GetMagicItemName(newid))
                         else
                             SetPlayerMagicItemLast(pid,0)
                             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r该法宝无法点金！")
@@ -1142,7 +1155,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         if  id > 0
             num = GetPlayerMagicItemResources(pid,2)//获取鸿蒙结晶数量
             color = GetTypeIdData(id,101)-1
-            if  color > 0
+            if  color > 0 and color != 5
                 if  num > 0
                     if  GetPrizePoolMax(pid,10+color) > 0
                         SetPlayerMagicItemResources(pid,2,num-1)

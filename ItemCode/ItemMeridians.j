@@ -207,7 +207,7 @@ library ItemMeridians uses DamageCode,ItemGameFunc
     endfunction
 
     int DragonKingDayNum = 4
-    int DragonKingMaxLv = 5
+    int DragonKingMaxLv = 10
 
     function GetDragonKingName(int num)->string
         if  num == 1
@@ -242,8 +242,14 @@ library ItemMeridians uses DamageCode,ItemGameFunc
         int id = 0
         if  lv > 0
             for n = 1,lv
-                id = 'RX1A'+(num-1)*256
-                SetPlayerTechResearchedEx(Player(pid),id+n-1)
+                if  n > 5
+                    id = 'RXAA'+(num-1)*256
+                    SetPlayerTechResearchedEx(Player(pid),id+n-6)
+                else
+                    id = 'RX1A'+(num-1)*256
+                    SetPlayerTechResearchedEx(Player(pid),id+n-1)
+                endif
+                
                 if  id+n-1 == 'RX2E'
                     AddPlayerFoodByIndex(pid,2,2)
                 endif

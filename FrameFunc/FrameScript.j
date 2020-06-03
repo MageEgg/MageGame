@@ -273,7 +273,7 @@
         elseif  id >= 'FY01' and id <= 'FY08'
             int lv = GetUnitIntState(Pu[1],id)
             DzFrameShow(UI_TipsHead, true)
-                
+            
             if  lv > 0
                 SetTipsData(1,"","|cffff0000"+GetTypeIdName(id)+"|rx"+I2S(lv))
             else
@@ -536,6 +536,7 @@
             elseif  Type == TYPE_FUNC
                 if  id >= 951 and id <= 966
                     if  ReHeroPool[pid][id-950] > 0
+                        BoxShowHeroSave(pid,ReHeroPool[pid][id-950])
                         DzFrameSetTexture(BUTTON_Back[id][4] , "war3mapImported\\UI_BUTTON_High.blp", 0)
                     endif
                 endif

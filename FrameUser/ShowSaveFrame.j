@@ -148,6 +148,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(1,'RY4R','RY4R',0,0,0,0)//无极修罗 N9
         RegisterShowSaveFrameData(1,'RY4T','RY4T',0,0,0,0)//无极修罗 N10
         RegisterShowSaveFrameData(1,'RY4U','RY4U',0,0,0,0)//魅影无双 N11
+        RegisterShowSaveFrameData(1,'RY4X','RY4X',0,0,0,0)//毁天灭地 N12
         RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
         RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
         RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
@@ -224,7 +225,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RG0I','RG0I',0,0,0,0)//难9通关5次
         RegisterShowSaveFrameData(0,'RG0J','RG0J',0,0,0,0)//难10通关5次
         RegisterShowSaveFrameData(0,'RG0K','RG0K',0,0,0,0)//难11通关5次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG0L','RG0L',0,0,0,0)//难12通关5次
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
 
@@ -254,7 +255,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
         RegisterShowSaveFrameData(0,'RGAJ','RGAJ',0,0,0,0)//通关疯狂N10
         RegisterShowSaveFrameData(0,'RGAK','RGAK',0,0,0,0)//通关疯狂N11
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGAL','RGAL',0,0,0,0)//通关疯狂N12
 
 
         RegisterShowSaveFrameData(0,'RGBA','RGBA',0,0,0,0)//通关异变N1
@@ -263,7 +264,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGBD','RGBD',0,0,0,0)//通关异变N4
         RegisterShowSaveFrameData(0,'RGBE','RGBE',0,0,0,0)//通关异变N5
         RegisterShowSaveFrameData(0,'RGBF','RGBF',0,0,0,0)//通关异变N6
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGBG','RGBG',0,0,0,0)//通关异变N7
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
 
         RegisterShowSaveFrameData(0,'RGCA','RGCA',0,0,0,0)//通关异变N1 8次
@@ -301,6 +302,12 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
         RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+
+        RegisterShowSaveFrameData(0,'RGGA','RGGA',0,0,0,0)//超爽N1通关12次&地图3级
+        RegisterShowSaveFrameData(0,'RGGB','RGGB',0,0,0,0)//超爽N2通关12次&地图3级
+        RegisterShowSaveFrameData(0,'RGGC','RGGC',0,0,0,0)//超爽N3通关12次&地图5级
+        RegisterShowSaveFrameData(0,'RGGD','RGGD',0,0,0,0)//超爽N4通关12次&地图7级
+        RegisterShowSaveFrameData(0,'RGGE','RGGE',0,0,0,0)//超爽N5通关12次&地图9级
 
         
 
@@ -417,6 +424,9 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
         RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
         RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
+        RegisterShowSaveFrameData(4,'RY9K','RY9K',0,0,0,0)//封神谕令Lv11
+        RegisterShowSaveFrameData(4,'RY9L','RY9L',0,0,0,0)//封神谕令Lv12
+//        RegisterShowSaveFrameData(4,'RY9M','RY9M',0,0,0,0)//封神谕令Lv13
     endfunction
 
 
@@ -575,7 +585,75 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     endfunction
 
 
+    function BoxShowHeroSave(int pid,int uid)
+        int id = uid - 'H000' + 'RH00'
+        int lv = 0
+        int use = 0
+        int exp = 0
+        int state
+        real value
+        if  id > 0
+            DzFrameShow(UI_TipsHead, true)
+            
+            lv = GetDzHeroExpLevel(pid,uid)
+            if  lv == 0
+                use = 12
+            elseif  lv == 1
+                use = 24
+            elseif  lv == 2
+                use = 36
+            elseif  lv == 3
+                use = 72
+            else
+                use = 96
+            endif
+
+            exp = GetDzHeroExp(pid,uid)
+            if  use > 96
+                use = 96
+            endif
+            if  exp > 96
+                exp = 96
+            endif
+
+            
+            if  lv == 4
+                SetTipsData(1,"",GetTypeIdName(id)+" Lv.Max")
+                SetTipsData(10,"","|cff808080熟练度：|r")
+                SetTipsData(11,"","|cff00ff000|r/0\n ")
+            else
+                SetTipsData(1,"",GetTypeIdName(id)+" Lv."+I2S(lv))
+                SetTipsData(10,"","|cff808080熟练度：|r")
+                SetTipsData(11,"","|cff00ff00"+I2S(exp*10)+"|r/"+I2S(use*10)+"\n ")
+            endif
+            
+            
     
+
+            for s = 1,3
+                state = GetTypeIdData(id,200+s)
+                value = GetTypeIdReal(id,200+s)
+                SetTipsData(11+s,"",GetShowLevelTip(s,lv)+"：提高该英雄"+I2S(R2I(value))+StateName[1000+state]+StateName[state])
+            end
+
+            SetTipsData(15,"",GetShowLevelTip(4,lv)+"：提高该英雄30%暴击伤害，异变模式下经验加成+30%")
+
+
+            SetTipsData(16,"","")
+            SetTipsData(17,"","|Cff00FF7F每次通关增加(难度+1)*10熟练度。|r\n|Cff00FF7F15波后游戏失败时增加20熟练度。|r")
+            
+            
+            if  id == 'RH36'
+                SetTipsData(17,"","地图等级16级加入随机英雄池，30级可手选。")
+            elseif  id == 'RH37'
+                SetTipsData(17,"","地图等级36级可手选。")
+            elseif  id == 'RH40'
+                SetTipsData(17,"","龙宫积分达到48个时可选择，输入“JF”查询。")
+            endif
+
+            ShowTipsUI()
+        endif
+    endfunction
 
 
     //显示说明
@@ -629,11 +707,19 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                     SetTipsData(10,""," ")
                 endif
                 h = 11
-                for i = 1,5
+                for i = 1,10
                     if  lv >= i
-                        SetTipsData(h,"","Lv."+I2S(i)+"："+GetTypeIdName(id+i+16))
+                        if  i > 5
+                            SetTipsData(h,"","Lv."+I2S(i)+"："+GetTypeIdName(id+i+0x100B))
+                        else
+                            SetTipsData(h,"","Lv."+I2S(i)+"："+GetTypeIdName(id+i+16))
+                        endif
                     else
-                        SetTipsData(h,"","|cff808080Lv."+I2S(i)+"："+GetTypeIdName(id+i+16)+"|r")
+                        if  i > 5
+                            SetTipsData(h,"","|cff808080Lv."+I2S(i)+"："+GetTypeIdName(id+i+0x100B)+"|r")
+                        else
+                            SetTipsData(h,"","|cff808080Lv."+I2S(i)+"："+GetTypeIdName(id+i+16)+"|r")
+                        endif
                     endif
                     h = h + 1
                 end
@@ -706,6 +792,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                     SetTipsData(17,"","地图等级36级可手选。")
                 elseif  id == 'RH40'
                     SetTipsData(17,"","龙宫积分达到48个时可选择，输入“JF”查询。")
+                elseif  id == 'RH42'
+                    SetTipsData(17,"","任意龙宝达到10级时可选择。")
                 endif
             
                 

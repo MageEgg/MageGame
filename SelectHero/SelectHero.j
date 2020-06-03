@@ -362,7 +362,7 @@ scope SelectHero
 
             //重随次数
             if  DzBool == true
-                HeroReNumber = 100
+                HeroReNumber = 8
             else
                 HeroReNumber = 1
             endif
@@ -402,6 +402,25 @@ scope SelectHero
                         PoolAddHeroId(pid,'H040')
                     endif
                 endif
+
+                if  GetUnitTypeId(Pu[1]) != 'H042'
+                    for long = 12,19
+                        if  GetDzPlayerData(pid,6,long) >=10
+                            PoolAddHeroId(pid,'H042')
+                            exitwhen true
+                        endif
+                    end
+                endif
+
+                int num = 0 
+
+                loop
+                    exitwhen HeroReNumber == 0
+                    if  PoolAddHeroId(pid,GetHeroPoolTypeNew(pid,0)) == true
+                        HeroReNumber = HeroReNumber - 1
+                    endif
+                endloop
+                
             endif
 
             ReHeroFrameUI(pid)
@@ -499,6 +518,7 @@ scope SelectHero
                 if  GameChallengeBool[0] == false
                     if  HeroReNumber > 0
                         PoolAddHeroId(pid,id)
+                        
                         ReHeroPrePareFunc(pid,GetHeroPoolTypeNew(pid,id))
                         HeroReNumber = HeroReNumber - 1
                         ReHeroFrameUI(pid)

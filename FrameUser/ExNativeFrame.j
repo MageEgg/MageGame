@@ -290,16 +290,28 @@ library ExNativeFrame uses GameFrame
     endfunction
 
 
+
+
     function ReReHeroFrameUI(int pid)
         int id = 0
+        int lv = 0
         if  GetLocalPlayer() == Player(pid)
             for i = 1,12
                 id = ReHeroPool[pid][i]
                 if  id > 0
+                    lv = GetDzHeroExpLevel(pid,id)
                     DzFrameSetTexture(BUTTON_Back[950+i][0],GetTypeIdIcon(id),0)
+                    if  lv > 0
+                        DzFrameSetTexture(BUTTON_Back[950+i][3],"war3mapImported\\UI_Hero_SaveLevel_"+I2S(lv)+".tga",0)
+                    else
+                        DzFrameSetTexture(BUTTON_Back[950+i][3],"war3mapImported\\alpha.tga",0)
+                    endif
                     DzFrameSetText(BUTTON_Text[950+i],GetTypeIdName(id))
+
+
                 else
                     DzFrameSetTexture(BUTTON_Back[950+i][0],"war3mapImported\\alpha.tga",0)
+                    DzFrameSetTexture(BUTTON_Back[950+i][3],"war3mapImported\\alpha.tga",0)
                     DzFrameSetText(BUTTON_Text[950+i],"")
                 endif
             end
@@ -341,21 +353,7 @@ library ExNativeFrame uses GameFrame
     
 
     function ReHeroFrameUI(int pid)
-        if  GetLocalPlayer() == Player(pid)
-            
-            if  GameSaveClose == 0
-                ReHeroNumber.SetText( I2S(HeroReNumber))
-            else
-                DzFrameShow(BUTTON_Back[950][0],false)
-
-                ReHeroButton.ClearPoints()
-                ReHeroButton.SetPoint(4,GameUI,4,0.0,0.0)
-
-                ReHeroNumber.ClearPoints()
-                ReHeroNumber.SetPoint(7,ReHeroButton.frameid,7,0.0,0.005)
-                ReHeroNumber.SetText("请选择英雄")
-            endif
-        endif
+ 
 
     endfunction
 
@@ -388,10 +386,11 @@ library ExNativeFrame uses GameFrame
         ReHeroBack.SetTexture("war3mapImported\\UI_ReHero_Back.tga",0)
 
         CreateButton(950,ReHeroButton.frameid,TYPE_BUTTON,7,ReHeroButton.frameid,7,0.0,0.01,0.1,0.028,"war3mapImported\\UI_ReHero_Button.tga")
+        DzFrameShow(BUTTON_Back[950][0],false)
 
         ReHeroNumber.frameid = FRAME.Fdf("text014",ReHeroButton.frameid,ReHeroNumber)
-        ReHeroNumber.SetPoint(5,BUTTON_Back[950][0],5,-0.01,0)
-        ReHeroNumber.SetText("1")
+        ReHeroNumber.SetPoint(7,ReHeroButton.frameid,7,0.0,0.005)
+        ReHeroNumber.SetText("请选择英雄")
 
         for hx = 0,3
             for hy = 0,2

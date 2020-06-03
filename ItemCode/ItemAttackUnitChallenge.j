@@ -301,7 +301,7 @@ library ItemAttackUnitChallenge uses DamageCode,ItemGameFunc
             time = 1
         elseif  GameMode == 4
             if  zu == 200
-                time = 60
+                time = 45
             elseif  zu == 210
                 time = 160
             elseif  zu == 220 

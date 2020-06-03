@@ -63,6 +63,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitTGCos[9] = 15
         DzPlayerInitTGCos[10] = 15
         DzPlayerInitTGCos[11] = 15
+        DzPlayerInitTGCos[12] = 5
 
         //疯狂
         DzPlayerInitCrazyTGCos[1] = 1
@@ -76,6 +77,7 @@ library DzDataSetting uses DzBase
         DzPlayerInitCrazyTGCos[9] = 1
         DzPlayerInitCrazyTGCos[10] = 1
         DzPlayerInitCrazyTGCos[11] = 1
+        DzPlayerInitCrazyTGCos[12] = 1
 
         //异变
         DzPlayerInitVariationTGCos[1] = 15
@@ -93,11 +95,11 @@ library DzDataSetting uses DzBase
         DzPlayerInitVariationTGCos[10] = 8*/
 
         //超爽
-        DzPlayerInitSuperTGCos[1] = 5
-        DzPlayerInitSuperTGCos[2] = 5
-        DzPlayerInitSuperTGCos[3] = 5
-        DzPlayerInitSuperTGCos[4] = 5
-        DzPlayerInitSuperTGCos[5] = 5
+        DzPlayerInitSuperTGCos[1] = 12
+        DzPlayerInitSuperTGCos[2] = 12
+        DzPlayerInitSuperTGCos[3] = 12
+        DzPlayerInitSuperTGCos[4] = 12
+        DzPlayerInitSuperTGCos[5] = 12
         DzPlayerInitSuperTGCos[6] = 0
         DzPlayerInitSuperTGCos[7] = 0
         DzPlayerInitSuperTGCos[8] = 0

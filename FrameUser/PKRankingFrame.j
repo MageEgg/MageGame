@@ -123,8 +123,8 @@ library PKRankingFrame uses GameFrame
 
 
         CreateButton(1001,origin,TYPE_NULL,0,origin,0,0.362+0.000,-0.088,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNH022.blp")
-        CreateButton(1002,origin,TYPE_NULL,0,origin,0,0.362+0.075,-0.088,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNH029.blp")
-        CreateButton(1003,origin,TYPE_NULL,0,origin,0,0.362+0.000,-0.106,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNH021.blp")
+        CreateButton(1002,origin,TYPE_NULL,0,origin,0,0.362+0.075,-0.088,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNH021.blp")
+        CreateButton(1003,origin,TYPE_NULL,0,origin,0,0.362+0.000,-0.106,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNH029.blp")
         CreateButton(1004,origin,TYPE_NULL,0,origin,0,0.362+0.075,-0.106,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNH022.blp")
 
         CreateButton(1005,origin,TYPE_NULL,0,origin,0,0.362+0.000,-0.160,0.012,0.012,"ReplaceableTextures\\CommandButtons\\BTNPET02.blp")

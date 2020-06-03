@@ -2387,4 +2387,76 @@ library HeroAbilityFunc uses OtherDamageTimer,Summon
     endfunction 
 
 
+    
+
+
+    //哔哔第一名
+    function SpellS542Func(unit wu,real x,real y,real dam,int level)
+        unit u1 = wu
+        real x1 = x
+        real y1 = y
+        real damage = dam
+        int time = 8
+        int lv = level
+        real face = GetRandomReal(1,360)
+        unit u2=CreateTmUnit(GetOwningPlayer(u1),"H042.mdx",x-300*Cos(face*0.01745),y-300*Sin(face*0.01745),face,0,1.5)
+        SetUnitAnimation( u2, "spell" )
+        SetUnitVertexColor( u2, 20, 20, 50, 100 )
+        TimerStart(0.5,true)
+        {
+            SetUnitAnimation( u2, "spell" )
+            time = time - 1
+            LocAddEffect(x1,y1,"effect2_az2_az_xiaonajia01_d.mdl")
+            IndexGroup g = IndexGroup.create()
+            GroupEnumUnitsInRange(g.ejg,x1,y1,300,GroupNormalNoStr(GetOwningPlayer(u1),"","",0))
+            UnitDamageGroup(u1,g.ejg,damage,false,false,ATTACK_TYPE_CHAOS,DAMAGE_TYPE_MAGIC,null)
+            g.destroy()
+            if  time <= 0
+                RemoveUnit(u2)
+                endtimer
+            endif
+            flush locals
+        }
+        flush locals
+    endfunction
+
+    function SpellS542(unit wu,real x,real y,real damage,int lv)
+        real x1 = x
+        real y1 = y
+        int num = GetUnitIntState(wu,'S542') + GetUnitAttackNumb(wu)
+        int use = 16
+        real dis = 0
+        real ang = 0
+
+        if  num >= use
+            SetUnitIntState(wu,'S542',0)
+            
+            int max = 1 + GetHeroSummonNum(wu)
+            if  lv >= 3
+                max = max + 1
+            endif
+            if  lv >= 4
+                damage = damage * 2
+            endif
+            
+            for i = 1,max
+                if  max != 1
+                    dis = GetRandomReal(0,300)
+                    ang = GetRandomReal(-3.14,3.14)
+
+                    x1 = x + dis * Cos(ang)
+                    y1 = y + dis * Sin(ang)
+                endif
+                SpellS542Func(wu,x1,y1,damage,lv)
+            end
+            
+        else
+            SetUnitIntState(wu,'S542',num)
+        endif
+
+        
+    endfunction
+
+
+
 endlibrary

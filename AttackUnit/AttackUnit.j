@@ -1388,7 +1388,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         if  num < 10
             SetUnitRealStateOfOtherIdAddValue(tu,'mg00'+num,1.0)
         else
-            SetUnitRealStateOfOtherIdAddValue(tu,'mg10',1.0 + (num-10) * 0.4)
+            SetUnitRealStateOfOtherIdAddValue(tu,'mg10',1.0 + (num-10) * 0.2)
         endif
   
     endfunction
@@ -1621,9 +1621,9 @@ library AttackUnit uses DamageCode,PassCheckMission
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[系统]：|r|cffff0000游戏已通关！游戏将在60秒内结束！|r")
-            if  GameSaveClose == 1
-                RePKUI()
-            endif
+            
+            RePKUI()
+            
             ExecuteFunc("CreateMeridiansNPC")
             ExecuteFunc("GameWin")
             

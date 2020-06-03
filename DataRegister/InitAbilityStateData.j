@@ -110,6 +110,7 @@ call InitAbilityData('S538',1,0,1,2,0,0,0,0,1,0,4,"抟土造人","释放技能�
 call InitAbilityData('S539',1,0,5,0.4,0,0,0,0,2,8,3,"五色神光","攻击时释放|Cffffc926五色神光|r，对周围敌人造成|Cffffc926生命*40%|r伤害，并回复自身|Cffffc9267%|r生命。","ReplaceableTextures\\CommandButtons\\BTNS539.blp")
 call InitAbilityData('S540',8,0,2,0.43,0,0,0,0,2,12,2,"水漫金山","龟丞相从哪悟得此等囚牢神通，不得而知。只见声势浩大，杀伤力惊人。|n对目标范围每|Cffffc9260.3秒|r造成|Cffffc926业力*43%|r伤害，持续|Cffffc9265|r秒。|Cffffc926|r|n|Cff00ff7f受影响单位无法逃脱。|r","ReplaceableTextures\\CommandButtons\\BTNS540.blp")
 call InitAbilityData('S541',8,0,1,6,0,0,0,0,2,8,1,"神灵降世","巨神兵会跳向空中，着陆到目标地点，对一定范围内的敌军造成|Cffffc926攻击*600%|r伤害并击晕|Cffffc9261|r秒。|n|n拥有法宝|Cffff00ff六根清净竹|r时，神灵降世结束后额外附带一次|Cffffc926熔岩喷发|r，造成|Cffffc926攻击*800%|r伤害。","ReplaceableTextures\\CommandButtons\\BTNS541.blp")
+call InitAbilityData('S542',1,0,2,0.6,0,0,0,0,2,0,4,"哔哔第一名","攻击|Cffffc92616|r次召唤|Cffffc9261|r个|Cffffc926龙王|r喷水，每0.5秒对周围造成|Cffffc926业力*120%|r伤害，持续|Cffffc9264|r秒。","ReplaceableTextures\\CommandButtons\\BTNS542.blp")
 
 InitAbilityStringEx('S501',"挥砍一段伤害+100%","挥砍二段伤害+100%","第三段挥砍造成4秒眩晕","","")
 InitAbilityStringEx('S502',"附带1秒眩晕效果","爪击伤害提高50%。","爪击后3秒内提高30%暴击伤害","","")
@@ -151,6 +152,7 @@ InitAbilityStringEx('S538',"土著免疫技能眩晕，伤害减免+20%","土著
 InitAbilityStringEx('S539',"攻击6%概率降低五色神光1秒冷却。","触发五色神光后，3秒内免疫死亡及神光伤害提高40%。（无法免疫斩杀）冷却6秒。","被攻击10%概率刷新神光冷却。","","")
 InitAbilityStringEx('S540',"水牢伤害+40%","水牢退散时发动一次额外爆炸，造成业力*600%伤害。","水牢爆炸伤害翻倍","","")
 InitAbilityStringEx('S541',"神灵降世额外造成1次伤害","神灵降世造成伤害时对Boss单位附加一次普攻效果。","神灵降世额外造成2次伤害","","")
+InitAbilityStringEx('S542',"水之符印+1","龙王数量+1","喷水伤害+100%","","")
 
 
 

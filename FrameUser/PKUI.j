@@ -3,6 +3,7 @@ library PKUI uses GameFrame
     private FRAME Back
     private FRAME TextDay
     private FRAME TextTime
+    private FRAME TextMode
     private int origin = 0
 
     FRAME PKUIButton
@@ -67,6 +68,16 @@ library PKUI uses GameFrame
 
         TextDay.SetText(I2S(TimeYear) + "年" + I2S(TimeMon)+"月"+ I2S(TimeDay)+"日")
 
+
+        if  GameMode == 1
+            call TextMode.SetText("经典模式-"+GameNanDuName[GameLevel])
+        elseif  GameMode == 2
+            call TextMode.SetText("疯狂模式-"+GameNanDuName[GameLevel])
+        elseif  GameMode == 3
+            call TextMode.SetText("异变模式-"+GameNanDuName[GameLevel-3])
+        elseif  GameMode == 4
+            call TextMode.SetText("超爽模式-"+GameNanDuName[GameLevel])
+        endif
         
 
         for pid = 0,3
@@ -97,6 +108,7 @@ library PKUI uses GameFrame
 
         TextDay = FRAME.create() //背景文字
         TextTime = FRAME.create() //背景文字
+        TextMode = FRAME.create() //背景文字
 
         //控件设置
         Button.frameid = FRAME.Tag("BUTTON","PK",GameUI,Button)
@@ -118,6 +130,10 @@ library PKUI uses GameFrame
         TextDay.frameid = FRAME.Fdf("centertext012",origin,TextDay)
         TextDay.SetPoint(4,origin,0,0.405,-0.058)
         TextDay.SetText("00:00:00")
+
+        TextMode.frameid = FRAME.Fdf("centertext008",origin,TextMode)
+        TextMode.SetPoint(7,origin,7,0.003,0.07)
+        TextMode.SetText("xxx模式123214")
         
 
 

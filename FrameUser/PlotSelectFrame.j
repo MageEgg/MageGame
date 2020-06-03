@@ -328,6 +328,9 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             if  GetPlayerTechCount(Player(pid),'RSHG',true)>0
                 add = add + 0.06
             endif
+            if  GetPlayerTechCount(Player(pid),'RGBG',true)>0
+                add = add + 0.05
+            endif
             if  GetPlayerTechCount(Player(pid),'RGDB',true)>0
                 add = add + 0.05
             endif

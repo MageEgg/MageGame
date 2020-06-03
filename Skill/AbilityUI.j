@@ -537,6 +537,16 @@ library AbilityUI initializer AbilityUIInit uses DamageCode
                     UnitAddAbility(wu,'AH30')
                     DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：后羿获得百发百中加持，领悟多重射击")
                 endif
+            elseif  uid == 'H042'
+                
+                if  newlv == 2
+                    AddUnitRune.execute(Pu[1],'FY03',1)
+                    ReRuneFrame.execute(pid)
+                    DisplayTimedTextToPlayer(GetOwningPlayer(wu),0,0,5,"|cffffcc00[系统]|r：老龙王吹水更厉害了，水之符印|Cffff8000+1|r")
+                endif
+
+
+                
             elseif  uid == 'xxxx'
                 if  newlv == 2
                 elseif  newlv == 3
