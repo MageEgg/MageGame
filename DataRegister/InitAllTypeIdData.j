@@ -333,7 +333,7 @@ scope AllTypeIdData initializer init
         call InitTypeIdStrings('RGDE',"异变N5通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB05.BLP","项链升级成功率+2%")
         call InitTypeIdStrings('RGDF',"异变N6通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB06.BLP","法宝稀有度+5%")
         call InitTypeIdStrings('RGDG',"异变N7通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB07.BLP","强化成功率+3%")
-        call InitTypeIdStrings('RGDH',"异变N8通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB08.BLP","")
+        call InitTypeIdStrings('RGDH',"异变N8通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB08.BLP","项链升级成功率+2%")
         call InitTypeIdStrings('RGDI',"异变N9通关15次","ReplaceableTextures\\CommandButtons\\BTNCJYB09.BLP","")
         call InitTypeIdStrings('RGEA',"通关超爽N1","ReplaceableTextures\\CommandButtons\\BTNCJCS01.BLP","")
         call InitTypeIdStrings('RGEB',"通关超爽N2","ReplaceableTextures\\CommandButtons\\BTNCJCS02.BLP","技能吸血+1%")
@@ -1055,6 +1055,13 @@ InitEquipData('IL4D',0,0,30,0,0,'IP03',0,0)
 InitEquipData('IL4E',0,0,20,0,0,'CS42',0,0)
 InitEquipData('IL4F',0,0,20,0,0,'IP08',0,0)
 InitEquipData('IL4G',0,0,30,0,0,'IP09',0,0)
+InitEquipData('IL1J',0,0,4,0,0,'IN42',0,0)
+InitEquipData('IL2J',0,0,4,0,0,'IN42',0,0)
+InitEquipData('IL3J',0,0,4,0,0,'IN42',0,0)
+InitEquipData('IL1K',0,0,6,0,0,'IN43',0,0)
+InitEquipData('IL2K',0,0,6,0,0,'IN43',0,0)
+InitEquipData('IL3K',0,0,6,0,0,'IN43',0,0)
+
 
 
 
@@ -1193,6 +1200,7 @@ InitEquipData('IL4G',0,0,30,0,0,'IP09',0,0)
         InitHeroProficiency('RH39',17,5,18,3,31,10,0,0,0,0)
         InitHeroProficiency('RH40',17,5,18,3,20,25,0,0,0,0)
         InitHeroProficiency('RH41',17,5,18,3,27,3,0,0,0,0)
+        InitHeroProficiency('RH42',17,5,18,3,27,3,0,0,0,0)
     endfunction
     function InitUnitDropData()
         //初始化单位掉落

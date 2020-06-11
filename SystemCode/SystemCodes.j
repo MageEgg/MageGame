@@ -753,7 +753,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
 
         function ShowPrizeList(int page,int pool)
             int max = GetPrizePoolMax(page,pool)
-            //("max is "+I2S(max))
+            BJDebugMsg("max is "+I2S(max))
             for i = 1,max
                 BJDebugMsg(I2S(i)+" is "+LoadStr(ht,GetPrizeData(page,pool,i),100))
             end

@@ -56,377 +56,378 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     //初始化函数
     function InitShowSaveFrameData()
         
-        RegisterShowSaveFrameData(5,'RJ1V','RJ1V',0,0,0,0)//金币礼包
-        RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0)//木材礼包
-        RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0)//封神礼包
-        RegisterShowSaveFrameData(5,'RJ1X','RJ1X',0,0,0,0)//赞助礼包
-        RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0)//星月光环
-        RegisterShowSaveFrameData(5,'RP1A','RP1A',0,0,0,0)//笑天犬
-        RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0)//小狐妖
-        RegisterShowSaveFrameData(5,'RY2G','RY2G',0,0,0,0)//幽冥之翼
-        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0)//幻莲仙翼
-        RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0)//鼠年大吉
-        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0)//戮仙剑
-        RegisterShowSaveFrameData(5,'RY3F','RY3F',0,0,0,0)//诛仙剑
+        RegisterShowSaveFrameData(5,'RJ1V','RJ1V',0,0,0,0) //金币礼包
+        RegisterShowSaveFrameData(5,'RJ1W','RJ1W',0,0,0,0) //木材礼包
+        RegisterShowSaveFrameData(5,'RJ1U','RJ1U',0,0,0,0) //封神礼包
+        RegisterShowSaveFrameData(5,'RJ1X','RJ1X',0,0,0,0) //赞助礼包
+        RegisterShowSaveFrameData(5,'RY1D','RY1D',0,0,0,0) //星月光环
+        RegisterShowSaveFrameData(5,'RP1A','RP1A',0,0,0,0) //笑天犬
+        RegisterShowSaveFrameData(5,'RK1A','RK1A',0,0,0,0) //小狐妖
+        RegisterShowSaveFrameData(5,'RY2G','RY2G',0,0,0,0) //幽冥之翼
+        RegisterShowSaveFrameData(5,'RY2D','RY2D',0,0,0,0) //幻莲仙翼
+        RegisterShowSaveFrameData(5,'RY4D','RY4D',0,0,0,0) //鼠年大吉
+        RegisterShowSaveFrameData(5,'RY3D','RY3D',0,0,0,0) //戮仙剑
+        RegisterShowSaveFrameData(5,'RY3F','RY3F',0,0,0,0) //诛仙剑
     
 
-        RegisterShowSaveFrameData(5,'RTX1','RTX1',0,0,0,0)//通行证1
-        RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0)//通行证2
-        RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0)//通行证3
-        RegisterShowSaveFrameData(5,'RTX4','RTX4',0,0,0,0)//通行证3
+        RegisterShowSaveFrameData(5,'RTX1','RTX1',0,0,0,0) //通行证1
+        RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0) //通行证2
+        RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0) //通行证3
+        RegisterShowSaveFrameData(5,'RTX4','RTX4',0,0,0,0) //通行证3
 
         
-        RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0)//良心赞助
+        RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0) //良心赞助
         
-        RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0)//劳动节礼包
-        RegisterShowSaveFrameData(5,'RJ1P','RJ1P',0,0,0,0)//儿童节礼包
+        RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0) //劳动节礼包
+        RegisterShowSaveFrameData(5,'RJ1P','RJ1P',0,0,0,0) //儿童节礼包
 
-        RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0)//商城3件套
-        RegisterShowSaveFrameData(5,'RSHD','RSHD',0,0,0,0)//商城4件套
-        RegisterShowSaveFrameData(5,'RSHB','RSHB',0,0,0,0)//商城5件套
-        RegisterShowSaveFrameData(5,'RSHC','RSHC',0,0,0,0)//商城8件套
+        RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0) //商城3件套
+        RegisterShowSaveFrameData(5,'RSHD','RSHD',0,0,0,0) //商城4件套
+        RegisterShowSaveFrameData(5,'RSHB','RSHB',0,0,0,0) //商城5件套
+        RegisterShowSaveFrameData(5,'RSHC','RSHC',0,0,0,0) //商城8件套
 
-        RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0)//商城11件套
-        RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0)//商城13件套
-        RegisterShowSaveFrameData(5,'RSHG','RSHG',0,0,0,0)//商城14件套
+        RegisterShowSaveFrameData(5,'RSHE','RSHE',0,0,0,0) //商城11件套
+        RegisterShowSaveFrameData(5,'RSHF','RSHF',0,0,0,0) //商城13件套
+        RegisterShowSaveFrameData(5,'RSHG','RSHG',0,0,0,0) //商城14件套
         
-        RegisterShowSaveFrameData(5,'RSHH','RSHH',0,0,0,0)//商城16件套
-
-        
-        
-        
-        
-
+        RegisterShowSaveFrameData(5,'RSHH','RSHH',0,0,0,0) //商城16件套
 
         
         
-
-        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0)//天乾地坤
-        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0)//麒麟光环
-        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0)//血灵光环
-        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0)//罪焰光环
-        RegisterShowSaveFrameData(2,'RY1F','RY1F',0,0,0,0)//墨麟光环
-
-        
-        RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0)//崩鸣刃
-        RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0)//凛霜战锤
-        RegisterShowSaveFrameData(2,'RY3H','RY3H',0,0,0,0)//方天画戟
-        RegisterShowSaveFrameData(2,'RY3I','RY3I',0,0,0,0)//异变之刃    
-        RegisterShowSaveFrameData(2,'RY3K','RY3K',0,0,0,0)//糖葫芦
-        RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0)//凝霜
-        RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0)//破阙
-        RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0)//五火七禽扇
-        RegisterShowSaveFrameData(2,'RY3J','RY3J',0,0,0,0)//穿刺利刃
         
         
 
 
-        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0)//五彩凰翼
-        RegisterShowSaveFrameData(2,'RY2E','RY2E',0,0,0,0)//冰火双翼
-        RegisterShowSaveFrameData(2,'RY2F','RY2F',0,0,0,0)//羽族之音
-        RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0)//光洁之翼
-        RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0)//圣灵之翼
-        RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0)//魅惑之翼
-        RegisterShowSaveFrameData(2,'RY2J','RY2J',0,0,0,0)//神灵之翼
-        RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0)//断罪神灵
-        RegisterShowSaveFrameData(2,'RY2K','RY2K',0,0,0,0)//风筝
+        
+        
 
-        RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0)//GM-小咸鱼
-        RegisterShowSaveFrameData(2,'RP1C','RP1C',0,0,0,0)//福娃
+        RegisterShowSaveFrameData(2,'RY1C','RY1C',0,0,0,0) //天乾地坤
+        RegisterShowSaveFrameData(2,'RY1E','RY1E',0,0,0,0) //麒麟光环
+        RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0) //血灵光环
+        RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0) //罪焰光环
+        RegisterShowSaveFrameData(2,'RY1F','RY1F',0,0,0,0) //墨麟光环
+
+        
+        RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0) //崩鸣刃
+        RegisterShowSaveFrameData(2,'RY3E','RY3E',0,0,0,0) //凛霜战锤
+        RegisterShowSaveFrameData(2,'RY3H','RY3H',0,0,0,0) //方天画戟
+        RegisterShowSaveFrameData(2,'RY3I','RY3I',0,0,0,0) //异变之刃    
+        RegisterShowSaveFrameData(2,'RY3K','RY3K',0,0,0,0) //糖葫芦
+        RegisterShowSaveFrameData(2,'RY3A','RY3A',0,0,0,0) //凝霜
+        RegisterShowSaveFrameData(2,'RY3B','RY3B',0,0,0,0) //破阙
+        RegisterShowSaveFrameData(2,'RY3G','RY3G',0,0,0,0) //五火七禽扇
+        RegisterShowSaveFrameData(2,'RY3J','RY3J',0,0,0,0) //穿刺利刃
+        
+        
+
+
+        RegisterShowSaveFrameData(2,'RY2C','RY2C',0,0,0,0) //五彩凰翼
+        RegisterShowSaveFrameData(2,'RY2E','RY2E',0,0,0,0) //冰火双翼
+        RegisterShowSaveFrameData(2,'RY2F','RY2F',0,0,0,0) //羽族之音
+        RegisterShowSaveFrameData(2,'RY2A','RY2A',0,0,0,0) //光洁之翼
+        RegisterShowSaveFrameData(2,'RY2B','RY2B',0,0,0,0) //圣灵之翼
+        RegisterShowSaveFrameData(2,'RY2H','RY2H',0,0,0,0) //魅惑之翼
+        RegisterShowSaveFrameData(2,'RY2J','RY2J',0,0,0,0) //神灵之翼
+        RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0) //断罪神灵
+        RegisterShowSaveFrameData(2,'RY2K','RY2K',0,0,0,0) //风筝
+
+        RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0) //GM-小咸鱼
+        RegisterShowSaveFrameData(2,'RP1C','RP1C',0,0,0,0) //福娃
         
 
         
         
-        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0)//铜皮锻骨 N1
-        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0)//名将良才 N2
-        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0)//绝世高人 N3
-        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0)//降龙伏虎 N4
-        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0)//剑血浮生 N5
-        RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0)//独孤求败 N6
-        RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0)//独孤求败 N7
-        RegisterShowSaveFrameData(1,'RY4Q','RY4Q',0,0,0,0)//九五之尊 N8
-        RegisterShowSaveFrameData(1,'RY4R','RY4R',0,0,0,0)//无极修罗 N9
-        RegisterShowSaveFrameData(1,'RY4T','RY4T',0,0,0,0)//无极修罗 N10
-        RegisterShowSaveFrameData(1,'RY4U','RY4U',0,0,0,0)//魅影无双 N11
-        RegisterShowSaveFrameData(1,'RY4X','RY4X',0,0,0,0)//毁天灭地 N12
-        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0)//俯瞰寰宇
-        RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0)//凌风之灵
-        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0)//君临天下
-        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0)//精英玩家
-        RegisterShowSaveFrameData(1,'RY4S','RY4S',0,0,0,0)//劳动节称号
-        RegisterShowSaveFrameData(1,'RY4V','RY4V',0,0,0,0)//天罡星
-        RegisterShowSaveFrameData(1,'RY4W','RY4W',0,0,0,0)//小虎牙
-        RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0)//传说十席
-        RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0)//勇者百席
-        RegisterShowSaveFrameData(1,'RY4N','RY4N',0,0,0,0)//测试先锋
-        RegisterShowSaveFrameData(1,'RY4P','RY4P',0,0,0,0)//魔芝星耀
+        RegisterShowSaveFrameData(1,'RY4E','RY4E',0,0,0,0) //铜皮锻骨 N1
+        RegisterShowSaveFrameData(1,'RY4F','RY4F',0,0,0,0) //名将良才 N2
+        RegisterShowSaveFrameData(1,'RY4G','RY4G',0,0,0,0) //绝世高人 N3
+        RegisterShowSaveFrameData(1,'RY4H','RY4H',0,0,0,0) //降龙伏虎 N4
+        RegisterShowSaveFrameData(1,'RY4I','RY4I',0,0,0,0) //剑血浮生 N5
+        RegisterShowSaveFrameData(1,'RY4L','RY4L',0,0,0,0) //独孤求败 N6
+        RegisterShowSaveFrameData(1,'RY4M','RY4M',0,0,0,0) //独孤求败 N7
+        RegisterShowSaveFrameData(1,'RY4Q','RY4Q',0,0,0,0) //九五之尊 N8
+        RegisterShowSaveFrameData(1,'RY4R','RY4R',0,0,0,0) //无极修罗 N9
+        RegisterShowSaveFrameData(1,'RY4T','RY4T',0,0,0,0) //无极修罗 N10
+        RegisterShowSaveFrameData(1,'RY4U','RY4U',0,0,0,0) //魅影无双 N11
+        RegisterShowSaveFrameData(1,'RY4X','RY4X',0,0,0,0) //毁天灭地 N12
+        RegisterShowSaveFrameData(1,'RY4C','RY4C',0,0,0,0) //俯瞰寰宇
+        RegisterShowSaveFrameData(1,'RY4O','RY4O',0,0,0,0) //凌风之灵
+        RegisterShowSaveFrameData(1,'RY4A','RY4A',0,0,0,0) //君临天下
+        RegisterShowSaveFrameData(1,'RY4B','RY4B',0,0,0,0) //精英玩家
+        RegisterShowSaveFrameData(1,'RY4S','RY4S',0,0,0,0) //劳动节称号
+        RegisterShowSaveFrameData(1,'RY4V','RY4V',0,0,0,0) //天罡星
+        RegisterShowSaveFrameData(1,'RY4W','RY4W',0,0,0,0) //小虎牙
+        RegisterShowSaveFrameData(1,'RY4J','RY4J',0,0,0,0) //传说十席
+        RegisterShowSaveFrameData(1,'RY4K','RY4K',0,0,0,0) //勇者百席
+        RegisterShowSaveFrameData(1,'RY4N','RY4N',0,0,0,0) //测试先锋
+        RegisterShowSaveFrameData(1,'RY4P','RY4P',0,0,0,0) //魔芝星耀
         
 
         
 
-        RegisterShowSaveFrameData(0,'RQD0','RQD0',0,0,0,0)//签到说明
-        RegisterShowSaveFrameData(0,'RJ2N','RJ2N',0,0,0,0)//狗作者的道歉
-        RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0)//停服补偿
-        RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0)//延期补偿
+        RegisterShowSaveFrameData(0,'RQD0','RQD0',0,0,0,0) //签到说明
+        RegisterShowSaveFrameData(0,'RJ2N','RJ2N',0,0,0,0) //狗作者的道歉
+        RegisterShowSaveFrameData(0,'RJ1I','RJ1I',0,0,0,0) //停服补偿
+        RegisterShowSaveFrameData(0,'RJ1L','RJ1L',0,0,0,0) //延期补偿
 
-        RegisterShowSaveFrameData(0,'RJ2O','RJ2O',0,0,0,0)//全民竞速
-        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0)//小有成就
-        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0)//老油条
-        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0)//心肝宝贝
+        RegisterShowSaveFrameData(0,'RJ2O','RJ2O',0,0,0,0) //全民竞速
+        RegisterShowSaveFrameData(0,'RJ1A','RJ1A',0,0,0,0) //小有成就
+        RegisterShowSaveFrameData(0,'RJ1B','RJ1B',0,0,0,0) //老油条
+        RegisterShowSaveFrameData(0,'RJ1C','RJ1C',0,0,0,0) //心肝宝贝
 
-        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0)//铁石心肝
-        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0)//浑身是肝
-        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0)//千年肝帝
-        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0)//万年肝圣
+        RegisterShowSaveFrameData(0,'RJ1D','RJ1D',0,0,0,0) //铁石心肝
+        RegisterShowSaveFrameData(0,'RJ1E','RJ1E',0,0,0,0) //浑身是肝
+        RegisterShowSaveFrameData(0,'RJ1F','RJ1F',0,0,0,0) //千年肝帝
+        RegisterShowSaveFrameData(0,'RJ1G','RJ1G',0,0,0,0) //万年肝圣
 
-        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0)//老司机
-        RegisterShowSaveFrameData(0,'RJ1M','RJ1M',0,0,0,0)//我超强
+        RegisterShowSaveFrameData(0,'RJ1H','RJ1H',0,0,0,0) //老司机
+        RegisterShowSaveFrameData(0,'RJ1J','RJ1J',0,0,0,0) //老司机
+        RegisterShowSaveFrameData(0,'RJ1K','RJ1K',0,0,0,0) //老司机
+        RegisterShowSaveFrameData(0,'RJ1M','RJ1M',0,0,0,0) //我超强
 
-        RegisterShowSaveFrameData(0,'RJ1N','RJ1N',0,0,0,0)//我究极强
-        RegisterShowSaveFrameData(0,'RJ1O','RJ1O',0,0,0,0)//我强无敌
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RJ1N','RJ1N',0,0,0,0) //我究极强
+        RegisterShowSaveFrameData(0,'RJ1O','RJ1O',0,0,0,0) //我强无敌
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
 
 
-        RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0)//荣耀之初
-        RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0)//荣耀之信
-        RegisterShowSaveFrameData(0,'RJ2C','RJ2C',0,0,0,0)//荣耀之心
-        RegisterShowSaveFrameData(0,'RJ2D','RJ2D',0,0,0,0)//荣耀之证
+        RegisterShowSaveFrameData(0,'RJ2A','RJ2A',0,0,0,0) //荣耀之初
+        RegisterShowSaveFrameData(0,'RJ2B','RJ2B',0,0,0,0) //荣耀之信
+        RegisterShowSaveFrameData(0,'RJ2C','RJ2C',0,0,0,0) //荣耀之心
+        RegisterShowSaveFrameData(0,'RJ2D','RJ2D',0,0,0,0) //荣耀之证
 
-        RegisterShowSaveFrameData(0,'RJ2E','RJ2E',0,0,0,0)//荣耀之光
-        RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0)//中流砥柱
-        RegisterShowSaveFrameData(0,'RJ2G','RJ2G',0,0,0,0)//劳动光荣
-        RegisterShowSaveFrameData(0,'RY0A','RY0A',0,0,0,0)//异变之光
+        RegisterShowSaveFrameData(0,'RJ2E','RJ2E',0,0,0,0) //荣耀之光
+        RegisterShowSaveFrameData(0,'RJ2F','RJ2F',0,0,0,0) //中流砥柱
+        RegisterShowSaveFrameData(0,'RJ2G','RJ2G',0,0,0,0) //劳动光荣
+        RegisterShowSaveFrameData(0,'RY0A','RY0A',0,0,0,0) //异变之光
 
-        RegisterShowSaveFrameData(0,'RJ2H','RJ2H',0,0,0,0)//狂欢序幕
-        RegisterShowSaveFrameData(0,'RJ2I','RJ2I',0,0,0,0)//狂欢进行时
-        RegisterShowSaveFrameData(0,'RJ2J','RJ2J',0,0,0,0)//狂欢派对
-        RegisterShowSaveFrameData(0,'RJ2K','RJ2K',0,0,0,0)//派对之王
+        RegisterShowSaveFrameData(0,'RJ2H','RJ2H',0,0,0,0) //狂欢序幕
+        RegisterShowSaveFrameData(0,'RJ2I','RJ2I',0,0,0,0) //狂欢进行时
+        RegisterShowSaveFrameData(0,'RJ2J','RJ2J',0,0,0,0) //狂欢派对
+        RegisterShowSaveFrameData(0,'RJ2K','RJ2K',0,0,0,0) //派对之王
 
-        RegisterShowSaveFrameData(0,'RJ2L','RJ2L',0,0,0,0)//前奏
-        RegisterShowSaveFrameData(0,'RJ2M','RJ2M',0,0,0,0)//闪耀之星
-        RegisterShowSaveFrameData(0,'RJ2P','RJ2P',0,0,0,0)//夏日赠礼
-        RegisterShowSaveFrameData(0,'RJ2Q','RJ2Q',0,0,0,0)//火热开场
-        RegisterShowSaveFrameData(0,'RJ2R','RJ2R',0,0,0,0)//酷爽时刻
-        RegisterShowSaveFrameData(0,'RJ2S','RJ2S',0,0,0,0)//清凉一夏
-        RegisterShowSaveFrameData(0,'RJ2T','RJ2T',0,0,0,0)//夏日之星
-        RegisterShowSaveFrameData(0,'RJ2U','RJ2U',0,0,0,0)//火力全开
+        RegisterShowSaveFrameData(0,'RJ2L','RJ2L',0,0,0,0) //前奏
+        RegisterShowSaveFrameData(0,'RJ2M','RJ2M',0,0,0,0) //闪耀之星
+        RegisterShowSaveFrameData(0,'RJ2P','RJ2P',0,0,0,0) //夏日赠礼
+        RegisterShowSaveFrameData(0,'RJ2Q','RJ2Q',0,0,0,0) //火热开场
+        RegisterShowSaveFrameData(0,'RJ2R','RJ2R',0,0,0,0) //酷爽时刻
+        RegisterShowSaveFrameData(0,'RJ2S','RJ2S',0,0,0,0) //清凉一夏
+        RegisterShowSaveFrameData(0,'RJ2T','RJ2T',0,0,0,0) //夏日之星
+        RegisterShowSaveFrameData(0,'RJ2U','RJ2U',0,0,0,0) //火力全开
         
 
-        RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0)//难2通关5次
-        RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0)//难3通关5次
-        RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0)//难4通关5次
-        RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0)//难5通关5次
-        RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0)//难6通关5次
-        RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0)//难7通关5次
-        RegisterShowSaveFrameData(0,'RG0H','RG0H',0,0,0,0)//难8通关5次
-        RegisterShowSaveFrameData(0,'RG0I','RG0I',0,0,0,0)//难9通关5次
-        RegisterShowSaveFrameData(0,'RG0J','RG0J',0,0,0,0)//难10通关5次
-        RegisterShowSaveFrameData(0,'RG0K','RG0K',0,0,0,0)//难11通关5次
-        RegisterShowSaveFrameData(0,'RG0L','RG0L',0,0,0,0)//难12通关5次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0) //难2通关5次
+        RegisterShowSaveFrameData(0,'RG0C','RG0C',0,0,0,0) //难3通关5次
+        RegisterShowSaveFrameData(0,'RG0D','RG0D',0,0,0,0) //难4通关5次
+        RegisterShowSaveFrameData(0,'RG0E','RG0E',0,0,0,0) //难5通关5次
+        RegisterShowSaveFrameData(0,'RG0F','RG0F',0,0,0,0) //难6通关5次
+        RegisterShowSaveFrameData(0,'RG0G','RG0G',0,0,0,0) //难7通关5次
+        RegisterShowSaveFrameData(0,'RG0H','RG0H',0,0,0,0) //难8通关5次
+        RegisterShowSaveFrameData(0,'RG0I','RG0I',0,0,0,0) //难9通关5次
+        RegisterShowSaveFrameData(0,'RG0J','RG0J',0,0,0,0) //难10通关5次
+        RegisterShowSaveFrameData(0,'RG0K','RG0K',0,0,0,0) //难11通关5次
+        RegisterShowSaveFrameData(0,'RG0L','RG0L',0,0,0,0) //难12通关5次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
 
 
-        RegisterShowSaveFrameData(0,'RG1A','RG1A',0,0,0,0)//难1通关15次
-        RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0)//难2通关15次
-        RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0)//难3通关15次
-        RegisterShowSaveFrameData(0,'RG1D','RG1D',0,0,0,0)//难4通关15次
-        RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0)//难5通关15次
-        RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0)//难6通关15次
-        RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0)//难7通关15次
-        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0)//难8通关15次
-        RegisterShowSaveFrameData(0,'RG1I','RG1I',0,0,0,0)//难9通关15次
-        RegisterShowSaveFrameData(0,'RG1J','RG1J',0,0,0,0)//难10通关15次
-        RegisterShowSaveFrameData(0,'RG1K','RG1K',0,0,0,0)//难11通关15次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RG1A','RG1A',0,0,0,0) //难1通关15次
+        RegisterShowSaveFrameData(0,'RG1B','RG1B',0,0,0,0) //难2通关15次
+        RegisterShowSaveFrameData(0,'RG1C','RG1C',0,0,0,0) //难3通关15次
+        RegisterShowSaveFrameData(0,'RG1D','RG1D',0,0,0,0) //难4通关15次
+        RegisterShowSaveFrameData(0,'RG1E','RG1E',0,0,0,0) //难5通关15次
+        RegisterShowSaveFrameData(0,'RG1F','RG1F',0,0,0,0) //难6通关15次
+        RegisterShowSaveFrameData(0,'RG1G','RG1G',0,0,0,0) //难7通关15次
+        RegisterShowSaveFrameData(0,'RG1H','RG1H',0,0,0,0) //难8通关15次
+        RegisterShowSaveFrameData(0,'RG1I','RG1I',0,0,0,0) //难9通关15次
+        RegisterShowSaveFrameData(0,'RG1J','RG1J',0,0,0,0) //难10通关15次
+        RegisterShowSaveFrameData(0,'RG1K','RG1K',0,0,0,0) //难11通关15次
+        RegisterShowSaveFrameData(0,'RG1L','RG1L',0,0,0,0) //难12通关15次
     
 
 
-        RegisterShowSaveFrameData(0,'RGAA','RGAA',0,0,0,0)//通关疯狂N1
-        RegisterShowSaveFrameData(0,'RGAB','RGAB',0,0,0,0)//通关疯狂N2
-        RegisterShowSaveFrameData(0,'RGAC','RGAC',0,0,0,0)//通关疯狂N3
-        RegisterShowSaveFrameData(0,'RGAD','RGAD',0,0,0,0)//通关疯狂N4
-        RegisterShowSaveFrameData(0,'RGAE','RGAE',0,0,0,0)//通关疯狂N5
-        RegisterShowSaveFrameData(0,'RGAF','RGAF',0,0,0,0)//通关疯狂N6
-        RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0)//通关疯狂N7
-        RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0)//通关疯狂N8
-        RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0)//通关疯狂N9
-        RegisterShowSaveFrameData(0,'RGAJ','RGAJ',0,0,0,0)//通关疯狂N10
-        RegisterShowSaveFrameData(0,'RGAK','RGAK',0,0,0,0)//通关疯狂N11
-        RegisterShowSaveFrameData(0,'RGAL','RGAL',0,0,0,0)//通关疯狂N12
+        RegisterShowSaveFrameData(0,'RGAA','RGAA',0,0,0,0) //通关疯狂N1
+        RegisterShowSaveFrameData(0,'RGAB','RGAB',0,0,0,0) //通关疯狂N2
+        RegisterShowSaveFrameData(0,'RGAC','RGAC',0,0,0,0) //通关疯狂N3
+        RegisterShowSaveFrameData(0,'RGAD','RGAD',0,0,0,0) //通关疯狂N4
+        RegisterShowSaveFrameData(0,'RGAE','RGAE',0,0,0,0) //通关疯狂N5
+        RegisterShowSaveFrameData(0,'RGAF','RGAF',0,0,0,0) //通关疯狂N6
+        RegisterShowSaveFrameData(0,'RGAG','RGAG',0,0,0,0) //通关疯狂N7
+        RegisterShowSaveFrameData(0,'RGAH','RGAH',0,0,0,0) //通关疯狂N8
+        RegisterShowSaveFrameData(0,'RGAI','RGAI',0,0,0,0) //通关疯狂N9
+        RegisterShowSaveFrameData(0,'RGAJ','RGAJ',0,0,0,0) //通关疯狂N10
+        RegisterShowSaveFrameData(0,'RGAK','RGAK',0,0,0,0) //通关疯狂N11
+        RegisterShowSaveFrameData(0,'RGAL','RGAL',0,0,0,0) //通关疯狂N12
 
 
-        RegisterShowSaveFrameData(0,'RGBA','RGBA',0,0,0,0)//通关异变N1
-        RegisterShowSaveFrameData(0,'RGBB','RGBB',0,0,0,0)//通关异变N2
-        RegisterShowSaveFrameData(0,'RGBC','RGBC',0,0,0,0)//通关异变N3
-        RegisterShowSaveFrameData(0,'RGBD','RGBD',0,0,0,0)//通关异变N4
-        RegisterShowSaveFrameData(0,'RGBE','RGBE',0,0,0,0)//通关异变N5
-        RegisterShowSaveFrameData(0,'RGBF','RGBF',0,0,0,0)//通关异变N6
-        RegisterShowSaveFrameData(0,'RGBG','RGBG',0,0,0,0)//通关异变N7
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGBA','RGBA',0,0,0,0) //通关异变N1
+        RegisterShowSaveFrameData(0,'RGBB','RGBB',0,0,0,0) //通关异变N2
+        RegisterShowSaveFrameData(0,'RGBC','RGBC',0,0,0,0) //通关异变N3
+        RegisterShowSaveFrameData(0,'RGBD','RGBD',0,0,0,0) //通关异变N4
+        RegisterShowSaveFrameData(0,'RGBE','RGBE',0,0,0,0) //通关异变N5
+        RegisterShowSaveFrameData(0,'RGBF','RGBF',0,0,0,0) //通关异变N6
+        RegisterShowSaveFrameData(0,'RGBG','RGBG',0,0,0,0) //通关异变N7
+        RegisterShowSaveFrameData(0,'RGBH','RGBH',0,0,0,0) //通关异变N8
 
-        RegisterShowSaveFrameData(0,'RGCA','RGCA',0,0,0,0)//通关异变N1 8次
-        RegisterShowSaveFrameData(0,'RGCB','RGCB',0,0,0,0)//通关异变N2 8次
-        RegisterShowSaveFrameData(0,'RGCC','RGCC',0,0,0,0)//通关异变N3 8次
-        RegisterShowSaveFrameData(0,'RGCD','RGCD',0,0,0,0)//通关异变N4 8次
-        RegisterShowSaveFrameData(0,'RGCE','RGCE',0,0,0,0)//通关异变N5 8次
-        RegisterShowSaveFrameData(0,'RGCF','RGCF',0,0,0,0)//通关异变N6 8次
-        RegisterShowSaveFrameData(0,'RGCG','RGCG',0,0,0,0)//通关异变N7 8次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGCA','RGCA',0,0,0,0) //通关异变N1 8次
+        RegisterShowSaveFrameData(0,'RGCB','RGCB',0,0,0,0) //通关异变N2 8次
+        RegisterShowSaveFrameData(0,'RGCC','RGCC',0,0,0,0) //通关异变N3 8次
+        RegisterShowSaveFrameData(0,'RGCD','RGCD',0,0,0,0) //通关异变N4 8次
+        RegisterShowSaveFrameData(0,'RGCE','RGCE',0,0,0,0) //通关异变N5 8次
+        RegisterShowSaveFrameData(0,'RGCF','RGCF',0,0,0,0) //通关异变N6 8次
+        RegisterShowSaveFrameData(0,'RGCG','RGCG',0,0,0,0) //通关异变N7 8次
+        RegisterShowSaveFrameData(0,'RGCH','RGCH',0,0,0,0) //通关异变N8 8次
 
-        RegisterShowSaveFrameData(0,'RGDA','RGDA',0,0,0,0)//通关异变N1 15次
-        RegisterShowSaveFrameData(0,'RGDB','RGDB',0,0,0,0)//通关异变N2 15次
-        RegisterShowSaveFrameData(0,'RGDC','RGDC',0,0,0,0)//通关异变N3 15次
-        RegisterShowSaveFrameData(0,'RGDD','RGDD',0,0,0,0)//通关异变N4 15次
-        RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0)//通关异变N5 15次
-        RegisterShowSaveFrameData(0,'RGDF','RGDF',0,0,0,0)//通关异变N6 15次
-        RegisterShowSaveFrameData(0,'RGDG','RGDG',0,0,0,0)//通关异变N7 15次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGDA','RGDA',0,0,0,0) //通关异变N1 15次
+        RegisterShowSaveFrameData(0,'RGDB','RGDB',0,0,0,0) //通关异变N2 15次
+        RegisterShowSaveFrameData(0,'RGDC','RGDC',0,0,0,0) //通关异变N3 15次
+        RegisterShowSaveFrameData(0,'RGDD','RGDD',0,0,0,0) //通关异变N4 15次
+        RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0) //通关异变N5 15次
+        RegisterShowSaveFrameData(0,'RGDF','RGDF',0,0,0,0) //通关异变N6 15次
+        RegisterShowSaveFrameData(0,'RGDG','RGDG',0,0,0,0) //通关异变N7 15次
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
 
-        RegisterShowSaveFrameData(0,'RGEA','RGEA',0,0,0,0)//通关超爽N1&地图3级
-        RegisterShowSaveFrameData(0,'RGEB','RGEB',0,0,0,0)//通关超爽N2&地图3级
-        RegisterShowSaveFrameData(0,'RGEC','RGEC',0,0,0,0)//通关超爽N3&地图5级
-        RegisterShowSaveFrameData(0,'RGED','RGED',0,0,0,0)//通关超爽N4&地图7级
-        RegisterShowSaveFrameData(0,'RGEE','RGEE',0,0,0,0)//通关超爽N5&地图9级
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGEA','RGEA',0,0,0,0) //通关超爽N1&地图3级
+        RegisterShowSaveFrameData(0,'RGEB','RGEB',0,0,0,0) //通关超爽N2&地图3级
+        RegisterShowSaveFrameData(0,'RGEC','RGEC',0,0,0,0) //通关超爽N3&地图5级
+        RegisterShowSaveFrameData(0,'RGED','RGED',0,0,0,0) //通关超爽N4&地图7级
+        RegisterShowSaveFrameData(0,'RGEE','RGEE',0,0,0,0) //通关超爽N5&地图9级
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
 
-        RegisterShowSaveFrameData(0,'RGFA','RGFA',0,0,0,0)//超爽N1通关5次&地图3级
-        RegisterShowSaveFrameData(0,'RGFB','RGFB',0,0,0,0)//超爽N2通关5次&地图3级
-        RegisterShowSaveFrameData(0,'RGFC','RGFC',0,0,0,0)//超爽N3通关5次&地图5级
-        RegisterShowSaveFrameData(0,'RGFD','RGFD',0,0,0,0)//超爽N4通关5次&地图7级
-        RegisterShowSaveFrameData(0,'RGFE','RGFE',0,0,0,0)//超爽N5通关5次&地图9级
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0)//填空假id
+        RegisterShowSaveFrameData(0,'RGFA','RGFA',0,0,0,0) //超爽N1通关5次&地图3级
+        RegisterShowSaveFrameData(0,'RGFB','RGFB',0,0,0,0) //超爽N2通关5次&地图3级
+        RegisterShowSaveFrameData(0,'RGFC','RGFC',0,0,0,0) //超爽N3通关5次&地图5级
+        RegisterShowSaveFrameData(0,'RGFD','RGFD',0,0,0,0) //超爽N4通关5次&地图7级
+        RegisterShowSaveFrameData(0,'RGFE','RGFE',0,0,0,0) //超爽N5通关5次&地图9级
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
 
-        RegisterShowSaveFrameData(0,'RGGA','RGGA',0,0,0,0)//超爽N1通关12次&地图3级
-        RegisterShowSaveFrameData(0,'RGGB','RGGB',0,0,0,0)//超爽N2通关12次&地图3级
-        RegisterShowSaveFrameData(0,'RGGC','RGGC',0,0,0,0)//超爽N3通关12次&地图5级
-        RegisterShowSaveFrameData(0,'RGGD','RGGD',0,0,0,0)//超爽N4通关12次&地图7级
-        RegisterShowSaveFrameData(0,'RGGE','RGGE',0,0,0,0)//超爽N5通关12次&地图9级
-
-        
-
-//        RegisterShowSaveFrameData(6,'RDAA','RDAA',0,0,0,0)//果然暴君
-        RegisterShowSaveFrameData(6,'RDAB','RDAB',0,0,0,0)//我真的知错了
-        RegisterShowSaveFrameData(6,'RDAC','RDAC',0,0,0,0)//老婆别打了
-        RegisterShowSaveFrameData(6,'RDAD','RDAD',0,0,0,0)//家暴
-        RegisterShowSaveFrameData(6,'RDAE','RDAE',0,0,0,0)//我救我自己
-        RegisterShowSaveFrameData(6,'RDAF','RDAF',0,0,0,0)//我也护犊子
-        RegisterShowSaveFrameData(6,'RDAG','RDAG',0,0,0,0)//爸，我回来了
-        RegisterShowSaveFrameData(6,'RDAH','RDAH',0,0,0,0)//太欧了！
-        RegisterShowSaveFrameData(6,'RDAI','RDAI',0,0,0,0)//护犊子
-        RegisterShowSaveFrameData(6,'RDAJ','RDAJ',0,0,0,0)//真假....猴精..
-        RegisterShowSaveFrameData(6,'RDAK','RDAK',0,0,0,0)//穿越回来还打你！
-        RegisterShowSaveFrameData(6,'RDAL','RDAL',0,0,0,0)//抓了再救
-        RegisterShowSaveFrameData(6,'RDAM','RDAM',0,0,0,0)//我自己来
-        RegisterShowSaveFrameData(6,'RDAN','RDAN',0,0,0,0)//报仇雪恨
-        RegisterShowSaveFrameData(6,'RDAO','RDAO',0,0,0,0)//悬壶济世
-//        RegisterShowSaveFrameData(6,'RDAP','RDAP',0,0,0,0)//销售精英
-//        RegisterShowSaveFrameData(6,'RDAQ','RDAQ',0,0,0,0)//红颜祸水
-//        RegisterShowSaveFrameData(6,'RDAR','RDAR',0,0,0,0)//今晚的月亮好圆啊
-//        RegisterShowSaveFrameData(6,'RDAS','RDAS',0,0,0,0)//自己人也打？
-        RegisterShowSaveFrameData(6,'RDAT','RDAT',0,0,0,0)//师弟，你不行
-        RegisterShowSaveFrameData(6,'RDAU','RDAU',0,0,0,0)//师弟，你真不行
-       RegisterShowSaveFrameData(6,'RDAV','RDAV',0,0,0,0)//姐妹情深
-        RegisterShowSaveFrameData(6,'RDAW','RDAW',0,0,0,0)//打自己人怎么了？
-        RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0)//龙王出来喷水
-        RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0)//今天爆率真高啊
-        RegisterShowSaveFrameData(6,'RDAZ','RDAZ',0,0,0,0)//评论
-        RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0)//小富豪
-        RegisterShowSaveFrameData(6,'RDBB','RDBB',0,0,0,0)//万匹斯
+        RegisterShowSaveFrameData(0,'RGGA','RGGA',0,0,0,0) //超爽N1通关12次&地图3级
+        RegisterShowSaveFrameData(0,'RGGB','RGGB',0,0,0,0) //超爽N2通关12次&地图3级
+        RegisterShowSaveFrameData(0,'RGGC','RGGC',0,0,0,0) //超爽N3通关12次&地图5级
+        RegisterShowSaveFrameData(0,'RGGD','RGGD',0,0,0,0) //超爽N4通关12次&地图7级
+        RegisterShowSaveFrameData(0,'RGGE','RGGE',0,0,0,0) //超爽N5通关12次&地图9级
 
         
 
-        RegisterShowSaveFrameData(3,'RHD1','RHD1',0,0,0,0)//小有所成
-        RegisterShowSaveFrameData(3,'RHD2','RHD2',0,0,0,0)//炉火纯青
-        RegisterShowSaveFrameData(3,'RHD3','RHD3',0,0,0,0)//一代宗师
-        RegisterShowSaveFrameData(3,'RHD4','RHD4',0,0,0,0)//名震一方
-        RegisterShowSaveFrameData(3,'RHD5','RHD5',0,0,0,0)//名扬四海
-        RegisterShowSaveFrameData(3,'RHD6','RHD6',0,0,0,0)//封神之巅
-        RegisterShowSaveFrameData(3,'RHD7','RHD7',0,0,0,0)//创世之初
-//        RegisterShowSaveFrameData(3,'RHD8','RHD8',0,0,0,0)//创世元神
-        RegisterShowSaveFrameData(3,'RH01','RH01',0,0,0,0)//神兵杨戬
-        RegisterShowSaveFrameData(3,'RH02','RH02',0,0,0,0)//土行孙
-        RegisterShowSaveFrameData(3,'RH03','RH03',0,0,0,0)//元始天尊
-        RegisterShowSaveFrameData(3,'RH04','RH04',0,0,0,0)//魔化哪吒
-        RegisterShowSaveFrameData(3,'RH05','RH05',0,0,0,0)//老子
-        RegisterShowSaveFrameData(3,'RH06','RH06',0,0,0,0)//陆压
-//        RegisterShowSaveFrameData(3,'RH07','RH07',0,0,0,0)//女娲
-        RegisterShowSaveFrameData(3,'RH08','RH08',0,0,0,0)//妖皇妲己
-        RegisterShowSaveFrameData(3,'RH09','RH09',0,0,0,0)//剑仙广成子
-        RegisterShowSaveFrameData(3,'RH10','RH10',0,0,0,0)//变幻杨戬
-        RegisterShowSaveFrameData(3,'RH11','RH11',0,0,0,0)//姜子牙
-        RegisterShowSaveFrameData(3,'RH12','RH12',0,0,0,0)//天王李靖
-        RegisterShowSaveFrameData(3,'RH13','RH13',0,0,0,0)//美猴王
-        RegisterShowSaveFrameData(3,'RH14','RH14',0,0,0,0)//龙吉公主
-        RegisterShowSaveFrameData(3,'RH15','RH15',0,0,0,0)//龟灵圣母
-        RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0)//老年纣王
-        RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0)//枪阵哪吒
-        RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0)//太乙真人
-        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0)//天眼杨戬
-        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0)//莲花化身
-        RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0)//嫦娥
-        RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0)//疾风雷震子
-        RegisterShowSaveFrameData(3,'RH23','RH23',0,0,0,0)//狐媚妲己
-        RegisterShowSaveFrameData(3,'RH24','RH24',0,0,0,0)//申公豹
-        RegisterShowSaveFrameData(3,'RH25','RH25',0,0,0,0)//黄天化
-        RegisterShowSaveFrameData(3,'RH26','RH26',0,0,0,0)//斗战胜佛
-        RegisterShowSaveFrameData(3,'RH27','RH27',0,0,0,0)//暴君纣王
-        RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0)//蛮力纣王
-        RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0)//神农
-        RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0)//后羿
-        RegisterShowSaveFrameData(3,'RH32','RH32',0,0,0,0)//帝皇姬昌
-        RegisterShowSaveFrameData(3,'RH33','RH33',0,0,0,0)//哮天犬
-        RegisterShowSaveFrameData(3,'RH34','RH34',0,0,0,0)//准提道人
-        RegisterShowSaveFrameData(3,'RH35','RH35',0,0,0,0)//邓婵玉
-        RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0)//苟作者
-        RegisterShowSaveFrameData(3,'RH37','RH37',0,0,0,0)//苟策划
-        RegisterShowSaveFrameData(3,'RH38','RH38',0,0,0,0)//女娲
-        RegisterShowSaveFrameData(3,'RH39','RH39',0,0,0,0)//孔宣
-        RegisterShowSaveFrameData(3,'RH40','RH40',0,0,0,0)//龟丞相
-        RegisterShowSaveFrameData(3,'RH41','RH41',0,0,0,0)//巨灵神
+//        RegisterShowSaveFrameData(6,'RDAA','RDAA',0,0,0,0) //果然暴君
+        RegisterShowSaveFrameData(6,'RDAB','RDAB',0,0,0,0) //我真的知错了
+        RegisterShowSaveFrameData(6,'RDAC','RDAC',0,0,0,0) //老婆别打了
+        RegisterShowSaveFrameData(6,'RDAD','RDAD',0,0,0,0) //家暴
+        RegisterShowSaveFrameData(6,'RDAE','RDAE',0,0,0,0) //我救我自己
+        RegisterShowSaveFrameData(6,'RDAF','RDAF',0,0,0,0) //我也护犊子
+        RegisterShowSaveFrameData(6,'RDAG','RDAG',0,0,0,0) //爸，我回来了
+        RegisterShowSaveFrameData(6,'RDAH','RDAH',0,0,0,0) //太欧了！
+        RegisterShowSaveFrameData(6,'RDAI','RDAI',0,0,0,0) //护犊子
+        RegisterShowSaveFrameData(6,'RDAJ','RDAJ',0,0,0,0) //真假....猴精..
+        RegisterShowSaveFrameData(6,'RDAK','RDAK',0,0,0,0) //穿越回来还打你！
+        RegisterShowSaveFrameData(6,'RDAL','RDAL',0,0,0,0) //抓了再救
+        RegisterShowSaveFrameData(6,'RDAM','RDAM',0,0,0,0) //我自己来
+        RegisterShowSaveFrameData(6,'RDAN','RDAN',0,0,0,0) //报仇雪恨
+        RegisterShowSaveFrameData(6,'RDAO','RDAO',0,0,0,0) //悬壶济世
+//        RegisterShowSaveFrameData(6,'RDAP','RDAP',0,0,0,0) //销售精英
+//        RegisterShowSaveFrameData(6,'RDAQ','RDAQ',0,0,0,0) //红颜祸水
+//        RegisterShowSaveFrameData(6,'RDAR','RDAR',0,0,0,0) //今晚的月亮好圆啊
+//        RegisterShowSaveFrameData(6,'RDAS','RDAS',0,0,0,0) //自己人也打？
+        RegisterShowSaveFrameData(6,'RDAT','RDAT',0,0,0,0) //师弟，你不行
+        RegisterShowSaveFrameData(6,'RDAU','RDAU',0,0,0,0) //师弟，你真不行
+       RegisterShowSaveFrameData(6,'RDAV','RDAV',0,0,0,0) //姐妹情深
+        RegisterShowSaveFrameData(6,'RDAW','RDAW',0,0,0,0) //打自己人怎么了？
+        RegisterShowSaveFrameData(6,'RDAX','RDAX',0,0,0,0) //龙王出来喷水
+        RegisterShowSaveFrameData(6,'RDAY','RDAY',0,0,0,0) //今天爆率真高啊
+        RegisterShowSaveFrameData(6,'RDAZ','RDAZ',0,0,0,0) //评论
+        RegisterShowSaveFrameData(6,'RDBA','RDBA',0,0,0,0) //小富豪
+        RegisterShowSaveFrameData(6,'RDBB','RDBB',0,0,0,0) //万匹斯
+
+        
+
+        RegisterShowSaveFrameData(3,'RHD1','RHD1',0,0,0,0) //小有所成
+        RegisterShowSaveFrameData(3,'RHD2','RHD2',0,0,0,0) //炉火纯青
+        RegisterShowSaveFrameData(3,'RHD3','RHD3',0,0,0,0) //一代宗师
+        RegisterShowSaveFrameData(3,'RHD4','RHD4',0,0,0,0) //名震一方
+        RegisterShowSaveFrameData(3,'RHD5','RHD5',0,0,0,0) //名扬四海
+        RegisterShowSaveFrameData(3,'RHD6','RHD6',0,0,0,0) //封神之巅
+        RegisterShowSaveFrameData(3,'RHD7','RHD7',0,0,0,0) //创世之初
+//        RegisterShowSaveFrameData(3,'RHD8','RHD8',0,0,0,0) //创世元神
+        RegisterShowSaveFrameData(3,'RH01','RH01',0,0,0,0) //神兵杨戬
+        RegisterShowSaveFrameData(3,'RH02','RH02',0,0,0,0) //土行孙
+        RegisterShowSaveFrameData(3,'RH03','RH03',0,0,0,0) //元始天尊
+        RegisterShowSaveFrameData(3,'RH04','RH04',0,0,0,0) //魔化哪吒
+        RegisterShowSaveFrameData(3,'RH05','RH05',0,0,0,0) //老子
+        RegisterShowSaveFrameData(3,'RH06','RH06',0,0,0,0) //陆压
+//        RegisterShowSaveFrameData(3,'RH07','RH07',0,0,0,0) //女娲
+        RegisterShowSaveFrameData(3,'RH08','RH08',0,0,0,0) //妖皇妲己
+        RegisterShowSaveFrameData(3,'RH09','RH09',0,0,0,0) //剑仙广成子
+        RegisterShowSaveFrameData(3,'RH10','RH10',0,0,0,0) //变幻杨戬
+        RegisterShowSaveFrameData(3,'RH11','RH11',0,0,0,0) //姜子牙
+        RegisterShowSaveFrameData(3,'RH12','RH12',0,0,0,0) //天王李靖
+        RegisterShowSaveFrameData(3,'RH13','RH13',0,0,0,0) //美猴王
+        RegisterShowSaveFrameData(3,'RH14','RH14',0,0,0,0) //龙吉公主
+        RegisterShowSaveFrameData(3,'RH15','RH15',0,0,0,0) //龟灵圣母
+        RegisterShowSaveFrameData(3,'RH16','RH16',0,0,0,0) //老年纣王
+        RegisterShowSaveFrameData(3,'RH17','RH17',0,0,0,0) //枪阵哪吒
+        RegisterShowSaveFrameData(3,'RH18','RH18',0,0,0,0) //太乙真人
+        RegisterShowSaveFrameData(3,'RH19','RH19',0,0,0,0) //天眼杨戬
+        RegisterShowSaveFrameData(3,'RH20','RH20',0,0,0,0) //莲花化身
+        RegisterShowSaveFrameData(3,'RH21','RH21',0,0,0,0) //嫦娥
+        RegisterShowSaveFrameData(3,'RH22','RH22',0,0,0,0) //疾风雷震子
+        RegisterShowSaveFrameData(3,'RH23','RH23',0,0,0,0) //狐媚妲己
+        RegisterShowSaveFrameData(3,'RH24','RH24',0,0,0,0) //申公豹
+        RegisterShowSaveFrameData(3,'RH25','RH25',0,0,0,0) //黄天化
+        RegisterShowSaveFrameData(3,'RH26','RH26',0,0,0,0) //斗战胜佛
+        RegisterShowSaveFrameData(3,'RH27','RH27',0,0,0,0) //暴君纣王
+        RegisterShowSaveFrameData(3,'RH28','RH28',0,0,0,0) //蛮力纣王
+        RegisterShowSaveFrameData(3,'RH29','RH29',0,0,0,0) //神农
+        RegisterShowSaveFrameData(3,'RH30','RH30',0,0,0,0) //后羿
+        RegisterShowSaveFrameData(3,'RH32','RH32',0,0,0,0) //帝皇姬昌
+        RegisterShowSaveFrameData(3,'RH33','RH33',0,0,0,0) //哮天犬
+        RegisterShowSaveFrameData(3,'RH34','RH34',0,0,0,0) //准提道人
+        RegisterShowSaveFrameData(3,'RH35','RH35',0,0,0,0) //邓婵玉
+        RegisterShowSaveFrameData(3,'RH36','RH36',0,0,0,0) //苟作者
+        RegisterShowSaveFrameData(3,'RH37','RH37',0,0,0,0) //苟策划
+        RegisterShowSaveFrameData(3,'RH38','RH38',0,0,0,0) //女娲
+        RegisterShowSaveFrameData(3,'RH39','RH39',0,0,0,0) //孔宣
+        RegisterShowSaveFrameData(3,'RH40','RH40',0,0,0,0) //龟丞相
+        RegisterShowSaveFrameData(3,'RH41','RH41',0,0,0,0) //巨灵神
+        RegisterShowSaveFrameData(3,'RH42','RH42',0,0,0,0) //老龙王
 
 
 
 
-        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0)//任脉
-        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0)//督脉
-        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0)//冲脉
-        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0)//带脉
-        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0)//阴跷脉
-        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0)//阳跷脉
-        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0)//阴维脉
-        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0)//阳维脉
-        RegisterShowSaveFrameData(7,'RX10','RX1A',0,0,0,0)//龙筋
-        RegisterShowSaveFrameData(7,'RX20','RX2A',0,0,0,0)//龙鳞
-        RegisterShowSaveFrameData(7,'RX30','RX3A',0,0,0,0)//龙血
-        RegisterShowSaveFrameData(7,'RX40','RX4A',0,0,0,0)//龙骨
-        RegisterShowSaveFrameData(7,'RX50','RX5A',0,0,0,0)//龙爪
-        RegisterShowSaveFrameData(7,'RX60','RX6A',0,0,0,0)//龙角
-        RegisterShowSaveFrameData(7,'RX70','RX7A',0,0,0,0)//龙皮
-        RegisterShowSaveFrameData(7,'RX80','RX8A',0,0,0,0)//龙心
+        RegisterShowSaveFrameData(7,'RM10','RM1A',0,0,0,0) //任脉
+        RegisterShowSaveFrameData(7,'RM20','RM2A',0,0,0,0) //督脉
+        RegisterShowSaveFrameData(7,'RM30','RM3A',0,0,0,0) //冲脉
+        RegisterShowSaveFrameData(7,'RM40','RM4A',0,0,0,0) //带脉
+        RegisterShowSaveFrameData(7,'RM50','RM5A',0,0,0,0) //阴跷脉
+        RegisterShowSaveFrameData(7,'RM60','RM6A',0,0,0,0) //阳跷脉
+        RegisterShowSaveFrameData(7,'RM70','RM7A',0,0,0,0) //阴维脉
+        RegisterShowSaveFrameData(7,'RM80','RM8A',0,0,0,0) //阳维脉
+        RegisterShowSaveFrameData(7,'RX10','RX1A',0,0,0,0) //龙筋
+        RegisterShowSaveFrameData(7,'RX20','RX2A',0,0,0,0) //龙鳞
+        RegisterShowSaveFrameData(7,'RX30','RX3A',0,0,0,0) //龙血
+        RegisterShowSaveFrameData(7,'RX40','RX4A',0,0,0,0) //龙骨
+        RegisterShowSaveFrameData(7,'RX50','RX5A',0,0,0,0) //龙爪
+        RegisterShowSaveFrameData(7,'RX60','RX6A',0,0,0,0) //龙角
+        RegisterShowSaveFrameData(7,'RX70','RX7A',0,0,0,0) //龙皮
+        RegisterShowSaveFrameData(7,'RX80','RX8A',0,0,0,0) //龙心
 
 
 
 
-        RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0)//封神谕令Lv1
-        RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0)//封神谕令Lv2
-        RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0)//封神谕令Lv3
-        RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0)//封神谕令Lv4
-        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0)//封神谕令Lv5
-        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0)//封神谕令Lv6
-        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0)//封神谕令Lv7
-        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0)//封神谕令Lv8
-        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0)//封神谕令Lv9
-        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0)//封神谕令Lv10
-        RegisterShowSaveFrameData(4,'RY9K','RY9K',0,0,0,0)//封神谕令Lv11
-        RegisterShowSaveFrameData(4,'RY9L','RY9L',0,0,0,0)//封神谕令Lv12
-//        RegisterShowSaveFrameData(4,'RY9M','RY9M',0,0,0,0)//封神谕令Lv13
+        RegisterShowSaveFrameData(4,'RY9A','RY9A',0,0,0,0) //封神谕令Lv1
+        RegisterShowSaveFrameData(4,'RY9B','RY9B',0,0,0,0) //封神谕令Lv2
+        RegisterShowSaveFrameData(4,'RY9C','RY9C',0,0,0,0) //封神谕令Lv3
+        RegisterShowSaveFrameData(4,'RY9D','RY9D',0,0,0,0) //封神谕令Lv4
+        RegisterShowSaveFrameData(4,'RY9E','RY9E',0,0,0,0) //封神谕令Lv5
+        RegisterShowSaveFrameData(4,'RY9F','RY9F',0,0,0,0) //封神谕令Lv6
+        RegisterShowSaveFrameData(4,'RY9G','RY9G',0,0,0,0) //封神谕令Lv7
+        RegisterShowSaveFrameData(4,'RY9H','RY9H',0,0,0,0) //封神谕令Lv8
+        RegisterShowSaveFrameData(4,'RY9I','RY9I',0,0,0,0) //封神谕令Lv9
+        RegisterShowSaveFrameData(4,'RY9J','RY9J',0,0,0,0) //封神谕令Lv10
+        RegisterShowSaveFrameData(4,'RY9K','RY9K',0,0,0,0) //封神谕令Lv11
+        RegisterShowSaveFrameData(4,'RY9L','RY9L',0,0,0,0) //封神谕令Lv12
+        RegisterShowSaveFrameData(4,'RY9M','RY9M',0,0,0,0) //封神谕令Lv13
     endfunction
 
 
@@ -644,11 +645,13 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
             
             
             if  id == 'RH36'
-                SetTipsData(17,"","地图等级16级加入随机英雄池，30级可手选。")
+                SetTipsData(18,"","地图等级16级加入随机英雄池，30级可手选。")
             elseif  id == 'RH37'
-                SetTipsData(17,"","地图等级36级可手选。")
+                SetTipsData(18,"","地图等级36级可手选。")
             elseif  id == 'RH40'
-                SetTipsData(17,"","龙宫积分达到48个时可选择，输入“JF”查询。")
+                SetTipsData(18,"","龙宫积分达到48个时可选择，输入“JF”查询。")
+            elseif  id == 'RH42'
+                SetTipsData(18,"","任意龙宝达到10级时可选择。")
             endif
 
             ShowTipsUI()
@@ -787,13 +790,13 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                 
                 
                 if  id == 'RH36'
-                    SetTipsData(17,"","地图等级16级加入随机英雄池，30级可手选。")
+                    SetTipsData(18,"","地图等级16级加入随机英雄池，30级可手选。")
                 elseif  id == 'RH37'
-                    SetTipsData(17,"","地图等级36级可手选。")
+                    SetTipsData(18,"","地图等级36级可手选。")
                 elseif  id == 'RH40'
-                    SetTipsData(17,"","龙宫积分达到48个时可选择，输入“JF”查询。")
+                    SetTipsData(18,"","龙宫积分达到48个时可选择，输入“JF”查询。")
                 elseif  id == 'RH42'
-                    SetTipsData(17,"","任意龙宝达到10级时可选择。")
+                    SetTipsData(18,"","任意龙宝达到10级时可选择。")
                 endif
             
                 
@@ -1147,7 +1150,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
     
 
 
-    function CreateShowSaveButton1()//创建列表按钮
+    function CreateShowSaveButton1() //创建列表按钮
         int index = 0
         for x = 0,7
             index = 581+x
@@ -1166,7 +1169,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
 
     endfunction
 
-    function CreateShowSaveButton2()//创建图标按钮
+    function CreateShowSaveButton2() //创建图标按钮
         int index = 0
 
         for x = 0,3 

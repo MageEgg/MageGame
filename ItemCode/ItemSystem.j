@@ -252,7 +252,10 @@ scope ItemSystem initializer InitItemSystem
             else
                 give = prize
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：接受"+GetObjectName(itemid)+"！获得"+GetObjectName(give)+"x"+I2S(prizemax))
-                SetItemCharges(UnitAddItemById(Pu[1],give),prizemax)
+                bj_lastCreatedItem = CreateItem(give,GetUnitX(Pu[1]),GetUnitY(Pu[1]))
+                SetItemCharges(bj_lastCreatedItem,prizemax)
+                UnitAddItem(Pu[1],bj_lastCreatedItem)
+                bj_lastCreatedItem = null
             endif
             /*
             1 金币
@@ -785,7 +788,13 @@ scope ItemSystem initializer InitItemSystem
         flush locals
     endfunction
 
-    
+    function GetIP04New(int id)->int
+        int new = 'S230'+GetRandomInt(0,7)
+        if  new != id
+            return new
+        endif
+        return GetIP04New(id)
+    endfunction
     
     
     function UseItemActions()
@@ -878,7 +887,7 @@ scope ItemSystem initializer InitItemSystem
             i1 = GetHeroAbilityID(Pu[1],4)
             if  i1 >= 'S230' and i1 <= 'S237'
                 HeroRemoveAbilityByIndex (Pu[1],4)
-                HeroAddAbilityByIndex(Pu[1],4,'S230'+GetRandomInt(0,7))
+                HeroAddAbilityByIndex(Pu[1],4,GetIP04New(i1))
             else
                 UnitAddItem(u1,CreateItem(itemid,GetUnitX(u1),GetUnitY(u1)))
                 DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r未获得R技能！无法洗练！")

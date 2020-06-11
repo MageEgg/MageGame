@@ -367,7 +367,7 @@ library UnitStateSet uses State
         else
             con = DzCon("ND8_14")
             if  con == ""
-                con = "00400420007007500070110001001500000000000000000000000000"
+                con = "00300420003007500030110000401500010020000000000000000000"
             endif
         endif
 
@@ -431,7 +431,8 @@ library UnitStateSet uses State
             InitMostetStateRatio(8,40,420)
             InitMostetStateRatio(9,40,750)
             InitMostetStateRatio(10,50,1100)
-            InitMostetStateRatio(11,100,1500)
+            InitMostetStateRatio(11,50,1500)
+            InitMostetStateRatio(12,100,2000)
         endif
 
         if  GameMode != 4

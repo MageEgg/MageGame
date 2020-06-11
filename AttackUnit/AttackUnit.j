@@ -1143,10 +1143,10 @@ library AttackUnit uses DamageCode,PassCheckMission
     unit ExShopNpc = null
     //黑心商店
     function GetReExShopItem(int id1,int id2)->int
-        int new = 'IL0A'+GetRandomInt(0,8)
+        int new = 'IL0A'+GetRandomInt(0,10)
         loop
             exitwhen new != id1 and new != id2
-            new = 'IL0A'+GetRandomInt(0,8)
+            new = 'IL0A'+GetRandomInt(0,10)
         endloop
         return new
     endfunction
@@ -1488,7 +1488,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 end     
 
                 if  GameSaveClose == 0
-                    if  ModuloInteger(AttackUnitWN,3) == 0
+                    if  ModuloInteger(AttackUnitWN,2) == 0
                         ReExShop()
                     endif
                 endif

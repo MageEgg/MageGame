@@ -998,6 +998,15 @@ library MagicItemCollectCode uses MagicItemCollectFrame
         endif
     endfunction
 
+    function GetNewColor6(int id)->int
+        int new = GetRandomInt(1,8) + 'FB70'
+        if  new != id
+            return new
+        endif
+        
+        return GetNewColor6(id)
+    endfunction
+
     //重置法宝
     function RecastPlayerMagicItem1(int pid) 
         int last = GetPlayerMagicItemLast(pid)
@@ -1015,7 +1024,7 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                     color = GetTypeIdData(id,101)
                     if  color == 6
                         SetPlayerMagicItemResources(pid,1,num-1)
-                        newid = GetRandomInt(1,8) + 'FB70'
+                        newid = GetNewColor6(id)
                         RemPlayerMagicItemByIndex(pid,last)
                         SetPlayerMagicItem(pid,last,newid)
                         SetPlayerMagicItemLast(pid,0)
@@ -1024,7 +1033,17 @@ library MagicItemCollectCode uses MagicItemCollectFrame
                             
                             SetPlayerMagicItemResources(pid,1,num-1)
                             
-                            newid = GetPrize(pid,10+color,true)
+                            if  GameMode == 4
+                                RemPrizeData(pid,10+color,FindPrizePool(pid,10+color,id))
+                                //ShowPrizeList(pid,10+color)
+                                newid = GetPrize(pid,10+color,true)
+                                RegisterPrizePoolData(pid,10+color,id)
+                                //ShowPrizeList(pid,10+color)
+                            else
+                                newid = GetPrize(pid,10+color,true)
+                            endif
+
+                            
                             RecoveryMagicPoolData(pid,10+color,id)//回收法宝
 
                             //重铸
