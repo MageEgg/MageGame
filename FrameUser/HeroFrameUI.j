@@ -811,12 +811,12 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
 
         Back2.frameid = FRAME.Tag("BACKDROP","Hero",GameUI,Back2)
         Back2.SetPoint(6,Button2.frameid,0,0.0,0.005)
-        Back2.SetSize(0.19,0.15)
+        Back2.SetSize(0.19,0.17)
         Back2.SetTexture("ui\\widgets\\battlenet\\bnet-inputbox-back.blp", 0)
         for p = 1,2
-            for m = 1,9
+            for m = 1,11
                 CreateButton(160+m,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.0,-0.015*(m-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
-                CreateButton(169+m,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.1,-0.015*(m-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
+                CreateButton(171+m,Back2.frameid,TYPE_NOT,0,Back2.frameid,0,0.1,-0.015*(m-1)-0.005,0.014,0.014,"ui\\widgets\\glues\\dialogbox-question.blp")
             end
         end
         //Back2.SetPoint(0,BUTTON_Back[168][0],0,-0.005,0.0)
@@ -839,6 +839,11 @@ library HeroFrameUI initializer InitHeroFrameUITimer uses GameFrame,PassCheckMis
         CreateText(176,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒攻击：|r0")
         CreateText(177,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒业力：|r0")
         CreateText(178,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00每秒生命：|r0")
+
+        CreateText(179,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00会心几率：|r0%")
+        CreateText(180,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00会心伤害：|r0%")
+        CreateText(181,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00最终伤害：|r0%")
+        CreateText(182,Back2.frameid,"text009",3,5,0.003,0,"|cffffcc00经验加成：|r0%")
 
 
 

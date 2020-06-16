@@ -19,6 +19,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
     int Unloc_Type_Day51 = 51
     int Unloc_Type_Day61 = 61
+    int Unloc_Type_DayDW = 62
     int Unloc_Type_HuYa = 50
     
     int array UnlocTechData_TechId
@@ -29,7 +30,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
     
     int array HolidayChangeData[12][680]
 
-
+    
 
     scope HuYaActivity
         private string array NameData
@@ -63,7 +64,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a磊仔菜J")
             AddHuYaName("a别叫我隐十")
             AddHuYaName("a星悦丶丨怵丨")
-            AddHuYaName("a至臻丶白鲨")
+            AddHuYaName("a星耀丶秋天")
             AddHuYaName("aflack")
             AddHuYaName("a红桃づ")
             AddHuYaName("a星耀、梦里陌")
@@ -92,7 +93,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a沐北清歌瀚丶")
             AddHuYaName("at涛jr大")
             AddHuYaName("a乳尺惊人")
-            AddHuYaName("a蓝丁素客")
+            AddHuYaName("a星耀丶苏烟")
             AddHuYaName("a星耀丶大圣人")
             AddHuYaName("a嗯，同意")
             AddHuYaName("a人王伏羲")
@@ -110,7 +111,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a雷咯")
             AddHuYaName("a昭阳辞落日")
             AddHuYaName("a星悦丶爱笑")
-            AddHuYaName("a至臻丶玉溪")
+            AddHuYaName("a星耀丶春天")
             AddHuYaName("a日暮旅人")
             AddHuYaName("a哈滴")
             AddHuYaName("a星耀丶陌心")
@@ -172,7 +173,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a温州热心市民")
             AddHuYaName("aMvp丶小炎")
             AddHuYaName("a麒麒77")
-            AddHuYaName("a鬼舞辻無慘")
+            AddHuYaName("a刊片嘉味杏")
             AddHuYaName("a恒总Gz")
             AddHuYaName("a都是垃圾啊")
             AddHuYaName("a星耀丶樱月幻")
@@ -381,6 +382,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             return Holiday51 >= data
         elseif  Type == Unloc_Type_Day61
             return Holiday61 >= data
+        elseif  Type == Unloc_Type_DayDW
+            return HolidayDW >= data
         elseif  Type == Unloc_Type_ShopNum
             return DzMallNum(Player(pid),"WXBZ") >=data
         elseif  Type == Unloc_Type_HuYa
@@ -730,6 +733,8 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RJ1Y',InitCond1(2,Unloc_Type_Shop,ShopList("LB5")),0,0,0,0)
         InitUnlocTechConditions('RJ1Z',InitCond1(2,Unloc_Type_Shop,ShopList("LB6")),0,0,0,0)
         InitUnlocTechConditions('RJ1P',InitCond1(2,Unloc_Type_Shop,ShopList("LB7")),0,0,0,0)
+        InitUnlocTechConditions('RJ1Q',InitCond1(2,Unloc_Type_Shop,ShopList("LB8")),0,0,0,0)
+
         
 
         InitUnlocTechConditions('RTX1',InitCond1(2,Unloc_Type_Shop,ShopList("RWK")),0,0,0,0)
@@ -817,6 +822,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RGDE',InitCond1(1,Unloc_Type_Level,9),InitCond2(0,Unloc_Type_JF,GameDataList(20,6,15)),0,0,0)
         InitUnlocTechConditions('RGDF',InitCond1(1,Unloc_Type_Level,10),InitCond2(0,Unloc_Type_JF,GameDataList(20,7,15)),0,0,0)
         InitUnlocTechConditions('RGDG',InitCond1(1,Unloc_Type_Level,12),InitCond2(0,Unloc_Type_JF,GameDataList(20,8,15)),0,0,0)
+        InitUnlocTechConditions('RGDH',InitCond1(1,Unloc_Type_Level,14),InitCond2(0,Unloc_Type_JF,GameDataList(20,9,15)),0,0,0)
 
         
 
@@ -889,8 +895,11 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
 
 
         
-
         
+        
+        InitUnlocTechConditions('RP1D',InitCond1(1,Unloc_Type_Level,6),InitCond2(1,Unloc_Type_DayDW,2),InitCond3(0,Unloc_Type_Load,GameDataList(19,4,2)),0,0)
+        InitUnlocTechConditions('RY2L',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_DayDW,4),InitCond3(0,Unloc_Type_Load,GameDataList(12,12,2)),0,0)
+        InitUnlocTechConditions('RY1G',InitCond1(1,Unloc_Type_Level,8),InitCond2(1,Unloc_Type_DayDW,4),InitCond3(0,Unloc_Type_Load,GameDataList(11,7,2)),0,0)
 
 
 

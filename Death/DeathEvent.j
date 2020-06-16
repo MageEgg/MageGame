@@ -605,6 +605,28 @@ scope DeathEvent initializer InitDeathEvent
             DropChallengeUnit(tu,wu)
         endif
 
+        if  DzConA[26] == 1
+            if  uid >= 'mb01' and uid <= 'mb0z'
+                if  GetRandomReal(1,100) <= 55
+                    CreateItem(GetRandomInt('IN61','IN64'),GetUnitX(tu),GetUnitY(tu))
+                endif
+                if  GetRandomReal(1,100) <= 50
+                    CreateItem('IN60',GetUnitX(tu),GetUnitY(tu))
+                endif
+            elseif  uid >= 'mf0A' and uid <= 'mf0H'
+                if  GetRandomReal(1,100) <= 33
+                    CreateItem(GetRandomInt('IN61','IN64'),GetUnitX(tu),GetUnitY(tu))
+                endif
+                if  GetRandomReal(1,100) <= 30
+                    CreateItem('IN60',GetUnitX(tu),GetUnitY(tu))
+                endif
+            elseif  GetRandomReal(1,1000) <= 3
+                CreateItem(GetRandomInt('IN61','IN64'),GetUnitX(tu),GetUnitY(tu))
+            endif
+
+
+        endif
+
 
         if  uid >= 'uE01' and uid <= 'uE99'
             IncEquipKillUnitFunc(wu,tu)
@@ -684,7 +706,7 @@ scope DeathEvent initializer InitDeathEvent
             endif
         endif
 
-        if  (uid >= 'm001' and uid <= 'm050') or (uid >= 'ma01' and uid <= 'ma0z') or (uid >= 'mb01' and uid <= 'mb0z')
+        if  (uid >= 'm001' and uid <= 'm050') or (uid >= 'ma01' and uid <= 'ma0z') or (uid >= 'mb01' and uid <= 'mb0z') or (uid >= 'm10A' and uid <= 'm11C')
             DzHeroMedalDeathCos = DzHeroMedalDeathCos + 1
             if  ModuloInteger(DzHeroMedalDeathCos,100) == 0
                 if  GetDzPlayerData(pid,16,2) < 896//MaxHeroBaseMedal*MaxGameLevel
@@ -696,7 +718,7 @@ scope DeathEvent initializer InitDeathEvent
                     endif
                 endif
             endif
-            if  (uid >= 'mb01' and uid <= 'mb0z')
+            if  (uid >= 'mb01' and uid <= 'mb0z') or (uid >= 'mf0A' and uid <= 'mf0H')
                 if  GetDzPlayerData(pid,16,2) < 896//MaxHeroBaseMedal*MaxGameLevel
                     if  DzHeroMedalGameExp < GameLevel*32
                         DzHeroMedalGameExp = DzHeroMedalGameExp + GameLevel

@@ -1598,6 +1598,15 @@ library AttackUnit uses DamageCode,PassCheckMission
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[61活动]：|r|cffff8000通关成功！(棒棒糖今日已达上限)|r")
                 endif
+            elseif  DzConA[26] == 1
+                if  GetDzPlayerData(pid,18,12) < 2
+                    AddDzPlayerData(pid,18,10,1)
+                    AddDzPlayerData(pid,18,12,1)
+                    
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[端午活动]：|r|cffff8000通关成功！咸肉粽+1！|r")
+                else
+                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[端午活动]：|r|cffff8000通关成功！(咸肉粽今日已达上限)|r")
+                endif
             endif
             
 

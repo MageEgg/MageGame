@@ -89,6 +89,21 @@ scope ItemSystem initializer InitItemSystem
     endfunction
 
 
+    function IN60ItemFormula(unit wu)
+        int pid = GetPlayerId(GetOwningPlayer(wu))
+        if  IsUnitHasItem(wu,'IN61') == true and IsUnitHasItem(wu,'IN62') == true and IsUnitHasItem(wu,'IN63') == true and IsUnitHasItem(wu,'IN64') == true
+            RemoveUnitHasItem(wu,'IN61')
+            RemoveUnitHasItem(wu,'IN62')
+            RemoveUnitHasItem(wu,'IN63')
+            RemoveUnitHasItem(wu,'IN64')
+            PlayerWXBZFree = PlayerWXBZFree + 1
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：|cff00ff00成功凑齐端午快乐，当局免费开启次数+1!|r")
+        endif
+        
+
+    endfunction
+
+
     //使用超级招魂幡
     function PlayerUseSuperSoul(unit wu,item it)
         int pid = GetPlayerId(GetOwningPlayer(wu))
@@ -366,6 +381,9 @@ scope ItemSystem initializer InitItemSystem
             if  itemid >= 'IK01' and itemid <= 'IK08'
                 BJDebugMsg("宝珠")
                 GemItemFormula(u1,GetManipulatedItem())
+            elseif  itemid >= 'IN61' and itemid <= 'IN64'
+                BJDebugMsg("端午快乐")
+                IN60ItemFormula(u1)
             endif
             //FormulaVerify()
         endif
@@ -376,8 +394,19 @@ scope ItemSystem initializer InitItemSystem
             ReEquipTips(pid,GetManipulatedItem())
         endif
 
-        
-        if  itemid == 'IP01'
+        if  itemid == 'IN60'
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[端午活动]：|r|cffff8000获得甜甜粽，全队端午积分+40|r")
+            for jfpid = 0,3
+                if  IsPlaying(jfpid) == true 
+                    if  GetDzPlayerData(jfpid,18,9) <= 1160
+                        AddDzPlayerData(jfpid,18,9,40)
+                        AddDzPlayerData(jfpid,18,11,40)
+                    else
+                        DisplayTimedTextToPlayer(Player(jfpid),0,0,5,"|cffffcc00[端午活动]：|r端午积分今日已达上限!")
+                    endif
+                endif
+            end
+        elseif  itemid == 'IP01'
             SetPlayerPlotPartNum(pid,GetPlayerPlotPartNum(pid)+1)
         elseif  itemid == 'IP14'
             UnitAddItem(u1,CreateItem('IP04',GetUnitX(u1),GetUnitY(u1)))
@@ -734,7 +763,7 @@ scope ItemSystem initializer InitItemSystem
                             if  DzPlayerLv(Player(pid)) >= 8
                                 if  GetDzPlayerData(pid,18,5) >= 4500
                                     if  GetDzPlayerData(pid,18,6) >= 7
-                                        if  Holiday51 >= 4
+                                        if  Holiday61 >= 4
                                             AddDzPlayerData(pid,18,5,-4500)
                                             AddDzPlayerData(pid,18,6,-7)
                                             AddDzPlayerData(pid,19,10,10)
@@ -747,6 +776,98 @@ scope ItemSystem initializer InitItemSystem
                                     endif
                                 else
                                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！六一积分不足|cff00ff004500")
+                                endif
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff008")
+                            endif
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
+                        endif
+                    endif
+                elseif  itemid >= 'IV09' and itemid <= 'IV12'
+                    if  itemid == 'IV09'
+                        if  GetDzPlayerData(pid,19,4) != 2
+                            
+                            if  DzPlayerLv(Player(pid)) >= 6
+                                if  GetDzPlayerData(pid,18,9) >= 2000
+                                    if  GetDzPlayerData(pid,18,10) >= 3
+                                        if  HolidayDW >= 2
+                                            AddDzPlayerData(pid,18,9,-2000)
+                                            AddDzPlayerData(pid,18,10,-3)
+                                            AddDzPlayerData(pid,19,4,2)
+                                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
+                                        else
+                                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:还不到第2天，你哪来的咸肉粽！")
+                                        endif
+                                    else
+                                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！咸肉粽不足|cff00ff003")
+                                    endif
+                                else
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！端午积分不足|cff00ff002000")
+                                endif
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff006")
+                            endif
+                            
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
+                        endif
+                    elseif  itemid == 'IV10'
+                        if  GetDzPlayerData(pid,12,12) != 2
+                            if  DzPlayerLv(Player(pid)) >= 8
+                                if  GetDzPlayerData(pid,18,9) >= 3000
+                                    if  GetDzPlayerData(pid,18,10) >= 7
+                                        if  HolidayDW >= 4
+                                            AddDzPlayerData(pid,18,9,-3000)
+                                            AddDzPlayerData(pid,18,10,-7)
+                                            AddDzPlayerData(pid,12,12,2)
+                                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
+                                        else
+                                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:还不到第4天，你哪来的咸肉粽！")
+                                        endif
+                                    else
+                                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！咸肉粽不足|cff00ff007")
+                                    endif
+                                else
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！端午积分不足|cff00ff003000")
+                                endif
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff008")
+                            endif
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r兑换失败！已获得该道具。")
+                        endif
+                    elseif  itemid == 'IV11'
+                        if  HolidayChangeData[pid][7] == 0
+                            if  GetDzPlayerData(pid,18,9) >= 50
+                                AddDzPlayerData(pid,18,9,-50)
+                                HolidayChangeData[pid][7] = 1
+                                UnitAddItemById(u1,'IN31')
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r炽星魔盒兑换成功！")
+                            else
+                                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！积分不足|cff00ff0050")
+                            endif
+                        else
+                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！每局只可兑换一次！")
+                        endif
+                    elseif  itemid == 'IV12'
+                        if  GetDzPlayerData(pid,11,7) != 2
+                            if  DzPlayerLv(Player(pid)) >= 8
+                                if  GetDzPlayerData(pid,18,9) >= 4500
+                                    if  GetDzPlayerData(pid,18,10) >= 7
+                                        if  HolidayDW >= 4
+                                            AddDzPlayerData(pid,18,9,-4500)
+                                            AddDzPlayerData(pid,18,10,-7)
+                                            AddDzPlayerData(pid,11,7,2)
+                                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换成功！重新进入游戏生效！")
+                                        else
+                                            DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:还不到第4天，你哪来的咸肉粽！")
+                                        endif
+                                    else
+                                        DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！咸肉粽不足|cff00ff007")
+                                    endif
+                                else
+                                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！端午积分不足|cff00ff004500")
                                 endif
                             else
                                 DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]|r:兑换失败！等级不足|cff00ff008")

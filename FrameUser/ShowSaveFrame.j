@@ -80,6 +80,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         
         RegisterShowSaveFrameData(5,'RJ1Y','RJ1Y',0,0,0,0) //劳动节礼包
         RegisterShowSaveFrameData(5,'RJ1P','RJ1P',0,0,0,0) //儿童节礼包
+        RegisterShowSaveFrameData(5,'RJ1Q','RJ1Q',0,0,0,0) //端午节礼包
 
         RegisterShowSaveFrameData(5,'RSHA','RSHA',0,0,0,0) //商城3件套
         RegisterShowSaveFrameData(5,'RSHD','RSHD',0,0,0,0) //商城4件套
@@ -106,6 +107,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY1A','RY1A',0,0,0,0) //血灵光环
         RegisterShowSaveFrameData(2,'RY1B','RY1B',0,0,0,0) //罪焰光环
         RegisterShowSaveFrameData(2,'RY1F','RY1F',0,0,0,0) //墨麟光环
+        RegisterShowSaveFrameData(2,'RY1G','RY1G',0,0,0,0) //金龙环绕
 
         
         RegisterShowSaveFrameData(2,'RY3C','RY3C',0,0,0,0) //崩鸣刃
@@ -130,9 +132,11 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(2,'RY2J','RY2J',0,0,0,0) //神灵之翼
         RegisterShowSaveFrameData(2,'RY2I','RY2I',0,0,0,0) //断罪神灵
         RegisterShowSaveFrameData(2,'RY2K','RY2K',0,0,0,0) //风筝
+        RegisterShowSaveFrameData(2,'RY2L','RY2L',0,0,0,0) //幽兰绝影
 
         RegisterShowSaveFrameData(2,'RP1B','RP1B',0,0,0,0) //GM-小咸鱼
         RegisterShowSaveFrameData(2,'RP1C','RP1C',0,0,0,0) //福娃
+        RegisterShowSaveFrameData(2,'RP1D','RP1D',0,0,0,0) //粽子
         
 
         
@@ -283,7 +287,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGDE','RGDE',0,0,0,0) //通关异变N5 15次
         RegisterShowSaveFrameData(0,'RGDF','RGDF',0,0,0,0) //通关异变N6 15次
         RegisterShowSaveFrameData(0,'RGDG','RGDG',0,0,0,0) //通关异变N7 15次
-        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,'RGDH','RGDH',0,0,0,0) //通关异变N8 15次
 
         RegisterShowSaveFrameData(0,'RGEA','RGEA',0,0,0,0) //通关超爽N1&地图3级
         RegisterShowSaveFrameData(0,'RGEB','RGEB',0,0,0,0) //通关超爽N2&地图3级
@@ -562,6 +566,9 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
                         SetUnitScale(Pu[2],1,1,1)
                     elseif  sid == 'AP1C'
                         DzSetUnitModel(Pu[2],"AttackRoom_renshenwawaA1.mdl")
+                        SetUnitScale(Pu[2],0.8,0.8,0.8)
+                    elseif  sid == 'AP1D'
+                        DzSetUnitModel(Pu[2],"GUAI_zongziEx.mdl")
                         SetUnitScale(Pu[2],0.8,0.8,0.8)
                     endif
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffff0000[系统]：|r助手皮肤替换成功！")

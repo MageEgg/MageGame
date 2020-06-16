@@ -67,6 +67,9 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
                     AddPlayerTechResearched(Player(pid),'RP1A',1)
                     buynum = buynum + 1
                 endif
+
+
+
             else
                 if  GetPlayerTechCount(Player(pid),'RY3D',true) == 0 //戮仙剑
                     AddPlayerTechResearched(Player(pid),'RY3D',1)
@@ -274,8 +277,18 @@ library HeroStateFunc uses DamageCode,MagicItemCollectCode
             shopnum = shopnum + 1
             AddUnitRealState(Pu[1],47,8)
             AddUnitRealState(Pu[1],48,10)
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00儿童节节礼包|r》已激活！")
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00儿童节礼包|r》已激活！")
         endif
+
+        if  GetPlayerTechCount(Player(pid),'RJ1Q',true) == 1 //端午礼包
+            shopnum = shopnum + 1
+            AddUnitRealState(Pu[1],47,5)
+            AddUnitRealState(Pu[1],48,8)
+            AddUnitRealState(Pu[1],52,5000)
+            AddPlayerFoodByIndex(pid,2,2)
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]|r：商城道具《|cff00ff00端午节礼包|r》已激活！")
+        endif
+
 
         
 

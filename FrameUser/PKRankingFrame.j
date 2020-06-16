@@ -23,7 +23,7 @@ library PKRankingFrame uses GameFrame
             return true
         elseif  name == "a偏执的沁"
             return true
-        elseif  name == "a鬼舞辻無慘"
+        elseif  name == "a刊片嘉味杏"
             return true
         elseif  name == "a星耀丶酒仙呐"
             return true
@@ -144,7 +144,7 @@ library PKRankingFrame uses GameFrame
         CreateText(1004,origin,"text009",3,5,0.0,0.0,"|cffffcc00这丿真灬有丶意思|r")
         CreateText(1005,origin,"text009",3,5,0.0,0.0,"|cffffcc00秦王走位|r")
         CreateText(1006,origin,"text009",3,5,0.0,0.0,"|cffffcc00偏执的沁|r")
-        CreateText(1007,origin,"text009",3,5,0.0,0.0,"|cffffcc00鬼舞辻無慘|r")
+        CreateText(1007,origin,"text009",3,5,0.0,0.0,"|cffffcc00刊片嘉味杏|r")
         CreateText(1008,origin,"text009",3,5,0.0,0.0,"|cffffcc00星耀丶酒仙呐|r")
         CreateText(1009,origin,"text009",3,5,0.0,0.0,"|cffffcc00凤求凰灬李白|r")
         CreateText(1010,origin,"text009",3,5,0.0,0.0,"|cffffcc00磊仔菜B|r")

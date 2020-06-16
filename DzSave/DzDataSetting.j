@@ -90,7 +90,7 @@ library DzDataSetting uses DzBase
         
         DzPlayerInitVariationTGCos[7] = 15
         
-        DzPlayerInitVariationTGCos[8] = 8
+        DzPlayerInitVariationTGCos[8] = 15
         /*
         DzPlayerInitVariationTGCos[9] = 8
         DzPlayerInitVariationTGCos[10] = 8*/
@@ -279,11 +279,20 @@ library DzDataSetting uses DzBase
                 max = 5000
             elseif  flag == 6
                 max = Holiday61*2
-            elseif  flag == 8
+            elseif  flag == 7
                 max = 1000
-            elseif  flag == 9
+            elseif  flag == 8
                 max = 2
-            elseif  flag > 9
+            
+            elseif  flag == 9
+                max = 5000
+            elseif  flag == 10
+                max = HolidayDW*2
+            elseif  flag == 11
+                max = 1200
+            elseif  flag == 12
+                max = 2
+            elseif  flag > 12
                 max = 0
             endif
         elseif  Group == 19 //不用管
