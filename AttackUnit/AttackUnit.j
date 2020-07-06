@@ -1168,31 +1168,6 @@ library AttackUnit uses DamageCode,PassCheckMission
     endfunction
 
 
-    function GetWuJinLocX(int i)->real
-        if  i == 1
-            return -1664
-        elseif  i == 2
-            return 96
-        elseif  i == 3
-            return -1664
-        elseif  i == 4
-            return -3250
-        endif
-        return 0
-    endfunction
-    function GetWuJinLocY(int i)->real
-        if  i == 1
-            return -6320
-        elseif  i == 2
-            return -7550
-        elseif  i == 3
-            return -8950
-        elseif  i == 4
-            return -7440
-        endif
-        return 0
-    endfunction
-
     function CreateWuJinUnit()
         ForGroup(WuJinGroup,function FlushWuJinGroup)
         GroupClear(WuJinGroup)
@@ -1204,8 +1179,19 @@ library AttackUnit uses DamageCode,PassCheckMission
         unit u = null
 
         for i = 1,4
-            x = GetWuJinLocX(i)
-            y = GetWuJinLocY(i)
+            if  i == 1
+                x = -1664
+                y = -6320
+            elseif  i == 2
+                x = 96
+                y = -7550
+            elseif  i == 3
+                x = -1664
+                y = -8950
+            elseif  i == 4
+                x = -3250
+                y = -7440
+            endif
 
             for n = 1,20
                 u = CreateUnit(Player(10),GetGameMode4AttackUnitId(),-1663,-7486,0)
@@ -1214,15 +1200,16 @@ library AttackUnit uses DamageCode,PassCheckMission
                 IssuePointOrderById(u,851983,-1663,-7486)
             end
 
+            BJDebugMsg("x:"+R2S(x)+" y:"+R2S(y))
+
         end
 
 
         int ran = GetRandomInt(1,4)
-        x = GetWuJinLocX(ran)
-        y = GetWuJinLocY(ran)
+
         u = CreateUnit(Player(10),'mf0A'+GetRandomInt(0,7),-1663,-7486,0)
         GroupAddUnit(WuJinGroup,u)
-        SetUnitXY(u,x,y)
+        SetUnitXY(u,-1664,-6320)
         IssuePointOrderById(u,851983,-1663,-7486)
         AttackBOSSLastCos = 1
         AttackBOSSDeathCos = 0
@@ -1234,18 +1221,10 @@ library AttackUnit uses DamageCode,PassCheckMission
         flush locals
     endfunction
 
-
-    function RefreshWuJinTimerFunc()
-        PauseTimer(WuJinRefreshTimer)
-        DestroyTimer(WuJinRefreshTimer)
-
-        //刷新100只小怪
-        CreateWuJinUnit()
-    endfunction
     function OpenWuJinTimerFunc()
-        WuJinRefreshTimer = CreateTimer()
-        TimerStart(WuJinRefreshTimer,30,false,function RefreshWuJinTimerFunc)
         WuJinGroup = CreateGroup()
+        CreateWuJinUnit()
+        
     endfunction
 
     function OpenStopAttackTimer()
