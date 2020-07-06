@@ -883,7 +883,7 @@ scope DeathEvent initializer InitDeathEvent
         endif
 
     endfunction
-    
+    //CreateWuJinUnit
     function AttackBossDeathEvent(unit boss)
         AttackBOSSDeathCos = AttackBOSSDeathCos + 1
         BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
@@ -891,6 +891,8 @@ scope DeathEvent initializer InitDeathEvent
         if  AttackBOSSDeathCos == AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             AttackBOSSLastCos = 0
+
+            BJDebugMsg("杀死最终BOSS了")
 
             if  GameWuJin == 0
                 if  GameLevel >= 5 and GameMode != 4
@@ -918,7 +920,8 @@ scope DeathEvent initializer InitDeathEvent
                 ShowBossDamageString()
                 if  GetUnitTypeId(boss) == LastAttackBossId
                     LastBOSSOpera = true
-                    
+                    KillAttackUnitGroup()
+                    OpenWuJinTimerFunc()
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
                     DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")

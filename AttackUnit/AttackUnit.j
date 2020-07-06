@@ -1224,6 +1224,8 @@ library AttackUnit uses DamageCode,PassCheckMission
         GroupAddUnit(WuJinGroup,u)
         SetUnitXY(u,x,y)
         IssuePointOrderById(u,851983,-1663,-7486)
+        AttackBOSSLastCos = 1
+        AttackBOSSDeathCos = 0
         
 
 
