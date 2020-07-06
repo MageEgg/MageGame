@@ -780,7 +780,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     AddBossAnger(u)
                                 endif
                             endif
-                            if  InGameWuJin == 1
+                            if  InGameWuJin == 1 and LastBOSSOpera == true
                                 SetGameMode3ExAttackUnitStateValue(u)
                             endif
                         end
@@ -895,7 +895,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     endif
                                     SetGameMode4AttackUnitStateValue(k,u)
                                 endif
-                                if  InGameWuJin == 1
+                                if  InGameWuJin == 1 and LastBOSSOpera == true
                                     SetGameMode3ExAttackUnitStateValue(u)
                                 endif
                             endif
@@ -994,7 +994,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 endif
                                 SetGameMode4AttackUnitStateValue(k,u)
                             endif
-                            if  InGameWuJin == 1
+                            if  InGameWuJin == 1 and LastBOSSOpera == true
                                 SetGameMode3ExAttackUnitStateValue(u)
                             endif
                         end
