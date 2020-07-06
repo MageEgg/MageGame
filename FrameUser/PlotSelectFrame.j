@@ -38,12 +38,16 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
     endfunction
 
     function ClickPlotFrame(int pid)
-        if  GetLocalPlayer() == Player(pid)
-            if  Button.show  == true
-                Button.show = false
-            else
-                Button.show = true
+        if  InGameWuJin == 0
+            if  GetLocalPlayer() == Player(pid)
+                if  Button.show  == true
+                    Button.show = false
+                else
+                    Button.show = true
+                endif
             endif
+        else
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无尽开始后无法进入副本！")
         endif
     endfunction
 
@@ -379,6 +383,10 @@ library PlotSelectFrame uses GameFrame,MagicItemCollectCode,PrizeFrame
             if  GetPrizePoolMax(pid,13) == 0
                 prizeid = 12
             endif
+        endif
+
+        if  GameWuJin == 1 and prizeid == 15
+            prizeid = 14
         endif
 
         return prizeid

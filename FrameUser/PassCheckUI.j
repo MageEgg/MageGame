@@ -153,6 +153,27 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckPrize(78,5,'IP09')	
         RegisterPassCheckPrize(79,0,'RT79')	
         RegisterPassCheckPrize(80,'RJ2S','RY3J')	
+
+        RegisterPassCheckPrize(81,'RS81','IN30')
+        RegisterPassCheckPrize(82,'RJ3A','RJ3B')
+        RegisterPassCheckPrize(83,'IP08','IN41')
+        RegisterPassCheckPrize(84,2,5)
+        RegisterPassCheckPrize(85,'RS85',1000)
+        RegisterPassCheckPrize(86,'RS86','RT86')
+        RegisterPassCheckPrize(87,'RS87','RT87')
+        RegisterPassCheckPrize(88,'RJ3C','RJ3D')
+        RegisterPassCheckPrize(89,'RS89','IN42')
+        RegisterPassCheckPrize(90,'RS90','RT90')
+        RegisterPassCheckPrize(91,0,'RT91')
+        RegisterPassCheckPrize(92,'RS92','RT92')
+        RegisterPassCheckPrize(93,0,'IP02')
+        RegisterPassCheckPrize(94,'RJ3E','RJ3F')
+        RegisterPassCheckPrize(95,'IP01','RT95')
+        RegisterPassCheckPrize(96,'RS96','RT96')
+        RegisterPassCheckPrize(97,0,'RT97')
+        RegisterPassCheckPrize(98,5,'IP03')
+        RegisterPassCheckPrize(99,0,'RT99')
+        RegisterPassCheckPrize(100,'RJ3G','RJ3H')
         
     endfunction
 
@@ -298,6 +319,46 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         RegisterPassCheckDay(98,1,10,18,22,0,0)
         RegisterPassCheckDay(99,1,12,7,25,0,0)
         RegisterPassCheckDay(100,1,14,17,23,0,0)
+        RegisterPassCheckDay(101,1,18,2,22,0,0)
+        RegisterPassCheckDay(102,1,3,13,25,0,0)
+        RegisterPassCheckDay(103,1,18,11,23,0,0)
+        RegisterPassCheckDay(104,1,10,15,24,0,0)
+        RegisterPassCheckDay(105,1,4,5,26,0,0)
+        RegisterPassCheckDay(106,1,6,18,32,0,0)
+        RegisterPassCheckDay(107,1,8,9,30,0,0)
+        RegisterPassCheckDay(108,1,10,18,32,0,0)
+        RegisterPassCheckDay(109,1,12,7,34,0,0)
+        RegisterPassCheckDay(110,1,14,18,33,0,0)
+        RegisterPassCheckDay(111,1,16,17,21,0,0)
+        RegisterPassCheckDay(112,1,18,2,22,0,0)
+        RegisterPassCheckDay(113,1,3,13,23,0,0)
+        RegisterPassCheckDay(114,1,18,11,24,0,0)
+        RegisterPassCheckDay(115,1,10,15,25,0,0)
+        RegisterPassCheckDay(116,1,6,18,26,0,0)
+        RegisterPassCheckDay(117,1,8,9,27,0,0)
+        RegisterPassCheckDay(118,1,10,18,22,0,0)
+        RegisterPassCheckDay(119,1,12,7,25,0,0)
+        RegisterPassCheckDay(120,1,14,18,23,0,0)
+        RegisterPassCheckDay(121,1,18,2,22,0,0)
+        RegisterPassCheckDay(122,1,3,13,25,0,0)
+        RegisterPassCheckDay(123,1,18,11,23,0,0)
+        RegisterPassCheckDay(124,1,10,15,24,0,0)
+        RegisterPassCheckDay(125,1,4,5,26,0,0)
+        RegisterPassCheckDay(126,1,6,18,32,0,0)
+        RegisterPassCheckDay(127,1,8,9,30,0,0)
+        RegisterPassCheckDay(128,1,10,18,32,0,0)
+        RegisterPassCheckDay(129,1,12,7,34,0,0)
+        RegisterPassCheckDay(130,1,14,18,33,0,0)
+        RegisterPassCheckDay(131,1,16,17,21,0,0)
+        RegisterPassCheckDay(132,1,18,2,22,0,0)
+        RegisterPassCheckDay(133,1,3,13,23,0,0)
+        RegisterPassCheckDay(134,1,18,11,24,0,0)
+        RegisterPassCheckDay(135,1,10,15,25,0,0)
+        RegisterPassCheckDay(136,1,6,18,26,0,0)
+        RegisterPassCheckDay(137,1,8,9,27,0,0)
+        RegisterPassCheckDay(138,1,10,18,22,0,0)
+        RegisterPassCheckDay(139,1,12,7,25,0,0)
+        RegisterPassCheckDay(140,1,14,18,23,0,0)
                 
     endfunction
 
@@ -373,7 +434,14 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
         function PlayerMissionComplete(int pid,int missionid)//任务完成
             if  DzConA[0] == 1 //全局限制
                 int exp = GetMissionExp(missionid)
-                if  MissionDay > 62
+                
+                if  MissionDay > 82
+                    AddDzPlayerData(pid,4,1,exp)
+                    AddDzPlayerData(pid,4,2,exp)
+                    AddDzPlayerData(pid,4,3,exp)
+                    AddDzPlayerData(pid,4,4,exp)
+                    AddDzPlayerData(pid,4,5,exp)
+                elseif  MissionDay > 62
                     AddDzPlayerData(pid,4,1,exp)
                     AddDzPlayerData(pid,4,2,exp)
                     AddDzPlayerData(pid,4,3,exp)
@@ -577,6 +645,10 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
                 if  DzShop(Player(pid),"RWK4") == true
                     shop = 1
                 endif
+            elseif  index == 4
+                if  DzShop(Player(pid),"RWK5") == true
+                    shop = 1
+                endif
             endif
 
             for i = 1,MaxPassCheckPrizeNum
@@ -596,6 +668,7 @@ library PassCheckMission initializer InitPassCheckMission uses DzSave,DamageCode
             PlayerAddPassPrizeByIndex.execute(pid,1)
             PlayerAddPassPrizeByIndex.execute(pid,2)
             PlayerAddPassPrizeByIndex.execute(pid,3)
+            PlayerAddPassPrizeByIndex.execute(pid,4)
 
         endfunction
 
@@ -690,6 +763,8 @@ library PassCheckUI uses GameFrame,PassCheckMission
                     elseif  DzShop(Player(pid),"RWK3") == false and Step == 2
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
                     elseif  DzShop(Player(pid),"RWK4") == false and Step == 3
+                        DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
+                    elseif  DzShop(Player(pid),"RWK5") == false and Step == 4
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\UI_DisBack.tga",0)
                     else
                         DzFrameSetTexture(BUTTON_Back[630+i][3],"war3mapImported\\alpha.tga",0)
@@ -946,6 +1021,8 @@ library PassCheckUI uses GameFrame,PassCheckMission
         CreateButton(673,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.10,0.005,0.03,0.03,"war3mapImported\\UI_S3.tga")
 
         CreateButton(674,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.14,0.005,0.03,0.03,"war3mapImported\\UI_S4.tga")
+
+        CreateButton(675,Button.frameid,TYPE_BUTTON,8,Button.frameid,8,-0.18,0.005,0.03,0.03,"war3mapImported\\UI_S5.tga")
     endfunction
 
     function PassCheckUIInit()
@@ -973,7 +1050,9 @@ library PassCheckUI uses GameFrame,PassCheckMission
 
         CreateFrameButton1()
 
-        if  MissionDay >= 63
+        if  MissionDay >= 83
+            Step = 4
+        elseif  MissionDay >= 63
             Step = 3
         elseif  MissionDay >= 42
             Step = 2

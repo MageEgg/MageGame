@@ -157,36 +157,43 @@ library UnitStateSet uses State
         int AttackWN = AttackUnitInt[0][2]
 
         
-
-        if  (uid >= 'm10A' and uid <= 'm10E') or  (uid >= 'm11A' and uid <= 'm11E')
-            if  AttackWN < 10
-                uid = 'm100'+AttackWN
-            elseif  AttackWN < 20
-                uid = 'm110'+(AttackWN-10)
-            elseif  AttackWN < 30
-                uid = 'm120'+(AttackWN-20)
-            elseif  AttackWN < 40
-                uid = 'm130'+(AttackWN-30)
-            elseif  AttackWN < 50
-                uid = 'm140'+(AttackWN-40)
-            elseif  AttackWN < 60
-                uid = 'm150'+(AttackWN-50)
-            else
-                uid = 'm160'
+        if  GameWuJin == 0
+            if  (uid >= 'm10A' and uid <= 'm10E') or  (uid >= 'm11A' and uid <= 'm11E')
+                if  AttackWN < 10
+                    uid = 'm100'+AttackWN
+                elseif  AttackWN < 20
+                    uid = 'm110'+(AttackWN-10)
+                elseif  AttackWN < 30
+                    uid = 'm120'+(AttackWN-20)
+                elseif  AttackWN < 40
+                    uid = 'm130'+(AttackWN-30)
+                elseif  AttackWN < 50
+                    uid = 'm140'+(AttackWN-40)
+                elseif  AttackWN < 60
+                    uid = 'm150'+(AttackWN-50)
+                else
+                    uid = 'm160'
+                endif
+            elseif  uid >= 'mf0A' and uid <= 'mf0H'
+                if  AttackWN >= 60
+                    uid = 'mf06'
+                elseif  AttackWN >= 50
+                    uid = 'mf05'
+                elseif  AttackWN >= 40
+                    uid = 'mf04'
+                elseif  AttackWN >= 30
+                    uid = 'mf03'
+                elseif  AttackWN >= 20
+                    uid = 'mf02'
+                else
+                    uid = 'mf01' 
+                endif
             endif
-        elseif  uid >= 'mf0A' and uid <= 'mf0H'
-            if  AttackWN >= 60
-                uid = 'mf06'
-            elseif  AttackWN >= 50
-                uid = 'mf05'
-            elseif  AttackWN >= 40
-                uid = 'mf04'
-            elseif  AttackWN >= 30
-                uid = 'mf03'
-            elseif  AttackWN >= 20
-                uid = 'mf02'
-            else
-                uid = 'mf01' 
+        else
+            if  (uid >= 'm10A' and uid <= 'm10E') or  (uid >= 'm11A' and uid <= 'm11E')
+                uid = 'm027'
+            elseif  uid >= 'mf0A' and uid <= 'mf0H'
+                uid = 'mb08'
             endif
         endif
 
@@ -235,6 +242,7 @@ library UnitStateSet uses State
                 endif
             endif
         end
+
         
         if  GetUnitPointValue(wu) == 1
             SetUnitPointX(wu,GetUnitX(wu))

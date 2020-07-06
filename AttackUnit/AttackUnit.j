@@ -11,6 +11,10 @@ library AttackUnit uses DamageCode,PassCheckMission
     bool array AttackUnitBool
     string AttackTimerUIText
     timer array AttackArrayTimer
+    timer WuJinEndTimer
+    timer WuJinRefreshTimer
+    group WuJinGroup
+    int WuJinNumber = 0
     
     int AttackBOSSLastCos = 0
     int AttackBOSSDeathCos = 0
@@ -148,6 +152,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                         endif
                     endif
                 endif
+            elseif  InGameWuJin == 1
+                AttackTimerTextUI.SetText("|cffffe100无尽倒计时|r")
+                AttackTimerTextExUI.SetText("|cffff0000"+I2S(R2I(TimerGetRemaining(WuJinEndTimer)))+"秒|r")
             else
                 if  AttackTimer != null
                     if  InfiniteAttackBool == false
@@ -711,6 +718,12 @@ library AttackUnit uses DamageCode,PassCheckMission
         SetUnitRealState(u,5,GetUnitRealState(u,5)*add)
     endfunction
 
+    function SetGameMode3ExAttackUnitStateValue(unit u)
+        real add = Pow(WuJinNumber,1.15)
+        SetUnitRealState(u,5,GetUnitRealState(u,5)*add)
+        SetUnitRealState(u,17,GetUnitRealState(u,17)*add)
+    endfunction
+
     function AttackUnitGroupRemoveFunc()
         if  GetUnitAbilityLevel(GetEnumUnit(),'AGM4') == GameMode4LeaveGame
             KillUnit(GetEnumUnit())
@@ -767,7 +780,21 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     AddBossAnger(u)
                                 endif
                             endif
+                            if  InGameWuJin == 1
+                                SetGameMode3ExAttackUnitStateValue(u)
+                            endif
                         end
+
+                        if  puid[k] == LastAttackBossId and GameWuJin == 1 and InGameWuJin == 0
+                            InGameWuJin = 1
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[无尽模式]：|r击杀最终BOSS后进入无尽！！")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[无尽模式]：|r击杀最终BOSS后进入无尽！！")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[无尽模式]：|r击杀最终BOSS后进入无尽！！")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[无尽模式]：|r击杀最终BOSS后进入无尽！！")
+                            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[无尽模式]：|r击杀最终BOSS后进入无尽！！")
+                            WuJinEndTimer = CreateTimer()
+                            TimerStart(WuJinEndTimer,600,false,function WuJinEndTimerFunc)
+                        endif
                     endif
                 endif
             end
@@ -795,6 +822,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         real time = AttackUnitIntervalTime(0)[ordernum]
         int FlushNum = AttackUnitFlushNum(0)[ordernum]
         int num = FlushNum
+        
         if  FlushNum > 0
             CreateAttackBossTimer = CreateTimer()
             SaveInteger(ht,GetHandleId(CreateAttackBossTimer),1,FlushNum)
@@ -847,7 +875,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                                 SetUnitXY(u,psx[k],psy[k])
                                 IssuePointOrderById(u,851983,pex[k],pey[k])
                                 GroupAddUnit(AttackUnitGroup,u)
-                                if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0
+                                if  GameMode == 3 and ModuloInteger(AttackUnitWN,3) == 0 and GameWuJin == 0
                                     IntUnitVariation(u)
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 elseif  GameMode == 4
@@ -866,6 +894,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                                         AddUnitVariation(u,AttackUnitVariationNumA)
                                     endif
                                     SetGameMode4AttackUnitStateValue(k,u)
+                                endif
+                                if  InGameWuJin == 1
+                                    SetGameMode3ExAttackUnitStateValue(u)
                                 endif
                             endif
                         end
@@ -896,15 +927,17 @@ library AttackUnit uses DamageCode,PassCheckMission
             if  ModuloInteger(AttackUnitWN,3) == 0
                 AttackUnitVariationNumA = 'AXAA'+GetRandomInt(0,11)
                 AttackUnitVariationNumB = 'AXBA'+GetRandomInt(0,8)
-                VariationTextExUI.SetText("|cffff0000"+SubString(GetObjectName(AttackUnitVariationNumA),7,StringLength(GetObjectName(AttackUnitVariationNumA)))+"，"+SubString(GetObjectName(AttackUnitVariationNumB),13,StringLength(GetObjectName(AttackUnitVariationNumB)))+"|r")
-                ShowVariationUIEx(true)
-                for pid = 0,3
-                    if  ShowEffect == true
-                        if  GetLocalPlayer() == Player(pid)
-                            Blood.show = true
+                if  GameWuJin == 0
+                    VariationTextExUI.SetText("|cffff0000"+SubString(GetObjectName(AttackUnitVariationNumA),7,StringLength(GetObjectName(AttackUnitVariationNumA)))+"，"+SubString(GetObjectName(AttackUnitVariationNumB),13,StringLength(GetObjectName(AttackUnitVariationNumB)))+"|r")
+                    ShowVariationUIEx(true)
+                    for pid = 0,3
+                        if  ShowEffect == true
+                            if  GetLocalPlayer() == Player(pid)
+                                Blood.show = true
+                            endif
                         endif
-                    endif
-                end
+                    end
+                endif
             elseif  ModuloInteger(AttackUnitWN-1,3) == 0 and AttackUnitWN > 3
                 ShowVariationUIEx(false)
                 Blood.show = false
@@ -960,6 +993,9 @@ library AttackUnit uses DamageCode,PassCheckMission
                                     AddUnitVariation(u,AttackUnitVariationNumA)
                                 endif
                                 SetGameMode4AttackUnitStateValue(k,u)
+                            endif
+                            if  InGameWuJin == 1
+                                SetGameMode3ExAttackUnitStateValue(u)
                             endif
                         end
                     endif
@@ -1124,6 +1160,90 @@ library AttackUnit uses DamageCode,PassCheckMission
             endif
             AttackTimerUIText = "进攻波 "+I2S(AttackUnitWN+1)+"/"+I2S(AttackUnitWNOver-3)
         endif
+    endfunction
+
+
+    function FlushWuJinGroup()
+        RemoveUnit(GetEnumUnit())
+    endfunction
+
+
+    function GetWuJinLocX(int i)->real
+        if  i == 1
+            return -1664
+        elseif  i == 2
+            return 96
+        elseif  i == 3
+            return -1664
+        elseif  i == 4
+            return -3250
+        endif
+        return 0
+    endfunction
+    function GetWuJinLocY(int i)->real
+        if  i == 1
+            return -6320
+        elseif  i == 2
+            return -7550
+        elseif  i == 3
+            return -8950
+        elseif  i == 4
+            return -7440
+        endif
+        return 0
+    endfunction
+
+    function CreateWuJinUnit()
+        ForGroup(WuJinGroup,function FlushWuJinGroup)
+        GroupClear(WuJinGroup)
+
+        WuJinNumber = WuJinNumber + 1
+
+        real x = 0
+        real y = 0
+        unit u = null
+
+        for i = 1,4
+            x = GetWuJinLocX(i)
+            y = GetWuJinLocY(i)
+
+            for n = 1,20
+                u = CreateUnit(Player(10),GetGameMode4AttackUnitId(),-1663,-7486,0)
+                GroupAddUnit(WuJinGroup,u)
+                SetUnitXY(u,x,y)
+                IssuePointOrderById(u,851983,-1663,-7486)
+            end
+
+        end
+
+
+        int ran = GetRandomInt(1,4)
+        x = GetWuJinLocX(ran)
+        y = GetWuJinLocY(ran)
+        u = CreateUnit(Player(10),'mf0A'+GetRandomInt(0,7),-1663,-7486,0)
+        GroupAddUnit(WuJinGroup,u)
+        SetUnitXY(u,x,y)
+        IssuePointOrderById(u,851983,-1663,-7486)
+        
+
+
+
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,10,"|cffffcc00[无尽]：|r第"+I2S(WuJinNumber)+"波无尽怪开始进攻！！！")
+        flush locals
+    endfunction
+
+
+    function RefreshWuJinTimerFunc()
+        PauseTimer(WuJinRefreshTimer)
+        DestroyTimer(WuJinRefreshTimer)
+
+        //刷新100只小怪
+        CreateWuJinUnit()
+    endfunction
+    function OpenWuJinTimerFunc()
+        WuJinRefreshTimer = CreateTimer()
+        TimerStart(WuJinRefreshTimer,30,false,function RefreshWuJinTimerFunc)
+        WuJinGroup = CreateGroup()
     endfunction
 
     function OpenStopAttackTimer()
@@ -1676,5 +1796,7 @@ library AttackUnit uses DamageCode,PassCheckMission
         }
         flush locals
     endfunction
+
+    
 
 endlibrary

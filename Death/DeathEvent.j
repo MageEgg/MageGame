@@ -384,6 +384,10 @@ scope DeathEvent initializer InitDeathEvent
 
 
         
+        if  InGameWuJin == 1
+            gold = 1
+            exp = 1
+        endif
         
         
         //杀敌金币
@@ -607,7 +611,7 @@ scope DeathEvent initializer InitDeathEvent
 
         if  DzConA[26] == 1
             if  uid >= 'mb01' and uid <= 'mb0z'
-                if  GetRandomReal(1,100) <= 55
+                if  GetRandomReal(1,100) <= 60
                     CreateItem(GetRandomInt('IN61','IN64'),GetUnitX(tu),GetUnitY(tu))
                 endif
                 if  GetRandomReal(1,100) <= 50
@@ -620,7 +624,7 @@ scope DeathEvent initializer InitDeathEvent
                 if  GetRandomReal(1,100) <= 30
                     CreateItem('IN60',GetUnitX(tu),GetUnitY(tu))
                 endif
-            elseif  GetRandomReal(1,1000) <= 3
+            elseif  GetRandomReal(1,10000) <= 10
                 CreateItem(GetRandomInt('IN61','IN64'),GetUnitX(tu),GetUnitY(tu))
             endif
 
@@ -883,35 +887,54 @@ scope DeathEvent initializer InitDeathEvent
     function AttackBossDeathEvent(unit boss)
         AttackBOSSDeathCos = AttackBOSSDeathCos + 1
         BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
+        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了"+GetObjectName('IN30')+"！|r")
         if  AttackBOSSDeathCos == AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             AttackBOSSLastCos = 0
-            if  GameLevel >= 5 and GameMode != 4
-                if  GetUnitTypeId(boss) == LastAttackBossId
-                    if  LastBOSSOpera == false
-                        CreateOperaLastBoss()
+
+            if  GameWuJin == 0
+                if  GameLevel >= 5 and GameMode != 4
+                    if  GetUnitTypeId(boss) == LastAttackBossId
+                        if  LastBOSSOpera == false
+                            CreateOperaLastBoss()
+                        else
+                            ShowBossDamageUI(false)
+                            ShowBossDamageString()
+                            AttackUnitWin()
+                        endif
                     else
                         ShowBossDamageUI(false)
                         ShowBossDamageString()
-                        AttackUnitWin()
                     endif
                 else
                     ShowBossDamageUI(false)
                     ShowBossDamageString()
+                    if  GetUnitTypeId(boss) == LastAttackBossId
+                        AttackUnitWin()
+                    endif
                 endif
             else
                 ShowBossDamageUI(false)
                 ShowBossDamageString()
                 if  GetUnitTypeId(boss) == LastAttackBossId
-                    AttackUnitWin()
+                    LastBOSSOpera = true
+                    
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
                 endif
+                
+
+                
             endif
         endif
         CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
         PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了"+GetObjectName('IN30')+"！|r")
+        
     endfunction
 
     function GameOverEx()

@@ -172,12 +172,16 @@ library AttackRoom uses System,State,PlayerGlobals,GameChallengeDeath
         real y = AttackRoomPostion[pid][2]
         int num = GetNum(pid,2)
         int max = GetPlayerAttackUnitNum(pid) - num
-        if  max >= 1
-            for i = 1,max
-                CreateAttackRoomUnit(pid,uid,x,y,GetRandomReal(1,360))
-            end
+        if  InGameWuJin == 0
+            if  max >= 1
+                for i = 1,max
+                    CreateAttackRoomUnit(pid,uid,x,y,GetRandomReal(1,360))
+                end
+            else
+                BJDebugMsg("错误的刷一波怪 但是被阻止了 max"+I2S(GetPlayerAttackUnitNum(pid))+" num"+I2S(num))
+            endif
         else
-            BJDebugMsg("错误的刷一波怪 但是被阻止了 max"+I2S(GetPlayerAttackUnitNum(pid))+" num"+I2S(num))
+            BJDebugMsg("无尽下阻止刷怪")
         endif
     endfunction
 

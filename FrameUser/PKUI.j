@@ -74,7 +74,11 @@ library PKUI uses GameFrame
         elseif  GameMode == 2
             call TextMode.SetText("疯狂模式-"+GameNanDuName[GameLevel])
         elseif  GameMode == 3
-            call TextMode.SetText("异变模式-"+GameNanDuName[GameLevel-3])
+            if  GameWuJin == 0
+                call TextMode.SetText("异变模式-"+GameNanDuName[GameLevel-3])
+            else
+                call TextMode.SetText("无尽模式-"+GameNanDuName[GameLevel-3])
+            endif
         elseif  GameMode == 4
             call TextMode.SetText("超爽模式-"+GameNanDuName[GameLevel])
         endif

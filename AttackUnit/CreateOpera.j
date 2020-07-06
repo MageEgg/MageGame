@@ -833,6 +833,11 @@ library CreateOpera uses DamageCode
         flush locals
     endfunction
 
+
+    function WuJinEndTimerFunc()
+        AttackUnitWin.execute()
+    endfunction
+
     function CreateOperaLastBoss()
         unit u = null
         unit u2 = null
@@ -858,6 +863,10 @@ library CreateOpera uses DamageCode
         GroupAddUnit(AttackUnitGroup,u)
         AttackBOSSLastCos = 1
         LastAttackBossId = uid
+
+
+        
+
         TimerStart(0.4,false)
         {
             unit uu = null

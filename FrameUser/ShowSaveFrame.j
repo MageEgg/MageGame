@@ -73,7 +73,8 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(5,'RTX1','RTX1',0,0,0,0) //通行证1
         RegisterShowSaveFrameData(5,'RTX2','RTX2',0,0,0,0) //通行证2
         RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0) //通行证3
-        RegisterShowSaveFrameData(5,'RTX4','RTX4',0,0,0,0) //通行证3
+        RegisterShowSaveFrameData(5,'RTX4','RTX4',0,0,0,0) //通行证4
+        RegisterShowSaveFrameData(5,'RTX5','RTX5',0,0,0,0) //通行证5
 
         
         RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0) //良心赞助
@@ -217,6 +218,15 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ2S','RJ2S',0,0,0,0) //清凉一夏
         RegisterShowSaveFrameData(0,'RJ2T','RJ2T',0,0,0,0) //夏日之星
         RegisterShowSaveFrameData(0,'RJ2U','RJ2U',0,0,0,0) //火力全开
+
+        RegisterShowSaveFrameData(0,'RJ3A','RJ3A',0,0,0,0)//无尽预热
+        RegisterShowSaveFrameData(0,'RJ3B','RJ3B',0,0,0,0)//无尽序幕
+        RegisterShowSaveFrameData(0,'RJ3C','RJ3C',0,0,0,0)//无尽先锋
+        RegisterShowSaveFrameData(0,'RJ3D','RJ3D',0,0,0,0)//无尽carry
+        RegisterShowSaveFrameData(0,'RJ3E','RJ3E',0,0,0,0)//无尽之力
+        RegisterShowSaveFrameData(0,'RJ3F','RJ3F',0,0,0,0)//世界之力
+        RegisterShowSaveFrameData(0,'RJ3G','RJ3G',0,0,0,0)//三界凭证
+        RegisterShowSaveFrameData(0,'RJ3H','RJ3H',0,0,0,0)//返璞归真
         
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0) //难2通关5次

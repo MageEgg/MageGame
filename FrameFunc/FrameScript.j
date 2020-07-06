@@ -182,6 +182,14 @@
                         SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv0")
                         SetTipsData(11,"","距离第4赛季还剩|cffff0000"+I2S(63-MissionDay)+"|r天")
                     endif
+                elseif  step == 4
+                    if  MissionDay > 82
+                        SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                        SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                    else
+                        SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv0")
+                        SetTipsData(11,"","距离第5赛季还剩|cffff0000"+I2S(83-MissionDay)+"|r天")
+                    endif
                 endif
             elseif  id == 653 //商城通行证
                 if  step == 0
@@ -226,6 +234,17 @@
                             SetTipsData(10,"","|cffffcc00夏日通行证|r.Lv"+I2S(lv)+"(|cff00ff00已满级)")
                         else
                             SetTipsData(10,"","|cffffcc00夏日通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
+                            SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
+                        endif
+                    endif
+                elseif  step == 4
+                    if  DzShop(Player(pid),"RWK5") == false
+                        SetTipsData(10,"","|cffffcc00无尽通行证|r|cffff0000(商城购买后激活)|r")
+                    else
+                        if  lv >= 20
+                            SetTipsData(10,"","|cffffcc00无尽通行证|r.Lv"+I2S(lv)+"(|cff00ff00已满级)")
+                        else
+                            SetTipsData(10,"","|cffffcc00无尽通行证|r.Lv"+I2S(lv)+"(|cffff0000"+I2S(exp)+"/6|r)")
                             SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
                         endif
                     endif

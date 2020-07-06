@@ -743,7 +743,7 @@ library UnitRanDropItem initializer InitAllFunc uses SystemCodes
             int id = GetPrizeData(page,pool,index)
             int id2 = GetPrizeData(page,pool,max)
             BJDebugMsg("max id is "+GetTypeIdName(id2)+" max"+I2S(max))
-            if  GameMode != 4
+            if  GameMode != 4 and GameWuJin == 0
                 if  rem == true
                     RemPrizeData(page,pool,index)
                 endif

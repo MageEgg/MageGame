@@ -71,7 +71,9 @@ piece DzGameFunc
             SetDzPlayerData(pid,18,4,0) //活动刷新
             SetDzPlayerData(pid,18,7,0) //活动刷新
             SetDzPlayerData(pid,18,8,0) //活动刷新
-            BJDebugMsg("刷新！！！！！！！！！！")
+            SetDzPlayerData(pid,18,11,0) //活动刷新
+            SetDzPlayerData(pid,18,12,0) //活动刷新
+            BJDebugMsg("刷新活动数量！！！！！！！！！！")
         endif
         if  mission != DzMissionWeek
             BJDebugMsg("通行证刷新")

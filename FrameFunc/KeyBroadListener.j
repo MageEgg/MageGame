@@ -95,8 +95,8 @@ scope KeyEvent initializer InitKeyBroadListener
                     endif
                 endif
             elseif  key == 9 //Tab
-                if  GameMode == 4
-      
+                if  GameMode == 4 or InGameWuJin == 1
+                    BJDebugMsg("超爽和无尽不开副本")
                 else
                     if  GetUnitAbilityLevel(Pu[1],'AG09') > 0
                         ClickPlotFrame(pid)

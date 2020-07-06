@@ -398,7 +398,7 @@ scope ItemSystem initializer InitItemSystem
             DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,5,"|cffffcc00[端午活动]：|r|cffff8000获得甜甜粽，全队端午积分+40|r")
             for jfpid = 0,3
                 if  IsPlaying(jfpid) == true 
-                    if  GetDzPlayerData(jfpid,18,9) <= 1160
+                    if  GetDzPlayerData(jfpid,18,11) <= 1160
                         AddDzPlayerData(jfpid,18,9,40)
                         AddDzPlayerData(jfpid,18,11,40)
                     else
@@ -443,28 +443,24 @@ scope ItemSystem initializer InitItemSystem
                 end
             endif
         elseif  itemid == 'IZ02'
-            if  DzConA[13] == 1
+            if  InGameWuJin == 0
                 if  GameLevel >= 4
                     SendToGameChallenge_10(pid)
                 else
                     DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度4或以上才能激活！！！")
                 endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r|cffff0000当前团队副本暂未开放！！！|r")                         
+                DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|r无尽开始后无法进入寻宝秘境！")
             endif
         elseif  itemid == 'IZ03'
-            if  DzConA[14] == 1
-                if  GameLevel >= 4
-                    if  GetUnitTypeId(GameChallengeMapUnit[501]) != 'ut21'
-                        OpenChallengeWM(pid)  
-                    else
-                        DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
-                    endif
+            if  GameLevel >= 4
+                if  GetUnitTypeId(GameChallengeMapUnit[501]) != 'ut21'
+                    OpenChallengeWM(pid)  
                 else
-                    DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度4或以上才能激活！！！")
+                    DisplayTimedTextToPlayer(Player(pid),0,0,2,"|cffffcc00[万魔窟]：|r|cffff0000未解除万魔窟的封印，请击杀秘境领主解除！|r")
                 endif
             else
-                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[团队副本]：|r|cffff0000当前团队副本暂未开放！！！|r")
+                DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r该团本难度4或以上才能激活！！！")
             endif
         elseif  itemid == 'IZ04'
             AddItemToStock(GameDefendUnit,itemid,1,1)

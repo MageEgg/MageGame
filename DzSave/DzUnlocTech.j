@@ -92,7 +92,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
             AddHuYaName("a苏杭大棒子啪啪啪")
             AddHuYaName("a沐北清歌瀚丶")
             AddHuYaName("at涛jr大")
-            AddHuYaName("a乳尺惊人")
+            AddHuYaName("a星耀丶彼岸")
             AddHuYaName("a星耀丶苏烟")
             AddHuYaName("a星耀丶大圣人")
             AddHuYaName("a嗯，同意")
@@ -741,6 +741,7 @@ library UnlocTech initializer InitAllUnlocTech uses DamageCode
         InitUnlocTechConditions('RTX2',InitCond1(2,Unloc_Type_Shop,ShopList("RWK2")),0,0,0,0)
         InitUnlocTechConditions('RTX3',InitCond1(2,Unloc_Type_Shop,ShopList("RWK3")),0,0,0,0)
         InitUnlocTechConditions('RTX4',InitCond1(2,Unloc_Type_Shop,ShopList("RWK4")),0,0,0,0)
+        InitUnlocTechConditions('RTX5',InitCond1(2,Unloc_Type_Shop,ShopList("RWK5")),0,0,0,0)
         
 
         InitUnlocTechConditions('RQD0',InitCond1(2,Unloc_Type_Level,1),0,0,0,0)
