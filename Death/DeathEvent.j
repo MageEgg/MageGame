@@ -918,19 +918,20 @@ scope DeathEvent initializer InitDeathEvent
             else
                 ShowBossDamageUI(false)
                 ShowBossDamageString()
-                if  GetUnitTypeId(boss) == LastAttackBossId
-                    LastBOSSOpera = true
-                    KillAttackUnitGroup()
-                    OpenWuJinTimerFunc()
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
-                    DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
-                endif
-                
-
-                
+                if  LastBOSSOpera == false
+                    if  GetUnitTypeId(boss) == LastAttackBossId
+                        LastBOSSOpera = true
+                        KillAttackUnitGroup()
+                        OpenWuJinTimerFunc()
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,15,"|cffffcc00[系统]:|r最终BOSS已击杀！！！30秒后开启无尽！！！")
+                    endif
+                else
+                    ///
+                endif    
             endif
         endif
         CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
