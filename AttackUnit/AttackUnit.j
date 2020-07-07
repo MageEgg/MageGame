@@ -941,8 +941,10 @@ library AttackUnit uses DamageCode,PassCheckMission
                     end
                 endif
             elseif  ModuloInteger(AttackUnitWN-1,3) == 0 and AttackUnitWN > 3
-                ShowVariationUIEx(false)
-                Blood.show = false
+                if  GameWuJin == 0
+                    ShowVariationUIEx(false)
+                    Blood.show = false
+                endif
             endif
         elseif GameMode == 4
             if  ModuloInteger(AttackUnitWN,2) == 0 or ModuloInteger(AttackUnitWN,5) == 0
