@@ -332,6 +332,9 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGGC','RGGC',0,0,0,0) //超爽N3通关12次&地图5级
         RegisterShowSaveFrameData(0,'RGGD','RGGD',0,0,0,0) //超爽N4通关12次&地图7级
         RegisterShowSaveFrameData(0,'RGGE','RGGE',0,0,0,0) //超爽N5通关12次&地图9级
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
+        RegisterShowSaveFrameData(0,0,0,0,0,0,0) //填空假id
 
 
         RegisterShowSaveFrameData(0,'RGHA','RGHA',0,0,0,0)//无尽N1达到15层

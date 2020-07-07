@@ -1231,7 +1231,7 @@ library AttackUnit uses DamageCode,PassCheckMission
             for pid = 0,3
                 if  IsPlaying(pid) == true
                     if  WuJinNumber > GetDzPlayerData(pid,22,1+GameLevel) 
-                        SetDzPlayerData(pid,22,1+GameLevel,WuJinNumber)
+                        SetDzPlayerData(pid,22,GameLevel-2,WuJinNumber)
                     endif
                 endif
             end
@@ -1684,7 +1684,7 @@ library AttackUnit uses DamageCode,PassCheckMission
                 elseif  GameMode == 2
                     DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00[系统]：|cff00ff00游戏已通关，奖励"+I2S(jfadd)+"点通关积分(疯狂模式+50%)！|r")
                 endif
-            elseif  GameMode == 3
+            elseif  GameMode == 3 and GameWuJin == 0
                 AddDzPlayerData(pid,20,1,1) //异变总通关次数
                 AddDzPlayerData(pid,20,GameLevel-2,1) //异变通关难度次数
 

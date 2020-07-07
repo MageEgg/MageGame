@@ -1063,7 +1063,11 @@ scope DeathEvent initializer InitDeathEvent
         endif
         
         if  u1 == GameDefendUnit
-            GameOver()
+            if  InGameWuJin == 1
+                AttackUnitWin()
+            else
+                GameOver()
+            endif
         elseif  u1 == AttackUnitBoss[10] and uid == 'mc06' //闻太师
             AttackOperaBEnding(1)
             if  GetUnitTypeId(u2) == 'H028' //彩蛋
