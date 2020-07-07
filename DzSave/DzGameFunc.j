@@ -44,7 +44,7 @@ piece DzGameFunc
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难5  |r"+I2S(GetDzPlayerData(pid,20,6))+"/"+I2S(DzPlayerInitVariationTGCos[5])+"  |cffffcc00难6  |r"+I2S(GetDzPlayerData(pid,20,7))+"/"+I2S(DzPlayerInitVariationTGCos[6])+"  |cffffcc00难7  |r"+I2S(GetDzPlayerData(pid,20,8))+"/"+I2S(DzPlayerInitVariationTGCos[7])+"  |cffffcc00难8  |r"+I2S(GetDzPlayerData(pid,20,9))+"/"+I2S(DzPlayerInitVariationTGCos[8]))
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00超爽模式：|r")
-            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难1  |r"+I2S(GetDzPlayerData(pid,21,2))+"/"+I2S(DzPlayerInitSuperTGCos[1])+"  |cffffcc00难2  |r"+I2S(GetDzPlayerData(pid,21,3))+"/"+I2S(DzPlayerInitSuperTGCos[2])+"  |cffffcc00难3  |r"+I2S(GetDzPlayerData(pid,21,4))+"/"+I2S(DzPlayerInitSuperTGCos[3])+"|cffffcc00难4  |r"+I2S(GetDzPlayerData(pid,21,5))+"/"+I2S(DzPlayerInitSuperTGCos[4]))
+            DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难1  |r"+I2S(GetDzPlayerData(pid,21,2))+"/"+I2S(DzPlayerInitSuperTGCos[1])+"  |cffffcc00难2  |r"+I2S(GetDzPlayerData(pid,21,3))+"/"+I2S(DzPlayerInitSuperTGCos[2])+"  |cffffcc00难3  |r"+I2S(GetDzPlayerData(pid,21,4))+"/"+I2S(DzPlayerInitSuperTGCos[3])+"  |cffffcc00难4  |r"+I2S(GetDzPlayerData(pid,21,5))+"/"+I2S(DzPlayerInitSuperTGCos[4]))
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00难5  |r"+I2S(GetDzPlayerData(pid,21,6))+"/"+I2S(DzPlayerInitSuperTGCos[5]))
 
             DisplayTimedTextToPlayer(Player(pid),0,0,10,"|cffffcc00无尽模式：|r")

@@ -835,6 +835,8 @@ library CreateOpera uses DamageCode
 
 
     function WuJinEndTimerFunc()
+        ForGroup(WuJinGroup,function FlushWuJinGroup)
+        GroupClear(WuJinGroup)
         AttackUnitWin.execute()
     endfunction
 

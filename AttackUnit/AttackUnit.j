@@ -1174,7 +1174,7 @@ library AttackUnit uses DamageCode,PassCheckMission
 
         WuJinNumber = WuJinNumber + 1
 
-        if  WuJinNumber <= 100
+        if  WuJinNumber <= 500
             real x = 0
             real y = 0
             unit u = null
@@ -1230,16 +1230,16 @@ library AttackUnit uses DamageCode,PassCheckMission
 
             for pid = 0,3
                 if  IsPlaying(pid) == true
-                    if  WuJinNumber > GetDzPlayerData(pid,22,1+GameLevel) 
+                    if  WuJinNumber > GetDzPlayerData(pid,22,GameLevel-2)
                         SetDzPlayerData(pid,22,GameLevel-2,WuJinNumber)
                     endif
                 endif
             end
             
         else
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[无尽]：|r都100波啦，我觉得你有问题！！！！所以就结束啦！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[无尽]：|r都100波啦，我觉得你有问题！！！！所以就结束啦！")
-            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[无尽]：|r都100波啦，我觉得你有问题！！！！所以就结束啦！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[无尽]：|r500层了说真的，我觉得你在作弊！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[无尽]：|r500层了说真的，我觉得你在作弊！")
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,60,"|cffffcc00[无尽]：|r500层了说真的，我觉得你在作弊！")
             
         endif
         flush locals

@@ -700,7 +700,7 @@ scope DeathEvent initializer InitDeathEvent
         elseif  uid >= 'm11A' and uid <= 'm11C'
             AdjustPlayerStateBJ(1, Player(pid), PLAYER_STATE_RESOURCE_LUMBER )
             DisplayTimedTextToPlayer(Player(pid),0,0,5,"|cffffcc00[系统]：|r击杀精英怪，玄铁+1！")
-        elseif  uid >= 'mf0A' and uid <= 'mf0H'
+        elseif  uid >= 'mf0A' and uid <= 'mf0H' and InGameWuJin == 0
             if  GetRandomInt(1,100) <= 40
                 CreateItem('IN31',GetUnitX(tu),GetUnitY(tu))
             elseif  GetRandomInt(1,100) <= 66
@@ -887,7 +887,7 @@ scope DeathEvent initializer InitDeathEvent
     function AttackBossDeathEvent(unit boss)
         AttackBOSSDeathCos = AttackBOSSDeathCos + 1
         BJDebugMsg("AttackBOSSDeathCos "+I2S(AttackBOSSDeathCos)+"@@ AttackBOSSLastCos "+I2S(AttackBOSSLastCos))
-        DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了"+GetObjectName('IN30')+"！|r")
+        
         if  AttackBOSSDeathCos == AttackBOSSLastCos
             AttackBOSSDeathCos = 0
             AttackBOSSLastCos = 0
@@ -936,6 +936,7 @@ scope DeathEvent initializer InitDeathEvent
             endif
         endif
         if  InGameWuJin == 0
+            DisplayTimedTextToPlayer(GetLocalPlayer(),0,0,6,"|cffffcc00[系统]:|cffff0000"+GetUnitName(boss)+"死亡，掉落了"+GetObjectName('IN30')+"！|r")
             CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
             LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
             LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
@@ -1064,6 +1065,9 @@ scope DeathEvent initializer InitDeathEvent
         
         if  u1 == GameDefendUnit
             if  InGameWuJin == 1
+                ForGroup(WuJinGroup,function FlushWuJinGroup)
+                GroupClear(WuJinGroup)
+                PauseTimer(WuJinEndTimer)
                 AttackUnitWin()
             else
                 GameOver()

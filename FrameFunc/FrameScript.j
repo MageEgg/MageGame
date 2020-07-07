@@ -196,7 +196,7 @@
                         SetTipsData(11,"","距离升级还差|cffff0000"+I2S(6-exp)+"|r经验")
                     else
                         SetTipsData(10,"","第"+I2S(step+1)+"赛季通行证.Lv0")
-                        SetTipsData(11,"","距离第6赛季还剩|cffff0000"+I2S(83-MissionDay)+"|r天")
+                        SetTipsData(11,"","距离第6赛季还剩|cffff0000"+I2S(103-MissionDay)+"|r天")
                     endif
                 endif
             elseif  id == 653 //商城通行证

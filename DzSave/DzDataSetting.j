@@ -138,8 +138,9 @@ library DzDataSetting uses DzBase
         DzDataGroupLength(19) = 2
         DzDataGroupLength(20) = 3
         DzDataGroupLength(21) = 3
+        
+        DzDataGroupLength(22) = 3
         /*
-        DzDataGroupLength(22) = 0
         DzDataGroupLength(23) = 0
         DzDataGroupLength(24) = 0
         DzDataGroupLength(25) = 0
