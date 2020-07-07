@@ -75,6 +75,7 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(5,'RTX3','RTX3',0,0,0,0) //通行证3
         RegisterShowSaveFrameData(5,'RTX4','RTX4',0,0,0,0) //通行证4
         RegisterShowSaveFrameData(5,'RTX5','RTX5',0,0,0,0) //通行证5
+        RegisterShowSaveFrameData(5,'RTX6','RTX6',0,0,0,0) //通行证6
 
         
         RegisterShowSaveFrameData(5,'RJ1Z','RJ1Z',0,0,0,0) //良心赞助
@@ -227,6 +228,15 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RJ3F','RJ3F',0,0,0,0)//世界之力
         RegisterShowSaveFrameData(0,'RJ3G','RJ3G',0,0,0,0)//三界凭证
         RegisterShowSaveFrameData(0,'RJ3H','RJ3H',0,0,0,0)//返璞归真
+
+        RegisterShowSaveFrameData(0,'RJ3I','RJ3I',0,0,0,0)//出奇制胜
+        RegisterShowSaveFrameData(0,'RJ3J','RJ3J',0,0,0,0)//雄才大略
+        RegisterShowSaveFrameData(0,'RJ3K','RJ3K',0,0,0,0)//势如破竹
+        RegisterShowSaveFrameData(0,'RJ3L','RJ3L',0,0,0,0)//家财万贯
+        RegisterShowSaveFrameData(0,'RJ3M','RJ3M',0,0,0,0)//战无不克
+        RegisterShowSaveFrameData(0,'RJ3N','RJ3N',0,0,0,0)//全民皆兵
+        RegisterShowSaveFrameData(0,'RJ3O','RJ3O',0,0,0,0)//用兵如神
+        RegisterShowSaveFrameData(0,'RJ3P','RJ3P',0,0,0,0)//过关斩将
         
 
         RegisterShowSaveFrameData(0,'RG0B','RG0B',0,0,0,0) //难2通关5次
@@ -322,6 +332,22 @@ library ShowSaveFrameFunction  uses GameFrame,MagicItemCollectCode
         RegisterShowSaveFrameData(0,'RGGC','RGGC',0,0,0,0) //超爽N3通关12次&地图5级
         RegisterShowSaveFrameData(0,'RGGD','RGGD',0,0,0,0) //超爽N4通关12次&地图7级
         RegisterShowSaveFrameData(0,'RGGE','RGGE',0,0,0,0) //超爽N5通关12次&地图9级
+
+
+        RegisterShowSaveFrameData(0,'RGHA','RGHA',0,0,0,0)//无尽N1达到15层
+        RegisterShowSaveFrameData(0,'RGHB','RGHB',0,0,0,0)//无尽N2达到15层
+        RegisterShowSaveFrameData(0,'RGHC','RGHC',0,0,0,0)//无尽N3达到15层
+        RegisterShowSaveFrameData(0,'RGHD','RGHD',0,0,0,0)//无尽N4达到15层
+
+        RegisterShowSaveFrameData(0,'RGIA','RGIA',0,0,0,0)//无尽N1达到30层
+        RegisterShowSaveFrameData(0,'RGIB','RGIB',0,0,0,0)//无尽N2达到30层
+        RegisterShowSaveFrameData(0,'RGIC','RGIC',0,0,0,0)//无尽N3达到30层
+        RegisterShowSaveFrameData(0,'RGID','RGID',0,0,0,0)//无尽N4达到30层
+
+        RegisterShowSaveFrameData(0,'RGJA','RGJA',0,0,0,0)//无尽N1达到40层
+        RegisterShowSaveFrameData(0,'RGJB','RGJB',0,0,0,0)//无尽N2达到40层
+        RegisterShowSaveFrameData(0,'RGJC','RGJC',0,0,0,0)//无尽N3达到40层
+        RegisterShowSaveFrameData(0,'RGJD','RGJD',0,0,0,0)//无尽N4达到40层
 
         
 

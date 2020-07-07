@@ -106,6 +106,12 @@ library DzDataSetting uses DzBase
         DzPlayerInitSuperTGCos[8] = 0
         DzPlayerInitSuperTGCos[9] = 0
         DzPlayerInitSuperTGCos[10] = 0
+
+
+        DzPlayerInitWujinTGCos[1] = 40
+        DzPlayerInitWujinTGCos[2] = 40
+        DzPlayerInitWujinTGCos[3] = 40
+        DzPlayerInitWujinTGCos[4] = 40
     endfunction
     
     function DzDataGroupSetting()
@@ -213,7 +219,9 @@ library DzDataSetting uses DzBase
                 max = (MissionDay-62)*6
             elseif  flag == 5 //通行证经验
                 max = (MissionDay-82)*6
-            elseif  flag >= 6 //未使用
+            elseif  flag == 6 //通行证经验
+                max = (MissionDay-102)*6
+            elseif  flag >= 7 //未使用
                 max = 0
             endif
         elseif  Group == 5 //不用管
@@ -315,7 +323,13 @@ library DzDataSetting uses DzBase
             elseif  flag >= MaxGameLevel+2 //未开启的难度
                 max = 0
             endif
-        elseif  Group > 21 //未使用
+        elseif  Group == 22
+            if  flag >= 2 and flag <= MaxGameLevel+1 //通关难度
+                max = DzPlayerInitWujinTGCos[flag-1]
+            elseif  flag >= MaxGameLevel+2 //未开启的难度
+                max = 0
+            endif
+        elseif  Group > 22 //未使用
             max = 0
         endif
         data = GetDataMaximumValue(data,max)

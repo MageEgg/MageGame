@@ -935,10 +935,12 @@ scope DeathEvent initializer InitDeathEvent
                 endif    
             endif
         endif
-        CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
-        LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
-        LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
-        PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
+        if  InGameWuJin == 0
+            CreateItem('IN30',GetUnitX(boss),GetUnitY(boss))
+            LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
+            LocAddEffect(GetUnitX(boss),GetUnitY(boss),"effect_az_gift02.mdx")
+            PingMinimap(GetUnitX(boss),GetUnitY(boss),5)
+        endif
         
     endfunction
 

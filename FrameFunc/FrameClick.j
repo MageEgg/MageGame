@@ -294,6 +294,8 @@ endscope
 //! runtextmacro AddFrameFunc("673")
 //! runtextmacro AddFrameFunc("674")
 //! runtextmacro AddFrameFunc("675")
+//! runtextmacro AddFrameFunc("676")
+//! runtextmacro AddFrameFunc("677")
 
 //辅助按钮
 //! runtextmacro AddFrameFunc("701")

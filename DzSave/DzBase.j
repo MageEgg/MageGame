@@ -20,6 +20,7 @@ library DzBase uses SystemCodes,DzAPI
     int array DzPlayerInitTGCos
     int array DzPlayerInitCrazyTGCos
     int array DzPlayerInitSuperTGCos
+    int array DzPlayerInitWujinTGCos
     int array DzPlayerInitVariationTGCos
 
     insert DzMatrix
